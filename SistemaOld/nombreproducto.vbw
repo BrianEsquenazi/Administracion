@@ -1,0 +1,9 @@
+Module1 = 0, 0, 0, 0, C
+Module2 = 0, 0, 0, 0, C
+SISTEMA = 0, 0, 0, 0, C
+Funciones = 0, 0, 0, 0, C
+Menu = 0, 0, 0, 0, C, 88, 88, 482, 432, 
+Empresa = 0, 0, 0, 0, C, 22, 22, 416, 366, 
+frmLogin1 = 0, 0, 0, 0, C, 66, 66, 460, 410, Z
+Conexiones = 0, 0, 0, 0, C
+Form1 = 0, 0, 0, 0, C, 44, 44, 438, 388, C

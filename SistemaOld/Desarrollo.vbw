@@ -1,0 +1,15 @@
+Menu = 104, 104, 583, 374, Z, 44, 44, 370, 390, 
+Module1 = 0, 0, 0, 0, C
+Module2 = 0, 0, 373, 346, 
+Funciones = 44, 44, 419, 390, 
+SISTEMA = 88, 88, 552, 369, 
+Conexiones = 66, 66, 512, 342, C
+PrgCargaEnsayo = 132, 132, 507, 476, , 66, 66, 441, 410, 
+PrgOrdenTrabajoAnterior = 110, 110, 484, 454, , 88, 88, 462, 432, 
+frmLoginDesarrollo = 44, 44, 416, 388, , 22, 22, 394, 366, 
+PrgVerificaDesarrollo = 132, 132, 501, 476, , 88, 88, 457, 432, 
+PrgpedidoOrdenTrabajoverifica = 0, 0, 369, 344, , 154, 154, 523, 498, 
+PrgConsultaDesarrollo = 132, 132, 590, 408, , 154, 154, 523, 498, 
+PrgpedidoOrdenTrabajoConsulta = 44, 44, 502, 320, , 0, 0, 369, 344, 
+PrgAnalisisDesarrollo = 88, 88, 492, 432, , 66, 66, 470, 410, 
+PrgOrdenTrabajo = 44, 44, 430, 388, , 22, 22, 408, 366, 

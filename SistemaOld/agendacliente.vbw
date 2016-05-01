@@ -1,0 +1,14 @@
+Module1 = 0, 0, 0, 0, C
+Module2 = 0, 0, 0, 0, C
+Funciones = 22, 22, 475, 354, 
+Empresa = 0, 0, 0, 0, C, 88, 88, 474, 432, C
+SISTEMA = 154, 154, 540, 498, 
+Conexiones = 0, 0, 0, 0, C
+Coneccion = 0, 0, 0, 0, C, 110, 110, 496, 454, C
+frmLoginAgenda = 66, 66, 452, 410, , 22, 22, 408, 366, 
+PrgMiraAgenda = 110, 110, 563, 442, , 44, 44, 430, 388, 
+PrgAltaAgenda = 132, 132, 518, 476, , 88, 88, 474, 432, 
+prgcliagenda = 132, 132, 518, 476, , 110, 110, 496, 454, 
+PrgAltaMinuta = 132, 132, 518, 476, , 110, 110, 496, 454, 
+PrgReciagenda = 0, 0, 386, 344, Z, 154, 154, 540, 498, 
+PrgCtaCteAgenda = 0, 0, 0, 0, C, 154, 154, 532, 478, 

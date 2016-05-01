@@ -1,0 +1,15 @@
+Menu = 104, 104, 583, 374, , 44, 44, 370, 390, 
+Module1 = 88, 88, 460, 432, C
+Module2 = 0, 0, 373, 346, C
+Funciones = 44, 44, 419, 390, C
+Empresa = 88, 88, 463, 434, , 88, 88, 414, 434, 
+SISTEMA = 88, 88, 552, 369, C
+frmLogin = 44, 44, 602, 390, , 22, 22, 580, 368, 
+Conexiones = 66, 66, 512, 342, C
+PrgConfigLabora = 66, 66, 440, 412, , 44, 44, 418, 390, 
+PrgConfigCoti = 22, 22, 382, 366, , 66, 66, 438, 410, 
+PrgConfigVentas = 88, 88, 458, 432, Z, 66, 66, 438, 410, 
+PrgConfigVende = 66, 66, 435, 410, , 110, 110, 479, 454, 
+PrgConfigDesarrollo = 44, 44, 558, 323, , 132, 132, 521, 464, 
+PrgConfigInversion = 0, 0, 0, 0, C, 22, 22, 417, 366, C
+PrgConfigCapacitacion = 22, 22, 407, 366, , 0, 0, 385, 344, 
