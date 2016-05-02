@@ -1,1 +1,0 @@
-insert into sufractanSA.dbo.Cuenta values ('999999', 'Prueba', 1,1)
