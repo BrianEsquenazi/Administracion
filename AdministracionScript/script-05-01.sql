@@ -2,10 +2,10 @@
 	AGREGO EL CAMPO Cuenta COMO CLAVE Y PARA ELLO PRIMERO TENGO QUE
 	DECIR QUE NO PUEDE SER NULL
 */
-ALTER TABLE sufractanSA.dbo.Cuenta
+ALTER TABLE surfactanSA.dbo.Cuenta
 	ALTER COLUMN Cuenta varchar(10) NOT NULL
 GO
-ALTER TABLE	sufractanSA.dbo.Cuenta
+ALTER TABLE	surfactanSA.dbo.Cuenta
 	ADD PRIMARY KEY (Cuenta)
 GO
 
@@ -13,7 +13,7 @@ GO
 	ELIMINACION DE PROCEDIMIENTOS Y FUNCIONES
 */
 
-USE [sufractanSA]
+USE [surfactanSA]
 GO
 
 
@@ -50,7 +50,7 @@ AS
 	set @mensaje_error = ''
 	BEGIN TRANSACTION
 		BEGIN TRY
-			UPDATE sufractanSA.dbo.Cuenta
+			UPDATE surfactanSA.dbo.Cuenta
 			SET Descripcion = @descripcion
 				, Nivel = @nivel
 				, Empresa = @empresa
@@ -76,16 +76,13 @@ AS
 	set @mensaje_error = ''
 	BEGIN TRANSACTION
 		BEGIN TRY
-			insert into sufractanSA.dbo.Cuenta
+			insert into surfactanSA.dbo.Cuenta
 				values (@Cuenta, @Descripcion, @Nivel, @Empresa)
 			IF @@ERROR = 0 COMMIT TRANSACTION
 		END TRY
 	BEGIN CATCH	
 		ROLLBACK TRANSACTION
-		IF (@mensaje_error = '') 
-				EXEC PR_modificar_cuenta @cuenta, @descripcion, @nivel, @empresa	
-		RAISERROR(@mensaje_error, 16, 217)
-			WITH SETERROR
+			EXEC PR_modificar_cuenta @cuenta, @descripcion, @nivel, @empresa	
 	END CATCH
 GO	
 
@@ -96,7 +93,7 @@ AS
 	set @mensaje_error = ''
 	BEGIN TRANSACTION
 		BEGIN TRY
-			DELETE FROM sufractanSA.dbo.Cuenta
+			DELETE FROM surfactanSA.dbo.Cuenta
 			WHERE Cuenta = @cuenta
 			IF @@ERROR = 0 COMMIT TRANSACTION
 		END TRY
