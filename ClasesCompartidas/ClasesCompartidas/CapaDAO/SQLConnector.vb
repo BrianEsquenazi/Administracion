@@ -42,10 +42,14 @@ Public Class SQLConnector
         Return _executeProcedureWithReturnValue(procedure, args, values)
     End Function
 
+    Private Shared Function procedurePrefix()
+        Return "PR_"
+    End Function
 
-    Private Shared Sub _executeProcedure(ByVal procedure As String, ByVal args As List(Of String), ByVal ParamArray values() As Object)
+    Private Shared Sub _executeProcedure(ByVal procedureName As String, ByVal args As List(Of String), ByVal ParamArray values() As Object)
         Dim cn As SqlConnection = New SqlConnection()
         Dim cm As SqlCommand = New SqlCommand()
+        Dim procedure As String = procedurePrefix() & procedureName
 
         Try
             conexionSql(cn, cm)
@@ -65,11 +69,12 @@ Public Class SQLConnector
         End Try
     End Sub
 
-    Private Shared Function _checkIfExists(ByVal procedure As String, ByVal args As List(Of String), ByVal ParamArray values() As Object) As Boolean
+    Private Shared Function _checkIfExists(ByVal procedureName As String, ByVal args As List(Of String), ByVal ParamArray values() As Object) As Boolean
         Dim cn As SqlConnection = New SqlConnection()
         Dim cm As SqlCommand = New SqlCommand()
         Dim dr As SqlDataReader
         Dim dt As DataTable = New DataTable()
+        Dim procedure As String = procedurePrefix() & procedureName
 
         Try
             conexionSql(cn, cm)
@@ -90,9 +95,10 @@ Public Class SQLConnector
         End Try
     End Function
 
-    Private Shared Function _executeProcedureWithReturnValue(ByVal procedure As String, ByVal args As List(Of String), ByVal ParamArray values() As Object) As Integer
+    Private Shared Function _executeProcedureWithReturnValue(ByVal procedureName As String, ByVal args As List(Of String), ByVal ParamArray values() As Object) As Integer
         Dim cn As SqlConnection = New SqlConnection()
         Dim cm As SqlCommand = New SqlCommand()
+        Dim procedure As String = procedurePrefix() & procedureName
 
         Try
             conexionSql(cn, cm)
@@ -114,13 +120,12 @@ Public Class SQLConnector
         End Try
     End Function
 
-
-
-    Private Shared Function _retrieveDataTable(ByVal procedure As String, ByVal args As List(Of String), ByVal ParamArray values() As Object) As DataTable
+    Private Shared Function _retrieveDataTable(ByVal procedureName As String, ByVal args As List(Of String), ByVal ParamArray values() As Object) As DataTable
         Dim cn As SqlConnection = New SqlConnection()
         Dim cm As SqlCommand = New SqlCommand()
         Dim dr As SqlDataReader
         Dim dt As DataTable = New DataTable()
+        Dim procedure As String = procedurePrefix() & procedureName
 
         Try
             conexionSql(cn, cm)
@@ -144,11 +149,12 @@ Public Class SQLConnector
         End Try
     End Function
 
-    Private Shared Function _generateArguments(ByVal procedure As String) As List(Of String)
+    Private Shared Function _generateArguments(ByVal procedureName As String) As List(Of String)
         Dim cn As SqlConnection = New SqlConnection()
         Dim cm As SqlCommand = New SqlCommand()
         Dim dr As SqlDataReader
         Dim dt As DataTable = New DataTable()
+        Dim procedure As String = procedurePrefix() & procedureName
 
         Dim args As List(Of String) = New List(Of String)
         Try
@@ -175,7 +181,7 @@ Public Class SQLConnector
 
         If (Not args Is Nothing And Not values Is Nothing) Then
             If (args.Count <> values.Length) Then
-                Throw New ApplicationException()
+                Throw New ApplicationException("La cantidad de parámetros enviados (" & values.Length & ") no coincide con la cantidad de argumentos de la acción de SQL (" & args.Count & ")")
             End If
             Return True
         Else

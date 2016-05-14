@@ -2,6 +2,6 @@
 
 Public Class Globals
     Shared Function getConnectionString()
-        Return ConfigurationManager.ConnectionStrings("GD1C2015").ConnectionString
+        Return ConfigurationManager.ConnectionStrings("administracion").ConnectionString
     End Function
 End Class
