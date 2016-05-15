@@ -70,61 +70,61 @@ Partial Class CuentaContableABM
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(31, 102)
+        Me.btnAdd.Location = New System.Drawing.Point(31, 99)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(109, 33)
+        Me.btnAdd.Size = New System.Drawing.Size(110, 35)
         Me.btnAdd.TabIndex = 4
         Me.btnAdd.Text = "Agregar"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(146, 102)
+        Me.btnDelete.Location = New System.Drawing.Point(147, 99)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(109, 33)
+        Me.btnDelete.Size = New System.Drawing.Size(110, 35)
         Me.btnDelete.TabIndex = 5
         Me.btnDelete.Text = "Eliminar"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'btnClean
         '
-        Me.btnClean.Location = New System.Drawing.Point(261, 102)
+        Me.btnClean.Location = New System.Drawing.Point(263, 99)
         Me.btnClean.Name = "btnClean"
-        Me.btnClean.Size = New System.Drawing.Size(109, 33)
+        Me.btnClean.Size = New System.Drawing.Size(110, 35)
         Me.btnClean.TabIndex = 6
         Me.btnClean.Text = "Limpiar"
         Me.btnClean.UseVisualStyleBackColor = True
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(261, 141)
+        Me.btnClose.Location = New System.Drawing.Point(263, 140)
         Me.btnClose.Name = "btnClose"
-        Me.btnClose.Size = New System.Drawing.Size(109, 33)
+        Me.btnClose.Size = New System.Drawing.Size(110, 35)
         Me.btnClose.TabIndex = 7
         Me.btnClose.Text = "Cerrar"
         Me.btnClose.UseVisualStyleBackColor = True
         '
         'btnQuery
         '
-        Me.btnQuery.Location = New System.Drawing.Point(31, 141)
+        Me.btnQuery.Location = New System.Drawing.Point(31, 140)
         Me.btnQuery.Name = "btnQuery"
-        Me.btnQuery.Size = New System.Drawing.Size(109, 33)
+        Me.btnQuery.Size = New System.Drawing.Size(110, 35)
         Me.btnQuery.TabIndex = 8
         Me.btnQuery.Text = "Consulta"
         Me.btnQuery.UseVisualStyleBackColor = True
         '
         'btnList
         '
-        Me.btnList.Location = New System.Drawing.Point(146, 141)
+        Me.btnList.Location = New System.Drawing.Point(147, 140)
         Me.btnList.Name = "btnList"
-        Me.btnList.Size = New System.Drawing.Size(109, 33)
+        Me.btnList.Size = New System.Drawing.Size(110, 35)
         Me.btnList.TabIndex = 9
         Me.btnList.Text = "Listado"
         Me.btnList.UseVisualStyleBackColor = True
         '
         'txtQuery
         '
-        Me.txtQuery.Location = New System.Drawing.Point(31, 180)
+        Me.txtQuery.Location = New System.Drawing.Point(31, 182)
         Me.txtQuery.Name = "txtQuery"
         Me.txtQuery.Size = New System.Drawing.Size(336, 20)
         Me.txtQuery.TabIndex = 10
@@ -133,7 +133,7 @@ Partial Class CuentaContableABM
         'lstQuery
         '
         Me.lstQuery.FormattingEnabled = True
-        Me.lstQuery.Location = New System.Drawing.Point(31, 209)
+        Me.lstQuery.Location = New System.Drawing.Point(31, 210)
         Me.lstQuery.Name = "lstQuery"
         Me.lstQuery.Size = New System.Drawing.Size(335, 225)
         Me.lstQuery.TabIndex = 11

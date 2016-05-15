@@ -23,6 +23,7 @@ Public Class CuentaContableABM
         If validarCampos() Then
             Dim cuenta As New CuentaContable(txtCodigo.Text, txtDescripcion.Text)
             DAOCuentaContable.agregarCuentaContable(cuenta)
+            limpiarCampos()
         End If
     End Sub
 
@@ -30,6 +31,7 @@ Public Class CuentaContableABM
         If validarCodigo() Then
             Dim cuenta As New CuentaContable(txtCodigo.Text, txtDescripcion.Text)
             DAOCuentaContable.eliminarCuentaContable(cuenta)
+            limpiarCampos()
         End If
     End Sub
 
@@ -91,7 +93,19 @@ Public Class CuentaContableABM
         mostrarQueries()
     End Sub
 
+    Private Sub limpiarCampos()
+        For Each txtBox As TextBox In Me.Controls.OfType(Of TextBox)()
+            txtBox.Text = ""
+        Next
+        lstQuery.DataSource = Nothing
+        ocultarQueries()
+    End Sub
+
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
         Close()
+    End Sub
+
+    Private Sub btnClean_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClean.Click
+        limpiarCampos()
     End Sub
 End Class
