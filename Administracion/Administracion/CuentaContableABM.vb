@@ -37,13 +37,11 @@ Public Class CuentaContableABM
 
     Private Sub CuentaContableABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ocultarQueries()
+        CommonEventsHandler.setIndexTab(Me)
+        txtCodigo.Focus()
     End Sub
 
-    Private Sub btnList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnList.Click
-        cargarListaSegun("")
-    End Sub
-
-    Private Sub lstQuery_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstQuery.DoubleClick
+    Private Sub lstQuery_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim cuenta As CuentaContable = lstQuery.SelectedItem
         txtCodigo.Text = cuenta.id
         txtDescripcion.Text = cuenta.descripcion
@@ -94,10 +92,7 @@ Public Class CuentaContableABM
     End Sub
 
     Private Sub limpiarCampos()
-        For Each txtBox As TextBox In Me.Controls.OfType(Of TextBox)()
-            txtBox.Text = ""
-        Next
-        lstQuery.DataSource = Nothing
+        Cleanner.clean(Me)
         ocultarQueries()
     End Sub
 
@@ -107,5 +102,14 @@ Public Class CuentaContableABM
 
     Private Sub btnClean_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClean.Click
         limpiarCampos()
+    End Sub
+
+    Private Sub txtCodigo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtCodigo.KeyDown
+        If e.KeyValue = Keys.Enter Then
+            Dim cuenta As CuentaContable = DAOCuentaContable.buscarCuentaContablePorCodigo(txtCodigo.Text)
+            If Not IsNothing(cuenta) Then
+                txtDescripcion.Text = cuenta.descripcion
+            End If
+        End If
     End Sub
 End Class
