@@ -38,6 +38,33 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ba
 DROP PROCEDURE [dbo].[PR_baja_cuenta]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_cuenta]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_banco]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_modificar_cuenta]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_baja_banco]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_cuenta]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_cuenta_por_codigo]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_cuenta]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_cuenta_por_codigo]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_cuenta]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_cuenta_por_descripcion]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_cuenta]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_banco_por_codigo]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_cuenta]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_banco_por_nombre]
+GO
 /*
 	CREACION DE PROCEDIMIENTOS Y FUNCIONES
 */
@@ -115,5 +142,69 @@ AS
 	END CATCH
 GO	
 
+CREATE PROCEDURE [dbo].[PR_alta_banco]
+	(@banco smallint,
+	@nombre varchar(50),
+	@cuenta varchar(10))
+AS
+	DECLARE @mensaje_error varchar(255)
+	set @mensaje_error = ''
+	BEGIN TRANSACTION
+		BEGIN TRY
+			insert into surfactanSA.dbo.Banco
+				values (@banco, @nombre, @cuenta, 1)
+			IF @@ERROR = 0 COMMIT TRANSACTION
+		END TRY
+	BEGIN CATCH	
+		ROLLBACK TRANSACTION
+			--EXEC PR_modificar_cuenta @cuenta, @descripcion, @nivel, @empresa	
+	END CATCH
+GO
 
+CREATE PROCEDURE [dbo].[PR_baja_banco]
+	(@banco smallint)
+AS
+	DECLARE @mensaje_error varchar(255)
+	set @mensaje_error = ''
+	BEGIN TRANSACTION
+		BEGIN TRY
+			DELETE FROM surfactanSA.dbo.Banco
+			WHERE Banco = @banco
+			IF @@ERROR = 0 COMMIT TRANSACTION
+		END TRY
+	BEGIN CATCH	
+		ROLLBACK TRANSACTION
+		IF (@mensaje_error = '') 
+				set @mensaje_error = @mensaje_error + 'NO SE PUDO ELIMINAR EL BANCO.'	
+		RAISERROR(@mensaje_error, 16, 217)
+			WITH SETERROR
+	END CATCH
+GO
 
+CREATE PROCEDURE [dbo].[PR_buscar_banco_por_codigo]
+	(@banco smallint)
+AS
+	SELECT * FROM Banco WHERE Banco = @banco
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_banco_por_nombre]
+	(@nombre varchar(50))
+AS
+	select ban.Banco, ban.Nombre, ban.Cuenta
+	from surfactanSA.dbo.Banco ban
+	where ban.Nombre like '%' + @nombre + '%'
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_cuenta_por_codigo]
+	(@cuenta varchar(10))
+AS
+	SELECT * FROM Cuenta WHERE Cuenta = @cuenta
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_cuenta_por_descripcion]
+	(@descripcion varchar(50))
+AS
+	select cu.Cuenta, cu.Descripcion
+	from surfactanSA.dbo.Cuenta cu
+	where cu.Descripcion like '%' + @descripcion + '%'
+GO

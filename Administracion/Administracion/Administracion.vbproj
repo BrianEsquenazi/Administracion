@@ -101,6 +101,7 @@
     <Compile Include="Capa DAO\DAOCuentaContable.vb" />
     <Compile Include="Clases\Cleanner.vb" />
     <Compile Include="Clases\CommonEventsHandler.vb" />
+    <Compile Include="Clases\FormOrganizer.vb" />
     <Compile Include="CuentaContableABM.Designer.vb">
       <DependentUpon>CuentaContableABM.vb</DependentUpon>
     </Compile>

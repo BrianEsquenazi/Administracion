@@ -2,6 +2,8 @@
 
 Public Class CuentaContableABM
 
+    Dim organizadorABM As New FormOrganizer(Me, 220, 412)
+
     Private Function validarCampos(ByVal validarDescripcion As Boolean)
         Dim validador As New Validator
         validador.validarNoVacio(txtCodigo.Text, "código")
@@ -38,6 +40,8 @@ Public Class CuentaContableABM
     Private Sub CuentaContableABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ocultarQueries()
         CommonEventsHandler.setIndexTab(Me)
+        organizadorABM.addControls(New List(Of CustomControl) From {txtCodigo, txtDescripcion})
+        organizadorABM.organize()
     End Sub
 
     Private Sub lstQuery_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstQuery.DoubleClick
