@@ -91,16 +91,23 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BancosABM.Designer.vb">
+      <DependentUpon>BancosABM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BancosABM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Capa DAO\DAOBanco.vb" />
     <Compile Include="Capa DAO\DAOCuentaContable.vb" />
-    <Compile Include="Cleanner.vb" />
-    <Compile Include="CommonEventsHandler.vb" />
+    <Compile Include="Clases\Cleanner.vb" />
+    <Compile Include="Clases\CommonEventsHandler.vb" />
     <Compile Include="CuentaContableABM.Designer.vb">
       <DependentUpon>CuentaContableABM.vb</DependentUpon>
     </Compile>
     <Compile Include="CuentaContableABM.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomTextBox.vb">
+    <Compile Include="Clases\CustomTextBox.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Login.Designer.vb">
@@ -124,9 +131,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Validator.vb" />
+    <Compile Include="Clases\Validator.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BancosABM.resx">
+      <DependentUpon>BancosABM.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CuentaContableABM.resx">
       <DependentUpon>CuentaContableABM.vb</DependentUpon>
     </EmbeddedResource>

@@ -13,7 +13,7 @@ Public Class DAOCuentaContable
     Public Shared Function buscarCuentaContablePorDescripcion(ByVal descripcion As String)
         Dim cuentas As New List(Of CuentaContable)
         Dim tabla As DataTable
-        tabla = SQLConnector.retrieveDataTable("buscar_cuenta", descripcion)
+        tabla = SQLConnector.retrieveDataTable("buscar_cuenta_por_descripcion", descripcion)
         For Each cuenta As DataRow In tabla.Rows
             cuentas.Add(New CuentaContable(cuenta("cuenta"), cuenta("descripcion")))
         Next

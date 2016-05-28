@@ -39,11 +39,17 @@
     Private Shared Sub enterPressed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
             Dim nextControl As Control = controls.Find(Function(control) control.EnterIndex = sender.EnterIndex + 1)
-            If Not IsNothing(nextControl) Then
-                nextControl.Focus()
+            If IsNothing(nextControl) OrElse Not nextControl.Focus() Then
+                secondControl().Focus()
             End If
         End If
     End Sub
+
+    Private Shared Function secondControl() As Control
+        Dim sndControl As Control
+        sndControl = controls.Find(Function(control) control.EnterIndex = 2)
+        Return sndControl
+    End Function
 
     Private Shared Sub enterPressedWithoutSound(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         If Asc(e.KeyChar) = Keys.Enter Then
