@@ -87,7 +87,7 @@ Partial Class CuentaContableABM
         Me.txtDescripcion.Location = New System.Drawing.Point(110, 57)
         Me.txtDescripcion.MaxLength = 50
         Me.txtDescripcion.Name = "txtDescripcion"
-        Me.txtDescripcion.Size = New System.Drawing.Size(265, 20)
+        Me.txtDescripcion.Size = New System.Drawing.Size(390, 20)
         Me.txtDescripcion.TabIndex = 2
         Me.txtDescripcion.Validator = WindowsApplication1.ValidatorType.None
         '
@@ -99,7 +99,7 @@ Partial Class CuentaContableABM
         Me.txtCodigo.Location = New System.Drawing.Point(110, 27)
         Me.txtCodigo.MaxLength = 10
         Me.txtCodigo.Name = "txtCodigo"
-        Me.txtCodigo.Size = New System.Drawing.Size(79, 20)
+        Me.txtCodigo.Size = New System.Drawing.Size(80, 20)
         Me.txtCodigo.TabIndex = 1
         Me.txtCodigo.Validator = WindowsApplication1.ValidatorType.None
         '
@@ -179,7 +179,7 @@ Partial Class CuentaContableABM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(402, 402)
+        Me.ClientSize = New System.Drawing.Size(775, 402)
         Me.Controls.Add(Me.CustomLabel2)
         Me.Controls.Add(Me.CustomLabel1)
         Me.Controls.Add(Me.lstQuery)
