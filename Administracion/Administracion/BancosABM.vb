@@ -41,19 +41,15 @@ Public Class BancosABM
     End Sub
 
     Private Sub btnQuery_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnQuery.Click
-        mostrarSoloTxtQuery()
+        mostrarQueries()
+        cargarListaSegun("")
+        txtQuery.Focus()
     End Sub
 
     Private Sub pantallaQuery(ByVal textBoxVisible As Boolean, ByVal listVisible As Boolean, ByVal height As Integer)
         txtQuery.Visible = textBoxVisible
         lstQuery.Visible = listVisible
         Me.Height = height
-    End Sub
-
-    Private Sub mostrarSoloTxtQuery()
-        pantallaQuery(True, False, 270)
-        txtQuery.Text = ""
-        txtQuery.Focus()
     End Sub
 
     Private Sub ocultarQueries()

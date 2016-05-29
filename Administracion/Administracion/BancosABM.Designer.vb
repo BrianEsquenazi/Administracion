@@ -71,6 +71,7 @@ Partial Class BancosABM
         Me.txtDescripcion.Cleanable = True
         Me.txtDescripcion.Enabled = False
         Me.txtDescripcion.EnterIndex = -1
+        Me.txtDescripcion.LabelAssociationKey = -1
         Me.txtDescripcion.Location = New System.Drawing.Point(221, 86)
         Me.txtDescripcion.MaxLength = 50
         Me.txtDescripcion.Name = "txtDescripcion"
@@ -82,6 +83,7 @@ Partial Class BancosABM
         '
         Me.txtCuenta.Cleanable = True
         Me.txtCuenta.EnterIndex = 3
+        Me.txtCuenta.LabelAssociationKey = -1
         Me.txtCuenta.Location = New System.Drawing.Point(136, 86)
         Me.txtCuenta.MaxLength = 10
         Me.txtCuenta.Name = "txtCuenta"
@@ -93,6 +95,7 @@ Partial Class BancosABM
         '
         Me.txtNombre.Cleanable = True
         Me.txtNombre.EnterIndex = 2
+        Me.txtNombre.LabelAssociationKey = -1
         Me.txtNombre.Location = New System.Drawing.Point(136, 53)
         Me.txtNombre.MaxLength = 50
         Me.txtNombre.Name = "txtNombre"
@@ -104,6 +107,7 @@ Partial Class BancosABM
         '
         Me.txtCodigo.Cleanable = True
         Me.txtCodigo.EnterIndex = 1
+        Me.txtCodigo.LabelAssociationKey = -1
         Me.txtCodigo.Location = New System.Drawing.Point(136, 23)
         Me.txtCodigo.MaxLength = 5
         Me.txtCodigo.Name = "txtCodigo"
@@ -115,6 +119,7 @@ Partial Class BancosABM
         '
         Me.btnClose.Cleanable = False
         Me.btnClose.EnterIndex = -1
+        Me.btnClose.LabelAssociationKey = -1
         Me.btnClose.Location = New System.Drawing.Point(308, 164)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(110, 35)
@@ -126,6 +131,7 @@ Partial Class BancosABM
         '
         Me.btnList.Cleanable = False
         Me.btnList.EnterIndex = -1
+        Me.btnList.LabelAssociationKey = -1
         Me.btnList.Location = New System.Drawing.Point(192, 164)
         Me.btnList.Name = "btnList"
         Me.btnList.Size = New System.Drawing.Size(110, 35)
@@ -137,6 +143,7 @@ Partial Class BancosABM
         '
         Me.btnQuery.Cleanable = False
         Me.btnQuery.EnterIndex = -1
+        Me.btnQuery.LabelAssociationKey = -1
         Me.btnQuery.Location = New System.Drawing.Point(76, 164)
         Me.btnQuery.Name = "btnQuery"
         Me.btnQuery.Size = New System.Drawing.Size(110, 35)
@@ -148,6 +155,7 @@ Partial Class BancosABM
         '
         Me.btnClean.Cleanable = False
         Me.btnClean.EnterIndex = -1
+        Me.btnClean.LabelAssociationKey = -1
         Me.btnClean.Location = New System.Drawing.Point(308, 123)
         Me.btnClean.Name = "btnClean"
         Me.btnClean.Size = New System.Drawing.Size(110, 35)
@@ -159,6 +167,7 @@ Partial Class BancosABM
         '
         Me.btnDelete.Cleanable = False
         Me.btnDelete.EnterIndex = -1
+        Me.btnDelete.LabelAssociationKey = -1
         Me.btnDelete.Location = New System.Drawing.Point(192, 123)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(110, 35)
@@ -170,6 +179,7 @@ Partial Class BancosABM
         '
         Me.btnAdd.Cleanable = False
         Me.btnAdd.EnterIndex = -1
+        Me.btnAdd.LabelAssociationKey = -1
         Me.btnAdd.Location = New System.Drawing.Point(76, 123)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(110, 35)
@@ -180,7 +190,8 @@ Partial Class BancosABM
         'txtQuery
         '
         Me.txtQuery.Cleanable = True
-        Me.txtQuery.EnterIndex = 4
+        Me.txtQuery.EnterIndex = -1
+        Me.txtQuery.LabelAssociationKey = -1
         Me.txtQuery.Location = New System.Drawing.Point(34, 205)
         Me.txtQuery.MaxLength = 50
         Me.txtQuery.Name = "txtQuery"
@@ -191,8 +202,9 @@ Partial Class BancosABM
         'lstQuery
         '
         Me.lstQuery.Cleanable = False
-        Me.lstQuery.EnterIndex = 5
+        Me.lstQuery.EnterIndex = -1
         Me.lstQuery.FormattingEnabled = True
+        Me.lstQuery.LabelAssociationKey = -1
         Me.lstQuery.Location = New System.Drawing.Point(34, 231)
         Me.lstQuery.Name = "lstQuery"
         Me.lstQuery.Size = New System.Drawing.Size(428, 238)
@@ -222,7 +234,7 @@ Partial Class BancosABM
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "BancosABM"
-        Me.Text = "Bancos"
+        Me.Text = "Ingreso de Bancos"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

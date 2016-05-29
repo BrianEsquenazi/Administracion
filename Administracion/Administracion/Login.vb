@@ -18,7 +18,7 @@ Public Class Login
     Private Sub btnAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAccept.Click
         If validarCampos() Then
             Globals.empresa = cmbEntity.Text
-            CuentaContableABM.Show()
+            MenuPrincipal.Show()
             Close()
         End If
     End Sub

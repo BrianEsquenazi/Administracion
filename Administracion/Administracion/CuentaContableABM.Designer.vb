@@ -59,7 +59,7 @@ Partial Class CuentaContableABM
         'lstQuery
         '
         Me.lstQuery.Cleanable = False
-        Me.lstQuery.EnterIndex = 4
+        Me.lstQuery.EnterIndex = -1
         Me.lstQuery.FormattingEnabled = True
         Me.lstQuery.LabelAssociationKey = -1
         Me.lstQuery.Location = New System.Drawing.Point(30, 208)
@@ -70,7 +70,7 @@ Partial Class CuentaContableABM
         'txtQuery
         '
         Me.txtQuery.Cleanable = True
-        Me.txtQuery.EnterIndex = 3
+        Me.txtQuery.EnterIndex = -1
         Me.txtQuery.LabelAssociationKey = -1
         Me.txtQuery.Location = New System.Drawing.Point(30, 182)
         Me.txtQuery.MaxLength = 50
@@ -196,7 +196,7 @@ Partial Class CuentaContableABM
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "CuentaContableABM"
-        Me.Text = "CuentaContables"
+        Me.Text = "Ingreso de Cuentas Contables"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
