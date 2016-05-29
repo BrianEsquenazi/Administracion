@@ -9,16 +9,7 @@
         cuenta = cuentaContable
     End Sub
 
-    Public ReadOnly Property descripcion() As String
-        Get
-            Return nombre
-        End Get
-    End Property
-
-    Public ReadOnly Property codigo() As String
-        Get
-            Return id
-        End Get
-    End Property
-
+    Public Overrides Function ToString() As String
+        Return nombre
+    End Function
 End Class

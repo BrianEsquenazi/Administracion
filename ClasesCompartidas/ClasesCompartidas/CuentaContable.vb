@@ -7,15 +7,7 @@
         descripcion = desc
     End Sub
 
-    Public ReadOnly Property nombre() As String
-        Get
-            Return descripcion
-        End Get
-    End Property
-
-    Public ReadOnly Property codigo() As String
-        Get
-            Return id
-        End Get
-    End Property
+    Public Overrides Function ToString() As String
+        Return descripcion
+    End Function
 End Class

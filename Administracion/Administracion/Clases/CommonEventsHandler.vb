@@ -5,7 +5,7 @@
         For Each txtBox As CustomTextBox In form.Controls.OfType(Of CustomTextBox)()
             If txtBox.EnterIndex > 0 Then
                 AddHandler txtBox.KeyDown, AddressOf enterPressed
-                AddHandler txtBox.KeyPress, AddressOf enterPressedWithoutSound
+                AddHandler txtBox.KeyPress, AddressOf enterOrEscapePressedWithoutSound
                 controls.Add(txtBox)
             End If
         Next
@@ -51,8 +51,12 @@
         Return sndControl
     End Function
 
-    Private Shared Sub enterPressedWithoutSound(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+    Private Shared Sub enterOrEscapePressedWithoutSound(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         If Asc(e.KeyChar) = Keys.Enter Then
+            e.Handled = True
+        End If
+        If Asc(e.KeyChar) = Keys.Escape Then
+            DirectCast(sender, CustomTextBox).Text = ""
             e.Handled = True
         End If
     End Sub

@@ -75,9 +75,6 @@ Public Class BancosABM
         Dim bancos As List(Of Banco)
 
         bancos = DAOBanco.buscarBancoPorNombre(stringBusqueda)
-
-        lstQuery.DisplayMember = "descripcion"
-        lstQuery.ValueMember = "codigo"
         lstQuery.DataSource = bancos
 
         mostrarQueries()

@@ -7,8 +7,6 @@ Public Class Login
 
     Private Sub Login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cmbEntity.DataSource = Globals.connectionStringNames()
-        cmbEntity.DisplayMember = "Name"
-        cmbEntity.ValueMember = "ConnectionString"
     End Sub
 
     Private Function validarCampos()
@@ -20,7 +18,7 @@ Public Class Login
     Private Sub btnAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAccept.Click
         If validarCampos() Then
             Globals.empresa = cmbEntity.Text
-            Form1.Show()
+            CuentaContableABM.Show()
             Close()
         End If
     End Sub

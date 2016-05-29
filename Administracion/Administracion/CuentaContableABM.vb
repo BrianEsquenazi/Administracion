@@ -31,9 +31,11 @@ Public Class CuentaContableABM
 
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
         If validarCodigo() Then
-            Dim cuenta As New CuentaContable(txtCodigo.Text, txtDescripcion.Text)
-            DAOCuentaContable.eliminarCuentaContable(cuenta)
-            limpiarCampos()
+            If MsgBox("¿Desea eliminar el registro?", MsgBoxStyle.YesNo, "Eliminar") = vbYes Then
+                Dim cuenta As New CuentaContable(txtCodigo.Text, txtDescripcion.Text)
+                DAOCuentaContable.eliminarCuentaContable(cuenta)
+                limpiarCampos()
+            End If
         End If
     End Sub
 
@@ -58,7 +60,9 @@ Public Class CuentaContableABM
     End Sub
 
     Private Sub btnQuery_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnQuery.Click
-        mostrarSoloTxtQuery()
+        mostrarQueries()
+        cargarListaSegun("")
+        txtQuery.Focus()
     End Sub
 
     Private Sub txtQuery_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtQuery.KeyDown
@@ -71,12 +75,6 @@ Public Class CuentaContableABM
         txtQuery.Visible = textBoxVisible
         lstQuery.Visible = listVisible
         Me.Height = height
-    End Sub
-
-    Private Sub mostrarSoloTxtQuery()
-        pantallaQuery(True, False, 250)
-        txtQuery.Text = ""
-        txtQuery.Focus()
     End Sub
 
     Private Sub ocultarQueries()
@@ -92,9 +90,6 @@ Public Class CuentaContableABM
         Dim cuentas As List(Of CuentaContable)
 
         cuentas = DAOCuentaContable.buscarCuentaContablePorDescripcion(stringBusqueda)
-
-        lstQuery.DisplayMember = "nombre"
-        lstQuery.ValueMember = "codigo"
         lstQuery.DataSource = cuentas
 
         mostrarQueries()
@@ -117,6 +112,9 @@ Public Class CuentaContableABM
         Dim cuenta As CuentaContable = DAOCuentaContable.buscarCuentaContablePorCodigo(txtCodigo.Text)
         If Not IsNothing(cuenta) Then
             txtDescripcion.Text = cuenta.descripcion
+        Else
+            txtDescripcion.Text = ""
         End If
     End Sub
+
 End Class
