@@ -1,7 +1,19 @@
 ﻿Public Enum ValidatorType
     None = 0
     NotEmpty
-    OnlyNumbers
+    Numeric
+    Positive
+    PositiveWithMax
+    DateFormat
+End Enum
+
+Public Enum NumericType
+    None = 0
+    ShortType
+    IntegerType
+    LongType
+    DoubleType
+    FloatType
 End Enum
 
 Public Interface CustomControl

@@ -56,7 +56,7 @@ Partial Class TipoCambioABM
         Me.txtParidad.Location = New System.Drawing.Point(170, 62)
         Me.txtParidad.MaxLength = 8
         Me.txtParidad.Name = "txtParidad"
-        Me.txtParidad.Size = New System.Drawing.Size(265, 20)
+        Me.txtParidad.Size = New System.Drawing.Size(100, 20)
         Me.txtParidad.TabIndex = 14
         Me.txtParidad.Validator = WindowsApplication1.ValidatorType.None
         '
@@ -65,7 +65,7 @@ Partial Class TipoCambioABM
         Me.txtFecha.Cleanable = True
         Me.txtFecha.EnterIndex = 1
         Me.txtFecha.LabelAssociationKey = 1
-        Me.txtFecha.Location = New System.Drawing.Point(191, 26)
+        Me.txtFecha.Location = New System.Drawing.Point(166, 26)
         Me.txtFecha.MaxLength = 10
         Me.txtFecha.Name = "txtFecha"
         Me.txtFecha.Size = New System.Drawing.Size(104, 20)

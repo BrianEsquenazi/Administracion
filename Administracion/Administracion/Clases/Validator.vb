@@ -14,6 +14,21 @@
         Return True
     End Function
 
+    Public Sub validate(ByVal value As String, ByVal type As Integer, ByVal description As String)
+        Select Case type
+            Case ValidatorType.NotEmpty
+                validarNoVacio(value, description)
+            Case ValidatorType.Numeric
+                validarNumerico(value, description)
+            Case ValidatorType.Positive
+                validarPositivo(value, description)
+            Case ValidatorType.PositiveWithMax
+                validarPositivo(value, description, Double.MaxValue)
+            Case ValidatorType.DateFormat
+                validarFecha(value, description)
+        End Select
+    End Sub
+
     Public Sub validarFecha(ByVal valor As String, ByVal descripcionCampo As String)
         Dim res As Date
         validarNoVacio(valor, descripcionCampo)
@@ -25,6 +40,12 @@
     Public Sub validarNoVacio(ByVal valor As String, ByVal descripcionCampo As String)
         If valor = "" Then
             agregarWarning("El campo " & descripcionCampo & " no puede ser vacío")
+        End If
+    End Sub
+
+    Public Sub validarPositivo(ByVal valor As String, ByVal descripcionCampo As String)
+        If Not validarNumerico(valor, descripcionCampo) OrElse (valor < 0) Then
+            agregarWarning("El campo " & descripcionCampo & " debe ser positivo")
         End If
     End Sub
 

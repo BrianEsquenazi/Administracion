@@ -26,7 +26,9 @@
     Private bottomMargin As Integer = 30
     Private separation As Integer = 6
     Private simpleButtonHeight As Integer = 35
+    Private listQueryHeight As Integer = 240
     Private separationBetweenControlsAndButtons As Integer = 45
+    Private controlSeparation As Integer = 10
     Private charPixelSize As Double = 7.5
 
     Public Delegate Sub ControlEvent(ByVal sender As Object, ByVal e As EventArgs)
@@ -43,11 +45,11 @@
     End Sub
 
     Private Function controlsHeight()
-        Return controls.Count * 20 + (controls.Count - 1) * topMargin 'TODO control.getHeight() + separation (en realidad separation es 10 y no 6 acá)
+        Return controls.Sum(Function(control As CustomControl) DirectCast(control, Control).Height) + (controls.Count - 1) * controlSeparation
     End Function
 
     Private Function buttonsHeight()
-        Return simpleButtonHeight * 2 + separation
+        Return simpleButtonHeight * 2 + separation 'Las dos filas de botones + separation entre botones
     End Function
 
     Public Sub organize()
@@ -70,7 +72,7 @@
             Dim label As CustomLabel = labelFor(control.LabelAssociationKey)
             label.Top = top
             label.Left = leftMargin
-            top += topMargin 'TODO control.getHeight() + separation (en realidad separation es 10 y no 6 acá)
+            top += DirectCast(control, Control).Height + controlSeparation
         Next
 
         'Settep el width variable de los text box
@@ -136,7 +138,7 @@
         End If
 
         If Not IsNothing(btnAddClick) Then
-            AddHandler btn.Click, btnAddClick
+            AddHandler btn.Click, AddressOf addClickWithClean
         End If
 
         Return btn
@@ -154,7 +156,7 @@
         End If
 
         If Not IsNothing(btnDeleteClick) Then
-            AddHandler btn.Click, btnDeleteClick
+            AddHandler btn.Click, AddressOf deleteClickWithConfirmation
         End If
 
         Return btn
@@ -236,6 +238,26 @@
         Return form.Controls.OfType(Of CustomLabel).ToList.Find(Function(label) label.ControlAssociationKey = index)
     End Function
 
+    Private Function validateForDelete()
+        Return validateControls(False)
+    End Function
+
+    Private Function validateForAdd()
+        Return validateControls(True)
+    End Function
+
+    Private Function validateControls(ByVal isAdd As Boolean)
+        Dim firstControl As CustomTextBox = controls.Find(Function(control) control.EnterIndex = 1) 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
+        Dim validator As New Validator
+        validator.validate(firstControl.Text, firstControl.Validator, labelFor(firstControl.LabelAssociationKey).Text)
+        If isAdd Then
+            Dim controlsToValidate As List(Of CustomTextBox) = controls.OfType(Of CustomTextBox).ToList 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
+            controlsToValidate.Remove(firstControl)
+            controlsToValidate.ForEach(Sub(control) validator.validate(control.Text, control.Validator, labelFor(control.LabelAssociationKey).Text))
+        End If
+        Return validator.flush()
+    End Function
+
     Public Sub addButton(ByVal button As CustomButton)
         btnAdd = button
     End Sub
@@ -254,6 +276,7 @@
     Public Sub closeButton(ByVal button As CustomButton)
         btnClose = button
     End Sub
+
     Public Sub setAddButtonClick(ByRef btnClick As EventHandler)
         btnAddClick = btnClick
     End Sub
@@ -271,5 +294,33 @@
     End Sub
     Public Sub setCloseButtonClick(ByRef btnClick As EventHandler)
         btnCloseClick = btnClick
+    End Sub
+
+    Public Sub setDefaultCleanButtonClick()
+        btnCleanClick = AddressOf defaultCleanClick
+    End Sub
+    Public Sub setDefaultCloseButtonClick()
+        btnCloseClick = AddressOf defaultCloseClick
+    End Sub
+
+    Public Sub addClickWithClean(ByVal sender As Object, ByVal e As EventArgs)
+        If validateForAdd() Then
+            btnAddClick.Invoke(sender, e)
+            Cleanner.clean(form)
+        End If
+    End Sub
+    Public Sub deleteClickWithConfirmation(ByVal sender As Object, ByVal e As EventArgs)
+        If validateForDelete() Then
+            If MsgBox("¿Desea eliminar el registro?", MsgBoxStyle.YesNo, "Eliminar") = vbYes Then
+                btnDeleteClick.Invoke(sender, e)
+                Cleanner.clean(form)
+            End If
+        End If
+    End Sub
+    Public Sub defaultCleanClick(ByVal sender As Object, ByVal e As EventArgs)
+        Cleanner.clean(form)
+    End Sub
+    Public Sub defaultCloseClick(ByVal sender As Object, ByVal e As EventArgs)
+        form.Close()
     End Sub
 End Class
