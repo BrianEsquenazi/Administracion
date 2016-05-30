@@ -1,7 +1,8 @@
 ﻿Public Class CommonEventsHandler
-    Private Shared controls As New List(Of CustomControl)
+    Private Shared controls As List(Of CustomControl)
 
     Public Shared Sub setIndexTab(ByVal form As Form)
+        controls = New List(Of CustomControl)
         For Each txtBox As CustomTextBox In form.Controls.OfType(Of CustomTextBox)()
             If txtBox.EnterIndex > 0 Then
                 AddHandler txtBox.KeyDown, AddressOf enterPressed

@@ -141,7 +141,7 @@ Public Class SQLConnector
             dt.Load(dr)
             Return dt
         Catch e As Exception
-            Return Nothing
+            Throw e
         Finally
             If (Not cn Is Nothing) Then
                 cn.Close()

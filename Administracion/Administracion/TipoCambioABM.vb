@@ -23,7 +23,8 @@ Public Class TipoCambioABM
         organizadorABM.setDefaultCleanButtonClick()
         organizadorABM.setDefaultCloseButtonClick()
         organizadorABM.setListButtonClick(AddressOf btnListClick)
-        organizadorABM.setQueryButtonClick(AddressOf btnQueryClick)
+        organizadorABM.setDefaultQueryButtonClick(AddressOf DAOTipoCambio.listarTiposCambio)
+        organizadorABM.setListDoubleClickPressed(AddressOf mostrarCambio)
         organizadorABM.organize()
     End Sub
 
@@ -36,12 +37,13 @@ Public Class TipoCambioABM
         DAOTipoCambio.eliminarTipoCambio(txtFecha.Text)
     End Sub
 
-    Private Sub btnQueryClick(ByVal sender As Object, ByVal e As EventArgs)
-        MsgBox("Clickeaste el botón de consulta")
-    End Sub
-
     Private Sub btnListClick(ByVal sender As Object, ByVal e As EventArgs)
 
+    End Sub
+
+    Private Sub mostrarCambio(ByVal cambio As TipoDeCambio)
+        txtFecha.Text = cambio.fecha
+        txtParidad.Text = cambio.paridad
     End Sub
 
     Private Sub txtFecha_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFecha.Leave

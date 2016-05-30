@@ -10,6 +10,17 @@ Public Class DAOTipoCambio
         SQLConnector.executeProcedure("baja_tipo_cambio", fecha)
     End Sub
 
+    Public Shared Function listarTiposCambio() As List(Of TipoDeCambio)
+        Dim cambios As New List(Of TipoDeCambio)
+        Dim tabla As DataTable
+        tabla = SQLConnector.retrieveDataTable("listar_tipos_cambio")
+        For Each cambio As DataRow In tabla.Rows
+            cambios.Add(New TipoDeCambio(Date.Parse(cambio("Fecha")), cambio("Cambio")))
+        Next
+        Return cambios
+    End Function
+
+
     Public Shared Function buscarTipoCambioPorFecha(ByVal fecha As String)
         Try
             Dim cambios As New List(Of TipoDeCambio)

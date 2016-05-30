@@ -1,8 +1,15 @@
-﻿Public Class FormOrganizer
+﻿Public Delegate Function ListQueryWithoutParameters()
+Public Delegate Function ListQuery(ByVal text As String) As List(Of Object)
+Public Delegate Sub ShowMethod(ByVal selectedValue)
+
+Public Class FormOrganizer
 
     Private form As Form
     Private maxHeight As Integer
     Private width As Integer
+    Private listQueryFunction As ListQueryWithoutParameters
+    Private queryText As CustomTextBox
+    Private queryList As CustomListBox
     Private controls As List(Of CustomControl)
     Private buttons As New List(Of CustomButton)
     Private buttonsTop As New List(Of CustomButton)
@@ -19,6 +26,7 @@
     Private btnListClick As EventHandler
     Private btnClose As CustomButton
     Private btnCloseClick As EventHandler
+    Private listDoubleClickPressed As ShowMethod
 
     Private topMargin As Integer = 30
     Private leftMargin As Integer = 30
@@ -30,8 +38,6 @@
     Private separationBetweenControlsAndButtons As Integer = 45
     Private controlSeparation As Integer = 10
     Private charPixelSize As Double = 7.5
-
-    Public Delegate Sub ControlEvent(ByVal sender As Object, ByVal e As EventArgs)
 
     Public Sub New(ByVal someForm As Form, ByVal formWidth As Integer, ByVal formHeight As Integer)
         form = someForm
@@ -58,6 +64,7 @@
 
         Dim btnsTop As Integer = organizeControls() + separationBetweenControlsAndButtons
         organizeButtons(btnsTop)
+        organizeQueryControllers(btnsTop + simpleButtonHeight * 2 + separation * 2) 'Una separation entre los botones y otra entre botones y txtQuery
     End Sub
 
     Private Function organizeControls()
@@ -75,7 +82,7 @@
             top += DirectCast(control, Control).Height + controlSeparation
         Next
 
-        'Settep el width variable de los text box
+        'Setteo el width variable de los text box
         For Each textBox As CustomTextBox In controls.OfType(Of CustomTextBox)()
             Dim textWidth As Integer = Math.Min(Math.Round(textBox.MaxLength * charPixelSize), width - leftMargin - rightMargin - labelFor(textBox.LabelAssociationKey).Width - separation)
             textBox.setWidth(textWidth)
@@ -106,6 +113,28 @@
             setButtonPosition(button, top + button.Height + separation, left)
             left += buttonWidth + separation
         Next
+    End Sub
+
+    Private Sub organizeQueryControllers(ByVal top As Integer)
+        queryText = New CustomTextBox
+        queryText.Parent = form
+        queryText.Name = "txtQuery"
+        queryText.Width = form.Width - leftMargin - rightMargin
+        queryText.Top = top
+        queryText.Left = leftMargin
+        queryText.Visible = False
+        AddHandler queryText.KeyDown, AddressOf queryTextEnterPressed
+
+
+        queryList = New CustomListBox
+        queryList.Parent = form
+        queryList.Name = "lstQuery"
+        queryList.Width = queryText.Width
+        queryList.Height = listQueryHeight
+        queryList.Top = queryText.Top + queryText.Height + separation
+        queryList.Left = leftMargin
+        queryList.Visible = False
+        AddHandler queryList.DoubleClick, AddressOf listDoubleClickEventWithHide
     End Sub
 
     Private Sub setButtonPosition(ByVal button As CustomButton, ByVal top As Integer, ByVal left As Integer)
@@ -295,12 +324,24 @@
     Public Sub setCloseButtonClick(ByRef btnClick As EventHandler)
         btnCloseClick = btnClick
     End Sub
+    Public Sub setListDoubleClickPressed(ByRef doubleClickEvent As ShowMethod)
+        listDoubleClickPressed = doubleClickEvent
+    End Sub
 
     Public Sub setDefaultCleanButtonClick()
         btnCleanClick = AddressOf defaultCleanClick
     End Sub
+    Public Sub setDefaultQueryButtonClick(ByVal listFunction As ListQueryWithoutParameters)
+        listQueryFunction = listFunction
+        btnQueryClick = AddressOf defaultQueryClick
+    End Sub
     Public Sub setDefaultCloseButtonClick()
         btnCloseClick = AddressOf defaultCloseClick
+    End Sub
+
+    Public Sub listDoubleClickEventWithHide(ByVal sender As Object, ByVal e As EventArgs)
+        listDoubleClickPressed.Invoke(queryList.SelectedValue)
+        hideQueryControls()
     End Sub
 
     Public Sub addClickWithClean(ByVal sender As Object, ByVal e As EventArgs)
@@ -317,10 +358,28 @@
             End If
         End If
     End Sub
+
     Public Sub defaultCleanClick(ByVal sender As Object, ByVal e As EventArgs)
         Cleanner.clean(form)
     End Sub
+    Public Sub defaultQueryClick(ByVal sender As Object, ByVal e As EventArgs)
+        queryText.Visible = True
+        queryList.Visible = True
+        form.Height += queryText.Height + separation * 2 + queryList.Height
+        queryText.Focus()
+        queryTextEnterPressed(sender, e)
+    End Sub
     Public Sub defaultCloseClick(ByVal sender As Object, ByVal e As EventArgs)
         form.Close()
+    End Sub
+
+    Public Sub queryTextEnterPressed(ByVal sender As Object, ByVal e As EventArgs)
+        queryList.DataSource = listQueryFunction.Invoke()
+    End Sub
+
+    Private Sub hideQueryControls()
+        queryText.Visible = False
+        queryList.Visible = False
+        form.Height -= queryText.Height + separation * 2 + queryList.Height
     End Sub
 End Class
