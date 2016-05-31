@@ -1,5 +1,4 @@
-﻿Public Delegate Function ListQueryWithoutParameters()
-Public Delegate Function ListQuery(ByVal text As String) As List(Of Object)
+﻿Public Delegate Function QueryFunction(ByVal text As String)
 Public Delegate Sub ShowMethod(ByVal selectedValue)
 
 Public Class FormOrganizer
@@ -7,9 +6,11 @@ Public Class FormOrganizer
     Private form As Form
     Private maxHeight As Integer
     Private width As Integer
-    Private listQueryFunction As ListQueryWithoutParameters
+    Private queryFunctions As New List(Of Tuple(Of QueryFunction, String, ShowMethod))
+    Private queryFunction As QueryFunction
     Private queryText As CustomTextBox
     Private queryList As CustomListBox
+    Private selectionList As CustomListBox
     Private controls As List(Of CustomControl)
     Private buttons As New List(Of CustomButton)
     Private buttonsTop As New List(Of CustomButton)
@@ -26,7 +27,8 @@ Public Class FormOrganizer
     Private btnListClick As EventHandler
     Private btnClose As CustomButton
     Private btnCloseClick As EventHandler
-    Private listDoubleClickPressed As ShowMethod
+    Private showMethodFunction As ShowMethod
+    Private usingQueryText As Boolean
 
     Private topMargin As Integer = 30
     Private leftMargin As Integer = 30
@@ -58,13 +60,30 @@ Public Class FormOrganizer
         Return simpleButtonHeight * 2 + separation 'Las dos filas de botones + separation entre botones
     End Function
 
+    Private Function formNormalHeight()
+        Return topMargin + bottomMargin + controlsHeight() + separationBetweenControlsAndButtons + buttonsHeight()
+    End Function
+
+    Private Function formWithQueryControlsHeight()
+        Dim height As Integer = formNormalHeight() + separation + queryList.Height
+        If usingQueryText Then
+            height += separation + queryTextHeight()
+        End If
+        Return height
+    End Function
+
+    Private Function formWithSelectionListHeight()
+        Return formNormalHeight() + separation + selectionList.Height
+    End Function
+
     Public Sub organize()
-        form.Height = Math.Min(maxHeight, topMargin + bottomMargin + controlsHeight() + separationBetweenControlsAndButtons + buttonsHeight())
+        CommonEventsHandler.setIndexTab(form)
+        form.Height = Math.Min(maxHeight, formNormalHeight)
         form.Width = width
 
         Dim btnsTop As Integer = organizeControls() + separationBetweenControlsAndButtons
         organizeButtons(btnsTop)
-        organizeQueryControllers(btnsTop + simpleButtonHeight * 2 + separation * 2) 'Una separation entre los botones y otra entre botones y txtQuery
+        organizeQueryControllers(btnsTop + simpleButtonHeight * 2 + separation)
     End Sub
 
     Private Function organizeControls()
@@ -84,7 +103,7 @@ Public Class FormOrganizer
 
         'Setteo el width variable de los text box
         For Each textBox As CustomTextBox In controls.OfType(Of CustomTextBox)()
-            Dim textWidth As Integer = Math.Min(Math.Round(textBox.MaxLength * charPixelSize), width - leftMargin - rightMargin - labelFor(textBox.LabelAssociationKey).Width - separation)
+            Dim textWidth As Integer = Math.Min(Math.Round(textBox.MaxLength * charPixelSize), width - leftMargin - rightMargin - maxLabelWidth() - separation)
             textBox.setWidth(textWidth)
         Next
 
@@ -116,25 +135,39 @@ Public Class FormOrganizer
     End Sub
 
     Private Sub organizeQueryControllers(ByVal top As Integer)
-        queryText = New CustomTextBox
-        queryText.Parent = form
-        queryText.Name = "txtQuery"
-        queryText.Width = form.Width - leftMargin - rightMargin
-        queryText.Top = top
-        queryText.Left = leftMargin
-        queryText.Visible = False
-        AddHandler queryText.KeyDown, AddressOf queryTextEnterPressed
-
+        If usingQueryText Then
+            queryText = New CustomTextBox
+            queryText.Parent = form
+            queryText.Name = "txtQuery"
+            queryText.Width = form.Width - leftMargin - rightMargin
+            queryText.Top = top + separation
+            top = queryText.Top
+            queryText.Left = leftMargin
+            queryText.Visible = False
+            AddHandler queryText.KeyDown, AddressOf queryTextEnterPressed
+        End If
 
         queryList = New CustomListBox
         queryList.Parent = form
         queryList.Name = "lstQuery"
-        queryList.Width = queryText.Width
+        queryList.Width = form.Width - leftMargin - rightMargin
         queryList.Height = listQueryHeight
-        queryList.Top = queryText.Top + queryText.Height + separation
+        queryList.Top = top + queryTextHeight() + separation
         queryList.Left = leftMargin
         queryList.Visible = False
         AddHandler queryList.DoubleClick, AddressOf listDoubleClickEventWithHide
+
+        If queryFunctions.Count > 1 Then
+            selectionList = New CustomListBox
+            selectionList.Parent = form
+            selectionList.Name = "lstQuery"
+            selectionList.Width = form.Width - leftMargin - rightMargin
+            selectionList.Height = Math.Round(listQueryHeight / 2)
+            selectionList.Top = top + separation
+            selectionList.Left = leftMargin
+            selectionList.Visible = False
+            AddHandler selectionList.DoubleClick, AddressOf selectionDoubleClick
+        End If
     End Sub
 
     Private Sub setButtonPosition(ByVal button As CustomButton, ByVal top As Integer, ByVal left As Integer)
@@ -324,33 +357,40 @@ Public Class FormOrganizer
     Public Sub setCloseButtonClick(ByRef btnClick As EventHandler)
         btnCloseClick = btnClick
     End Sub
-    Public Sub setListDoubleClickPressed(ByRef doubleClickEvent As ShowMethod)
-        listDoubleClickPressed = doubleClickEvent
-    End Sub
 
     Public Sub setDefaultCleanButtonClick()
         btnCleanClick = AddressOf defaultCleanClick
     End Sub
-    Public Sub setDefaultQueryButtonClick(ByVal listFunction As ListQueryWithoutParameters)
-        listQueryFunction = listFunction
+    Public Sub addQueryFunction(ByVal listFunction As QueryFunction, ByVal name As String, ByVal showFunction As ShowMethod)
+        queryFunctions.Add(Tuple.Create(listFunction, name, showFunction))
         btnQueryClick = AddressOf defaultQueryClick
+    End Sub
+    Public Sub dontUseQueryText()
+        usingQueryText = False
     End Sub
     Public Sub setDefaultCloseButtonClick()
         btnCloseClick = AddressOf defaultCloseClick
     End Sub
 
-    Public Sub listDoubleClickEventWithHide(ByVal sender As Object, ByVal e As EventArgs)
-        listDoubleClickPressed.Invoke(queryList.SelectedValue)
+    Private Sub listDoubleClickEventWithHide(ByVal sender As Object, ByVal e As EventArgs)
+        showMethodFunction.Invoke(queryList.SelectedValue)
+        queryFunction = Nothing
         hideQueryControls()
     End Sub
+    Private Sub selectionDoubleClick(ByVal sender As Object, ByVal e As EventArgs)
+        queryFunction = selectionList.SelectedValue.Item1
+        showMethodFunction = selectionList.SelectedValue.Item3
+        hideSelectionList()
+        showQueryList()
+    End Sub
 
-    Public Sub addClickWithClean(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub addClickWithClean(ByVal sender As Object, ByVal e As EventArgs)
         If validateForAdd() Then
             btnAddClick.Invoke(sender, e)
             Cleanner.clean(form)
         End If
     End Sub
-    Public Sub deleteClickWithConfirmation(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub deleteClickWithConfirmation(ByVal sender As Object, ByVal e As EventArgs)
         If validateForDelete() Then
             If MsgBox("¿Desea eliminar el registro?", MsgBoxStyle.YesNo, "Eliminar") = vbYes Then
                 btnDeleteClick.Invoke(sender, e)
@@ -359,27 +399,72 @@ Public Class FormOrganizer
         End If
     End Sub
 
-    Public Sub defaultCleanClick(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub defaultCleanClick(ByVal sender As Object, ByVal e As EventArgs)
         Cleanner.clean(form)
     End Sub
-    Public Sub defaultQueryClick(ByVal sender As Object, ByVal e As EventArgs)
-        queryText.Visible = True
-        queryList.Visible = True
-        form.Height += queryText.Height + separation * 2 + queryList.Height
-        queryText.Focus()
-        queryTextEnterPressed(sender, e)
+    Private Sub defaultQueryClick(ByVal sender As Object, ByVal e As EventArgs)
+        Select Case queryFunctions.Count
+            Case 0
+            Case 1
+                queryFunction = queryFunctions.First().Item1
+                showMethodFunction = queryFunctions.First().Item3
+                showQueryList()
+            Case Else
+                If queryList.Visible Then
+                    hideQueryControls()
+                End If
+                showSelectionList()
+        End Select
     End Sub
-    Public Sub defaultCloseClick(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub showQueryList()
+        queryTextEnterPressed(Nothing, Nothing)
+        If usingQueryText Then
+            queryText.Visible = True
+            queryText.Focus()
+        End If
+        queryList.Visible = True
+        form.Height = formWithQueryControlsHeight()
+    End Sub
+    Private Sub showSelectionList()
+        selectionList.DataSource = queryFunctions
+        selectionList.DisplayMember = "Item2"
+        selectionList.Visible = True
+        form.Height = formWithSelectionListHeight()
+    End Sub
+
+    Private Sub defaultCloseClick(ByVal sender As Object, ByVal e As EventArgs)
         form.Close()
     End Sub
 
-    Public Sub queryTextEnterPressed(ByVal sender As Object, ByVal e As EventArgs)
-        queryList.DataSource = listQueryFunction.Invoke()
+    Private Sub queryTextEnterPressed(ByVal sender As Object, ByVal e As EventArgs)
+        Dim searchText As String = ""
+        If usingQueryText Then
+            searchText = queryText.Text
+        End If
+        queryList.DataSource = queryFunction.Invoke(searchText)
     End Sub
 
     Private Sub hideQueryControls()
-        queryText.Visible = False
+        If usingQueryText Then
+            queryText.Visible = False
+        End If
         queryList.Visible = False
-        form.Height -= queryText.Height + separation * 2 + queryList.Height
+        hideSelectionList()
+        form.Height = formNormalHeight()
     End Sub
+    Private Sub hideSelectionList()
+        If Not IsNothing(selectionList) Then
+            selectionList.Visible = False
+            form.Height = formNormalHeight()
+        End If
+    End Sub
+
+    Private Function queryTextHeight() As Integer
+        Dim heigth As Integer = 0
+        If usingQueryText Then
+            heigth = queryText.Height
+        End If
+        Return heigth
+    End Function
+
 End Class

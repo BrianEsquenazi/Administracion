@@ -2,103 +2,56 @@
 
 Public Class BancosABM
 
-    Private Sub limpiarCampos()
-        Cleanner.clean(Me)
-        ocultarQueries()
-    End Sub
-
-    Private Function validarCampos(ByVal agregar As Boolean)
-        Dim validador As New Validator
-        validador.validarPositivo(txtCodigo.Text, "código", Short.MaxValue)
-        If agregar Then
-            validador.validarNoVacio(txtNombre.Text, "nombre")
-            validador.validarNoVacio(txtCuenta.Text, "cuenta")
-        End If
-        Return validador.flush()
-    End Function
-
-    Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
-        If validarCampos(True) Then
-            Dim cuenta As New CuentaContable(txtCuenta.Text, txtDescripcion.Text)
-            Dim banco As New Banco(txtCodigo.Text, txtNombre.Text, cuenta)
-            DAOBanco.agregarBanco(banco)
-            limpiarCampos()
-        End If
-    End Sub
+    Dim organizadorABM As New FormOrganizer(Me, 485, 600)
 
     Private Sub BancosABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        CommonEventsHandler.setIndexTab(Me)
-        ocultarQueries()
+        organizadorABM.addControls(New List(Of CustomControl) From {txtCodigo, txtNombre, txtCuenta})
+        organizadorABM.setAddButtonClick(AddressOf agregar)
+        organizadorABM.setDeleteButtonClick(AddressOf borrar)
+        organizadorABM.setDefaultCleanButtonClick()
+        organizadorABM.setDefaultCloseButtonClick()
+        organizadorABM.setListButtonClick(AddressOf listado)
+        organizadorABM.addQueryFunction(AddressOf DAOBanco.buscarBancoPorNombre, "Bancos", AddressOf mostrarBanco)
+        organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta)
+        organizadorABM.organize()
     End Sub
 
-    Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
-        If validarCampos(False) Then
-            Dim cuenta As New CuentaContable(txtCuenta.Text, txtDescripcion.Text)
-            Dim banco As New Banco(txtCodigo.Text, txtNombre.Text, cuenta)
-            DAOBanco.eliminarBanco(banco)
-            limpiarCampos()
-        End If
+    Private Sub agregar()
+        Dim cuenta As New CuentaContable(txtCuenta.Text, txtDescripcion.Text)
+        Dim banco As New Banco(txtCodigo.Text, txtNombre.Text, cuenta)
+        DAOBanco.agregarBanco(banco)
     End Sub
 
-    Private Sub btnQuery_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnQuery.Click
-        mostrarQueries()
-        cargarListaSegun("")
-        txtQuery.Focus()
+    Private Sub borrar()
+        Dim cuenta As New CuentaContable(txtCuenta.Text, txtDescripcion.Text)
+        Dim banco As New Banco(txtCodigo.Text, txtNombre.Text, cuenta)
+        DAOBanco.eliminarBanco(banco)
     End Sub
 
-    Private Sub pantallaQuery(ByVal textBoxVisible As Boolean, ByVal listVisible As Boolean, ByVal height As Integer)
-        txtQuery.Visible = textBoxVisible
-        lstQuery.Visible = listVisible
-        Me.Height = height
+    Private Sub listado()
+
     End Sub
 
-    Private Sub ocultarQueries()
-        pantallaQuery(False, False, 240)
-        txtQuery.Text = ""
-    End Sub
-
-    Private Sub mostrarQueries()
-        pantallaQuery(True, True, 505)
-    End Sub
-
-    Private Sub txtQuery_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtQuery.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            cargarListaSegun(ActiveControl.Text)
-        End If
-    End Sub
-
-    Private Sub cargarListaSegun(ByVal stringBusqueda As String)
-        Dim bancos As List(Of Banco)
-
-        bancos = DAOBanco.buscarBancoPorNombre(stringBusqueda)
-        lstQuery.DataSource = bancos
-
-        mostrarQueries()
-    End Sub
-
-    Private Sub lstQuery_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstQuery.DoubleClick
-        Dim banco As Banco = lstQuery.SelectedItem
+    Private Sub mostrarBanco(ByVal banco As Banco)
         txtCodigo.Text = banco.id
         txtNombre.Text = banco.nombre
-        txtCuenta.Text = banco.cuenta.id
-        txtDescripcion.Text = banco.cuenta.descripcion
-        ocultarQueries()
+        mostrarCuenta(banco.cuenta)
     End Sub
 
-    Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
-        Close()
-    End Sub
-
-    Private Sub btnClean_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClean.Click
-        limpiarCampos()
+    Private Sub mostrarCuenta(ByVal cuenta As CuentaContable)
+        txtCuenta.Text = cuenta.id
+        txtDescripcion.Text = cuenta.descripcion
     End Sub
 
     Private Sub txtCodigo_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigo.Leave
         Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(txtCodigo.Text)
         If Not IsNothing(banco) Then
             txtNombre.Text = banco.nombre
-            txtCuenta.Text = banco.cuenta.id
-            txtDescripcion.Text = banco.cuenta.descripcion
+            mostrarCuenta(banco.cuenta)
+        Else
+            txtNombre.Text = ""
+            txtCuenta.Text = ""
+            txtDescripcion.Text = ""
         End If
     End Sub
 

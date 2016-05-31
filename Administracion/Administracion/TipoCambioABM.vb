@@ -4,40 +4,28 @@ Public Class TipoCambioABM
 
     Dim organizadorABM As New FormOrganizer(Me, 350, 600)
 
-    'Private Sub ocultarQueries()
-    '    pantallaQuery(False, False, 240)
-    '    txtQuery.Text = ""
-    'End Sub
-
-    'Private Sub pantallaQuery(ByVal textBoxVisible As Boolean, ByVal listVisible As Boolean, ByVal height As Integer)
-    '    txtQuery.Visible = textBoxVisible
-    '    lstQuery.Visible = listVisible
-    '    Me.Height = height
-    'End Sub
-
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        CommonEventsHandler.setIndexTab(Me)
+    Private Sub TipoCambioABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         organizadorABM.addControls(New List(Of CustomControl) From {txtFecha, txtParidad})
-        organizadorABM.setAddButtonClick(AddressOf btnAddClick)
-        organizadorABM.setDeleteButtonClick(AddressOf btnDeleteClick)
+        organizadorABM.setAddButtonClick(AddressOf agregar)
+        organizadorABM.setDeleteButtonClick(AddressOf borrar)
         organizadorABM.setDefaultCleanButtonClick()
         organizadorABM.setDefaultCloseButtonClick()
-        organizadorABM.setListButtonClick(AddressOf btnListClick)
-        organizadorABM.setDefaultQueryButtonClick(AddressOf DAOTipoCambio.listarTiposCambio)
-        organizadorABM.setListDoubleClickPressed(AddressOf mostrarCambio)
+        organizadorABM.setListButtonClick(AddressOf listado)
+        organizadorABM.addQueryFunction(AddressOf DAOTipoCambio.listarTiposCambio, "Cambio", AddressOf mostrarCambio)
+        organizadorABM.dontUseQueryText()
         organizadorABM.organize()
     End Sub
 
-    Private Sub btnAddClick(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub agregar()
         Dim cambio As New TipoDeCambio(txtFecha.Text, txtParidad.Text)
         DAOTipoCambio.agregarTipoCambio(cambio)
     End Sub
 
-    Private Sub btnDeleteClick(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub borrar()
         DAOTipoCambio.eliminarTipoCambio(txtFecha.Text)
     End Sub
 
-    Private Sub btnListClick(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub listado()
 
     End Sub
 
