@@ -12,6 +12,7 @@ Public Class FormOrganizer
     Private queryList As CustomListBox
     Private selectionList As CustomListBox
     Private controls As List(Of CustomControl)
+    Private annexedControls As New List(Of CustomControl)
     Private buttons As New List(Of CustomButton)
     Private buttonsTop As New List(Of CustomButton)
     Private buttonsBottom As New List(Of CustomButton)
@@ -50,6 +51,11 @@ Public Class FormOrganizer
     Public Sub addControls(ByVal formControls As List(Of CustomControl))
         controls = formControls
         controls.OrderBy(Function(control) control.LabelAssociationKey)
+    End Sub
+
+    Public Sub addAnnexedControls(ByVal someControls As List(Of CustomControl))
+        annexedControls = someControls
+        annexedControls.OrderBy(Function(control) control.LabelAssociationKey)
     End Sub
 
     Private Function controlsHeight()
@@ -92,22 +98,50 @@ Public Class FormOrganizer
 
         'Setteo el top y el left de los controls y labels
         For Each control As CustomControl In controls
-            control.setTop(top - 3)
-            control.setLeft(left)
+            Dim castControl As Control = DirectCast(control, Control)
+            castControl.Top = top - 3
+            castControl.Left = left
+            castControl.Width = variableWidthFor(control)
 
             Dim label As CustomLabel = labelFor(control.LabelAssociationKey)
             label.Top = top
             label.Left = leftMargin
-            top += DirectCast(control, Control).Height + controlSeparation
-        Next
 
-        'Setteo el width variable de los text box
-        For Each textBox As CustomTextBox In controls.OfType(Of CustomTextBox)()
-            Dim textWidth As Integer = Math.Min(Math.Round(textBox.MaxLength * charPixelSize), width - leftMargin - rightMargin - maxLabelWidth() - separation)
-            textBox.setWidth(textWidth)
+            Dim annexedCustomControl As CustomControl = annexedControlFor(control.LabelAssociationKey)
+            Dim annexedControl As Control = DirectCast(annexedCustomControl, Control)
+            If Not IsNothing(annexedControl) Then
+                annexedControl.Top = top - 3
+                annexedControl.Left = left + castControl.Width + separation
+
+                Dim annexedWidth As Integer
+                If variableWidthFor(annexedCustomControl) - castControl.Width = 0 Then
+                    castControl.Width = variableWidthFor(control) \ 2
+                    annexedWidth = castControl.Width - 6
+                Else
+                    annexedWidth = variableWidthFor(annexedCustomControl) - castControl.Width - separation
+                End If
+                annexedControl.Width = annexedWidth
+            End If
+            top += castControl.Height + controlSeparation
         Next
 
         Return top - topMargin
+    End Function
+
+    Private Function variableWidthFor(ByVal textBox As CustomTextBox)
+        Return Math.Min(Math.Round(textBox.MaxLength * charPixelSize), variableWidthOfControl())
+    End Function
+
+    Private Function variableWidthFor(ByVal control As CustomControl)
+        Try
+            Return variableWidthFor(DirectCast(control, CustomTextBox))
+        Catch e As InvalidCastException
+            Return variableWidthOfControl()
+        End Try
+    End Function
+
+    Private Function variableWidthOfControl()
+        Return width - leftMargin - rightMargin - maxLabelWidth() - separation
     End Function
 
     Private Function maxLabelWidth()
@@ -298,6 +332,10 @@ Public Class FormOrganizer
 
     Private Function labelFor(ByVal index As Integer) As CustomLabel
         Return form.Controls.OfType(Of CustomLabel).ToList.Find(Function(label) label.ControlAssociationKey = index)
+    End Function
+
+    Private Function annexedControlFor(ByVal index As Integer) As CustomControl
+        Return annexedControls.Find(Function(control) control.LabelAssociationKey = index)
     End Function
 
     Private Function validateForDelete()

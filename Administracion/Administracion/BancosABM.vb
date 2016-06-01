@@ -6,6 +6,7 @@ Public Class BancosABM
 
     Private Sub BancosABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         organizadorABM.addControls(New List(Of CustomControl) From {txtCodigo, txtNombre, txtCuenta})
+        organizadorABM.addAnnexedControls(New List(Of CustomControl) From {txtDescripcion})
         organizadorABM.setAddButtonClick(AddressOf agregar)
         organizadorABM.setDeleteButtonClick(AddressOf borrar)
         organizadorABM.setDefaultCleanButtonClick()
