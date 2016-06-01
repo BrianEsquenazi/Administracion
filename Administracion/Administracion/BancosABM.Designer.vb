@@ -22,14 +22,44 @@ Partial Class BancosABM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
         Me.txtDescripcion = New WindowsApplication1.CustomTextBox()
         Me.txtCuenta = New WindowsApplication1.CustomTextBox()
         Me.txtNombre = New WindowsApplication1.CustomTextBox()
         Me.txtCodigo = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.SuspendLayout()
+        '
+        'CustomLabel3
+        '
+        Me.CustomLabel3.AutoSize = True
+        Me.CustomLabel3.ControlAssociationKey = 3
+        Me.CustomLabel3.Location = New System.Drawing.Point(31, 89)
+        Me.CustomLabel3.Name = "CustomLabel3"
+        Me.CustomLabel3.Size = New System.Drawing.Size(86, 13)
+        Me.CustomLabel3.TabIndex = 27
+        Me.CustomLabel3.Text = "Cuenta Contable"
+        '
+        'CustomLabel2
+        '
+        Me.CustomLabel2.AutoSize = True
+        Me.CustomLabel2.ControlAssociationKey = 2
+        Me.CustomLabel2.Location = New System.Drawing.Point(31, 56)
+        Me.CustomLabel2.Name = "CustomLabel2"
+        Me.CustomLabel2.Size = New System.Drawing.Size(44, 13)
+        Me.CustomLabel2.TabIndex = 26
+        Me.CustomLabel2.Text = "Nombre"
+        '
+        'CustomLabel1
+        '
+        Me.CustomLabel1.AutoSize = True
+        Me.CustomLabel1.ControlAssociationKey = 1
+        Me.CustomLabel1.Location = New System.Drawing.Point(31, 26)
+        Me.CustomLabel1.Name = "CustomLabel1"
+        Me.CustomLabel1.Size = New System.Drawing.Size(40, 13)
+        Me.CustomLabel1.TabIndex = 25
+        Me.CustomLabel1.Text = "Código"
         '
         'txtDescripcion
         '
@@ -79,36 +109,6 @@ Partial Class BancosABM
         Me.txtCodigo.Size = New System.Drawing.Size(79, 20)
         Me.txtCodigo.TabIndex = 18
         Me.txtCodigo.Validator = WindowsApplication1.ValidatorType.Numeric
-        '
-        'CustomLabel1
-        '
-        Me.CustomLabel1.AutoSize = True
-        Me.CustomLabel1.ControlAssociationKey = 1
-        Me.CustomLabel1.Location = New System.Drawing.Point(31, 26)
-        Me.CustomLabel1.Name = "CustomLabel1"
-        Me.CustomLabel1.Size = New System.Drawing.Size(40, 13)
-        Me.CustomLabel1.TabIndex = 25
-        Me.CustomLabel1.Text = "Código"
-        '
-        'CustomLabel2
-        '
-        Me.CustomLabel2.AutoSize = True
-        Me.CustomLabel2.ControlAssociationKey = 2
-        Me.CustomLabel2.Location = New System.Drawing.Point(31, 56)
-        Me.CustomLabel2.Name = "CustomLabel2"
-        Me.CustomLabel2.Size = New System.Drawing.Size(44, 13)
-        Me.CustomLabel2.TabIndex = 26
-        Me.CustomLabel2.Text = "Nombre"
-        '
-        'CustomLabel3
-        '
-        Me.CustomLabel3.AutoSize = True
-        Me.CustomLabel3.ControlAssociationKey = 3
-        Me.CustomLabel3.Location = New System.Drawing.Point(31, 89)
-        Me.CustomLabel3.Name = "CustomLabel3"
-        Me.CustomLabel3.Size = New System.Drawing.Size(86, 13)
-        Me.CustomLabel3.TabIndex = 27
-        Me.CustomLabel3.Text = "Cuenta Contable"
         '
         'BancosABM
         '
