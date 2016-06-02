@@ -6,4 +6,8 @@
         codigo = cod
         descripcion = nombre
     End Sub
+
+    Public Overrides Function ToString() As String
+        Return descripcion
+    End Function
 End Class
