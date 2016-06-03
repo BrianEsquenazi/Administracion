@@ -1,9 +1,13 @@
 ﻿Public Class RubroProveedor
-    Private id As Integer
-    Private descripcion As String
+    Public codigo As Integer
+    Public descripcion As String
 
-    Public Sub New(ByVal codigo As Integer, ByVal nombre As String)
-        id = codigo
+    Public Sub New(ByVal cod As Integer, ByVal nombre As String)
+        codigo = cod
         descripcion = nombre
     End Sub
+
+    Public Overrides Function ToString() As String
+        Return descripcion
+    End Function
 End Class

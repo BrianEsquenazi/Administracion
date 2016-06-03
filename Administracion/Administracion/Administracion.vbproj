@@ -97,6 +97,7 @@
     <Compile Include="BancosABM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Capa DAO\DAORubroProveedor.vb" />
     <Compile Include="Capa DAO\DAOBanco.vb" />
     <Compile Include="Capa DAO\DAOCuentaContable.vb" />
     <Compile Include="Capa DAO\DAOTipoCambio.vb" />
@@ -116,6 +117,10 @@
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
     </Compile>
     <Compile Include="ProveedoresABM.vb">
+    <Compile Include="RubrosProveedorABM.Designer.vb">
+      <DependentUpon>RubrosProveedorABM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RubrosProveedorABM.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TipoCambioABM.Designer.vb">
@@ -162,6 +167,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProveedoresABM.resx">
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
+    <EmbeddedResource Include="RubrosProveedorABM.resx">
+      <DependentUpon>RubrosProveedorABM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TipoCambioABM.resx">
       <DependentUpon>TipoCambioABM.vb</DependentUpon>
