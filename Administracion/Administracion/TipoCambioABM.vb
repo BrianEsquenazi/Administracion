@@ -5,7 +5,7 @@ Public Class TipoCambioABM
     Dim organizadorABM As New FormOrganizer(Me, 350, 600)
 
     Private Sub TipoCambioABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        organizadorABM.addControls(New List(Of CustomControl) From {txtFecha, txtParidad})
+        organizadorABM.addControls(txtFecha, txtParidad)
         organizadorABM.setAddButtonClick(AddressOf agregar)
         organizadorABM.setDeleteButtonClick(AddressOf borrar)
         organizadorABM.setDefaultCleanButtonClick()

@@ -11,7 +11,9 @@ Public Class FormOrganizer
     Private queryText As CustomTextBox
     Private queryList As CustomListBox
     Private selectionList As CustomListBox
-    Private controls As List(Of CustomControl)
+    Private allControls As New List(Of CustomControl)
+    Private firstColumnControls As New List(Of CustomControl)
+    Private columnedControls As List(Of Object)
     Private annexedControls As New List(Of CustomControl)
     Private buttons As New List(Of CustomButton)
     Private buttonsTop As New List(Of CustomButton)
@@ -31,6 +33,7 @@ Public Class FormOrganizer
     Private showMethodFunction As ShowMethod
     Private usingQueryText As Boolean
 
+    Private buttonsWidth As Integer
     Private topMargin As Integer = 30
     Private leftMargin As Integer = 30
     Private rightMargin As Integer = 30
@@ -41,16 +44,27 @@ Public Class FormOrganizer
     Private separationBetweenControlsAndButtons As Integer = 45
     Private controlSeparation As Integer = 10
     Private charPixelSize As Double = 7.5
+    Private compactHeightConstant As Integer = 0
 
     Public Sub New(ByVal someForm As Form, ByVal formWidth As Integer, ByVal formHeight As Integer)
         form = someForm
         maxHeight = formHeight
         width = formWidth
+        buttonsWidth = width - leftMargin - rightMargin
     End Sub
 
-    Public Sub addControls(ByVal formControls As List(Of CustomControl))
-        controls = formControls
-        controls.OrderBy(Function(control) control.LabelAssociationKey)
+    Public Sub addControls(ByVal ParamArray controlsColumn() As Object)
+        columnedControls = controlsColumn.ToList
+        For Each control In columnedControls
+            If control.GetType.GetInterface(GetType(CustomControl).Name) = GetType(CustomControl) Then
+                firstColumnControls.Add(control)
+                allControls.Add(control)
+            Else
+                Dim listOfControls As List(Of Control) = castToListOfControl(DirectCast(control, Object()))
+                firstColumnControls.Add(listOfControls.First)
+                listOfControls.ForEach(Sub(aControl) allControls.Add(DirectCast(aControl, CustomControl)))
+            End If
+        Next
     End Sub
 
     Public Sub addAnnexedControls(ByVal someControls As List(Of CustomControl))
@@ -59,7 +73,7 @@ Public Class FormOrganizer
     End Sub
 
     Private Function controlsHeight()
-        Return controls.Sum(Function(control As CustomControl) DirectCast(control, Control).Height) + (controls.Count - 1) * controlSeparation
+        Return firstColumnControls.Sum(Function(control As CustomControl) DirectCast(control, Control).Height) + (firstColumnControls.Count - 1) * controlSeparation
     End Function
 
     Private Function buttonsHeight()
@@ -67,7 +81,7 @@ Public Class FormOrganizer
     End Function
 
     Private Function formNormalHeight()
-        Return topMargin + bottomMargin + controlsHeight() + separationBetweenControlsAndButtons + buttonsHeight()
+        Return topMargin + bottomMargin + controlsHeight() + separationBetweenControlsAndButtons + buttonsHeight() + compactHeightConstant
     End Function
 
     Private Function formWithQueryControlsHeight()
@@ -89,69 +103,163 @@ Public Class FormOrganizer
 
         Dim btnsTop As Integer = organizeControls() + separationBetweenControlsAndButtons
         organizeButtons(btnsTop)
-        organizeQueryControllers(btnsTop + simpleButtonHeight * 2 + separation)
+        organizeQueryControllers(btnsTop + buttonsHeight())
+    End Sub
+
+    Public Sub compactOrganize()
+        topMargin = 10
+        bottomMargin = 10
+        leftMargin = 20
+        simpleButtonHeight = 25
+        separationBetweenControlsAndButtons = 15
+        controlSeparation = 8
+        compactHeightConstant = 30
+        buttonsWidth = buttonsWidth \ 2
+        organize()
     End Sub
 
     Private Function organizeControls()
         Dim top As Integer = topMargin
-        Dim left As Integer = leftMargin + separation + maxLabelWidth()
 
         'Setteo el top y el left de los controls y labels
-        For Each control As CustomControl In controls
-            Dim castControl As Control = DirectCast(control, Control)
-            castControl.Top = top - 3
-            castControl.Left = left
-            castControl.Width = variableWidthFor(control)
+        For Each castControl As Object In columnedControls
+            If castControl.GetType.GetInterface(GetType(CustomControl).Name) = GetType(CustomControl) Then
+                'EXCLUSIVO CONTROLES SIN COLUMNAS
+                Dim left As Integer = leftMargin + separation + maxLabelWidth()
 
-            Dim label As CustomLabel = labelFor(control.LabelAssociationKey)
-            label.Top = top
-            label.Left = leftMargin
+                Dim control As CustomControl = DirectCast(castControl, CustomControl)
+                castControl.Top = top - 3
+                castControl.Left = left
+                castControl.Width = variableWidthFor(control)
 
-            Dim annexedCustomControl As CustomControl = annexedControlFor(control.LabelAssociationKey)
-            Dim annexedControl As Control = DirectCast(annexedCustomControl, Control)
-            If Not IsNothing(annexedControl) Then
-                annexedControl.Top = top - 3
-                annexedControl.Left = left + castControl.Width + separation
+                Dim label As CustomLabel = labelFor(control.LabelAssociationKey)
+                label.Top = top
+                label.Left = leftMargin
+                left += castControl.Width + separation
 
-                Dim annexedWidth As Integer
-                If variableWidthFor(annexedCustomControl) - castControl.Width = 0 Then
-                    castControl.Width = variableWidthFor(control) \ 2
-                    annexedWidth = castControl.Width - 6
-                Else
-                    annexedWidth = variableWidthFor(annexedCustomControl) - castControl.Width - separation
-                End If
-                annexedControl.Width = annexedWidth
+                Dim annexedCustomControls = annexedControlsFor(control.LabelAssociationKey)
+                For Each annexedCustomControl As CustomControl In annexedCustomControls
+                    Dim annexedControl As Control = DirectCast(annexedCustomControl, Control)
+                    annexedControl.Top = top - 3
+                    annexedControl.Left = left
+
+                    Dim annexedWidth As Integer
+                    If variableWidthFor(annexedCustomControl, 2) - castControl.Width = 0 Then
+                        castControl.Width = variableWidthFor(control, 2) \ 2
+                        annexedWidth = castControl.Width - 6
+                    Else
+                        annexedWidth = variableWidthFor(annexedCustomControl, 2) - castControl.Width - separation
+                    End If
+                    annexedControl.Width = annexedWidth
+                    left += annexedControl.Width + separation
+                Next
+
+                top += castControl.Height + controlSeparation
+            Else
+                'EXCLUSIVO PARA CONTROLS ENCOLUMNADOS
+                Dim left As Integer = leftMargin
+                Dim controlList As List(Of Control) = castToListOfControl(castControl)
+                Dim maxWidth As Integer = maxWidthForColumnControls(controlList)
+
+                For Each specificControl In controlList
+                    Dim custControl As CustomControl = DirectCast(specificControl, CustomControl)
+                    Dim index As Integer = controlList.IndexOf(specificControl)
+
+                    Dim label As CustomLabel = labelFor(custControl.LabelAssociationKey)
+                    label.Top = top
+                    label.Left = left
+                    If left = leftMargin Then
+                        left += separation + maxLabelWidth() 'Se cambia el left para el próximo control
+                    Else
+                        left += separation + label.Width
+                    End If
+
+                    specificControl.Top = top - 3
+                    specificControl.Left = left
+                    specificControl.Width = Math.Min(variableWidthFor(custControl, index), maxWidth)
+
+                    left += specificControl.Width + separation 'Se cambia el left para el próximo control
+
+                    Dim annexedCustomControls = annexedControlsFor(custControl.LabelAssociationKey)
+                    For Each annexedCustomControl As CustomControl In annexedCustomControls
+                        Dim annexedControl As Control = DirectCast(annexedCustomControl, Control)
+                        annexedControl.Top = top - 3
+                        annexedControl.Left = left
+
+                        annexedControl.Width = Math.Min(variableWidthFor(custControl, index), maxWidth)
+                        left += annexedControl.Width + separation 'Se cambia el left para el próximo control
+                    Next
+
+                Next
+                top += controlList(0).Height + controlSeparation
             End If
-            top += castControl.Height + controlSeparation
         Next
 
         Return top - topMargin
     End Function
 
-    Private Function variableWidthFor(ByVal textBox As CustomTextBox)
-        Return Math.Min(Math.Round(textBox.MaxLength * charPixelSize), variableWidthOfControl())
+    Private Function maxWidthForColumnControls(ByVal controlList As List(Of Control))
+        Dim annexedControlsCount As Integer = controlList.Sum(Function(control) annexedControlsFor(DirectCast(control, CustomControl).LabelAssociationKey).Count)
+
+        Dim availableSpace As Integer = form.Width - leftMargin - maxLabelWidth() - (controlList.Count - 1) * 2 * separation - controlList.Sum(Function(control) labelFor(DirectCast(control, CustomControl).LabelAssociationKey).Width) - rightMargin + labelFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey).Width 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
+        availableSpace = availableSpace - annexedControlsCount * separation
+
+        Dim avgMax As Integer = availableSpace \ (controlList.Count + annexedControlsCount)
+
+        Dim smallerControls As List(Of Control) = controlList.FindAll(Function(control) Math.Min(variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)), avgMax) < avgMax)
+        Dim smallerControlsSize As Integer = smallerControls.Sum(Function(control) variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)) + 2 * separation)
+
+        Dim biggerControlsCount As Integer = controlList.Count - smallerControls.Count
+
+        If biggerControlsCount <> 0 Then
+            Return (availableSpace - smallerControlsSize) \ (controlList.Count - smallerControls.Count + annexedControlsCount)
+        Else
+            Return avgMax
+        End If
+    End Function
+
+    Private Function castToListOfControl(ByVal controls As Object) As List(Of Control)
+        Dim list As New List(Of Control)
+        For Each c In DirectCast(controls, Object())
+            list.Add(DirectCast(c, Control))
+        Next
+        Return list
     End Function
 
     Private Function variableWidthFor(ByVal control As CustomControl)
+        Return variableWidthFor(control, 0)
+    End Function
+
+    Private Function variableWidthFor(ByVal textBox As CustomTextBox, ByVal columnNumber As Integer)
+        Return Math.Min(Math.Round(textBox.MaxLength * charPixelSize), variableWidthOfControl(textBox, columnNumber))
+    End Function
+
+    Private Function variableWidthFor(ByVal control As CustomControl, ByVal columnNumber As Integer)
         Try
-            Return variableWidthFor(DirectCast(control, CustomTextBox))
+            Return variableWidthFor(DirectCast(control, CustomTextBox), columnNumber)
         Catch e As InvalidCastException
-            Return variableWidthOfControl()
+            Return variableWidthOfControl(control, columnNumber)
         End Try
     End Function
 
-    Private Function variableWidthOfControl()
-        Return width - leftMargin - rightMargin - maxLabelWidth() - separation
+    Private Function variableWidthOfControl(ByVal control As CustomControl, ByVal columnNumber As Integer)
+        Dim labelWidth As Integer
+        If columnNumber = 0 Then
+            labelWidth = maxLabelWidth()
+        Else
+            labelWidth = labelFor(control.LabelAssociationKey).Width
+        End If
+        Return width - leftMargin - rightMargin - labelWidth - separation
     End Function
 
     Private Function maxLabelWidth()
-        Return controls.ConvertAll(Function(control) labelFor(control.LabelAssociationKey).Width).Max()
+        Return firstColumnControls.ConvertAll(Function(control) labelFor(control.LabelAssociationKey).Width).Max()
     End Function
 
     Private Sub organizeButtons(ByVal top As Integer)
         createButtons()
 
-        Dim buttonWidth As Integer = (width - leftMargin - rightMargin - separation * 3) \ 3
+        Dim buttonWidth As Integer = (buttonsWidth - separation * 3) \ 3
         buttons.ForEach(Sub(button) button.Width = buttonWidth)
         buttons.ForEach(Sub(button) button.Height = simpleButtonHeight)
 
@@ -161,7 +269,7 @@ Public Class FormOrganizer
             left += buttonWidth + separation
         Next
 
-        left = 30
+        left = leftMargin
         For Each button As CustomButton In buttonsBottom
             setButtonPosition(button, top + button.Height + separation, left)
             left += buttonWidth + separation
@@ -334,8 +442,13 @@ Public Class FormOrganizer
         Return form.Controls.OfType(Of CustomLabel).ToList.Find(Function(label) label.ControlAssociationKey = index)
     End Function
 
-    Private Function annexedControlFor(ByVal index As Integer) As CustomControl
-        Return annexedControls.Find(Function(control) control.LabelAssociationKey = index)
+    Private Function annexedControlsFor(ByVal index As Integer) As List(Of CustomControl)
+        Dim list = annexedControls.FindAll(Function(control) control.LabelAssociationKey = index)
+        If IsNothing(list) Then
+            Return New List(Of CustomControl)
+        Else
+            Return list
+        End If
     End Function
 
     Private Function validateForDelete()
@@ -347,11 +460,11 @@ Public Class FormOrganizer
     End Function
 
     Private Function validateControls(ByVal isAdd As Boolean)
-        Dim firstControl As CustomTextBox = controls.Find(Function(control) control.EnterIndex = 1) 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
+        Dim firstControl As CustomTextBox = allControls.Find(Function(control) control.EnterIndex = 1) 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
         Dim validator As New Validator
         validator.validate(firstControl.Text, firstControl.Validator, labelFor(firstControl.LabelAssociationKey).Text)
         If isAdd Then
-            Dim controlsToValidate As List(Of CustomTextBox) = controls.OfType(Of CustomTextBox).ToList 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
+            Dim controlsToValidate As List(Of CustomTextBox) = allControls.OfType(Of CustomTextBox).ToList 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
             controlsToValidate.Remove(firstControl)
             controlsToValidate.ForEach(Sub(control) validator.validate(control.Text, control.Validator, labelFor(control.LabelAssociationKey).Text))
         End If
