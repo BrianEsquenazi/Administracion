@@ -5,7 +5,7 @@ Public Class RubrosProveedorABM
     Dim organizadorABM As New FormOrganizer(Me, 485, 600)
 
     Private Sub RubrosProveedorABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        organizadorABM.addControls(New List(Of CustomControl) From {txtCodigo, txtDescripcion})
+        organizadorABM.addControls(txtCodigo, txtDescripcion)
         organizadorABM.setAddButtonClick(AddressOf agregar)
         organizadorABM.setDeleteButtonClick(AddressOf borrar)
         organizadorABM.setDefaultCleanButtonClick()

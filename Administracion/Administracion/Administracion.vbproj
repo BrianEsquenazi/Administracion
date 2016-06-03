@@ -117,6 +117,8 @@
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
     </Compile>
     <Compile Include="ProveedoresABM.vb">
+		<SubType>Form</SubType>
+    </Compile>
     <Compile Include="RubrosProveedorABM.Designer.vb">
       <DependentUpon>RubrosProveedorABM.vb</DependentUpon>
     </Compile>
@@ -167,7 +169,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProveedoresABM.resx">
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
-    <EmbeddedResource Include="RubrosProveedorABM.resx">
+    </EmbeddedResource>
+	<EmbeddedResource Include="RubrosProveedorABM.resx">
       <DependentUpon>RubrosProveedorABM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TipoCambioABM.resx">
