@@ -35,3 +35,36 @@ END
 GO
 
 
+/*
+---------------------------------------------------------------
+-------------------------PROCEDIMIENTOS-------------------------
+---------------------------------------------------------------
+*/
+
+USE [surfactanSA]
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_provincias]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_provincias]
+GO
+
+CREATE PROCEDURE [dbo].[PR_get_provincias] 
+AS
+
+		SELECT td.codigo, td.Nombre from 
+			(SELECT [Provincia] as codigo
+				  ,[Nombre]
+				  , 0 as orden
+			  FROM [surfactanSA].[dbo].[Provincia] pr
+			  where pr.Nombre not in ('Exterior', 'Sin Asignar')
+			union all
+			SELECT [Provincia] as codigo
+				  ,[Nombre]
+				  , 1 as orden
+			  FROM [surfactanSA].[dbo].[Provincia] pr
+			  where pr.Nombre = 'Exterior'  
+			) td
+		order by td.orden, td.Nombre
+	RETURN
+GO
