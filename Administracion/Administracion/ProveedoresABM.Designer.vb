@@ -75,6 +75,20 @@ Partial Class ProveedoresABM
         Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel25 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel26 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel27 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel28 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel29 = New WindowsApplication1.CustomLabel()
+        Me.btnObservaciones = New WindowsApplication1.CustomButton()
+        Me.btnCUFE = New WindowsApplication1.CustomButton()
+        Me.txtCAI = New WindowsApplication1.CustomTextBox()
+        Me.txtCAIVto = New WindowsApplication1.CustomTextBox()
+        Me.txtCertificados = New WindowsApplication1.CustomTextBox()
+        Me.txtClasificacion = New WindowsApplication1.CustomTextBox()
+        Me.cmbCertificados = New WindowsApplication1.CustomComboBox()
+        Me.cmbEstado = New WindowsApplication1.CustomComboBox()
+        Me.cmbClasificacion = New WindowsApplication1.CustomComboBox()
         Me.SuspendLayout()
         '
         'txtNroSEDRONAR2
@@ -676,11 +690,182 @@ Partial Class ProveedoresABM
         Me.CustomLabel1.TabIndex = 0
         Me.CustomLabel1.Text = "Código"
         '
+        'CustomLabel25
+        '
+        Me.CustomLabel25.AutoSize = True
+        Me.CustomLabel25.ControlAssociationKey = 25
+        Me.CustomLabel25.Location = New System.Drawing.Point(381, 407)
+        Me.CustomLabel25.Name = "CustomLabel25"
+        Me.CustomLabel25.Size = New System.Drawing.Size(24, 13)
+        Me.CustomLabel25.TabIndex = 53
+        Me.CustomLabel25.Text = "CAI"
+        '
+        'CustomLabel26
+        '
+        Me.CustomLabel26.AutoSize = True
+        Me.CustomLabel26.ControlAssociationKey = 26
+        Me.CustomLabel26.Location = New System.Drawing.Point(574, 407)
+        Me.CustomLabel26.Name = "CustomLabel26"
+        Me.CustomLabel26.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel26.TabIndex = 54
+        Me.CustomLabel26.Text = "Vto. CAI"
+        '
+        'CustomLabel27
+        '
+        Me.CustomLabel27.AutoSize = True
+        Me.CustomLabel27.ControlAssociationKey = 27
+        Me.CustomLabel27.Location = New System.Drawing.Point(382, 430)
+        Me.CustomLabel27.Name = "CustomLabel27"
+        Me.CustomLabel27.Size = New System.Drawing.Size(62, 13)
+        Me.CustomLabel27.TabIndex = 55
+        Me.CustomLabel27.Text = "Certificados"
+        '
+        'CustomLabel28
+        '
+        Me.CustomLabel28.AutoSize = True
+        Me.CustomLabel28.ControlAssociationKey = 28
+        Me.CustomLabel28.Location = New System.Drawing.Point(382, 452)
+        Me.CustomLabel28.Name = "CustomLabel28"
+        Me.CustomLabel28.Size = New System.Drawing.Size(40, 13)
+        Me.CustomLabel28.TabIndex = 56
+        Me.CustomLabel28.Text = "Estado"
+        '
+        'CustomLabel29
+        '
+        Me.CustomLabel29.AutoSize = True
+        Me.CustomLabel29.ControlAssociationKey = 29
+        Me.CustomLabel29.Location = New System.Drawing.Point(382, 475)
+        Me.CustomLabel29.Name = "CustomLabel29"
+        Me.CustomLabel29.Size = New System.Drawing.Size(61, 13)
+        Me.CustomLabel29.TabIndex = 57
+        Me.CustomLabel29.Text = "Calificación"
+        '
+        'btnObservaciones
+        '
+        Me.btnObservaciones.Cleanable = False
+        Me.btnObservaciones.EnterIndex = -1
+        Me.btnObservaciones.LabelAssociationKey = -1
+        Me.btnObservaciones.Location = New System.Drawing.Point(384, 502)
+        Me.btnObservaciones.Name = "btnObservaciones"
+        Me.btnObservaciones.Size = New System.Drawing.Size(104, 25)
+        Me.btnObservaciones.TabIndex = 58
+        Me.btnObservaciones.Text = "Observaciones"
+        Me.btnObservaciones.UseVisualStyleBackColor = True
+        '
+        'btnCUFE
+        '
+        Me.btnCUFE.Cleanable = False
+        Me.btnCUFE.EnterIndex = -1
+        Me.btnCUFE.LabelAssociationKey = -1
+        Me.btnCUFE.Location = New System.Drawing.Point(592, 502)
+        Me.btnCUFE.Name = "btnCUFE"
+        Me.btnCUFE.Size = New System.Drawing.Size(104, 25)
+        Me.btnCUFE.TabIndex = 59
+        Me.btnCUFE.Text = "CUFE"
+        Me.btnCUFE.UseVisualStyleBackColor = True
+        '
+        'txtCAI
+        '
+        Me.txtCAI.Cleanable = False
+        Me.txtCAI.EnterIndex = 29
+        Me.txtCAI.LabelAssociationKey = 25
+        Me.txtCAI.Location = New System.Drawing.Point(434, 400)
+        Me.txtCAI.Name = "txtCAI"
+        Me.txtCAI.Size = New System.Drawing.Size(122, 20)
+        Me.txtCAI.TabIndex = 60
+        Me.txtCAI.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCAIVto
+        '
+        Me.txtCAIVto.Cleanable = False
+        Me.txtCAIVto.EnterIndex = 30
+        Me.txtCAIVto.LabelAssociationKey = 26
+        Me.txtCAIVto.Location = New System.Drawing.Point(630, 400)
+        Me.txtCAIVto.Name = "txtCAIVto"
+        Me.txtCAIVto.Size = New System.Drawing.Size(122, 20)
+        Me.txtCAIVto.TabIndex = 61
+        Me.txtCAIVto.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCertificados
+        '
+        Me.txtCertificados.Cleanable = False
+        Me.txtCertificados.EnterIndex = 32
+        Me.txtCertificados.LabelAssociationKey = 27
+        Me.txtCertificados.Location = New System.Drawing.Point(616, 430)
+        Me.txtCertificados.Name = "txtCertificados"
+        Me.txtCertificados.Size = New System.Drawing.Size(122, 20)
+        Me.txtCertificados.TabIndex = 62
+        Me.txtCertificados.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtClasificacion
+        '
+        Me.txtClasificacion.Cleanable = False
+        Me.txtClasificacion.EnterIndex = 35
+        Me.txtClasificacion.LabelAssociationKey = 29
+        Me.txtClasificacion.Location = New System.Drawing.Point(616, 475)
+        Me.txtClasificacion.Name = "txtClasificacion"
+        Me.txtClasificacion.Size = New System.Drawing.Size(122, 20)
+        Me.txtClasificacion.TabIndex = 63
+        Me.txtClasificacion.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbCertificados
+        '
+        Me.cmbCertificados.Cleanable = False
+        Me.cmbCertificados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCertificados.EnterIndex = 31
+        Me.cmbCertificados.FormattingEnabled = True
+        Me.cmbCertificados.LabelAssociationKey = 27
+        Me.cmbCertificados.Location = New System.Drawing.Point(457, 427)
+        Me.cmbCertificados.Name = "cmbCertificados"
+        Me.cmbCertificados.Size = New System.Drawing.Size(135, 21)
+        Me.cmbCertificados.TabIndex = 64
+        Me.cmbCertificados.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbEstado
+        '
+        Me.cmbEstado.Cleanable = False
+        Me.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbEstado.EnterIndex = 33
+        Me.cmbEstado.FormattingEnabled = True
+        Me.cmbEstado.LabelAssociationKey = 28
+        Me.cmbEstado.Location = New System.Drawing.Point(457, 454)
+        Me.cmbEstado.Name = "cmbEstado"
+        Me.cmbEstado.Size = New System.Drawing.Size(135, 21)
+        Me.cmbEstado.TabIndex = 65
+        Me.cmbEstado.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbClasificacion
+        '
+        Me.cmbClasificacion.Cleanable = False
+        Me.cmbClasificacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbClasificacion.EnterIndex = 34
+        Me.cmbClasificacion.FormattingEnabled = True
+        Me.cmbClasificacion.LabelAssociationKey = 29
+        Me.cmbClasificacion.Location = New System.Drawing.Point(457, 481)
+        Me.cmbClasificacion.Name = "cmbClasificacion"
+        Me.cmbClasificacion.Size = New System.Drawing.Size(135, 21)
+        Me.cmbClasificacion.TabIndex = 66
+        Me.cmbClasificacion.Validator = WindowsApplication1.ValidatorType.None
+        '
         'ProveedoresABM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 562)
+        Me.ClientSize = New System.Drawing.Size(790, 568)
+        Me.Controls.Add(Me.cmbClasificacion)
+        Me.Controls.Add(Me.cmbEstado)
+        Me.Controls.Add(Me.cmbCertificados)
+        Me.Controls.Add(Me.txtClasificacion)
+        Me.Controls.Add(Me.txtCertificados)
+        Me.Controls.Add(Me.txtCAIVto)
+        Me.Controls.Add(Me.txtCAI)
+        Me.Controls.Add(Me.btnCUFE)
+        Me.Controls.Add(Me.btnObservaciones)
+        Me.Controls.Add(Me.CustomLabel29)
+        Me.Controls.Add(Me.CustomLabel28)
+        Me.Controls.Add(Me.CustomLabel27)
+        Me.Controls.Add(Me.CustomLabel26)
+        Me.Controls.Add(Me.CustomLabel25)
         Me.Controls.Add(Me.txtNroSEDRONAR2)
         Me.Controls.Add(Me.txtCategoria)
         Me.Controls.Add(Me.txtNroSEDRONAR1)
@@ -796,4 +981,18 @@ Partial Class ProveedoresABM
     Friend WithEvents txtNroSEDRONAR1 As WindowsApplication1.CustomTextBox
     Friend WithEvents txtCategoria As WindowsApplication1.CustomTextBox
     Friend WithEvents txtNroSEDRONAR2 As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel25 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel26 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel27 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel28 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel29 As WindowsApplication1.CustomLabel
+    Friend WithEvents btnObservaciones As WindowsApplication1.CustomButton
+    Friend WithEvents btnCUFE As WindowsApplication1.CustomButton
+    Friend WithEvents txtCAI As WindowsApplication1.CustomTextBox
+    Friend WithEvents txtCAIVto As WindowsApplication1.CustomTextBox
+    Friend WithEvents txtCertificados As WindowsApplication1.CustomTextBox
+    Friend WithEvents txtClasificacion As WindowsApplication1.CustomTextBox
+    Friend WithEvents cmbCertificados As WindowsApplication1.CustomComboBox
+    Friend WithEvents cmbEstado As WindowsApplication1.CustomComboBox
+    Friend WithEvents cmbClasificacion As WindowsApplication1.CustomComboBox
 End Class

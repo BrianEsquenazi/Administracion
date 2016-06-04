@@ -70,7 +70,7 @@ Partial Class BancosABM
         Me.txtDescripcion.Location = New System.Drawing.Point(221, 86)
         Me.txtDescripcion.MaxLength = 50
         Me.txtDescripcion.Name = "txtDescripcion"
-        Me.txtDescripcion.Size = New System.Drawing.Size(241, 20)
+        Me.txtDescripcion.Size = New System.Drawing.Size(71, 20)
         Me.txtDescripcion.TabIndex = 22
         Me.txtDescripcion.Validator = WindowsApplication1.ValidatorType.None
         '
