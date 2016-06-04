@@ -16,6 +16,10 @@ Public Class ProveedoresABM
         'organizadorABM.addQueryFunction(AddressOf DAOBanco.buscarBancoPorNombre, "Bancos", AddressOf mostrarBanco)
         organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta)
         organizadorABM.compactOrganize()
+        cmbRegion.SelectedIndex = 0
+        cmbCondicionIB1.SelectedIndex = 0
+        cmbCondicionIB2.SelectedIndex = 0
+        cmbCategoria2.SelectedIndex = 0
     End Sub
 
     Private Sub agregar()
