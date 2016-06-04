@@ -48,7 +48,7 @@ CREATE FUNCTION FN_get_cuenta ( @accion varchar(10), @cuenta varchar(10) )
 RETURNS @cuenta_retorno TABLE
    (
 	cuenta varchar(10)
-	,descripcion varchar(10)
+	,descripcion varchar(50)
    )
 AS
 BEGIN
@@ -172,7 +172,7 @@ CREATE FUNCTION [dbo].[FN_get_rubro] ( @accion varchar(10), @rubro int )
 RETURNS @retorno TABLE
    (
 	rubro varchar(10)
-	,descripcion varchar(10)
+	,descripcion varchar(50)
    )
 AS
 BEGIN
