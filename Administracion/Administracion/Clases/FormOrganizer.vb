@@ -49,6 +49,7 @@ Public Class FormOrganizer
     Private controlSeparation As Integer = 10
     Private charPixelSize As Double = 7.5
     Private compactHeightConstant As Integer = 0
+    Dim timer As New Timer
 
     Public Sub New(ByVal someForm As Form, ByVal formWidth As Integer, ByVal formHeight As Integer)
         form = someForm
@@ -96,6 +97,10 @@ Public Class FormOrganizer
         Return topMargin + bottomMargin + controlsHeight() + separationBetweenControlsAndButtons + buttonsHeight() + compactHeightConstant
     End Function
 
+    Private Function formNeededHeight()
+        Return formNormalHeight() + compactedFirstColumnControls.Sum(Function(control As CustomControl) DirectCast(control, Control).Height) + (compactedFirstColumnControls.Count - 1) * controlSeparation - buttonsHeight()
+    End Function
+
     Private Function formWithQueryControlsHeight()
         Dim height As Integer = formNormalHeight() + separation + queryList.Height
         If usingQueryText Then
@@ -110,7 +115,7 @@ Public Class FormOrganizer
 
     Public Sub organize()
         CommonEventsHandler.setIndexTab(form)
-        form.Height = Math.Min(maxHeight, formNormalHeight)
+        form.Height = Math.Min(maxHeight, formNeededHeight)
         form.Width = width
 
         Dim btnsTop As Integer = organizeControls() + separationBetweenControlsAndButtons
@@ -163,9 +168,8 @@ Public Class FormOrganizer
         Dim left As Integer = realLeftMargin
         Dim control As CustomControl = DirectCast(castControl, CustomControl)
 
-        Dim label As CustomLabel = labelFor(control.LabelAssociationKey)
-        label.Top = top
-        label.Left = realLeftMargin
+        setLabelTopFor(control.LabelAssociationKey, top)
+        setLabelLeftFor(control.LabelAssociationKey, realLeftMargin)
 
         left += separation + maxLabelWidth() 'Se cambia el left para el próximo control
 
@@ -208,13 +212,12 @@ Public Class FormOrganizer
             Dim custControl As CustomControl = DirectCast(specificControl, CustomControl)
             Dim index As Integer = controlList.IndexOf(specificControl)
 
-            Dim label As CustomLabel = labelFor(custControl.LabelAssociationKey)
-            label.Top = top
-            label.Left = left
+            setLabelTopFor(custControl.LabelAssociationKey, top)
+            setLabelLeftFor(custControl.LabelAssociationKey, left)
             If left = realLeftMargin Then
                 left += separation + maxLabelWidth() 'Se cambia el left para el próximo control
             Else
-                left += separation + label.Width
+                left += separation + labelWidthFor(custControl.LabelAssociationKey)
             End If
 
             specificControl.Top = top - 3
@@ -241,11 +244,11 @@ Public Class FormOrganizer
 
         Dim availableSpace As Integer
         If organizingCompactedControls Then
-            availableSpace = buttonsWidth - maxLabelWidth() + labelFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey).Width 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
+            availableSpace = buttonsWidth - maxLabelWidth() + labelWidthFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey) 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
         Else
-            availableSpace = form.Width - leftMargin - rightMargin - maxLabelWidth() + labelFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey).Width 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
+            availableSpace = form.Width - leftMargin - rightMargin - maxLabelWidth() + labelWidthFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey) 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
         End If
-        availableSpace = availableSpace - (controlList.Count - 1) * 2 * separation - controlList.Sum(Function(control) labelFor(DirectCast(control, CustomControl).LabelAssociationKey).Width)
+        availableSpace = availableSpace - (controlList.Count - 1) * 2 * separation - controlList.Sum(Function(control) labelWidthFor(DirectCast(control, CustomControl).LabelAssociationKey))
         availableSpace = availableSpace - annexedControlsCount * separation
 
         Dim avgMax As Integer = availableSpace \ (controlList.Count + annexedControlsCount)
@@ -269,11 +272,11 @@ Public Class FormOrganizer
 
         Dim availableSpace As Integer
         If organizingCompactedControls Then
-            availableSpace = buttonsWidth - maxLabelWidth() + labelFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey).Width 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
+            availableSpace = buttonsWidth - maxLabelWidth() + labelWidthFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey) 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
         Else
-            availableSpace = form.Width - leftMargin - rightMargin - maxLabelWidth() + labelFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey).Width 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
+            availableSpace = form.Width - leftMargin - rightMargin - maxLabelWidth() + labelWidthFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey) 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
         End If
-        availableSpace = availableSpace - (controlList.Count - 1) * 2 * separation - controlList.Sum(Function(control) labelFor(DirectCast(control, CustomControl).LabelAssociationKey).Width)
+        availableSpace = availableSpace - (controlList.Count - 1) * 2 * separation - controlList.Sum(Function(control) labelWidthFor(DirectCast(control, CustomControl).LabelAssociationKey))
         availableSpace = availableSpace - annexedControlsCount * separation
 
         Dim avgMax As Integer = availableSpace \ (controlList.Count + annexedControlsCount)
@@ -313,7 +316,7 @@ Public Class FormOrganizer
         If columnNumber = 0 Then
             labelWidth = maxLabelWidth()
         Else
-            labelWidth = labelFor(control.LabelAssociationKey).Width
+            labelWidth = labelWidthFor(control.LabelAssociationKey)
         End If
 
         If organizingCompactedControls Then
@@ -324,7 +327,7 @@ Public Class FormOrganizer
     End Function
 
     Private Function maxLabelWidth(ByVal collection As List(Of CustomControl))
-        Return collection.ConvertAll(Function(control) labelFor(control.LabelAssociationKey).Width).Max()
+        Return collection.ConvertAll(Function(control) labelWidthFor(control.LabelAssociationKey)).Max()
     End Function
 
     Private Function maxLabelWidth()
@@ -517,6 +520,26 @@ Public Class FormOrganizer
         Return btn
     End Function
 
+    Private Function labelWidthFor(ByVal index As Integer)
+        If IsNothing(labelFor(index)) Then
+            Return 0
+        Else
+            Return labelFor(index).Width
+        End If
+    End Function
+
+    Private Sub setLabelTopFor(ByVal index As Integer, ByVal top As Integer)
+        If Not IsNothing(labelFor(index)) Then
+            labelFor(index).Top = top
+        End If
+    End Sub
+
+    Private Sub setLabelLeftFor(ByVal index As Integer, ByVal left As Integer)
+        If Not IsNothing(labelFor(index)) Then
+            labelFor(index).Left = left
+        End If
+    End Sub
+
     Private Function labelFor(ByVal index As Integer) As CustomLabel
         Return form.Controls.OfType(Of CustomLabel).ToList.Find(Function(label) label.ControlAssociationKey = index)
     End Function
@@ -681,7 +704,7 @@ Public Class FormOrganizer
         End If
         queryList.Visible = False
         hideSelectionList()
-        form.Height = formNormalHeight()
+        form.Height = Math.Max(formNormalHeight(), formNeededHeight())
     End Sub
     Private Sub hideSelectionList()
         If Not IsNothing(selectionList) Then
