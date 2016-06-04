@@ -29,6 +29,9 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FN_ge
 DROP FUNCTION [dbo].[FN_get_tipo_cambio]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FN_get_rubro]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
+DROP FUNCTION [dbo].[FN_get_rubro]
+GO
 
 /*
 	CREACION DE FUNCIONES
@@ -58,8 +61,8 @@ BEGIN
 			FROM surfactanSA.dbo.Cuenta cu_2
 			WHERE cu_2.Cuenta = (SELECT TOP 1 cu_int.Cuenta 
 									FROM surfactanSA.dbo.Cuenta cu_int 
-									WHERE LTRIM(RTRIM(cu_int.Cuenta)) >= CASE  
-																			WHEN @accion = 'primero' or @ultimo >= @cuenta THEN ''
+									WHERE LTRIM(RTRIM(cu_int.Cuenta)) > CASE  
+																			WHEN @accion = 'primero' or @ultimo <= @cuenta THEN ''
 																			ELSE @cuenta
 																		END  
 									ORDER BY cu_int.Cuenta)
@@ -71,8 +74,8 @@ BEGIN
 			FROM surfactanSA.dbo.Cuenta cu_1
 			WHERE cu_1.Cuenta = (SELECT TOP 1 cu_int.Cuenta 
 									FROM surfactanSA.dbo.Cuenta cu_int 
-									WHERE LTRIM(RTRIM(cu_int.Cuenta)) <= CASE  
-																			WHEN @accion = 'ultimo' or @primero <= @cuenta THEN 'zzzzzzzzzz'
+									WHERE LTRIM(RTRIM(cu_int.Cuenta)) < CASE  
+																			WHEN @accion = 'ultimo' or @primero >= @cuenta THEN 'zzzzzzzzzz'
 																			ELSE @cuenta
 																		END 
 									ORDER BY cu_int.Cuenta DESC) 
@@ -100,8 +103,8 @@ BEGIN
 			FROM surfactanSA.dbo.Banco ba_2
 			WHERE  ba_2.Banco = (SELECT TOP 1 ba_int.Banco 
 									FROM surfactanSA.dbo.Banco ba_int 
-									WHERE LTRIM(RTRIM(ba_int.Banco)) >= CASE  
-																			WHEN @accion = 'primero' or @ultimo >= @banco THEN (-1)
+									WHERE LTRIM(RTRIM(ba_int.Banco)) > CASE  
+																			WHEN @accion = 'primero' or @ultimo <= @banco THEN (-1)
 																			ELSE @banco
 																		END  
 									ORDER BY ba_int.Banco)
@@ -113,8 +116,8 @@ BEGIN
 				FROM surfactanSA.dbo.Banco ba_2
 				WHERE  ba_2.Banco = (SELECT TOP 1 ba_int.Banco 
 										FROM surfactanSA.dbo.Banco ba_int 
-										WHERE LTRIM(RTRIM(ba_int.Banco)) <= CASE  
-																				WHEN @accion = 'ultimo' or @primero <= @banco THEN 32767
+										WHERE LTRIM(RTRIM(ba_int.Banco)) < CASE  
+																				WHEN @accion = 'ultimo' or @primero >= @banco THEN 32767
 																				ELSE @banco
 																			END  
 										ORDER BY ba_int.Banco DESC)
@@ -142,8 +145,8 @@ BEGIN
 			FROM surfactanSA.dbo.CambioAdm ca_2
 			WHERE ca_2.OrdFecha = (SELECT TOP 1 ca_int.OrdFecha 
 									FROM surfactanSA.dbo.CambioAdm ca_int 
-									WHERE LTRIM(RTRIM(ca_int.OrdFecha)) >= CASE  
-																			WHEN @accion = 'primero' or @ultimo >= @OrdFecha THEN '0'
+									WHERE LTRIM(RTRIM(ca_int.OrdFecha)) > CASE  
+																			WHEN @accion = 'primero' or @ultimo <= @OrdFecha THEN '0'
 																			ELSE @OrdFecha
 																		END  
 									ORDER BY ca_int.OrdFecha)
@@ -155,12 +158,53 @@ BEGIN
 			FROM surfactanSA.dbo.CambioAdm ca_2
 			WHERE ca_2.OrdFecha = (SELECT TOP 1 ca_int.OrdFecha 
 									FROM surfactanSA.dbo.CambioAdm ca_int 
-									WHERE LTRIM(RTRIM(ca_int.OrdFecha)) <= CASE  
-																			WHEN @accion = 'ultimo' or @primero <= @OrdFecha THEN '99999999'
+									WHERE LTRIM(RTRIM(ca_int.OrdFecha)) < CASE  
+																			WHEN @accion = 'ultimo' or @primero >= @OrdFecha THEN '99999999'
 																			ELSE @OrdFecha
 																		END  
 									ORDER BY ca_int.OrdFecha DESC)
 	END
 	RETURN
 END
+GO
+
+CREATE FUNCTION [dbo].[FN_get_rubro] ( @accion varchar(10), @rubro int )
+RETURNS @retorno TABLE
+   (
+	rubro varchar(10)
+	,descripcion varchar(10)
+   )
+AS
+BEGIN
+	declare @ultimo int = (SELECT MAX(tp.Codigo) FROM surfactanSA.dbo.TipoProv tp)
+	declare @primero int = (SELECT MIN(tp.Codigo) FROM surfactanSA.dbo.TipoProv tp)
+	IF(@accion = 'primero' or @accion = 'siguiente')
+	BEGIN
+		INSERT @retorno
+			SELECT tp2.Codigo, tp2.Descripcion
+			FROM surfactanSA.dbo.TipoProv tp2
+			WHERE tp2.Codigo = (SELECT TOP 1 tp_int.Codigo 
+									FROM surfactanSA.dbo.TipoProv tp_int 
+									WHERE tp_int.Codigo > CASE  
+																WHEN @accion = 'primero' or @ultimo <= @rubro THEN 0
+																ELSE @rubro
+															END  
+									ORDER BY tp_int.Codigo)
+	END
+		ELSE
+	BEGIN
+		INSERT @retorno
+			SELECT tp2.Codigo, tp2.Descripcion
+			FROM surfactanSA.dbo.TipoProv tp2
+			WHERE tp2.Codigo = (SELECT TOP 1 tp_int.Codigo 
+									FROM surfactanSA.dbo.TipoProv tp_int 
+									WHERE tp_int.Codigo < CASE  
+																WHEN @accion = 'ultimo' or @primero >= @rubro THEN 2000000000
+																ELSE @rubro
+															END 
+									ORDER BY tp_int.Codigo DESC) 
+	END
+	RETURN
+END
+
 GO
