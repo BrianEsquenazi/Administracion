@@ -22,9 +22,52 @@ Partial Class ProveedoresABM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.cmbClasificacion = New WindowsApplication1.CustomComboBox()
+        Me.cmbEstado = New WindowsApplication1.CustomComboBox()
+        Me.cmbCertificados = New WindowsApplication1.CustomComboBox()
+        Me.txtClasificacion = New WindowsApplication1.CustomTextBox()
+        Me.txtCertificados = New WindowsApplication1.CustomTextBox()
+        Me.txtCAIVto = New WindowsApplication1.CustomTextBox()
+        Me.txtCAI = New WindowsApplication1.CustomTextBox()
+        Me.btnCUFE = New WindowsApplication1.CustomButton()
+        Me.btnObservaciones = New WindowsApplication1.CustomButton()
+        Me.CustomLabel29 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel28 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel27 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel26 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel25 = New WindowsApplication1.CustomLabel()
+        Me.txtNroSEDRONAR2 = New WindowsApplication1.CustomTextBox()
+        Me.txtCategoria = New WindowsApplication1.CustomTextBox()
+        Me.txtNroSEDRONAR1 = New WindowsApplication1.CustomTextBox()
+        Me.txtPorcelCABA = New WindowsApplication1.CustomTextBox()
+        Me.txtPorcelProv = New WindowsApplication1.CustomTextBox()
+        Me.txtNroIB = New WindowsApplication1.CustomTextBox()
+        Me.txtCheque = New WindowsApplication1.CustomTextBox()
+        Me.txtCuentaDescripcion = New WindowsApplication1.CustomTextBox()
+        Me.txtCuenta = New WindowsApplication1.CustomTextBox()
+        Me.cmbInscripcionIB = New WindowsApplication1.CustomComboBox()
+        Me.cmbCategoria2 = New WindowsApplication1.CustomComboBox()
+        Me.cmbCategoria1 = New WindowsApplication1.CustomComboBox()
+        Me.cmbCondicionIB2 = New WindowsApplication1.CustomComboBox()
+        Me.cmbCondicionIB1 = New WindowsApplication1.CustomComboBox()
+        Me.cmbRubro = New WindowsApplication1.CustomComboBox()
+        Me.cmbIVA = New WindowsApplication1.CustomComboBox()
         Me.CustomLabel24 = New WindowsApplication1.CustomLabel()
+        Me.txtDiasPlazo = New WindowsApplication1.CustomTextBox()
         Me.CustomLabel23 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel22 = New WindowsApplication1.CustomLabel()
+        Me.cmbTipoProveedor = New WindowsApplication1.CustomComboBox()
+        Me.txtCUIT = New WindowsApplication1.CustomTextBox()
+        Me.txtObservaciones = New WindowsApplication1.CustomTextBox()
+        Me.cmbRegion = New WindowsApplication1.CustomComboBox()
+        Me.txtCodigoPostal = New WindowsApplication1.CustomTextBox()
+        Me.txtEmail = New WindowsApplication1.CustomTextBox()
+        Me.txtTelefono = New WindowsApplication1.CustomTextBox()
+        Me.cmbProvincia = New WindowsApplication1.CustomComboBox()
+        Me.txtLocalidad = New WindowsApplication1.CustomTextBox()
+        Me.txtDireccion = New WindowsApplication1.CustomTextBox()
+        Me.txtRazonSocial = New WindowsApplication1.CustomTextBox()
+        Me.txtCodigo = New WindowsApplication1.CustomTextBox()
         Me.CustomLabel21 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel20 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel19 = New WindowsApplication1.CustomLabel()
@@ -46,50 +89,373 @@ Partial Class ProveedoresABM
         Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel25 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel26 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel27 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel28 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel29 = New WindowsApplication1.CustomLabel()
-        Me.cmbClasificacion = New WindowsApplication1.CustomComboBox()
-        Me.cmbEstado = New WindowsApplication1.CustomComboBox()
-        Me.cmbCertificados = New WindowsApplication1.CustomComboBox()
-        Me.txtClasificacion = New WindowsApplication1.CustomTextBox()
-        Me.txtCertificados = New WindowsApplication1.CustomTextBox()
-        Me.txtCAIVto = New WindowsApplication1.CustomTextBox()
-        Me.txtCAI = New WindowsApplication1.CustomTextBox()
-        Me.btnCUFE = New WindowsApplication1.CustomButton()
-        Me.btnObservaciones = New WindowsApplication1.CustomButton()
-        Me.txtNroSEDRONAR2 = New WindowsApplication1.CustomTextBox()
-        Me.txtCategoria = New WindowsApplication1.CustomTextBox()
-        Me.txtNroSEDRONAR1 = New WindowsApplication1.CustomTextBox()
-        Me.txtPorcelCABA = New WindowsApplication1.CustomTextBox()
-        Me.txtPorcelProv = New WindowsApplication1.CustomTextBox()
-        Me.txtNroIB = New WindowsApplication1.CustomTextBox()
-        Me.txtCheque = New WindowsApplication1.CustomTextBox()
-        Me.txtCuentaDescripcion = New WindowsApplication1.CustomTextBox()
-        Me.txtCuenta = New WindowsApplication1.CustomTextBox()
-        Me.cmbInscripcionIB = New WindowsApplication1.CustomComboBox()
-        Me.cmbCategoria2 = New WindowsApplication1.CustomComboBox()
-        Me.cmbCategoria1 = New WindowsApplication1.CustomComboBox()
-        Me.cmbCondicionIB2 = New WindowsApplication1.CustomComboBox()
-        Me.cmbCondicionIB1 = New WindowsApplication1.CustomComboBox()
-        Me.cmbRubro = New WindowsApplication1.CustomComboBox()
-        Me.cmbIVA = New WindowsApplication1.CustomComboBox()
-        Me.txtDiasPlazo = New WindowsApplication1.CustomTextBox()
-        Me.cmbTipoProveedor = New WindowsApplication1.CustomComboBox()
-        Me.txtCUIT = New WindowsApplication1.CustomTextBox()
-        Me.txtObservaciones = New WindowsApplication1.CustomTextBox()
-        Me.cmbRegion = New WindowsApplication1.CustomComboBox()
-        Me.txtCodigoPostal = New WindowsApplication1.CustomTextBox()
-        Me.txtEmail = New WindowsApplication1.CustomTextBox()
-        Me.txtTelefono = New WindowsApplication1.CustomTextBox()
-        Me.cmbProvincia = New WindowsApplication1.CustomComboBox()
-        Me.txtLocalidad = New WindowsApplication1.CustomTextBox()
-        Me.txtDireccion = New WindowsApplication1.CustomTextBox()
-        Me.txtRazonSocial = New WindowsApplication1.CustomTextBox()
-        Me.txtCodigo = New WindowsApplication1.CustomTextBox()
         Me.SuspendLayout()
+        '
+        'cmbClasificacion
+        '
+        Me.cmbClasificacion.Cleanable = False
+        Me.cmbClasificacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbClasificacion.EnterIndex = 34
+        Me.cmbClasificacion.FormattingEnabled = True
+        Me.cmbClasificacion.Items.AddRange(New Object() {"", "Apto", "Condicional", "No Apto"})
+        Me.cmbClasificacion.LabelAssociationKey = 29
+        Me.cmbClasificacion.Location = New System.Drawing.Point(457, 481)
+        Me.cmbClasificacion.Name = "cmbClasificacion"
+        Me.cmbClasificacion.Size = New System.Drawing.Size(135, 21)
+        Me.cmbClasificacion.TabIndex = 66
+        Me.cmbClasificacion.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbEstado
+        '
+        Me.cmbEstado.Cleanable = False
+        Me.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbEstado.EnterIndex = 33
+        Me.cmbEstado.FormattingEnabled = True
+        Me.cmbEstado.Items.AddRange(New Object() {"", "Habilitado", "Inhabilitado"})
+        Me.cmbEstado.LabelAssociationKey = 28
+        Me.cmbEstado.Location = New System.Drawing.Point(457, 454)
+        Me.cmbEstado.Name = "cmbEstado"
+        Me.cmbEstado.Size = New System.Drawing.Size(135, 21)
+        Me.cmbEstado.TabIndex = 65
+        Me.cmbEstado.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbCertificados
+        '
+        Me.cmbCertificados.Cleanable = False
+        Me.cmbCertificados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCertificados.EnterIndex = 31
+        Me.cmbCertificados.FormattingEnabled = True
+        Me.cmbCertificados.Items.AddRange(New Object() {"", "ISO 9001", "ISO 9001/14001", "ISO 17025", "SENASA"})
+        Me.cmbCertificados.LabelAssociationKey = 27
+        Me.cmbCertificados.Location = New System.Drawing.Point(457, 427)
+        Me.cmbCertificados.Name = "cmbCertificados"
+        Me.cmbCertificados.Size = New System.Drawing.Size(135, 21)
+        Me.cmbCertificados.TabIndex = 64
+        Me.cmbCertificados.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtClasificacion
+        '
+        Me.txtClasificacion.Cleanable = False
+        Me.txtClasificacion.EnterIndex = 35
+        Me.txtClasificacion.LabelAssociationKey = 29
+        Me.txtClasificacion.Location = New System.Drawing.Point(616, 475)
+        Me.txtClasificacion.Name = "txtClasificacion"
+        Me.txtClasificacion.Size = New System.Drawing.Size(122, 20)
+        Me.txtClasificacion.TabIndex = 63
+        Me.txtClasificacion.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCertificados
+        '
+        Me.txtCertificados.Cleanable = False
+        Me.txtCertificados.EnterIndex = 32
+        Me.txtCertificados.LabelAssociationKey = 27
+        Me.txtCertificados.Location = New System.Drawing.Point(616, 430)
+        Me.txtCertificados.Name = "txtCertificados"
+        Me.txtCertificados.Size = New System.Drawing.Size(122, 20)
+        Me.txtCertificados.TabIndex = 62
+        Me.txtCertificados.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCAIVto
+        '
+        Me.txtCAIVto.Cleanable = False
+        Me.txtCAIVto.EnterIndex = 30
+        Me.txtCAIVto.LabelAssociationKey = 26
+        Me.txtCAIVto.Location = New System.Drawing.Point(630, 400)
+        Me.txtCAIVto.Name = "txtCAIVto"
+        Me.txtCAIVto.Size = New System.Drawing.Size(122, 20)
+        Me.txtCAIVto.TabIndex = 61
+        Me.txtCAIVto.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCAI
+        '
+        Me.txtCAI.Cleanable = False
+        Me.txtCAI.EnterIndex = 29
+        Me.txtCAI.LabelAssociationKey = 25
+        Me.txtCAI.Location = New System.Drawing.Point(434, 400)
+        Me.txtCAI.Name = "txtCAI"
+        Me.txtCAI.Size = New System.Drawing.Size(122, 20)
+        Me.txtCAI.TabIndex = 60
+        Me.txtCAI.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'btnCUFE
+        '
+        Me.btnCUFE.Cleanable = False
+        Me.btnCUFE.EnterIndex = -1
+        Me.btnCUFE.LabelAssociationKey = -1
+        Me.btnCUFE.Location = New System.Drawing.Point(592, 502)
+        Me.btnCUFE.Name = "btnCUFE"
+        Me.btnCUFE.Size = New System.Drawing.Size(104, 25)
+        Me.btnCUFE.TabIndex = 59
+        Me.btnCUFE.Text = "CUFE"
+        Me.btnCUFE.UseVisualStyleBackColor = True
+        '
+        'btnObservaciones
+        '
+        Me.btnObservaciones.Cleanable = False
+        Me.btnObservaciones.EnterIndex = -1
+        Me.btnObservaciones.LabelAssociationKey = -1
+        Me.btnObservaciones.Location = New System.Drawing.Point(384, 502)
+        Me.btnObservaciones.Name = "btnObservaciones"
+        Me.btnObservaciones.Size = New System.Drawing.Size(104, 25)
+        Me.btnObservaciones.TabIndex = 58
+        Me.btnObservaciones.Text = "Observaciones"
+        Me.btnObservaciones.UseVisualStyleBackColor = True
+        '
+        'CustomLabel29
+        '
+        Me.CustomLabel29.AutoSize = True
+        Me.CustomLabel29.ControlAssociationKey = 29
+        Me.CustomLabel29.Location = New System.Drawing.Point(382, 475)
+        Me.CustomLabel29.Name = "CustomLabel29"
+        Me.CustomLabel29.Size = New System.Drawing.Size(61, 13)
+        Me.CustomLabel29.TabIndex = 57
+        Me.CustomLabel29.Text = "Calificación"
+        '
+        'CustomLabel28
+        '
+        Me.CustomLabel28.AutoSize = True
+        Me.CustomLabel28.ControlAssociationKey = 28
+        Me.CustomLabel28.Location = New System.Drawing.Point(382, 452)
+        Me.CustomLabel28.Name = "CustomLabel28"
+        Me.CustomLabel28.Size = New System.Drawing.Size(40, 13)
+        Me.CustomLabel28.TabIndex = 56
+        Me.CustomLabel28.Text = "Estado"
+        '
+        'CustomLabel27
+        '
+        Me.CustomLabel27.AutoSize = True
+        Me.CustomLabel27.ControlAssociationKey = 27
+        Me.CustomLabel27.Location = New System.Drawing.Point(382, 430)
+        Me.CustomLabel27.Name = "CustomLabel27"
+        Me.CustomLabel27.Size = New System.Drawing.Size(62, 13)
+        Me.CustomLabel27.TabIndex = 55
+        Me.CustomLabel27.Text = "Certificados"
+        '
+        'CustomLabel26
+        '
+        Me.CustomLabel26.AutoSize = True
+        Me.CustomLabel26.ControlAssociationKey = 26
+        Me.CustomLabel26.Location = New System.Drawing.Point(574, 407)
+        Me.CustomLabel26.Name = "CustomLabel26"
+        Me.CustomLabel26.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel26.TabIndex = 54
+        Me.CustomLabel26.Text = "Vto. CAI"
+        '
+        'CustomLabel25
+        '
+        Me.CustomLabel25.AutoSize = True
+        Me.CustomLabel25.ControlAssociationKey = 25
+        Me.CustomLabel25.Location = New System.Drawing.Point(381, 407)
+        Me.CustomLabel25.Name = "CustomLabel25"
+        Me.CustomLabel25.Size = New System.Drawing.Size(24, 13)
+        Me.CustomLabel25.TabIndex = 53
+        Me.CustomLabel25.Text = "CAI"
+        '
+        'txtNroSEDRONAR2
+        '
+        Me.txtNroSEDRONAR2.Cleanable = True
+        Me.txtNroSEDRONAR2.EnterIndex = 24
+        Me.txtNroSEDRONAR2.LabelAssociationKey = 22
+        Me.txtNroSEDRONAR2.Location = New System.Drawing.Point(642, 337)
+        Me.txtNroSEDRONAR2.MaxLength = 10
+        Me.txtNroSEDRONAR2.Name = "txtNroSEDRONAR2"
+        Me.txtNroSEDRONAR2.Size = New System.Drawing.Size(58, 20)
+        Me.txtNroSEDRONAR2.TabIndex = 52
+        Me.txtNroSEDRONAR2.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCategoria
+        '
+        Me.txtCategoria.Cleanable = True
+        Me.txtCategoria.EnterIndex = 27
+        Me.txtCategoria.LabelAssociationKey = 23
+        Me.txtCategoria.Location = New System.Drawing.Point(358, 365)
+        Me.txtCategoria.MaxLength = 10
+        Me.txtCategoria.Name = "txtCategoria"
+        Me.txtCategoria.Size = New System.Drawing.Size(85, 20)
+        Me.txtCategoria.TabIndex = 51
+        Me.txtCategoria.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtNroSEDRONAR1
+        '
+        Me.txtNroSEDRONAR1.Cleanable = True
+        Me.txtNroSEDRONAR1.EnterIndex = 23
+        Me.txtNroSEDRONAR1.LabelAssociationKey = 22
+        Me.txtNroSEDRONAR1.Location = New System.Drawing.Point(508, 338)
+        Me.txtNroSEDRONAR1.MaxLength = 15
+        Me.txtNroSEDRONAR1.Name = "txtNroSEDRONAR1"
+        Me.txtNroSEDRONAR1.Size = New System.Drawing.Size(58, 20)
+        Me.txtNroSEDRONAR1.TabIndex = 50
+        Me.txtNroSEDRONAR1.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtPorcelCABA
+        '
+        Me.txtPorcelCABA.Cleanable = True
+        Me.txtPorcelCABA.EnterIndex = 21
+        Me.txtPorcelCABA.LabelAssociationKey = 20
+        Me.txtPorcelCABA.Location = New System.Drawing.Point(706, 311)
+        Me.txtPorcelCABA.MaxLength = 6
+        Me.txtPorcelCABA.Name = "txtPorcelCABA"
+        Me.txtPorcelCABA.Size = New System.Drawing.Size(58, 20)
+        Me.txtPorcelCABA.TabIndex = 49
+        Me.txtPorcelCABA.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtPorcelProv
+        '
+        Me.txtPorcelProv.Cleanable = True
+        Me.txtPorcelProv.EnterIndex = 20
+        Me.txtPorcelProv.LabelAssociationKey = 19
+        Me.txtPorcelProv.Location = New System.Drawing.Point(540, 309)
+        Me.txtPorcelProv.MaxLength = 6
+        Me.txtPorcelProv.Name = "txtPorcelProv"
+        Me.txtPorcelProv.Size = New System.Drawing.Size(58, 20)
+        Me.txtPorcelProv.TabIndex = 48
+        Me.txtPorcelProv.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtNroIB
+        '
+        Me.txtNroIB.Cleanable = True
+        Me.txtNroIB.EnterIndex = 19
+        Me.txtNroIB.LabelAssociationKey = 18
+        Me.txtNroIB.Location = New System.Drawing.Point(385, 310)
+        Me.txtNroIB.MaxLength = 20
+        Me.txtNroIB.Name = "txtNroIB"
+        Me.txtNroIB.Size = New System.Drawing.Size(58, 20)
+        Me.txtNroIB.TabIndex = 47
+        Me.txtNroIB.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCheque
+        '
+        Me.txtCheque.Cleanable = True
+        Me.txtCheque.EnterIndex = 16
+        Me.txtCheque.LabelAssociationKey = 16
+        Me.txtCheque.Location = New System.Drawing.Point(132, 283)
+        Me.txtCheque.MaxLength = 50
+        Me.txtCheque.Name = "txtCheque"
+        Me.txtCheque.Size = New System.Drawing.Size(311, 20)
+        Me.txtCheque.TabIndex = 46
+        Me.txtCheque.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCuentaDescripcion
+        '
+        Me.txtCuentaDescripcion.Cleanable = True
+        Me.txtCuentaDescripcion.Enabled = False
+        Me.txtCuentaDescripcion.EnterIndex = -1
+        Me.txtCuentaDescripcion.LabelAssociationKey = 15
+        Me.txtCuentaDescripcion.Location = New System.Drawing.Point(202, 260)
+        Me.txtCuentaDescripcion.MaxLength = 50
+        Me.txtCuentaDescripcion.Name = "txtCuentaDescripcion"
+        Me.txtCuentaDescripcion.Size = New System.Drawing.Size(241, 20)
+        Me.txtCuentaDescripcion.TabIndex = 45
+        Me.txtCuentaDescripcion.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCuenta
+        '
+        Me.txtCuenta.Cleanable = True
+        Me.txtCuenta.EnterIndex = 15
+        Me.txtCuenta.LabelAssociationKey = 15
+        Me.txtCuenta.Location = New System.Drawing.Point(117, 260)
+        Me.txtCuenta.MaxLength = 10
+        Me.txtCuenta.Name = "txtCuenta"
+        Me.txtCuenta.Size = New System.Drawing.Size(79, 20)
+        Me.txtCuenta.TabIndex = 44
+        Me.txtCuenta.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        '
+        'cmbInscripcionIB
+        '
+        Me.cmbInscripcionIB.Cleanable = True
+        Me.cmbInscripcionIB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbInscripcionIB.EnterIndex = 28
+        Me.cmbInscripcionIB.FormattingEnabled = True
+        Me.cmbInscripcionIB.Items.AddRange(New Object() {"", "Local", "Conv. Multilateral", "No Inscripto", "Reg. Simplificado"})
+        Me.cmbInscripcionIB.LabelAssociationKey = 24
+        Me.cmbInscripcionIB.Location = New System.Drawing.Point(572, 363)
+        Me.cmbInscripcionIB.Name = "cmbInscripcionIB"
+        Me.cmbInscripcionIB.Size = New System.Drawing.Size(180, 21)
+        Me.cmbInscripcionIB.TabIndex = 43
+        Me.cmbInscripcionIB.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbCategoria2
+        '
+        Me.cmbCategoria2.Cleanable = True
+        Me.cmbCategoria2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCategoria2.EnterIndex = 26
+        Me.cmbCategoria2.FormattingEnabled = True
+        Me.cmbCategoria2.Items.AddRange(New Object() {"Sin Calificar", "Muy Bueno", "Bueno", "Regular", "Malo"})
+        Me.cmbCategoria2.LabelAssociationKey = 23
+        Me.cmbCategoria2.Location = New System.Drawing.Point(219, 364)
+        Me.cmbCategoria2.Name = "cmbCategoria2"
+        Me.cmbCategoria2.Size = New System.Drawing.Size(125, 21)
+        Me.cmbCategoria2.TabIndex = 42
+        Me.cmbCategoria2.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbCategoria1
+        '
+        Me.cmbCategoria1.Cleanable = True
+        Me.cmbCategoria1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCategoria1.EnterIndex = 25
+        Me.cmbCategoria1.FormattingEnabled = True
+        Me.cmbCategoria1.Items.AddRange(New Object() {"", "A", "B", "C", "E"})
+        Me.cmbCategoria1.LabelAssociationKey = 23
+        Me.cmbCategoria1.Location = New System.Drawing.Point(83, 364)
+        Me.cmbCategoria1.Name = "cmbCategoria1"
+        Me.cmbCategoria1.Size = New System.Drawing.Size(130, 21)
+        Me.cmbCategoria1.TabIndex = 41
+        Me.cmbCategoria1.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbCondicionIB2
+        '
+        Me.cmbCondicionIB2.Cleanable = True
+        Me.cmbCondicionIB2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCondicionIB2.EnterIndex = 18
+        Me.cmbCondicionIB2.FormattingEnabled = True
+        Me.cmbCondicionIB2.Items.AddRange(New Object() {"Exento", "Reteniente"})
+        Me.cmbCondicionIB2.LabelAssociationKey = 17
+        Me.cmbCondicionIB2.Location = New System.Drawing.Point(214, 310)
+        Me.cmbCondicionIB2.Name = "cmbCondicionIB2"
+        Me.cmbCondicionIB2.Size = New System.Drawing.Size(97, 21)
+        Me.cmbCondicionIB2.TabIndex = 40
+        Me.cmbCondicionIB2.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbCondicionIB1
+        '
+        Me.cmbCondicionIB1.Cleanable = True
+        Me.cmbCondicionIB1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCondicionIB1.EnterIndex = 17
+        Me.cmbCondicionIB1.FormattingEnabled = True
+        Me.cmbCondicionIB1.Items.AddRange(New Object() {"Bienes", "Servicio", "Exento", "Ciudad Normal", "Ciudad Riesgo"})
+        Me.cmbCondicionIB1.LabelAssociationKey = 17
+        Me.cmbCondicionIB1.Location = New System.Drawing.Point(101, 309)
+        Me.cmbCondicionIB1.Name = "cmbCondicionIB1"
+        Me.cmbCondicionIB1.Size = New System.Drawing.Size(107, 21)
+        Me.cmbCondicionIB1.TabIndex = 39
+        Me.cmbCondicionIB1.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbRubro
+        '
+        Me.cmbRubro.Cleanable = True
+        Me.cmbRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbRubro.EnterIndex = 22
+        Me.cmbRubro.FormattingEnabled = True
+        Me.cmbRubro.LabelAssociationKey = 21
+        Me.cmbRubro.Location = New System.Drawing.Point(65, 338)
+        Me.cmbRubro.Name = "cmbRubro"
+        Me.cmbRubro.Size = New System.Drawing.Size(178, 21)
+        Me.cmbRubro.TabIndex = 38
+        Me.cmbRubro.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbIVA
+        '
+        Me.cmbIVA.Cleanable = True
+        Me.cmbIVA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbIVA.EnterIndex = 14
+        Me.cmbIVA.FormattingEnabled = True
+        Me.cmbIVA.Items.AddRange(New Object() {"No Inscripto", "Consumidor Final", "Resp.Inscripto", "Exento", "No Responsable", "Monotributo", "No Catalogado"})
+        Me.cmbIVA.LabelAssociationKey = 14
+        Me.cmbIVA.Location = New System.Drawing.Point(434, 232)
+        Me.cmbIVA.Name = "cmbIVA"
+        Me.cmbIVA.Size = New System.Drawing.Size(220, 21)
+        Me.cmbIVA.TabIndex = 37
+        Me.cmbIVA.Validator = WindowsApplication1.ValidatorType.None
         '
         'CustomLabel24
         '
@@ -100,6 +466,18 @@ Partial Class ProveedoresABM
         Me.CustomLabel24.Size = New System.Drawing.Size(87, 13)
         Me.CustomLabel24.TabIndex = 36
         Me.CustomLabel24.Text = "Porcel I.B. CABA"
+        '
+        'txtDiasPlazo
+        '
+        Me.txtDiasPlazo.Cleanable = True
+        Me.txtDiasPlazo.EnterIndex = 9
+        Me.txtDiasPlazo.LabelAssociationKey = 9
+        Me.txtDiasPlazo.Location = New System.Drawing.Point(357, 144)
+        Me.txtDiasPlazo.MaxLength = 20
+        Me.txtDiasPlazo.Name = "txtDiasPlazo"
+        Me.txtDiasPlazo.Size = New System.Drawing.Size(118, 20)
+        Me.txtDiasPlazo.TabIndex = 35
+        Me.txtDiasPlazo.Validator = WindowsApplication1.ValidatorType.None
         '
         'CustomLabel23
         '
@@ -120,6 +498,157 @@ Partial Class ProveedoresABM
         Me.CustomLabel22.Size = New System.Drawing.Size(36, 13)
         Me.CustomLabel22.TabIndex = 33
         Me.CustomLabel22.Text = "Rubro"
+        '
+        'cmbTipoProveedor
+        '
+        Me.cmbTipoProveedor.Cleanable = True
+        Me.cmbTipoProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbTipoProveedor.EnterIndex = 13
+        Me.cmbTipoProveedor.FormattingEnabled = True
+        Me.cmbTipoProveedor.Items.AddRange(New Object() {"Bienes", "Servicios", "Alquileres", "Exento", "Despachante", "Locación de Obras", "Fletes", "Facturas (M)"})
+        Me.cmbTipoProveedor.LabelAssociationKey = 13
+        Me.cmbTipoProveedor.Location = New System.Drawing.Point(108, 227)
+        Me.cmbTipoProveedor.Name = "cmbTipoProveedor"
+        Me.cmbTipoProveedor.Size = New System.Drawing.Size(220, 21)
+        Me.cmbTipoProveedor.TabIndex = 32
+        Me.cmbTipoProveedor.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtCUIT
+        '
+        Me.txtCUIT.Cleanable = True
+        Me.txtCUIT.EnterIndex = 12
+        Me.txtCUIT.LabelAssociationKey = 12
+        Me.txtCUIT.Location = New System.Drawing.Point(454, 196)
+        Me.txtCUIT.MaxLength = 15
+        Me.txtCUIT.Name = "txtCUIT"
+        Me.txtCUIT.Size = New System.Drawing.Size(242, 20)
+        Me.txtCUIT.TabIndex = 31
+        Me.txtCUIT.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtObservaciones
+        '
+        Me.txtObservaciones.Cleanable = True
+        Me.txtObservaciones.EnterIndex = 11
+        Me.txtObservaciones.LabelAssociationKey = 11
+        Me.txtObservaciones.Location = New System.Drawing.Point(108, 196)
+        Me.txtObservaciones.MaxLength = 50
+        Me.txtObservaciones.Name = "txtObservaciones"
+        Me.txtObservaciones.Size = New System.Drawing.Size(286, 20)
+        Me.txtObservaciones.TabIndex = 30
+        Me.txtObservaciones.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbRegion
+        '
+        Me.cmbRegion.Cleanable = True
+        Me.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbRegion.EnterIndex = 7
+        Me.cmbRegion.FormattingEnabled = True
+        Me.cmbRegion.Items.AddRange(New Object() {"Fuera Mercosur", "Mercosur"})
+        Me.cmbRegion.LabelAssociationKey = 7
+        Me.cmbRegion.Location = New System.Drawing.Point(550, 121)
+        Me.cmbRegion.Name = "cmbRegion"
+        Me.cmbRegion.Size = New System.Drawing.Size(123, 21)
+        Me.cmbRegion.TabIndex = 29
+        Me.cmbRegion.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        '
+        'txtCodigoPostal
+        '
+        Me.txtCodigoPostal.Cleanable = True
+        Me.txtCodigoPostal.EnterIndex = 6
+        Me.txtCodigoPostal.LabelAssociationKey = 6
+        Me.txtCodigoPostal.Location = New System.Drawing.Point(351, 118)
+        Me.txtCodigoPostal.MaxLength = 4
+        Me.txtCodigoPostal.Name = "txtCodigoPostal"
+        Me.txtCodigoPostal.Size = New System.Drawing.Size(103, 20)
+        Me.txtCodigoPostal.TabIndex = 28
+        Me.txtCodigoPostal.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtEmail
+        '
+        Me.txtEmail.Cleanable = True
+        Me.txtEmail.EnterIndex = 10
+        Me.txtEmail.LabelAssociationKey = 10
+        Me.txtEmail.Location = New System.Drawing.Point(97, 174)
+        Me.txtEmail.MaxLength = 400
+        Me.txtEmail.Name = "txtEmail"
+        Me.txtEmail.Size = New System.Drawing.Size(247, 20)
+        Me.txtEmail.TabIndex = 27
+        Me.txtEmail.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtTelefono
+        '
+        Me.txtTelefono.Cleanable = True
+        Me.txtTelefono.EnterIndex = 8
+        Me.txtTelefono.LabelAssociationKey = 8
+        Me.txtTelefono.Location = New System.Drawing.Point(113, 149)
+        Me.txtTelefono.MaxLength = 30
+        Me.txtTelefono.Name = "txtTelefono"
+        Me.txtTelefono.Size = New System.Drawing.Size(99, 20)
+        Me.txtTelefono.TabIndex = 26
+        Me.txtTelefono.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'cmbProvincia
+        '
+        Me.cmbProvincia.Cleanable = True
+        Me.cmbProvincia.DisplayMember = "asd"
+        Me.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbProvincia.EnterIndex = 5
+        Me.cmbProvincia.FormattingEnabled = True
+        Me.cmbProvincia.Items.AddRange(New Object() {"Capital Federal", "Buenos Aires", "Catamarca", "Cordoba", "Corrientes", "Chaco", "Chubut", "Entre Rios", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquen", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tucuman", "Tierra del Fuego", "Exterior"})
+        Me.cmbProvincia.LabelAssociationKey = 5
+        Me.cmbProvincia.Location = New System.Drawing.Point(118, 121)
+        Me.cmbProvincia.Name = "cmbProvincia"
+        Me.cmbProvincia.Size = New System.Drawing.Size(95, 21)
+        Me.cmbProvincia.TabIndex = 25
+        Me.cmbProvincia.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        '
+        'txtLocalidad
+        '
+        Me.txtLocalidad.Cleanable = True
+        Me.txtLocalidad.EnterIndex = 4
+        Me.txtLocalidad.LabelAssociationKey = 4
+        Me.txtLocalidad.Location = New System.Drawing.Point(118, 89)
+        Me.txtLocalidad.MaxLength = 50
+        Me.txtLocalidad.Name = "txtLocalidad"
+        Me.txtLocalidad.Size = New System.Drawing.Size(90, 20)
+        Me.txtLocalidad.TabIndex = 24
+        Me.txtLocalidad.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtDireccion
+        '
+        Me.txtDireccion.Cleanable = True
+        Me.txtDireccion.EnterIndex = 3
+        Me.txtDireccion.LabelAssociationKey = 3
+        Me.txtDireccion.Location = New System.Drawing.Point(119, 64)
+        Me.txtDireccion.MaxLength = 50
+        Me.txtDireccion.Name = "txtDireccion"
+        Me.txtDireccion.Size = New System.Drawing.Size(77, 20)
+        Me.txtDireccion.TabIndex = 23
+        Me.txtDireccion.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtRazonSocial
+        '
+        Me.txtRazonSocial.Cleanable = True
+        Me.txtRazonSocial.EnterIndex = 2
+        Me.txtRazonSocial.LabelAssociationKey = 2
+        Me.txtRazonSocial.Location = New System.Drawing.Point(118, 38)
+        Me.txtRazonSocial.MaxLength = 50
+        Me.txtRazonSocial.Name = "txtRazonSocial"
+        Me.txtRazonSocial.Size = New System.Drawing.Size(75, 20)
+        Me.txtRazonSocial.TabIndex = 22
+        Me.txtRazonSocial.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        '
+        'txtCodigo
+        '
+        Me.txtCodigo.Cleanable = True
+        Me.txtCodigo.EnterIndex = 1
+        Me.txtCodigo.LabelAssociationKey = 1
+        Me.txtCodigo.Location = New System.Drawing.Point(118, 9)
+        Me.txtCodigo.MaxLength = 11
+        Me.txtCodigo.Name = "txtCodigo"
+        Me.txtCodigo.Size = New System.Drawing.Size(103, 20)
+        Me.txtCodigo.TabIndex = 21
+        Me.txtCodigo.Validator = WindowsApplication1.ValidatorType.NotEmpty
         '
         'CustomLabel21
         '
@@ -330,535 +859,6 @@ Partial Class ProveedoresABM
         Me.CustomLabel1.Size = New System.Drawing.Size(40, 13)
         Me.CustomLabel1.TabIndex = 0
         Me.CustomLabel1.Text = "Código"
-        '
-        'CustomLabel25
-        '
-        Me.CustomLabel25.AutoSize = True
-        Me.CustomLabel25.ControlAssociationKey = 25
-        Me.CustomLabel25.Location = New System.Drawing.Point(381, 407)
-        Me.CustomLabel25.Name = "CustomLabel25"
-        Me.CustomLabel25.Size = New System.Drawing.Size(24, 13)
-        Me.CustomLabel25.TabIndex = 53
-        Me.CustomLabel25.Text = "CAI"
-        '
-        'CustomLabel26
-        '
-        Me.CustomLabel26.AutoSize = True
-        Me.CustomLabel26.ControlAssociationKey = 26
-        Me.CustomLabel26.Location = New System.Drawing.Point(574, 407)
-        Me.CustomLabel26.Name = "CustomLabel26"
-        Me.CustomLabel26.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel26.TabIndex = 54
-        Me.CustomLabel26.Text = "Vto. CAI"
-        '
-        'CustomLabel27
-        '
-        Me.CustomLabel27.AutoSize = True
-        Me.CustomLabel27.ControlAssociationKey = 27
-        Me.CustomLabel27.Location = New System.Drawing.Point(382, 430)
-        Me.CustomLabel27.Name = "CustomLabel27"
-        Me.CustomLabel27.Size = New System.Drawing.Size(62, 13)
-        Me.CustomLabel27.TabIndex = 55
-        Me.CustomLabel27.Text = "Certificados"
-        '
-        'CustomLabel28
-        '
-        Me.CustomLabel28.AutoSize = True
-        Me.CustomLabel28.ControlAssociationKey = 28
-        Me.CustomLabel28.Location = New System.Drawing.Point(382, 452)
-        Me.CustomLabel28.Name = "CustomLabel28"
-        Me.CustomLabel28.Size = New System.Drawing.Size(40, 13)
-        Me.CustomLabel28.TabIndex = 56
-        Me.CustomLabel28.Text = "Estado"
-        '
-        'CustomLabel29
-        '
-        Me.CustomLabel29.AutoSize = True
-        Me.CustomLabel29.ControlAssociationKey = 29
-        Me.CustomLabel29.Location = New System.Drawing.Point(382, 475)
-        Me.CustomLabel29.Name = "CustomLabel29"
-        Me.CustomLabel29.Size = New System.Drawing.Size(61, 13)
-        Me.CustomLabel29.TabIndex = 57
-        Me.CustomLabel29.Text = "Calificación"
-        '
-        'cmbClasificacion
-        '
-        Me.cmbClasificacion.Cleanable = False
-        Me.cmbClasificacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbClasificacion.EnterIndex = 34
-        Me.cmbClasificacion.FormattingEnabled = True
-        Me.cmbClasificacion.Items.AddRange(New Object() {"Apto", "Condicional", "No Apto"})
-        Me.cmbClasificacion.LabelAssociationKey = 29
-        Me.cmbClasificacion.Location = New System.Drawing.Point(457, 481)
-        Me.cmbClasificacion.Name = "cmbClasificacion"
-        Me.cmbClasificacion.Size = New System.Drawing.Size(135, 21)
-        Me.cmbClasificacion.TabIndex = 66
-        Me.cmbClasificacion.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbEstado
-        '
-        Me.cmbEstado.Cleanable = False
-        Me.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbEstado.EnterIndex = 33
-        Me.cmbEstado.FormattingEnabled = True
-        Me.cmbEstado.Items.AddRange(New Object() {"Habilitado", "Inhabilitado"})
-        Me.cmbEstado.LabelAssociationKey = 28
-        Me.cmbEstado.Location = New System.Drawing.Point(457, 454)
-        Me.cmbEstado.Name = "cmbEstado"
-        Me.cmbEstado.Size = New System.Drawing.Size(135, 21)
-        Me.cmbEstado.TabIndex = 65
-        Me.cmbEstado.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbCertificados
-        '
-        Me.cmbCertificados.Cleanable = False
-        Me.cmbCertificados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCertificados.EnterIndex = 31
-        Me.cmbCertificados.FormattingEnabled = True
-        Me.cmbCertificados.Items.AddRange(New Object() {"ISO 9001", "ISO 9001/14001", "ISO 17025", "SENASA"})
-        Me.cmbCertificados.LabelAssociationKey = 27
-        Me.cmbCertificados.Location = New System.Drawing.Point(457, 427)
-        Me.cmbCertificados.Name = "cmbCertificados"
-        Me.cmbCertificados.Size = New System.Drawing.Size(135, 21)
-        Me.cmbCertificados.TabIndex = 64
-        Me.cmbCertificados.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtClasificacion
-        '
-        Me.txtClasificacion.Cleanable = False
-        Me.txtClasificacion.EnterIndex = 35
-        Me.txtClasificacion.LabelAssociationKey = 29
-        Me.txtClasificacion.Location = New System.Drawing.Point(616, 475)
-        Me.txtClasificacion.Name = "txtClasificacion"
-        Me.txtClasificacion.Size = New System.Drawing.Size(122, 20)
-        Me.txtClasificacion.TabIndex = 63
-        Me.txtClasificacion.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtCertificados
-        '
-        Me.txtCertificados.Cleanable = False
-        Me.txtCertificados.EnterIndex = 32
-        Me.txtCertificados.LabelAssociationKey = 27
-        Me.txtCertificados.Location = New System.Drawing.Point(616, 430)
-        Me.txtCertificados.Name = "txtCertificados"
-        Me.txtCertificados.Size = New System.Drawing.Size(122, 20)
-        Me.txtCertificados.TabIndex = 62
-        Me.txtCertificados.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtCAIVto
-        '
-        Me.txtCAIVto.Cleanable = False
-        Me.txtCAIVto.EnterIndex = 30
-        Me.txtCAIVto.LabelAssociationKey = 26
-        Me.txtCAIVto.Location = New System.Drawing.Point(630, 400)
-        Me.txtCAIVto.Name = "txtCAIVto"
-        Me.txtCAIVto.Size = New System.Drawing.Size(122, 20)
-        Me.txtCAIVto.TabIndex = 61
-        Me.txtCAIVto.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtCAI
-        '
-        Me.txtCAI.Cleanable = False
-        Me.txtCAI.EnterIndex = 29
-        Me.txtCAI.LabelAssociationKey = 25
-        Me.txtCAI.Location = New System.Drawing.Point(434, 400)
-        Me.txtCAI.Name = "txtCAI"
-        Me.txtCAI.Size = New System.Drawing.Size(122, 20)
-        Me.txtCAI.TabIndex = 60
-        Me.txtCAI.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'btnCUFE
-        '
-        Me.btnCUFE.Cleanable = False
-        Me.btnCUFE.EnterIndex = -1
-        Me.btnCUFE.LabelAssociationKey = -1
-        Me.btnCUFE.Location = New System.Drawing.Point(592, 502)
-        Me.btnCUFE.Name = "btnCUFE"
-        Me.btnCUFE.Size = New System.Drawing.Size(104, 25)
-        Me.btnCUFE.TabIndex = 59
-        Me.btnCUFE.Text = "CUFE"
-        Me.btnCUFE.UseVisualStyleBackColor = True
-        '
-        'btnObservaciones
-        '
-        Me.btnObservaciones.Cleanable = False
-        Me.btnObservaciones.EnterIndex = -1
-        Me.btnObservaciones.LabelAssociationKey = -1
-        Me.btnObservaciones.Location = New System.Drawing.Point(384, 502)
-        Me.btnObservaciones.Name = "btnObservaciones"
-        Me.btnObservaciones.Size = New System.Drawing.Size(104, 25)
-        Me.btnObservaciones.TabIndex = 58
-        Me.btnObservaciones.Text = "Observaciones"
-        Me.btnObservaciones.UseVisualStyleBackColor = True
-        '
-        'txtNroSEDRONAR2
-        '
-        Me.txtNroSEDRONAR2.Cleanable = True
-        Me.txtNroSEDRONAR2.EnterIndex = 24
-        Me.txtNroSEDRONAR2.LabelAssociationKey = 22
-        Me.txtNroSEDRONAR2.Location = New System.Drawing.Point(642, 337)
-        Me.txtNroSEDRONAR2.MaxLength = 10
-        Me.txtNroSEDRONAR2.Name = "txtNroSEDRONAR2"
-        Me.txtNroSEDRONAR2.Size = New System.Drawing.Size(58, 20)
-        Me.txtNroSEDRONAR2.TabIndex = 52
-        Me.txtNroSEDRONAR2.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtCategoria
-        '
-        Me.txtCategoria.Cleanable = True
-        Me.txtCategoria.EnterIndex = 27
-        Me.txtCategoria.LabelAssociationKey = 23
-        Me.txtCategoria.Location = New System.Drawing.Point(358, 365)
-        Me.txtCategoria.MaxLength = 10
-        Me.txtCategoria.Name = "txtCategoria"
-        Me.txtCategoria.Size = New System.Drawing.Size(85, 20)
-        Me.txtCategoria.TabIndex = 51
-        Me.txtCategoria.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtNroSEDRONAR1
-        '
-        Me.txtNroSEDRONAR1.Cleanable = True
-        Me.txtNroSEDRONAR1.EnterIndex = 23
-        Me.txtNroSEDRONAR1.LabelAssociationKey = 22
-        Me.txtNroSEDRONAR1.Location = New System.Drawing.Point(508, 338)
-        Me.txtNroSEDRONAR1.MaxLength = 15
-        Me.txtNroSEDRONAR1.Name = "txtNroSEDRONAR1"
-        Me.txtNroSEDRONAR1.Size = New System.Drawing.Size(58, 20)
-        Me.txtNroSEDRONAR1.TabIndex = 50
-        Me.txtNroSEDRONAR1.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtPorcelCABA
-        '
-        Me.txtPorcelCABA.Cleanable = True
-        Me.txtPorcelCABA.EnterIndex = 21
-        Me.txtPorcelCABA.LabelAssociationKey = 20
-        Me.txtPorcelCABA.Location = New System.Drawing.Point(706, 311)
-        Me.txtPorcelCABA.MaxLength = 6
-        Me.txtPorcelCABA.Name = "txtPorcelCABA"
-        Me.txtPorcelCABA.Size = New System.Drawing.Size(58, 20)
-        Me.txtPorcelCABA.TabIndex = 49
-        Me.txtPorcelCABA.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtPorcelProv
-        '
-        Me.txtPorcelProv.Cleanable = True
-        Me.txtPorcelProv.EnterIndex = 20
-        Me.txtPorcelProv.LabelAssociationKey = 19
-        Me.txtPorcelProv.Location = New System.Drawing.Point(540, 309)
-        Me.txtPorcelProv.MaxLength = 6
-        Me.txtPorcelProv.Name = "txtPorcelProv"
-        Me.txtPorcelProv.Size = New System.Drawing.Size(58, 20)
-        Me.txtPorcelProv.TabIndex = 48
-        Me.txtPorcelProv.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtNroIB
-        '
-        Me.txtNroIB.Cleanable = True
-        Me.txtNroIB.EnterIndex = 19
-        Me.txtNroIB.LabelAssociationKey = 18
-        Me.txtNroIB.Location = New System.Drawing.Point(385, 310)
-        Me.txtNroIB.MaxLength = 20
-        Me.txtNroIB.Name = "txtNroIB"
-        Me.txtNroIB.Size = New System.Drawing.Size(58, 20)
-        Me.txtNroIB.TabIndex = 47
-        Me.txtNroIB.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtCheque
-        '
-        Me.txtCheque.Cleanable = True
-        Me.txtCheque.EnterIndex = 16
-        Me.txtCheque.LabelAssociationKey = 16
-        Me.txtCheque.Location = New System.Drawing.Point(132, 283)
-        Me.txtCheque.MaxLength = 50
-        Me.txtCheque.Name = "txtCheque"
-        Me.txtCheque.Size = New System.Drawing.Size(311, 20)
-        Me.txtCheque.TabIndex = 46
-        Me.txtCheque.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtCuentaDescripcion
-        '
-        Me.txtCuentaDescripcion.Cleanable = True
-        Me.txtCuentaDescripcion.Enabled = False
-        Me.txtCuentaDescripcion.EnterIndex = -1
-        Me.txtCuentaDescripcion.LabelAssociationKey = 15
-        Me.txtCuentaDescripcion.Location = New System.Drawing.Point(202, 260)
-        Me.txtCuentaDescripcion.MaxLength = 50
-        Me.txtCuentaDescripcion.Name = "txtCuentaDescripcion"
-        Me.txtCuentaDescripcion.Size = New System.Drawing.Size(241, 20)
-        Me.txtCuentaDescripcion.TabIndex = 45
-        Me.txtCuentaDescripcion.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtCuenta
-        '
-        Me.txtCuenta.Cleanable = True
-        Me.txtCuenta.EnterIndex = 15
-        Me.txtCuenta.LabelAssociationKey = 15
-        Me.txtCuenta.Location = New System.Drawing.Point(117, 260)
-        Me.txtCuenta.MaxLength = 10
-        Me.txtCuenta.Name = "txtCuenta"
-        Me.txtCuenta.Size = New System.Drawing.Size(79, 20)
-        Me.txtCuenta.TabIndex = 44
-        Me.txtCuenta.Validator = WindowsApplication1.ValidatorType.NotEmpty
-        '
-        'cmbInscripcionIB
-        '
-        Me.cmbInscripcionIB.Cleanable = True
-        Me.cmbInscripcionIB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbInscripcionIB.EnterIndex = 28
-        Me.cmbInscripcionIB.FormattingEnabled = True
-        Me.cmbInscripcionIB.Items.AddRange(New Object() {"Local", "Conv. Multilateral", "No Inscripto", "Reg. Simplificado"})
-        Me.cmbInscripcionIB.LabelAssociationKey = 24
-        Me.cmbInscripcionIB.Location = New System.Drawing.Point(572, 363)
-        Me.cmbInscripcionIB.Name = "cmbInscripcionIB"
-        Me.cmbInscripcionIB.Size = New System.Drawing.Size(180, 21)
-        Me.cmbInscripcionIB.TabIndex = 43
-        Me.cmbInscripcionIB.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbCategoria2
-        '
-        Me.cmbCategoria2.Cleanable = True
-        Me.cmbCategoria2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCategoria2.EnterIndex = 26
-        Me.cmbCategoria2.FormattingEnabled = True
-        Me.cmbCategoria2.Items.AddRange(New Object() {"Sin Calificar", "Muy Bueno", "Bueno", "Regular", "Malo"})
-        Me.cmbCategoria2.LabelAssociationKey = 23
-        Me.cmbCategoria2.Location = New System.Drawing.Point(219, 364)
-        Me.cmbCategoria2.Name = "cmbCategoria2"
-        Me.cmbCategoria2.Size = New System.Drawing.Size(125, 21)
-        Me.cmbCategoria2.TabIndex = 42
-        Me.cmbCategoria2.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbCategoria1
-        '
-        Me.cmbCategoria1.Cleanable = True
-        Me.cmbCategoria1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCategoria1.EnterIndex = 25
-        Me.cmbCategoria1.FormattingEnabled = True
-        Me.cmbCategoria1.Items.AddRange(New Object() {"A", "B", "C", "E"})
-        Me.cmbCategoria1.LabelAssociationKey = 23
-        Me.cmbCategoria1.Location = New System.Drawing.Point(83, 364)
-        Me.cmbCategoria1.Name = "cmbCategoria1"
-        Me.cmbCategoria1.Size = New System.Drawing.Size(130, 21)
-        Me.cmbCategoria1.TabIndex = 41
-        Me.cmbCategoria1.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbCondicionIB2
-        '
-        Me.cmbCondicionIB2.Cleanable = True
-        Me.cmbCondicionIB2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCondicionIB2.EnterIndex = 18
-        Me.cmbCondicionIB2.FormattingEnabled = True
-        Me.cmbCondicionIB2.Items.AddRange(New Object() {"Exento", "Reteniente"})
-        Me.cmbCondicionIB2.LabelAssociationKey = 17
-        Me.cmbCondicionIB2.Location = New System.Drawing.Point(214, 310)
-        Me.cmbCondicionIB2.Name = "cmbCondicionIB2"
-        Me.cmbCondicionIB2.Size = New System.Drawing.Size(97, 21)
-        Me.cmbCondicionIB2.TabIndex = 40
-        Me.cmbCondicionIB2.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbCondicionIB1
-        '
-        Me.cmbCondicionIB1.Cleanable = True
-        Me.cmbCondicionIB1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCondicionIB1.EnterIndex = 17
-        Me.cmbCondicionIB1.FormattingEnabled = True
-        Me.cmbCondicionIB1.Items.AddRange(New Object() {"Bienes", "Servicio", "Exento", "Ciudad Normal", "Ciudad Riesgo"})
-        Me.cmbCondicionIB1.LabelAssociationKey = 17
-        Me.cmbCondicionIB1.Location = New System.Drawing.Point(101, 309)
-        Me.cmbCondicionIB1.Name = "cmbCondicionIB1"
-        Me.cmbCondicionIB1.Size = New System.Drawing.Size(107, 21)
-        Me.cmbCondicionIB1.TabIndex = 39
-        Me.cmbCondicionIB1.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbRubro
-        '
-        Me.cmbRubro.Cleanable = True
-        Me.cmbRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbRubro.EnterIndex = 22
-        Me.cmbRubro.FormattingEnabled = True
-        Me.cmbRubro.LabelAssociationKey = 21
-        Me.cmbRubro.Location = New System.Drawing.Point(65, 338)
-        Me.cmbRubro.Name = "cmbRubro"
-        Me.cmbRubro.Size = New System.Drawing.Size(178, 21)
-        Me.cmbRubro.TabIndex = 38
-        Me.cmbRubro.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbIVA
-        '
-        Me.cmbIVA.Cleanable = True
-        Me.cmbIVA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbIVA.EnterIndex = 14
-        Me.cmbIVA.FormattingEnabled = True
-        Me.cmbIVA.Items.AddRange(New Object() {"No Inscripto", "Consumidor Final", "Resp.Inscripto", "Exento", "No Responsable", "Monotributo", "No Catalogado"})
-        Me.cmbIVA.LabelAssociationKey = 14
-        Me.cmbIVA.Location = New System.Drawing.Point(434, 232)
-        Me.cmbIVA.Name = "cmbIVA"
-        Me.cmbIVA.Size = New System.Drawing.Size(220, 21)
-        Me.cmbIVA.TabIndex = 37
-        Me.cmbIVA.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtDiasPlazo
-        '
-        Me.txtDiasPlazo.Cleanable = True
-        Me.txtDiasPlazo.EnterIndex = 9
-        Me.txtDiasPlazo.LabelAssociationKey = 9
-        Me.txtDiasPlazo.Location = New System.Drawing.Point(357, 144)
-        Me.txtDiasPlazo.MaxLength = 20
-        Me.txtDiasPlazo.Name = "txtDiasPlazo"
-        Me.txtDiasPlazo.Size = New System.Drawing.Size(118, 20)
-        Me.txtDiasPlazo.TabIndex = 35
-        Me.txtDiasPlazo.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbTipoProveedor
-        '
-        Me.cmbTipoProveedor.Cleanable = True
-        Me.cmbTipoProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbTipoProveedor.EnterIndex = 13
-        Me.cmbTipoProveedor.FormattingEnabled = True
-        Me.cmbTipoProveedor.Items.AddRange(New Object() {"Bienes", "Servicios", "Alquileres", "Exento", "Despachante", "Locación de Obras", "Fletes", "Facturas (M)"})
-        Me.cmbTipoProveedor.LabelAssociationKey = 13
-        Me.cmbTipoProveedor.Location = New System.Drawing.Point(108, 227)
-        Me.cmbTipoProveedor.Name = "cmbTipoProveedor"
-        Me.cmbTipoProveedor.Size = New System.Drawing.Size(220, 21)
-        Me.cmbTipoProveedor.TabIndex = 32
-        Me.cmbTipoProveedor.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtCUIT
-        '
-        Me.txtCUIT.Cleanable = True
-        Me.txtCUIT.EnterIndex = 12
-        Me.txtCUIT.LabelAssociationKey = 12
-        Me.txtCUIT.Location = New System.Drawing.Point(454, 196)
-        Me.txtCUIT.MaxLength = 15
-        Me.txtCUIT.Name = "txtCUIT"
-        Me.txtCUIT.Size = New System.Drawing.Size(242, 20)
-        Me.txtCUIT.TabIndex = 31
-        Me.txtCUIT.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtObservaciones
-        '
-        Me.txtObservaciones.Cleanable = True
-        Me.txtObservaciones.EnterIndex = 11
-        Me.txtObservaciones.LabelAssociationKey = 11
-        Me.txtObservaciones.Location = New System.Drawing.Point(108, 196)
-        Me.txtObservaciones.MaxLength = 50
-        Me.txtObservaciones.Name = "txtObservaciones"
-        Me.txtObservaciones.Size = New System.Drawing.Size(286, 20)
-        Me.txtObservaciones.TabIndex = 30
-        Me.txtObservaciones.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbRegion
-        '
-        Me.cmbRegion.Cleanable = True
-        Me.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbRegion.EnterIndex = 7
-        Me.cmbRegion.FormattingEnabled = True
-        Me.cmbRegion.Items.AddRange(New Object() {"Fuera Mercosur", "Mercosur"})
-        Me.cmbRegion.LabelAssociationKey = 7
-        Me.cmbRegion.Location = New System.Drawing.Point(550, 121)
-        Me.cmbRegion.Name = "cmbRegion"
-        Me.cmbRegion.Size = New System.Drawing.Size(123, 21)
-        Me.cmbRegion.TabIndex = 29
-        Me.cmbRegion.Validator = WindowsApplication1.ValidatorType.NotEmpty
-        '
-        'txtCodigoPostal
-        '
-        Me.txtCodigoPostal.Cleanable = True
-        Me.txtCodigoPostal.EnterIndex = 6
-        Me.txtCodigoPostal.LabelAssociationKey = 6
-        Me.txtCodigoPostal.Location = New System.Drawing.Point(351, 118)
-        Me.txtCodigoPostal.MaxLength = 4
-        Me.txtCodigoPostal.Name = "txtCodigoPostal"
-        Me.txtCodigoPostal.Size = New System.Drawing.Size(103, 20)
-        Me.txtCodigoPostal.TabIndex = 28
-        Me.txtCodigoPostal.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtEmail
-        '
-        Me.txtEmail.Cleanable = True
-        Me.txtEmail.EnterIndex = 10
-        Me.txtEmail.LabelAssociationKey = 10
-        Me.txtEmail.Location = New System.Drawing.Point(97, 174)
-        Me.txtEmail.MaxLength = 400
-        Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(247, 20)
-        Me.txtEmail.TabIndex = 27
-        Me.txtEmail.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtTelefono
-        '
-        Me.txtTelefono.Cleanable = True
-        Me.txtTelefono.EnterIndex = 8
-        Me.txtTelefono.LabelAssociationKey = 8
-        Me.txtTelefono.Location = New System.Drawing.Point(113, 149)
-        Me.txtTelefono.MaxLength = 30
-        Me.txtTelefono.Name = "txtTelefono"
-        Me.txtTelefono.Size = New System.Drawing.Size(99, 20)
-        Me.txtTelefono.TabIndex = 26
-        Me.txtTelefono.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'cmbProvincia
-        '
-        Me.cmbProvincia.Cleanable = True
-        Me.cmbProvincia.DisplayMember = "asd"
-        Me.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbProvincia.EnterIndex = 5
-        Me.cmbProvincia.FormattingEnabled = True
-        Me.cmbProvincia.Items.AddRange(New Object() {"Capital Federal", "Buenos Aires", "Catamarca", "Cordoba", "Corrientes", "Chaco", "Chubut", "Entre Rios", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquen", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tucuman", "Tierra del Fuego", "Exterior"})
-        Me.cmbProvincia.LabelAssociationKey = 5
-        Me.cmbProvincia.Location = New System.Drawing.Point(118, 121)
-        Me.cmbProvincia.Name = "cmbProvincia"
-        Me.cmbProvincia.Size = New System.Drawing.Size(95, 21)
-        Me.cmbProvincia.TabIndex = 25
-        Me.cmbProvincia.Validator = WindowsApplication1.ValidatorType.NotEmpty
-        '
-        'txtLocalidad
-        '
-        Me.txtLocalidad.Cleanable = True
-        Me.txtLocalidad.EnterIndex = 4
-        Me.txtLocalidad.LabelAssociationKey = 4
-        Me.txtLocalidad.Location = New System.Drawing.Point(118, 89)
-        Me.txtLocalidad.MaxLength = 50
-        Me.txtLocalidad.Name = "txtLocalidad"
-        Me.txtLocalidad.Size = New System.Drawing.Size(90, 20)
-        Me.txtLocalidad.TabIndex = 24
-        Me.txtLocalidad.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtDireccion
-        '
-        Me.txtDireccion.Cleanable = True
-        Me.txtDireccion.EnterIndex = 3
-        Me.txtDireccion.LabelAssociationKey = 3
-        Me.txtDireccion.Location = New System.Drawing.Point(119, 64)
-        Me.txtDireccion.MaxLength = 50
-        Me.txtDireccion.Name = "txtDireccion"
-        Me.txtDireccion.Size = New System.Drawing.Size(77, 20)
-        Me.txtDireccion.TabIndex = 23
-        Me.txtDireccion.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtRazonSocial
-        '
-        Me.txtRazonSocial.Cleanable = True
-        Me.txtRazonSocial.EnterIndex = 2
-        Me.txtRazonSocial.LabelAssociationKey = 2
-        Me.txtRazonSocial.Location = New System.Drawing.Point(118, 38)
-        Me.txtRazonSocial.MaxLength = 50
-        Me.txtRazonSocial.Name = "txtRazonSocial"
-        Me.txtRazonSocial.Size = New System.Drawing.Size(75, 20)
-        Me.txtRazonSocial.TabIndex = 22
-        Me.txtRazonSocial.Validator = WindowsApplication1.ValidatorType.NotEmpty
-        '
-        'txtCodigo
-        '
-        Me.txtCodigo.Cleanable = True
-        Me.txtCodigo.EnterIndex = 1
-        Me.txtCodigo.LabelAssociationKey = 1
-        Me.txtCodigo.Location = New System.Drawing.Point(118, 9)
-        Me.txtCodigo.MaxLength = 11
-        Me.txtCodigo.Name = "txtCodigo"
-        Me.txtCodigo.Size = New System.Drawing.Size(103, 20)
-        Me.txtCodigo.TabIndex = 21
-        Me.txtCodigo.Validator = WindowsApplication1.ValidatorType.NotEmpty
         '
         'ProveedoresABM
         '
