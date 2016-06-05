@@ -34,6 +34,7 @@ Public Class FormOrganizer
     Private btnCloseClick As EventHandler
     Private showMethodFunction As ShowMethod
     Private usingQueryText As Boolean = True
+    Private usingControllerButtons As Boolean = True
     Private organizingCompactedControls As Boolean = False
     Private isCompact = False
 
@@ -43,7 +44,7 @@ Public Class FormOrganizer
     Private rightMargin As Integer = 30
     Private bottomMargin As Integer = 30
     Private separation As Integer = 6
-    Private simpleButtonHeight As Integer = 35
+    Private actionButtonHeight As Integer = 35
     Private listQueryHeight As Integer = 240
     Private separationBetweenControlsAndButtons As Integer = 45
     Private controlSeparation As Integer = 10
@@ -90,7 +91,7 @@ Public Class FormOrganizer
     End Function
 
     Private Function buttonsHeight()
-        Return simpleButtonHeight * 2 + separation 'Las dos filas de botones + separation entre botones
+        Return actionButtonHeight * 2 + separation 'Las dos filas de botones + separation entre botones
     End Function
 
     Private Function formNormalHeight()
@@ -98,7 +99,11 @@ Public Class FormOrganizer
     End Function
 
     Private Function formNeededHeight()
-        Return formNormalHeight() + compactedFirstColumnControls.Sum(Function(control As CustomControl) DirectCast(control, Control).Height) + (compactedFirstColumnControls.Count - 1) * controlSeparation - buttonsHeight()
+        If isCompact Then
+            Return formNormalHeight() + compactedFirstColumnControls.Sum(Function(control As CustomControl) DirectCast(control, Control).Height) + (compactedFirstColumnControls.Count - 1) * controlSeparation - buttonsHeight()
+        Else
+            Return formNormalHeight()
+        End If
     End Function
 
     Private Function formWithQueryControlsHeight()
@@ -127,7 +132,7 @@ Public Class FormOrganizer
         topMargin = 10
         bottomMargin = 10
         leftMargin = 20
-        simpleButtonHeight = 25
+        actionButtonHeight = 25
         separationBetweenControlsAndButtons = 10
         controlSeparation = separation
         compactHeightConstant = 30
@@ -338,12 +343,24 @@ Public Class FormOrganizer
         End If
     End Function
 
-    Private Sub organizeButtons(ByVal top As Integer)
-        createButtons()
+    Private Function controllerButtonsWidth()
+        If usingControllerButtons Then
+            Return buttonsWidth \ 3
+        Else
+            Return 0
+        End If
+    End Function
 
-        Dim buttonWidth As Integer = (buttonsWidth - separation * 3) \ 3
+    Private Function actionButtonsWidth()
+        Return buttonsWidth - controllerButtonsWidth()
+    End Function
+
+    Private Sub organizeButtons(ByVal top As Integer)
+        createActionButtons()
+
+        Dim buttonWidth As Integer = (actionButtonsWidth() - separation * buttonsTop.Count) \ buttonsTop.Count
         buttons.ForEach(Sub(button) button.Width = buttonWidth)
-        buttons.ForEach(Sub(button) button.Height = simpleButtonHeight)
+        buttons.ForEach(Sub(button) button.Height = actionButtonHeight)
 
         Dim left As Integer = leftMargin
         For Each button As CustomButton In buttonsTop
@@ -356,7 +373,40 @@ Public Class FormOrganizer
             setButtonPosition(button, top + button.Height + separation, left)
             left += buttonWidth + separation
         Next
+
+        If usingControllerButtons Then
+            addControlerButtons(top, left)
+        End If
     End Sub
+
+    Private Sub addControlerButtons(ByVal top As Integer, ByVal left As Integer)
+        Dim buttonsNamesAndTexts As New List(Of Tuple(Of String, String)) _
+            From {Tuple.Create("btnFirstReg", "Primer Reg."), Tuple.Create("btnLastReg", "Último Reg."), Tuple.Create("btnNextReg", "Siguiente Reg."), Tuple.Create("btnPreviousReg", "Reg. Anterior")}
+
+        Dim container As New GroupBox
+        container.Parent = form
+        container.Width = controllerButtonsWidth() - separation * 2
+        container.Height = buttonsHeight() + bottomMargin - separation
+        container.Top = top - separation
+        container.Left = left
+
+        Dim btnTop As Integer = separation * 1.5
+
+        For Each buttonInfo In buttonsNamesAndTexts
+            Dim button As New CustomButton
+            button.Parent = form
+            button.Name = buttonInfo.Item1
+            button.Text = buttonInfo.Item2
+            button.Width = container.Width - separation * 2
+            button.Height = (container.Height - separation * 2) \ 4
+            button.Top = btnTop
+            btnTop += button.Height
+            button.Left = separation
+
+            container.Controls.Add(button)
+        Next
+    End Sub
+
 
     Private Sub organizeQueryControllers(ByVal top As Integer)
         If usingQueryText Then
@@ -399,7 +449,7 @@ Public Class FormOrganizer
         button.Left = left
     End Sub
 
-    Private Sub createButtons()
+    Private Sub createActionButtons()
         buttonsTop.Add(addButton)
         buttonsTop.Add(deleteButton)
         buttonsTop.Add(cleanButton)

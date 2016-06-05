@@ -12,7 +12,6 @@ Public Class RubrosProveedorABM
         organizadorABM.setDefaultCloseButtonClick()
         organizadorABM.setListButtonClick(AddressOf listado)
         organizadorABM.addQueryFunction(AddressOf DAORubroProveedor.buscarRubroProveedorPorDescripcion, "Rubros", AddressOf mostrarRubroProveedor)
-        organizadorABM.dontUseQueryText()
         organizadorABM.organize()
     End Sub
 

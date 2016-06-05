@@ -85,6 +85,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Proveedor.vb" />
+    <Compile Include="Provincia.vb" />
     <Compile Include="RubroProveedor.vb" />
     <Compile Include="TipoDeCambio.vb" />
   </ItemGroup>

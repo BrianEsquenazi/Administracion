@@ -93,7 +93,7 @@ Partial Class ProveedoresABM
         '
         'cmbClasificacion
         '
-        Me.cmbClasificacion.Cleanable = False
+        Me.cmbClasificacion.Cleanable = True
         Me.cmbClasificacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbClasificacion.EnterIndex = 34
         Me.cmbClasificacion.FormattingEnabled = True
@@ -107,7 +107,7 @@ Partial Class ProveedoresABM
         '
         'cmbEstado
         '
-        Me.cmbEstado.Cleanable = False
+        Me.cmbEstado.Cleanable = True
         Me.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbEstado.EnterIndex = 33
         Me.cmbEstado.FormattingEnabled = True
@@ -121,7 +121,7 @@ Partial Class ProveedoresABM
         '
         'cmbCertificados
         '
-        Me.cmbCertificados.Cleanable = False
+        Me.cmbCertificados.Cleanable = True
         Me.cmbCertificados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbCertificados.EnterIndex = 31
         Me.cmbCertificados.FormattingEnabled = True
@@ -135,7 +135,7 @@ Partial Class ProveedoresABM
         '
         'txtClasificacion
         '
-        Me.txtClasificacion.Cleanable = False
+        Me.txtClasificacion.Cleanable = True
         Me.txtClasificacion.EnterIndex = 35
         Me.txtClasificacion.LabelAssociationKey = 29
         Me.txtClasificacion.Location = New System.Drawing.Point(616, 475)
@@ -146,7 +146,7 @@ Partial Class ProveedoresABM
         '
         'txtCertificados
         '
-        Me.txtCertificados.Cleanable = False
+        Me.txtCertificados.Cleanable = True
         Me.txtCertificados.EnterIndex = 32
         Me.txtCertificados.LabelAssociationKey = 27
         Me.txtCertificados.Location = New System.Drawing.Point(616, 430)
@@ -157,7 +157,7 @@ Partial Class ProveedoresABM
         '
         'txtCAIVto
         '
-        Me.txtCAIVto.Cleanable = False
+        Me.txtCAIVto.Cleanable = True
         Me.txtCAIVto.EnterIndex = 30
         Me.txtCAIVto.LabelAssociationKey = 26
         Me.txtCAIVto.Location = New System.Drawing.Point(630, 400)
@@ -168,7 +168,7 @@ Partial Class ProveedoresABM
         '
         'txtCAI
         '
-        Me.txtCAI.Cleanable = False
+        Me.txtCAI.Cleanable = True
         Me.txtCAI.EnterIndex = 29
         Me.txtCAI.LabelAssociationKey = 25
         Me.txtCAI.Location = New System.Drawing.Point(434, 400)
