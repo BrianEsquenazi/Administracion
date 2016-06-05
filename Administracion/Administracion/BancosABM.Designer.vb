@@ -64,6 +64,7 @@ Partial Class BancosABM
         'txtDescripcion
         '
         Me.txtDescripcion.Cleanable = True
+        Me.txtDescripcion.Empty = True
         Me.txtDescripcion.Enabled = False
         Me.txtDescripcion.EnterIndex = -1
         Me.txtDescripcion.LabelAssociationKey = 3
@@ -77,6 +78,7 @@ Partial Class BancosABM
         'txtCuenta
         '
         Me.txtCuenta.Cleanable = True
+        Me.txtCuenta.Empty = False
         Me.txtCuenta.EnterIndex = 3
         Me.txtCuenta.LabelAssociationKey = 3
         Me.txtCuenta.Location = New System.Drawing.Point(136, 86)
@@ -89,6 +91,7 @@ Partial Class BancosABM
         'txtNombre
         '
         Me.txtNombre.Cleanable = True
+        Me.txtNombre.Empty = False
         Me.txtNombre.EnterIndex = 2
         Me.txtNombre.LabelAssociationKey = 2
         Me.txtNombre.Location = New System.Drawing.Point(136, 53)
@@ -101,6 +104,7 @@ Partial Class BancosABM
         'txtCodigo
         '
         Me.txtCodigo.Cleanable = True
+        Me.txtCodigo.Empty = False
         Me.txtCodigo.EnterIndex = 1
         Me.txtCodigo.LabelAssociationKey = 1
         Me.txtCodigo.Location = New System.Drawing.Point(136, 23)

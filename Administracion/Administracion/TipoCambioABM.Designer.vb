@@ -51,6 +51,7 @@ Partial Class TipoCambioABM
         'txtParidad
         '
         Me.txtParidad.Cleanable = True
+        Me.txtParidad.Empty = False
         Me.txtParidad.EnterIndex = 2
         Me.txtParidad.LabelAssociationKey = 2
         Me.txtParidad.Location = New System.Drawing.Point(170, 62)
@@ -63,6 +64,7 @@ Partial Class TipoCambioABM
         'txtFecha
         '
         Me.txtFecha.Cleanable = True
+        Me.txtFecha.Empty = False
         Me.txtFecha.EnterIndex = 1
         Me.txtFecha.LabelAssociationKey = 1
         Me.txtFecha.Location = New System.Drawing.Point(166, 26)

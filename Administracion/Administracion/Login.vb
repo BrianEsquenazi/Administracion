@@ -11,7 +11,7 @@ Public Class Login
 
     Private Function validarCampos()
         Dim validador As New Validator
-        validador.validarNoVacio(cmbEntity.Text, "empresa")
+        validador.validarNoVacio(cmbEntity.Text, False, "Empresa")
         Return validador.flush()
     End Function
 

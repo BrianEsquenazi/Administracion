@@ -33,6 +33,7 @@ Public Class CustomTextBox
 
     Private customIndex As Integer = -1
     Private cleanStatus As Boolean = False
+    Private emptyPermitted As Boolean = True
     Private validatorConstant As ValidatorType = ValidatorType.None
     Private associationKey As Integer = -1
 
@@ -50,6 +51,14 @@ Public Class CustomTextBox
 
     Private Sub setCleanStatus(ByVal status As Integer)
         cleanStatus = status
+    End Sub
+
+    Private Function getEmptyPermitted() As Boolean
+        Return emptyPermitted
+    End Function
+
+    Private Sub setEmptyPermitted(ByVal value As Boolean)
+        emptyPermitted = value
     End Sub
 
     Private Function getValidatorType() As Integer
@@ -83,6 +92,15 @@ Public Class CustomTextBox
         End Get
         Set(ByVal value As Boolean)
             setCleanStatus(value)
+        End Set
+    End Property
+
+    Public Property Empty() As Boolean
+        Get
+            Return CType(getEmptyPermitted(), Boolean)
+        End Get
+        Set(ByVal value As Boolean)
+            setEmptyPermitted(value)
         End Set
     End Property
 
@@ -126,6 +144,7 @@ Public Class CustomComboBox
 
     Private customIndex As Integer = -1
     Private cleanStatus As Boolean = False
+    Private emptyPermitted As Boolean
     Private validatorConstant As ValidatorType = ValidatorType.None
     Private associationKey As Integer = -1
 
@@ -143,6 +162,14 @@ Public Class CustomComboBox
 
     Private Sub setCleanStatus(ByVal status As Integer)
         cleanStatus = status
+    End Sub
+
+    Private Function getEmptyPermitted() As Boolean
+        Return emptyPermitted
+    End Function
+
+    Private Sub setEmptyPermitted(ByVal value As Boolean)
+        emptyPermitted = value
     End Sub
 
     Private Function getValidatorType() As Integer
@@ -176,6 +203,15 @@ Public Class CustomComboBox
         End Get
         Set(ByVal value As Boolean)
             setCleanStatus(value)
+        End Set
+    End Property
+
+    Public Property Empty() As Boolean
+        Get
+            Return CType(getEmptyPermitted(), Boolean)
+        End Get
+        Set(ByVal value As Boolean)
+            setEmptyPermitted(value)
         End Set
     End Property
 

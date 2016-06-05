@@ -2,7 +2,7 @@
 
 Public Class TipoCambioABM
 
-    Dim organizadorABM As New FormOrganizer(Me, 350, 600)
+    Dim organizadorABM As New FormOrganizer(Me, 400, 600)
 
     Private Sub TipoCambioABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         organizadorABM.addControls(txtFecha, txtParidad)

@@ -51,6 +51,7 @@ Partial Class RubrosProveedorABM
         'txtDescripcion
         '
         Me.txtDescripcion.Cleanable = True
+        Me.txtDescripcion.Empty = False
         Me.txtDescripcion.EnterIndex = 2
         Me.txtDescripcion.LabelAssociationKey = 2
         Me.txtDescripcion.Location = New System.Drawing.Point(131, 76)
@@ -63,6 +64,7 @@ Partial Class RubrosProveedorABM
         'txtCodigo
         '
         Me.txtCodigo.Cleanable = True
+        Me.txtCodigo.Empty = False
         Me.txtCodigo.EnterIndex = 1
         Me.txtCodigo.LabelAssociationKey = 1
         Me.txtCodigo.Location = New System.Drawing.Point(131, 46)

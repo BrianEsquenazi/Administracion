@@ -95,11 +95,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbClasificacion.Cleanable = True
         Me.cmbClasificacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbClasificacion.Empty = True
         Me.cmbClasificacion.EnterIndex = 34
         Me.cmbClasificacion.FormattingEnabled = True
         Me.cmbClasificacion.Items.AddRange(New Object() {"", "Apto", "Condicional", "No Apto"})
         Me.cmbClasificacion.LabelAssociationKey = 29
-        Me.cmbClasificacion.Location = New System.Drawing.Point(457, 481)
+        Me.cmbClasificacion.Location = New System.Drawing.Point(456, 438)
         Me.cmbClasificacion.Name = "cmbClasificacion"
         Me.cmbClasificacion.Size = New System.Drawing.Size(135, 21)
         Me.cmbClasificacion.TabIndex = 66
@@ -109,11 +110,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbEstado.Cleanable = True
         Me.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbEstado.Empty = True
         Me.cmbEstado.EnterIndex = 33
         Me.cmbEstado.FormattingEnabled = True
         Me.cmbEstado.Items.AddRange(New Object() {"", "Habilitado", "Inhabilitado"})
         Me.cmbEstado.LabelAssociationKey = 28
-        Me.cmbEstado.Location = New System.Drawing.Point(457, 454)
+        Me.cmbEstado.Location = New System.Drawing.Point(456, 411)
         Me.cmbEstado.Name = "cmbEstado"
         Me.cmbEstado.Size = New System.Drawing.Size(135, 21)
         Me.cmbEstado.TabIndex = 65
@@ -123,11 +125,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbCertificados.Cleanable = True
         Me.cmbCertificados.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCertificados.Empty = True
         Me.cmbCertificados.EnterIndex = 31
         Me.cmbCertificados.FormattingEnabled = True
         Me.cmbCertificados.Items.AddRange(New Object() {"", "ISO 9001", "ISO 9001/14001", "ISO 17025", "SENASA"})
         Me.cmbCertificados.LabelAssociationKey = 27
-        Me.cmbCertificados.Location = New System.Drawing.Point(457, 427)
+        Me.cmbCertificados.Location = New System.Drawing.Point(456, 384)
         Me.cmbCertificados.Name = "cmbCertificados"
         Me.cmbCertificados.Size = New System.Drawing.Size(135, 21)
         Me.cmbCertificados.TabIndex = 64
@@ -136,42 +139,49 @@ Partial Class ProveedoresABM
         'txtClasificacion
         '
         Me.txtClasificacion.Cleanable = True
+        Me.txtClasificacion.Empty = True
         Me.txtClasificacion.EnterIndex = 35
         Me.txtClasificacion.LabelAssociationKey = 29
-        Me.txtClasificacion.Location = New System.Drawing.Point(616, 475)
+        Me.txtClasificacion.Location = New System.Drawing.Point(615, 432)
+        Me.txtClasificacion.MaxLength = 10
         Me.txtClasificacion.Name = "txtClasificacion"
         Me.txtClasificacion.Size = New System.Drawing.Size(122, 20)
         Me.txtClasificacion.TabIndex = 63
-        Me.txtClasificacion.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtClasificacion.Validator = WindowsApplication1.ValidatorType.DateFormat
         '
         'txtCertificados
         '
         Me.txtCertificados.Cleanable = True
+        Me.txtCertificados.Empty = True
         Me.txtCertificados.EnterIndex = 32
         Me.txtCertificados.LabelAssociationKey = 27
-        Me.txtCertificados.Location = New System.Drawing.Point(616, 430)
+        Me.txtCertificados.Location = New System.Drawing.Point(615, 387)
+        Me.txtCertificados.MaxLength = 10
         Me.txtCertificados.Name = "txtCertificados"
         Me.txtCertificados.Size = New System.Drawing.Size(122, 20)
         Me.txtCertificados.TabIndex = 62
-        Me.txtCertificados.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCertificados.Validator = WindowsApplication1.ValidatorType.DateFormat
         '
         'txtCAIVto
         '
         Me.txtCAIVto.Cleanable = True
+        Me.txtCAIVto.Empty = True
         Me.txtCAIVto.EnterIndex = 30
         Me.txtCAIVto.LabelAssociationKey = 26
-        Me.txtCAIVto.Location = New System.Drawing.Point(630, 400)
+        Me.txtCAIVto.Location = New System.Drawing.Point(629, 357)
+        Me.txtCAIVto.MaxLength = 10
         Me.txtCAIVto.Name = "txtCAIVto"
         Me.txtCAIVto.Size = New System.Drawing.Size(122, 20)
         Me.txtCAIVto.TabIndex = 61
-        Me.txtCAIVto.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCAIVto.Validator = WindowsApplication1.ValidatorType.DateFormat
         '
         'txtCAI
         '
         Me.txtCAI.Cleanable = True
+        Me.txtCAI.Empty = True
         Me.txtCAI.EnterIndex = 29
         Me.txtCAI.LabelAssociationKey = 25
-        Me.txtCAI.Location = New System.Drawing.Point(434, 400)
+        Me.txtCAI.Location = New System.Drawing.Point(433, 357)
         Me.txtCAI.Name = "txtCAI"
         Me.txtCAI.Size = New System.Drawing.Size(122, 20)
         Me.txtCAI.TabIndex = 60
@@ -182,7 +192,7 @@ Partial Class ProveedoresABM
         Me.btnCUFE.Cleanable = False
         Me.btnCUFE.EnterIndex = -1
         Me.btnCUFE.LabelAssociationKey = -1
-        Me.btnCUFE.Location = New System.Drawing.Point(592, 502)
+        Me.btnCUFE.Location = New System.Drawing.Point(591, 459)
         Me.btnCUFE.Name = "btnCUFE"
         Me.btnCUFE.Size = New System.Drawing.Size(104, 25)
         Me.btnCUFE.TabIndex = 59
@@ -194,7 +204,7 @@ Partial Class ProveedoresABM
         Me.btnObservaciones.Cleanable = False
         Me.btnObservaciones.EnterIndex = -1
         Me.btnObservaciones.LabelAssociationKey = -1
-        Me.btnObservaciones.Location = New System.Drawing.Point(384, 502)
+        Me.btnObservaciones.Location = New System.Drawing.Point(383, 459)
         Me.btnObservaciones.Name = "btnObservaciones"
         Me.btnObservaciones.Size = New System.Drawing.Size(104, 25)
         Me.btnObservaciones.TabIndex = 58
@@ -205,7 +215,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel29.AutoSize = True
         Me.CustomLabel29.ControlAssociationKey = 29
-        Me.CustomLabel29.Location = New System.Drawing.Point(382, 475)
+        Me.CustomLabel29.Location = New System.Drawing.Point(381, 432)
         Me.CustomLabel29.Name = "CustomLabel29"
         Me.CustomLabel29.Size = New System.Drawing.Size(61, 13)
         Me.CustomLabel29.TabIndex = 57
@@ -215,7 +225,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel28.AutoSize = True
         Me.CustomLabel28.ControlAssociationKey = 28
-        Me.CustomLabel28.Location = New System.Drawing.Point(382, 452)
+        Me.CustomLabel28.Location = New System.Drawing.Point(381, 409)
         Me.CustomLabel28.Name = "CustomLabel28"
         Me.CustomLabel28.Size = New System.Drawing.Size(40, 13)
         Me.CustomLabel28.TabIndex = 56
@@ -225,7 +235,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel27.AutoSize = True
         Me.CustomLabel27.ControlAssociationKey = 27
-        Me.CustomLabel27.Location = New System.Drawing.Point(382, 430)
+        Me.CustomLabel27.Location = New System.Drawing.Point(381, 387)
         Me.CustomLabel27.Name = "CustomLabel27"
         Me.CustomLabel27.Size = New System.Drawing.Size(62, 13)
         Me.CustomLabel27.TabIndex = 55
@@ -235,7 +245,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel26.AutoSize = True
         Me.CustomLabel26.ControlAssociationKey = 26
-        Me.CustomLabel26.Location = New System.Drawing.Point(574, 407)
+        Me.CustomLabel26.Location = New System.Drawing.Point(573, 364)
         Me.CustomLabel26.Name = "CustomLabel26"
         Me.CustomLabel26.Size = New System.Drawing.Size(46, 13)
         Me.CustomLabel26.TabIndex = 54
@@ -245,7 +255,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel25.AutoSize = True
         Me.CustomLabel25.ControlAssociationKey = 25
-        Me.CustomLabel25.Location = New System.Drawing.Point(381, 407)
+        Me.CustomLabel25.Location = New System.Drawing.Point(380, 364)
         Me.CustomLabel25.Name = "CustomLabel25"
         Me.CustomLabel25.Size = New System.Drawing.Size(24, 13)
         Me.CustomLabel25.TabIndex = 53
@@ -254,45 +264,49 @@ Partial Class ProveedoresABM
         'txtNroSEDRONAR2
         '
         Me.txtNroSEDRONAR2.Cleanable = True
+        Me.txtNroSEDRONAR2.Empty = True
         Me.txtNroSEDRONAR2.EnterIndex = 24
         Me.txtNroSEDRONAR2.LabelAssociationKey = 22
-        Me.txtNroSEDRONAR2.Location = New System.Drawing.Point(642, 337)
+        Me.txtNroSEDRONAR2.Location = New System.Drawing.Point(641, 303)
         Me.txtNroSEDRONAR2.MaxLength = 10
         Me.txtNroSEDRONAR2.Name = "txtNroSEDRONAR2"
         Me.txtNroSEDRONAR2.Size = New System.Drawing.Size(58, 20)
         Me.txtNroSEDRONAR2.TabIndex = 52
-        Me.txtNroSEDRONAR2.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNroSEDRONAR2.Validator = WindowsApplication1.ValidatorType.DateFormat
         '
         'txtCategoria
         '
         Me.txtCategoria.Cleanable = True
+        Me.txtCategoria.Empty = True
         Me.txtCategoria.EnterIndex = 27
         Me.txtCategoria.LabelAssociationKey = 23
-        Me.txtCategoria.Location = New System.Drawing.Point(358, 365)
+        Me.txtCategoria.Location = New System.Drawing.Point(357, 331)
         Me.txtCategoria.MaxLength = 10
         Me.txtCategoria.Name = "txtCategoria"
         Me.txtCategoria.Size = New System.Drawing.Size(85, 20)
         Me.txtCategoria.TabIndex = 51
-        Me.txtCategoria.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCategoria.Validator = WindowsApplication1.ValidatorType.DateFormat
         '
         'txtNroSEDRONAR1
         '
         Me.txtNroSEDRONAR1.Cleanable = True
+        Me.txtNroSEDRONAR1.Empty = True
         Me.txtNroSEDRONAR1.EnterIndex = 23
         Me.txtNroSEDRONAR1.LabelAssociationKey = 22
-        Me.txtNroSEDRONAR1.Location = New System.Drawing.Point(508, 338)
+        Me.txtNroSEDRONAR1.Location = New System.Drawing.Point(507, 304)
         Me.txtNroSEDRONAR1.MaxLength = 15
         Me.txtNroSEDRONAR1.Name = "txtNroSEDRONAR1"
         Me.txtNroSEDRONAR1.Size = New System.Drawing.Size(58, 20)
         Me.txtNroSEDRONAR1.TabIndex = 50
-        Me.txtNroSEDRONAR1.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNroSEDRONAR1.Validator = WindowsApplication1.ValidatorType.Numeric
         '
         'txtPorcelCABA
         '
         Me.txtPorcelCABA.Cleanable = True
+        Me.txtPorcelCABA.Empty = True
         Me.txtPorcelCABA.EnterIndex = 21
         Me.txtPorcelCABA.LabelAssociationKey = 20
-        Me.txtPorcelCABA.Location = New System.Drawing.Point(706, 311)
+        Me.txtPorcelCABA.Location = New System.Drawing.Point(705, 277)
         Me.txtPorcelCABA.MaxLength = 6
         Me.txtPorcelCABA.Name = "txtPorcelCABA"
         Me.txtPorcelCABA.Size = New System.Drawing.Size(58, 20)
@@ -302,9 +316,10 @@ Partial Class ProveedoresABM
         'txtPorcelProv
         '
         Me.txtPorcelProv.Cleanable = True
+        Me.txtPorcelProv.Empty = True
         Me.txtPorcelProv.EnterIndex = 20
         Me.txtPorcelProv.LabelAssociationKey = 19
-        Me.txtPorcelProv.Location = New System.Drawing.Point(540, 309)
+        Me.txtPorcelProv.Location = New System.Drawing.Point(539, 275)
         Me.txtPorcelProv.MaxLength = 6
         Me.txtPorcelProv.Name = "txtPorcelProv"
         Me.txtPorcelProv.Size = New System.Drawing.Size(58, 20)
@@ -314,21 +329,23 @@ Partial Class ProveedoresABM
         'txtNroIB
         '
         Me.txtNroIB.Cleanable = True
+        Me.txtNroIB.Empty = True
         Me.txtNroIB.EnterIndex = 19
         Me.txtNroIB.LabelAssociationKey = 18
-        Me.txtNroIB.Location = New System.Drawing.Point(385, 310)
+        Me.txtNroIB.Location = New System.Drawing.Point(384, 276)
         Me.txtNroIB.MaxLength = 20
         Me.txtNroIB.Name = "txtNroIB"
         Me.txtNroIB.Size = New System.Drawing.Size(58, 20)
         Me.txtNroIB.TabIndex = 47
-        Me.txtNroIB.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNroIB.Validator = WindowsApplication1.ValidatorType.Numeric
         '
         'txtCheque
         '
         Me.txtCheque.Cleanable = True
+        Me.txtCheque.Empty = True
         Me.txtCheque.EnterIndex = 16
         Me.txtCheque.LabelAssociationKey = 16
-        Me.txtCheque.Location = New System.Drawing.Point(132, 283)
+        Me.txtCheque.Location = New System.Drawing.Point(131, 249)
         Me.txtCheque.MaxLength = 50
         Me.txtCheque.Name = "txtCheque"
         Me.txtCheque.Size = New System.Drawing.Size(311, 20)
@@ -338,10 +355,11 @@ Partial Class ProveedoresABM
         'txtCuentaDescripcion
         '
         Me.txtCuentaDescripcion.Cleanable = True
+        Me.txtCuentaDescripcion.Empty = False
         Me.txtCuentaDescripcion.Enabled = False
         Me.txtCuentaDescripcion.EnterIndex = -1
         Me.txtCuentaDescripcion.LabelAssociationKey = 15
-        Me.txtCuentaDescripcion.Location = New System.Drawing.Point(202, 260)
+        Me.txtCuentaDescripcion.Location = New System.Drawing.Point(201, 226)
         Me.txtCuentaDescripcion.MaxLength = 50
         Me.txtCuentaDescripcion.Name = "txtCuentaDescripcion"
         Me.txtCuentaDescripcion.Size = New System.Drawing.Size(241, 20)
@@ -351,9 +369,10 @@ Partial Class ProveedoresABM
         'txtCuenta
         '
         Me.txtCuenta.Cleanable = True
+        Me.txtCuenta.Empty = False
         Me.txtCuenta.EnterIndex = 15
         Me.txtCuenta.LabelAssociationKey = 15
-        Me.txtCuenta.Location = New System.Drawing.Point(117, 260)
+        Me.txtCuenta.Location = New System.Drawing.Point(116, 226)
         Me.txtCuenta.MaxLength = 10
         Me.txtCuenta.Name = "txtCuenta"
         Me.txtCuenta.Size = New System.Drawing.Size(79, 20)
@@ -364,11 +383,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbInscripcionIB.Cleanable = True
         Me.cmbInscripcionIB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbInscripcionIB.Empty = True
         Me.cmbInscripcionIB.EnterIndex = 28
         Me.cmbInscripcionIB.FormattingEnabled = True
         Me.cmbInscripcionIB.Items.AddRange(New Object() {"", "Local", "Conv. Multilateral", "No Inscripto", "Reg. Simplificado"})
         Me.cmbInscripcionIB.LabelAssociationKey = 24
-        Me.cmbInscripcionIB.Location = New System.Drawing.Point(572, 363)
+        Me.cmbInscripcionIB.Location = New System.Drawing.Point(571, 329)
         Me.cmbInscripcionIB.Name = "cmbInscripcionIB"
         Me.cmbInscripcionIB.Size = New System.Drawing.Size(180, 21)
         Me.cmbInscripcionIB.TabIndex = 43
@@ -378,11 +398,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbCategoria2.Cleanable = True
         Me.cmbCategoria2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCategoria2.Empty = False
         Me.cmbCategoria2.EnterIndex = 26
         Me.cmbCategoria2.FormattingEnabled = True
         Me.cmbCategoria2.Items.AddRange(New Object() {"Sin Calificar", "Muy Bueno", "Bueno", "Regular", "Malo"})
         Me.cmbCategoria2.LabelAssociationKey = 23
-        Me.cmbCategoria2.Location = New System.Drawing.Point(219, 364)
+        Me.cmbCategoria2.Location = New System.Drawing.Point(218, 330)
         Me.cmbCategoria2.Name = "cmbCategoria2"
         Me.cmbCategoria2.Size = New System.Drawing.Size(125, 21)
         Me.cmbCategoria2.TabIndex = 42
@@ -392,11 +413,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbCategoria1.Cleanable = True
         Me.cmbCategoria1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCategoria1.Empty = True
         Me.cmbCategoria1.EnterIndex = 25
         Me.cmbCategoria1.FormattingEnabled = True
         Me.cmbCategoria1.Items.AddRange(New Object() {"", "A", "B", "C", "E"})
         Me.cmbCategoria1.LabelAssociationKey = 23
-        Me.cmbCategoria1.Location = New System.Drawing.Point(83, 364)
+        Me.cmbCategoria1.Location = New System.Drawing.Point(82, 330)
         Me.cmbCategoria1.Name = "cmbCategoria1"
         Me.cmbCategoria1.Size = New System.Drawing.Size(130, 21)
         Me.cmbCategoria1.TabIndex = 41
@@ -406,11 +428,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbCondicionIB2.Cleanable = True
         Me.cmbCondicionIB2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCondicionIB2.Empty = False
         Me.cmbCondicionIB2.EnterIndex = 18
         Me.cmbCondicionIB2.FormattingEnabled = True
         Me.cmbCondicionIB2.Items.AddRange(New Object() {"Exento", "Reteniente"})
         Me.cmbCondicionIB2.LabelAssociationKey = 17
-        Me.cmbCondicionIB2.Location = New System.Drawing.Point(214, 310)
+        Me.cmbCondicionIB2.Location = New System.Drawing.Point(213, 276)
         Me.cmbCondicionIB2.Name = "cmbCondicionIB2"
         Me.cmbCondicionIB2.Size = New System.Drawing.Size(97, 21)
         Me.cmbCondicionIB2.TabIndex = 40
@@ -420,11 +443,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbCondicionIB1.Cleanable = True
         Me.cmbCondicionIB1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCondicionIB1.Empty = False
         Me.cmbCondicionIB1.EnterIndex = 17
         Me.cmbCondicionIB1.FormattingEnabled = True
         Me.cmbCondicionIB1.Items.AddRange(New Object() {"Bienes", "Servicio", "Exento", "Ciudad Normal", "Ciudad Riesgo"})
         Me.cmbCondicionIB1.LabelAssociationKey = 17
-        Me.cmbCondicionIB1.Location = New System.Drawing.Point(101, 309)
+        Me.cmbCondicionIB1.Location = New System.Drawing.Point(100, 275)
         Me.cmbCondicionIB1.Name = "cmbCondicionIB1"
         Me.cmbCondicionIB1.Size = New System.Drawing.Size(107, 21)
         Me.cmbCondicionIB1.TabIndex = 39
@@ -434,10 +458,11 @@ Partial Class ProveedoresABM
         '
         Me.cmbRubro.Cleanable = True
         Me.cmbRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbRubro.Empty = True
         Me.cmbRubro.EnterIndex = 22
         Me.cmbRubro.FormattingEnabled = True
         Me.cmbRubro.LabelAssociationKey = 21
-        Me.cmbRubro.Location = New System.Drawing.Point(65, 338)
+        Me.cmbRubro.Location = New System.Drawing.Point(64, 304)
         Me.cmbRubro.Name = "cmbRubro"
         Me.cmbRubro.Size = New System.Drawing.Size(178, 21)
         Me.cmbRubro.TabIndex = 38
@@ -447,11 +472,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbIVA.Cleanable = True
         Me.cmbIVA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbIVA.Empty = True
         Me.cmbIVA.EnterIndex = 14
         Me.cmbIVA.FormattingEnabled = True
         Me.cmbIVA.Items.AddRange(New Object() {"No Inscripto", "Consumidor Final", "Resp.Inscripto", "Exento", "No Responsable", "Monotributo", "No Catalogado"})
         Me.cmbIVA.LabelAssociationKey = 14
-        Me.cmbIVA.Location = New System.Drawing.Point(434, 232)
+        Me.cmbIVA.Location = New System.Drawing.Point(433, 198)
         Me.cmbIVA.Name = "cmbIVA"
         Me.cmbIVA.Size = New System.Drawing.Size(220, 21)
         Me.cmbIVA.TabIndex = 37
@@ -461,7 +487,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel24.AutoSize = True
         Me.CustomLabel24.ControlAssociationKey = 20
-        Me.CustomLabel24.Location = New System.Drawing.Point(613, 312)
+        Me.CustomLabel24.Location = New System.Drawing.Point(612, 278)
         Me.CustomLabel24.Name = "CustomLabel24"
         Me.CustomLabel24.Size = New System.Drawing.Size(87, 13)
         Me.CustomLabel24.TabIndex = 36
@@ -470,20 +496,21 @@ Partial Class ProveedoresABM
         'txtDiasPlazo
         '
         Me.txtDiasPlazo.Cleanable = True
+        Me.txtDiasPlazo.Empty = True
         Me.txtDiasPlazo.EnterIndex = 9
         Me.txtDiasPlazo.LabelAssociationKey = 9
-        Me.txtDiasPlazo.Location = New System.Drawing.Point(357, 144)
+        Me.txtDiasPlazo.Location = New System.Drawing.Point(356, 110)
         Me.txtDiasPlazo.MaxLength = 20
         Me.txtDiasPlazo.Name = "txtDiasPlazo"
         Me.txtDiasPlazo.Size = New System.Drawing.Size(118, 20)
         Me.txtDiasPlazo.TabIndex = 35
-        Me.txtDiasPlazo.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDiasPlazo.Validator = WindowsApplication1.ValidatorType.Positive
         '
         'CustomLabel23
         '
         Me.CustomLabel23.AutoSize = True
         Me.CustomLabel23.ControlAssociationKey = 9
-        Me.CustomLabel23.Location = New System.Drawing.Point(265, 149)
+        Me.CustomLabel23.Location = New System.Drawing.Point(264, 115)
         Me.CustomLabel23.Name = "CustomLabel23"
         Me.CustomLabel23.Size = New System.Drawing.Size(74, 13)
         Me.CustomLabel23.TabIndex = 34
@@ -493,7 +520,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel22.AutoSize = True
         Me.CustomLabel22.ControlAssociationKey = 21
-        Me.CustomLabel22.Location = New System.Drawing.Point(23, 340)
+        Me.CustomLabel22.Location = New System.Drawing.Point(22, 306)
         Me.CustomLabel22.Name = "CustomLabel22"
         Me.CustomLabel22.Size = New System.Drawing.Size(36, 13)
         Me.CustomLabel22.TabIndex = 33
@@ -503,11 +530,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbTipoProveedor.Cleanable = True
         Me.cmbTipoProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbTipoProveedor.Empty = True
         Me.cmbTipoProveedor.EnterIndex = 13
         Me.cmbTipoProveedor.FormattingEnabled = True
         Me.cmbTipoProveedor.Items.AddRange(New Object() {"Bienes", "Servicios", "Alquileres", "Exento", "Despachante", "Locación de Obras", "Fletes", "Facturas (M)"})
         Me.cmbTipoProveedor.LabelAssociationKey = 13
-        Me.cmbTipoProveedor.Location = New System.Drawing.Point(108, 227)
+        Me.cmbTipoProveedor.Location = New System.Drawing.Point(107, 193)
         Me.cmbTipoProveedor.Name = "cmbTipoProveedor"
         Me.cmbTipoProveedor.Size = New System.Drawing.Size(220, 21)
         Me.cmbTipoProveedor.TabIndex = 32
@@ -516,9 +544,10 @@ Partial Class ProveedoresABM
         'txtCUIT
         '
         Me.txtCUIT.Cleanable = True
+        Me.txtCUIT.Empty = True
         Me.txtCUIT.EnterIndex = 12
         Me.txtCUIT.LabelAssociationKey = 12
-        Me.txtCUIT.Location = New System.Drawing.Point(454, 196)
+        Me.txtCUIT.Location = New System.Drawing.Point(453, 162)
         Me.txtCUIT.MaxLength = 15
         Me.txtCUIT.Name = "txtCUIT"
         Me.txtCUIT.Size = New System.Drawing.Size(242, 20)
@@ -528,9 +557,10 @@ Partial Class ProveedoresABM
         'txtObservaciones
         '
         Me.txtObservaciones.Cleanable = True
+        Me.txtObservaciones.Empty = True
         Me.txtObservaciones.EnterIndex = 11
         Me.txtObservaciones.LabelAssociationKey = 11
-        Me.txtObservaciones.Location = New System.Drawing.Point(108, 196)
+        Me.txtObservaciones.Location = New System.Drawing.Point(107, 162)
         Me.txtObservaciones.MaxLength = 50
         Me.txtObservaciones.Name = "txtObservaciones"
         Me.txtObservaciones.Size = New System.Drawing.Size(286, 20)
@@ -541,11 +571,12 @@ Partial Class ProveedoresABM
         '
         Me.cmbRegion.Cleanable = True
         Me.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbRegion.Empty = False
         Me.cmbRegion.EnterIndex = 7
         Me.cmbRegion.FormattingEnabled = True
         Me.cmbRegion.Items.AddRange(New Object() {"Fuera Mercosur", "Mercosur"})
         Me.cmbRegion.LabelAssociationKey = 7
-        Me.cmbRegion.Location = New System.Drawing.Point(550, 121)
+        Me.cmbRegion.Location = New System.Drawing.Point(549, 87)
         Me.cmbRegion.Name = "cmbRegion"
         Me.cmbRegion.Size = New System.Drawing.Size(123, 21)
         Me.cmbRegion.TabIndex = 29
@@ -554,21 +585,23 @@ Partial Class ProveedoresABM
         'txtCodigoPostal
         '
         Me.txtCodigoPostal.Cleanable = True
+        Me.txtCodigoPostal.Empty = True
         Me.txtCodigoPostal.EnterIndex = 6
         Me.txtCodigoPostal.LabelAssociationKey = 6
-        Me.txtCodigoPostal.Location = New System.Drawing.Point(351, 118)
+        Me.txtCodigoPostal.Location = New System.Drawing.Point(350, 84)
         Me.txtCodigoPostal.MaxLength = 4
         Me.txtCodigoPostal.Name = "txtCodigoPostal"
         Me.txtCodigoPostal.Size = New System.Drawing.Size(103, 20)
         Me.txtCodigoPostal.TabIndex = 28
-        Me.txtCodigoPostal.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCodigoPostal.Validator = WindowsApplication1.ValidatorType.Numeric
         '
         'txtEmail
         '
         Me.txtEmail.Cleanable = True
+        Me.txtEmail.Empty = True
         Me.txtEmail.EnterIndex = 10
         Me.txtEmail.LabelAssociationKey = 10
-        Me.txtEmail.Location = New System.Drawing.Point(97, 174)
+        Me.txtEmail.Location = New System.Drawing.Point(96, 140)
         Me.txtEmail.MaxLength = 400
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(247, 20)
@@ -578,9 +611,10 @@ Partial Class ProveedoresABM
         'txtTelefono
         '
         Me.txtTelefono.Cleanable = True
+        Me.txtTelefono.Empty = True
         Me.txtTelefono.EnterIndex = 8
         Me.txtTelefono.LabelAssociationKey = 8
-        Me.txtTelefono.Location = New System.Drawing.Point(113, 149)
+        Me.txtTelefono.Location = New System.Drawing.Point(112, 115)
         Me.txtTelefono.MaxLength = 30
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(99, 20)
@@ -592,11 +626,12 @@ Partial Class ProveedoresABM
         Me.cmbProvincia.Cleanable = True
         Me.cmbProvincia.DisplayMember = "asd"
         Me.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbProvincia.Empty = True
         Me.cmbProvincia.EnterIndex = 5
         Me.cmbProvincia.FormattingEnabled = True
         Me.cmbProvincia.Items.AddRange(New Object() {"Capital Federal", "Buenos Aires", "Catamarca", "Cordoba", "Corrientes", "Chaco", "Chubut", "Entre Rios", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquen", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tucuman", "Tierra del Fuego", "Exterior"})
         Me.cmbProvincia.LabelAssociationKey = 5
-        Me.cmbProvincia.Location = New System.Drawing.Point(118, 121)
+        Me.cmbProvincia.Location = New System.Drawing.Point(117, 87)
         Me.cmbProvincia.Name = "cmbProvincia"
         Me.cmbProvincia.Size = New System.Drawing.Size(95, 21)
         Me.cmbProvincia.TabIndex = 25
@@ -605,9 +640,10 @@ Partial Class ProveedoresABM
         'txtLocalidad
         '
         Me.txtLocalidad.Cleanable = True
+        Me.txtLocalidad.Empty = True
         Me.txtLocalidad.EnterIndex = 4
         Me.txtLocalidad.LabelAssociationKey = 4
-        Me.txtLocalidad.Location = New System.Drawing.Point(118, 89)
+        Me.txtLocalidad.Location = New System.Drawing.Point(117, 55)
         Me.txtLocalidad.MaxLength = 50
         Me.txtLocalidad.Name = "txtLocalidad"
         Me.txtLocalidad.Size = New System.Drawing.Size(90, 20)
@@ -617,9 +653,10 @@ Partial Class ProveedoresABM
         'txtDireccion
         '
         Me.txtDireccion.Cleanable = True
+        Me.txtDireccion.Empty = True
         Me.txtDireccion.EnterIndex = 3
         Me.txtDireccion.LabelAssociationKey = 3
-        Me.txtDireccion.Location = New System.Drawing.Point(119, 64)
+        Me.txtDireccion.Location = New System.Drawing.Point(118, 30)
         Me.txtDireccion.MaxLength = 50
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(77, 20)
@@ -629,9 +666,10 @@ Partial Class ProveedoresABM
         'txtRazonSocial
         '
         Me.txtRazonSocial.Cleanable = True
+        Me.txtRazonSocial.Empty = False
         Me.txtRazonSocial.EnterIndex = 2
         Me.txtRazonSocial.LabelAssociationKey = 2
-        Me.txtRazonSocial.Location = New System.Drawing.Point(118, 38)
+        Me.txtRazonSocial.Location = New System.Drawing.Point(337, 6)
         Me.txtRazonSocial.MaxLength = 50
         Me.txtRazonSocial.Name = "txtRazonSocial"
         Me.txtRazonSocial.Size = New System.Drawing.Size(75, 20)
@@ -641,6 +679,7 @@ Partial Class ProveedoresABM
         'txtCodigo
         '
         Me.txtCodigo.Cleanable = True
+        Me.txtCodigo.Empty = False
         Me.txtCodigo.EnterIndex = 1
         Me.txtCodigo.LabelAssociationKey = 1
         Me.txtCodigo.Location = New System.Drawing.Point(118, 9)
@@ -654,7 +693,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel21.AutoSize = True
         Me.CustomLabel21.ControlAssociationKey = 22
-        Me.CustomLabel21.Location = New System.Drawing.Point(348, 340)
+        Me.CustomLabel21.Location = New System.Drawing.Point(347, 306)
         Me.CustomLabel21.Name = "CustomLabel21"
         Me.CustomLabel21.Size = New System.Drawing.Size(145, 13)
         Me.CustomLabel21.TabIndex = 20
@@ -664,7 +703,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel20.AutoSize = True
         Me.CustomLabel20.ControlAssociationKey = 24
-        Me.CustomLabel20.Location = New System.Drawing.Point(465, 367)
+        Me.CustomLabel20.Location = New System.Drawing.Point(464, 333)
         Me.CustomLabel20.Name = "CustomLabel20"
         Me.CustomLabel20.Size = New System.Drawing.Size(101, 13)
         Me.CustomLabel20.TabIndex = 19
@@ -674,7 +713,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel19.AutoSize = True
         Me.CustomLabel19.ControlAssociationKey = 19
-        Me.CustomLabel19.Location = New System.Drawing.Point(451, 312)
+        Me.CustomLabel19.Location = New System.Drawing.Point(450, 278)
         Me.CustomLabel19.Name = "CustomLabel19"
         Me.CustomLabel19.Size = New System.Drawing.Size(83, 13)
         Me.CustomLabel19.TabIndex = 18
@@ -684,7 +723,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel18.AutoSize = True
         Me.CustomLabel18.ControlAssociationKey = 18
-        Me.CustomLabel18.Location = New System.Drawing.Point(317, 312)
+        Me.CustomLabel18.Location = New System.Drawing.Point(316, 278)
         Me.CustomLabel18.Name = "CustomLabel18"
         Me.CustomLabel18.Size = New System.Drawing.Size(63, 13)
         Me.CustomLabel18.TabIndex = 17
@@ -694,7 +733,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel17.AutoSize = True
         Me.CustomLabel17.ControlAssociationKey = 14
-        Me.CustomLabel17.Location = New System.Drawing.Point(354, 235)
+        Me.CustomLabel17.Location = New System.Drawing.Point(353, 201)
         Me.CustomLabel17.Name = "CustomLabel17"
         Me.CustomLabel17.Size = New System.Drawing.Size(60, 13)
         Me.CustomLabel17.TabIndex = 16
@@ -704,7 +743,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel16.AutoSize = True
         Me.CustomLabel16.ControlAssociationKey = 23
-        Me.CustomLabel16.Location = New System.Drawing.Point(23, 366)
+        Me.CustomLabel16.Location = New System.Drawing.Point(22, 332)
         Me.CustomLabel16.Name = "CustomLabel16"
         Me.CustomLabel16.Size = New System.Drawing.Size(54, 13)
         Me.CustomLabel16.TabIndex = 15
@@ -714,7 +753,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel15.AutoSize = True
         Me.CustomLabel15.ControlAssociationKey = 17
-        Me.CustomLabel15.Location = New System.Drawing.Point(22, 312)
+        Me.CustomLabel15.Location = New System.Drawing.Point(21, 278)
         Me.CustomLabel15.Name = "CustomLabel15"
         Me.CustomLabel15.Size = New System.Drawing.Size(73, 13)
         Me.CustomLabel15.TabIndex = 14
@@ -724,7 +763,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel14.AutoSize = True
         Me.CustomLabel14.ControlAssociationKey = 16
-        Me.CustomLabel14.Location = New System.Drawing.Point(22, 287)
+        Me.CustomLabel14.Location = New System.Drawing.Point(21, 253)
         Me.CustomLabel14.Name = "CustomLabel14"
         Me.CustomLabel14.Size = New System.Drawing.Size(84, 13)
         Me.CustomLabel14.TabIndex = 13
@@ -734,7 +773,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel13.AutoSize = True
         Me.CustomLabel13.ControlAssociationKey = 15
-        Me.CustomLabel13.Location = New System.Drawing.Point(22, 263)
+        Me.CustomLabel13.Location = New System.Drawing.Point(21, 229)
         Me.CustomLabel13.Name = "CustomLabel13"
         Me.CustomLabel13.Size = New System.Drawing.Size(86, 13)
         Me.CustomLabel13.TabIndex = 12
@@ -744,7 +783,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel12.AutoSize = True
         Me.CustomLabel12.ControlAssociationKey = 13
-        Me.CustomLabel12.Location = New System.Drawing.Point(22, 235)
+        Me.CustomLabel12.Location = New System.Drawing.Point(21, 201)
         Me.CustomLabel12.Name = "CustomLabel12"
         Me.CustomLabel12.Size = New System.Drawing.Size(28, 13)
         Me.CustomLabel12.TabIndex = 11
@@ -754,7 +793,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel11.AutoSize = True
         Me.CustomLabel11.ControlAssociationKey = 12
-        Me.CustomLabel11.Location = New System.Drawing.Point(400, 201)
+        Me.CustomLabel11.Location = New System.Drawing.Point(399, 167)
         Me.CustomLabel11.Name = "CustomLabel11"
         Me.CustomLabel11.Size = New System.Drawing.Size(32, 13)
         Me.CustomLabel11.TabIndex = 10
@@ -764,7 +803,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel10.AutoSize = True
         Me.CustomLabel10.ControlAssociationKey = 11
-        Me.CustomLabel10.Location = New System.Drawing.Point(22, 201)
+        Me.CustomLabel10.Location = New System.Drawing.Point(21, 167)
         Me.CustomLabel10.Name = "CustomLabel10"
         Me.CustomLabel10.Size = New System.Drawing.Size(78, 13)
         Me.CustomLabel10.TabIndex = 9
@@ -774,7 +813,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel9.AutoSize = True
         Me.CustomLabel9.ControlAssociationKey = 10
-        Me.CustomLabel9.Location = New System.Drawing.Point(22, 175)
+        Me.CustomLabel9.Location = New System.Drawing.Point(21, 141)
         Me.CustomLabel9.Name = "CustomLabel9"
         Me.CustomLabel9.Size = New System.Drawing.Size(35, 13)
         Me.CustomLabel9.TabIndex = 8
@@ -784,7 +823,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel8.AutoSize = True
         Me.CustomLabel8.ControlAssociationKey = 7
-        Me.CustomLabel8.Location = New System.Drawing.Point(483, 124)
+        Me.CustomLabel8.Location = New System.Drawing.Point(482, 90)
         Me.CustomLabel8.Name = "CustomLabel8"
         Me.CustomLabel8.Size = New System.Drawing.Size(41, 13)
         Me.CustomLabel8.TabIndex = 7
@@ -794,7 +833,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel7.AutoSize = True
         Me.CustomLabel7.ControlAssociationKey = 6
-        Me.CustomLabel7.Location = New System.Drawing.Point(262, 124)
+        Me.CustomLabel7.Location = New System.Drawing.Point(261, 90)
         Me.CustomLabel7.Name = "CustomLabel7"
         Me.CustomLabel7.Size = New System.Drawing.Size(72, 13)
         Me.CustomLabel7.TabIndex = 6
@@ -804,7 +843,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel6.AutoSize = True
         Me.CustomLabel6.ControlAssociationKey = 8
-        Me.CustomLabel6.Location = New System.Drawing.Point(22, 150)
+        Me.CustomLabel6.Location = New System.Drawing.Point(21, 116)
         Me.CustomLabel6.Name = "CustomLabel6"
         Me.CustomLabel6.Size = New System.Drawing.Size(49, 13)
         Me.CustomLabel6.TabIndex = 5
@@ -814,7 +853,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel5.AutoSize = True
         Me.CustomLabel5.ControlAssociationKey = 5
-        Me.CustomLabel5.Location = New System.Drawing.Point(22, 124)
+        Me.CustomLabel5.Location = New System.Drawing.Point(21, 90)
         Me.CustomLabel5.Name = "CustomLabel5"
         Me.CustomLabel5.Size = New System.Drawing.Size(51, 13)
         Me.CustomLabel5.TabIndex = 4
@@ -824,7 +863,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel4.AutoSize = True
         Me.CustomLabel4.ControlAssociationKey = 4
-        Me.CustomLabel4.Location = New System.Drawing.Point(22, 96)
+        Me.CustomLabel4.Location = New System.Drawing.Point(21, 62)
         Me.CustomLabel4.Name = "CustomLabel4"
         Me.CustomLabel4.Size = New System.Drawing.Size(53, 13)
         Me.CustomLabel4.TabIndex = 3
@@ -834,7 +873,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel3.AutoSize = True
         Me.CustomLabel3.ControlAssociationKey = 3
-        Me.CustomLabel3.Location = New System.Drawing.Point(23, 71)
+        Me.CustomLabel3.Location = New System.Drawing.Point(22, 37)
         Me.CustomLabel3.Name = "CustomLabel3"
         Me.CustomLabel3.Size = New System.Drawing.Size(52, 13)
         Me.CustomLabel3.TabIndex = 2
@@ -844,7 +883,7 @@ Partial Class ProveedoresABM
         '
         Me.CustomLabel2.AutoSize = True
         Me.CustomLabel2.ControlAssociationKey = 2
-        Me.CustomLabel2.Location = New System.Drawing.Point(22, 41)
+        Me.CustomLabel2.Location = New System.Drawing.Point(241, 9)
         Me.CustomLabel2.Name = "CustomLabel2"
         Me.CustomLabel2.Size = New System.Drawing.Size(70, 13)
         Me.CustomLabel2.TabIndex = 1

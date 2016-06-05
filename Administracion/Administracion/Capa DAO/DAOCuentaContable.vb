@@ -6,8 +6,8 @@ Public Class DAOCuentaContable
         SQLConnector.executeProcedure("alta_cuenta", cuenta.id, cuenta.descripcion, 1, 1)
     End Sub
 
-    Public Shared Sub eliminarCuentaContable(ByVal cuenta As CuentaContable)
-        SQLConnector.executeProcedure("baja_cuenta", cuenta.id)
+    Public Shared Sub eliminarCuentaContable(ByVal codigo As String)
+        SQLConnector.executeProcedure("baja_cuenta", codigo)
     End Sub
 
     Public Shared Function buscarCuentaContablePorDescripcion(ByVal descripcion As String)

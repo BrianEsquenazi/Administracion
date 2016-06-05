@@ -30,6 +30,7 @@ Partial Class Login
         '
         'cmbEntity
         '
+        Me.cmbEntity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbEntity.FormattingEnabled = True
         Me.cmbEntity.Location = New System.Drawing.Point(69, 37)
         Me.cmbEntity.Name = "cmbEntity"

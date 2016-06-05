@@ -612,11 +612,11 @@ Public Class FormOrganizer
     Private Function validateControls(ByVal isAdd As Boolean)
         Dim firstControl As CustomTextBox = allControls.Find(Function(control) control.EnterIndex = 1) 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
         Dim validator As New Validator
-        validator.validate(firstControl.Text, firstControl.Validator, labelFor(firstControl.LabelAssociationKey).Text)
+        validator.validate(firstControl.Text, firstControl.Validator, firstControl.Empty, labelFor(firstControl.LabelAssociationKey).Text)
         If isAdd Then
             Dim controlsToValidate As List(Of CustomTextBox) = allControls.OfType(Of CustomTextBox).ToList 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
             controlsToValidate.Remove(firstControl)
-            controlsToValidate.ForEach(Sub(control) validator.validate(control.Text, control.Validator, labelFor(control.LabelAssociationKey).Text))
+            controlsToValidate.ForEach(Sub(control) validator.validate(control.Text, control.Validator, control.Empty, labelFor(control.LabelAssociationKey).Text))
         End If
         Return validator.flush()
     End Function
