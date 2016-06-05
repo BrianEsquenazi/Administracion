@@ -5,6 +5,7 @@ Public Class ProveedoresABM
     Dim organizadorABM As New FormOrganizer(Me, 800, 600)
 
     Private Sub ProveedoresABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        cmbProvincia.DataSource = DAOProveedor.listarProvincias
         cmbRegion.SelectedIndex = 0
         cmbCondicionIB1.SelectedIndex = 0
         cmbCondicionIB2.SelectedIndex = 0
@@ -18,7 +19,7 @@ Public Class ProveedoresABM
         organizadorABM.setDefaultCleanButtonClick()
         organizadorABM.setDefaultCloseButtonClick()
         organizadorABM.setListButtonClick(AddressOf listado)
-        'organizadorABM.addQueryFunction(AddressOf DAOBanco.buscarBancoPorNombre, "Bancos", AddressOf mostrarBanco)
+        organizadorABM.addQueryFunction(AddressOf DAOProveedor.buscarProveedorPorNombre, "Proveedores", AddressOf mostrarProveedor)
         organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta)
         organizadorABM.compactOrganize()
     End Sub
@@ -29,6 +30,11 @@ Public Class ProveedoresABM
 
     Private Sub borrar()
         MsgBox("Borraste")
+    End Sub
+
+    Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
+        txtCodigo.Text = proveedor.id
+        txtRazonSocial.Text = proveedor.razonSocial
     End Sub
 
     Private Sub mostrarCuenta(ByVal cuenta As CuentaContable)

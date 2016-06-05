@@ -23,7 +23,6 @@ Public Class DAORubroProveedor
     Public Shared Function buscarRubroProveedorPorCodigo(ByVal codigoString As String)
         Try
             Dim codigo As Integer = codigoString
-            Dim rubros As New List(Of RubroProveedor)
             Dim tabla As DataTable
             tabla = SQLConnector.retrieveDataTable("buscar_rubro_proveedor_por_codigo", codigo)
             If tabla.Rows.Count > 0 Then

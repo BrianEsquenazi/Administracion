@@ -21,8 +21,7 @@
     End Sub
 
     Private Sub btnCambio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCambio.Click
-        Form1.Show()
-        'Login.Show()
-        'Close()
+        Login.Show()
+        Close()
     End Sub
 End Class

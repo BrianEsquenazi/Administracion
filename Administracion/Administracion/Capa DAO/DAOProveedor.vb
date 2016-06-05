@@ -2,13 +2,37 @@
 
 Public Class DAOProveedor
 
-    Public Function listado_provincias() As List(Of Provincia)
+    Public Shared Function listarProvincias() As List(Of Provincia)
         Dim provincias As New List(Of Provincia)
-        For Each row In SQLConnector.retrieveDataTable("listado_provincias").Rows
+        For Each row In SQLConnector.retrieveDataTable("get_provincias").Rows
             provincias.Add(New Provincia(row("codigo"), row("nombre")))
         Next
         Return provincias
     End Function
 
+    Public Shared Function buscarProveedorPorNombre(ByVal nombre As String)
+        Dim proveedores As New List(Of Proveedor)
+        Dim tabla As DataTable
+        tabla = SQLConnector.retrieveDataTable("buscar_proveedor_por_nombre", nombre)
+        For Each proveedor As DataRow In tabla.Rows
+            proveedores.Add(New Proveedor(proveedor("codigo"), proveedor("nombre")))
+        Next
+        Return proveedores
+    End Function
+
+    Public Shared Function buscarProveedorPorCodigo(ByVal codigoString As String)
+        Try
+            Dim codigo As Integer = codigoString
+            Dim tabla As DataTable
+            tabla = SQLConnector.retrieveDataTable("buscar_proveedor_por_codigo", codigo)
+            If tabla.Rows.Count > 0 Then
+                Return New Proveedor(tabla(0)("codigo"), tabla(0)("nombre"))
+            Else
+                Return Nothing
+            End If
+        Catch e As Exception
+            Return Nothing
+        End Try
+    End Function
 
 End Class

@@ -23,7 +23,6 @@ Public Class DAOBanco
     Public Shared Function buscarBancoPorCodigo(ByVal codigoString As String)
         Try
             Dim codigo As Short = codigoString
-            Dim bancos As New List(Of Banco)
             Dim tabla As DataTable
             tabla = SQLConnector.retrieveDataTable("buscar_banco_por_codigo", codigo)
             If tabla.Rows.Count > 0 Then
