@@ -4,7 +4,9 @@ Public Class ProveedoresABM
 
     Dim organizadorABM As New FormOrganizer(Me, 800, 600)
     Dim observaciones As String
-    Dim cufes As New List(Of Tuple(Of String, String)) From {Tuple.Create("", ""), Tuple.Create("", ""), Tuple.Create("", "")}
+    Dim cufe1 As Tuple(Of String, String) = Tuple.Create("", "")
+    Dim cufe2 As Tuple(Of String, String) = Tuple.Create("", "")
+    Dim cufe3 As Tuple(Of String, String) = Tuple.Create("", "")
 
     Private Sub ProveedoresABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cmbProvincia.DataSource = DAOProveedor.listarProvincias
@@ -61,17 +63,16 @@ Public Class ProveedoresABM
     Private Sub btnCUFE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCUFE.Click
         Dim formularioCUFE As New CUFEProveedor()
 
-        formularioCUFE.txtCUFE1.Text = cufes(0).Item1
-        formularioCUFE.txtCUFE1Fecha.Text = cufes(0).Item2
-        formularioCUFE.txtCUFE2.Text = cufes(1).Item1
-        formularioCUFE.txtCUFE2Fecha.Text = cufes(1).Item2
-        formularioCUFE.txtCUFE3.Text = cufes(2).Item1
-        formularioCUFE.txtCUFE3Fecha.Text = cufes(2).Item2
+        formularioCUFE.txtCUFE1.Text = cufe1.Item1
+        formularioCUFE.txtCUFE1Fecha.Text = cufe1.Item2
+        formularioCUFE.txtCUFE1.Text = cufe2.Item1
+        formularioCUFE.txtCUFE1Fecha.Text = cufe2.Item2
+        formularioCUFE.txtCUFE1.Text = cufe3.Item1
+        formularioCUFE.txtCUFE1Fecha.Text = cufe3.Item2()
         If formularioCUFE.ShowDialog(Me) = DialogResult.OK Then
-            cufes.Clear()
-            cufes.Add(Tuple.Create(formularioCUFE.txtCUFE1.Text, formularioCUFE.txtCUFE1Fecha.Text))
-            cufes.Add(Tuple.Create(formularioCUFE.txtCUFE2.Text, formularioCUFE.txtCUFE2Fecha.Text))
-            cufes.Add(Tuple.Create(formularioCUFE.txtCUFE3.Text, formularioCUFE.txtCUFE3Fecha.Text))
+            cufe1 = Tuple.Create(formularioCUFE.txtCUFE1.Text, formularioCUFE.txtCUFE1Fecha.Text)
+            cufe2 = Tuple.Create(formularioCUFE.txtCUFE2.Text, formularioCUFE.txtCUFE2Fecha.Text)
+            cufe3 = Tuple.Create(formularioCUFE.txtCUFE3.Text, formularioCUFE.txtCUFE3Fecha.Text)
         End If
     End Sub
 

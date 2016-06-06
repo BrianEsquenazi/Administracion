@@ -36,21 +36,27 @@ Public Class FormOrganizer
     Private usingQueryText As Boolean = True
     Private usingControllerButtons As Boolean = True
     Private organizingCompactedControls As Boolean = False
-    Private isCompact = False
+    Private isCompact As Boolean = False
+    Private isCRUDForm As Boolean = True
 
     Private buttonsWidth As Integer
+    Private formNormalHeight As Integer
+    Private formNeededHeight As Integer
+    Private formWithQueryControlsHeight As Integer
+    Private formWithSelectionListHeight As Integer
     Private topMargin As Integer = 30
     Private leftMargin As Integer = 30
     Private rightMargin As Integer = 30
     Private bottomMargin As Integer = 30
     Private separation As Integer = 6
     Private actionButtonHeight As Integer = 35
-    Private listQueryHeight As Integer = 240
+    Private listQueryHeight As Integer = 160
+    Private containerHeight As Integer
+    Private containerWidth As Integer
     Private separationBetweenControlsAndButtons As Integer = 45
     Private controlSeparation As Integer = 10
     Private charPixelSize As Double = 7.5
     Private compactHeightConstant As Integer = 0
-    Dim timer As New Timer
 
     Public Sub New(ByVal someForm As Form, ByVal formWidth As Integer, ByVal formHeight As Integer)
         form = someForm
@@ -94,38 +100,80 @@ Public Class FormOrganizer
         Return actionButtonHeight * 2 + separation 'Las dos filas de botones + separation entre botones
     End Function
 
-    Private Function formNormalHeight()
-        Return topMargin + bottomMargin + controlsHeight() + separationBetweenControlsAndButtons + buttonsHeight() + compactHeightConstant
-    End Function
-
-    Private Function formNeededHeight()
-        If isCompact Then
-            Return formNormalHeight() + compactedFirstColumnControls.Sum(Function(control As CustomControl) DirectCast(control, Control).Height) + (compactedFirstColumnControls.Count - 1) * controlSeparation - buttonsHeight()
-        Else
-            Return formNormalHeight()
-        End If
-    End Function
-
-    Private Function formWithQueryControlsHeight()
-        Dim height As Integer = formNormalHeight() + separation + queryList.Height
-        If usingQueryText Then
-            height += separation + queryTextHeight()
+    Private Function calculateFormNormalHeight()
+        Dim height As Integer = topMargin + bottomMargin + controlsHeight() + compactHeightConstant
+        If isCRUDForm Then
+            height += separationBetweenControlsAndButtons + buttonsHeight()
         End If
         Return height
     End Function
 
-    Private Function formWithSelectionListHeight()
-        Return formNormalHeight() + separation + selectionList.Height
+    Private Function calculateFormNeededHeight()
+        If isCompact Then
+            If Not isCRUDForm Then : Throw New ApplicationException("No deberías tener una ventana que no es ABM con formato compacto")
+            End If
+            Return formNormalHeight + compactedFirstColumnControls.Sum(Function(control As CustomControl) DirectCast(control, Control).Height) + (compactedFirstColumnControls.Count - 1) * controlSeparation - buttonsHeight()
+        Else
+            Return formNormalHeight
+        End If
+    End Function
+
+    Private Function recalculateFormNeededHeight()
+        If isCompact Then
+            If Not isCRUDForm Then : Throw New ApplicationException("No deberías tener una ventana que no es ABM con formato compacto")
+            End If
+            Return formNormalHeight + compactedFirstColumnControls.Sum(Function(control As CustomControl) DirectCast(control, Control).Height) + (compactedFirstColumnControls.Count - 1) * controlSeparation - buttonsHeight()
+        Else
+            Return formNormalHeight + containerHeight - buttonsHeight()
+        End If
+    End Function
+
+    Private Function calculateFormWithQueryControlsHeight()
+        If isCRUDForm Then
+            Dim height As Integer = formNormalHeight + separation + queryList.Height
+            If usingQueryText Then
+                height += separation + queryTextHeight()
+            End If
+            Return height
+        Else
+            Return formNormalHeight
+        End If
+    End Function
+
+    Private Function calculateFormWithSelectionListHeight()
+        If isCRUDForm Then
+            Return formNormalHeight + separation + selectionListHeight
+        Else
+            Return formNormalHeight
+        End If
     End Function
 
     Public Sub organize()
+        Dim left As Integer
+
         CommonEventsHandler.setIndexTab(form)
+        formNormalHeight = calculateFormNormalHeight()
+        formNeededHeight = calculateFormNeededHeight()
+
         form.Height = Math.Min(maxHeight, formNeededHeight)
         form.Width = width
 
         Dim btnsTop As Integer = organizeControls() + separationBetweenControlsAndButtons
-        organizeButtons(btnsTop)
-        organizeQueryControllers(btnsTop + buttonsHeight())
+        If isCRUDForm Then
+            left = organizeButtons(btnsTop)
+            organizeQueryControllers(btnsTop + buttonsHeight())
+            If usingControllerButtons Then
+                addControlerButtons(btnsTop, left)
+            End If
+            formWithSelectionListHeight = calculateFormWithSelectionListHeight()
+            formWithQueryControlsHeight = calculateFormWithQueryControlsHeight()
+        Else
+            'TODO Poner el botón de aceptar y cancelar
+        End If
+    End Sub
+
+    Public Sub organizeForNoCRUDForm()
+        isCRUDForm = False
     End Sub
 
     Public Sub compactOrganize()
@@ -355,7 +403,7 @@ Public Class FormOrganizer
         Return buttonsWidth - controllerButtonsWidth()
     End Function
 
-    Private Sub organizeButtons(ByVal top As Integer)
+    Private Function organizeButtons(ByVal top As Integer)
         createActionButtons()
 
         Dim buttonWidth As Integer = (actionButtonsWidth() - separation * buttonsTop.Count) \ buttonsTop.Count
@@ -374,10 +422,8 @@ Public Class FormOrganizer
             left += buttonWidth + separation
         Next
 
-        If usingControllerButtons Then
-            addControlerButtons(top, left)
-        End If
-    End Sub
+        Return left
+    End Function
 
     Private Sub addControlerButtons(ByVal top As Integer, ByVal left As Integer)
         Dim buttonsNamesAndTexts As New List(Of Tuple(Of String, String)) _
@@ -385,10 +431,12 @@ Public Class FormOrganizer
 
         Dim container As New GroupBox
         container.Parent = form
-        container.Width = controllerButtonsWidth() - separation * 2
-        container.Height = buttonsHeight() + bottomMargin - separation
+        container.Width = controllerButtonsWidth() - separation
+        container.Height = containerHeight
         container.Top = top - separation
-        container.Left = left
+        container.Left = left + separation
+
+        formNeededHeight = recalculateFormNeededHeight()
 
         Dim btnTop As Integer = separation * 1.5
 
@@ -407,13 +455,23 @@ Public Class FormOrganizer
         Next
     End Sub
 
+    Private Function defaultContainerHeight()
+        Return buttonsHeight()
+    End Function
 
     Private Sub organizeQueryControllers(ByVal top As Integer)
+        Dim width As Integer = buttonsWidth
+        Dim realQueryListHeight As Integer = Math.Min(listQueryHeight, maxHeight - formNormalHeight - compactHeightConstant)
+
+        If defaultContainerHeight() < 100 Then
+            width -= controllerButtonsWidth()
+        End If
+
         If usingQueryText Then
             queryText = New CustomTextBox
             queryText.Parent = form
             queryText.Name = "txtQuery"
-            queryText.Width = buttonsWidth
+            queryText.Width = width
             queryText.Top = top + separation
             top = queryText.Top
             queryText.Left = leftMargin
@@ -421,11 +479,15 @@ Public Class FormOrganizer
             AddHandler queryText.KeyDown, AddressOf queryTextEnterPressed
         End If
 
+        If defaultContainerHeight() < 100 Then
+            containerHeight = Math.Min(defaultContainerHeight() + realQueryListHeight + queryTextHeight(), 100)
+        End If
+
         queryList = New CustomListBox
         queryList.Parent = form
         queryList.Name = "lstQuery"
-        queryList.Width = buttonsWidth
-        queryList.Height = Math.Min(listQueryHeight, maxHeight - formNormalHeight() - compactHeightConstant)
+        queryList.Width = width
+        queryList.Height = realQueryListHeight
         queryList.Top = top + queryTextHeight() + separation
         queryList.Left = leftMargin
         queryList.Visible = False
@@ -434,9 +496,9 @@ Public Class FormOrganizer
         If queryFunctions.Count > 1 Then
             selectionList = New CustomListBox
             selectionList.Parent = form
-            selectionList.Name = "lstQuery"
-            selectionList.Width = buttonsWidth
-            selectionList.Height = Math.Min(Math.Round(listQueryHeight / 2), maxHeight - formNormalHeight() - compactHeightConstant)
+            selectionList.Name = "lstSelection"
+            selectionList.Width = width
+            selectionList.Height = Math.Min(Math.Round(listQueryHeight / 2), maxHeight - formNormalHeight - compactHeightConstant)
             selectionList.Top = top + separation
             selectionList.Left = leftMargin
             selectionList.Visible = False
@@ -461,17 +523,12 @@ Public Class FormOrganizer
         buttons.AddRange(buttonsTop)
         buttons.AddRange(buttonsBottom)
     End Sub
-
     Private Function addButton()
         Dim btn As CustomButton
-        If IsNothing(btnAdd) Then
-            btn = New CustomButton()
-            btn.Parent = form
-            btn.Name = "btnAdd"
-            btn.Text = "Agregar"
-        Else
-            btn = btnAdd
-        End If
+        btn = New CustomButton()
+        btn.Parent = form
+        btn.Name = "btnAdd"
+        btn.Text = "Agregar"
 
         If Not IsNothing(btnAddClick) Then
             AddHandler btn.Click, AddressOf addClickWithClean
@@ -479,17 +536,12 @@ Public Class FormOrganizer
 
         Return btn
     End Function
-
     Private Function deleteButton()
         Dim btn As CustomButton
-        If IsNothing(btnDelete) Then
-            btn = New CustomButton()
-            btn.Parent = form
-            btn.Name = "btnDelete"
-            btn.Text = "Eliminar"
-        Else
-            btn = btnDelete
-        End If
+        btn = New CustomButton()
+        btn.Parent = form
+        btn.Name = "btnDelete"
+        btn.Text = "Eliminar"
 
         If Not IsNothing(btnDeleteClick) Then
             AddHandler btn.Click, AddressOf deleteClickWithConfirmation
@@ -497,17 +549,12 @@ Public Class FormOrganizer
 
         Return btn
     End Function
-
     Private Function cleanButton()
         Dim btn As CustomButton
-        If IsNothing(btnClean) Then
-            btn = New CustomButton()
-            btn.Parent = form
-            btn.Name = "btnClean"
-            btn.Text = "Limpiar"
-        Else
-            btn = btnClean
-        End If
+        btn = New CustomButton()
+        btn.Parent = form
+        btn.Name = "btnClean"
+        btn.Text = "Limpiar"
 
         If Not IsNothing(btnCleanClick) Then
             AddHandler btn.Click, btnCleanClick
@@ -515,17 +562,12 @@ Public Class FormOrganizer
 
         Return btn
     End Function
-
     Private Function queryButton()
         Dim btn As CustomButton
-        If IsNothing(btnQuery) Then
-            btn = New CustomButton()
-            btn.Parent = form
-            btn.Name = "btnQuery"
-            btn.Text = "Consulta"
-        Else
-            btn = btnQuery
-        End If
+        btn = New CustomButton()
+        btn.Parent = form
+        btn.Name = "btnQuery"
+        btn.Text = "Consulta"
 
         If Not IsNothing(btnQueryClick) Then
             AddHandler btn.Click, btnQueryClick
@@ -533,17 +575,12 @@ Public Class FormOrganizer
 
         Return btn
     End Function
-
     Private Function listButton()
         Dim btn As CustomButton
-        If IsNothing(btnList) Then
-            btn = New CustomButton()
-            btn.Parent = form
-            btn.Name = "btnList"
-            btn.Text = "Listado"
-        Else
-            btn = btnList
-        End If
+        btn = New CustomButton()
+        btn.Parent = form
+        btn.Name = "btnList"
+        btn.Text = "Listado"
 
         If Not IsNothing(btnListClick) Then
             AddHandler btn.Click, btnListClick
@@ -551,17 +588,12 @@ Public Class FormOrganizer
 
         Return btn
     End Function
-
     Private Function closeButton()
         Dim btn As CustomButton
-        If IsNothing(btnClose) Then
-            btn = New CustomButton()
-            btn.Parent = form
-            btn.Name = "btnClose"
-            btn.Text = "Cerrar"
-        Else
-            btn = btnClose
-        End If
+        btn = New CustomButton()
+        btn.Parent = form
+        btn.Name = "btnClose"
+        btn.Text = "Cerrar"
 
         If Not IsNothing(btnCloseClick) Then
             AddHandler btn.Click, btnCloseClick
@@ -620,25 +652,6 @@ Public Class FormOrganizer
         End If
         Return validator.flush()
     End Function
-
-    Public Sub addButton(ByVal button As CustomButton)
-        btnAdd = button
-    End Sub
-    Public Sub deleteButton(ByVal button As CustomButton)
-        btnDelete = button
-    End Sub
-    Public Sub cleanButton(ByVal button As CustomButton)
-        btnClean = button
-    End Sub
-    Public Sub queryButton(ByVal button As CustomButton)
-        btnQuery = button
-    End Sub
-    Public Sub listButton(ByVal button As CustomButton)
-        btnList = button
-    End Sub
-    Public Sub closeButton(ByVal button As CustomButton)
-        btnClose = button
-    End Sub
 
     Public Sub setAddButtonClick(ByRef btnClick As EventHandler)
         btnAddClick = btnClick
@@ -724,13 +737,13 @@ Public Class FormOrganizer
             queryText.Focus()
         End If
         queryList.Visible = True
-        form.Height = formWithQueryControlsHeight()
+        form.Height = formWithQueryControlsHeight
     End Sub
     Private Sub showSelectionList()
         selectionList.DataSource = queryFunctions
         selectionList.DisplayMember = "Item2"
         selectionList.Visible = True
-        form.Height = formWithSelectionListHeight()
+        form.Height = formWithSelectionListHeight
     End Sub
 
     Private Sub defaultCloseClick(ByVal sender As Object, ByVal e As EventArgs)
@@ -754,12 +767,12 @@ Public Class FormOrganizer
         End If
         queryList.Visible = False
         hideSelectionList()
-        form.Height = Math.Max(formNormalHeight(), formNeededHeight())
+        form.Height = Math.Max(formNormalHeight, formNeededHeight)
     End Sub
     Private Sub hideSelectionList()
         If Not IsNothing(selectionList) Then
             selectionList.Visible = False
-            form.Height = formNormalHeight()
+            form.Height = formNormalHeight
         End If
     End Sub
 
@@ -771,4 +784,11 @@ Public Class FormOrganizer
         Return heigth
     End Function
 
+    Private Function selectionListHeight() As Integer
+        Dim heigth As Integer = 0
+        If Not IsNothing(selectionList) Then
+            heigth = selectionList.Height
+        End If
+        Return heigth
+    End Function
 End Class
