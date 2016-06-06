@@ -114,6 +114,18 @@
     <Compile Include="Clases\CustomTextBox.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CUFEProveedor.Designer.vb">
+      <DependentUpon>CUFEProveedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CUFEProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObservacionesProveedor.Designer.vb">
+      <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ObservacionesProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ProveedoresABM.Designer.vb">
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
     </Compile>
@@ -167,6 +179,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CuentaContableABM.resx">
       <DependentUpon>CuentaContableABM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CUFEProveedor.resx">
+      <DependentUpon>CUFEProveedor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObservacionesProveedor.resx">
+      <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProveedoresABM.resx">
       <DependentUpon>ProveedoresABM.vb</DependentUpon>

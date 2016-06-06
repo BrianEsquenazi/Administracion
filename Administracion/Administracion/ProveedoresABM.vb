@@ -3,9 +3,12 @@
 Public Class ProveedoresABM
 
     Dim organizadorABM As New FormOrganizer(Me, 800, 600)
+    Dim observaciones As String
+    Dim cufes As New List(Of Tuple(Of String, String)) From {Tuple.Create("", ""), Tuple.Create("", ""), Tuple.Create("", "")}
 
     Private Sub ProveedoresABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cmbProvincia.DataSource = DAOProveedor.listarProvincias
+        cmbRubro.DataSource = DAORubroProveedor.buscarRubroProveedorPorDescripcion("")
         cmbRegion.SelectedIndex = 0
         cmbCondicionIB1.SelectedIndex = 0
         cmbCondicionIB2.SelectedIndex = 0
@@ -44,5 +47,49 @@ Public Class ProveedoresABM
 
     Private Sub listado()
 
+    End Sub
+
+    Private Sub btnObservaciones_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnObservaciones.Click
+        Dim formularioObservaciones As New ObservacionesProveedor()
+
+        formularioObservaciones.CustomTextBox1.Text = observaciones
+        If formularioObservaciones.ShowDialog(Me) = DialogResult.OK Then
+            observaciones = formularioObservaciones.CustomTextBox1.Text
+        End If
+    End Sub
+
+    Private Sub btnCUFE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCUFE.Click
+        Dim formularioCUFE As New CUFEProveedor()
+
+        formularioCUFE.txtCUFE1.Text = cufes(0).Item1
+        formularioCUFE.txtCUFE1Fecha.Text = cufes(0).Item2
+        formularioCUFE.txtCUFE2.Text = cufes(1).Item1
+        formularioCUFE.txtCUFE2Fecha.Text = cufes(1).Item2
+        formularioCUFE.txtCUFE3.Text = cufes(2).Item1
+        formularioCUFE.txtCUFE3Fecha.Text = cufes(2).Item2
+        If formularioCUFE.ShowDialog(Me) = DialogResult.OK Then
+            cufes.Clear()
+            cufes.Add(Tuple.Create(formularioCUFE.txtCUFE1.Text, formularioCUFE.txtCUFE1Fecha.Text))
+            cufes.Add(Tuple.Create(formularioCUFE.txtCUFE2.Text, formularioCUFE.txtCUFE2Fecha.Text))
+            cufes.Add(Tuple.Create(formularioCUFE.txtCUFE3.Text, formularioCUFE.txtCUFE3Fecha.Text))
+        End If
+    End Sub
+
+    Private Sub txtCuenta_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCuenta.Leave
+        Dim cuenta As CuentaContable = DAOCuentaContable.buscarCuentaContablePorCodigo(txtCuenta.Text)
+        If Not IsNothing(cuenta) Then
+            txtCuentaDescripcion.Text = cuenta.descripcion
+        Else
+            txtCuentaDescripcion.Text = ""
+        End If
+    End Sub
+
+    Private Sub txtCodigo_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCodigo.Leave
+        Dim proveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(txtCodigo.Text)
+        If Not IsNothing(proveedor) Then
+            txtRazonSocial.Text = proveedor.razonSocial
+        Else
+            txtRazonSocial.Text = ""
+        End If
     End Sub
 End Class

@@ -1,5 +1,6 @@
 ﻿Public Class CommonEventsHandler
     Private Shared controls As List(Of CustomControl)
+    Private Shared isCRUDForm As Boolean = True
 
     Public Shared Sub setIndexTab(ByVal form As Form)
         controls = New List(Of CustomControl)
@@ -29,19 +30,26 @@
             End If
         Next
 
-        Dim firstControl As Control
-        firstControl = controls.Find(Function(control) control.EnterIndex = 1)
         form.Show()
         If Not IsNothing(firstControl) Then
             firstControl.Focus()
         End If
     End Sub
 
+    Public Shared Sub setIndexTabNotCRUDForm(ByVal form As Form)
+        isCRUDForm = False
+        setIndexTab(form)
+    End Sub
+
     Private Shared Sub enterPressed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
             Dim nextControl As Control = controls.Find(Function(control) control.EnterIndex = sender.EnterIndex + 1)
             If IsNothing(nextControl) OrElse Not nextControl.Focus() Then
-                secondControl().Focus()
+                If isCRUDForm Then
+                    secondControl().Focus()
+                Else
+                    firstControl.Focus()
+                End If
             End If
         End If
     End Sub
@@ -50,6 +58,12 @@
         Dim sndControl As Control
         sndControl = controls.Find(Function(control) control.EnterIndex = 2)
         Return sndControl
+    End Function
+
+    Private Shared Function firstControl() As Control
+        Dim fstControl As Control
+        fstControl = controls.Find(Function(control) control.EnterIndex = 1)
+        Return fstControl
     End Function
 
     Private Shared Sub enterOrEscapePressedWithoutSound(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
