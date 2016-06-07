@@ -437,6 +437,7 @@ Public Class FormOrganizer
         container.Left = left + separation
 
         formNeededHeight = recalculateFormNeededHeight()
+        form.Height = Math.Max(formNormalHeight, formNeededHeight)
 
         Dim btnTop As Integer = separation * 1.5
 
