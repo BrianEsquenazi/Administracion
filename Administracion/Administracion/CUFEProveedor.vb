@@ -1,22 +1,11 @@
 ﻿Public Class CUFEProveedor
 
-    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
-        If validarCampos() Then
-            btnClose.PerformClick()
-        End If
-    End Sub
-
-    Private Function validarCampos()
-        Dim validador As New Validator
-        Me.Controls.OfType(Of CustomTextBox).ToList.ForEach(Sub(control) validador.validate(control.Text, control.Validator, control.Empty, descripcionPara(control.LabelAssociationKey)))
-        Return validador.flush
-    End Function
-
-    Private Function descripcionPara(ByVal index As Integer)
-        Return Me.Controls.OfType(Of CustomLabel).ToList.Find(Function(label) label.ControlAssociationKey = index).Text
-    End Function
+    Dim organizadorABM As New FormOrganizer(Me, 350, 600)
 
     Private Sub CUFEProveedor_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        CommonEventsHandler.setIndexTabNotCRUDForm(Me)
+        organizadorABM.addControls(txtCUFE1, txtCUFE2, txtCUFE3)
+        organizadorABM.addAnnexedControls(New List(Of CustomControl) From {txtCUFE1Fecha, txtCUFE2Fecha, txtCUFE3Fecha})
+        organizadorABM.organizeForNoCRUDForm()
     End Sub
+
 End Class

@@ -34,6 +34,7 @@ Partial Class MenuPrincipal
         Me.ListadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProcesosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnCambio = New System.Windows.Forms.Button()
+        Me.lblCargando = New WindowsApplication1.CustomLabel()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -116,11 +117,24 @@ Partial Class MenuPrincipal
         Me.btnCambio.Text = "Cambio de Empresa"
         Me.btnCambio.UseVisualStyleBackColor = True
         '
+        'lblCargando
+        '
+        Me.lblCargando.AutoSize = True
+        Me.lblCargando.ControlAssociationKey = -1
+        Me.lblCargando.Font = New System.Drawing.Font("Lucida Console", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCargando.Location = New System.Drawing.Point(71, 43)
+        Me.lblCargando.Name = "lblCargando"
+        Me.lblCargando.Size = New System.Drawing.Size(684, 37)
+        Me.lblCargando.TabIndex = 2
+        Me.lblCargando.Text = "CARGANDO, POR FAVOR ESPERE..."
+        Me.lblCargando.Visible = False
+        '
         'MenuPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(790, 568)
+        Me.Controls.Add(Me.lblCargando)
         Me.Controls.Add(Me.btnCambio)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
@@ -147,4 +161,5 @@ Partial Class MenuPrincipal
     Friend WithEvents ListadosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ProcesosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents btnCambio As System.Windows.Forms.Button
+    Friend WithEvents lblCargando As WindowsApplication1.CustomLabel
 End Class

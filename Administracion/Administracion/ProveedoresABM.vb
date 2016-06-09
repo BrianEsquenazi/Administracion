@@ -65,10 +65,10 @@ Public Class ProveedoresABM
 
         formularioCUFE.txtCUFE1.Text = cufe1.Item1
         formularioCUFE.txtCUFE1Fecha.Text = cufe1.Item2
-        formularioCUFE.txtCUFE1.Text = cufe2.Item1
-        formularioCUFE.txtCUFE1Fecha.Text = cufe2.Item2
-        formularioCUFE.txtCUFE1.Text = cufe3.Item1
-        formularioCUFE.txtCUFE1Fecha.Text = cufe3.Item2()
+        formularioCUFE.txtCUFE2.Text = cufe2.Item1
+        formularioCUFE.txtCUFE2Fecha.Text = cufe2.Item2
+        formularioCUFE.txtCUFE3.Text = cufe3.Item1
+        formularioCUFE.txtCUFE3Fecha.Text = cufe3.Item2()
         If formularioCUFE.ShowDialog(Me) = DialogResult.OK Then
             cufe1 = Tuple.Create(formularioCUFE.txtCUFE1.Text, formularioCUFE.txtCUFE1Fecha.Text)
             cufe2 = Tuple.Create(formularioCUFE.txtCUFE2.Text, formularioCUFE.txtCUFE2Fecha.Text)

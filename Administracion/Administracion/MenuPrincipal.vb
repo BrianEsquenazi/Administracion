@@ -1,5 +1,4 @@
 ﻿Public Class MenuPrincipal
-
     Private Sub IngresosDeCuentasContablesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IngresosDeCuentasContablesToolStripMenuItem.Click
         CuentaContableABM.Show()
     End Sub

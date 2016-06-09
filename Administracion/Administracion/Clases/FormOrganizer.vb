@@ -20,17 +20,11 @@ Public Class FormOrganizer
     Private buttons As New List(Of CustomButton)
     Private buttonsTop As New List(Of CustomButton)
     Private buttonsBottom As New List(Of CustomButton)
-    Private btnAdd As CustomButton
     Private btnAddClick As EventHandler
-    Private btnDelete As CustomButton
     Private btnDeleteClick As EventHandler
-    Private btnClean As CustomButton
     Private btnCleanClick As EventHandler
-    Private btnQuery As CustomButton
     Private btnQueryClick As EventHandler
-    Private btnList As CustomButton
     Private btnListClick As EventHandler
-    Private btnClose As CustomButton
     Private btnCloseClick As EventHandler
     Private showMethodFunction As ShowMethod
     Private usingQueryText As Boolean = True
@@ -38,6 +32,7 @@ Public Class FormOrganizer
     Private organizingCompactedControls As Boolean = False
     Private isCompact As Boolean = False
     Private isCRUDForm As Boolean = True
+    Private usingCancelButton As Boolean = True
 
     Private buttonsWidth As Integer
     Private formNormalHeight As Integer
@@ -100,10 +95,16 @@ Public Class FormOrganizer
         Return actionButtonHeight * 2 + separation 'Las dos filas de botones + separation entre botones
     End Function
 
+    Private Function notCRUDButtonsHeight()
+        Return actionButtonHeight
+    End Function
+
     Private Function calculateFormNormalHeight()
         Dim height As Integer = topMargin + bottomMargin + controlsHeight() + compactHeightConstant
         If isCRUDForm Then
             height += separationBetweenControlsAndButtons + buttonsHeight()
+        Else
+            height += notCRUDButtonsHeight() + separationBetweenControlsAndButtons
         End If
         Return height
     End Function
@@ -151,7 +152,7 @@ Public Class FormOrganizer
     Public Sub organize()
         Dim left As Integer
 
-        CommonEventsHandler.setIndexTab(form)
+
         formNormalHeight = calculateFormNormalHeight()
         formNeededHeight = calculateFormNeededHeight()
 
@@ -160,6 +161,7 @@ Public Class FormOrganizer
 
         Dim btnsTop As Integer = organizeControls() + separationBetweenControlsAndButtons
         If isCRUDForm Then
+            CommonEventsHandler.setIndexTab(form)
             left = organizeButtons(btnsTop)
             organizeQueryControllers(btnsTop + buttonsHeight())
             If usingControllerButtons Then
@@ -168,12 +170,14 @@ Public Class FormOrganizer
             formWithSelectionListHeight = calculateFormWithSelectionListHeight()
             formWithQueryControlsHeight = calculateFormWithQueryControlsHeight()
         Else
-            'TODO Poner el botón de aceptar y cancelar
+            CommonEventsHandler.setIndexTabNotCRUDForm(form)
+            organizeNotCRUDButtons(btnsTop)
         End If
     End Sub
 
     Public Sub organizeForNoCRUDForm()
         isCRUDForm = False
+        organize()
     End Sub
 
     Public Sub compactOrganize()
@@ -240,7 +244,7 @@ Public Class FormOrganizer
             Dim annexedControl As Control = DirectCast(annexedCustomControl, Control)
             annexedControl.Top = top - 3
             annexedControl.Left = left
-            annexedControl.Width = maxWidthFor(annexedCustomControl, 1, maxWidth, widthPercentage)
+            annexedControl.Width = maxWidthFor(annexedCustomControl, -1, maxWidth, widthPercentage)
             left += annexedControl.Width + separation
         Next
 
@@ -249,7 +253,7 @@ Public Class FormOrganizer
 
     Private Function maxWidthFor(ByVal control As CustomControl, ByVal columnNumber As Integer, ByVal maxWidth As Integer, ByVal widthPercentage As Double)
         If variableWidthFor(control, columnNumber) > maxWidth Then
-            Return variableWidthFor(control, columnNumber) * widthPercentage
+            Return maxWidth 'variableWidthFor(control, columnNumber) - variableWidthFor(control, columnNumber) * widthPercentage TODO
         Else
             Return variableWidthFor(control, columnNumber)
         End If
@@ -260,6 +264,7 @@ Public Class FormOrganizer
         Dim left As Integer = realLeftMargin
         Dim controlList As List(Of Control) = castToListOfControl(castControl)
         Dim maxWidth As Integer = maxWidthForColumnControls(controlList)
+        Dim widthPercentage As Double = widthPercentageForColumnControls(controlList)
 
         For Each specificControl In controlList
             Dim custControl As CustomControl = DirectCast(specificControl, CustomControl)
@@ -275,7 +280,7 @@ Public Class FormOrganizer
 
             specificControl.Top = top - 3
             specificControl.Left = left
-            specificControl.Width = Math.Min(variableWidthFor(custControl, index), maxWidth)
+            specificControl.Width = maxWidthFor(custControl, index, maxWidth, widthPercentage)
 
             left += specificControl.Width + separation 'Se cambia el left para el próximo control
 
@@ -284,8 +289,7 @@ Public Class FormOrganizer
                 Dim annexedControl As Control = DirectCast(annexedCustomControl, Control)
                 annexedControl.Top = top - 3
                 annexedControl.Left = left
-
-                annexedControl.Width = Math.Min(variableWidthFor(custControl, index), maxWidth)
+                annexedControl.Width = maxWidthFor(annexedCustomControl, -1, maxWidth, widthPercentage)
                 left += annexedControl.Width + separation 'Se cambia el left para el próximo control
             Next
         Next
@@ -293,7 +297,9 @@ Public Class FormOrganizer
     End Function
 
     Private Function maxWidthForColumnControls(ByVal controlList As List(Of Control)) 'TODO Mejorar para que devuelva el coeficiente de resta y no una división de cantidad
-        Dim annexedControlsCount As Integer = controlList.Sum(Function(control) annexedControlsFor(DirectCast(control, CustomControl).LabelAssociationKey).Count)
+        Dim annexedControlsInRow As New List(Of CustomControl)
+        controlList.ConvertAll(Function(control) annexedControlsFor(DirectCast(control, CustomControl).LabelAssociationKey)).ForEach(Sub(list) annexedControlsInRow.AddRange(list))
+        Dim annexedControlsCount = annexedControlsInRow.Count
 
         Dim availableSpace As Integer
         If organizingCompactedControls Then
@@ -301,18 +307,18 @@ Public Class FormOrganizer
         Else
             availableSpace = form.Width - leftMargin - rightMargin - maxLabelWidth() + labelWidthFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey) 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
         End If
-        availableSpace = availableSpace - (controlList.Count - 1) * 2 * separation - controlList.Sum(Function(control) labelWidthFor(DirectCast(control, CustomControl).LabelAssociationKey))
+        availableSpace = availableSpace - controlList.Count * 2 * separation - controlList.Sum(Function(control) labelWidthFor(DirectCast(control, CustomControl).LabelAssociationKey))
         availableSpace = availableSpace - annexedControlsCount * separation
 
         Dim avgMax As Integer = availableSpace \ (controlList.Count + annexedControlsCount)
 
-        Dim smallerControls As List(Of Control) = controlList.FindAll(Function(control) Math.Min(variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)), avgMax) < avgMax)
-        Dim smallerControlsSize As Integer = smallerControls.Sum(Function(control) variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)) + 2 * separation)
+        Dim smallerControls As List(Of Control) = controlList.Concat(castToListOfControl(annexedControlsInRow)).ToList.FindAll(Function(control) Math.Min(variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)), avgMax) < avgMax)
+        Dim smallerControlsSize As Integer = smallerControls.Sum(Function(control) variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)))
 
-        Dim biggerControlsCount As Integer = controlList.Count - smallerControls.Count
+        Dim biggerControlsCount As Integer = controlList.Count - smallerControls.Count + annexedControlsCount
 
         If biggerControlsCount <> 0 Then
-            Return (availableSpace - smallerControlsSize) \ (controlList.Count - smallerControls.Count + annexedControlsCount)
+            Return (availableSpace - smallerControlsSize) \ biggerControlsCount
         Else
             Return avgMax
         End If
@@ -325,19 +331,30 @@ Public Class FormOrganizer
 
         Dim availableSpace As Integer
         If organizingCompactedControls Then
-            availableSpace = buttonsWidth - maxLabelWidth() + labelWidthFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey) 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
+            availableSpace = buttonsWidth
         Else
-            availableSpace = form.Width - leftMargin - rightMargin - maxLabelWidth() + labelWidthFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey) 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
+            availableSpace = form.Width - leftMargin - rightMargin
         End If
-        availableSpace = availableSpace - (controlList.Count - 1) * 2 * separation - controlList.Sum(Function(control) labelWidthFor(DirectCast(control, CustomControl).LabelAssociationKey))
+        availableSpace = availableSpace - maxLabelWidth() + labelWidthFor(DirectCast(controlList(0), CustomControl).LabelAssociationKey) 'Ya que el maxLabelWidth suma el label más largo de la primer columna, se "resta" el primero
+        availableSpace = availableSpace - controlList.Count * 2 * separation - controlList.Sum(Function(control) labelWidthFor(DirectCast(control, CustomControl).LabelAssociationKey))
         availableSpace = availableSpace - annexedControlsCount * separation
 
         Dim avgMax As Integer = availableSpace \ (controlList.Count + annexedControlsCount)
 
-        Dim smallerControls As List(Of Control) = controlList.FindAll(Function(control) Math.Min(variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)), avgMax) < avgMax)
-        Dim smallerControlsSize As Integer = smallerControls.Sum(Function(control) variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)) + 2 * separation)
+        Dim smallerControls As List(Of Control) = controlList.Concat(castToListOfControl(annexedControlsInRow)).ToList.FindAll(Function(control) Math.Min(variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)), avgMax) < avgMax)
+        Dim smallerControlsSize As Integer = smallerControls.Sum(Function(control) variableWidthFor(DirectCast(control, CustomControl), controlList.IndexOf(control)))
 
-        Return Math.Min((availableSpace - smallerControlsSize) / (controlList.Sum(Function(control) variableWidthFor(control)) + annexedControlsInRow.Sum(Function(control) variableWidthFor(DirectCast(control, Control)))), 1)
+        Dim allControlsSize As Integer = (controlList.Sum(Function(control) variableWidthFor(control)) + annexedControlsInRow.Sum(Function(control) variableWidthFor(DirectCast(control, Control))))
+
+        Return Math.Min((availableSpace - smallerControlsSize) / (allControlsSize - smallerControlsSize), 1)
+    End Function
+
+    Private Function castToListOfControl(ByVal controls As List(Of CustomControl)) As List(Of Control)
+        Dim list As New List(Of Control)
+        For Each c In controls
+            list.Add(DirectCast(c, Control))
+        Next
+        Return list
     End Function
 
     Private Function castToListOfControl(ByVal controls As Object) As List(Of Control)
@@ -366,11 +383,15 @@ Public Class FormOrganizer
 
     Private Function variableWidthOfControl(ByVal control As CustomControl, ByVal columnNumber As Integer)
         Dim labelWidth As Integer
-        If columnNumber = 0 Then
-            labelWidth = maxLabelWidth()
-        Else
-            labelWidth = labelWidthFor(control.LabelAssociationKey)
-        End If
+
+        Select Case columnNumber
+            Case -1
+                labelWidth = 0 'Es anexo
+            Case 0
+                labelWidth = maxLabelWidth() 'Es first column control
+            Case Else
+                labelWidth = labelWidthFor(control.LabelAssociationKey)
+        End Select
 
         If organizingCompactedControls Then
             Return buttonsWidth - labelWidth - separation
@@ -402,6 +423,46 @@ Public Class FormOrganizer
     Private Function actionButtonsWidth()
         Return buttonsWidth - controllerButtonsWidth()
     End Function
+
+    Private Sub organizeNotCRUDButtons(ByVal top As Integer)
+        Dim buttonWidth As Integer = 100
+        Dim cancelButtonLeft As Integer = form.Width - rightMargin - buttonWidth
+        Dim acceptButtonLeft As Integer = cancelButtonLeft - separation - buttonWidth
+
+        Dim closeButton As New CustomButton
+        closeButton.Parent = form
+        closeButton.Name = "btnClose"
+        closeButton.Visible = False
+        closeButton.DialogResult = DialogResult.OK 'Fundamental para que se guarde la info
+
+        Dim acceptButton As New CustomButton
+        acceptButton.Parent = form
+        acceptButton.Name = "btnAccept"
+        acceptButton.Text = "Aceptar"
+        acceptButton.Width = buttonWidth
+        acceptButton.Height = actionButtonHeight
+        acceptButton.Left = acceptButtonLeft
+        acceptButton.Top = top
+        AddHandler acceptButton.Click, AddressOf acceptButtonClick
+
+        If usingCancelButton Then
+            Dim cancelButton As New CustomButton
+            cancelButton.Parent = form
+            cancelButton.Name = "btnCancel"
+            cancelButton.Text = "Cancelar"
+            cancelButton.Width = buttonWidth
+            cancelButton.Height = actionButtonHeight
+            cancelButton.Left = cancelButtonLeft
+            cancelButton.Top = top
+            AddHandler cancelButton.Click, AddressOf form.Dispose
+        End If
+    End Sub
+
+    Private Sub acceptButtonClick()
+        If validateForAdd() Then
+            form.DialogResult = DialogResult.OK
+        End If
+    End Sub
 
     Private Function organizeButtons(ByVal top As Integer)
         createActionButtons()
@@ -643,16 +704,35 @@ Public Class FormOrganizer
         Return validateControls(True)
     End Function
     Private Function validateControls(ByVal isAdd As Boolean)
-        Dim firstControl As CustomTextBox = allControls.Find(Function(control) control.EnterIndex = 1) 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
+        Dim firstControl As ValidableControl = allControls.Find(Function(control) control.EnterIndex = 1) 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
         Dim validator As New Validator
-        validator.validate(firstControl.Text, firstControl.Validator, firstControl.Empty, labelFor(firstControl.LabelAssociationKey).Text)
+        validateControl(firstControl, validator)
         If isAdd Then
-            Dim controlsToValidate As List(Of CustomTextBox) = allControls.OfType(Of CustomTextBox).ToList 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
+            validateAnnexedControlsFor(firstControl, validator)
+            Dim controlsToValidate As List(Of ValidableControl) = allControls.OfType(Of ValidableControl).ToList 'TODO HACERLO GENÉRICO PARA TODOS LOS CONTROLERS
             controlsToValidate.Remove(firstControl)
-            controlsToValidate.ForEach(Sub(control) validator.validate(control.Text, control.Validator, control.Empty, labelFor(control.LabelAssociationKey).Text))
+            For Each validableControl In controlsToValidate
+                validateControl(validableControl, validator)
+                validateAnnexedControlsFor(validableControl, validator)
+            Next
         End If
         Return validator.flush()
     End Function
+
+    Private Sub validateControl(ByVal validableControl As ValidableControl, ByVal validator As Validator)
+        Dim control = DirectCast(validableControl, Control)
+        Dim customControl = DirectCast(validableControl, CustomControl)
+        validator.validate(control.Text, validableControl.Validator, validableControl.Empty, labelFor(customControl.LabelAssociationKey).Text)
+    End Sub
+
+    Private Sub validateAnnexedControlsFor(ByVal validableControl, ByVal validator)
+        Dim annexedCustomControls = annexedControlsFor(DirectCast(validableControl, CustomControl).LabelAssociationKey)
+        For Each annexedCustomControl In annexedCustomControls
+            Dim annexedControl = DirectCast(annexedCustomControl, Control)
+            Dim annexedValidableControl = DirectCast(annexedCustomControl, ValidableControl)
+            validator.validate(annexedControl.Text, annexedValidableControl.Validator, annexedValidableControl.Empty, "asociado a " & labelFor(annexedCustomControl.LabelAssociationKey).Text)
+        Next
+    End Sub
 
     Public Sub setAddButtonClick(ByRef btnClick As EventHandler)
         btnAddClick = btnClick
