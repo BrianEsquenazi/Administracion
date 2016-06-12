@@ -23,4 +23,8 @@
         Login.Show()
         Close()
     End Sub
+
+    Private Sub PruebaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PruebaToolStripMenuItem.Click
+        Form1.show()
+    End Sub
 End Class

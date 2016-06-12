@@ -504,7 +504,7 @@ Partial Class ProveedoresABM
         Me.txtDiasPlazo.Name = "txtDiasPlazo"
         Me.txtDiasPlazo.Size = New System.Drawing.Size(118, 20)
         Me.txtDiasPlazo.TabIndex = 35
-        Me.txtDiasPlazo.Validator = WindowsApplication1.ValidatorType.Positive
+        Me.txtDiasPlazo.Validator = WindowsApplication1.ValidatorType.Numeric
         '
         'CustomLabel23
         '

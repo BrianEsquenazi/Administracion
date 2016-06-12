@@ -1,17 +1,17 @@
 ﻿Public Class Validator
 
-    Private warnings As String
-
-    Public Sub New()
-        warnings = ""
-    End Sub
+    Private warnings As String = ""
 
     Public Function flush()
-        If warnings <> "" Then
+        If hasWarnings() Then
             MsgBox(warnings, MsgBoxStyle.Exclamation, "No se puede confirmar la operación")
             Return False
         End If
         Return True
+    End Function
+
+    Public Function hasWarnings()
+        Return warnings <> ""
     End Function
 
     Public Sub validate(ByVal value As String, ByVal type As Integer, ByVal emptyPermitted As Boolean, ByVal description As String)
@@ -79,5 +79,19 @@
     Private Sub agregarWarning(ByVal warning As String)
         warnings = warnings & vbCrLf & warning
     End Sub
+End Class
 
+
+Public Class DataGridValidator
+    Private validatorType As ValidatorType
+
+    Public Sub New(ByVal type As ValidatorType)
+        validatorType = type
+    End Sub
+
+    Public Function validate(ByVal value As String)
+        Dim validator As New Validator
+        validator.validate(value, validatorType, False, "")
+        Return Not validator.hasWarnings
+    End Function
 End Class
