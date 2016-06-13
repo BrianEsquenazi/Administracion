@@ -20,13 +20,12 @@ Public Class DAOProveedor
         Return proveedores
     End Function
 
-    Public Shared Function buscarProveedorPorCodigo(ByVal codigoString As String)
+    Public Shared Function buscarProveedorPorCodigo(ByVal codigo As String)
         Try
-            Dim codigo As Integer = codigoString
             Dim tabla As DataTable
             tabla = SQLConnector.retrieveDataTable("buscar_proveedor_por_codigo", codigo)
             If tabla.Rows.Count > 0 Then
-                Return New Proveedor(tabla(0)("codigo"), tabla(0)("nombre"))
+                Return New Proveedor(codigo, tabla(0)("nombre"))
             Else
                 Return Nothing
             End If
