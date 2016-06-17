@@ -12,6 +12,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FN_ge
 DROP FUNCTION [dbo].[FN_get_fecha_ordenable]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FN_get_fecha_desde_ordenable]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
+DROP FUNCTION [dbo].[FN_get_fecha_desde_ordenable]
+GO
+
 USE [surfactanSA]
 GO
 
@@ -34,6 +38,18 @@ BEGIN
 END
 GO
 
+CREATE FUNCTION [dbo].[FN_get_fecha_desde_ordenable](@fecha varchar(10))
+RETURNS varchar(10)
+AS
+BEGIN
+	
+	declare @fecha_retorno varchar(10) 
+	SET @fecha_retorno = RIGHT(@fecha,2)+ '/' + RIGHT((LEFT(@fecha,6)),2) + '/' + LEFT(@fecha,4) 
+	
+	RETURN @fecha_retorno
+END
+
+GO
 
 /*
 ---------------------------------------------------------------
@@ -68,3 +84,4 @@ AS
 		order by td.orden, td.Nombre
 	RETURN
 GO
+
