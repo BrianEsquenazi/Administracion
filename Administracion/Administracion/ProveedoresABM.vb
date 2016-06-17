@@ -10,6 +10,8 @@ Public Class ProveedoresABM
 
     Private Sub ProveedoresABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cmbProvincia.DataSource = DAOProveedor.listarProvincias
+        cmbRubro.DisplayMember = "ToString"
+        cmbRubro.ValueMember = "valueMember"
         cmbRubro.DataSource = DAORubroProveedor.buscarRubroProveedorPorDescripcion("")
         cmbRegion.SelectedIndex = 0
         cmbCondicionIB1.SelectedIndex = 0
@@ -17,8 +19,8 @@ Public Class ProveedoresABM
         cmbCategoria2.SelectedIndex = 0
 
         organizadorABM.addControls({txtCodigo, txtRazonSocial}, txtDireccion, txtLocalidad, {cmbProvincia, txtCodigoPostal, cmbRegion}, {txtTelefono, txtDiasPlazo}, txtEmail, {txtObservaciones, txtCUIT}, {cmbTipoProveedor, cmbIVA}, txtCuenta, txtCheque, {cmbCondicionIB1, txtNroIB, txtPorcelProv, txtPorcelCABA}, {cmbRubro, txtNroSEDRONAR1}, {cmbCategoria1, cmbInscripcionIB})
-        organizadorABM.addCompactedControls({txtCAI, txtCAIVto}, cmbCertificados, cmbEstado, cmbClasificacion, {btnObservaciones, btnCUFE})
-        organizadorABM.addAnnexedControls(New List(Of CustomControl) From {txtCuentaDescripcion, cmbCondicionIB2, txtNroSEDRONAR2, cmbCategoria2, txtCategoria, txtCertificados, txtClasificacion})
+        organizadorABM.addCompactedControls({txtCAI, txtCAIVto}, cmbCertificados, cmbEstado, cmbCalificacion, {btnObservaciones, btnCUFE})
+        organizadorABM.addAnnexedControls(New List(Of CustomControl) From {txtCuentaDescripcion, cmbCondicionIB2, txtNroSEDRONAR2, cmbCategoria2, txtCategoria, txtCertificados, txtCalificacion})
         organizadorABM.setAddButtonClick(AddressOf agregar)
         organizadorABM.setDeleteButtonClick(AddressOf borrar)
         organizadorABM.setDefaultCleanButtonClick()
@@ -38,13 +40,64 @@ Public Class ProveedoresABM
     End Sub
 
     Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
+        If Not proveedor.estaDefinidoCompleto Then
+            proveedor = DAOProveedor.buscarProveedorPorCodigo(proveedor.id)
+        End If
         txtCodigo.Text = proveedor.id
         txtRazonSocial.Text = proveedor.razonSocial
+        txtDireccion.Text = proveedor.direccion
+        txtLocalidad.Text = proveedor.localidad
+        cmbProvincia.SelectedIndex = proveedor.provincia
+        txtCodigoPostal.Text = proveedor.codPostal
+        cmbRegion.SelectedIndex = proveedor.region
+        txtTelefono.Text = proveedor.telefono
+        txtDiasPlazo.Text = proveedor.diasPlazo
+        txtEmail.Text = proveedor.email
+        txtObservaciones.Text = proveedor.observaciones
+        txtCUIT.Text = proveedor.cuit
+        cmbTipoProveedor.SelectedIndex = proveedor.tipo
+        cmbIVA.SelectedIndex = proveedor.codIva
+        mostrarCuenta(proveedor.cuenta)
+        txtCheque.Text = proveedor.nombreCheque
+        cmbCondicionIB1.SelectedIndex = proveedor.condicionIB1
+        'cmbCondicionIB2.SelectedIndex = proveedor.condicionIB2
+        txtNroIB.Text = proveedor.numeroIB
+        txtPorcelProv.Text = proveedor.porceIBProvincia
+        txtPorcelCABA.Text = proveedor.porceIBCABA
+        mostrarRubro(proveedor.rubro)
+        txtNroSEDRONAR1.Text = proveedor.numeroSEDRONAR
+        txtNroSEDRONAR2.Text = proveedor.vtoSEDRONAR
+        cmbCategoria1.SelectedIndex = proveedor.categoria
+        cmbCategoria2.SelectedIndex = proveedor.categoriaCalif
+        txtCategoria.Text = proveedor.vtoCategoria
+        cmbInscripcionIB.SelectedIndex = proveedor.tipoInscripcionIB
+        txtCAI.Text = proveedor.cai
+        txtCAIVto.Text = proveedor.vtoCAI
+        cmbCertificados.SelectedIndex = proveedor.certificados
+        txtCertificados.Text = proveedor.vtoCertificados
+        cmbEstado.SelectedIndex = proveedor.estado
+        cmbCalificacion.SelectedIndex = proveedor.calificacion
+        txtCalificacion.Text = proveedor.vtoCalificacion
+
+        observaciones = proveedor.observacionCompleta
+        cufe1 = Tuple.Create(proveedor.cufe1, proveedor.vtoCUFE1)
+        cufe2 = Tuple.Create(proveedor.cufe2, proveedor.vtoCUFE2)
+        cufe3 = Tuple.Create(proveedor.cufe3, proveedor.vtoCUFE3)
     End Sub
 
     Private Sub mostrarCuenta(ByVal cuenta As CuentaContable)
-        txtCuenta.Text = cuenta.id
-        txtCuentaDescripcion.Text = cuenta.descripcion
+        If Not IsNothing(cuenta) Then
+            txtCuenta.Text = cuenta.id
+            txtCuentaDescripcion.Text = cuenta.descripcion
+        End If
+    End Sub
+
+    Private Sub mostrarRubro(ByVal rubro As RubroProveedor)
+        If Not IsNothing(rubro) Then
+            cmbRubro.SelectedValue = rubro.codigo
+        Else
+            cmbRubro.SelectedValue = -1
+        End If
     End Sub
 
     Private Sub listado()
