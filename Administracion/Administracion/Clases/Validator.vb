@@ -40,9 +40,20 @@
         End If
     End Function
 
+    Public Function validarNoVacioFecha(ByVal valor As String, ByVal emptyPermitted As Boolean, ByVal descripcionCampo As String)
+        If Not emptyPermitted And (valor = "" Or valor = "  /  /    ") Then
+            agregarWarning("El campo " & descripcionCampo & " no puede ser vacío")
+            Return False
+        Else
+            If valor = "" Or valor = "  /  /    " Then : Return True
+            Else : Return False
+            End If
+        End If
+    End Function
+
     Public Sub validarFecha(ByVal valor As String, ByVal emptyPermitted As Boolean, ByVal descripcionCampo As String)
         Dim res As Date
-        If Not validarNoVacio(valor, emptyPermitted, descripcionCampo) Then
+        If Not validarNoVacioFecha(valor, emptyPermitted, descripcionCampo) Then
             If Not Date.TryParse(valor, res) Then
                 agregarWarning("El campo " & descripcionCampo & " debe ser una fecha válida")
             End If
