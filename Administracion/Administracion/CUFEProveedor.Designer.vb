@@ -40,11 +40,11 @@ Partial Class CUFEProveedor
         Me.txtCUFE3Fecha.EnterIndex = 6
         Me.txtCUFE3Fecha.LabelAssociationKey = 3
         Me.txtCUFE3Fecha.Location = New System.Drawing.Point(228, 97)
-        Me.txtCUFE3Fecha.MaxLength = 10
+        Me.txtCUFE3Fecha.MaxLength = 50
         Me.txtCUFE3Fecha.Name = "txtCUFE3Fecha"
-        Me.txtCUFE3Fecha.Size = New System.Drawing.Size(73, 20)
+        Me.txtCUFE3Fecha.Size = New System.Drawing.Size(202, 20)
         Me.txtCUFE3Fecha.TabIndex = 8
-        Me.txtCUFE3Fecha.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtCUFE3Fecha.Validator = WindowsApplication1.ValidatorType.None
         '
         'txtCUFE1Fecha
         '
@@ -53,11 +53,11 @@ Partial Class CUFEProveedor
         Me.txtCUFE1Fecha.EnterIndex = 2
         Me.txtCUFE1Fecha.LabelAssociationKey = 1
         Me.txtCUFE1Fecha.Location = New System.Drawing.Point(228, 17)
-        Me.txtCUFE1Fecha.MaxLength = 10
+        Me.txtCUFE1Fecha.MaxLength = 50
         Me.txtCUFE1Fecha.Name = "txtCUFE1Fecha"
-        Me.txtCUFE1Fecha.Size = New System.Drawing.Size(73, 20)
+        Me.txtCUFE1Fecha.Size = New System.Drawing.Size(202, 20)
         Me.txtCUFE1Fecha.TabIndex = 7
-        Me.txtCUFE1Fecha.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtCUFE1Fecha.Validator = WindowsApplication1.ValidatorType.None
         '
         'txtCUFE2Fecha
         '
@@ -66,11 +66,11 @@ Partial Class CUFEProveedor
         Me.txtCUFE2Fecha.EnterIndex = 4
         Me.txtCUFE2Fecha.LabelAssociationKey = 2
         Me.txtCUFE2Fecha.Location = New System.Drawing.Point(228, 57)
-        Me.txtCUFE2Fecha.MaxLength = 10
+        Me.txtCUFE2Fecha.MaxLength = 50
         Me.txtCUFE2Fecha.Name = "txtCUFE2Fecha"
-        Me.txtCUFE2Fecha.Size = New System.Drawing.Size(73, 20)
+        Me.txtCUFE2Fecha.Size = New System.Drawing.Size(202, 20)
         Me.txtCUFE2Fecha.TabIndex = 6
-        Me.txtCUFE2Fecha.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtCUFE2Fecha.Validator = WindowsApplication1.ValidatorType.None
         '
         'txtCUFE3
         '
@@ -79,6 +79,7 @@ Partial Class CUFEProveedor
         Me.txtCUFE3.EnterIndex = 5
         Me.txtCUFE3.LabelAssociationKey = 3
         Me.txtCUFE3.Location = New System.Drawing.Point(80, 97)
+        Me.txtCUFE3.MaxLength = 20
         Me.txtCUFE3.Name = "txtCUFE3"
         Me.txtCUFE3.Size = New System.Drawing.Size(142, 20)
         Me.txtCUFE3.TabIndex = 5
@@ -91,6 +92,7 @@ Partial Class CUFEProveedor
         Me.txtCUFE2.EnterIndex = 3
         Me.txtCUFE2.LabelAssociationKey = 2
         Me.txtCUFE2.Location = New System.Drawing.Point(80, 57)
+        Me.txtCUFE2.MaxLength = 20
         Me.txtCUFE2.Name = "txtCUFE2"
         Me.txtCUFE2.Size = New System.Drawing.Size(142, 20)
         Me.txtCUFE2.TabIndex = 4
@@ -103,6 +105,7 @@ Partial Class CUFEProveedor
         Me.txtCUFE1.EnterIndex = 1
         Me.txtCUFE1.LabelAssociationKey = 1
         Me.txtCUFE1.Location = New System.Drawing.Point(80, 17)
+        Me.txtCUFE1.MaxLength = 20
         Me.txtCUFE1.Name = "txtCUFE1"
         Me.txtCUFE1.Size = New System.Drawing.Size(142, 20)
         Me.txtCUFE1.TabIndex = 3
@@ -142,7 +145,7 @@ Partial Class CUFEProveedor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(329, 166)
+        Me.ClientSize = New System.Drawing.Size(454, 166)
         Me.Controls.Add(Me.txtCUFE3Fecha)
         Me.Controls.Add(Me.txtCUFE1Fecha)
         Me.Controls.Add(Me.txtCUFE2Fecha)
