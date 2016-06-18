@@ -149,7 +149,11 @@
             e.Handled = True
         End If
         If Asc(e.KeyChar) = Keys.Escape Then
-            DirectCast(sender, CustomTextBox).Text = ""
+            Dim defaultEmptyText As String = ""
+            If DirectCast(sender, CustomTextBox).Validator = ValidatorType.DateFormat Then
+                defaultEmptyText = "  /  /    "
+            End If
+            DirectCast(sender, CustomTextBox).Text = defaultEmptyText
             e.Handled = True
         End If
     End Sub

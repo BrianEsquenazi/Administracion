@@ -1,4 +1,7 @@
-﻿Public Delegate Function QueryFunction(ByVal text As String)
+﻿Imports System.IO
+Imports System.Text
+
+Public Delegate Function QueryFunction(ByVal text As String)
 Public Delegate Sub ShowMethod(ByVal selectedValue)
 
 Public Class FormOrganizer
@@ -52,12 +55,47 @@ Public Class FormOrganizer
     Private controlSeparation As Integer = 10
     Private charPixelSize As Double = 7.5
     Private compactHeightConstant As Integer = 0
+    Dim filePath As String
+    Dim realButtonsTop As Integer
 
     Public Sub New(ByVal someForm As Form, ByVal formWidth As Integer, ByVal formHeight As Integer)
         form = someForm
         maxHeight = formHeight
         width = formWidth
         buttonsWidth = width - leftMargin - rightMargin
+    End Sub
+
+    Public Sub createControlsFile()
+        Dim folderPath As String = Application.StartupPath & "\FormsOrg\"
+        If Not Directory.Exists(folderPath) Then
+            Directory.CreateDirectory(folderPath)
+        End If
+
+        Dim fileStream As FileStream = File.Create(filePath)
+
+        Dim stringToWrite As String = "'name-height-width-left-top. Last line reserved for buttons top" & vbCrLf
+        For Each customControl In allControls
+            Dim control As Control = DirectCast(customControl, Control)
+            stringToWrite = stringToWrite & control.Name & vbCrLf & control.Height & vbCrLf & control.Width & vbCrLf & _
+                control.Left & vbCrLf & control.Top & vbCrLf
+
+            Dim label As CustomLabel = labelFor(customControl.LabelAssociationKey)
+            If Not IsNothing(label) Then
+                stringToWrite = stringToWrite & label.Name & vbCrLf & label.Height & vbCrLf & label.Width & vbCrLf & _
+                label.Left & vbCrLf & label.Top & vbCrLf
+            End If
+
+            For Each annexedCustomControl In annexedControlsFor(customControl.LabelAssociationKey)
+                Dim annexedControl As Control = DirectCast(annexedCustomControl, Control)
+                stringToWrite = stringToWrite & annexedControl.Name & vbCrLf & annexedControl.Height & vbCrLf & annexedControl.Width & vbCrLf & _
+                annexedControl.Left & vbCrLf & annexedControl.Top & vbCrLf
+            Next
+        Next
+
+        stringToWrite = stringToWrite & realButtonsTop
+        Dim info As Byte() = New UTF8Encoding(True).GetBytes(stringToWrite)
+        fileStream.Write(info, 0, info.Length)
+        fileStream.Close()
     End Sub
 
     Public Sub addControls(ByVal ParamArray controlsColumn() As Object)
@@ -152,14 +190,16 @@ Public Class FormOrganizer
     Public Sub organize()
         Dim left As Integer
 
-
         formNormalHeight = calculateFormNormalHeight()
         formNeededHeight = calculateFormNeededHeight()
 
         form.Height = Math.Min(maxHeight, formNeededHeight)
         form.Width = width
 
+        filePath = Application.StartupPath & "\FormsOrg\" & form.Name & ".txt"
+
         Dim btnsTop As Integer = organizeControls() + separationBetweenControlsAndButtons
+        realButtonsTop = btnsTop - separationBetweenControlsAndButtons 'Se hace esto ya que se debe guardar el valor sin la suma del separation
         If isCRUDForm Then
             CommonEventsHandler.setIndexTab(form)
             left = organizeButtons(btnsTop)
@@ -173,6 +213,7 @@ Public Class FormOrganizer
             CommonEventsHandler.setIndexTabNotCRUDForm(form)
             organizeNotCRUDButtons(btnsTop)
         End If
+        createControlsFile()
     End Sub
 
     Public Sub organizeForNoCRUDForm()
@@ -195,13 +236,33 @@ Public Class FormOrganizer
 
     Private Function organizeControls()
         Dim top As Integer = topMargin
-        top = organizeControls(top, leftMargin, columnedControls)
-        If isCompact Then
-            organizingCompactedControls = True
-            organizeCompactedControls(top + separationBetweenControlsAndButtons)
-            organizingCompactedControls = False
+
+        If File.Exists(filePath) Then
+            top = organizeControlsFromFile()
+        Else
+            top = organizeControls(top, leftMargin, columnedControls)
+            If isCompact Then
+                organizingCompactedControls = True
+                organizeCompactedControls(top + separationBetweenControlsAndButtons)
+                organizingCompactedControls = False
+            End If
         End If
         Return top
+    End Function
+
+    Private Function organizeControlsFromFile()
+        Dim reader As New StreamReader(filePath)
+        Dim lines = reader.ReadToEnd.Split(Environment.NewLine.ToCharArray()).ToList
+        lines.RemoveAll(Function(value) value = "")
+
+        For index As Integer = 1 To lines.Count - 2 Step 5
+            Dim control As Control = form.Controls(lines(index))
+            control.Height = lines(index + 1)
+            control.Width = lines(index + 2)
+            control.Left = lines(index + 3)
+            control.Top = lines(index + 4)
+        Next
+        Return Convert.ToInt32(lines.Last) 'La última línea está reservada para el top de los buttons
     End Function
 
     Private Sub organizeCompactedControls(ByVal top As Integer)
