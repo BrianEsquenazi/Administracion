@@ -80,8 +80,13 @@ AS
 				  , 1 as orden
 			  FROM [surfactanSA].[dbo].[Provincia] pr
 			  where pr.Nombre = 'Exterior'  
+			union all
+			SELECT 25 as codigo
+				, '' as Nombre
+				, 2 as orden
 			) td
 		order by td.orden, td.Nombre
 	RETURN
+
 GO
 
