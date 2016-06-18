@@ -186,9 +186,9 @@ Public Class ProveedoresABM
     Private Sub txtCodigo_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCodigo.Leave
         Dim proveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(txtCodigo.Text)
         If Not IsNothing(proveedor) Then
-            txtRazonSocial.Text = proveedor.razonSocial
+            mostrarProveedor(proveedor)
         Else
-            txtRazonSocial.Text = ""
+            txtRazonSocial.Text = "" 'TODO, Ver si hacer un clean o qué
         End If
     End Sub
 End Class
