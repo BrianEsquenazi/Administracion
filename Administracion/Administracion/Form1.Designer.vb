@@ -23,17 +23,24 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column})
         Me.DataGridView1.Location = New System.Drawing.Point(71, 27)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(639, 392)
         Me.DataGridView1.StandardTab = True
         Me.DataGridView1.TabIndex = 0
+        '
+        'Column
+        '
+        Me.Column.HeaderText = "Hola"
+        Me.Column.Name = "Column"
         '
         'Form1
         '
@@ -48,4 +55,5 @@ Partial Class Form1
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents Column As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

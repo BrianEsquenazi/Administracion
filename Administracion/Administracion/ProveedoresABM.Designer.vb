@@ -22,10 +22,10 @@ Partial Class ProveedoresABM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.cmbClasificacion = New WindowsApplication1.CustomComboBox()
+        Me.cmbCalificacion = New WindowsApplication1.CustomComboBox()
         Me.cmbEstado = New WindowsApplication1.CustomComboBox()
         Me.cmbCertificados = New WindowsApplication1.CustomComboBox()
-        Me.txtClasificacion = New WindowsApplication1.CustomTextBox()
+        Me.txtCalificacion = New WindowsApplication1.CustomTextBox()
         Me.txtCertificados = New WindowsApplication1.CustomTextBox()
         Me.txtCAIVto = New WindowsApplication1.CustomTextBox()
         Me.txtCAI = New WindowsApplication1.CustomTextBox()
@@ -91,20 +91,20 @@ Partial Class ProveedoresABM
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
         Me.SuspendLayout()
         '
-        'cmbClasificacion
+        'cmbCalificacion
         '
-        Me.cmbClasificacion.Cleanable = True
-        Me.cmbClasificacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbClasificacion.Empty = True
-        Me.cmbClasificacion.EnterIndex = 34
-        Me.cmbClasificacion.FormattingEnabled = True
-        Me.cmbClasificacion.Items.AddRange(New Object() {"", "Apto", "Condicional", "No Apto"})
-        Me.cmbClasificacion.LabelAssociationKey = 29
-        Me.cmbClasificacion.Location = New System.Drawing.Point(456, 438)
-        Me.cmbClasificacion.Name = "cmbClasificacion"
-        Me.cmbClasificacion.Size = New System.Drawing.Size(135, 21)
-        Me.cmbClasificacion.TabIndex = 66
-        Me.cmbClasificacion.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbCalificacion.Cleanable = True
+        Me.cmbCalificacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCalificacion.Empty = True
+        Me.cmbCalificacion.EnterIndex = 34
+        Me.cmbCalificacion.FormattingEnabled = True
+        Me.cmbCalificacion.Items.AddRange(New Object() {"", "Apto", "Condicional", "No Apto"})
+        Me.cmbCalificacion.LabelAssociationKey = 29
+        Me.cmbCalificacion.Location = New System.Drawing.Point(456, 438)
+        Me.cmbCalificacion.Name = "cmbCalificacion"
+        Me.cmbCalificacion.Size = New System.Drawing.Size(135, 21)
+        Me.cmbCalificacion.TabIndex = 66
+        Me.cmbCalificacion.Validator = WindowsApplication1.ValidatorType.None
         '
         'cmbEstado
         '
@@ -136,18 +136,18 @@ Partial Class ProveedoresABM
         Me.cmbCertificados.TabIndex = 64
         Me.cmbCertificados.Validator = WindowsApplication1.ValidatorType.None
         '
-        'txtClasificacion
+        'txtCalificacion
         '
-        Me.txtClasificacion.Cleanable = True
-        Me.txtClasificacion.Empty = True
-        Me.txtClasificacion.EnterIndex = 35
-        Me.txtClasificacion.LabelAssociationKey = 29
-        Me.txtClasificacion.Location = New System.Drawing.Point(615, 432)
-        Me.txtClasificacion.MaxLength = 10
-        Me.txtClasificacion.Name = "txtClasificacion"
-        Me.txtClasificacion.Size = New System.Drawing.Size(122, 20)
-        Me.txtClasificacion.TabIndex = 63
-        Me.txtClasificacion.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtCalificacion.Cleanable = True
+        Me.txtCalificacion.Empty = True
+        Me.txtCalificacion.EnterIndex = 35
+        Me.txtCalificacion.LabelAssociationKey = 29
+        Me.txtCalificacion.Location = New System.Drawing.Point(615, 432)
+        Me.txtCalificacion.MaxLength = 10
+        Me.txtCalificacion.Name = "txtCalificacion"
+        Me.txtCalificacion.Size = New System.Drawing.Size(122, 20)
+        Me.txtCalificacion.TabIndex = 63
+        Me.txtCalificacion.Validator = WindowsApplication1.ValidatorType.DateFormat
         '
         'txtCertificados
         '
@@ -298,7 +298,7 @@ Partial Class ProveedoresABM
         Me.txtNroSEDRONAR1.Name = "txtNroSEDRONAR1"
         Me.txtNroSEDRONAR1.Size = New System.Drawing.Size(58, 20)
         Me.txtNroSEDRONAR1.TabIndex = 50
-        Me.txtNroSEDRONAR1.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtNroSEDRONAR1.Validator = WindowsApplication1.ValidatorType.None
         '
         'txtPorcelCABA
         '
@@ -311,7 +311,7 @@ Partial Class ProveedoresABM
         Me.txtPorcelCABA.Name = "txtPorcelCABA"
         Me.txtPorcelCABA.Size = New System.Drawing.Size(58, 20)
         Me.txtPorcelCABA.TabIndex = 49
-        Me.txtPorcelCABA.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtPorcelCABA.Validator = WindowsApplication1.ValidatorType.Positive
         '
         'txtPorcelProv
         '
@@ -324,7 +324,7 @@ Partial Class ProveedoresABM
         Me.txtPorcelProv.Name = "txtPorcelProv"
         Me.txtPorcelProv.Size = New System.Drawing.Size(58, 20)
         Me.txtPorcelProv.TabIndex = 48
-        Me.txtPorcelProv.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtPorcelProv.Validator = WindowsApplication1.ValidatorType.Positive
         '
         'txtNroIB
         '
@@ -337,7 +337,7 @@ Partial Class ProveedoresABM
         Me.txtNroIB.Name = "txtNroIB"
         Me.txtNroIB.Size = New System.Drawing.Size(58, 20)
         Me.txtNroIB.TabIndex = 47
-        Me.txtNroIB.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtNroIB.Validator = WindowsApplication1.ValidatorType.None
         '
         'txtCheque
         '
@@ -431,7 +431,7 @@ Partial Class ProveedoresABM
         Me.cmbCondicionIB2.Empty = False
         Me.cmbCondicionIB2.EnterIndex = 18
         Me.cmbCondicionIB2.FormattingEnabled = True
-        Me.cmbCondicionIB2.Items.AddRange(New Object() {"Exento", "Reteniente"})
+        Me.cmbCondicionIB2.Items.AddRange(New Object() {"", "", "Exento", "Reteniente"})
         Me.cmbCondicionIB2.LabelAssociationKey = 17
         Me.cmbCondicionIB2.Location = New System.Drawing.Point(213, 276)
         Me.cmbCondicionIB2.Name = "cmbCondicionIB2"
@@ -475,7 +475,7 @@ Partial Class ProveedoresABM
         Me.cmbIVA.Empty = True
         Me.cmbIVA.EnterIndex = 14
         Me.cmbIVA.FormattingEnabled = True
-        Me.cmbIVA.Items.AddRange(New Object() {"No Inscripto", "Consumidor Final", "Resp.Inscripto", "Exento", "No Responsable", "Monotributo", "No Catalogado"})
+        Me.cmbIVA.Items.AddRange(New Object() {"No Inscripto", "Consumidor Final", "Resp.Inscripto", "Exento", "No Responsable", "Monotributo", "No Catalogado", ""})
         Me.cmbIVA.LabelAssociationKey = 14
         Me.cmbIVA.Location = New System.Drawing.Point(433, 198)
         Me.cmbIVA.Name = "cmbIVA"
@@ -504,7 +504,7 @@ Partial Class ProveedoresABM
         Me.txtDiasPlazo.Name = "txtDiasPlazo"
         Me.txtDiasPlazo.Size = New System.Drawing.Size(118, 20)
         Me.txtDiasPlazo.TabIndex = 35
-        Me.txtDiasPlazo.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtDiasPlazo.Validator = WindowsApplication1.ValidatorType.None
         '
         'CustomLabel23
         '
@@ -533,7 +533,7 @@ Partial Class ProveedoresABM
         Me.cmbTipoProveedor.Empty = True
         Me.cmbTipoProveedor.EnterIndex = 13
         Me.cmbTipoProveedor.FormattingEnabled = True
-        Me.cmbTipoProveedor.Items.AddRange(New Object() {"Bienes", "Servicios", "Alquileres", "Exento", "Despachante", "Locación de Obras", "Fletes", "Facturas (M)"})
+        Me.cmbTipoProveedor.Items.AddRange(New Object() {"Bienes", "Servicios", "Alquileres", "Exento", "Despachante", "Locación de Obras", "Fletes", "Facturas (M)", ""})
         Me.cmbTipoProveedor.LabelAssociationKey = 13
         Me.cmbTipoProveedor.Location = New System.Drawing.Point(107, 193)
         Me.cmbTipoProveedor.Name = "cmbTipoProveedor"
@@ -904,10 +904,10 @@ Partial Class ProveedoresABM
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(790, 568)
-        Me.Controls.Add(Me.cmbClasificacion)
+        Me.Controls.Add(Me.cmbCalificacion)
         Me.Controls.Add(Me.cmbEstado)
         Me.Controls.Add(Me.cmbCertificados)
-        Me.Controls.Add(Me.txtClasificacion)
+        Me.Controls.Add(Me.txtCalificacion)
         Me.Controls.Add(Me.txtCertificados)
         Me.Controls.Add(Me.txtCAIVto)
         Me.Controls.Add(Me.txtCAI)
@@ -1043,8 +1043,8 @@ Partial Class ProveedoresABM
     Friend WithEvents txtCAI As WindowsApplication1.CustomTextBox
     Friend WithEvents txtCAIVto As WindowsApplication1.CustomTextBox
     Friend WithEvents txtCertificados As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtClasificacion As WindowsApplication1.CustomTextBox
+    Friend WithEvents txtCalificacion As WindowsApplication1.CustomTextBox
     Friend WithEvents cmbCertificados As WindowsApplication1.CustomComboBox
     Friend WithEvents cmbEstado As WindowsApplication1.CustomComboBox
-    Friend WithEvents cmbClasificacion As WindowsApplication1.CustomComboBox
+    Friend WithEvents cmbCalificacion As WindowsApplication1.CustomComboBox
 End Class

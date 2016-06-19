@@ -2,6 +2,10 @@
 
 Public Class DAOTipoCambio
 
+    Public Shared Function crearTipoCambio(ByVal row As DataRow)
+        Return New TipoDeCambio(row("fecha"), row("cambio"))
+    End Function
+
     Public Shared Sub agregarTipoCambio(ByVal cambio As TipoDeCambio)
         SQLConnector.executeProcedure("alta_tipo_cambio", cambio.fecha, cambio.paridad)
     End Sub
