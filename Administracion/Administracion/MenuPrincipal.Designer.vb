@@ -31,11 +31,13 @@ Partial Class MenuPrincipal
         Me.IngresoDeRubrosDeProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EnvioEnEMailAProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NovedadesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PruebaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProcesosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProcesoSifreToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProcesoRetencionesOPToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnCambio = New System.Windows.Forms.Button()
         Me.lblCargando = New WindowsApplication1.CustomLabel()
-        Me.PruebaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -98,6 +100,12 @@ Partial Class MenuPrincipal
         Me.NovedadesToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
         Me.NovedadesToolStripMenuItem.Text = "Novedades"
         '
+        'PruebaToolStripMenuItem
+        '
+        Me.PruebaToolStripMenuItem.Name = "PruebaToolStripMenuItem"
+        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
+        Me.PruebaToolStripMenuItem.Text = "Prueba"
+        '
         'ListadosToolStripMenuItem
         '
         Me.ListadosToolStripMenuItem.Name = "ListadosToolStripMenuItem"
@@ -106,9 +114,22 @@ Partial Class MenuPrincipal
         '
         'ProcesosToolStripMenuItem
         '
+        Me.ProcesosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProcesoSifreToolStripMenuItem, Me.ProcesoRetencionesOPToolStripMenuItem})
         Me.ProcesosToolStripMenuItem.Name = "ProcesosToolStripMenuItem"
         Me.ProcesosToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
         Me.ProcesosToolStripMenuItem.Text = "Procesos"
+        '
+        'ProcesoSifreToolStripMenuItem
+        '
+        Me.ProcesoSifreToolStripMenuItem.Name = "ProcesoSifreToolStripMenuItem"
+        Me.ProcesoSifreToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.ProcesoSifreToolStripMenuItem.Text = "Proceso Sifre"
+        '
+        'ProcesoRetencionesOPToolStripMenuItem
+        '
+        Me.ProcesoRetencionesOPToolStripMenuItem.Name = "ProcesoRetencionesOPToolStripMenuItem"
+        Me.ProcesoRetencionesOPToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.ProcesoRetencionesOPToolStripMenuItem.Text = "Proceso Retenciones O.P."
         '
         'btnCambio
         '
@@ -130,12 +151,6 @@ Partial Class MenuPrincipal
         Me.lblCargando.TabIndex = 2
         Me.lblCargando.Text = "CARGANDO, POR FAVOR ESPERE..."
         Me.lblCargando.Visible = False
-        '
-        'PruebaToolStripMenuItem
-        '
-        Me.PruebaToolStripMenuItem.Name = "PruebaToolStripMenuItem"
-        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.PruebaToolStripMenuItem.Text = "Prueba"
         '
         'MenuPrincipal
         '
@@ -171,4 +186,6 @@ Partial Class MenuPrincipal
     Friend WithEvents btnCambio As System.Windows.Forms.Button
     Friend WithEvents lblCargando As WindowsApplication1.CustomLabel
     Friend WithEvents PruebaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ProcesoSifreToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ProcesoRetencionesOPToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

@@ -106,6 +106,7 @@
     <Compile Include="Clases\CommonEventsHandler.vb" />
     <Compile Include="Clases\FormOrganizer.vb" />
     <Compile Include="Clases\GridBuilder.vb" />
+    <Compile Include="Clases\Proceso.vb" />
     <Compile Include="CuentaContableABM.Designer.vb">
       <DependentUpon>CuentaContableABM.vb</DependentUpon>
     </Compile>
@@ -131,6 +132,18 @@
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
     </Compile>
     <Compile Include="ObservacionesProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcesoRetencionesPagos.Designer.vb">
+      <DependentUpon>ProcesoRetencionesPagos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProcesoRetencionesPagos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcesoSifere.Designer.vb">
+      <DependentUpon>ProcesoSifere.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProcesoSifere.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProveedoresABM.Designer.vb">
@@ -195,6 +208,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObservacionesProveedor.resx">
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcesoRetencionesPagos.resx">
+      <DependentUpon>ProcesoRetencionesPagos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcesoSifere.resx">
+      <DependentUpon>ProcesoSifere.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProveedoresABM.resx">
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
