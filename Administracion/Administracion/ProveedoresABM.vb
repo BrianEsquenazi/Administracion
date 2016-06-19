@@ -30,6 +30,7 @@ Public Class ProveedoresABM
         organizadorABM.setListButtonClick(AddressOf listado)
         organizadorABM.addQueryFunction(AddressOf DAOProveedor.buscarProveedorPorNombre, "Proveedores", AddressOf mostrarProveedor)
         organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta)
+        organizadorABM.controlsDefinedBy("get_proveedor", AddressOf DAOProveedor.crearProveedor, AddressOf mostrarProveedor)
         organizadorABM.compactOrganize()
     End Sub
 
@@ -146,7 +147,10 @@ Public Class ProveedoresABM
     End Sub
 
     Private Sub listado()
-
+        'DirectCast(Me.Controls("controlButtonsGroupBox").Controls("btnLastReg"), CustomButton).PerformClick()
+        'Do While txtCodigo.Text <> "00000000001"
+        '    DirectCast(Me.Controls("controlButtonsGroupBox").Controls("btnPreviousReg"), CustomButton).PerformClick()
+        'Loop
     End Sub
 
     Private Sub btnObservaciones_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnObservaciones.Click

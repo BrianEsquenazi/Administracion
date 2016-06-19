@@ -12,6 +12,7 @@ Public Class CuentaContableABM
         organizadorABM.setDefaultCloseButtonClick()
         organizadorABM.setListButtonClick(AddressOf listado)
         organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta)
+        organizadorABM.controlsDefinedBy("get_cuenta", AddressOf DAOCuentaContable.crearCuenta, AddressOf mostrarCuenta)
         organizadorABM.organize()
     End Sub
 

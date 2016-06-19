@@ -27,4 +27,12 @@
     Private Sub PruebaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PruebaToolStripMenuItem.Click
         Form1.show()
     End Sub
+
+    Private Sub ProcesoSifreToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ProcesoSifreToolStripMenuItem.Click
+        ProcesoSifere.Show()
+    End Sub
+
+    Private Sub ProcesoRetencionesOPToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ProcesoRetencionesOPToolStripMenuItem.Click
+        ProcesoRetencionesPagos.Show()
+    End Sub
 End Class

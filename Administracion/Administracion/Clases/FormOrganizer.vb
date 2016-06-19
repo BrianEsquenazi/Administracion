@@ -3,6 +3,7 @@ Imports System.Text
 
 Public Delegate Function QueryFunction(ByVal text As String)
 Public Delegate Sub ShowMethod(ByVal selectedValue)
+Public Delegate Function RowToObject(ByVal row As DataRow)
 
 Public Class FormOrganizer
 
@@ -55,8 +56,11 @@ Public Class FormOrganizer
     Private controlSeparation As Integer = 10
     Private charPixelSize As Double = 7.5
     Private compactHeightConstant As Integer = 0
-    Dim filePath As String
-    Dim realButtonsTop As Integer
+    Private filePath As String
+    Private realButtonsTop As Integer
+    Private getProcedureName As String
+    Private fromRowToObjectFunction As RowToObject
+    Private fromRowShowFunction As ShowMethod
 
     Public Sub New(ByVal someForm As Form, ByVal formWidth As Integer, ByVal formHeight As Integer)
         form = someForm
@@ -553,6 +557,7 @@ Public Class FormOrganizer
 
         Dim container As New GroupBox
         container.Parent = form
+        container.Name = "controlButtonsGroupBox"
         container.Width = controllerButtonsWidth() - separation
         container.Height = containerHeight
         container.Top = top - separation
@@ -576,7 +581,17 @@ Public Class FormOrganizer
 
             container.Controls.Add(button)
         Next
+
+        addHandlersForControlerButtons(container)
     End Sub
+
+    Private Sub addHandlersForControlerButtons(ByVal container As GroupBox)
+        AddHandler container.Controls("btnFirstReg").Click, AddressOf btnFirstClick
+        AddHandler container.Controls("btnLastReg").Click, AddressOf btnLastClick
+        AddHandler container.Controls("btnNextReg").Click, AddressOf btnNextClick
+        AddHandler container.Controls("btnPreviousReg").Click, AddressOf btnPreviousClick
+    End Sub
+
 
     Private Function defaultContainerHeight()
         Return buttonsHeight()
@@ -933,4 +948,28 @@ Public Class FormOrganizer
         End If
         Return heigth
     End Function
+
+    Public Sub controlsDefinedBy(ByVal procedureName As String, ByVal fromRowFunction As RowToObject, ByVal showFunction As ShowMethod)
+        getProcedureName = procedureName
+        fromRowToObjectFunction = fromRowFunction
+        fromRowShowFunction = showFunction
+    End Sub
+
+    Private Sub btnFirstClick()
+        fromRowShowFunction.Invoke(fromRowToObjectFunction.Invoke(ClasesCompartidas.SQLConnector.retrieveDataTable(getProcedureName, "primero", "").Rows(0)))
+    End Sub
+
+    Private Sub btnLastClick()
+        fromRowShowFunction.Invoke(fromRowToObjectFunction.Invoke(ClasesCompartidas.SQLConnector.retrieveDataTable(getProcedureName, "ultimo", "").Rows(0)))
+    End Sub
+
+    Private Sub btnNextClick()
+        Dim firstControl As Control = allControls.Find(Function(control) control.EnterIndex = 1)
+        fromRowShowFunction.Invoke(fromRowToObjectFunction.Invoke(ClasesCompartidas.SQLConnector.retrieveDataTable(getProcedureName, "siguiente", firstControl.Text).Rows(0)))
+    End Sub
+
+    Private Sub btnPreviousClick()
+        Dim firstControl As Control = allControls.Find(Function(control) control.EnterIndex = 1)
+        fromRowShowFunction.Invoke(fromRowToObjectFunction.Invoke(ClasesCompartidas.SQLConnector.retrieveDataTable(getProcedureName, "anterior", firstControl.Text).Rows(0)))
+    End Sub
 End Class

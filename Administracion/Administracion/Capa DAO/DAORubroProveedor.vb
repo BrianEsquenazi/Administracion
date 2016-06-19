@@ -2,6 +2,10 @@
 
 Public Class DAORubroProveedor
 
+    Public Shared Function crearRubroProveedor(ByVal row As DataRow)
+        Return New RubroProveedor(row("codigo"), row("descripcion"))
+    End Function
+
     Public Shared Sub agregarRubroProveedor(ByVal rubro As RubroProveedor)
         SQLConnector.executeProcedure("alta_rubro_proveedor", rubro.codigo, rubro.descripcion)
     End Sub

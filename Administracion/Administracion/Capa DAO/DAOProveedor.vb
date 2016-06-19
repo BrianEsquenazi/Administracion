@@ -27,6 +27,14 @@ Public Class DAOProveedor
                              asStringDate(row("dircufe")), asStringDate(row("dircufeii")), asStringDate(row("dircufeiii")), DAOCuentaContable.buscarCuentaContablePorCodigo(intNull(row("cuenta"))), DAORubroProveedor.buscarRubroProveedorPorCodigo(intNull(row("tipoprov"))))
     End Function
 
+    Public Shared Function crearProveedor(ByVal row)
+        Return New Proveedor(row("proveedor").ToString, row("nombre").ToString, row("direccion").ToString, row("postal").ToString, row("localidad").ToString, row("telefono").ToString, row("email").ToString,
+                             row("observaciones").ToString, row("cuit").ToString, row("nombrecheque").ToString, row("porceib"), row("porceibcaba"), row("cai").ToString, row("observacionesii").ToString, row("cufe").ToString, row("cufeii").ToString, row("cufeiii").ToString,
+                             intNull(row("provincia")), intNull(row("region")), row("dias").ToString, intNull(row("tipo")), intNull(row("iva")), intNull(row("codib")), intNull(row("codibcaba")), row("nroib").ToString, row("nroinsc").ToString, intNull(row("categoriai")),
+                             intNull(row("categoriaii")), intNull(row("ibciudadii")), intNull(row("iso")), intNull(row("estado")), intNull(row("califica")), asStringDate(row("fechanroinsc")), asStringDate(row("fechacategoria")), asStringDate(row("vtocai")), asStringDate(row("vtoiso")), asStringDate(row("fechacalifica")),
+                             asStringDate(row("dircufe")), asStringDate(row("dircufeii")), asStringDate(row("dircufeiii")), DAOCuentaContable.buscarCuentaContablePorCodigo(row("cuenta").ToString), DAORubroProveedor.buscarRubroProveedorPorCodigo(intNull(row("tipoprov"))))
+    End Function
+
     Private Shared Function intNull(ByVal value)
         If Convert.IsDBNull(value) Then
             Return Nothing
