@@ -2,6 +2,10 @@
 
 Public Class DAOBanco
 
+    Public Shared Function crearBanco(ByVal row As DataRow)
+        Return New Banco(row("banco"), row("nombre"), DAOCuentaContable.buscarCuentaContablePorCodigo(row("cuenta")))
+    End Function
+
     Public Shared Sub agregarBanco(ByVal banco As Banco)
         SQLConnector.executeProcedure("alta_banco", banco.id, banco.nombre, banco.cuenta.id)
     End Sub

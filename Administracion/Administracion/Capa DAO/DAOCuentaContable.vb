@@ -2,6 +2,10 @@
 
 Public Class DAOCuentaContable
 
+    Public Shared Function crearCuenta(ByVal row As DataRow)
+        Return New CuentaContable(row("cuenta"), row("descripcion"))
+    End Function
+
     Public Shared Sub agregarCuentaContable(ByVal cuenta As CuentaContable)
         SQLConnector.executeProcedure("alta_cuenta", cuenta.id, cuenta.descripcion, 1, 1)
     End Sub

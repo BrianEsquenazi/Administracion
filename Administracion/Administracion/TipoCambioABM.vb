@@ -13,6 +13,7 @@ Public Class TipoCambioABM
         organizadorABM.setListButtonClick(AddressOf listado)
         organizadorABM.addQueryFunction(AddressOf DAOTipoCambio.listarTiposCambio, "Cambio", AddressOf mostrarCambio)
         organizadorABM.dontUseQueryText()
+        organizadorABM.controlsDefinedBy("get_tipo_cambio", AddressOf DAOTipoCambio.crearTipoCambio, AddressOf mostrarCambio)
         organizadorABM.organize()
     End Sub
 

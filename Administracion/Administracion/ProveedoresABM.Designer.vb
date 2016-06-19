@@ -475,7 +475,7 @@ Partial Class ProveedoresABM
         Me.cmbIVA.Empty = True
         Me.cmbIVA.EnterIndex = 14
         Me.cmbIVA.FormattingEnabled = True
-        Me.cmbIVA.Items.AddRange(New Object() {"No Inscripto", "Consumidor Final", "Resp.Inscripto", "Exento", "No Responsable", "Monotributo", "No Catalogado"})
+        Me.cmbIVA.Items.AddRange(New Object() {"No Inscripto", "Consumidor Final", "Resp.Inscripto", "Exento", "No Responsable", "Monotributo", "No Catalogado", ""})
         Me.cmbIVA.LabelAssociationKey = 14
         Me.cmbIVA.Location = New System.Drawing.Point(433, 198)
         Me.cmbIVA.Name = "cmbIVA"
@@ -533,7 +533,7 @@ Partial Class ProveedoresABM
         Me.cmbTipoProveedor.Empty = True
         Me.cmbTipoProveedor.EnterIndex = 13
         Me.cmbTipoProveedor.FormattingEnabled = True
-        Me.cmbTipoProveedor.Items.AddRange(New Object() {"Bienes", "Servicios", "Alquileres", "Exento", "Despachante", "Locación de Obras", "Fletes", "Facturas (M)"})
+        Me.cmbTipoProveedor.Items.AddRange(New Object() {"Bienes", "Servicios", "Alquileres", "Exento", "Despachante", "Locación de Obras", "Fletes", "Facturas (M)", ""})
         Me.cmbTipoProveedor.LabelAssociationKey = 13
         Me.cmbTipoProveedor.Location = New System.Drawing.Point(107, 193)
         Me.cmbTipoProveedor.Name = "cmbTipoProveedor"
