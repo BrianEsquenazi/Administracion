@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Banco.vb" />
     <Compile Include="CapaDAO\SQLConnector.vb" />
+    <Compile Include="Cheque.vb" />
     <Compile Include="CuentaContable.vb" />
     <Compile Include="Global\Globals.vb" />
     <Compile Include="Imputac.vb" />

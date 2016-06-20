@@ -20,6 +20,8 @@
                 validarNoVacio(value, emptyPermitted, description)
             Case ValidatorType.Numeric
                 validarNumerico(value, emptyPermitted, description)
+            Case ValidatorType.PositiveFloat
+                validarPositivo(value, emptyPermitted, description)
             Case ValidatorType.Positive
                 validarPositivo(value, emptyPermitted, description)
             Case ValidatorType.PositiveWithMax

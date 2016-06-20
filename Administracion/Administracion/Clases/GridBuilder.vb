@@ -16,6 +16,18 @@
         addColumn(index, header, New DataGridValidator(ValidatorType.DateFormat))
     End Sub
 
+    Public Sub addPositiveFloatColumn(ByVal index As Integer, ByVal header As String)
+        addColumn(index, header, New DataGridValidator(ValidatorType.PositiveFloat))
+    End Sub
+
+    Public Sub addPositiveColumn(ByVal index As Integer, ByVal header As String)
+        addColumn(index, header, New DataGridValidator(ValidatorType.Positive))
+    End Sub
+
+    Public Sub addNumericColumn(ByVal index As Integer, ByVal header As String)
+        addColumn(index, header, New DataGridValidator(ValidatorType.Numeric))
+    End Sub
+
     Public Sub addColumn(ByVal index As Integer, ByVal header As String, ByVal validator As DataGridValidator)
         If dataGrid.Columns.Count <= index Then
             dataGrid.Columns.Add(asName(header), header)

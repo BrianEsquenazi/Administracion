@@ -97,6 +97,7 @@
     <Compile Include="BancosABM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Capa DAO\DAODeposito.vb" />
     <Compile Include="Capa DAO\DAOProveedor.vb" />
     <Compile Include="Capa DAO\DAORubroProveedor.vb" />
     <Compile Include="Capa DAO\DAOBanco.vb" />
@@ -122,10 +123,10 @@
     <Compile Include="CUFEProveedor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Depositos.Designer.vb">
+      <DependentUpon>Depositos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="Depositos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ObservacionesProveedor.Designer.vb">
@@ -203,8 +204,8 @@
     <EmbeddedResource Include="CUFEProveedor.resx">
       <DependentUpon>CUFEProveedor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="Depositos.resx">
+      <DependentUpon>Depositos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObservacionesProveedor.resx">
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>

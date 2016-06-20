@@ -25,7 +25,7 @@
     End Sub
 
     Private Sub PruebaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PruebaToolStripMenuItem.Click
-        Form1.show()
+        Depositos.show()
     End Sub
 
     Private Sub ProcesoSifreToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ProcesoSifreToolStripMenuItem.Click

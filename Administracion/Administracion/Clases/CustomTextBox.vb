@@ -5,6 +5,7 @@
     Positive
     PositiveWithMax
     DateFormat
+    PositiveFloat
 End Enum
 
 Public Enum NumericType

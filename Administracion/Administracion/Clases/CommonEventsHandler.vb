@@ -48,9 +48,9 @@
     Public Shared Sub addValidableControlFormatTo(ByVal validableControl As ValidableControl)
         Dim control As Control = DirectCast(validableControl, Control)
         Select Case validableControl.Validator
-            Case ValidatorType.Numeric
+            Case ValidatorType.Numeric, ValidatorType.Positive, ValidatorType.PositiveWithMax
                 AddHandler control.KeyPress, AddressOf numericKeyPressed
-            Case ValidatorType.Positive, ValidatorType.PositiveWithMax
+            Case ValidatorType.PositiveFloat
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorPressed
             Case ValidatorType.DateFormat
                 AddHandler control.KeyDown, AddressOf deleteOrBackSpaceDownForDateFormat
