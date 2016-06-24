@@ -36,17 +36,11 @@ Public Class DAOProveedor
     End Function
 
     Private Shared Function intNull(ByVal value)
-        If Convert.IsDBNull(value) Then
-            Return Nothing
-        End If
-        Return Convert.ToInt32(value)
+        Return CustomConvert.toIntOrNull(value)
     End Function
 
     Private Shared Function asStringDate(ByVal value)
-        If value.ToString() = "" Then
-            Return "  /  /    "
-        End If
-        Return value.ToString
+        Return CustomConvert.asTextDate(value)
     End Function
 
     Public Shared Function listarProvincias() As List(Of Provincia)

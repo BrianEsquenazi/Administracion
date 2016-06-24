@@ -68,8 +68,8 @@
     Private Shared Sub numericKeyOrDecimalSeparatorPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         Dim customText = DirectCast(sender, CustomTextBox)
         If e.KeyChar = "." Or e.KeyChar = "," Then
-            If Not customText.Text.Contains(".") Then
-                customText.Text = customText.Text.Insert(customText.Text.Count, ".")
+            If Not customText.Text.Contains(",") Then
+                customText.Text = customText.Text.Insert(customText.Text.Count, ",")
                 customText.Select(customText.TextLength, 0)
             End If
             e.Handled = True

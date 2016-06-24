@@ -163,7 +163,6 @@ Partial Class MenuPrincipal
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "MenuPrincipal"
         Me.Text = "Sistema de Administración"
         Me.MenuStrip1.ResumeLayout(False)

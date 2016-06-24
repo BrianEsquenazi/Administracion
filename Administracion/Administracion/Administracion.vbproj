@@ -105,6 +105,7 @@
     <Compile Include="Capa DAO\DAOTipoCambio.vb" />
     <Compile Include="Clases\Cleanner.vb" />
     <Compile Include="Clases\CommonEventsHandler.vb" />
+    <Compile Include="Clases\CustomConvert.vb" />
     <Compile Include="Clases\FormOrganizer.vb" />
     <Compile Include="Clases\GridBuilder.vb" />
     <Compile Include="Clases\Proceso.vb" />

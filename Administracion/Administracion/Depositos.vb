@@ -3,6 +3,7 @@
 Public Class Depositos
     Dim dataGridBuilder As GridBuilder
     Dim showFunction As ShowMethod
+    Dim cheques As New List(Of Cheque)
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         dataGridBuilder = New GridBuilder(gridCheques)
@@ -15,6 +16,24 @@ Public Class Depositos
         CommonEventsHandler.setIndexTab(Me)
     End Sub
 
+    Private Function sumaImportes()
+        Dim valorImportes As Double = 0
+        For Each row As DataGridViewRow In gridCheques.Rows
+            valorImportes += row.Cells(3).Value
+        Next
+        Return valorImportes
+    End Function
+
+    Private Function validarCampos()
+        Dim validador As New Validator
+
+        validador.validate(Me)
+        validador.alsoValidate(CustomConvert.toDoubleOrZero(CustomTextBox1.Text) = sumaImportes(), "El campo importe tiene que ser igual a la suma de los cheques (" & sumaImportes() & ")")
+        validador.alsoValidate(cheques.Count = gridCheques.Rows.Count, "La cantidad de cheques registrados no coincide con la cantidad de filas de la tabla")
+
+        Return validador.flush
+    End Function
+
     Private Sub btnCerrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCerrar.Click
         Close()
     End Sub
@@ -22,6 +41,8 @@ Public Class Depositos
     Private Sub btnLimpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLimpiar.Click
         Cleanner.clean(Me)
         gridCheques.Rows.Clear()
+        cheques.Clear()
+        Me.Width = formNormalWidth()
     End Sub
 
     Private Sub mostrarSeleccionDeConsulta()
@@ -48,7 +69,10 @@ Public Class Depositos
     End Sub
 
     Private Sub mostrarCheque(ByVal cheque As Cheque)
-        'Agregarlo al grid
+        If Not cheques.Any(Function(otroCheque) otroCheque.igualA(cheque)) Then
+            cheques.Add(cheque)
+            gridCheques.Rows.Add(cheque.tipo, cheque.numero, cheque.fecha, cheque.importe)
+        End If
     End Sub
 
     Private Sub lstSeleccion_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstSeleccion.DoubleClick
@@ -57,14 +81,15 @@ Public Class Depositos
             lstConsulta.DataSource = DAOBanco.buscarBancoPorNombre("")
         Else
             showFunction = AddressOf mostrarCheque
-            lstConsulta.DataSource = DAODeposito.buscarCheques()
+            lstConsulta.DataSource = Nothing
+            DAODeposito.buscarCheques().ForEach(Sub(cheque) lstConsulta.Items.Add(cheque))
         End If
         lstSeleccion.Visible = False
         lstConsulta.Visible = True
     End Sub
 
     Private Sub lstConsulta_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConsulta.DoubleClick
-        showFunction.Invoke(lstConsulta.SelectedValue)
+        showFunction.Invoke(lstConsulta.SelectedItem)
         If lstSeleccion.SelectedItem = "Bancos" Then
             lstConsulta.Visible = False
             Me.Width = formNormalWidth()
@@ -73,7 +98,16 @@ Public Class Depositos
         End If
     End Sub
 
-    Private Sub lstConsulta_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub gridCheques_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles gridCheques.UserDeletingRow
+        Dim chequeABorrar As Cheque = cheques.Find(Function(cheque) cheque.numero = e.Row.Cells(1).Value And cheque.fecha = e.Row.Cells(2).Value And cheque.importe = e.Row.Cells(3).Value)
+        If Not IsNothing(chequeABorrar) Then
+            cheques.Remove(chequeABorrar)
+        End If
+    End Sub
 
+    Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
+        If validarCampos() Then
+            'agregar
+        End If
     End Sub
 End Class

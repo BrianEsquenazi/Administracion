@@ -128,7 +128,6 @@ Partial Class BancosABM
         Me.Controls.Add(Me.txtCodigo)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "BancosABM"
         Me.Text = "Ingreso de Bancos"
         Me.ResumeLayout(False)
