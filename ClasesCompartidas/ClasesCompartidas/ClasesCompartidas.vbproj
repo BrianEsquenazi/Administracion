@@ -69,6 +69,7 @@
     <Compile Include="CapaDAO\SQLConnector.vb" />
     <Compile Include="Cheque.vb" />
     <Compile Include="CuentaContable.vb" />
+    <Compile Include="Deposito.vb" />
     <Compile Include="Global\Globals.vb" />
     <Compile Include="Imputac.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
