@@ -25,6 +25,7 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_mo
 DROP PROCEDURE [dbo].[PR_modificar_recibos_marca]
 GO
 
+
 /*
 		GENERACION NOVEDADES
 */
@@ -46,7 +47,7 @@ BEGIN
 			, re.Importe2
 			, re.Numero2
 			, re.Fecha2
-			, re.banco2
+			, LTRIM(RTRIM(re.banco2)) as banco2
 			, re.Clave
 			, re.FechaOrd2
 			, 'Recibos' AS Tabla
@@ -62,7 +63,7 @@ BEGIN
 			, rep.Importe2
 			, rep.Numero2
 			, rep.Fecha2
-			, rep.banco2
+			, LTRIM(RTRIM(rep.banco2)) as banco2
 			, rep.Clave
 			, rep.FechaOrd2
 			, 'RecibosProvisorios' AS Tabla
