@@ -47,8 +47,8 @@ Public Class Depositos
         For Each row As DataGridViewRow In gridCheques.Rows
             Dim tipo As Integer = row.Cells(0).Value
             Dim importe As Double = CustomConvert.toDoubleOrZero(row.Cells(4).Value)
-            If tipo <> 1 Or tipo <> 2 Or tipo <> 3 Or importe = 0 Then
-                Return False
+            If (tipo <> 1 And tipo <> 2 And tipo <> 3) Or importe = 0 Then
+                Return (row.Index + 1 = gridCheques.Rows.Count) And IsNothing(row.Cells(0).Value)
             End If
         Next
         Return True
@@ -58,8 +58,7 @@ Public Class Depositos
         Dim validador As New Validator
 
         validador.validate(Me)
-        validador.alsoValidate(CustomConvert.toDoubleOrZero(CustomTextBox1.Text) = Math.Round(sumaImportes(), 2), "El campo importe tiene que ser igual a la suma de la grilla (" & sumaImportes() & ")")
-        validador.alsoValidate(cheques.Count = gridCheques.Rows.Count, "La cantidad de cheques registrados no coincide con la cantidad de filas de la tabla")
+        validador.alsoValidate(CustomConvert.toDoubleOrZero(txtImporte.Text) = Math.Round(sumaImportes(), 2), "El campo importe tiene que ser igual a la suma de la grilla (" & sumaImportes() & ")")
         validador.alsoValidate(validarTipoUnico(), "Sólo puede realizarse un tipo de depósito por carga")
         validador.alsoValidate(validarEstadoGrilla(), "Hay campos en la grilla con estados inválidos")
 
@@ -174,7 +173,15 @@ Public Class Depositos
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
         If validarCampos() Then
-            'DAODeposito.agregarDeposito()
+            Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(txtCodigoBanco.Text)
+            Dim deposito As Deposito = New Deposito(txtNroDeposito.Text, banco, txtFecha.Text, txtFechaAcreditacion.Text, txtImporte.Text)
+            If cheques.Count > 0 Then
+                Dim chequesADepositar As New List(Of ItemDeposito)
+                cheques.ForEach(Sub(cheque) chequesADepositar.Add(cheque))
+                DAODeposito.agregarDeposito(deposito, chequesADepositar)
+            Else
+                DAODeposito.agregarDeposito(deposito, gridCheques.Rows)
+            End If
         End If
     End Sub
 

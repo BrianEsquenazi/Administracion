@@ -60,7 +60,8 @@
             End If
             i += 1
         Loop
-        Return dataGrid(0, iRow + 1)
+
+        Return dataGrid(0, Math.Min(iRow + 1, dataGrid.Rows.Count - 1))
     End Function
 
     Private Sub dataGridEnterPressed(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
