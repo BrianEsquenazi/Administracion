@@ -4,7 +4,11 @@
     Public Shared Sub clean(ByVal form As Form)
         For Each txtBox As CustomTextBox In form.Controls.OfType(Of CustomTextBox)()
             If txtBox.Cleanable Then
-                txtBox.Text = ""
+                If txtBox.Validator = ValidatorType.DateFormat Then
+                    txtBox.Text = "  /  /    "
+                Else
+                    txtBox.Text = ""
+                End If
             End If
             controls.Add(txtBox)
         Next

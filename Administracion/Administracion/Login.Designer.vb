@@ -74,6 +74,7 @@ Partial Class Login
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cmbEntity)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "Login"
         Me.Text = "Inicio de Sesión"

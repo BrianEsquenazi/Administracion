@@ -26,6 +26,7 @@ Partial Class Depositos
         Me.tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomTextBox1 = New WindowsApplication1.CustomTextBox()
         Me.CustomLabel7 = New WindowsApplication1.CustomLabel()
@@ -45,16 +46,15 @@ Partial Class Depositos
         Me.CustomLabel5 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
+        Me.lblTotal = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
         CType(Me.gridCheques, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'gridCheques
         '
-        Me.gridCheques.AllowUserToAddRows = False
         Me.gridCheques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridCheques.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.tipo, Me.numero, Me.fecha, Me.importe})
+        Me.gridCheques.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.tipo, Me.numero, Me.fecha, Me.nombre, Me.importe})
         Me.gridCheques.Location = New System.Drawing.Point(12, 178)
         Me.gridCheques.Name = "gridCheques"
         Me.gridCheques.Size = New System.Drawing.Size(444, 350)
@@ -63,8 +63,9 @@ Partial Class Depositos
         '
         'tipo
         '
-        Me.tipo.HeaderText = "Column1"
+        Me.tipo.HeaderText = "Tipo"
         Me.tipo.Name = "tipo"
+        Me.tipo.Width = 50
         '
         'numero
         '
@@ -77,12 +78,19 @@ Partial Class Depositos
         Me.fecha.HeaderText = "Fecha"
         Me.fecha.Name = "fecha"
         Me.fecha.ReadOnly = True
+        Me.fecha.Width = 60
+        '
+        'nombre
+        '
+        Me.nombre.HeaderText = "Nombre"
+        Me.nombre.Name = "nombre"
+        Me.nombre.ReadOnly = True
         '
         'importe
         '
         Me.importe.HeaderText = "Importe"
         Me.importe.Name = "importe"
-        Me.importe.ReadOnly = True
+        Me.importe.Width = 70
         '
         'CustomTextBox1
         '
@@ -112,7 +120,7 @@ Partial Class Depositos
         Me.lstSeleccion.Cleanable = False
         Me.lstSeleccion.EnterIndex = -1
         Me.lstSeleccion.FormattingEnabled = True
-        Me.lstSeleccion.Items.AddRange(New Object() {"Bancos", "Cheques"})
+        Me.lstSeleccion.Items.AddRange(New Object() {"Bancos", "Cheques de Terceros"})
         Me.lstSeleccion.LabelAssociationKey = -1
         Me.lstSeleccion.Location = New System.Drawing.Point(477, 12)
         Me.lstSeleccion.Name = "lstSeleccion"
@@ -299,14 +307,14 @@ Partial Class Depositos
         Me.CustomLabel3.TabIndex = 3
         Me.CustomLabel3.Text = "Nro. Depósito"
         '
-        'CustomLabel2
+        'lblTotal
         '
-        Me.CustomLabel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.CustomLabel2.ControlAssociationKey = -1
-        Me.CustomLabel2.Location = New System.Drawing.Point(240, 538)
-        Me.CustomLabel2.Name = "CustomLabel2"
-        Me.CustomLabel2.Size = New System.Drawing.Size(191, 15)
-        Me.CustomLabel2.TabIndex = 2
+        Me.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTotal.ControlAssociationKey = -1
+        Me.lblTotal.Location = New System.Drawing.Point(240, 538)
+        Me.lblTotal.Name = "lblTotal"
+        Me.lblTotal.Size = New System.Drawing.Size(216, 15)
+        Me.lblTotal.TabIndex = 2
         '
         'CustomLabel1
         '
@@ -342,7 +350,7 @@ Partial Class Depositos
         Me.Controls.Add(Me.CustomLabel5)
         Me.Controls.Add(Me.CustomLabel4)
         Me.Controls.Add(Me.CustomLabel3)
-        Me.Controls.Add(Me.CustomLabel2)
+        Me.Controls.Add(Me.lblTotal)
         Me.Controls.Add(Me.CustomLabel1)
         Me.Controls.Add(Me.gridCheques)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
@@ -356,7 +364,7 @@ Partial Class Depositos
     End Sub
     Friend WithEvents gridCheques As System.Windows.Forms.DataGridView
     Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
+    Friend WithEvents lblTotal As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel5 As WindowsApplication1.CustomLabel
@@ -378,5 +386,6 @@ Partial Class Depositos
     Friend WithEvents tipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents numero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents fecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents nombre As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents importe As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

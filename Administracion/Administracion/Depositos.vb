@@ -10,26 +10,58 @@ Public Class Depositos
         dataGridBuilder.addTextColumn(0, "Tipo")
         dataGridBuilder.addTextColumn(1, "Número")
         dataGridBuilder.addDateColumn(2, "Fecha")
-        dataGridBuilder.addPositiveFloatColumn(3, "Importe")
+        dataGridBuilder.addTextColumn(3, "Nombre")
+        dataGridBuilder.addPositiveFloatColumn(4, "Importe")
         lstSeleccion.SelectedIndex = 0
         Me.Width = formNormalWidth()
         CommonEventsHandler.setIndexTab(Me)
+        txtFecha.Text = Date.Today
+        txtFechaAcreditacion.Text = Date.Today
     End Sub
 
-    Private Function sumaImportes()
+    Private Function sumaImportes() As Double
         Dim valorImportes As Double = 0
         For Each row As DataGridViewRow In gridCheques.Rows
-            valorImportes += row.Cells(3).Value
+            valorImportes += row.Cells(4).Value
         Next
         Return valorImportes
+    End Function
+
+    Private Function validarTipoUnico() As Boolean
+        Dim bool As Boolean = True
+        Dim tipo As Integer
+        If gridCheques.Rows.Count > 0 Then
+            tipo = gridCheques.Rows(0).Cells(0).Value
+        Else
+            Return True
+        End If
+        For Each row As DataGridViewRow In gridCheques.Rows
+            If tipo <> row.Cells(0).Value Then
+                Return False
+            End If
+        Next
+        Return True
+    End Function
+
+    Private Function validarEstadoGrilla()
+        For Each row As DataGridViewRow In gridCheques.Rows
+            Dim tipo As Integer = row.Cells(0).Value
+            Dim importe As Double = CustomConvert.toDoubleOrZero(row.Cells(4).Value)
+            If tipo <> 1 Or tipo <> 2 Or tipo <> 3 Or importe = 0 Then
+                Return False
+            End If
+        Next
+        Return True
     End Function
 
     Private Function validarCampos()
         Dim validador As New Validator
 
         validador.validate(Me)
-        validador.alsoValidate(CustomConvert.toDoubleOrZero(CustomTextBox1.Text) = sumaImportes(), "El campo importe tiene que ser igual a la suma de los cheques (" & sumaImportes() & ")")
+        validador.alsoValidate(CustomConvert.toDoubleOrZero(CustomTextBox1.Text) = Math.Round(sumaImportes(), 2), "El campo importe tiene que ser igual a la suma de la grilla (" & sumaImportes() & ")")
         validador.alsoValidate(cheques.Count = gridCheques.Rows.Count, "La cantidad de cheques registrados no coincide con la cantidad de filas de la tabla")
+        validador.alsoValidate(validarTipoUnico(), "Sólo puede realizarse un tipo de depósito por carga")
+        validador.alsoValidate(validarEstadoGrilla(), "Hay campos en la grilla con estados inválidos")
 
         Return validador.flush
     End Function
@@ -43,6 +75,10 @@ Public Class Depositos
         gridCheques.Rows.Clear()
         cheques.Clear()
         Me.Width = formNormalWidth()
+        gridCheques.AllowUserToAddRows = True
+        gridCheques.Columns(0).ReadOnly = False
+        gridCheques.Columns(4).ReadOnly = False
+        lblTotal.Text = ""
     End Sub
 
     Private Sub mostrarSeleccionDeConsulta()
@@ -69,9 +105,15 @@ Public Class Depositos
     End Sub
 
     Private Sub mostrarCheque(ByVal cheque As Cheque)
+        If IsNothing(cheque) Then : Exit Sub
+        End If
         If Not cheques.Any(Function(otroCheque) otroCheque.igualA(cheque)) Then
             cheques.Add(cheque)
-            gridCheques.Rows.Add(cheque.tipo, cheque.numero, cheque.fecha, cheque.importe)
+            gridCheques.Rows.Add(3, cheque.numero, cheque.fecha, cheque.banco, cheque.importe)
+            gridCheques.AllowUserToAddRows = False
+            gridCheques.Columns(0).ReadOnly = True
+            gridCheques.Columns(4).ReadOnly = True
+            lblTotal.Text = sumaImportes()
         End If
     End Sub
 
@@ -82,6 +124,7 @@ Public Class Depositos
         Else
             showFunction = AddressOf mostrarCheque
             lstConsulta.DataSource = Nothing
+            lstConsulta.Items.Clear()
             DAODeposito.buscarCheques().ForEach(Sub(cheque) lstConsulta.Items.Add(cheque))
         End If
         lstSeleccion.Visible = False
@@ -98,11 +141,23 @@ Public Class Depositos
         End If
     End Sub
 
+    Private Sub gridCheques_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridCheques.CellValueChanged
+        'For Each row As DataGridViewRow gridCheques.Rows
+
+        lblTotal.Text = sumaImportes()
+        'Next
+    End Sub
+
+    Private Sub gridCheques_UserAddedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles gridCheques.UserAddedRow
+        lblTotal.Text = sumaImportes()
+    End Sub
+
     Private Sub gridCheques_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles gridCheques.UserDeletingRow
-        Dim chequeABorrar As Cheque = cheques.Find(Function(cheque) cheque.numero = e.Row.Cells(1).Value And cheque.fecha = e.Row.Cells(2).Value And cheque.importe = e.Row.Cells(3).Value)
+        Dim chequeABorrar As Cheque = cheques.Find(Function(cheque) cheque.numero = e.Row.Cells(1).Value And cheque.fecha = e.Row.Cells(2).Value And cheque.banco = e.Row.Cells(3).Value And cheque.importe = e.Row.Cells(4).Value)
         If Not IsNothing(chequeABorrar) Then
             cheques.Remove(chequeABorrar)
         End If
+        lblTotal.Text = sumaImportes()
     End Sub
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
@@ -110,4 +165,5 @@ Public Class Depositos
             'agregar
         End If
     End Sub
+
 End Class
