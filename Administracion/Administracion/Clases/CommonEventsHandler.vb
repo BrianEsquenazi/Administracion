@@ -48,9 +48,9 @@
     Public Shared Sub addValidableControlFormatTo(ByVal validableControl As ValidableControl)
         Dim control As Control = DirectCast(validableControl, Control)
         Select Case validableControl.Validator
-            Case ValidatorType.Numeric
+            Case ValidatorType.Numeric, ValidatorType.Positive, ValidatorType.PositiveWithMax
                 AddHandler control.KeyPress, AddressOf numericKeyPressed
-            Case ValidatorType.Positive, ValidatorType.PositiveWithMax
+            Case ValidatorType.PositiveFloat
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorPressed
             Case ValidatorType.DateFormat
                 AddHandler control.KeyDown, AddressOf deleteOrBackSpaceDownForDateFormat
@@ -68,8 +68,8 @@
     Private Shared Sub numericKeyOrDecimalSeparatorPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         Dim customText = DirectCast(sender, CustomTextBox)
         If e.KeyChar = "." Or e.KeyChar = "," Then
-            If Not customText.Text.Contains(".") Then
-                customText.Text = customText.Text.Insert(customText.Text.Count, ".")
+            If Not customText.Text.Contains(",") Then
+                customText.Text = customText.Text.Insert(customText.Text.Count, ",")
                 customText.Select(customText.TextLength, 0)
             End If
             e.Handled = True

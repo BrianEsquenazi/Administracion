@@ -85,7 +85,6 @@ Partial Class CuentaContableABM
         Me.Controls.Add(Me.txtCodigo)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "CuentaContableABM"
         Me.Text = "Ingreso de Cuentas Contables"
         Me.ResumeLayout(False)

@@ -85,7 +85,6 @@ Partial Class TipoCambioABM
         Me.Controls.Add(Me.txtFecha)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "TipoCambioABM"
         Me.Text = "Ingreso de Cambios"
         Me.ResumeLayout(False)

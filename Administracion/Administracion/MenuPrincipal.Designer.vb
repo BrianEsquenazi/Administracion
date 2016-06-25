@@ -38,6 +38,7 @@ Partial Class MenuPrincipal
         Me.ProcesoRetencionesOPToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnCambio = New System.Windows.Forms.Button()
         Me.lblCargando = New WindowsApplication1.CustomLabel()
+        Me.CargarInteresesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -95,7 +96,7 @@ Partial Class MenuPrincipal
         '
         'NovedadesToolStripMenuItem
         '
-        Me.NovedadesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PruebaToolStripMenuItem})
+        Me.NovedadesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PruebaToolStripMenuItem, Me.CargarInteresesToolStripMenuItem})
         Me.NovedadesToolStripMenuItem.Name = "NovedadesToolStripMenuItem"
         Me.NovedadesToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
         Me.NovedadesToolStripMenuItem.Text = "Novedades"
@@ -103,7 +104,7 @@ Partial Class MenuPrincipal
         'PruebaToolStripMenuItem
         '
         Me.PruebaToolStripMenuItem.Name = "PruebaToolStripMenuItem"
-        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
+        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
         Me.PruebaToolStripMenuItem.Text = "Prueba"
         '
         'ListadosToolStripMenuItem
@@ -152,6 +153,12 @@ Partial Class MenuPrincipal
         Me.lblCargando.Text = "CARGANDO, POR FAVOR ESPERE..."
         Me.lblCargando.Visible = False
         '
+        'CargarInteresesToolStripMenuItem
+        '
+        Me.CargarInteresesToolStripMenuItem.Name = "CargarInteresesToolStripMenuItem"
+        Me.CargarInteresesToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.CargarInteresesToolStripMenuItem.Text = "Cargar Intereses"
+        '
         'MenuPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -163,7 +170,6 @@ Partial Class MenuPrincipal
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "MenuPrincipal"
         Me.Text = "Sistema de Administración"
         Me.MenuStrip1.ResumeLayout(False)
@@ -188,4 +194,5 @@ Partial Class MenuPrincipal
     Friend WithEvents PruebaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ProcesoSifreToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ProcesoRetencionesOPToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CargarInteresesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

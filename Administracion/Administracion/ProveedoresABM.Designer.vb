@@ -973,7 +973,6 @@ Partial Class ProveedoresABM
         Me.Controls.Add(Me.CustomLabel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "ProveedoresABM"
         Me.Text = "Ingreso de Proveedores"
         Me.ResumeLayout(False)

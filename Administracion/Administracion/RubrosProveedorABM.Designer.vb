@@ -85,7 +85,6 @@ Partial Class RubrosProveedorABM
         Me.Controls.Add(Me.txtCodigo)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "RubrosProveedorABM"
         Me.Text = "Ingreso de Rubros Proveedor"
         Me.ResumeLayout(False)

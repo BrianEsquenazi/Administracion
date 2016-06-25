@@ -16,6 +16,23 @@
         addColumn(index, header, New DataGridValidator(ValidatorType.DateFormat))
     End Sub
 
+    Public Sub addPositiveFloatColumn(ByVal index As Integer, ByVal header As String)
+        addColumn(index, header, New DataGridValidator(ValidatorType.PositiveFloat))
+    End Sub
+
+    Public Sub addPositiveColumn(ByVal index As Integer, ByVal header As String)
+        addColumn(index, header, New DataGridValidator(ValidatorType.Positive))
+    End Sub
+
+    Public Sub addNumericColumn(ByVal index As Integer, ByVal header As String)
+        addColumn(index, header, New DataGridValidator(ValidatorType.Numeric))
+    End Sub
+
+    Public Sub addFloatColumn(ByVal index As Integer, ByVal header As String)
+        addColumn(index, header, New DataGridValidator(ValidatorType.Float))
+    End Sub
+
+
     Public Sub addColumn(ByVal index As Integer, ByVal header As String, ByVal validator As DataGridValidator)
         If dataGrid.Columns.Count <= index Then
             dataGrid.Columns.Add(asName(header), header)
@@ -35,6 +52,18 @@
         Return New String(header.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
     End Function
 
+    Private Function nextNotReadOnlyFrom(ByVal iCol As Integer, ByVal iRow As Integer)
+        Dim i As Integer = 1
+        Do While (iCol + i < dataGrid.Columns.Count)
+            If Not dataGrid(iCol + i, iRow).ReadOnly Then
+                Return dataGrid(iCol + i, iRow)
+            End If
+            i += 1
+        Loop
+
+        Return dataGrid(0, Math.Min(iRow + 1, dataGrid.Rows.Count - 1))
+    End Function
+
     Private Sub dataGridEnterPressed(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
             e.SuppressKeyPress = True
@@ -46,7 +75,7 @@
                         dataGrid.CurrentCell = dataGrid(0, iRow + 1)
                     End If
                 Else
-                    dataGrid.CurrentCell = dataGrid(iCol + 1, iRow)
+                    dataGrid.CurrentCell = nextNotReadOnlyFrom(iCol, iRow)
                 End If
             End If
         End If
