@@ -35,4 +35,8 @@
     Private Sub ProcesoRetencionesOPToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ProcesoRetencionesOPToolStripMenuItem.Click
         ProcesoRetencionesPagos.Show()
     End Sub
+
+    Private Sub CargarInteresesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CargarInteresesToolStripMenuItem.Click
+        CargaIntereses.Show()
+    End Sub
 End Class
