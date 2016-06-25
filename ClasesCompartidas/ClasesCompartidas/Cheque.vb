@@ -1,10 +1,9 @@
 ﻿Public Class Cheque
-    Public tipo, numero, fecha, banco, clave As String
+    Public numero, fecha, banco, clave As String
     Public importe As Double
 
 
-    Public Sub New(ByVal unTipo As Integer, ByVal nro As String, ByVal fechaCheque As String, ByVal valor As Double, ByVal codBanco As String, ByVal clav As String)
-        tipo = unTipo
+    Public Sub New(ByVal nro As String, ByVal fechaCheque As String, ByVal valor As Double, ByVal codBanco As String, ByVal clav As String)
         numero = nro
         fecha = fechaCheque
         importe = valor
