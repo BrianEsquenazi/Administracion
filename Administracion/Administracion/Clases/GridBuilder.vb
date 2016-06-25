@@ -28,6 +28,11 @@
         addColumn(index, header, New DataGridValidator(ValidatorType.Numeric))
     End Sub
 
+    Public Sub addFloatColumn(ByVal index As Integer, ByVal header As String)
+        addColumn(index, header, New DataGridValidator(ValidatorType.Float))
+    End Sub
+
+
     Public Sub addColumn(ByVal index As Integer, ByVal header As String, ByVal validator As DataGridValidator)
         If dataGrid.Columns.Count <= index Then
             dataGrid.Columns.Add(asName(header), header)

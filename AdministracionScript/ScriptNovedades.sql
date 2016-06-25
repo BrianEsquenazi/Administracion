@@ -25,6 +25,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_mo
 DROP PROCEDURE [dbo].[PR_modificar_recibos_marca]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_carga_intereses]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_carga_intereses]
+GO
+
 
 /*
 		GENERACION NOVEDADES
@@ -204,3 +208,24 @@ WHERE
 	Recibo = @Recibo' 
 END
 GO
+
+CREATE PROCEDURE PR_get_carga_intereses
+AS
+	SELECT ccp.FechaOriginal
+		, ccp.DesProveOriginal
+		, ccp.FacturaOriginal
+		, ccp.Cuota
+		, ccp.fecha
+		, ISNULL(ccp.Saldo,0) as Saldo
+		, ISNULL(ccp.Interes,0) as Intereses
+		, ISNULL(ccp.IvaInteres,0) as IvaIntereses
+		, ISNULL(ccp.Referencia,'') as Referencia
+		, ccp.Clave
+		, ccp.NroInterno
+	FROM CtaCtePrv ccp
+	WHERE ccp.Proveedor = '10077777777'
+		and ISNULL(ccp.Saldo,0) <> 0
+		and ISNULL(ccp.Interes,0) = 0
+	ORDER BY ccp.OrdFechaOriginal
+GO
+

@@ -29,7 +29,7 @@
         Select Case type
             Case ValidatorType.NotEmpty
                 validarNoVacio(value, emptyPermitted, description)
-            Case ValidatorType.Numeric
+            Case ValidatorType.Numeric, ValidatorType.Float
                 validarNumerico(value, emptyPermitted, description)
             Case ValidatorType.PositiveFloat
                 validarPositivo(value, emptyPermitted, description)
