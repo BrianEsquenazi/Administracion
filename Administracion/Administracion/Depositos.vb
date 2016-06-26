@@ -185,4 +185,12 @@ Public Class Depositos
         End If
     End Sub
 
+    Private Sub txtCodigoBanco_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCodigoBanco.Leave
+        Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(txtCodigoBanco.Text)
+        If Not IsNothing(banco) Then
+            txtDescripcionBanco.Text = banco.nombre
+        Else
+            txtDescripcionBanco.Text = ""
+        End If
+    End Sub
 End Class
