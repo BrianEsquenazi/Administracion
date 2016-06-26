@@ -18,6 +18,7 @@ Public Class frmPrint
 
         'Cargo el reporte.
         cryRpt.Load(Application.StartupPath & "\imprefactura.rpt")
+       
 
         'Obtengo los datos de conexion desde el crytal report.
         For Each CrTable In cryRpt.Database.Tables
@@ -59,16 +60,16 @@ Public Class frmPrint
         'Exporta y crea el pdf.
         cryRpt.Export()
 
-        'Se envia el mail.
-        If setEmailSend("Factura electronia", "Sres: " & ds.Tables(0).Rows(0)("razon").ToString() & vbCrLf & "Por la presente se envia la factura electronica." & vbCrLf & "Saludos" & vbCrLf & "Surfactan SA", _
-                     ds.Tables(0).Rows(0)("email").ToString(), "", _
-                     CrDiskFileDestinationOptions.DiskFileName, "") = True Then
+        ''Se envia el mail.
+        'If setEmailSend("Factura electronia", "Sres: " & ds.Tables(0).Rows(0)("razon").ToString() & vbCrLf & "Por la presente se envia la factura electronica." & vbCrLf & "Saludos" & vbCrLf & "Surfactan SA", _
+        '             ds.Tables(0).Rows(0)("email").ToString(), "", _
+        '             CrDiskFileDestinationOptions.DiskFileName, "") = True Then
 
-            'Se cambia el estado.
-            Dim Comando As SqlCommand = New SqlCommand("update imprefactura set estado='S'", connectionDB)
-            Comando.ExecuteNonQuery()
+        '    'Se cambia el estado.
+        '    Dim Comando As SqlCommand = New SqlCommand("update imprefactura set estado='S'", connectionDB)
+        '    Comando.ExecuteNonQuery()
 
-        End If
+        'End If
 
         'Catch ex As Exception
         '    MsgBox(ex.ToString)
@@ -112,4 +113,8 @@ Public Class frmPrint
         End Try
         setEmailSend = False
     End Function
+
+    Private Sub CrystalReportViewer1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CrystalReportViewer1.Load
+
+    End Sub
 End Class
