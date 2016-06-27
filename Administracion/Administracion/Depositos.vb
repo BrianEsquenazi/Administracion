@@ -37,7 +37,7 @@ Public Class Depositos
         End If
         For Each row As DataGridViewRow In gridCheques.Rows
             If tipo <> row.Cells(0).Value Then
-                Return False
+                Return (row.Index + 1 = gridCheques.Rows.Count) And IsNothing(row.Cells(0).Value)
             End If
         Next
         Return True
@@ -47,8 +47,8 @@ Public Class Depositos
         For Each row As DataGridViewRow In gridCheques.Rows
             Dim tipo As Integer = row.Cells(0).Value
             Dim importe As Double = CustomConvert.toDoubleOrZero(row.Cells(4).Value)
-            If tipo <> 1 Or tipo <> 2 Or tipo <> 3 Or importe = 0 Then
-                Return False
+            If (tipo <> 1 And tipo <> 2 And tipo <> 3) Or importe = 0 Then
+                Return (row.Index + 1 = gridCheques.Rows.Count) And IsNothing(row.Cells(0).Value)
             End If
         Next
         Return True
@@ -58,8 +58,7 @@ Public Class Depositos
         Dim validador As New Validator
 
         validador.validate(Me)
-        validador.alsoValidate(CustomConvert.toDoubleOrZero(CustomTextBox1.Text) = Math.Round(sumaImportes(), 2), "El campo importe tiene que ser igual a la suma de la grilla (" & sumaImportes() & ")")
-        validador.alsoValidate(cheques.Count = gridCheques.Rows.Count, "La cantidad de cheques registrados no coincide con la cantidad de filas de la tabla")
+        validador.alsoValidate(CustomConvert.toDoubleOrZero(txtImporte.Text) = Math.Round(sumaImportes(), 2), "El campo importe tiene que ser igual a la suma de la grilla (" & sumaImportes() & ")")
         validador.alsoValidate(validarTipoUnico(), "Sólo puede realizarse un tipo de depósito por carga")
         validador.alsoValidate(validarEstadoGrilla(), "Hay campos en la grilla con estados inválidos")
 
@@ -78,7 +77,7 @@ Public Class Depositos
         gridCheques.AllowUserToAddRows = True
         gridCheques.Columns(0).ReadOnly = False
         gridCheques.Columns(4).ReadOnly = False
-        lblTotal.Text = ""
+        lblTotal.Text = sumaImportes()
     End Sub
 
     Private Sub mostrarSeleccionDeConsulta()
@@ -105,14 +104,26 @@ Public Class Depositos
     End Sub
 
     Private Sub mostrarCheque(ByVal cheque As Cheque)
+        Dim msgBoxResult As Boolean = True
         If IsNothing(cheque) Then : Exit Sub
         End If
         If Not cheques.Any(Function(otroCheque) otroCheque.igualA(cheque)) Then
-            cheques.Add(cheque)
-            gridCheques.Rows.Add(3, cheque.numero, cheque.fecha, cheque.banco, cheque.importe)
-            gridCheques.AllowUserToAddRows = False
-            gridCheques.Columns(0).ReadOnly = True
-            gridCheques.Columns(4).ReadOnly = True
+            If gridCheques.AllowUserToAddRows Then
+                If gridCheques.Rows.Count > 1 Then
+                    msgBoxResult = MsgBox("Si agrega un cheque se borrarán todos los datos de la grilla. ¿Desea agregarlo igual?", vbYesNo, "Agregar Cheque") = vbYes
+                    If msgBoxResult Then
+                        gridCheques.Rows.Clear()
+                    End If
+                End If
+            End If
+            If msgBoxResult Then
+                cheques.Add(cheque)
+                gridCheques.Rows.Add(3, cheque.numero, cheque.fecha, cheque.banco, cheque.importe)
+                gridCheques.AllowUserToAddRows = False
+                gridCheques.Columns(0).ReadOnly = True
+                gridCheques.Columns(4).ReadOnly = True
+                lstConsulta.Items.Remove(lstConsulta.SelectedItem)
+            End If
             lblTotal.Text = sumaImportes()
         End If
     End Sub
@@ -136,16 +147,16 @@ Public Class Depositos
         If lstSeleccion.SelectedItem = "Bancos" Then
             lstConsulta.Visible = False
             Me.Width = formNormalWidth()
-        Else
-            lstConsulta.Items.Remove(lstConsulta.SelectedItem)
         End If
     End Sub
 
     Private Sub gridCheques_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridCheques.CellValueChanged
-        'For Each row As DataGridViewRow gridCheques.Rows
-
+        For Each row As DataGridViewRow In gridCheques.Rows
+            If Not IsNothing(row.Cells(4).Value) Then
+                row.Cells(4).Value = row.Cells(4).Value.ToString.Replace(".", ",")
+            End If
+        Next
         lblTotal.Text = sumaImportes()
-        'Next
     End Sub
 
     Private Sub gridCheques_UserAddedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles gridCheques.UserAddedRow
@@ -162,8 +173,24 @@ Public Class Depositos
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
         If validarCampos() Then
-            'agregar
+            Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(txtCodigoBanco.Text)
+            Dim deposito As Deposito = New Deposito(txtNroDeposito.Text, banco, txtFecha.Text, txtFechaAcreditacion.Text, txtImporte.Text)
+            If cheques.Count > 0 Then
+                Dim chequesADepositar As New List(Of ItemDeposito)
+                cheques.ForEach(Sub(cheque) chequesADepositar.Add(cheque))
+                DAODeposito.agregarDeposito(deposito, chequesADepositar)
+            Else
+                DAODeposito.agregarDeposito(deposito, gridCheques.Rows)
+            End If
         End If
     End Sub
 
+    Private Sub txtCodigoBanco_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCodigoBanco.Leave
+        Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(txtCodigoBanco.Text)
+        If Not IsNothing(banco) Then
+            txtDescripcionBanco.Text = banco.nombre
+        Else
+            txtDescripcionBanco.Text = ""
+        End If
+    End Sub
 End Class

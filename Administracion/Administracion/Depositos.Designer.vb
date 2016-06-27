@@ -28,7 +28,7 @@ Partial Class Depositos
         Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CustomTextBox1 = New WindowsApplication1.CustomTextBox()
+        Me.txtImporte = New WindowsApplication1.CustomTextBox()
         Me.CustomLabel7 = New WindowsApplication1.CustomLabel()
         Me.lstSeleccion = New WindowsApplication1.CustomListBox()
         Me.btnCerrar = New WindowsApplication1.CustomButton()
@@ -92,18 +92,18 @@ Partial Class Depositos
         Me.importe.Name = "importe"
         Me.importe.Width = 70
         '
-        'CustomTextBox1
+        'txtImporte
         '
-        Me.CustomTextBox1.Cleanable = False
-        Me.CustomTextBox1.Empty = False
-        Me.CustomTextBox1.EnterIndex = 5
-        Me.CustomTextBox1.LabelAssociationKey = 5
-        Me.CustomTextBox1.Location = New System.Drawing.Point(254, 90)
-        Me.CustomTextBox1.MaxLength = 10
-        Me.CustomTextBox1.Name = "CustomTextBox1"
-        Me.CustomTextBox1.Size = New System.Drawing.Size(80, 20)
-        Me.CustomTextBox1.TabIndex = 16
-        Me.CustomTextBox1.Validator = WindowsApplication1.ValidatorType.PositiveFloat
+        Me.txtImporte.Cleanable = True
+        Me.txtImporte.Empty = False
+        Me.txtImporte.EnterIndex = 5
+        Me.txtImporte.LabelAssociationKey = 5
+        Me.txtImporte.Location = New System.Drawing.Point(254, 90)
+        Me.txtImporte.MaxLength = 10
+        Me.txtImporte.Name = "txtImporte"
+        Me.txtImporte.Size = New System.Drawing.Size(80, 20)
+        Me.txtImporte.TabIndex = 16
+        Me.txtImporte.Validator = WindowsApplication1.ValidatorType.PositiveFloat
         '
         'CustomLabel7
         '
@@ -332,7 +332,7 @@ Partial Class Depositos
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(790, 568)
-        Me.Controls.Add(Me.CustomTextBox1)
+        Me.Controls.Add(Me.txtImporte)
         Me.Controls.Add(Me.CustomLabel7)
         Me.Controls.Add(Me.lstSeleccion)
         Me.Controls.Add(Me.btnCerrar)
@@ -382,7 +382,7 @@ Partial Class Depositos
     Friend WithEvents btnCerrar As WindowsApplication1.CustomButton
     Friend WithEvents lstSeleccion As WindowsApplication1.CustomListBox
     Friend WithEvents CustomLabel7 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomTextBox1 As WindowsApplication1.CustomTextBox
+    Friend WithEvents txtImporte As WindowsApplication1.CustomTextBox
     Friend WithEvents tipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents numero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents fecha As System.Windows.Forms.DataGridViewTextBoxColumn

@@ -69,8 +69,11 @@
     <Compile Include="CapaDAO\SQLConnector.vb" />
     <Compile Include="Cheque.vb" />
     <Compile Include="CuentaContable.vb" />
+    <Compile Include="Deposito.vb" />
+    <Compile Include="Efectivo.vb" />
     <Compile Include="Global\Globals.vb" />
     <Compile Include="Imputac.vb" />
+    <Compile Include="ItemDeposito.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

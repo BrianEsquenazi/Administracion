@@ -25,14 +25,14 @@ Partial Class ProcesoRetencionesPagos
         Me.txtHasta = New System.Windows.Forms.MaskedTextBox()
         Me.txtDesde = New System.Windows.Forms.MaskedTextBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.TipoProceso = New WindowsApplication1.CustomComboBox()
         Me.btnCancela = New WindowsApplication1.CustomButton()
         Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.txtNombre = New WindowsApplication1.CustomTextBox()
-        Me.btnAcepta = New WindowsApplication1.CustomButton()
         Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.btnAceptaRetePago = New WindowsApplication1.CustomButton()
+        Me.TipoProceso = New WindowsApplication1.CustomComboBox()
+        Me.txtNombre = New WindowsApplication1.CustomTextBox()
         Me.SuspendLayout()
         '
         'txtHasta
@@ -53,18 +53,8 @@ Partial Class ProcesoRetencionesPagos
         Me.txtDesde.Size = New System.Drawing.Size(106, 20)
         Me.txtDesde.TabIndex = 8
         '
-        'TipoProceso
+        'FolderBrowserDialog1
         '
-        Me.TipoProceso.Cleanable = False
-        Me.TipoProceso.Empty = False
-        Me.TipoProceso.EnterIndex = -1
-        Me.TipoProceso.FormattingEnabled = True
-        Me.TipoProceso.LabelAssociationKey = -1
-        Me.TipoProceso.Location = New System.Drawing.Point(176, 152)
-        Me.TipoProceso.Name = "TipoProceso"
-        Me.TipoProceso.Size = New System.Drawing.Size(127, 21)
-        Me.TipoProceso.TabIndex = 17
-        Me.TipoProceso.Validator = WindowsApplication1.ValidatorType.None
         '
         'btnCancela
         '
@@ -87,30 +77,6 @@ Partial Class ProcesoRetencionesPagos
         Me.CustomLabel4.Size = New System.Drawing.Size(70, 13)
         Me.CustomLabel4.TabIndex = 15
         Me.CustomLabel4.Text = "Tipo Proceso"
-        '
-        'txtNombre
-        '
-        Me.txtNombre.Cleanable = False
-        Me.txtNombre.Empty = True
-        Me.txtNombre.EnterIndex = -1
-        Me.txtNombre.LabelAssociationKey = -1
-        Me.txtNombre.Location = New System.Drawing.Point(176, 116)
-        Me.txtNombre.Name = "txtNombre"
-        Me.txtNombre.Size = New System.Drawing.Size(108, 20)
-        Me.txtNombre.TabIndex = 13
-        Me.txtNombre.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'btnAcepta
-        '
-        Me.btnAcepta.Cleanable = False
-        Me.btnAcepta.EnterIndex = -1
-        Me.btnAcepta.LabelAssociationKey = -1
-        Me.btnAcepta.Location = New System.Drawing.Point(116, 240)
-        Me.btnAcepta.Name = "btnAcepta"
-        Me.btnAcepta.Size = New System.Drawing.Size(88, 29)
-        Me.btnAcepta.TabIndex = 12
-        Me.btnAcepta.Text = "Aceptar"
-        Me.btnAcepta.UseVisualStyleBackColor = True
         '
         'CustomLabel3
         '
@@ -142,18 +108,55 @@ Partial Class ProcesoRetencionesPagos
         Me.CustomLabel1.TabIndex = 7
         Me.CustomLabel1.Text = "Desde Fecha"
         '
+        'btnAceptaRetePago
+        '
+        Me.btnAceptaRetePago.Cleanable = False
+        Me.btnAceptaRetePago.EnterIndex = -1
+        Me.btnAceptaRetePago.LabelAssociationKey = -1
+        Me.btnAceptaRetePago.Location = New System.Drawing.Point(105, 240)
+        Me.btnAceptaRetePago.Name = "btnAceptaRetePago"
+        Me.btnAceptaRetePago.Size = New System.Drawing.Size(88, 29)
+        Me.btnAceptaRetePago.TabIndex = 18
+        Me.btnAceptaRetePago.Text = "Aceptar"
+        Me.btnAceptaRetePago.UseVisualStyleBackColor = True
+        '
+        'TipoProceso
+        '
+        Me.TipoProceso.Cleanable = False
+        Me.TipoProceso.Empty = False
+        Me.TipoProceso.EnterIndex = -1
+        Me.TipoProceso.FormattingEnabled = True
+        Me.TipoProceso.LabelAssociationKey = -1
+        Me.TipoProceso.Location = New System.Drawing.Point(176, 152)
+        Me.TipoProceso.Name = "TipoProceso"
+        Me.TipoProceso.Size = New System.Drawing.Size(127, 21)
+        Me.TipoProceso.TabIndex = 17
+        Me.TipoProceso.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'txtNombre
+        '
+        Me.txtNombre.Cleanable = False
+        Me.txtNombre.Empty = True
+        Me.txtNombre.EnterIndex = -1
+        Me.txtNombre.LabelAssociationKey = -1
+        Me.txtNombre.Location = New System.Drawing.Point(176, 116)
+        Me.txtNombre.Name = "txtNombre"
+        Me.txtNombre.Size = New System.Drawing.Size(108, 20)
+        Me.txtNombre.TabIndex = 13
+        Me.txtNombre.Validator = WindowsApplication1.ValidatorType.None
+        '
         'ProcesoRetencionesPagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(419, 351)
+        Me.Controls.Add(Me.btnAceptaRetePago)
         Me.Controls.Add(Me.TipoProceso)
         Me.Controls.Add(Me.btnCancela)
         Me.Controls.Add(Me.CustomLabel4)
         Me.Controls.Add(Me.txtHasta)
         Me.Controls.Add(Me.txtDesde)
         Me.Controls.Add(Me.txtNombre)
-        Me.Controls.Add(Me.btnAcepta)
         Me.Controls.Add(Me.CustomLabel3)
         Me.Controls.Add(Me.CustomLabel2)
         Me.Controls.Add(Me.CustomLabel1)
@@ -167,11 +170,11 @@ Partial Class ProcesoRetencionesPagos
     Friend WithEvents txtHasta As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtDesde As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtNombre As WindowsApplication1.CustomTextBox
-    Friend WithEvents btnAcepta As WindowsApplication1.CustomButton
     Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents btnCancela As WindowsApplication1.CustomButton
     Friend WithEvents TipoProceso As WindowsApplication1.CustomComboBox
+    Friend WithEvents btnAceptaRetePago As WindowsApplication1.CustomButton
 End Class

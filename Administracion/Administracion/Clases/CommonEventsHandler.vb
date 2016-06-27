@@ -52,6 +52,8 @@
                 AddHandler control.KeyPress, AddressOf numericKeyPressed
             Case ValidatorType.PositiveFloat
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorPressed
+            Case ValidatorType.Float
+                AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorOrMinusPressed
             Case ValidatorType.DateFormat
                 AddHandler control.KeyDown, AddressOf deleteOrBackSpaceDownForDateFormat
                 AddHandler control.KeyPress, AddressOf dateKeyPressed
@@ -69,8 +71,39 @@
         Dim customText = DirectCast(sender, CustomTextBox)
         If e.KeyChar = "." Or e.KeyChar = "," Then
             If Not customText.Text.Contains(",") Then
-                customText.Text = customText.Text.Insert(customText.Text.Count, ",")
-                customText.Select(customText.TextLength, 0)
+                Dim selectionStart As Integer = customText.SelectionStart
+                If selectionStart = 0 Then
+                    customText.Text = customText.Text.Insert(selectionStart, "0")
+                    selectionStart = selectionStart + 1
+                End If
+                customText.Text = customText.Text.Insert(selectionStart, ",")
+                customText.Select(selectionStart + 1, 0)
+            End If
+            e.Handled = True
+        End If
+        If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Shared Sub numericKeyOrDecimalSeparatorOrMinusPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+        Dim customText = DirectCast(sender, CustomTextBox)
+        If e.KeyChar = "-" And customText.SelectionStart = 0 Then
+            If Not customText.Text.Contains("-") Then
+                customText.Text = customText.Text.Insert(0, "-")
+                customText.Select(1, 0)
+            End If
+            e.Handled = True
+        End If
+        If e.KeyChar = "." Or e.KeyChar = "," Then
+            If Not customText.Text.Contains(",") Then
+                Dim selectionStart As Integer = customText.SelectionStart
+                If selectionStart = 0 Or (selectionStart = 1 And customText.Text.Contains("-")) Then
+                    customText.Text = customText.Text.Insert(selectionStart, "0")
+                    selectionStart = selectionStart + 1
+                End If
+                customText.Text = customText.Text.Insert(selectionStart, ",")
+                customText.Select(selectionStart + 1, 0)
             End If
             e.Handled = True
         End If
