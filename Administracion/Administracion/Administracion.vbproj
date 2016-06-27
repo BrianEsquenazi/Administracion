@@ -97,6 +97,7 @@
     <Compile Include="BancosABM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Capa DAO\DAOCtaCteProveedor.vb" />
     <Compile Include="Capa DAO\DAODeposito.vb" />
     <Compile Include="Capa DAO\DAOProveedor.vb" />
     <Compile Include="Capa DAO\DAORubroProveedor.vb" />
