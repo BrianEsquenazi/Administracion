@@ -29,6 +29,9 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_carga_intereses]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_deposito_por_clave]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_deposito_por_clave]
+GO
 
 /*
 		GENERACION NOVEDADES
@@ -229,3 +232,12 @@ AS
 	ORDER BY ccp.OrdFechaOriginal
 GO
 
+CREATE PROCEDURE [dbo].[PR_get_deposito_por_clave]
+	@Clave Char(8)
+ AS
+
+SELECT *
+FROM Depositos 
+WHERE
+	Clave = @Clave
+GO
