@@ -132,15 +132,12 @@ END
 GO
 
 
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_deposito]') AND type in (N'P', N'PC'))
-BEGIN
-EXEC dbo.sp_executesql @statement = N'CREATE procedure [dbo].[PR_alta_deposito]
+CREATE procedure [dbo].[PR_alta_deposito]
 	@Clave    VarChar(8),
 	@Deposito VarChar(6),
 	@Renglon  varchar(2),
 	@Banco    smallint,
 	@Fecha    VarChar(10),  
-	@FechaOrd VarChar(8),
 	@Importe  Float,                                             
 	@Acredita VarChar(10),  
 	@AcreditaOrd VarChar(8),
@@ -150,45 +147,47 @@ EXEC dbo.sp_executesql @statement = N'CREATE procedure [dbo].[PR_alta_deposito]
 	@Importe2 real,                
 	@Observaciones2 VarChar(20)
 AS
-INSERT INTO
-	Depositos
-		(
-		Clave    ,
-		Deposito ,
-		Renglon ,
-		Banco  ,
-		Fecha   ,  
-		FechaOrd ,
-		Importe   ,                                           
-		Acredita   ,
-		AcreditaOrd ,
-		Tipo2 ,
-		Numero2, 
-		Fecha2  ,  
-		Importe2 ,               
-		Observaciones2,      
-		Empresa ,
-		Impolista
-		)
-VALUES
-		(
-		@Clave    ,
-		@Deposito ,
-		@Renglon ,
-		@Banco  ,
-		@Fecha   ,   
-		@FechaOrd ,
-		@Importe   ,                                            
-		@Acredita   ,
-		@AcreditaOrd ,
-		@Tipo2 ,
-		@Numero2,  
-		@Fecha2  ,   
-		@Importe2 ,                
-		@Observaciones2,       
-		1 ,
-		0
-		)' 
+BEGIN
+	declare @fechaOrd varchar(8) = (select dbo.FN_get_fecha_ordenable (@Fecha))
+	INSERT INTO
+		Depositos
+			(
+			Clave    ,
+			Deposito ,
+			Renglon ,
+			Banco  ,
+			Fecha   ,  
+			FechaOrd ,
+			Importe   ,                                           
+			Acredita   ,
+			AcreditaOrd ,
+			Tipo2 ,
+			Numero2, 
+			Fecha2  ,  
+			Importe2 ,               
+			Observaciones2,      
+			Empresa ,
+			Impolista
+			)
+	VALUES
+			(
+			@Clave    ,
+			@Deposito ,
+			@Renglon ,
+			@Banco  ,
+			@Fecha   ,   
+			@FechaOrd ,
+			@Importe   ,                                            
+			@Acredita   ,
+			@AcreditaOrd ,
+			@Tipo2 ,
+			@Numero2,  
+			@Fecha2  ,   
+			@Importe2 ,                
+			@Observaciones2,       
+			1 ,
+			0
+			)
 END
 GO
 
@@ -214,17 +213,17 @@ GO
 
 CREATE PROCEDURE PR_get_carga_intereses
 AS
-	SELECT ccp.FechaOriginal
-		, ccp.DesProveOriginal
-		, ccp.FacturaOriginal
-		, ccp.Cuota
-		, ccp.fecha
+	SELECT ISNULL(ccp.FechaOriginal,'') FechaOriginal 
+		, ISNULL(ccp.DesProveOriginal,'') DesProveOriginal
+		, ISNULL(ccp.FacturaOriginal,'') FacturaOriginal
+		, ISNULL(ccp.Cuota,'') Cuota
+		, ISNULL(ccp.fecha,'') fecha
 		, ISNULL(ccp.Saldo,0) as Saldo
 		, ISNULL(ccp.Interes,0) as Intereses
 		, ISNULL(ccp.IvaInteres,0) as IvaIntereses
 		, ISNULL(ccp.Referencia,'') as Referencia
-		, ccp.Clave
-		, ccp.NroInterno
+		, ISNULL(ccp.Clave,'') Clave
+		, ISNULL(ccp.NroInterno,'') NroInterno
 	FROM CtaCtePrv ccp
 	WHERE ccp.Proveedor = '10077777777'
 		and ISNULL(ccp.Saldo,0) <> 0
