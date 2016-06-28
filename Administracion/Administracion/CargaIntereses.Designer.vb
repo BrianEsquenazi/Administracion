@@ -23,8 +23,6 @@ Partial Class CargaIntereses
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.gridCtaCte = New System.Windows.Forms.DataGridView()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnGraba = New WindowsApplication1.CustomButton()
         Me.fechaOriginal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.desProveOriginal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.facturaOriginal = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -36,6 +34,8 @@ Partial Class CargaIntereses
         Me.referencia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clave = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nroInterno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnCancela = New WindowsApplication1.CustomButton()
+        Me.btnGraba = New WindowsApplication1.CustomButton()
         CType(Me.gridCtaCte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -51,30 +51,6 @@ Partial Class CargaIntereses
         Me.gridCtaCte.Size = New System.Drawing.Size(760, 468)
         Me.gridCtaCte.StandardTab = True
         Me.gridCtaCte.TabIndex = 1
-        '
-        'btnCancela
-        '
-        Me.btnCancela.Cleanable = False
-        Me.btnCancela.EnterIndex = -1
-        Me.btnCancela.LabelAssociationKey = -1
-        Me.btnCancela.Location = New System.Drawing.Point(385, 496)
-        Me.btnCancela.Name = "btnCancela"
-        Me.btnCancela.Size = New System.Drawing.Size(122, 42)
-        Me.btnCancela.TabIndex = 3
-        Me.btnCancela.Text = "Cancela"
-        Me.btnCancela.UseVisualStyleBackColor = True
-        '
-        'btnGraba
-        '
-        Me.btnGraba.Cleanable = False
-        Me.btnGraba.EnterIndex = -1
-        Me.btnGraba.LabelAssociationKey = -1
-        Me.btnGraba.Location = New System.Drawing.Point(248, 496)
-        Me.btnGraba.Name = "btnGraba"
-        Me.btnGraba.Size = New System.Drawing.Size(122, 42)
-        Me.btnGraba.TabIndex = 2
-        Me.btnGraba.Text = "Graba"
-        Me.btnGraba.UseVisualStyleBackColor = True
         '
         'fechaOriginal
         '
@@ -148,6 +124,30 @@ Partial Class CargaIntereses
         Me.nroInterno.Name = "nroInterno"
         Me.nroInterno.Visible = False
         Me.nroInterno.Width = 80
+        '
+        'btnCancela
+        '
+        Me.btnCancela.Cleanable = False
+        Me.btnCancela.EnterIndex = -1
+        Me.btnCancela.LabelAssociationKey = -1
+        Me.btnCancela.Location = New System.Drawing.Point(385, 496)
+        Me.btnCancela.Name = "btnCancela"
+        Me.btnCancela.Size = New System.Drawing.Size(122, 42)
+        Me.btnCancela.TabIndex = 3
+        Me.btnCancela.Text = "Cancela"
+        Me.btnCancela.UseVisualStyleBackColor = True
+        '
+        'btnGraba
+        '
+        Me.btnGraba.Cleanable = False
+        Me.btnGraba.EnterIndex = -1
+        Me.btnGraba.LabelAssociationKey = -1
+        Me.btnGraba.Location = New System.Drawing.Point(248, 496)
+        Me.btnGraba.Name = "btnGraba"
+        Me.btnGraba.Size = New System.Drawing.Size(122, 42)
+        Me.btnGraba.TabIndex = 2
+        Me.btnGraba.Text = "Graba"
+        Me.btnGraba.UseVisualStyleBackColor = True
         '
         'CargaIntereses
         '

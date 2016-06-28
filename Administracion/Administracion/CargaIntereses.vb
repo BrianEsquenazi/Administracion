@@ -26,4 +26,8 @@ Public Class CargaIntereses
         limpiar()
         CargarIntereses()
     End Sub
+
+    Private Sub btnCancela_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancela.Click
+        Close()
+    End Sub
 End Class

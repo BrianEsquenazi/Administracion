@@ -140,7 +140,6 @@ CREATE procedure [dbo].[PR_alta_deposito]
 	@Fecha    VarChar(10),  
 	@Importe  Float,                                             
 	@Acredita VarChar(10),  
-	@AcreditaOrd VarChar(8),
 	@Tipo2    VarChar(2),
 	@Numero2  VarChar(8),
 	@Fecha2   VarChar(10),  
@@ -149,6 +148,7 @@ CREATE procedure [dbo].[PR_alta_deposito]
 AS
 BEGIN
 	declare @fechaOrd varchar(8) = (select dbo.FN_get_fecha_ordenable (@Fecha))
+	declare @AcreditaOrd VarChar(8) = (select dbo.FN_get_fecha_ordenable (@Acredita))
 	INSERT INTO
 		Depositos
 			(
@@ -239,4 +239,32 @@ SELECT *
 FROM Depositos 
 WHERE
 	Clave = @Clave
+GO
+
+CREATE PROCEDURE [dbo].[PR_modificar_carga_intereses]
+	(@clave varchar(26)
+	, @saldo float
+	, @intereses float
+	, @ivaIntereses float
+	, @referencia varchar(10)) 
+AS
+BEGIN
+	declare @saldo_nuevo float = @saldo + @intereses + @ivaIntereses
+	declare @nro_interno int = (select NroInterno from CtaCtePrv where Clave = @clave)
+
+	BEGIN TRAN
+		UPDATE	CtaCtePrv
+		SET Saldo = @saldo_nuevo
+			, Interes = @intereses 
+			, IvaInteres = @ivaIntereses
+			, Referencia = @referencia
+		WHERE Clave = @clave
+		
+		UPDATE IvaComp
+		SET Neto = @intereses
+			, Iva21 = @ivaIntereses
+		WHERE NroInterno = @nro_interno
+			
+	COMMIT
+END
 GO
