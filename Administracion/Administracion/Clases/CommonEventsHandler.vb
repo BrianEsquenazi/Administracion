@@ -154,6 +154,9 @@
 
     Private Shared Sub enterPressed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
+            If (sender.Validator = ValidatorType.Float Or sender.Validator = ValidatorType.PositiveFloat) And sender.Text = "" Then
+                sender.Text = "0"
+            End If
             Dim nextControl As Control = controls.Find(Function(control) control.EnterIndex = sender.EnterIndex + 1)
             If IsNothing(nextControl) OrElse Not nextControl.Focus() Then
                 If isCRUDForm Then
