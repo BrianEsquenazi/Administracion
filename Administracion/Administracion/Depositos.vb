@@ -61,6 +61,7 @@ Public Class Depositos
         validador.alsoValidate(CustomConvert.toDoubleOrZero(txtImporte.Text) = Math.Round(sumaImportes(), 2), "El campo importe tiene que ser igual a la suma de la grilla (" & sumaImportes() & ")")
         validador.alsoValidate(validarTipoUnico(), "Sólo puede realizarse un tipo de depósito por carga")
         validador.alsoValidate(validarEstadoGrilla(), "Hay campos en la grilla con estados inválidos")
+        validador.alsoValidate(Not DAODeposito.existeDepositoNumero(txtNroDeposito.Text), "Ya existe un depósito con número " & txtNroDeposito.Text)
 
         Return validador.flush
     End Function
@@ -192,5 +193,9 @@ Public Class Depositos
         Else
             txtDescripcionBanco.Text = ""
         End If
+    End Sub
+
+    Private Sub txtNroDeposito_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroDeposito.Leave
+        txtNroDeposito.Text = ceros(txtNroDeposito.Text, 6)
     End Sub
 End Class

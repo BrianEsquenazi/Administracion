@@ -28,8 +28,8 @@ Public Class ProveedoresABM
         organizadorABM.setDefaultCleanButtonClick()
         organizadorABM.setDefaultCloseButtonClick()
         organizadorABM.setListButtonClick(AddressOf listado)
-        organizadorABM.addQueryFunction(AddressOf DAOProveedor.buscarProveedorPorNombre, "Proveedores", AddressOf mostrarProveedor)
-        organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta)
+        organizadorABM.addQueryFunction(AddressOf DAOProveedor.buscarProveedorPorNombre, "Proveedores", AddressOf mostrarProveedor, txtCodigo)
+        organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta, txtCuenta)
         organizadorABM.controlsDefinedBy("get_proveedor", AddressOf DAOProveedor.crearProveedor, AddressOf mostrarProveedor)
         organizadorABM.compactOrganize()
     End Sub

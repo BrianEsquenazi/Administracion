@@ -115,10 +115,16 @@
     <Compile Include="Clases\FormOrganizer.vb" />
     <Compile Include="Clases\GridBuilder.vb" />
     <Compile Include="Clases\Proceso.vb" />
-    <Compile Include="Compras.Designer.vb">
+    <Compile Include="ComprasNovedades\Compras.Designer.vb">
       <DependentUpon>Compras.vb</DependentUpon>
     </Compile>
-    <Compile Include="Compras.vb">
+    <Compile Include="ComprasNovedades\Compras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprasNovedades\ConsultaCompras.Designer.vb">
+      <DependentUpon>ConsultaCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ComprasNovedades\ConsultaCompras.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CuentaContableABM.Designer.vb">
@@ -130,10 +136,10 @@
     <Compile Include="Clases\CustomTextBox.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CUFEProveedor.Designer.vb">
+    <Compile Include="ProveedoresABM\CUFEProveedor.Designer.vb">
       <DependentUpon>CUFEProveedor.vb</DependentUpon>
     </Compile>
-    <Compile Include="CUFEProveedor.vb">
+    <Compile Include="ProveedoresABM\CUFEProveedor.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Depositos.Designer.vb">
@@ -148,10 +154,10 @@
     <Compile Include="CuentaCorrientePantalla.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ObservacionesProveedor.Designer.vb">
+    <Compile Include="ProveedoresABM\ObservacionesProveedor.Designer.vb">
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
     </Compile>
-    <Compile Include="ObservacionesProveedor.vb">
+    <Compile Include="ProveedoresABM\ObservacionesProveedor.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProcesoRetencionesPagos.Designer.vb">
@@ -166,10 +172,10 @@
     <Compile Include="ProcesoSifere.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProveedoresABM.Designer.vb">
+    <Compile Include="ProveedoresABM\ProveedoresABM.Designer.vb">
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
     </Compile>
-    <Compile Include="ProveedoresABM.vb">
+    <Compile Include="ProveedoresABM\ProveedoresABM.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RubrosProveedorABM.Designer.vb">
@@ -220,7 +226,7 @@
     <EmbeddedResource Include="CargaIntereses.resx">
       <DependentUpon>CargaIntereses.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compras.resx">
+    <EmbeddedResource Include="ComprasNovedades\Compras.resx">
       <DependentUpon>Compras.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CuentaContableABM.resx">
@@ -229,13 +235,13 @@
     <EmbeddedResource Include="CuentaCorrientePantalla.resx">
       <DependentUpon>CuentaCorrientePantalla.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CUFEProveedor.resx">
+    <EmbeddedResource Include="ProveedoresABM\CUFEProveedor.resx">
       <DependentUpon>CUFEProveedor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Depositos.resx">
       <DependentUpon>Depositos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ObservacionesProveedor.resx">
+    <EmbeddedResource Include="ProveedoresABM\ObservacionesProveedor.resx">
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProcesoRetencionesPagos.resx">
@@ -244,7 +250,7 @@
     <EmbeddedResource Include="ProcesoSifere.resx">
       <DependentUpon>ProcesoSifere.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProveedoresABM.resx">
+    <EmbeddedResource Include="ProveedoresABM\ProveedoresABM.resx">
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RubrosProveedorABM.resx">

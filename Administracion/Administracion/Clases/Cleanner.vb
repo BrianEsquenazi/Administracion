@@ -15,6 +15,7 @@
         For Each cmbBox As CustomComboBox In form.Controls.OfType(Of CustomComboBox)()
             If cmbBox.Cleanable Then
                 cmbBox.Text = ""
+                cmbBox.SelectedIndex = -1
             End If
             controls.Add(cmbBox)
         Next

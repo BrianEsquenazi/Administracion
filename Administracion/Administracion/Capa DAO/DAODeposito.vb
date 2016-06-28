@@ -2,6 +2,10 @@
 
 Public Class DAODeposito
 
+    Public Shared Function existeDepositoNumero(ByVal nroDeposito As String) As Boolean
+        Return SQLConnector.checkIfExists("get_deposito_por_clave", nroDeposito & "01") 'El 01 representa el renglón. Todos tienen renglón 01
+    End Function
+
     Public Shared Sub agregarDeposito(ByVal deposito As Deposito, ByVal gridRows As DataGridViewRowCollection)
         deposito.agregarItems(createItems(gridRows))
         agregarDeposito(deposito)

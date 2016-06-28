@@ -25,10 +25,17 @@ Partial Class Compras
         Me.chkCheque = New System.Windows.Forms.CheckBox()
         Me.chkSoloIVA = New System.Windows.Forms.CheckBox()
         Me.gbTipo = New System.Windows.Forms.GroupBox()
-        Me.optEfectivo = New System.Windows.Forms.RadioButton()
-        Me.optCtaCte = New System.Windows.Forms.RadioButton()
         Me.optNacion = New System.Windows.Forms.RadioButton()
+        Me.optCtaCte = New System.Windows.Forms.RadioButton()
+        Me.optEfectivo = New System.Windows.Forms.RadioButton()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.btnApertura = New WindowsApplication1.CustomButton()
+        Me.btnConsulta = New WindowsApplication1.CustomButton()
+        Me.btnCerrar = New WindowsApplication1.CustomButton()
+        Me.btnConsultaNroFactura = New WindowsApplication1.CustomButton()
+        Me.btnLimpiar = New WindowsApplication1.CustomButton()
+        Me.btnEliminar = New WindowsApplication1.CustomButton()
+        Me.btnAgregar = New WindowsApplication1.CustomButton()
         Me.txtIVA10 = New WindowsApplication1.CustomTextBox()
         Me.txtDespacho = New WindowsApplication1.CustomTextBox()
         Me.txtIVA21 = New WindowsApplication1.CustomTextBox()
@@ -114,6 +121,26 @@ Partial Class Compras
         Me.gbTipo.TabStop = False
         Me.gbTipo.Text = "Tipo"
         '
+        'optNacion
+        '
+        Me.optNacion.AutoSize = True
+        Me.optNacion.Location = New System.Drawing.Point(148, 16)
+        Me.optNacion.Name = "optNacion"
+        Me.optNacion.Size = New System.Drawing.Size(59, 17)
+        Me.optNacion.TabIndex = 2
+        Me.optNacion.Text = "Nación"
+        Me.optNacion.UseVisualStyleBackColor = True
+        '
+        'optCtaCte
+        '
+        Me.optCtaCte.AutoSize = True
+        Me.optCtaCte.Location = New System.Drawing.Point(76, 16)
+        Me.optCtaCte.Name = "optCtaCte"
+        Me.optCtaCte.Size = New System.Drawing.Size(66, 17)
+        Me.optCtaCte.TabIndex = 1
+        Me.optCtaCte.Text = "Cta. Cte."
+        Me.optCtaCte.UseVisualStyleBackColor = True
+        '
         'optEfectivo
         '
         Me.optEfectivo.AutoSize = True
@@ -126,26 +153,6 @@ Partial Class Compras
         Me.optEfectivo.Text = "Efectivo"
         Me.optEfectivo.UseVisualStyleBackColor = True
         '
-        'optCtaCte
-        '
-        Me.optCtaCte.AutoSize = True
-        Me.optCtaCte.Location = New System.Drawing.Point(76, 16)
-        Me.optCtaCte.Name = "optCtaCte"
-        Me.optCtaCte.Size = New System.Drawing.Size(66, 17)
-        Me.optCtaCte.TabIndex = 1
-        Me.optCtaCte.Text = "Cta. Cte."
-        Me.optCtaCte.UseVisualStyleBackColor = True
-        '
-        'optNacion
-        '
-        Me.optNacion.AutoSize = True
-        Me.optNacion.Location = New System.Drawing.Point(148, 16)
-        Me.optNacion.Name = "optNacion"
-        Me.optNacion.Size = New System.Drawing.Size(59, 17)
-        Me.optNacion.TabIndex = 2
-        Me.optNacion.Text = "Nación"
-        Me.optNacion.UseVisualStyleBackColor = True
-        '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -153,6 +160,90 @@ Partial Class Compras
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(741, 301)
         Me.DataGridView1.TabIndex = 52
+        '
+        'btnApertura
+        '
+        Me.btnApertura.Cleanable = False
+        Me.btnApertura.EnterIndex = -1
+        Me.btnApertura.LabelAssociationKey = -1
+        Me.btnApertura.Location = New System.Drawing.Point(652, 156)
+        Me.btnApertura.Name = "btnApertura"
+        Me.btnApertura.Size = New System.Drawing.Size(100, 25)
+        Me.btnApertura.TabIndex = 59
+        Me.btnApertura.Text = "Apertura"
+        Me.btnApertura.UseVisualStyleBackColor = True
+        '
+        'btnConsulta
+        '
+        Me.btnConsulta.Cleanable = False
+        Me.btnConsulta.EnterIndex = -1
+        Me.btnConsulta.LabelAssociationKey = -1
+        Me.btnConsulta.Location = New System.Drawing.Point(652, 218)
+        Me.btnConsulta.Name = "btnConsulta"
+        Me.btnConsulta.Size = New System.Drawing.Size(100, 25)
+        Me.btnConsulta.TabIndex = 58
+        Me.btnConsulta.Text = "Consulta"
+        Me.btnConsulta.UseVisualStyleBackColor = True
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.Cleanable = False
+        Me.btnCerrar.EnterIndex = -1
+        Me.btnCerrar.LabelAssociationKey = -1
+        Me.btnCerrar.Location = New System.Drawing.Point(546, 219)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(100, 25)
+        Me.btnCerrar.TabIndex = 57
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = True
+        '
+        'btnConsultaNroFactura
+        '
+        Me.btnConsultaNroFactura.Cleanable = False
+        Me.btnConsultaNroFactura.EnterIndex = -1
+        Me.btnConsultaNroFactura.LabelAssociationKey = -1
+        Me.btnConsultaNroFactura.Location = New System.Drawing.Point(652, 187)
+        Me.btnConsultaNroFactura.Name = "btnConsultaNroFactura"
+        Me.btnConsultaNroFactura.Size = New System.Drawing.Size(126, 25)
+        Me.btnConsultaNroFactura.TabIndex = 56
+        Me.btnConsultaNroFactura.Text = "Consulta Nro. Factura"
+        Me.btnConsultaNroFactura.UseVisualStyleBackColor = True
+        '
+        'btnLimpiar
+        '
+        Me.btnLimpiar.Cleanable = False
+        Me.btnLimpiar.EnterIndex = -1
+        Me.btnLimpiar.LabelAssociationKey = -1
+        Me.btnLimpiar.Location = New System.Drawing.Point(546, 188)
+        Me.btnLimpiar.Name = "btnLimpiar"
+        Me.btnLimpiar.Size = New System.Drawing.Size(100, 25)
+        Me.btnLimpiar.TabIndex = 55
+        Me.btnLimpiar.Text = "Limpiar"
+        Me.btnLimpiar.UseVisualStyleBackColor = True
+        '
+        'btnEliminar
+        '
+        Me.btnEliminar.Cleanable = False
+        Me.btnEliminar.EnterIndex = -1
+        Me.btnEliminar.LabelAssociationKey = -1
+        Me.btnEliminar.Location = New System.Drawing.Point(440, 218)
+        Me.btnEliminar.Name = "btnEliminar"
+        Me.btnEliminar.Size = New System.Drawing.Size(100, 25)
+        Me.btnEliminar.TabIndex = 54
+        Me.btnEliminar.Text = "Eliminar"
+        Me.btnEliminar.UseVisualStyleBackColor = True
+        '
+        'btnAgregar
+        '
+        Me.btnAgregar.Cleanable = False
+        Me.btnAgregar.EnterIndex = -1
+        Me.btnAgregar.LabelAssociationKey = -1
+        Me.btnAgregar.Location = New System.Drawing.Point(440, 187)
+        Me.btnAgregar.Name = "btnAgregar"
+        Me.btnAgregar.Size = New System.Drawing.Size(100, 25)
+        Me.btnAgregar.TabIndex = 53
+        Me.btnAgregar.Text = "Agregar"
+        Me.btnAgregar.UseVisualStyleBackColor = True
         '
         'txtIVA10
         '
@@ -282,6 +373,7 @@ Partial Class Compras
         Me.cmbFormaPago.Empty = False
         Me.cmbFormaPago.EnterIndex = 14
         Me.cmbFormaPago.FormattingEnabled = True
+        Me.cmbFormaPago.Items.AddRange(New Object() {"", "Pesos", "Cláusula Dólar"})
         Me.cmbFormaPago.LabelAssociationKey = 13
         Me.cmbFormaPago.Location = New System.Drawing.Point(347, 99)
         Me.cmbFormaPago.Name = "cmbFormaPago"
@@ -391,7 +483,7 @@ Partial Class Compras
         Me.txtNumero.Name = "txtNumero"
         Me.txtNumero.Size = New System.Drawing.Size(91, 20)
         Me.txtNumero.TabIndex = 33
-        Me.txtNumero.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNumero.Validator = WindowsApplication1.ValidatorType.Numeric
         '
         'txtPunto
         '
@@ -404,7 +496,7 @@ Partial Class Compras
         Me.txtPunto.Name = "txtPunto"
         Me.txtPunto.Size = New System.Drawing.Size(64, 20)
         Me.txtPunto.TabIndex = 32
-        Me.txtPunto.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtPunto.Validator = WindowsApplication1.ValidatorType.Numeric
         '
         'txtLetra
         '
@@ -426,7 +518,7 @@ Partial Class Compras
         Me.cmbTipo.Empty = False
         Me.cmbTipo.EnterIndex = -1
         Me.cmbTipo.FormattingEnabled = True
-        Me.cmbTipo.Items.AddRange(New Object() {"Factura", "Nota de Débito", "Nota de Crédito"})
+        Me.cmbTipo.Items.AddRange(New Object() {"Factura", "ND", "NC"})
         Me.cmbTipo.LabelAssociationKey = 4
         Me.cmbTipo.Location = New System.Drawing.Point(86, 43)
         Me.cmbTipo.Name = "cmbTipo"
@@ -437,7 +529,7 @@ Partial Class Compras
         'txtTipo
         '
         Me.txtTipo.Cleanable = True
-        Me.txtTipo.Empty = True
+        Me.txtTipo.Empty = False
         Me.txtTipo.EnterIndex = 4
         Me.txtTipo.LabelAssociationKey = 4
         Me.txtTipo.Location = New System.Drawing.Point(57, 44)
@@ -720,6 +812,13 @@ Partial Class Compras
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(790, 568)
+        Me.Controls.Add(Me.btnApertura)
+        Me.Controls.Add(Me.btnConsulta)
+        Me.Controls.Add(Me.btnCerrar)
+        Me.Controls.Add(Me.btnConsultaNroFactura)
+        Me.Controls.Add(Me.btnLimpiar)
+        Me.Controls.Add(Me.btnEliminar)
+        Me.Controls.Add(Me.btnAgregar)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.txtIVA10)
         Me.Controls.Add(Me.txtDespacho)
@@ -840,4 +939,11 @@ Partial Class Compras
     Friend WithEvents txtDespacho As WindowsApplication1.CustomTextBox
     Friend WithEvents txtIVA10 As WindowsApplication1.CustomTextBox
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents btnCerrar As WindowsApplication1.CustomButton
+    Friend WithEvents btnConsultaNroFactura As WindowsApplication1.CustomButton
+    Friend WithEvents btnLimpiar As WindowsApplication1.CustomButton
+    Friend WithEvents btnEliminar As WindowsApplication1.CustomButton
+    Friend WithEvents btnAgregar As WindowsApplication1.CustomButton
+    Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
+    Friend WithEvents btnApertura As WindowsApplication1.CustomButton
 End Class

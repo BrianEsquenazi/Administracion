@@ -10,7 +10,7 @@ Public Class FormOrganizer
     Private form As Form
     Private maxHeight As Integer
     Private width As Integer
-    Private queryFunctions As New List(Of Tuple(Of QueryFunction, String, ShowMethod))
+    Private queryFunctions As New List(Of Tuple(Of QueryFunction, String, ShowMethod, String))
     Private queryFunction As QueryFunction
     Private queryText As CustomTextBox
     Private queryList As CustomListBox
@@ -832,9 +832,23 @@ Public Class FormOrganizer
     Public Sub setDefaultCleanButtonClick()
         btnCleanClick = AddressOf defaultCleanClick
     End Sub
-    Public Sub addQueryFunction(ByVal listFunction As QueryFunction, ByVal name As String, ByVal showFunction As ShowMethod)
-        queryFunctions.Add(Tuple.Create(listFunction, name, showFunction))
+    Public Sub addQueryFunction(ByVal listFunction As QueryFunction, ByVal name As String, ByVal showFunction As ShowMethod, Optional ByVal customControl As CustomControl = Nothing)
+        Dim controlName As String = ""
+        If Not IsNothing(customControl) Then
+            Dim control As Control = DirectCast(customControl, Control)
+            controlName = control.Name
+            AddHandler control.DoubleClick, AddressOf queryControlDoubleClick
+        End If
+        queryFunctions.Add(Tuple.Create(listFunction, name, showFunction, controlName))
         btnQueryClick = AddressOf defaultQueryClick
+    End Sub
+
+    Private Sub queryControlDoubleClick(ByVal sender As Object, ByVal e As EventArgs)
+        Dim control As Control = DirectCast(sender, Control)
+        Dim queryTuple = queryFunctions.Find(Function(tuple) tuple.Item4 = control.Name)
+        queryFunction = queryTuple.Item1
+        showMethodFunction = queryTuple.Item3
+        showQueryList()
     End Sub
     Public Sub dontUseQueryText()
         usingQueryText = False

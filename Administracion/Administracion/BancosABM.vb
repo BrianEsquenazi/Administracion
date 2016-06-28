@@ -12,8 +12,8 @@ Public Class BancosABM
         organizadorABM.setDefaultCleanButtonClick()
         organizadorABM.setDefaultCloseButtonClick()
         organizadorABM.setListButtonClick(AddressOf listado)
-        organizadorABM.addQueryFunction(AddressOf DAOBanco.buscarBancoPorNombre, "Bancos", AddressOf mostrarBanco)
-        organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta)
+        organizadorABM.addQueryFunction(AddressOf DAOBanco.buscarBancoPorNombre, "Bancos", AddressOf mostrarBanco, txtCodigo)
+        organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta, txtCuenta)
         organizadorABM.controlsDefinedBy("get_banco", AddressOf DAOBanco.crearBanco, AddressOf mostrarBanco)
         organizadorABM.organize()
     End Sub
