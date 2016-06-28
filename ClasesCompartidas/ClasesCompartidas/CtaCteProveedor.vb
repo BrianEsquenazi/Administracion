@@ -12,7 +12,7 @@
                 ByVal interes As Double,
                 ByVal ivaInteres As Double,
                 ByVal ref As String,
-                ByVal clave As String,
+                ByVal clav As String,
                 ByVal numInterno As String)
         fechaOriginal = fechaOri
         desProveedorOriginal = desProvOriginal
@@ -20,7 +20,7 @@
         cuota = cuot
         fecha = fech
         referencia = ref
-        clave = clave
+        clave = clav
         nroInterno = numInterno
         saldo = sald
         intereses = interes
