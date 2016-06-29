@@ -1,8 +1,8 @@
 ﻿Public Class CommonEventsHandler
-    Private Shared controls As List(Of CustomControl)
-    Private Shared isCRUDForm As Boolean = True
+    Private controls As List(Of CustomControl)
+    Private isCRUDForm As Boolean = True
 
-    Public Shared Sub setIndexTab(ByVal form As Form)
+    Public Sub setIndexTab(ByVal form As Form)
         controls = New List(Of CustomControl)
         For Each txtBox As CustomTextBox In form.Controls.OfType(Of CustomTextBox)()
             If txtBox.EnterIndex > 0 Then
@@ -40,12 +40,12 @@
         End If
     End Sub
 
-    Public Shared Sub setIndexTabNotCRUDForm(ByVal form As Form)
+    Public Sub setIndexTabNotCRUDForm(ByVal form As Form)
         isCRUDForm = False
         setIndexTab(form)
     End Sub
 
-    Public Shared Sub addValidableControlFormatTo(ByVal validableControl As ValidableControl)
+    Public Sub addValidableControlFormatTo(ByVal validableControl As ValidableControl)
         Dim control As Control = DirectCast(validableControl, Control)
         Select Case validableControl.Validator
             Case ValidatorType.Numeric, ValidatorType.Positive, ValidatorType.PositiveWithMax
@@ -61,13 +61,13 @@
         End Select
     End Sub
 
-    Private Shared Sub numericKeyPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+    Private Sub numericKeyPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         If Not Char.IsNumber(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
         End If
     End Sub
 
-    Private Shared Sub numericKeyOrDecimalSeparatorPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+    Private Sub numericKeyOrDecimalSeparatorPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         Dim customText = DirectCast(sender, CustomTextBox)
         If e.KeyChar = "." Or e.KeyChar = "," Then
             If Not customText.Text.Contains(",") Then
@@ -86,7 +86,7 @@
         End If
     End Sub
 
-    Private Shared Sub numericKeyOrDecimalSeparatorOrMinusPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+    Private Sub numericKeyOrDecimalSeparatorOrMinusPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         Dim customText = DirectCast(sender, CustomTextBox)
         If e.KeyChar = "-" And customText.SelectionStart = 0 Then
             If Not customText.Text.Contains("-") Then
@@ -112,7 +112,7 @@
         End If
     End Sub
 
-    Private Shared Sub deleteOrBackSpaceDownForDateFormat(ByVal sender As Object, ByVal e As KeyEventArgs)
+    Private Sub deleteOrBackSpaceDownForDateFormat(ByVal sender As Object, ByVal e As KeyEventArgs)
         Dim customControl As CustomTextBox = DirectCast(sender, CustomTextBox)
         If e.KeyValue = Keys.Delete Then
             deleteCharOf(customControl, customControl.SelectionStart, 1)
@@ -124,7 +124,7 @@
         End If
     End Sub
 
-    Private Shared Sub deleteCharOf(ByVal textBox As CustomTextBox, ByVal selectionStart As Integer, ByVal selectionNextPosition As Integer)
+    Private Sub deleteCharOf(ByVal textBox As CustomTextBox, ByVal selectionStart As Integer, ByVal selectionNextPosition As Integer)
         Select Case selectionStart
             Case 0, 1, 3, 4, 6 To 9
                 textBox.Text = textBox.Text.Remove(selectionStart, 1).Insert(selectionStart, " ")
@@ -139,7 +139,7 @@
         End Select
     End Sub
 
-    Private Shared Sub dateKeyPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+    Private Sub dateKeyPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         Dim customControl As CustomTextBox = DirectCast(sender, CustomTextBox)
         Dim firstSpaceIndex As Integer = customControl.Text.IndexOf(" ")
         Select Case firstSpaceIndex
@@ -154,7 +154,7 @@
         End Select
     End Sub
 
-    Private Shared Sub enterPressed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
+    Private Sub enterPressed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
             If (sender.Validator = ValidatorType.Float Or sender.Validator = ValidatorType.PositiveFloat) And sender.Text = "" Then
                 sender.Text = "0"
@@ -170,19 +170,19 @@
         End If
     End Sub
 
-    Private Shared Function secondControl() As Control
+    Private Function secondControl() As Control
         Dim sndControl As Control
         sndControl = controls.Find(Function(control) control.EnterIndex = 2)
         Return sndControl
     End Function
 
-    Private Shared Function firstControl() As Control
+    Private Function firstControl() As Control
         Dim fstControl As Control
         fstControl = controls.Find(Function(control) control.EnterIndex = 1)
         Return fstControl
     End Function
 
-    Private Shared Sub enterOrEscapePressedWithoutSound(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+    Private Sub enterOrEscapePressedWithoutSound(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         If Asc(e.KeyChar) = Keys.Enter Then
             e.Handled = True
         End If

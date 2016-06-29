@@ -212,8 +212,9 @@ Public Class FormOrganizer
 
         Dim btnsTop As Integer = organizeControls() + separationBetweenControlsAndButtons
         realButtonsTop = btnsTop - separationBetweenControlsAndButtons 'Se hace esto ya que se debe guardar el valor sin la suma del separation
+        Dim commonEventsHandler As New CommonEventsHandler
         If isCRUDForm Then
-            CommonEventsHandler.setIndexTab(form)
+            commonEventsHandler.setIndexTab(form)
             left = organizeButtons(btnsTop)
             organizeQueryControllers(btnsTop + buttonsHeight())
             If usingControllerButtons Then
@@ -222,7 +223,7 @@ Public Class FormOrganizer
             formWithSelectionListHeight = calculateFormWithSelectionListHeight()
             formWithQueryControlsHeight = calculateFormWithQueryControlsHeight()
         Else
-            CommonEventsHandler.setIndexTabNotCRUDForm(form)
+            commonEventsHandler.setIndexTabNotCRUDForm(form)
             organizeNotCRUDButtons(btnsTop)
         End If
         createControlsFile()

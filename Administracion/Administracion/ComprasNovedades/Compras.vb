@@ -5,7 +5,8 @@ Public Class Compras
     Dim diasPlazo As Integer = 0
 
     Private Sub Compras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        CommonEventsHandler.setIndexTab(Me)
+        Dim commonEventsHandler As New CommonEventsHandler
+        commonEventsHandler.setIndexTab(Me)
     End Sub
 
     Private Sub txtNumero_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNumero.Leave
@@ -90,8 +91,17 @@ Public Class Compras
         End If
     End Sub
 
-    Private Sub txtImporte_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNeto.Leave, txtIVARG.Leave, txtPercIB.Leave, txtNoGravado.Leave, txtIVA27.Leave, txtIVA21.Leave, txtIVA10.Leave
-        txtTotal.Text = Math.Round((txtNeto.Text) + asDouble(txtIVA21.Text) + asDouble(txtIVARG.Text) + asDouble(txtIVA27.Text) + asDouble(txtPercIB.Text) + asDouble(txtNoGravado.Text) + asDouble(txtIVA10.Text), 2)
+    Private Sub txtImporte_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtIVARG.Leave, txtPercIB.Leave, txtNoGravado.Leave, txtIVA27.Leave, txtIVA21.Leave, txtIVA10.Leave
+        Dim total As Double = asDouble(txtIVA21.Text) + asDouble(txtIVARG.Text) + asDouble(txtIVA27.Text) + asDouble(txtPercIB.Text) + asDouble(txtNoGravado.Text) + asDouble(txtIVA10.Text)
+        If Not chkSoloIVA.Checked Then
+            total += asDouble(txtNeto.Text)
+        End If
+        txtTotal.Text = Math.Round(total, 2)
+    End Sub
+
+    Private Sub txtNeto_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNeto.Leave
+        txtIVA21.Text = Math.Round(asDouble(txtNeto.Text) * 0.21, 2)
+        txtImporte_Leave(sender, e)
     End Sub
 
     Private Function asDouble(ByVal text As String)
@@ -123,5 +133,9 @@ Public Class Compras
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub chkSoloIVA_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSoloIVA.CheckedChanged
+        txtImporte_Leave(sender, e)
     End Sub
 End Class

@@ -14,7 +14,8 @@ Public Class Depositos
         dataGridBuilder.addPositiveFloatColumn(4, "Importe")
         lstSeleccion.SelectedIndex = 0
         Me.Width = formNormalWidth()
-        CommonEventsHandler.setIndexTab(Me)
+        Dim commonEventsHandler As New CommonEventsHandler
+        commonEventsHandler.setIndexTab(Me)
         txtFecha.Text = Date.Today
         txtFechaAcreditacion.Text = Date.Today
     End Sub
