@@ -2,6 +2,8 @@
 
 Public Class Compras
 
+    Dim diasPlazo As Integer = 0
+
     Private Sub Compras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         CommonEventsHandler.setIndexTab(Me)
     End Sub
@@ -44,6 +46,7 @@ Public Class Compras
         txtNombreProveedor.Text = proveedor.razonSocial
         txtCAI.Text = proveedor.cai
         txtVtoCAI.Text = proveedor.vtoCAI
+        diasPlazo = CustomConvert.toIntOrZero(proveedor.diasPlazo)
     End Sub
 
     Private Sub txtCodigoProveedor_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigoProveedor.Leave
@@ -54,6 +57,7 @@ Public Class Compras
             txtNombreProveedor.Text = ""
             txtCAI.Text = ""
             txtVtoCAI.Text = "  /  /    "
+            diasPlazo = 0
         End If
     End Sub
 
@@ -84,5 +88,40 @@ Public Class Compras
             txtParidad.EnterIndex = txtNeto.EnterIndex
             txtNeto.EnterIndex = txtNeto.EnterIndex + 1
         End If
+    End Sub
+
+    Private Sub txtImporte_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNeto.Leave, txtIVARG.Leave, txtPercIB.Leave, txtNoGravado.Leave, txtIVA27.Leave, txtIVA21.Leave, txtIVA10.Leave
+        txtTotal.Text = Math.Round((txtNeto.Text) + asDouble(txtIVA21.Text) + asDouble(txtIVARG.Text) + asDouble(txtIVA27.Text) + asDouble(txtPercIB.Text) + asDouble(txtNoGravado.Text) + asDouble(txtIVA10.Text), 2)
+    End Sub
+
+    Private Function asDouble(ByVal text As String)
+        Return CustomConvert.toDoubleOrZero(text)
+    End Function
+
+    Private Function validarCampos() As Boolean
+        Dim validador As New Validator
+
+        validador.validate(Me)
+        validador.alsoValidate(CustomConvert.toIntOr(txtPunto.Text, 0) <> 0, "El campo " & CustomLabel6.Text & " no puede ser cero")
+        validador.alsoValidate(CustomConvert.toIntOr(txtNumero.Text, 0) <> 0, "El campo " & CustomLabel7.Text & " no puede ser cero")
+
+        Return validador.flush
+    End Function
+
+    Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
+        If validarCampos() Then
+            'Agregar
+        End If
+    End Sub
+
+    Private Sub txtFechaEmision_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFechaEmision.Leave
+        Try
+            Dim fecha As Date = Convert.ToDateTime(txtFechaEmision.Text)
+            txtFechaIVA.Text = fecha.ToShortDateString
+            txtFechaVto1.Text = fecha.AddDays(diasPlazo).ToShortDateString()
+            txtFechaVto2.Text = txtFechaVto1.Text
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

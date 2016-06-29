@@ -16,6 +16,10 @@
         Return toIntOr(value, Nothing)
     End Function
 
+    Public Shared Function toIntOrZero(ByVal value)
+        Return toIntOr(value, 0)
+    End Function
+
     Public Shared Function toIntOr(ByVal value, ByVal defaultValue)
         Try
             Return Convert.ToInt32(value)
@@ -25,10 +29,12 @@
     End Function
 
     Public Shared Function asTextDate(ByVal value)
-        If value.ToString() = "" Then
+        Try
+            Dim myDate As Date = Convert.ToDateTime(value)
+            Return myDate.ToShortDateString
+        Catch ex As Exception
             Return "  /  /    "
-        End If
-        Return value.ToString
+        End Try
     End Function
 
 End Class

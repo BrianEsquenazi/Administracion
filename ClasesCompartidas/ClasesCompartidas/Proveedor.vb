@@ -21,32 +21,32 @@
                    ByVal calificacionCategoria As Integer, ByVal tipoIB As Integer, ByVal certificaciones As Integer, ByVal tipoEstado As Integer, ByVal calif As Integer,
                    ByVal SEDRONARVto As String, ByVal categoriaVto As String, ByVal CAIVto As String, ByVal certificadosVto As String, ByVal calificacionVto As String,
                    ByVal cufe1Dir As String, ByVal cufe2Dir As String, ByVal cufe3Dir As String, ByVal cuentaContable As CuentaContable, ByVal rubroProv As RubroProveedor)
-        id = codigo
-        razonSocial = nombre
-        direccion = dir
-        codPostal = codigoPostal
-        localidad = loc
-        telefono = tel
-        email = mail
-        observaciones = obs1
-        cuit = claveCUIT
-        nombreCheque = cheque
+        id = Trim(codigo)
+        razonSocial = Trim(nombre)
+        direccion = Trim(dir)
+        codPostal = Trim(codigoPostal)
+        localidad = Trim(loc)
+        telefono = Trim(tel)
+        email = Trim(mail)
+        observaciones = Trim(obs1)
+        cuit = Trim(claveCUIT)
+        nombreCheque = Trim(cheque)
         porceIBProvincia = porceProv
         porceIBCABA = porceCABA
-        cai = claveCAI
-        observacionCompleta = obs2
-        cufe1 = cuf1
-        cufe2 = cuf2
-        cufe3 = cuf3
+        cai = Trim(claveCAI)
+        observacionCompleta = Trim(obs2)
+        cufe1 = Trim(cuf1)
+        cufe2 = Trim(cuf2)
+        cufe3 = Trim(cuf3)
         provincia = prov
         region = reg
-        diasPlazo = dias
+        diasPlazo = Trim(dias)
         tipo = tipoProv
         codIva = iva
         condicionIB1 = condicion1IB
         condicionIB2 = condicion2IB
-        numeroIB = nroIB
-        numeroSEDRONAR = SEDRONAR
+        numeroIB = Trim(nroIB)
+        numeroSEDRONAR = Trim(SEDRONAR)
         categoria = cat
         categoriaCalif = calificacionCategoria
         tipoInscripcionIB = tipoIB
@@ -58,9 +58,9 @@
         vtoCAI = CAIVto
         vtoCertificados = certificadosVto
         vtoCalificacion = calificacionVto
-        dirCUFE1 = cufe1Dir
-        dirCUFE2 = cufe2Dir
-        dirCUFE3 = cufe3Dir
+        dirCUFE1 = Trim(cufe1Dir)
+        dirCUFE2 = Trim(cufe2Dir)
+        dirCUFE3 = Trim(cufe3Dir)
         cuenta = cuentaContable
         rubro = rubroProv
         estaDefinidoCompleto = True
@@ -68,5 +68,21 @@
     
     Public Overrides Function ToString() As String
         Return razonSocial
+    End Function
+
+    Public Function codigoRubro() As Integer
+        If Not IsNothing(rubro) Then
+            Return rubro.codigo
+        Else
+            Return -1
+        End If
+    End Function
+
+    Public Function codigoCuenta() As String
+        If Not IsNothing(cuenta) Then
+            Return cuenta.id
+        Else
+            Return ""
+        End If
     End Function
 End Class

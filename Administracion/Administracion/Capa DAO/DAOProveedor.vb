@@ -6,8 +6,8 @@ Public Class DAOProveedor
         SQLConnector.executeProcedure("alta_proveedor", proveedor.id, proveedor.razonSocial, proveedor.direccion, proveedor.localidad, _
                                       proveedor.provincia, proveedor.codPostal, proveedor.region, proveedor.telefono, proveedor.diasPlazo, _
                                       proveedor.email, proveedor.observaciones, proveedor.cuit, proveedor.tipo, proveedor.codIva, _
-                                      proveedor.cuenta.id, proveedor.nombreCheque, proveedor.condicionIB1, proveedor.condicionIB2, _
-                                      proveedor.numeroIB, proveedor.porceIBProvincia, proveedor.porceIBCABA, proveedor.rubro.codigo, _
+                                      proveedor.codigoCuenta, proveedor.nombreCheque, proveedor.condicionIB1, proveedor.condicionIB2, _
+                                      proveedor.numeroIB, proveedor.porceIBProvincia, proveedor.porceIBCABA, proveedor.codigoRubro, _
                                       proveedor.numeroSEDRONAR, proveedor.vtoSEDRONAR, proveedor.categoria, proveedor.categoriaCalif, _
                                       proveedor.vtoCategoria, proveedor.tipoInscripcionIB, proveedor.cai, proveedor.vtoCAI, _
                                       proveedor.certificados, proveedor.vtoCertificados, proveedor.estado, proveedor.calificacion, _

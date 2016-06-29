@@ -248,7 +248,7 @@ Partial Class Compras
         'txtIVA10
         '
         Me.txtIVA10.Cleanable = True
-        Me.txtIVA10.Empty = True
+        Me.txtIVA10.Empty = False
         Me.txtIVA10.EnterIndex = 22
         Me.txtIVA10.LabelAssociationKey = 23
         Me.txtIVA10.Location = New System.Drawing.Point(481, 159)
@@ -273,7 +273,7 @@ Partial Class Compras
         'txtIVA21
         '
         Me.txtIVA21.Cleanable = True
-        Me.txtIVA21.Empty = True
+        Me.txtIVA21.Empty = False
         Me.txtIVA21.EnterIndex = 17
         Me.txtIVA21.LabelAssociationKey = 19
         Me.txtIVA21.Location = New System.Drawing.Point(300, 133)
@@ -285,7 +285,7 @@ Partial Class Compras
         'txtIVA27
         '
         Me.txtIVA27.Cleanable = True
-        Me.txtIVA27.Empty = True
+        Me.txtIVA27.Empty = False
         Me.txtIVA27.EnterIndex = 19
         Me.txtIVA27.LabelAssociationKey = 20
         Me.txtIVA27.Location = New System.Drawing.Point(300, 159)
@@ -297,7 +297,7 @@ Partial Class Compras
         'txtNoGravado
         '
         Me.txtNoGravado.Cleanable = True
-        Me.txtNoGravado.Empty = True
+        Me.txtNoGravado.Empty = False
         Me.txtNoGravado.EnterIndex = 21
         Me.txtNoGravado.LabelAssociationKey = 21
         Me.txtNoGravado.Location = New System.Drawing.Point(300, 185)
@@ -309,8 +309,8 @@ Partial Class Compras
         'txtTotal
         '
         Me.txtTotal.Cleanable = True
-        Me.txtTotal.Empty = True
-        Me.txtTotal.EnterIndex = 24
+        Me.txtTotal.Empty = False
+        Me.txtTotal.EnterIndex = -1
         Me.txtTotal.LabelAssociationKey = 18
         Me.txtTotal.Location = New System.Drawing.Point(115, 211)
         Me.txtTotal.Name = "txtTotal"
@@ -321,7 +321,7 @@ Partial Class Compras
         'txtNeto
         '
         Me.txtNeto.Cleanable = True
-        Me.txtNeto.Empty = True
+        Me.txtNeto.Empty = False
         Me.txtNeto.EnterIndex = 16
         Me.txtNeto.LabelAssociationKey = 15
         Me.txtNeto.Location = New System.Drawing.Point(115, 133)
@@ -333,7 +333,7 @@ Partial Class Compras
         'txtIVARG
         '
         Me.txtIVARG.Cleanable = True
-        Me.txtIVARG.Empty = True
+        Me.txtIVARG.Empty = False
         Me.txtIVARG.EnterIndex = 18
         Me.txtIVARG.LabelAssociationKey = 16
         Me.txtIVARG.Location = New System.Drawing.Point(115, 159)
@@ -345,7 +345,7 @@ Partial Class Compras
         'txtPercIB
         '
         Me.txtPercIB.Cleanable = True
-        Me.txtPercIB.Empty = True
+        Me.txtPercIB.Empty = False
         Me.txtPercIB.EnterIndex = 20
         Me.txtPercIB.LabelAssociationKey = 17
         Me.txtPercIB.Location = New System.Drawing.Point(115, 185)
@@ -384,7 +384,7 @@ Partial Class Compras
         'txtFechaVto2
         '
         Me.txtFechaVto2.Cleanable = True
-        Me.txtFechaVto2.Empty = True
+        Me.txtFechaVto2.Empty = False
         Me.txtFechaVto2.EnterIndex = 13
         Me.txtFechaVto2.LabelAssociationKey = 12
         Me.txtFechaVto2.Location = New System.Drawing.Point(181, 100)
@@ -410,7 +410,7 @@ Partial Class Compras
         'txtFechaIVA
         '
         Me.txtFechaIVA.Cleanable = True
-        Me.txtFechaIVA.Empty = True
+        Me.txtFechaIVA.Empty = False
         Me.txtFechaIVA.EnterIndex = 10
         Me.txtFechaIVA.LabelAssociationKey = 10
         Me.txtFechaIVA.Location = New System.Drawing.Point(243, 74)
@@ -423,7 +423,7 @@ Partial Class Compras
         'txtFechaVto1
         '
         Me.txtFechaVto1.Cleanable = True
-        Me.txtFechaVto1.Empty = True
+        Me.txtFechaVto1.Empty = False
         Me.txtFechaVto1.EnterIndex = 12
         Me.txtFechaVto1.LabelAssociationKey = 12
         Me.txtFechaVto1.Location = New System.Drawing.Point(100, 100)
@@ -436,7 +436,7 @@ Partial Class Compras
         'txtFechaEmision
         '
         Me.txtFechaEmision.Cleanable = True
-        Me.txtFechaEmision.Empty = True
+        Me.txtFechaEmision.Empty = False
         Me.txtFechaEmision.EnterIndex = 9
         Me.txtFechaEmision.LabelAssociationKey = 9
         Me.txtFechaEmision.Location = New System.Drawing.Point(100, 74)
@@ -475,7 +475,7 @@ Partial Class Compras
         'txtNumero
         '
         Me.txtNumero.Cleanable = True
-        Me.txtNumero.Empty = True
+        Me.txtNumero.Empty = False
         Me.txtNumero.EnterIndex = 7
         Me.txtNumero.LabelAssociationKey = 7
         Me.txtNumero.Location = New System.Drawing.Point(397, 45)
@@ -488,7 +488,7 @@ Partial Class Compras
         'txtPunto
         '
         Me.txtPunto.Cleanable = True
-        Me.txtPunto.Empty = True
+        Me.txtPunto.Empty = False
         Me.txtPunto.EnterIndex = 6
         Me.txtPunto.LabelAssociationKey = 6
         Me.txtPunto.Location = New System.Drawing.Point(277, 44)
@@ -501,7 +501,7 @@ Partial Class Compras
         'txtLetra
         '
         Me.txtLetra.Cleanable = True
-        Me.txtLetra.Empty = True
+        Me.txtLetra.Empty = False
         Me.txtLetra.EnterIndex = 5
         Me.txtLetra.LabelAssociationKey = 5
         Me.txtLetra.Location = New System.Drawing.Point(197, 44)
@@ -518,7 +518,7 @@ Partial Class Compras
         Me.cmbTipo.Empty = False
         Me.cmbTipo.EnterIndex = -1
         Me.cmbTipo.FormattingEnabled = True
-        Me.cmbTipo.Items.AddRange(New Object() {"Factura", "ND", "NC"})
+        Me.cmbTipo.Items.AddRange(New Object() {"FC", "ND", "NC"})
         Me.cmbTipo.LabelAssociationKey = 4
         Me.cmbTipo.Location = New System.Drawing.Point(86, 43)
         Me.cmbTipo.Name = "cmbTipo"
@@ -555,7 +555,7 @@ Partial Class Compras
         'txtCodigoProveedor
         '
         Me.txtCodigoProveedor.Cleanable = True
-        Me.txtCodigoProveedor.Empty = True
+        Me.txtCodigoProveedor.Empty = False
         Me.txtCodigoProveedor.EnterIndex = 2
         Me.txtCodigoProveedor.LabelAssociationKey = 2
         Me.txtCodigoProveedor.Location = New System.Drawing.Point(231, 17)

@@ -149,6 +149,8 @@
                     customControl.Select(Math.Max(customControl.Text.IndexOf(" "), 0), 0)
                     e.Handled = True
                 End If
+            Case Else
+                e.Handled = True
         End Select
     End Sub
 

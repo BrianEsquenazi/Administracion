@@ -311,7 +311,7 @@ Partial Class ProveedoresABM
         Me.txtPorcelCABA.Name = "txtPorcelCABA"
         Me.txtPorcelCABA.Size = New System.Drawing.Size(58, 20)
         Me.txtPorcelCABA.TabIndex = 49
-        Me.txtPorcelCABA.Validator = WindowsApplication1.ValidatorType.Positive
+        Me.txtPorcelCABA.Validator = WindowsApplication1.ValidatorType.PositiveFloat
         '
         'txtPorcelProv
         '
@@ -324,7 +324,7 @@ Partial Class ProveedoresABM
         Me.txtPorcelProv.Name = "txtPorcelProv"
         Me.txtPorcelProv.Size = New System.Drawing.Size(58, 20)
         Me.txtPorcelProv.TabIndex = 48
-        Me.txtPorcelProv.Validator = WindowsApplication1.ValidatorType.Positive
+        Me.txtPorcelProv.Validator = WindowsApplication1.ValidatorType.PositiveFloat
         '
         'txtNroIB
         '

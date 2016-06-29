@@ -27,7 +27,7 @@
 
     Public Sub validate(ByVal value As String, ByVal type As Integer, ByVal emptyPermitted As Boolean, ByVal description As String)
         Select Case type
-            Case ValidatorType.NotEmpty
+            Case ValidatorType.NotEmpty, ValidatorType.None
                 validarNoVacio(value, emptyPermitted, description)
             Case ValidatorType.Numeric, ValidatorType.Float
                 validarNumerico(value, emptyPermitted, description)
