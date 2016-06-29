@@ -1,12 +1,12 @@
 ﻿Public Class Deposito
 
-    Public numero As Integer
+    Public numero As String
     Public fecha, fechaAcreditacion As String
     Public importeTotal As Double
     Public banco As Banco
     Public items As New List(Of ItemDeposito)
 
-    Public Sub New(ByVal nro As Integer, ByVal unBanco As Banco, ByVal unaFecha As String, ByVal fechaAcred As String, ByVal importe As Double)
+    Public Sub New(ByVal nro As String, ByVal unBanco As Banco, ByVal unaFecha As String, ByVal fechaAcred As String, ByVal importe As Double)
         numero = nro
         banco = unBanco
         fecha = unaFecha

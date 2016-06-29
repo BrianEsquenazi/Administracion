@@ -29,6 +29,9 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_carga_intereses]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_deposito_por_clave]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_deposito_por_clave]
+GO
 
 /*
 		GENERACION NOVEDADES
@@ -129,63 +132,62 @@ END
 GO
 
 
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_deposito]') AND type in (N'P', N'PC'))
-BEGIN
-EXEC dbo.sp_executesql @statement = N'CREATE procedure [dbo].[PR_alta_deposito]
+CREATE procedure [dbo].[PR_alta_deposito]
 	@Clave    VarChar(8),
 	@Deposito VarChar(6),
 	@Renglon  varchar(2),
 	@Banco    smallint,
 	@Fecha    VarChar(10),  
-	@FechaOrd VarChar(8),
 	@Importe  Float,                                             
 	@Acredita VarChar(10),  
-	@AcreditaOrd VarChar(8),
 	@Tipo2    VarChar(2),
 	@Numero2  VarChar(8),
 	@Fecha2   VarChar(10),  
 	@Importe2 real,                
 	@Observaciones2 VarChar(20)
 AS
-INSERT INTO
-	Depositos
-		(
-		Clave    ,
-		Deposito ,
-		Renglon ,
-		Banco  ,
-		Fecha   ,  
-		FechaOrd ,
-		Importe   ,                                           
-		Acredita   ,
-		AcreditaOrd ,
-		Tipo2 ,
-		Numero2, 
-		Fecha2  ,  
-		Importe2 ,               
-		Observaciones2,      
-		Empresa ,
-		Impolista
-		)
-VALUES
-		(
-		@Clave    ,
-		@Deposito ,
-		@Renglon ,
-		@Banco  ,
-		@Fecha   ,   
-		@FechaOrd ,
-		@Importe   ,                                            
-		@Acredita   ,
-		@AcreditaOrd ,
-		@Tipo2 ,
-		@Numero2,  
-		@Fecha2  ,   
-		@Importe2 ,                
-		@Observaciones2,       
-		1 ,
-		0
-		)' 
+BEGIN
+	declare @fechaOrd varchar(8) = (select dbo.FN_get_fecha_ordenable (@Fecha))
+	declare @AcreditaOrd VarChar(8) = (select dbo.FN_get_fecha_ordenable (@Acredita))
+	INSERT INTO
+		Depositos
+			(
+			Clave    ,
+			Deposito ,
+			Renglon ,
+			Banco  ,
+			Fecha   ,  
+			FechaOrd ,
+			Importe   ,                                           
+			Acredita   ,
+			AcreditaOrd ,
+			Tipo2 ,
+			Numero2, 
+			Fecha2  ,  
+			Importe2 ,               
+			Observaciones2,      
+			Empresa ,
+			Impolista
+			)
+	VALUES
+			(
+			@Clave    ,
+			@Deposito ,
+			@Renglon ,
+			@Banco  ,
+			@Fecha   ,   
+			@FechaOrd ,
+			@Importe   ,                                            
+			@Acredita   ,
+			@AcreditaOrd ,
+			@Tipo2 ,
+			@Numero2,  
+			@Fecha2  ,   
+			@Importe2 ,                
+			@Observaciones2,       
+			1 ,
+			0
+			)
 END
 GO
 
@@ -211,17 +213,17 @@ GO
 
 CREATE PROCEDURE PR_get_carga_intereses
 AS
-	SELECT ccp.FechaOriginal
-		, ccp.DesProveOriginal
-		, ccp.FacturaOriginal
-		, ccp.Cuota
-		, ccp.fecha
+	SELECT ISNULL(ccp.FechaOriginal,'') FechaOriginal 
+		, ISNULL(ccp.DesProveOriginal,'') DesProveOriginal
+		, ISNULL(ccp.FacturaOriginal,'') FacturaOriginal
+		, ISNULL(ccp.Cuota,'') Cuota
+		, ISNULL(ccp.fecha,'') fecha
 		, ISNULL(ccp.Saldo,0) as Saldo
 		, ISNULL(ccp.Interes,0) as Intereses
 		, ISNULL(ccp.IvaInteres,0) as IvaIntereses
 		, ISNULL(ccp.Referencia,'') as Referencia
-		, ccp.Clave
-		, ccp.NroInterno
+		, ISNULL(ccp.Clave,'') Clave
+		, ISNULL(ccp.NroInterno,'') NroInterno
 	FROM CtaCtePrv ccp
 	WHERE ccp.Proveedor = '10077777777'
 		and ISNULL(ccp.Saldo,0) <> 0
@@ -229,3 +231,40 @@ AS
 	ORDER BY ccp.OrdFechaOriginal
 GO
 
+CREATE PROCEDURE [dbo].[PR_get_deposito_por_clave]
+	@Clave Char(8)
+ AS
+
+SELECT *
+FROM Depositos 
+WHERE
+	Clave = @Clave
+GO
+
+CREATE PROCEDURE [dbo].[PR_modificar_carga_intereses]
+	(@clave varchar(26)
+	, @saldo float
+	, @intereses float
+	, @ivaIntereses float
+	, @referencia varchar(10)) 
+AS
+BEGIN
+	declare @saldo_nuevo float = @saldo + @intereses + @ivaIntereses
+	declare @nro_interno int = (select NroInterno from CtaCtePrv where Clave = @clave)
+
+	BEGIN TRAN
+		UPDATE	CtaCtePrv
+		SET Saldo = @saldo_nuevo
+			, Interes = @intereses 
+			, IvaInteres = @ivaIntereses
+			, Referencia = @referencia
+		WHERE Clave = @clave
+		
+		UPDATE IvaComp
+		SET Neto = @intereses
+			, Iva21 = @ivaIntereses
+		WHERE NroInterno = @nro_interno
+			
+	COMMIT
+END
+GO

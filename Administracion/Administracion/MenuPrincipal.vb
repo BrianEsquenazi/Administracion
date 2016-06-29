@@ -25,7 +25,7 @@
     End Sub
 
     Private Sub PruebaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PruebaToolStripMenuItem.Click
-        Depositos.show()
+        Depositos.Show()
     End Sub
 
     Private Sub CargarInteresesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CargarInteresesToolStripMenuItem.Click
@@ -89,5 +89,9 @@
 
     Private Sub ToolStripMenuItem8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem8.Click
         ListadoProyeccionCobros.Show()
+    End Sub
+
+    Private Sub IngresoDeNovedadesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IngresoDeNovedadesToolStripMenuItem.Click
+        Compras.Show()
     End Sub
 End Class
