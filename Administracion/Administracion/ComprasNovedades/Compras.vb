@@ -3,6 +3,7 @@
 Public Class Compras
 
     Dim diasPlazo As Integer = 0
+    Dim letrasValidas As New List(Of String) From {"A", "B", "C", "X", "M", "I"}
 
     Private Sub Compras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim commonEventsHandler As New CommonEventsHandler
@@ -75,19 +76,10 @@ Public Class Compras
     Private Sub cmbFormaPago_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbFormaPago.SelectedIndexChanged
         txtParidad.Empty = cmbFormaPago.SelectedIndex <> 2
         If txtParidad.Empty Then
-            If txtParidad.EnterIndex <> -1 Then
-                txtNeto.EnterIndex = txtParidad.EnterIndex
-                txtParidad.EnterIndex = -1
-            End If
+            txtParidad.Enabled = False
+            txtParidad.Text = ""
         Else
-            txtNeto_Enter(sender, e)
-        End If
-    End Sub
-
-    Private Sub txtNeto_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNeto.Enter
-        If txtParidad.EnterIndex = -1 Then
-            txtParidad.EnterIndex = txtNeto.EnterIndex
-            txtNeto.EnterIndex = txtNeto.EnterIndex + 1
+            txtParidad.Enabled = True
         End If
     End Sub
 
@@ -114,6 +106,8 @@ Public Class Compras
         validador.validate(Me)
         validador.alsoValidate(CustomConvert.toIntOr(txtPunto.Text, 0) <> 0, "El campo " & CustomLabel6.Text & " no puede ser cero")
         validador.alsoValidate(CustomConvert.toIntOr(txtNumero.Text, 0) <> 0, "El campo " & CustomLabel7.Text & " no puede ser cero")
+        validador.alsoValidate(letrasValidas.Contains(txtLetra.Text) Or txtLetra.Text = "", "El valor ingresado (" & txtLetra.Text & ") no es una letra válida")
+        validador.alsoValidate(DAOCompras.mesAbierto(txtFechaEmision.Text), "El mes de la fecha de emisión: " & txtFechaEmision.Text & " se encuentra cerrado según el sistema")
 
         Return validador.flush
     End Function
@@ -137,5 +131,29 @@ Public Class Compras
 
     Private Sub chkSoloIVA_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSoloIVA.CheckedChanged
         txtImporte_Leave(sender, e)
+    End Sub
+
+    Private Sub txtLetra_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtLetra.TextChanged
+        txtLetra.Text = txtLetra.Text.ToUpper
+        If txtLetra.Text = "C" Then
+            txtIVA21.Enabled = False
+            txtIVARG.Enabled = False
+            txtIVA27.Enabled = False
+            txtPercIB.Enabled = False
+            txtNoGravado.Enabled = False
+            txtIVA10.Enabled = False
+        Else
+            txtIVA21.Enabled = True
+            txtIVARG.Enabled = True
+            txtIVA27.Enabled = True
+            txtPercIB.Enabled = True
+            txtNoGravado.Enabled = True
+            txtIVA10.Enabled = True
+        End If
+        txtLetra.Select(txtLetra.Text.Count, 1)
+    End Sub
+
+    Private Sub txtNeto_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
     End Sub
 End Class

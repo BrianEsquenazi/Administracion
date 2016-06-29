@@ -314,6 +314,7 @@ Partial Class Compras
         Me.txtTotal.LabelAssociationKey = 18
         Me.txtTotal.Location = New System.Drawing.Point(115, 211)
         Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.ReadOnly = True
         Me.txtTotal.Size = New System.Drawing.Size(75, 20)
         Me.txtTotal.TabIndex = 46
         Me.txtTotal.Validator = WindowsApplication1.ValidatorType.Float
@@ -358,6 +359,7 @@ Partial Class Compras
         '
         Me.txtParidad.Cleanable = True
         Me.txtParidad.Empty = True
+        Me.txtParidad.Enabled = False
         Me.txtParidad.EnterIndex = 15
         Me.txtParidad.LabelAssociationKey = 14
         Me.txtParidad.Location = New System.Drawing.Point(559, 101)

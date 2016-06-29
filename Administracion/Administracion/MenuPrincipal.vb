@@ -32,8 +32,8 @@
             msgResult = MsgBox("¿Se cerrarán todos los formularios abiertos, está seguro que desea cambiar de empresa?", vbYesNo, "Cambiar de Empresa")
         End If
         If msgResult = vbYes Then
-            forms.ForEach(Sub(form) form.Close())
-            abrir(New Login)
+            forms.ForEach(Sub(form) form.Dispose())
+            Login.Show()
             Close()
         End If
     End Sub

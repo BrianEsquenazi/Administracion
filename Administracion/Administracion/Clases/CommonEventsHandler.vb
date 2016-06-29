@@ -159,13 +159,25 @@
             If (sender.Validator = ValidatorType.Float Or sender.Validator = ValidatorType.PositiveFloat) And sender.Text = "" Then
                 sender.Text = "0"
             End If
-            Dim nextControl As Control = controls.Find(Function(control) control.EnterIndex = sender.EnterIndex + 1)
-            If IsNothing(nextControl) OrElse Not nextControl.Focus() Then
-                If isCRUDForm Then
-                    secondControl().Focus()
-                Else
-                    firstControl.Focus()
-                End If
+            Dim nextControl As Control = findNextControl(sender)
+            setFocus(nextControl)
+        End If
+    End Sub
+
+    Private Function findNextControl(ByVal sender As CustomControl)
+        Return controls.Find(Function(control) control.EnterIndex = sender.EnterIndex + 1)
+    End Function
+
+    Private Sub setFocus(ByVal nextControl As Control)
+        If IsNothing(nextControl) Then
+            If isCRUDForm Then
+                secondControl().Focus()
+            Else
+                firstControl.Focus()
+            End If
+        Else
+            If Not nextControl.Focus() Then
+                setFocus(findNextControl(nextControl))
             End If
         End If
     End Sub
