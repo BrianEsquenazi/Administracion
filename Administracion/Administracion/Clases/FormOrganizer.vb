@@ -75,31 +75,39 @@ Public Class FormOrganizer
             Directory.CreateDirectory(folderPath)
         End If
 
-        Dim fileStream As FileStream = File.Create(filePath)
+        Try
+            Dim fileStream As FileStream = File.Create(filePath)
 
-        Dim stringToWrite As String = "'name-height-width-left-top. Last line reserved for buttons top" & vbCrLf
-        For Each customControl In allControls
-            Dim control As Control = DirectCast(customControl, Control)
-            stringToWrite = stringToWrite & control.Name & vbCrLf & control.Height & vbCrLf & control.Width & vbCrLf & _
-                control.Left & vbCrLf & control.Top & vbCrLf
+            Dim stringToWrite As String = "'name-height-width-left-top. Last line reserved for buttons top" & vbCrLf
+            For Each customControl In allControls
+                Dim control As Control = DirectCast(customControl, Control)
+                stringToWrite = stringToWrite & control.Name & vbCrLf & control.Height & vbCrLf & control.Width & vbCrLf & _
+                    control.Left & vbCrLf & control.Top & vbCrLf
 
-            Dim label As CustomLabel = labelFor(customControl.LabelAssociationKey)
-            If Not IsNothing(label) Then
-                stringToWrite = stringToWrite & label.Name & vbCrLf & label.Height & vbCrLf & label.Width & vbCrLf & _
-                label.Left & vbCrLf & label.Top & vbCrLf
-            End If
+                Dim label As CustomLabel = labelFor(customControl.LabelAssociationKey)
+                If Not IsNothing(label) Then
+                    stringToWrite = stringToWrite & label.Name & vbCrLf & label.Height & vbCrLf & label.Width & vbCrLf & _
+                    label.Left & vbCrLf & label.Top & vbCrLf
+                End If
 
-            For Each annexedCustomControl In annexedControlsFor(customControl.LabelAssociationKey)
-                Dim annexedControl As Control = DirectCast(annexedCustomControl, Control)
-                stringToWrite = stringToWrite & annexedControl.Name & vbCrLf & annexedControl.Height & vbCrLf & annexedControl.Width & vbCrLf & _
-                annexedControl.Left & vbCrLf & annexedControl.Top & vbCrLf
+                For Each annexedCustomControl In annexedControlsFor(customControl.LabelAssociationKey)
+                    Dim annexedControl As Control = DirectCast(annexedCustomControl, Control)
+                    stringToWrite = stringToWrite & annexedControl.Name & vbCrLf & annexedControl.Height & vbCrLf & annexedControl.Width & vbCrLf & _
+                    annexedControl.Left & vbCrLf & annexedControl.Top & vbCrLf
+                Next
             Next
-        Next
 
-        stringToWrite = stringToWrite & realButtonsTop
-        Dim info As Byte() = New UTF8Encoding(True).GetBytes(stringToWrite)
-        fileStream.Write(info, 0, info.Length)
-        fileStream.Close()
+            stringToWrite = stringToWrite & realButtonsTop
+            Dim info As Byte() = New UTF8Encoding(True).GetBytes(stringToWrite)
+            fileStream.Write(info, 0, info.Length)
+            fileStream.Close()
+
+        Catch ex As Exception
+            File.Delete(filePath)
+
+            createControlsFile()
+        End Try
+
     End Sub
 
     Public Sub addControls(ByVal ParamArray controlsColumn() As Object)

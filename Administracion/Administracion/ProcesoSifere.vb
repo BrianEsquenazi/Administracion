@@ -58,7 +58,7 @@ Public Class ProcesoSifere
 
                 For Each row As DataRow In tabla.Rows
 
-                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString)
+                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
 
                     If ProveedorAduana(CamposImputac.proveedor) = "N" Then
 
@@ -70,7 +70,7 @@ Public Class ProcesoSifere
                             WImpoIva = ceros(formatonumerico(redondeo(CamposImputac.debito), "########0.#0", ","), 11)
                             WCuit = leederecha(CamposImputac.cuit, 13)
                             WFecha = CamposImputac.fechaord
-                            WLetra = "A"
+                            WLetra = CamposImputac.letra
 
                             escritor.Write(WCodigo + WCuit + WFecha + WPunto + WNumero + "F" + WLetra + WImpoIva + vbCrLf)
 
@@ -82,7 +82,7 @@ Public Class ProcesoSifere
 
                 escritor.Close()
 
-                MsgBox("Proceso Finalizado", MsgBoxStyle.Information)
+                MsgBox("Proceso Finalizado de Sifere (No aduana)", MsgBoxStyle.Information)
 
 
             Case Else
@@ -91,7 +91,7 @@ Public Class ProcesoSifere
 
                 For Each row As DataRow In tabla.Rows
 
-                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString)
+                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
 
                     If ProveedorAduana(CamposImputac.proveedor) = "S" Then
 
@@ -116,7 +116,7 @@ Public Class ProcesoSifere
 
                 escritor.Close()
 
-                MsgBox("Proceso Finalizado", MsgBoxStyle.Information)
+                MsgBox("Proceso Finalizado de Sifere Aduana", MsgBoxStyle.Information)
 
         End Select
 
@@ -148,4 +148,28 @@ Public Class ProcesoSifere
         MenuPrincipal.Show()
     End Sub
 
+    Private Sub CustomLabel4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomLabel4.Click
+
+    End Sub
+    Private Sub TipoProceso_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TipoProceso.SelectedIndexChanged
+
+    End Sub
+    Private Sub txtNombre_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNombre.TextChanged
+
+    End Sub
+    Private Sub CustomLabel3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomLabel3.Click
+
+    End Sub
+    Private Sub txtDesde_MaskInputRejected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MaskInputRejectedEventArgs) Handles txtDesde.MaskInputRejected
+
+    End Sub
+    Private Sub CustomLabel2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomLabel2.Click
+
+    End Sub
+    Private Sub txtHasta_MaskInputRejected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MaskInputRejectedEventArgs) Handles txtHasta.MaskInputRejected
+
+    End Sub
+    Private Sub CustomLabel1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomLabel1.Click
+
+    End Sub
 End Class

@@ -9,8 +9,11 @@
     Public numero As String
     Public despacho As String
     Public cuit As String
+    Public letra As String
 
-    Public Sub New(ByVal fechaord2 As String, ByVal debito2 As Double, ByVal proveedor2 As String, ByVal cuenta2 As String, ByVal nrointerno2 As String, ByVal punto2 As String, ByVal numero2 As String, ByVal despacho2 As String, ByVal cuit2 As String)
+    Public Sub New(ByVal fechaord2 As String, ByVal debito2 As Double, ByVal proveedor2 As String, ByVal cuenta2 As String,
+                   ByVal nrointerno2 As String, ByVal punto2 As String, ByVal numero2 As String, ByVal despacho2 As String,
+                   ByVal cuit2 As String, ByVal letra2 As String)
 
         fechaord = fechaord2
         debito = debito2
@@ -21,6 +24,7 @@
         numero = numero2
         despacho = despacho2
         cuit = cuit2
+        letra = letra2
 
     End Sub
 

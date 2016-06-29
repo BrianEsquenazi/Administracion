@@ -8,7 +8,8 @@
     Public orden As String
     Public cuit As String
 
-    Public Sub New(ByVal fechaord2 As String, ByVal retotra2 As Double, ByVal renglon2 As String, ByVal proveedor2 As String, ByVal fecha2 As String, ByVal orden2 As String, ByVal cuit2 As String)
+    Public Sub New(ByVal fechaord2 As String, ByVal retotra2 As Double, ByVal renglon2 As String, ByVal proveedor2 As String,
+                   ByVal fecha2 As String, ByVal orden2 As String, ByVal cuit2 As String)
 
         fechaord = fechaord2
         retotra = retotra2
