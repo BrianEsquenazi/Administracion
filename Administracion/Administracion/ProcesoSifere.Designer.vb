@@ -37,7 +37,7 @@ Partial Class ProcesoSifere
         '
         'txtDesde
         '
-        Me.txtDesde.Location = New System.Drawing.Point(137, 39)
+        Me.txtDesde.Location = New System.Drawing.Point(165, 30)
         Me.txtDesde.Mask = "##/##/####"
         Me.txtDesde.Name = "txtDesde"
         Me.txtDesde.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -46,7 +46,7 @@ Partial Class ProcesoSifere
         '
         'txtHasta
         '
-        Me.txtHasta.Location = New System.Drawing.Point(137, 75)
+        Me.txtHasta.Location = New System.Drawing.Point(165, 66)
         Me.txtHasta.Mask = "##/##/####"
         Me.txtHasta.Name = "txtHasta"
         Me.txtHasta.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -56,7 +56,7 @@ Partial Class ProcesoSifere
         'TipoProceso
         '
         Me.TipoProceso.FormattingEnabled = True
-        Me.TipoProceso.Location = New System.Drawing.Point(140, 150)
+        Me.TipoProceso.Location = New System.Drawing.Point(168, 141)
         Me.TipoProceso.Name = "TipoProceso"
         Me.TipoProceso.Size = New System.Drawing.Size(161, 21)
         Me.TipoProceso.TabIndex = 4
@@ -65,7 +65,7 @@ Partial Class ProcesoSifere
         '
         Me.CustomLabel4.AutoSize = True
         Me.CustomLabel4.ControlAssociationKey = -1
-        Me.CustomLabel4.Location = New System.Drawing.Point(32, 150)
+        Me.CustomLabel4.Location = New System.Drawing.Point(60, 141)
         Me.CustomLabel4.Name = "CustomLabel4"
         Me.CustomLabel4.Size = New System.Drawing.Size(70, 13)
         Me.CustomLabel4.TabIndex = 6
@@ -77,7 +77,7 @@ Partial Class ProcesoSifere
         Me.txtNombre.Empty = True
         Me.txtNombre.EnterIndex = -1
         Me.txtNombre.LabelAssociationKey = -1
-        Me.txtNombre.Location = New System.Drawing.Point(137, 114)
+        Me.txtNombre.Location = New System.Drawing.Point(165, 105)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(108, 20)
         Me.txtNombre.TabIndex = 3
@@ -88,7 +88,7 @@ Partial Class ProcesoSifere
         Me.btnCancela.Cleanable = False
         Me.btnCancela.EnterIndex = -1
         Me.btnCancela.LabelAssociationKey = -1
-        Me.btnCancela.Location = New System.Drawing.Point(191, 238)
+        Me.btnCancela.Location = New System.Drawing.Point(195, 201)
         Me.btnCancela.Name = "btnCancela"
         Me.btnCancela.Size = New System.Drawing.Size(85, 29)
         Me.btnCancela.TabIndex = 4
@@ -100,7 +100,7 @@ Partial Class ProcesoSifere
         Me.btnAcepta.Cleanable = False
         Me.btnAcepta.EnterIndex = -1
         Me.btnAcepta.LabelAssociationKey = -1
-        Me.btnAcepta.Location = New System.Drawing.Point(77, 238)
+        Me.btnAcepta.Location = New System.Drawing.Point(73, 201)
         Me.btnAcepta.Name = "btnAcepta"
         Me.btnAcepta.Size = New System.Drawing.Size(88, 29)
         Me.btnAcepta.TabIndex = 3
@@ -111,7 +111,7 @@ Partial Class ProcesoSifere
         '
         Me.CustomLabel3.AutoSize = True
         Me.CustomLabel3.ControlAssociationKey = -1
-        Me.CustomLabel3.Location = New System.Drawing.Point(32, 114)
+        Me.CustomLabel3.Location = New System.Drawing.Point(60, 105)
         Me.CustomLabel3.Name = "CustomLabel3"
         Me.CustomLabel3.Size = New System.Drawing.Size(44, 13)
         Me.CustomLabel3.TabIndex = 2
@@ -121,7 +121,7 @@ Partial Class ProcesoSifere
         '
         Me.CustomLabel2.AutoSize = True
         Me.CustomLabel2.ControlAssociationKey = -1
-        Me.CustomLabel2.Location = New System.Drawing.Point(32, 78)
+        Me.CustomLabel2.Location = New System.Drawing.Point(60, 69)
         Me.CustomLabel2.Name = "CustomLabel2"
         Me.CustomLabel2.Size = New System.Drawing.Size(68, 13)
         Me.CustomLabel2.TabIndex = 1
@@ -131,7 +131,7 @@ Partial Class ProcesoSifere
         '
         Me.CustomLabel1.AutoSize = True
         Me.CustomLabel1.ControlAssociationKey = -1
-        Me.CustomLabel1.Location = New System.Drawing.Point(32, 39)
+        Me.CustomLabel1.Location = New System.Drawing.Point(60, 30)
         Me.CustomLabel1.Name = "CustomLabel1"
         Me.CustomLabel1.Size = New System.Drawing.Size(71, 13)
         Me.CustomLabel1.TabIndex = 0
@@ -141,7 +141,7 @@ Partial Class ProcesoSifere
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(381, 343)
+        Me.ClientSize = New System.Drawing.Size(381, 245)
         Me.Controls.Add(Me.CustomLabel4)
         Me.Controls.Add(Me.TipoProceso)
         Me.Controls.Add(Me.txtHasta)

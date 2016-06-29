@@ -89,8 +89,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ProcesoPercecion.vb" />
+    <Compile Include="ProcesoPercepcionTucuman.vb" />
     <Compile Include="ProcesoReteGanancias.vb" />
+    <Compile Include="ProcesoReteGenanciasRecibo.vb" />
     <Compile Include="ProcesoReteIb.vb" />
+    <Compile Include="ProcesoReteIbRecibos.vb" />
+    <Compile Include="ProcesoReteIvaRecibos.vb" />
     <Compile Include="Proveedor.vb" />
     <Compile Include="Provincia.vb" />
     <Compile Include="RubroProveedor.vb" />

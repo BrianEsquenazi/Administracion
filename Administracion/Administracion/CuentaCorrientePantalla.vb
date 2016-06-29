@@ -58,9 +58,9 @@ Public Class CuentaCorrientePantalla
 
         For Each row As DataRow In tabla.Rows
 
-            Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString)
+            'Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString)
 
-            dataGridBuilder.addColumn(row.Item(0).ToString, row.Item(1), row.Item(2))
+            'dataGridBuilder.addColumn(row.Item(0).ToString, row.Item(1), row.Item(2))
 
 
         Next
@@ -72,4 +72,7 @@ Public Class CuentaCorrientePantalla
     End Sub
 
 
+    Private Sub Proveedor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Proveedor.TextChanged
+
+    End Sub
 End Class

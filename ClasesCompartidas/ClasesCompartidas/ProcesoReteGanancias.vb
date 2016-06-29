@@ -11,7 +11,9 @@
     Public cuit As String
     Public tipo As String
 
-    Public Sub New(ByVal fechaord2 As String, ByVal orden2 As String, ByVal renglon2 As String, ByVal importe2 As Double, ByVal fecha2 As String, ByVal retencion2 As Double, ByVal proveedor2 As String, ByVal certificadogan2 As String, ByVal cuit2 As String, ByVal tipo2 As String)
+    Public Sub New(ByVal fechaord2 As String, ByVal orden2 As String, ByVal renglon2 As String, ByVal importe2 As Double,
+                   ByVal fecha2 As String, ByVal retencion2 As Double, ByVal proveedor2 As String,
+                   ByVal certificadogan2 As String, ByVal cuit2 As String, ByVal tipo2 As String)
 
         fechaord = fechaord2
         orden = orden2

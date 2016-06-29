@@ -14,7 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -65,13 +66,33 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Administracion, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
     <Reference Include="ClasesCompartidas">
       <HintPath>..\..\ClasesCompartidas\ClasesCompartidas\bin\Debug\ClasesCompartidas.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -97,6 +118,7 @@
     <Compile Include="BancosABM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Capa DAO\DAOCierreMes.vb" />
     <Compile Include="Capa DAO\DAODeposito.vb" />
     <Compile Include="Capa DAO\DAOProveedor.vb" />
     <Compile Include="Capa DAO\DAORubroProveedor.vb" />
@@ -107,6 +129,12 @@
       <DependentUpon>CargaIntereses.vb</DependentUpon>
     </Compile>
     <Compile Include="CargaIntereses.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CierreMes.Designer.vb">
+      <DependentUpon>CierreMes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CierreMes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Clases\Cleanner.vb" />
@@ -142,6 +170,42 @@
     <Compile Include="CuentaCorrientePantalla.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DepuraCtaCte.Designer.vb">
+      <DependentUpon>DepuraCtaCte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DepuraCtaCte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoAsientoResumen.Designer.vb">
+      <DependentUpon>ListadoAsientoResumen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoAsientoResumen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoIvaCompras.Designer.vb">
+      <DependentUpon>ListadoIvaCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoIvaCompras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoProyeccionCobros.Designer.vb">
+      <DependentUpon>ListadoProyeccionCobros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoProyeccionCobros.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoValoresEnCartera.Designer.vb">
+      <DependentUpon>ListadoValoresEnCartera.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoValoresEnCartera.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcesoPercepciones.Designer.vb">
+      <DependentUpon>ProcesoPercepciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProcesoPercepciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ObservacionesProveedor.Designer.vb">
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
     </Compile>
@@ -152,6 +216,12 @@
       <DependentUpon>ProcesoRetencionesPagos.vb</DependentUpon>
     </Compile>
     <Compile Include="ProcesoRetencionesPagos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProcesoReteRecibos.Designer.vb">
+      <DependentUpon>ProcesoReteRecibos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProcesoReteRecibos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProcesoSifere.Designer.vb">
@@ -170,6 +240,12 @@
       <DependentUpon>RubrosProveedorABM.vb</DependentUpon>
     </Compile>
     <Compile Include="RubrosProveedorABM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoSaldosCuentaCorrienteProveedores.Designer.vb">
+      <DependentUpon>ListadoSaldosCuentaCorrienteProveedores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoSaldosCuentaCorrienteProveedores.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TipoCambioABM.Designer.vb">
@@ -214,6 +290,9 @@
     <EmbeddedResource Include="CargaIntereses.resx">
       <DependentUpon>CargaIntereses.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CierreMes.resx">
+      <DependentUpon>CierreMes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CuentaContableABM.resx">
       <DependentUpon>CuentaContableABM.vb</DependentUpon>
     </EmbeddedResource>
@@ -226,11 +305,35 @@
     <EmbeddedResource Include="Depositos.resx">
       <DependentUpon>Depositos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DepuraCtaCte.resx">
+      <DependentUpon>DepuraCtaCte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoAsientoResumen.resx">
+      <DependentUpon>ListadoAsientoResumen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoIvaCompras.resx">
+      <DependentUpon>ListadoIvaCompras.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoProyeccionCobros.resx">
+      <DependentUpon>ListadoProyeccionCobros.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoSaldosCuentaCorrienteProveedores.resx">
+      <DependentUpon>ListadoSaldosCuentaCorrienteProveedores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoValoresEnCartera.resx">
+      <DependentUpon>ListadoValoresEnCartera.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ObservacionesProveedor.resx">
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProcesoPercepciones.resx">
+      <DependentUpon>ProcesoPercepciones.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProcesoRetencionesPagos.resx">
       <DependentUpon>ProcesoRetencionesPagos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProcesoReteRecibos.resx">
+      <DependentUpon>ProcesoReteRecibos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProcesoSifere.resx">
       <DependentUpon>ProcesoSifere.vb</DependentUpon>

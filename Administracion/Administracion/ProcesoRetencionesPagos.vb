@@ -19,6 +19,27 @@ Public Class ProcesoRetencionesPagos
     Dim WTipoProceso As String
     Dim WBase As String
 
+    Dim WCampo1 As String
+    Dim WCampo2 As String
+    Dim WCampo3 As String
+    Dim WCampo4 As String
+    Dim WCampo5 As String
+    Dim WCampo6 As String
+    Dim WCampo7 As String
+    Dim WCampo8 As String
+    Dim WCampo9 As String
+    Dim WCampo10 As String
+    Dim WCampo11 As String
+    Dim WCampo12 As String
+    Dim WCampo13 As String
+    Dim WCampo14 As String
+    Dim WCampo15 As String
+    Dim WCampo16 As String
+    Dim WCampo17 As String
+    Dim WCampo18 As String
+    Dim WCampo19 As String
+    Dim WCampo20 As String
+
 
     Private Sub ProcesoRetencionesPagos_Load_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
@@ -67,10 +88,15 @@ Public Class ProcesoRetencionesPagos
             nombreArchivo = FolderBrowserDialog1.SelectedPath
         End If
 
-        REM XNombre = WDir + "\AR-30610524598-" + Nombre.text + "-6-LOTE1.txt"
-        If Trim(nombreArchivo) <> "" Then
-            nombreArchivo = nombreArchivo + "\AR-30549165083-" + txtNombre.Text + "-6-LOTE1.txt"
+        If TipoProceso.SelectedIndex = 0 Then
+            REM XNombre = WDir + "\AR-30610524598-" + Nombre.text + "-6-LOTE1.txt"
+            If Trim(nombreArchivo) <> "" Then
+                nombreArchivo = nombreArchivo + "\AR-30549165083-" + txtNombre.Text + "-6-LOTE1.txt"
+            End If
+        Else
+            nombreArchivo = nombreArchivo + "\" + txtNombre.Text + ".txt"
         End If
+
 
         File.Create(nombreArchivo).Dispose()
 
@@ -100,7 +126,7 @@ Public Class ProcesoRetencionesPagos
 
                 escritor.Close()
 
-                MsgBox("Proceso Finalizado", MsgBoxStyle.Information)
+                MsgBox("Proceso Finalizado de Ingresos Brutos", MsgBoxStyle.Information)
 
             Case 1
                 Dim tabla As DataTable
@@ -108,7 +134,7 @@ Public Class ProcesoRetencionesPagos
 
                 For Each row As DataRow In tabla.Rows
 
-                    Dim CamposReteGanan As New ProcesoReteGanancias(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString)
+                    Dim CamposReteGanan As New ProcesoReteGanancias(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
 
                     WFecha = CamposReteGanan.fecha
                     WCertificado = ceros(CamposReteGanan.certificadogan, 16)
@@ -130,19 +156,36 @@ Public Class ProcesoRetencionesPagos
                     WBase = ceros(formatonumerico(redondeo(CamposReteGanan.Importe), "########0.#0", "."), 14)
                     WRetencion = ceros(formatonumerico(redondeo(CamposReteGanan.retencion), "########0.#0", "."), 14)
                     WCuit = agregaespacios((CamposReteGanan.cuit), 20)
-
-
                     WSucursal = "0001"
                     WOrden = ceros(CamposReteGanan.orden, 8)
 
+                    WCampo1 = "06"
+                    WCampo2 = WFecha
+                    WCampo3 = WCertificado
+                    WCampo4 = WImporte
+                    WCampo5 = "217"
+                    WCampo7 = "1"
+                    WCampo8 = WBase
+                    WCampo9 = WFecha
+                    WCampo10 = "01 "
+                    WCampo11 = WRetencion
+                    WCampo12 = "000000"
+                    WCampo13 = Space$(10)
+                    WCampo14 = "80"
+                    WCampo15 = WCuit
+                    WCampo16 = WCertificado
+                    WCampo17 = Space$(30)
+                    WCampo18 = "0"
+                    WCampo19 = Space$(11)
+                    WCampo20 = Space$(11)
 
-                    escritor.Write("06" + WFecha + WCertificado + WImporte + "217" + WTipoProceso + "1" + WFecha + "01" + WRetencion + "000000" + "          " + "80" + WCuit + WCertificado + vbCrLf)
+                    escritor.Write(WCampo1 + WCampo2 + WCampo3 + WCampo4 + WCampo5 + WCampo6 + WCampo7 + WCampo8 + WCampo9 + WCampo10 + WCampo11 + WCampo12 + WCampo1 + WCampo13 + WCampo14 + WCampo15 + WCampo16 + WCampo17 + WCampo18 + WCampo19 + WCampo20 + vbCrLf)
 
                 Next
 
                 escritor.Close()
 
-                MsgBox("Proceso Finalizado", MsgBoxStyle.Information)
+                MsgBox("Proceso Finalizado de Ganancias", MsgBoxStyle.Information)
 
             Case Else
 
@@ -150,7 +193,4 @@ Public Class ProcesoRetencionesPagos
 
     End Sub
 
-    Private Sub FolderBrowserDialog1_HelpRequest(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FolderBrowserDialog1.HelpRequest
-
-    End Sub
 End Class
