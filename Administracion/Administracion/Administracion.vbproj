@@ -118,11 +118,8 @@
     <Compile Include="BancosABM.vb">
       <SubType>Form</SubType>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Capa DAO\DAOCierreMes.vb" />
-=======
     <Compile Include="Capa DAO\DAOCtaCteProveedor.vb" />
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
     <Compile Include="Capa DAO\DAODeposito.vb" />
     <Compile Include="Capa DAO\DAOProveedor.vb" />
     <Compile Include="Capa DAO\DAORubroProveedor.vb" />
@@ -186,7 +183,6 @@
     <Compile Include="CuentaCorrientePantalla.vb">
       <SubType>Form</SubType>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="DepuraCtaCte.Designer.vb">
       <DependentUpon>DepuraCtaCte.vb</DependentUpon>
     </Compile>
@@ -223,10 +219,7 @@
     <Compile Include="ProcesoPercepciones.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ObservacionesProveedor.Designer.vb">
-=======
     <Compile Include="ProveedoresABM\ObservacionesProveedor.Designer.vb">
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
     </Compile>
     <Compile Include="ProveedoresABM\ObservacionesProveedor.vb">
@@ -310,13 +303,11 @@
     <EmbeddedResource Include="CargaIntereses.resx">
       <DependentUpon>CargaIntereses.vb</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="CierreMes.resx">
       <DependentUpon>CierreMes.vb</DependentUpon>
-=======
+    </EmbeddedResource>
     <EmbeddedResource Include="ComprasNovedades\Compras.resx">
       <DependentUpon>Compras.vb</DependentUpon>
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
     </EmbeddedResource>
     <EmbeddedResource Include="CuentaContableABM.resx">
       <DependentUpon>CuentaContableABM.vb</DependentUpon>
@@ -330,7 +321,6 @@
     <EmbeddedResource Include="Depositos.resx">
       <DependentUpon>Depositos.vb</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
     <EmbeddedResource Include="DepuraCtaCte.resx">
       <DependentUpon>DepuraCtaCte.vb</DependentUpon>
     </EmbeddedResource>
@@ -349,10 +339,7 @@
     <EmbeddedResource Include="ListadoValoresEnCartera.resx">
       <DependentUpon>ListadoValoresEnCartera.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ObservacionesProveedor.resx">
-=======
     <EmbeddedResource Include="ProveedoresABM\ObservacionesProveedor.resx">
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProcesoPercepciones.resx">

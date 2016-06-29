@@ -40,11 +40,6 @@
     Private Sub RetencionEsOpToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RetencionEsOpToolStripMenuItem.Click
         ProcesoRetencionesPagos.Show()
     End Sub
-
-    Private Sub DEOISITOToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DEOISITOToolStripMenuItem.Click
-        Depositos.Show()
-    End Sub
-
     
     Private Sub RetencionesRecibvosaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RetencionesRecibvosaToolStripMenuItem.Click
         ProcesoReteRecibos.Show()

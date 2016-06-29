@@ -33,10 +33,6 @@ Partial Class MenuPrincipal
         Me.NovedadesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PruebaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CargarInteresesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-<<<<<<< HEAD
-        Me.DEOISITOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-=======
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
         Me.ListadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConsultaDeCuentaCorrientePorPantallaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CuentaCorrienteDeProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -83,10 +79,7 @@ Partial Class MenuPrincipal
         Me.FinDelSistemaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnCambio = New System.Windows.Forms.Button()
         Me.lblCargando = New WindowsApplication1.CustomLabel()
-<<<<<<< HEAD
-=======
         Me.IngresoDeNovedadesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -144,11 +137,7 @@ Partial Class MenuPrincipal
         '
         'NovedadesToolStripMenuItem
         '
-<<<<<<< HEAD
-        Me.NovedadesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PruebaToolStripMenuItem, Me.CargarInteresesToolStripMenuItem, Me.DEOISITOToolStripMenuItem})
-=======
         Me.NovedadesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PruebaToolStripMenuItem, Me.CargarInteresesToolStripMenuItem, Me.IngresoDeNovedadesToolStripMenuItem})
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
         Me.NovedadesToolStripMenuItem.Name = "NovedadesToolStripMenuItem"
         Me.NovedadesToolStripMenuItem.Size = New System.Drawing.Size(73, 20)
         Me.NovedadesToolStripMenuItem.Text = "Novedades"
@@ -156,31 +145,14 @@ Partial Class MenuPrincipal
         'PruebaToolStripMenuItem
         '
         Me.PruebaToolStripMenuItem.Name = "PruebaToolStripMenuItem"
-<<<<<<< HEAD
-        Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
-        Me.PruebaToolStripMenuItem.Text = "Prueba"
-=======
         Me.PruebaToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.PruebaToolStripMenuItem.Text = "Ingreso de Depósitos"
         '
         'CargarInteresesToolStripMenuItem
         '
         Me.CargarInteresesToolStripMenuItem.Name = "CargarInteresesToolStripMenuItem"
-        Me.CargarInteresesToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
-        Me.CargarInteresesToolStripMenuItem.Text = "Cargar Intereses"
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
-        '
-        'CargarInteresesToolStripMenuItem
-        '
-        Me.CargarInteresesToolStripMenuItem.Name = "CargarInteresesToolStripMenuItem"
         Me.CargarInteresesToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
         Me.CargarInteresesToolStripMenuItem.Text = "Cargar Intereses"
-        '
-        'DEOISITOToolStripMenuItem
-        '
-        Me.DEOISITOToolStripMenuItem.Name = "DEOISITOToolStripMenuItem"
-        Me.DEOISITOToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
-        Me.DEOISITOToolStripMenuItem.Text = "DEOISITO"
         '
         'ListadosToolStripMenuItem
         '
@@ -468,15 +440,12 @@ Partial Class MenuPrincipal
         Me.lblCargando.Text = "CARGANDO, POR FAVOR ESPERE..."
         Me.lblCargando.Visible = False
         '
-<<<<<<< HEAD
-=======
         'IngresoDeNovedadesToolStripMenuItem
         '
         Me.IngresoDeNovedadesToolStripMenuItem.Name = "IngresoDeNovedadesToolStripMenuItem"
         Me.IngresoDeNovedadesToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
         Me.IngresoDeNovedadesToolStripMenuItem.Text = "Ingreso de Novedades"
         '
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
         'MenuPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -511,10 +480,8 @@ Partial Class MenuPrincipal
     Friend WithEvents lblCargando As WindowsApplication1.CustomLabel
     Friend WithEvents PruebaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CargarInteresesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-<<<<<<< HEAD
     Friend WithEvents SifereToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RetencionEsOpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DEOISITOToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RetencionesRecibvosaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FinDelSistemaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
@@ -555,7 +522,5 @@ Partial Class MenuPrincipal
     Friend WithEvents ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ControlDeRecibosProvisoriosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ListadoDeDeudaDePymeNacionToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-=======
     Friend WithEvents IngresoDeNovedadesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
->>>>>>> 558ee091e3026cbecb28d4269bc6a29cf81194a3
 End Class
