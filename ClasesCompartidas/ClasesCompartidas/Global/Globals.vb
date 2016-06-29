@@ -3,7 +3,15 @@
 Public Class Globals
     Public Shared empresa As String
 
-    Shared Function getConnectionString() As String
+    Public Shared Function connectionWorksFor(ByVal connectionName As String)
+        Try
+            Return SQLConnector.tryConnection(ConfigurationManager.ConnectionStrings(connectionName).ConnectionString)
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Public Shared Function getConnectionString() As String
         If empresa Is Nothing Then
             Throw New ApplicationException("No fue seleccionada la empresa")
         Else
