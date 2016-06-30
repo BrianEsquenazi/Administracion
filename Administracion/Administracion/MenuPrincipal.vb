@@ -2,8 +2,27 @@
     Dim forms As New List(Of Form)
 
     Private Sub abrir(ByVal form As Form)
-        forms.Add(form)
-        form.Show()
+        Dim opennedForm As Form = forms.Find(Function(openForm) openForm.GetType() = form.GetType())
+        If IsNothing(opennedForm) OrElse opennedForm.IsDisposed Then
+            forms.Add(form)
+            form.Show()
+            forms.Remove(opennedForm)
+        Else
+            form.Dispose()
+            opennedForm.Focus()
+        End If
+    End Sub
+
+    Private Sub btnCambio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCambio.Click
+        Dim msgResult = vbYes
+        If forms.Any(Function(form) form.Visible) Then
+            msgResult = MsgBox("¿Se cerrarán todos los formularios abiertos, está seguro que desea cambiar de empresa?", vbYesNo, "Cambiar de Empresa")
+        End If
+        If msgResult = vbYes Then
+            forms.ForEach(Sub(form) form.Dispose())
+            Login.Show()
+            Close()
+        End If
     End Sub
 
     Private Sub IngresosDeCuentasContablesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IngresosDeCuentasContablesToolStripMenuItem.Click
@@ -24,18 +43,6 @@
 
     Private Sub IngresoDeRubrosDeProveedoresToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IngresoDeRubrosDeProveedoresToolStripMenuItem.Click
         abrir(New RubrosProveedorABM)
-    End Sub
-
-    Private Sub btnCambio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCambio.Click
-        Dim msgResult = vbYes
-        If forms.Any(Function(form) form.Visible) Then
-            msgResult = MsgBox("¿Se cerrarán todos los formularios abiertos, está seguro que desea cambiar de empresa?", vbYesNo, "Cambiar de Empresa")
-        End If
-        If msgResult = vbYes Then
-            forms.ForEach(Sub(form) form.Dispose())
-            Login.Show()
-            Close()
-        End If
     End Sub
 
     Private Sub PruebaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DepositosToolStripMenuItem.Click
@@ -101,5 +108,9 @@
 
     Private Sub IngresoDeNovedadesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IngresoDeNovedadesToolStripMenuItem.Click
         abrir(New Compras)
+    End Sub
+
+    Private Sub MenuPrincipal_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        End
     End Sub
 End Class

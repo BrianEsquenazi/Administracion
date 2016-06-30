@@ -250,6 +250,12 @@
     <Compile Include="ProveedoresABM\ProveedoresABM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportViewer.Designer.vb">
+      <DependentUpon>ReportViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RubrosProveedorABM.Designer.vb">
       <DependentUpon>RubrosProveedorABM.vb</DependentUpon>
     </Compile>
@@ -357,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProveedoresABM\ProveedoresABM.resx">
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewer.resx">
+      <DependentUpon>ReportViewer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RubrosProveedorABM.resx">
       <DependentUpon>RubrosProveedorABM.vb</DependentUpon>
