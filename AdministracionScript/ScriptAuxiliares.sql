@@ -16,6 +16,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FN_ge
 DROP FUNCTION [dbo].[FN_get_fecha_desde_ordenable]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FN_verificar_fecha_ordenable]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
+DROP FUNCTION [dbo].[FN_verificar_fecha_ordenable]
+GO
+
 USE [surfactanSA]
 GO
 
@@ -47,6 +51,28 @@ BEGIN
 	SET @fecha_retorno = RIGHT(@fecha,2)+ '/' + RIGHT((LEFT(@fecha,6)),2) + '/' + LEFT(@fecha,4) 
 	
 	RETURN @fecha_retorno
+END
+
+GO
+
+
+CREATE FUNCTION [dbo].[FN_verificar_fecha_ordenable](@fecha varchar(10))
+RETURNS varchar(8)
+AS
+BEGIN
+	
+	DECLARE @dia varchar(2) 
+	DECLARE @mes varchar(2) 
+	DECLARE @ano varchar(4) 
+	DECLARE @fecha_ordenable varchar(8) 
+	
+	SET @dia = ISNULL(SUBSTRING(@fecha,1,2),'00')
+	SET @mes = ISNULL(SUBSTRING(@fecha,4,2),'00')
+	SET @ano = ISNULL(SUBSTRING(@fecha,7,4),'0000')
+	IF (@dia > 0 and @mes > 0 and @ano > 0)
+		SET @fecha_ordenable = (SELECT dbo.FN_get_fecha_ordenable (@fecha))
+	
+	RETURN @fecha_ordenable
 END
 
 GO
