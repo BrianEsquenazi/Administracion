@@ -92,7 +92,9 @@ Public Class Compras
     End Sub
 
     Private Sub txtNeto_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNeto.Leave
-        txtIVA21.Text = Math.Round(asDouble(txtNeto.Text) * 0.21, 2)
+        If txtIVA21.Enabled Then
+            txtIVA21.Text = Math.Round(asDouble(txtNeto.Text) * 0.21, 2)
+        End If
         txtImporte_Leave(sender, e)
     End Sub
 
@@ -107,13 +109,14 @@ Public Class Compras
         validador.alsoValidate(CustomConvert.toIntOr(txtPunto.Text, 0) <> 0, "El campo " & CustomLabel6.Text & " no puede ser cero")
         validador.alsoValidate(CustomConvert.toIntOr(txtNumero.Text, 0) <> 0, "El campo " & CustomLabel7.Text & " no puede ser cero")
         validador.alsoValidate(letrasValidas.Contains(txtLetra.Text) Or txtLetra.Text = "", "El valor ingresado (" & txtLetra.Text & ") no es una letra válida")
-        validador.alsoValidate(DAOCompras.mesAbierto(txtFechaEmision.Text), "El mes de la fecha de emisión: " & txtFechaEmision.Text & " se encuentra cerrado según el sistema")
+        validador.alsoValidate(DAOCierreMes.mesAbierto(txtFechaEmision.Text), "El mes de la fecha de emisión: " & txtFechaEmision.Text & " se encuentra cerrado según el sistema")
 
         Return validador.flush
     End Function
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
         If validarCampos() Then
+            MsgBox("El número de interno asignado es: " & DAOCompras.siguienteNumeroDeInterno())
             'Agregar
         End If
     End Sub
@@ -142,6 +145,12 @@ Public Class Compras
             txtPercIB.Enabled = False
             txtNoGravado.Enabled = False
             txtIVA10.Enabled = False
+            txtIVA21.Text = "0"
+            txtIVARG.Text = "0"
+            txtIVA27.Text = "0"
+            txtPercIB.Text = "0"
+            txtNoGravado.Text = "0"
+            txtIVA10.Text = "0"
         Else
             txtIVA21.Enabled = True
             txtIVARG.Enabled = True
@@ -151,9 +160,5 @@ Public Class Compras
             txtIVA10.Enabled = True
         End If
         txtLetra.Select(txtLetra.Text.Count, 1)
-    End Sub
-
-    Private Sub txtNeto_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
     End Sub
 End Class

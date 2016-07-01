@@ -5,6 +5,8 @@ Public Class BancosABM
     Dim organizadorABM As New FormOrganizer(Me, 485, 600)
 
     Private Sub BancosABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        txtCodigo.Text = DAOBanco.siguienteCodigo()
+
         organizadorABM.addControls(txtCodigo, txtNombre, txtCuenta)
         organizadorABM.addAnnexedControls(New List(Of CustomControl) From {txtDescripcion})
         organizadorABM.setAddButtonClick(AddressOf agregar)

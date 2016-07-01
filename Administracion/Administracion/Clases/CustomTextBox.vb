@@ -7,6 +7,7 @@
     DateFormat
     PositiveFloat
     Float
+    StrictlyPositiveFloat
 End Enum
 
 Public Enum NumericType

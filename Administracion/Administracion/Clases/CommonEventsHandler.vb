@@ -50,7 +50,7 @@
         Select Case validableControl.Validator
             Case ValidatorType.Numeric, ValidatorType.Positive, ValidatorType.PositiveWithMax
                 AddHandler control.KeyPress, AddressOf numericKeyPressed
-            Case ValidatorType.PositiveFloat
+            Case ValidatorType.PositiveFloat, ValidatorType.StrictlyPositiveFloat
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorPressed
             Case ValidatorType.Float
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorOrMinusPressed

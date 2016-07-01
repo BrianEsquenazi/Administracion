@@ -2,14 +2,7 @@
 
 Public Class DAOCompras
 
-    Public Shared Function mesAbierto(ByVal fecha As String)
-        Try
-            Dim mes As Integer = Convert.ToDateTime(fecha).Month
-            Return True
-            'Return SQLConnector.checkIfExists("get_mes_abierto", mes)
-        Catch ex As FormatException
-            Return True
-        End Try
+    Public Shared Function siguienteNumeroDeInterno() As Long
+        Return SQLConnector.retrieveDataTable("get_siguiente_numero_interno").Rows(0)(0)
     End Function
-
 End Class

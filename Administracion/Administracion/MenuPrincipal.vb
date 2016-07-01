@@ -1,5 +1,6 @@
 ﻿Public Class MenuPrincipal
     Dim forms As New List(Of Form)
+    Dim loginOpen As Boolean = False
 
     Private Sub abrir(ByVal form As Form)
         Dim opennedForm As Form = forms.Find(Function(openForm) openForm.GetType() = form.GetType())
@@ -21,6 +22,7 @@
         If msgResult = vbYes Then
             forms.ForEach(Sub(form) form.Dispose())
             Login.Show()
+            loginOpen = True
             Close()
         End If
     End Sub
@@ -111,6 +113,8 @@
     End Sub
 
     Private Sub MenuPrincipal_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        End
+        If Not loginOpen Then
+            End
+        End If
     End Sub
 End Class
