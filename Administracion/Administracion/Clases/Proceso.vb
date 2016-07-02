@@ -177,6 +177,34 @@
 
     End Function
 
+    Public Function ValidaFecha(ByVal fecha As String)
+
+        Dim txtDia As Integer
+        Dim txtMes As Integer
+        Dim txtAno As Integer
+        Dim txtValidaFecha As String
+
+        txtDia = Val(leederecha(fecha, 2))
+        txtMes = Val(Mid$(fecha, 4, 2))
+        txtAno = Val(Right$(fecha, 4))
+
+        txtValidaFecha = "S"
+
+        If txtDia <= 0 Or txtDia > 31 Then
+            txtValidaFecha = "N"
+        End If
+
+        If txtMes <= 0 Or txtMes > 12 Then
+            txtValidaFecha = "N"
+        End If
+
+        If txtAno <= 1900 Then
+            txtValidaFecha = "N"
+        End If
+
+        Return txtValidaFecha
+
+    End Function
 
 
 End Module

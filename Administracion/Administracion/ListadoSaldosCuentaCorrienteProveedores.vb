@@ -4,6 +4,7 @@ Imports System.IO
 Public Class ListadoSaldosCuentaCorrienteProveedores
 
     Dim WParametro As String
+    Dim showFunction As ShowMethod
 
     Private Sub LitadoSaldosCuentaCorrienteProveedores_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtAyuda.Text = ""
@@ -23,6 +24,9 @@ Public Class ListadoSaldosCuentaCorrienteProveedores
             e.Handled = True
             txtDesdeProveedor.Text = ""
         End If
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = True
+        End If
     End Sub
 
     Private Sub txthastaproveedor_KeyPress(ByVal sender As Object, _
@@ -35,6 +39,9 @@ Public Class ListadoSaldosCuentaCorrienteProveedores
             e.Handled = True
             txtHastaProveedor.Text = ""
         End If
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = True
+        End If
     End Sub
 
     Private Sub btnCancela_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancela.Click
@@ -42,14 +49,16 @@ Public Class ListadoSaldosCuentaCorrienteProveedores
         MenuPrincipal.Show()
     End Sub
 
+    
+
     Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
 
         Me.Size = New System.Drawing.Size(460, 400)
 
-        txtAyuda.Text = ""
+        showFunction = AddressOf mostrarProveedor
         lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre("")
 
-
+        txtAyuda.Text = ""
         txtAyuda.Visible = True
         lstAyuda.Visible = True
 
@@ -69,13 +78,17 @@ Public Class ListadoSaldosCuentaCorrienteProveedores
         End If
     End Sub
 
+    Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
+        'txtDesdeProveedor.Text = proveedor.razo
+        'txtHastaProveedor.Text = Proveedor.id
+    End Sub
+
     Private Sub lstAyuda_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstAyuda.Click
-        WParametro = ""
+        'WParametro = ""
         WParametro = lstAyuda.SelectedItem.ToString
-
-        REM Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorNombre(WParametro)
-        REM txtDesdeProveedor.Text = CampoProveedor.razonSocial
-
+        REM showFunction.Invoke(lstAyuda.SelectedItem.ToString)
+        showFunction.Invoke(WParametro)
+        Stop
     End Sub
 
 End Class
