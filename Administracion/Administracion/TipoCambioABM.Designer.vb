@@ -59,7 +59,7 @@ Partial Class TipoCambioABM
         Me.txtParidad.Name = "txtParidad"
         Me.txtParidad.Size = New System.Drawing.Size(100, 20)
         Me.txtParidad.TabIndex = 14
-        Me.txtParidad.Validator = WindowsApplication1.ValidatorType.Positive
+        Me.txtParidad.Validator = WindowsApplication1.ValidatorType.StrictlyPositiveFloat
         '
         'txtFecha
         '

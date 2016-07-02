@@ -20,6 +20,7 @@ Public Class CuentaCorrientePantalla
         If e.KeyChar = Convert.ToChar(Keys.Return) Then
             e.Handled = True
             aa = Proveedor.Text
+            REM lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre(txtAyuda.Text)
             Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(aa)
             ProveedorRazon.Text = CampoProveedor.razonSocial
             Call Proceso()

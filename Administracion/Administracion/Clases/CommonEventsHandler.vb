@@ -170,6 +170,9 @@
             If (sender.Validator = ValidatorType.Float Or sender.Validator = ValidatorType.PositiveFloat) And sender.Text = "" Then
                 sender.Text = "0"
             End If
+            If sender.Validator = ValidatorType.Float Or sender.Validator = ValidatorType.PositiveFloat Or sender.Validator = ValidatorType.StrictlyPositiveFloat Then
+                sender.Text = CustomConvert.toStringWithTwoDecimalPlaces(CustomConvert.toDoubleOrZero(sender.Text))
+            End If
             Dim nextControl As Control = findNextControl(sender)
             setFocus(nextControl)
         End If

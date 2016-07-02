@@ -27,6 +27,9 @@ Public Class ListadoProyeccionCobros
             e.Handled = True
             txtDesdeProveedor.Text = ""
         End If
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = True
+        End If
     End Sub
 
     Private Sub txthastaproveedor_KeyPress(ByVal sender As Object, _
@@ -39,6 +42,9 @@ Public Class ListadoProyeccionCobros
             e.Handled = True
             txtHastaProveedor.Text = ""
         End If
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = True
+        End If
     End Sub
 
     Private Sub txtfecha1_KeyPress(ByVal sender As Object, _
@@ -46,7 +52,9 @@ Public Class ListadoProyeccionCobros
                    Handles txtFecha1.KeyPress
         If e.KeyChar = Convert.ToChar(Keys.Return) Then
             e.Handled = True
-            txtFecha2.Focus()
+            If ValidaFecha(txtFecha1.Text) = "S" Then
+                txtFecha2.Focus()
+            End If
         ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
             e.Handled = True
             txtFecha1.Text = "  /  /    "
@@ -58,7 +66,9 @@ Public Class ListadoProyeccionCobros
                    Handles txtFecha2.KeyPress
         If e.KeyChar = Convert.ToChar(Keys.Return) Then
             e.Handled = True
-            txtFecha3.Focus()
+            If ValidaFecha(txtFecha2.Text) = "S" Then
+                txtFecha3.Focus()
+            End If
         ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
             e.Handled = True
             txtFecha2.Text = "  /  /    "
@@ -70,7 +80,9 @@ Public Class ListadoProyeccionCobros
                    Handles txtFecha3.KeyPress
         If e.KeyChar = Convert.ToChar(Keys.Return) Then
             e.Handled = True
-            txtFecha4.Focus()
+            If ValidaFecha(txtFecha3.Text) = "S" Then
+                txtFecha4.Focus()
+            End If
         ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
             e.Handled = True
             txtFecha3.Text = "  /  /    "
@@ -82,12 +94,18 @@ Public Class ListadoProyeccionCobros
                    Handles txtFecha4.KeyPress
         If e.KeyChar = Convert.ToChar(Keys.Return) Then
             e.Handled = True
-            txtDesdeProveedor.Focus()
+            If ValidaFecha(txtFecha4.Text) = "S" Then
+                txtDesdeProveedor.Focus()
+            End If
         ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
             e.Handled = True
             txtFecha4.Text = "  /  /    "
         End If
     End Sub
+
+
+
+
 
     Private Sub btnCancela_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancela.Click
         Me.Hide()

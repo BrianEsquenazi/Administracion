@@ -275,6 +275,7 @@ Public Class FormOrganizer
             control.Left = lines(index + 3)
             control.Top = lines(index + 4)
         Next
+        reader.Close()
         Return Convert.ToInt32(lines.Last) 'La última línea está reservada para el top de los buttons
     End Function
 

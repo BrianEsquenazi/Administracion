@@ -58,7 +58,7 @@ Public Class ProcesoSifere
 
                 For Each row As DataRow In tabla.Rows
 
-                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
+                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), 0, row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
 
                     If ProveedorAduana(CamposImputac.proveedor) = "N" Then
 
@@ -91,7 +91,7 @@ Public Class ProcesoSifere
 
                 For Each row As DataRow In tabla.Rows
 
-                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
+                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), 0, row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
 
                     If ProveedorAduana(CamposImputac.proveedor) = "S" Then
 
@@ -122,24 +122,45 @@ Public Class ProcesoSifere
 
     End Sub
 
-    Private Sub txtDesde_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtDesde.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            txtHasta.Focus()
+    Private Sub txtdesde_KeyPress(ByVal sender As Object, _
+                ByVal e As System.Windows.Forms.KeyPressEventArgs) _
+                Handles txtDesde.KeyPress
+        If e.KeyChar = Convert.ToChar(Keys.Return) Then
+            e.Handled = True
+            If ValidaFecha(txtDesde.Text) = "S" Then
+                txtHasta.Focus()
+            End If
+        ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
+            e.Handled = True
+            txtDesde.Text = "  /  /    "
+            Me.txtDesde.SelectionStart = 0
         End If
-        'If e.KeyCode = Keys.Escape Then
-        '    txtDesde.Text = "  /  /    "
-        'End If
     End Sub
 
-    Private Sub txtHasta_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtDesde.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            txtNombre.Focus()
+    Private Sub txthasta_KeyPress(ByVal sender As Object, _
+                ByVal e As System.Windows.Forms.KeyPressEventArgs) _
+                Handles txtHasta.KeyPress
+        If e.KeyChar = Convert.ToChar(Keys.Return) Then
+            e.Handled = True
+            If ValidaFecha(txtHasta.Text) = "S" Then
+                txtNombre.Focus()
+            End If
+        ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
+            e.Handled = True
+            txtHasta.Text = "  /  /    "
+            Me.txtHasta.SelectionStart = 0
         End If
     End Sub
 
-    Private Sub txtnombre_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtDesde.KeyDown
-        If e.KeyCode = Keys.Enter Then
+    Private Sub txtnombre_KeyPress(ByVal sender As Object, _
+                   ByVal e As System.Windows.Forms.KeyPressEventArgs) _
+                   Handles txtNombre.KeyPress
+        If e.KeyChar = Convert.ToChar(Keys.Return) Then
+            e.Handled = True
             txtDesde.Focus()
+        ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
+            e.Handled = True
+            txtNombre.Text = ""
         End If
     End Sub
 

@@ -128,7 +128,7 @@ End Class
 
 
 Public Class DataGridValidator
-    Private validatorType As ValidatorType
+    Public validatorType As ValidatorType
 
     Public Sub New(ByVal type As ValidatorType)
         validatorType = type

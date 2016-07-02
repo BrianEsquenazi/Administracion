@@ -28,6 +28,23 @@
         End Try
     End Function
 
+    Public Shared Function toStringWithTwoDecimalPlaces(ByVal value As Double)
+        Return asStringWithDecimalPlaces(value, 2)
+    End Function
+
+    Public Shared Function asStringWithDecimalPlaces(ByVal value As Double, ByVal decimalPlaces As Integer)
+        Dim originalString As String = value.ToString
+        If originalString.IndexOf(",") = -1 Then
+            Return originalString & "," & ceros("", decimalPlaces)
+        Else
+            Dim difference As Integer = originalString.Count - originalString.IndexOf(",") - 1
+            If difference < decimalPlaces Then
+                Return originalString & ceros("", decimalPlaces - difference)
+            End If
+        End If
+        Return originalString
+    End Function
+
     Public Shared Function asTextDate(ByVal value)
         Try
             Dim myDate As Date = Convert.ToDateTime(value)
