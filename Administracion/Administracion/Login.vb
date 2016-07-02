@@ -17,7 +17,8 @@ Public Class Login
 
     Private Function validarCampos()
         Dim validador As New Validator
-        validador.validarNoVacio(cmbEntity.Text, False, "Empresa")
+        validador.validate(Me)
+        validador.alsoValidate(Globals.connectionWorksFor(cmbEntity.Text), "La conexión con la base de datos falló")
         Return validador.flush()
     End Function
 

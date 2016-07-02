@@ -28,7 +28,13 @@ Partial Class Compras
         Me.optNacion = New System.Windows.Forms.RadioButton()
         Me.optCtaCte = New System.Windows.Forms.RadioButton()
         Me.optEfectivo = New System.Windows.Forms.RadioButton()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.gridAsientos = New System.Windows.Forms.DataGridView()
+        Me.Cuenta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Debito = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Credito = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lblCredito = New WindowsApplication1.CustomLabel()
+        Me.lblDebito = New WindowsApplication1.CustomLabel()
         Me.btnApertura = New WindowsApplication1.CustomButton()
         Me.btnConsulta = New WindowsApplication1.CustomButton()
         Me.btnCerrar = New WindowsApplication1.CustomButton()
@@ -86,7 +92,7 @@ Partial Class Compras
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
         Me.gbTipo.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridAsientos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'chkCheque
@@ -153,13 +159,62 @@ Partial Class Compras
         Me.optEfectivo.Text = "Efectivo"
         Me.optEfectivo.UseVisualStyleBackColor = True
         '
-        'DataGridView1
+        'gridAsientos
         '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(23, 255)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(741, 301)
-        Me.DataGridView1.TabIndex = 52
+        Me.gridAsientos.AllowUserToAddRows = False
+        Me.gridAsientos.AllowUserToDeleteRows = False
+        Me.gridAsientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridAsientos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Cuenta, Me.Descripcion, Me.Debito, Me.Credito})
+        Me.gridAsientos.Location = New System.Drawing.Point(23, 255)
+        Me.gridAsientos.Name = "gridAsientos"
+        Me.gridAsientos.Size = New System.Drawing.Size(741, 286)
+        Me.gridAsientos.TabIndex = 52
+        '
+        'Cuenta
+        '
+        Me.Cuenta.HeaderText = "Cuenta"
+        Me.Cuenta.Name = "Cuenta"
+        '
+        'Descripcion
+        '
+        Me.Descripcion.HeaderText = "Descripción"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 350
+        '
+        'Debito
+        '
+        Me.Debito.HeaderText = "Débito"
+        Me.Debito.Name = "Debito"
+        Me.Debito.Width = 120
+        '
+        'Credito
+        '
+        Me.Credito.HeaderText = "Crédito"
+        Me.Credito.Name = "Credito"
+        Me.Credito.Width = 120
+        '
+        'lblCredito
+        '
+        Me.lblCredito.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblCredito.ControlAssociationKey = -1
+        Me.lblCredito.Location = New System.Drawing.Point(636, 546)
+        Me.lblCredito.Name = "lblCredito"
+        Me.lblCredito.Size = New System.Drawing.Size(117, 20)
+        Me.lblCredito.TabIndex = 61
+        Me.lblCredito.Text = "0"
+        Me.lblCredito.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblDebito
+        '
+        Me.lblDebito.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblDebito.ControlAssociationKey = -1
+        Me.lblDebito.Location = New System.Drawing.Point(513, 546)
+        Me.lblDebito.Name = "lblDebito"
+        Me.lblDebito.Size = New System.Drawing.Size(117, 20)
+        Me.lblDebito.TabIndex = 60
+        Me.lblDebito.Text = "0"
+        Me.lblDebito.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'btnApertura
         '
@@ -314,6 +369,7 @@ Partial Class Compras
         Me.txtTotal.LabelAssociationKey = 18
         Me.txtTotal.Location = New System.Drawing.Point(115, 211)
         Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.ReadOnly = True
         Me.txtTotal.Size = New System.Drawing.Size(75, 20)
         Me.txtTotal.TabIndex = 46
         Me.txtTotal.Validator = WindowsApplication1.ValidatorType.Float
@@ -358,13 +414,14 @@ Partial Class Compras
         '
         Me.txtParidad.Cleanable = True
         Me.txtParidad.Empty = True
+        Me.txtParidad.Enabled = False
         Me.txtParidad.EnterIndex = 15
         Me.txtParidad.LabelAssociationKey = 14
         Me.txtParidad.Location = New System.Drawing.Point(559, 101)
         Me.txtParidad.Name = "txtParidad"
         Me.txtParidad.Size = New System.Drawing.Size(71, 20)
         Me.txtParidad.TabIndex = 42
-        Me.txtParidad.Validator = WindowsApplication1.ValidatorType.PositiveFloat
+        Me.txtParidad.Validator = WindowsApplication1.ValidatorType.StrictlyPositiveFloat
         '
         'cmbFormaPago
         '
@@ -483,6 +540,7 @@ Partial Class Compras
         Me.txtNumero.Name = "txtNumero"
         Me.txtNumero.Size = New System.Drawing.Size(91, 20)
         Me.txtNumero.TabIndex = 33
+        Me.txtNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.txtNumero.Validator = WindowsApplication1.ValidatorType.Numeric
         '
         'txtPunto
@@ -496,6 +554,7 @@ Partial Class Compras
         Me.txtPunto.Name = "txtPunto"
         Me.txtPunto.Size = New System.Drawing.Size(64, 20)
         Me.txtPunto.TabIndex = 32
+        Me.txtPunto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.txtPunto.Validator = WindowsApplication1.ValidatorType.Numeric
         '
         'txtLetra
@@ -812,6 +871,8 @@ Partial Class Compras
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(790, 568)
+        Me.Controls.Add(Me.lblCredito)
+        Me.Controls.Add(Me.lblDebito)
         Me.Controls.Add(Me.btnApertura)
         Me.Controls.Add(Me.btnConsulta)
         Me.Controls.Add(Me.btnCerrar)
@@ -819,7 +880,7 @@ Partial Class Compras
         Me.Controls.Add(Me.btnLimpiar)
         Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.btnAgregar)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.gridAsientos)
         Me.Controls.Add(Me.txtIVA10)
         Me.Controls.Add(Me.txtDespacho)
         Me.Controls.Add(Me.txtIVA21)
@@ -878,7 +939,7 @@ Partial Class Compras
         Me.Text = "Ingreso de Comprobantes de Proveedores"
         Me.gbTipo.ResumeLayout(False)
         Me.gbTipo.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridAsientos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -938,7 +999,7 @@ Partial Class Compras
     Friend WithEvents txtNoGravado As WindowsApplication1.CustomTextBox
     Friend WithEvents txtDespacho As WindowsApplication1.CustomTextBox
     Friend WithEvents txtIVA10 As WindowsApplication1.CustomTextBox
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents gridAsientos As System.Windows.Forms.DataGridView
     Friend WithEvents btnCerrar As WindowsApplication1.CustomButton
     Friend WithEvents btnConsultaNroFactura As WindowsApplication1.CustomButton
     Friend WithEvents btnLimpiar As WindowsApplication1.CustomButton
@@ -946,4 +1007,10 @@ Partial Class Compras
     Friend WithEvents btnAgregar As WindowsApplication1.CustomButton
     Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
     Friend WithEvents btnApertura As WindowsApplication1.CustomButton
+    Friend WithEvents Cuenta As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Debito As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Credito As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lblDebito As WindowsApplication1.CustomLabel
+    Friend WithEvents lblCredito As WindowsApplication1.CustomLabel
 End Class

@@ -153,11 +153,6 @@ Public Class Depositos
     End Sub
 
     Private Sub gridCheques_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridCheques.CellValueChanged
-        For Each row As DataGridViewRow In gridCheques.Rows
-            If Not IsNothing(row.Cells(4).Value) Then
-                row.Cells(4).Value = row.Cells(4).Value.ToString.Replace(".", ",")
-            End If
-        Next
         lblTotal.Text = sumaImportes()
     End Sub
 
@@ -198,5 +193,11 @@ Public Class Depositos
 
     Private Sub txtNroDeposito_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroDeposito.Leave
         txtNroDeposito.Text = ceros(txtNroDeposito.Text, 6)
+    End Sub
+
+    Private Sub txtCodigoBanco_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigoBanco.DoubleClick
+        lstSeleccion.SelectedIndex = 0
+        btnConsulta_Click(sender, e)
+        lstSeleccion_DoubleClick(sender, e)
     End Sub
 End Class

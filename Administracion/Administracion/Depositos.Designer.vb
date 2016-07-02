@@ -315,6 +315,7 @@ Partial Class Depositos
         Me.lblTotal.Name = "lblTotal"
         Me.lblTotal.Size = New System.Drawing.Size(216, 15)
         Me.lblTotal.TabIndex = 2
+        Me.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CustomLabel1
         '

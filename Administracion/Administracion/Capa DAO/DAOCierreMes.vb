@@ -6,14 +6,15 @@ Public Class DAOCierreMes
         SQLConnector.executeProcedure("alta_cierre", cuenta.id, cuenta.descripcion, 1, 1)
     End Sub
 
-    Public Shared Function buscarCierre(ByVal codigo As String)
-        Dim tabla As DataTable
-        tabla = SQLConnector.retrieveDataTable("buscar_cuenta_por_codigo", codigo)
-        If tabla.Rows.Count > 0 Then
-            Return New CuentaContable(tabla(0)("cuenta"), tabla(0)("descripcion"))
-        Else
-            Return Nothing
-        End If
+    Public Shared Function mesAbierto(ByVal fecha As String)
+        Try
+            Dim fechaDate As DateTime = Convert.ToDateTime(fecha)
+            Dim mes As Integer = fechaDate.Month
+            Dim anio As Integer = fechaDate.Year
+            Return SQLConnector.retrieveDataTable("get_mes_esta_cerrado", mes, anio).Rows(0)(0) = 0
+        Catch ex As FormatException
+            Return True
+        End Try
     End Function
 
 End Class

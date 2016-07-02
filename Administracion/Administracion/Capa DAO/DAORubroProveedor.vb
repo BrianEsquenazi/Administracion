@@ -38,4 +38,9 @@ Public Class DAORubroProveedor
             Return Nothing
         End Try
     End Function
+
+    Public Shared Function siguienteCodigo() As Integer
+        Return SQLConnector.retrieveDataTable("get_rubro", "ultimo", 0).Rows(0)(0) + 1
+    End Function
+
 End Class

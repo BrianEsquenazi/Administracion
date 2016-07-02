@@ -1,11 +1,13 @@
 ﻿Public Class GridBuilder
     Private dataGrid As DataGridView
     Private validatorForColumn As New Dictionary(Of Integer, DataGridValidator)
+    Private decimalColumns As New List(Of Integer)
 
     Public Sub New(ByVal grid As DataGridView)
         dataGrid = grid
         AddHandler dataGrid.CellEndEdit, AddressOf dataGridCellEndEdit
         AddHandler dataGrid.KeyDown, AddressOf dataGridEnterPressed
+        AddHandler dataGrid.CellValueChanged, AddressOf cellValueChanged
     End Sub
 
     Public Sub addTextColumn(ByVal index As Integer, ByVal header As String)
@@ -16,7 +18,13 @@
         addColumn(index, header, New DataGridValidator(ValidatorType.DateFormat))
     End Sub
 
+    Public Sub addStrictlyPositiveFloatColumn(ByVal index As Integer, ByVal header As String)
+        decimalColumns.Add(index)
+        addColumn(index, header, New DataGridValidator(ValidatorType.StrictlyPositiveFloat))
+    End Sub
+
     Public Sub addPositiveFloatColumn(ByVal index As Integer, ByVal header As String)
+        decimalColumns.Add(index)
         addColumn(index, header, New DataGridValidator(ValidatorType.PositiveFloat))
     End Sub
 
@@ -29,6 +37,7 @@
     End Sub
 
     Public Sub addFloatColumn(ByVal index As Integer, ByVal header As String)
+        decimalColumns.Add(index)
         addColumn(index, header, New DataGridValidator(ValidatorType.Float))
     End Sub
 
@@ -40,6 +49,7 @@
             dataGrid.Columns(index).Name = asName(header)
             dataGrid.Columns(index).HeaderText = header
         End If
+        dataGrid.Columns(index).SortMode = DataGridViewColumnSortMode.NotSortable
         validatorForColumn.Add(index, validator)
     End Sub
 
@@ -94,5 +104,15 @@
             End If
             'SendKeys.Send("{right}")
         End If
+    End Sub
+
+    Private Sub cellValueChanged(ByVal sender As Object, ByVal e As Object)
+        For Each row As DataGridViewRow In sender.Rows
+            For Each index In decimalColumns
+                If Not IsNothing(row.Cells(index).Value) Then
+                    row.Cells(index).Value = row.Cells(index).Value.ToString.Replace(".", ",")
+                End If
+            Next
+        Next
     End Sub
 End Class

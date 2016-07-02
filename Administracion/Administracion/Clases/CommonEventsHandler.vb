@@ -50,15 +50,26 @@
         Select Case validableControl.Validator
             Case ValidatorType.Numeric, ValidatorType.Positive, ValidatorType.PositiveWithMax
                 AddHandler control.KeyPress, AddressOf numericKeyPressed
-            Case ValidatorType.PositiveFloat
+            Case ValidatorType.PositiveFloat, ValidatorType.StrictlyPositiveFloat
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorPressed
+                setRightAlign(control)
             Case ValidatorType.Float
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorOrMinusPressed
+                setRightAlign(control)
             Case ValidatorType.DateFormat
                 AddHandler control.KeyDown, AddressOf deleteOrBackSpaceDownForDateFormat
                 AddHandler control.KeyPress, AddressOf dateKeyPressed
                 control.Text = "  /  /    "
+                setRightAlign(control)
         End Select
+    End Sub
+
+    Private Sub setRightAlign(ByVal control As Control)
+        Try
+            DirectCast(control, CustomTextBox).TextAlign = HorizontalAlignment.Right
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub numericKeyPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)
@@ -159,13 +170,25 @@
             If (sender.Validator = ValidatorType.Float Or sender.Validator = ValidatorType.PositiveFloat) And sender.Text = "" Then
                 sender.Text = "0"
             End If
-            Dim nextControl As Control = controls.Find(Function(control) control.EnterIndex = sender.EnterIndex + 1)
-            If IsNothing(nextControl) OrElse Not nextControl.Focus() Then
-                If isCRUDForm Then
-                    secondControl().Focus()
-                Else
-                    firstControl.Focus()
-                End If
+            Dim nextControl As Control = findNextControl(sender)
+            setFocus(nextControl)
+        End If
+    End Sub
+
+    Private Function findNextControl(ByVal sender As CustomControl)
+        Return controls.Find(Function(control) control.EnterIndex = sender.EnterIndex + 1)
+    End Function
+
+    Private Sub setFocus(ByVal nextControl As Control)
+        If IsNothing(nextControl) Then
+            If isCRUDForm Then
+                secondControl().Focus()
+            Else
+                firstControl.Focus()
+            End If
+        Else
+            If Not nextControl.Focus() Then
+                setFocus(findNextControl(nextControl))
             End If
         End If
     End Sub

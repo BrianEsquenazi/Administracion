@@ -31,10 +31,10 @@
                 validarNoVacio(value, emptyPermitted, description)
             Case ValidatorType.Numeric, ValidatorType.Float
                 validarNumerico(value, emptyPermitted, description)
-            Case ValidatorType.PositiveFloat
+            Case ValidatorType.PositiveFloat, ValidatorType.Positive
                 validarPositivo(value, emptyPermitted, description)
-            Case ValidatorType.Positive
-                validarPositivo(value, emptyPermitted, description)
+            Case ValidatorType.StrictlyPositiveFloat
+                validarPositivoEstricto(value, emptyPermitted, description)
             Case ValidatorType.PositiveWithMax
                 validarPositivo(value, emptyPermitted, description, Double.MaxValue)
             Case ValidatorType.DateFormat
@@ -88,8 +88,8 @@
 
     Public Sub validarPositivo(ByVal valor As String, ByVal emptyPermitted As Boolean, ByVal descripcionCampo As String)
         If validarNumerico(valor, emptyPermitted, descripcionCampo) Then
-            If valor <= 0 Then
-                addWarning("El campo " & descripcionCampo & " debe ser positivo")
+            If valor < 0 Then
+                addWarning("El campo " & descripcionCampo & " debe ser positivo o cero")
             End If
         End If
     End Sub
@@ -98,6 +98,14 @@
         If validarNumerico(valor, emptyPermitted, descripcionCampo) Then
             If valor > max Or valor < 0 Then
                 addWarning("El campo " & descripcionCampo & " debe estar entre 0 y " & max)
+            End If
+        End If
+    End Sub
+
+    Public Sub validarPositivoEstricto(ByVal valor As String, ByVal emptyPermitted As Boolean, ByVal descripcionCampo As String)
+        If validarNumerico(valor, emptyPermitted, descripcionCampo) Then
+            If valor <= 0 Then
+                addWarning("El campo " & descripcionCampo & " debe ser estrictamente positivo")
             End If
         End If
     End Sub

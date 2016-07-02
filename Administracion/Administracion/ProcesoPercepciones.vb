@@ -234,11 +234,16 @@ Public Class ProcesoPercepciones
 
     
     Private Sub CustomButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomButton1.Click
-         Dim cryRpt As New ReportDocument
-        cryRpt.Load("C:\surfactan\sistemas\administracion\crystalreport\bancosnew.rpt")
+        Dim viewer As New ReportViewer("Bancos", Globals.reportPathWithName("bancosnew.rpt"))
+        viewer.Show()
+        'viewer.imprimirReporte()
+        'viewer.descargarComoPDF()
 
-        CrystalReportViewer1.ReportSource = cryRpt
-        CrystalReportViewer1.Refresh()
+
+        ' Dim cryRpt As New ReportDocument
+        'cryRpt.Load("C:\surfactan\sistemas\administracion\crystalreport\bancosnew.rpt")
+        'CrystalReportViewer1.ReportSource = cryRpt
+        'CrystalReportViewer1.Refresh()
 
         'REM cryRpt.PrintToPrinter(1, False, 1, 1)
         'cryRpt.PrintToPrinter(1, False, 1, 1)
@@ -258,5 +263,16 @@ Public Class ProcesoPercepciones
         ''Exporta y crea el pdf.
         'cryRpt.Export()
 
+    End Sub
+
+    Private Sub CustomButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomButton2.Click
+        Dim viewer As New ReportViewer("Bancos", "C:\surfactan\sistemas\administracion\crystalreport\bancosnew.rpt")
+        viewer.descargarComoPDF()
+        MsgBox("Descargado en: " & Application.StartupPath & "\Reportes")
+    End Sub
+
+    Private Sub CustomButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomButton3.Click
+        Dim viewer As New ReportViewer("Bancos", "C:\surfactan\sistemas\administracion\crystalreport\bancosnew.rpt")
+        viewer.imprimirReporte()
     End Sub
 End Class

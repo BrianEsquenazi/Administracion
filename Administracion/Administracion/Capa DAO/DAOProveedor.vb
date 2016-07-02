@@ -75,4 +75,8 @@ Public Class DAOProveedor
         End Try
     End Function
 
+    Public Shared Function cuentaDefault()
+        Return DAOCuentaContable.buscarCuentaContablePorCodigo("2001")
+    End Function
+
 End Class

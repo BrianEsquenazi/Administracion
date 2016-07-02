@@ -68,6 +68,7 @@
     <Compile Include="Banco.vb" />
     <Compile Include="CapaDAO\SQLConnector.vb" />
     <Compile Include="Cheque.vb" />
+    <Compile Include="Compra.vb" />
     <Compile Include="CtaCteProveedor.vb" />
     <Compile Include="CuentaContable.vb" />
     <Compile Include="Deposito.vb" />

@@ -10,6 +10,17 @@ Public Class SQLConnector
         cn.Open()
     End Sub
 
+    Public Shared Function tryConnection(ByVal connectionString As String)
+        Try
+            Dim connection As New SqlConnection
+            connection.ConnectionString = connectionString
+            connection.Open()
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
     Public Shared Function retrieveDataTable(ByVal procedure As String, ByVal ParamArray values() As Object) As DataTable
         Dim args As List(Of String) = _generateArguments(procedure)
         Return _retrieveDataTable(procedure, args, values)
