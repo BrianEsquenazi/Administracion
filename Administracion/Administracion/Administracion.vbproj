@@ -70,7 +70,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>BE7D8225F9D430247E706DAC85BEA419A232B252</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DCFAC5E5A283C824154C8CFDDC2066C829D8A9B2</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>Administracion_TemporaryKey.pfx</ManifestKeyFile>

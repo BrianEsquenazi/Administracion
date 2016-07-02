@@ -239,15 +239,11 @@ Public Class Compras
     End Sub
 
     Private Function esNotaDeCredito()
-        Return txtTipo.Text = "3"
+        Return txtTipo.Text = "03"
     End Function
 
     Private Function cuentaIVACredito() As CuentaContable
         Return DAOCuentaContable.IVACredito()
-    End Function
-
-    Private Function cuentaIVADebito() As CuentaContable
-        Return DAOCuentaContable.IVADebito()
     End Function
 
     Private Function cuentaIngresosBrutos() As CuentaContable
@@ -261,7 +257,7 @@ Public Class Compras
     Private Sub crearAsientoContableUsando(ByVal cuenta As CuentaContable)
         gridAsientos.Rows.Clear()
         Dim total As Double = asDouble(txtTotal.Text)
-        Dim sumaIvas As Double = asDouble(txtIVA10.Text) + asDouble(txtIVA21.Text) + asDouble(txtIVA27.Text)
+        Dim sumaIvas As Double = asDouble(txtIVA10.Text) + asDouble(txtIVA21.Text) + asDouble(txtIVA27.Text) + asDouble(txtNoGravado.Text)
         Dim ivaRG3337 As Double = asDouble(txtIVARG.Text)
         Dim ingresosBrutos As Double = asDouble(txtPercIB.Text)
         Dim diferencia As Double = total - sumaIvas - ingresosBrutos - ivaRG3337
@@ -269,7 +265,7 @@ Public Class Compras
         If esNotaDeCredito() Then
             If total <> 0 Then : gridAsientos.Rows.Add(cuenta.id, cuenta.descripcion, total, 0)
             End If
-            If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVADebito.id, cuentaIVACredito.descripcion, 0, sumaIvas)
+            If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVACredito.id, cuentaIVACredito.descripcion, 0, sumaIvas)
             End If
             If ivaRG3337 <> 0 Then : gridAsientos.Rows.Add(cuentaIVARG3337.id, cuentaIVARG3337.descripcion, 0, ivaRG3337)
             End If

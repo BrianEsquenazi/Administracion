@@ -22,7 +22,6 @@ Partial Class Compras
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.chkCheque = New System.Windows.Forms.CheckBox()
         Me.chkSoloIVA = New System.Windows.Forms.CheckBox()
         Me.gbTipo = New System.Windows.Forms.GroupBox()
         Me.optNacion = New System.Windows.Forms.RadioButton()
@@ -94,16 +93,6 @@ Partial Class Compras
         Me.gbTipo.SuspendLayout()
         CType(Me.gridAsientos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'chkCheque
-        '
-        Me.chkCheque.AutoSize = True
-        Me.chkCheque.Location = New System.Drawing.Point(494, 47)
-        Me.chkCheque.Name = "chkCheque"
-        Me.chkCheque.Size = New System.Drawing.Size(74, 17)
-        Me.chkCheque.TabIndex = 7
-        Me.chkCheque.Text = "Ch. Rech."
-        Me.chkCheque.UseVisualStyleBackColor = True
         '
         'chkSoloIVA
         '
@@ -925,7 +914,6 @@ Partial Class Compras
         Me.Controls.Add(Me.CustomLabel10)
         Me.Controls.Add(Me.CustomLabel9)
         Me.Controls.Add(Me.CustomLabel8)
-        Me.Controls.Add(Me.chkCheque)
         Me.Controls.Add(Me.CustomLabel7)
         Me.Controls.Add(Me.CustomLabel6)
         Me.Controls.Add(Me.CustomLabel5)
@@ -951,7 +939,6 @@ Partial Class Compras
     Friend WithEvents CustomLabel5 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel6 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel7 As WindowsApplication1.CustomLabel
-    Friend WithEvents chkCheque As System.Windows.Forms.CheckBox
     Friend WithEvents CustomLabel8 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel9 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel10 As WindowsApplication1.CustomLabel
