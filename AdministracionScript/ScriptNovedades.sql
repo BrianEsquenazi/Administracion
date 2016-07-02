@@ -37,8 +37,8 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_mo
 DROP PROCEDURE [dbo].[PR_modificar_carga_intereses]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_iva_compras]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[PR_alta_iva_compras]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_iva_compra]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_iva_compra]
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_imputacion]') AND type in (N'P', N'PC'))
@@ -289,7 +289,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [dbo].[PR_alta_iva_compras]
+CREATE PROCEDURE [dbo].[PR_alta_iva_compra]
 	@NroInterno  int,
 	@Proveedor char(11),
 	@Tipo char(2),
@@ -308,9 +308,6 @@ CREATE PROCEDURE [dbo].[PR_alta_iva_compras]
 	@Exento float,                                               
 	@Contado char(1),
 	@Impre char(2),
-	@Empresa smallint,
-	@Netolist    float,                                          
-	@ExentoList  float    ,
 	@Paridad float  ,
 	@Pago  int ,    
 	@cai varchar(14),
@@ -318,7 +315,6 @@ CREATE PROCEDURE [dbo].[PR_alta_iva_compras]
 	@Iva105 float, 
 	@Despacho varchar(20), 
 	@Remito varchar(30),
-	@Rechazado int, 
 	@SoloIva int                               
 AS
 BEGIN
@@ -333,17 +329,15 @@ BEGIN
 				Fecha, Vencimiento , Vencimiento1 , Periodo, Neto,                                          
 				Iva21, Iva5, Iva27, Ib, Exento, Contado , Impre ,
 				Ordfecha , Empresa , Netolist , ExentoList  , Paridad   ,
-				Pago, Cai, VtoCai, Iva105, Despacho, Remito, Rechazado, 
-				SoloIva 		                                          
+				Pago, Cai, VtoCai, Iva105, Despacho, Remito, SoloIva 		                                          
 				)
 			VALUES
 				(	
 				@NroInterno, @Proveedor, @Tipo, @Letra, @Punto, @Numero,  
 				@Fecha, @Vencimiento, @Vencimiento1, @Periodo, @Neto,                                               
 				@Iva21, @Iva5, @Iva27, @Ib, @Exento, @Contado, @Impre,
-				@Ordfecha, @Empresa, @Netolist, @ExentoList, @Paridad    ,
-				@Pago, @cai, @VtoCai, @Iva105, @Despacho, @Remito, @Rechazado, 
-				@SoloIva 
+				@Ordfecha, 1, 0, 0, @Paridad    ,
+				@Pago, @cai, @VtoCai, @Iva105, @Despacho, @Remito, @SoloIva 
 				)
 		ELSE
 			UPDATE IvaComp
@@ -366,9 +360,6 @@ BEGIN
 				Contado = @Contado,
 				Impre = @Impre,
 				Ordfecha = @Ordfecha,
-				Empresa = @Empresa,
-				Netolist = @Netolist,                                                                                       
-				ExentoList = @ExentoList      ,
 				Paridad = @Paridad  ,
 				Pago = @Pago,  
 				Cai = @Cai,
@@ -376,7 +367,6 @@ BEGIN
 				Iva105 = @Iva105,
 				Despacho = @Despacho,
 				Remito = @Remito,
-				Rechazado = @Rechazado,
 				SoloIva = @SoloIva	                                    
 			WHERE
 				NroInterno = @NroInterno
@@ -399,11 +389,7 @@ CREATE PROCEDURE [dbo].[PR_alta_imputacion]
 	@Observaciones varchar(30),                  
 	@Cuenta   varchar(10)  ,
 	@Debito   float  ,                                           
-	@Credito  float  ,                                           
-	@Titulo   varchar(30),                      
-	@Empresa smallint,
-	@DebitoList float,                                            
-	@CreditoList float,                                           
+	@Credito  float  ,                                                                                  
 	@NroInterno int
 AS
 BEGIN
@@ -421,8 +407,8 @@ BEGIN
 		(
 			@Clave, @TipoMovi, @Proveedor, @TipoComp, @LetraComp, @PuntoComp,
 			@NroComp, @Renglon, @Fecha, @Observaciones, @Cuenta, @Debito,
-			@Credito, @FechaOrd, @Titulo, @Empresa, @DebitoList,
-			@CreditoList, @NroInterno
+			@Credito, @FechaOrd, 'COMPRA', 1, 0,
+			0, @NroInterno
 		)
 
 END
