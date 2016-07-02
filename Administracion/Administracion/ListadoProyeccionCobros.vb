@@ -3,8 +3,6 @@ Imports System.IO
 
 Public Class ListadoProyeccionCobros
 
-    Dim WParametro As String
-
     Private Sub ListadoProyeccionCobros_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtAyuda.Text = ""
         txtDesdeProveedor.Text = ""
@@ -116,9 +114,9 @@ Public Class ListadoProyeccionCobros
 
         Me.Size = New System.Drawing.Size(460, 535)
 
-        txtAyuda.Text = ""
         lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre("")
 
+        txtAyuda.Text = ""
         txtAyuda.Visible = True
         lstAyuda.Visible = True
 
@@ -138,13 +136,14 @@ Public Class ListadoProyeccionCobros
         End If
     End Sub
 
+    Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
+        txtDesdeProveedor.Text = proveedor.id
+        txtHastaProveedor.Text = proveedor.id
+        txtDesdeProveedor.Focus()
+    End Sub
+
     Private Sub lstAyuda_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstAyuda.Click
-        WParametro = ""
-        WParametro = lstAyuda.SelectedItem.ToString
-
-        REM Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorNombre(WParametro)
-        REM txtDesdeProveedor.Text = CampoProveedor.razonSocial
-
+        mostrarProveedor(lstAyuda.SelectedValue)
     End Sub
 
 

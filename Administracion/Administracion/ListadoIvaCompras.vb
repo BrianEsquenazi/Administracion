@@ -1,8 +1,7 @@
 ﻿Public Class ListadoIvaCompras
 
-    
+    Private Sub ListadoIvaCompras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-    Private Sub ListadoIvaCompras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs)
         txtDesdeFecha.Text = "  /  /    "
         txthastafecha.Text = "  /  /    "
 
@@ -13,6 +12,9 @@
         TipoListado.Items.Add("S/Apertura")
 
         TipoListado.SelectedIndex = 0
+
+        opcPantalla.Checked = False
+        opcImpesora.Checked = True
 
     End Sub
 
@@ -51,8 +53,4 @@
         MenuPrincipal.Show()
     End Sub
     
-    
-    Private Sub ListadoIvaCompras_Load_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
-    End Sub
 End Class
