@@ -91,6 +91,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_provincias]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_imputaciones]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_baja_imputaciones]
+GO
+
 CREATE PROCEDURE [dbo].[PR_get_provincias] 
 AS
 
@@ -116,3 +120,25 @@ AS
 
 GO
 
+CREATE PROCEDURE [dbo].[PR_baja_imputaciones] (@NroInterno int)
+AS
+BEGIN
+	
+	DELETE	
+	FROM Imputac
+	WHERE NroInterno = @NroInterno
+	
+	DELETE
+	FROM CtaCtePrv
+	Where NroInternoAsociado = @NroInterno	 
+
+	DELETE 
+	FROM IvaComp
+	Where NroInternoAsociado = @NroInterno
+	
+	DELETE 
+	FROM IvaCompAdicional
+	Where NroInterno = @NroInterno
+	
+END
+GO
