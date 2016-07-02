@@ -4,7 +4,6 @@ Imports System.IO
 Public Class ListadoSaldosCuentaCorrienteProveedores
 
     Dim WParametro As String
-    Dim showFunction As ShowMethod
 
     Private Sub LitadoSaldosCuentaCorrienteProveedores_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtAyuda.Text = ""
@@ -55,7 +54,6 @@ Public Class ListadoSaldosCuentaCorrienteProveedores
 
         Me.Size = New System.Drawing.Size(460, 400)
 
-        showFunction = AddressOf mostrarProveedor
         lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre("")
 
         txtAyuda.Text = ""
@@ -79,16 +77,13 @@ Public Class ListadoSaldosCuentaCorrienteProveedores
     End Sub
 
     Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
-        'txtDesdeProveedor.Text = proveedor.razo
-        'txtHastaProveedor.Text = Proveedor.id
+        txtDesdeProveedor.Text = proveedor.id
     End Sub
 
     Private Sub lstAyuda_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstAyuda.Click
-        'WParametro = ""
-        WParametro = lstAyuda.SelectedItem.ToString
-        REM showFunction.Invoke(lstAyuda.SelectedItem.ToString)
-        showFunction.Invoke(WParametro)
-        Stop
+        'mostrarProveedor(lstAyuda.SelectedValue)
+        txtDesdeProveedor.Text = lstAyuda.SelectedValue.id
+
     End Sub
 
 End Class
