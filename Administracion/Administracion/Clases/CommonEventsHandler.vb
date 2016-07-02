@@ -52,13 +52,24 @@
                 AddHandler control.KeyPress, AddressOf numericKeyPressed
             Case ValidatorType.PositiveFloat, ValidatorType.StrictlyPositiveFloat
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorPressed
+                setRightAlign(control)
             Case ValidatorType.Float
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorOrMinusPressed
+                setRightAlign(control)
             Case ValidatorType.DateFormat
                 AddHandler control.KeyDown, AddressOf deleteOrBackSpaceDownForDateFormat
                 AddHandler control.KeyPress, AddressOf dateKeyPressed
                 control.Text = "  /  /    "
+                setRightAlign(control)
         End Select
+    End Sub
+
+    Private Sub setRightAlign(ByVal control As Control)
+        Try
+            DirectCast(control, CustomTextBox).TextAlign = HorizontalAlignment.Right
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub numericKeyPressed(ByVal sender As Object, ByVal e As KeyPressEventArgs)

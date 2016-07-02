@@ -33,4 +33,20 @@ Public Class DAOCuentaContable
             Return Nothing
         End If
     End Function
+
+    Public Shared Function IVACredito()
+        Return buscarCuentaContablePorCodigo("151")
+    End Function
+
+    Public Shared Function IVADebito()
+        Return buscarCuentaContablePorCodigo("155")
+    End Function
+
+    Public Shared Function IVARG3337()
+        Return buscarCuentaContablePorCodigo("152")
+    End Function
+
+    Public Shared Function ingresosBrutos()
+        Return buscarCuentaContablePorCodigo("164")
+    End Function
 End Class
