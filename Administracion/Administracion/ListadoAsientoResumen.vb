@@ -89,14 +89,14 @@ Public Class ListadoAsientoResumen
         MenuPrincipal.Show()
     End Sub
 
+
     Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
 
         Me.Size = New System.Drawing.Size(500, 520)
 
-        txtAyuda.Text = ""
         lstAyuda.DataSource = DAOCuentaContable.buscarCuentaContablePorDescripcion("")
 
-
+        txtAyuda.Text = ""
         txtAyuda.Visible = True
         lstAyuda.Visible = True
 
@@ -113,16 +113,20 @@ Public Class ListadoAsientoResumen
         ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
             e.Handled = True
             txtAyuda.Text = ""
+            lstAyuda.DataSource = DAOCuentaContable.buscarCuentaContablePorDescripcion(txtAyuda.Text)
         End If
     End Sub
 
-    Private Sub lstAyuda_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstAyuda.Click
-        WParametro = ""
-        WParametro = lstAyuda.SelectedItem.ToString
-
-        REM Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorNombre(WParametro)
-        REM txtDesdeProveedor.Text = CampoProveedor.razonSocial
-
+    Private Sub mostrarcuenta(ByVal cuenta As CuentaContable)
+        txtDesdeCuenta.Text = cuenta.id
+        txtHastaCuenta.Text = cuenta.id
+        txtDesdeCuenta.Focus()
     End Sub
+
+    Private Sub lstAyuda_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstAyuda.Click
+        mostrarcuenta(lstAyuda.SelectedValue)
+        REM txtDesdeProveedor.Text = lstAyuda.SelectedValue.id
+    End Sub
+
 
 End Class

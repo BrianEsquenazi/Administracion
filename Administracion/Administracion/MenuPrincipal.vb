@@ -117,4 +117,8 @@
             End
         End If
     End Sub
+
+    Private Sub CuentaCorrienteDeProveedoresToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CuentaCorrienteDeProveedoresToolStripMenuItem.Click
+        ListadoCuentaCorrienteProveedores.Show()
+    End Sub
 End Class
