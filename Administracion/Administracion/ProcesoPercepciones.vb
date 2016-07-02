@@ -213,7 +213,7 @@ Public Class ProcesoPercepciones
 
     
     Private Sub CustomButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CustomButton1.Click
-        Dim viewer As New ReportViewer("Bancos", "C:\surfactan\sistemas\administracion\crystalreport\bancosnew.rpt")
+        Dim viewer As New ReportViewer("Bancos", Globals.reportPathWithName("bancosnew.rpt"))
         viewer.Show()
         'viewer.imprimirReporte()
         'viewer.descargarComoPDF()
