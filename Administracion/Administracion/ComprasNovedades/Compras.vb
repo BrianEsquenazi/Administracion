@@ -157,8 +157,8 @@ Public Class Compras
     End Sub
 
     Private Function crearCompra() As Compra
-        Dim compra As New Compra(DAOCompras.siguienteNumeroDeInterno(), proveedor, txtTipo.Text, cmbTipo.SelectedValue, cmbFormaPago.SelectedIndex,
-                                 tipoPago(), txtLetra.Text, txtNumero.Text, txtFechaEmision.Text, txtFechaIVA.Text, txtFechaVto1.Text, txtFechaVto2.Text,
+        Dim compra As New Compra(DAOCompras.siguienteNumeroDeInterno(), proveedor, txtTipo.Text, cmbTipo.Text, cmbFormaPago.SelectedIndex,
+                                 tipoPago(), txtLetra.Text, txtPunto.Text, txtNumero.Text, txtFechaEmision.Text, txtFechaIVA.Text, txtFechaVto1.Text, txtFechaVto2.Text,
                                  asDouble(txtParidad.Text), asDouble(txtNeto.Text), asDouble(txtIVA21.Text), asDouble(txtIVARG.Text), asDouble(txtIVA27.Text),
                                  asDouble(txtPercIB.Text), asDouble(txtNoGravado.Text), asDouble(txtIVA10.Text), asDouble(txtTotal.Text), chkSoloIVA.Checked)
         'TODO AGREGAR LOS ASIENTOS
