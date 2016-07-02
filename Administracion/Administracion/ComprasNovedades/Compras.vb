@@ -97,12 +97,12 @@ Public Class Compras
 
     Private Sub txtImporte_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtIVARG.Leave, txtPercIB.Leave, txtNoGravado.Leave, txtIVA27.Leave, txtIVA21.Leave, txtIVA10.Leave
         Dim total As Double = asDouble(txtIVA21.Text) + asDouble(txtIVARG.Text) + asDouble(txtIVA27.Text) + asDouble(txtPercIB.Text) + asDouble(txtNoGravado.Text) + asDouble(txtIVA10.Text) + asDouble(txtNeto.Text)
-        txtTotal.Text = Math.Round(total, 2)
+        txtTotal.Text = CustomConvert.toStringWithTwoDecimalPlaces(Math.Round(total, 2))
     End Sub
 
     Private Sub txtNeto_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNeto.Leave
         If txtIVA21.Enabled Then
-            txtIVA21.Text = Math.Round(asDouble(txtNeto.Text) * 0.21, 2)
+            txtIVA21.Text = CustomConvert.toStringWithTwoDecimalPlaces(Math.Round(asDouble(txtNeto.Text) * 0.21, 2))
         End If
         txtImporte_Leave(sender, e)
     End Sub
@@ -208,12 +208,12 @@ Public Class Compras
             txtPercIB.Enabled = False
             txtNoGravado.Enabled = False
             txtIVA10.Enabled = False
-            txtIVA21.Text = "0"
-            txtIVARG.Text = "0"
-            txtIVA27.Text = "0"
-            txtPercIB.Text = "0"
-            txtNoGravado.Text = "0"
-            txtIVA10.Text = "0"
+            txtIVA21.Text = "0,00"
+            txtIVARG.Text = "0,00"
+            txtIVA27.Text = "0,00"
+            txtPercIB.Text = "0,00"
+            txtNoGravado.Text = "0,00"
+            txtIVA10.Text = "0,00"
         Else
             txtIVA21.Enabled = True
             txtIVARG.Enabled = True
@@ -227,15 +227,18 @@ Public Class Compras
 
     Private Sub txtDespacho_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtDespacho.Leave
         Dim cuenta As CuentaContable
-        If IsNothing(proveedor) OrElse IsNothing(proveedor.cuenta) Then
+        If IsNothing(proveedor) Then
             cuenta = DAOProveedor.cuentaDefault
         Else
+            If IsNothing(proveedor.cuenta) Then: proveedor.cuenta = DAOProveedor.cuentaDefault : End if
             cuenta = proveedor.cuenta
         End If
 
         crearAsientoContableUsando(cuenta)
-        gridAsientos.CurrentCell = gridAsientos.Rows(gridAsientos.Rows.Count - 1).Cells(0)
-        gridAsientos.Select()
+        If gridAsientos.Rows.Count > 0 Then
+            gridAsientos.CurrentCell = gridAsientos.Rows(gridAsientos.Rows.Count - 1).Cells(0)
+            gridAsientos.Select()
+        End If
     End Sub
 
     Private Function esNotaDeCredito()
@@ -263,25 +266,17 @@ Public Class Compras
         Dim diferencia As Double = total - sumaIvas - ingresosBrutos - ivaRG3337
 
         If esNotaDeCredito() Then
-            If total <> 0 Then : gridAsientos.Rows.Add(cuenta.id, cuenta.descripcion, total, 0)
-            End If
-            If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVACredito.id, cuentaIVACredito.descripcion, 0, sumaIvas)
-            End If
-            If ivaRG3337 <> 0 Then : gridAsientos.Rows.Add(cuentaIVARG3337.id, cuentaIVARG3337.descripcion, 0, ivaRG3337)
-            End If
-            If ingresosBrutos <> 0 Then : gridAsientos.Rows.Add(cuentaIngresosBrutos.id, cuentaIngresosBrutos.descripcion, 0, ingresosBrutos)
-            End If
-            gridAsientos.Rows.Add("", "", 0, diferencia)
+            If total <> 0 Then : gridAsientos.Rows.Add(cuenta.id, cuenta.descripcion, total, 0) : End If
+            If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVACredito.id, cuentaIVACredito.descripcion, 0, sumaIvas) : End If
+            If ivaRG3337 <> 0 Then : gridAsientos.Rows.Add(cuentaIVARG3337.id, cuentaIVARG3337.descripcion, 0, ivaRG3337) : End If
+            If ingresosBrutos <> 0 Then : gridAsientos.Rows.Add(cuentaIngresosBrutos.id, cuentaIngresosBrutos.descripcion, 0, ingresosBrutos) : End If
+            If diferencia <> 0 Then : gridAsientos.Rows.Add("", "", 0, diferencia) : End If
         Else
-            If total <> 0 Then : gridAsientos.Rows.Add(cuenta.id, cuenta.descripcion, 0, total)
-            End If
-            If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVACredito.id, cuentaIVACredito.descripcion, sumaIvas, 0)
-            End If
-            If ivaRG3337 <> 0 Then : gridAsientos.Rows.Add(cuentaIVARG3337.id, cuentaIVARG3337.descripcion, ivaRG3337, 0)
-            End If
-            If ingresosBrutos <> 0 Then : gridAsientos.Rows.Add(cuentaIngresosBrutos.id, cuentaIngresosBrutos.descripcion, ingresosBrutos, 0)
-            End If
-            gridAsientos.Rows.Add("", "", diferencia, 0)
+            If total <> 0 Then : gridAsientos.Rows.Add(cuenta.id, cuenta.descripcion, 0, total) : End If
+            If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVACredito.id, cuentaIVACredito.descripcion, sumaIvas, 0) : End If
+            If ivaRG3337 <> 0 Then : gridAsientos.Rows.Add(cuentaIVARG3337.id, cuentaIVARG3337.descripcion, ivaRG3337, 0) : End If
+            If ingresosBrutos <> 0 Then : gridAsientos.Rows.Add(cuentaIngresosBrutos.id, cuentaIngresosBrutos.descripcion, ingresosBrutos, 0) : End If
+            If diferencia <> 0 Then : gridAsientos.Rows.Add("", "", diferencia, 0) : End If
         End If
 
         calcularAsiento()
@@ -294,8 +289,8 @@ Public Class Compras
             valorDebe += asDouble(row.Cells(2).Value)
             valorHaber += asDouble(row.Cells(3).Value)
         Next
-        lblDebito.Text = valorDebe
-        lblCredito.Text = valorHaber
+        lblDebito.Text = CustomConvert.toStringWithTwoDecimalPlaces(valorDebe)
+        lblCredito.Text = CustomConvert.toStringWithTwoDecimalPlaces(valorHaber)
     End Sub
 
     Private Sub gridAsientos_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridAsientos.CellValueChanged
