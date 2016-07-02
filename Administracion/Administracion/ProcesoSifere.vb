@@ -58,7 +58,7 @@ Public Class ProcesoSifere
 
                 For Each row As DataRow In tabla.Rows
 
-                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
+                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), 0, row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
 
                     If ProveedorAduana(CamposImputac.proveedor) = "N" Then
 
@@ -91,7 +91,7 @@ Public Class ProcesoSifere
 
                 For Each row As DataRow In tabla.Rows
 
-                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
+                    Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), 0, row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString)
 
                     If ProveedorAduana(CamposImputac.proveedor) = "S" Then
 

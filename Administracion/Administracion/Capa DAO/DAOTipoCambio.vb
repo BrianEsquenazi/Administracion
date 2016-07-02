@@ -7,7 +7,7 @@ Public Class DAOTipoCambio
     End Function
 
     Public Shared Sub agregarTipoCambio(ByVal cambio As TipoDeCambio)
-        SQLConnector.executeProcedure("alta_tipo_cambio", cambio.fecha, cambio.paridad)
+        SQLConnector.executeProcedure("alta_tipo_cambio", cambio.fecha.ToString, cambio.paridad)
     End Sub
 
     Public Shared Sub eliminarTipoCambio(ByVal fecha As String)

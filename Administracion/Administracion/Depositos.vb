@@ -179,6 +179,7 @@ Public Class Depositos
             Else
                 DAODeposito.agregarDeposito(deposito, gridCheques.Rows)
             End If
+            btnLimpiar_Click(sender, e)
         End If
     End Sub
 

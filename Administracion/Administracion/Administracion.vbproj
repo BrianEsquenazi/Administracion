@@ -70,10 +70,10 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>7823145D1F8255906D4FB0A107CBE8C57A3C69FE</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A076F6112C7EA82C01A77E6EA40DE23A4B841267</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Administracion_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Administracion_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -402,7 +402,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Administracion_1_TemporaryKey.pfx" />
     <None Include="Administracion_TemporaryKey.pfx" />
     <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

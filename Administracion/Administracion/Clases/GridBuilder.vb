@@ -50,6 +50,10 @@
             dataGrid.Columns(index).HeaderText = header
         End If
         dataGrid.Columns(index).SortMode = DataGridViewColumnSortMode.NotSortable
+        Select Case validator.validatorType
+            Case ValidatorType.Float, ValidatorType.PositiveFloat, ValidatorType.StrictlyPositiveFloat, ValidatorType.DateFormat, ValidatorType.Positive, ValidatorType.Numeric
+                rightAlign(index)
+        End Select
         validatorForColumn.Add(index, validator)
     End Sub
 
@@ -61,6 +65,10 @@
     Private Function asName(ByVal header As String)
         Return New String(header.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
     End Function
+
+    Private Sub rightAlign(ByVal index As Integer)
+        dataGrid.Columns(index).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+    End Sub
 
     Private Function nextNotReadOnlyFrom(ByVal iCol As Integer, ByVal iRow As Integer)
         Dim i As Integer = 1
@@ -111,6 +119,7 @@
             For Each index In decimalColumns
                 If Not IsNothing(row.Cells(index).Value) Then
                     row.Cells(index).Value = row.Cells(index).Value.ToString.Replace(".", ",")
+                    row.Cells(index).Value = CustomConvert.toStringWithTwoDecimalPlaces(CustomConvert.toDoubleOrZero(row.Cells(index).Value))
                 End If
             Next
         Next

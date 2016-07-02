@@ -2,6 +2,7 @@
 
     Public fechaord As String
     Public debito As Double
+    Public credito As Double
     Public proveedor As String
     Public cuenta As String
     Public nrointerno As String
@@ -11,12 +12,13 @@
     Public cuit As String
     Public letra As String
 
-    Public Sub New(ByVal fechaord2 As String, ByVal debito2 As Double, ByVal proveedor2 As String, ByVal cuenta2 As String,
+    Public Sub New(ByVal fechaord2 As String, ByVal debito2 As Double, ByVal credito2 As Double, ByVal proveedor2 As String, ByVal cuenta2 As String,
                    ByVal nrointerno2 As String, ByVal punto2 As String, ByVal numero2 As String, ByVal despacho2 As String,
                    ByVal cuit2 As String, ByVal letra2 As String)
 
         fechaord = fechaord2
         debito = debito2
+        credito = credito2
         proveedor = proveedor2
         cuenta = cuenta2
         nrointerno = nrointerno2
