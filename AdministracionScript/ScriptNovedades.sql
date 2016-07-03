@@ -371,7 +371,7 @@ BEGIN
 			WHERE
 				NroInterno = @NroInterno
 		
-		EXEC PR_baja_imputaciones
+		EXEC PR_baja_imputaciones  @NroInterno = @NroInterno
  	COMMIT
 END
 GO
@@ -407,7 +407,7 @@ BEGIN
 		(
 			@Clave, @TipoMovi, @Proveedor, @TipoComp, @LetraComp, @PuntoComp,
 			@NroComp, @Renglon, @Fecha, @Observaciones, @Cuenta, @Debito,
-			@Credito, @FechaOrd, 'COMPRA', 1, 0,
+			@Credito, @FechaOrd, 'Compras', 1, 0,
 			0, @NroInterno
 		)
 

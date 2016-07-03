@@ -152,18 +152,36 @@ Public Class Compras
             txtNroInterno.Text = compra.nroInterno
             DAOCompras.agregarCompra(compra)
             MsgBox("El número de interno asignado es: " & compra.nroInterno)
-            'Agregar
         End If
     End Sub
 
     Private Function crearCompra() As Compra
-        Dim compra As New Compra(DAOCompras.siguienteNumeroDeInterno(), proveedor, txtTipo.Text, cmbTipo.Text, cmbFormaPago.SelectedIndex,
+        Dim multiplicadorPorNotaDeCredito As Integer = 1
+        If esNotaDeCredito() Then
+            multiplicadorPorNotaDeCredito = -1
+        End If
+        Dim interno As Integer = CustomConvert.toIntOrZero(txtNroInterno.Text)
+        If interno = 0 Then : interno = DAOCompras.siguienteNumeroDeInterno() : End If
+        Dim compra As New Compra(interno, proveedor, txtTipo.Text, cmbTipo.Text, cmbFormaPago.SelectedIndex,
                                  tipoPago(), txtLetra.Text, txtPunto.Text, txtNumero.Text, txtFechaEmision.Text, txtFechaIVA.Text, txtFechaVto1.Text, txtFechaVto2.Text,
-                                 asDouble(txtParidad.Text), asDouble(txtNeto.Text), asDouble(txtIVA21.Text), asDouble(txtIVARG.Text), asDouble(txtIVA27.Text),
-                                 asDouble(txtPercIB.Text), asDouble(txtNoGravado.Text), asDouble(txtIVA10.Text), asDouble(txtTotal.Text), chkSoloIVA.Checked)
-        'TODO AGREGAR LOS ASIENTOS
+                                 asDouble(txtParidad.Text), asDouble(txtNeto.Text) * multiplicadorPorNotaDeCredito, asDouble(txtIVA21.Text) * multiplicadorPorNotaDeCredito,
+                                 asDouble(txtIVARG.Text) * multiplicadorPorNotaDeCredito, asDouble(txtIVA27.Text) * multiplicadorPorNotaDeCredito,
+                                 asDouble(txtPercIB.Text) * multiplicadorPorNotaDeCredito, asDouble(txtNoGravado.Text) * multiplicadorPorNotaDeCredito,
+                                 asDouble(txtIVA10.Text) * multiplicadorPorNotaDeCredito, asDouble(txtTotal.Text) * multiplicadorPorNotaDeCredito, chkSoloIVA.Checked,
+                                 txtRemito.Text, txtDespacho.Text)
+        crearImputaciones(compra)
         Return compra
     End Function
+
+    Private Sub crearImputaciones(ByVal compra As Compra)
+        Dim imputaciones As New List(Of Imputac)
+        For Each row As DataGridViewRow In gridAsientos.Rows
+            imputaciones.Add(New Imputac(compra.fechaEmision, asDouble(row.Cells(2).Value), asDouble(row.Cells(3).Value), proveedor.id, row.Cells(0).Value, compra.nroInterno,
+                                         compra.punto, compra.numero, compra.despacho, compra.letra, compra.tipoDocumento, ceros((row.Index + 1).ToString, 2)))
+        Next
+
+        compra.agregarImputaciones(imputaciones)
+    End Sub
 
     Private Function tipoPago() As Integer
         If optEfectivo.Checked Then : Return 1 : End If
@@ -223,6 +241,7 @@ Public Class Compras
             txtIVA10.Enabled = True
         End If
         txtLetra.Select(txtLetra.Text.Count, 1)
+        txtImporte_Leave(sender, e)
     End Sub
 
     Private Sub txtDespacho_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtDespacho.Leave
@@ -230,7 +249,7 @@ Public Class Compras
         If IsNothing(proveedor) Then
             cuenta = DAOProveedor.cuentaDefault
         Else
-            If IsNothing(proveedor.cuenta) Then: proveedor.cuenta = DAOProveedor.cuentaDefault : End if
+            If IsNothing(proveedor.cuenta) Then : proveedor.cuenta = DAOProveedor.cuentaDefault : End If
             cuenta = proveedor.cuenta
         End If
 

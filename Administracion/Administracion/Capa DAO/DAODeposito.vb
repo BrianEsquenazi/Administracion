@@ -24,14 +24,8 @@ Public Class DAODeposito
     End Sub
 
     Private Shared Function indiceComoString(ByVal item As ItemDeposito, ByVal items As List(Of ItemDeposito))
-        Dim indice As String
         Dim index As Integer = items.IndexOf(item) + 1
-        If index > 9 Then
-            indice = index.ToString
-        Else
-            indice = "0" & index.ToString
-        End If
-        Return indice
+        Return ceros(index.ToString, 2)
     End Function
 
 
