@@ -17,7 +17,7 @@ Public Class DAOTipoCambio
     Public Shared Function listarTiposCambio() As List(Of TipoDeCambio)
         Dim cambios As New List(Of TipoDeCambio)
         Dim tabla As DataTable
-        tabla = SQLConnector.retrieveDataTable("listar_tipos_cambio")
+        tabla = SQLConnector.retrieveDataTable("get_tipos_cambio")
         For Each cambio As DataRow In tabla.Rows
             cambios.Add(New TipoDeCambio(Date.Parse(cambio("Fecha")), cambio("Cambio")))
         Next

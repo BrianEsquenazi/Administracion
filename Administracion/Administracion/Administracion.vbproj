@@ -187,6 +187,12 @@
     <Compile Include="ListadoCuentaCorrienteProveedores.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Pagos.Designer.vb">
+      <DependentUpon>Pagos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pagos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ProveedoresABM\CUFEProveedor.Designer.vb">
       <DependentUpon>CUFEProveedor.vb</DependentUpon>
     </Compile>
@@ -337,6 +343,9 @@
     <EmbeddedResource Include="ComprasNovedades\Compras.resx">
       <DependentUpon>Compras.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ComprasNovedades\ConsultaCompras.resx">
+      <DependentUpon>ConsultaCompras.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CuentaContableABM.resx">
       <DependentUpon>CuentaContableABM.vb</DependentUpon>
     </EmbeddedResource>
@@ -345,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoCuentaCorrienteProveedores.resx">
       <DependentUpon>ListadoCuentaCorrienteProveedores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pagos.resx">
+      <DependentUpon>Pagos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProveedoresABM\CUFEProveedor.resx">
       <DependentUpon>CUFEProveedor.vb</DependentUpon>
