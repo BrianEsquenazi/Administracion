@@ -38,7 +38,7 @@ Partial Class ListadoIvaCompras
         'opcPantalla
         '
         Me.opcPantalla.AutoSize = True
-        Me.opcPantalla.Location = New System.Drawing.Point(128, 191)
+        Me.opcPantalla.Location = New System.Drawing.Point(130, 129)
         Me.opcPantalla.Name = "opcPantalla"
         Me.opcPantalla.Size = New System.Drawing.Size(63, 17)
         Me.opcPantalla.TabIndex = 17
@@ -49,7 +49,7 @@ Partial Class ListadoIvaCompras
         'opcImpesora
         '
         Me.opcImpesora.AutoSize = True
-        Me.opcImpesora.Location = New System.Drawing.Point(262, 191)
+        Me.opcImpesora.Location = New System.Drawing.Point(264, 129)
         Me.opcImpesora.Name = "opcImpesora"
         Me.opcImpesora.Size = New System.Drawing.Size(71, 17)
         Me.opcImpesora.TabIndex = 18
@@ -61,7 +61,7 @@ Partial Class ListadoIvaCompras
         '
         Me.CustomLabel1.AutoSize = True
         Me.CustomLabel1.ControlAssociationKey = -1
-        Me.CustomLabel1.Location = New System.Drawing.Point(92, 54)
+        Me.CustomLabel1.Location = New System.Drawing.Point(105, 15)
         Me.CustomLabel1.Name = "CustomLabel1"
         Me.CustomLabel1.Size = New System.Drawing.Size(71, 13)
         Me.CustomLabel1.TabIndex = 19
@@ -71,7 +71,7 @@ Partial Class ListadoIvaCompras
         '
         Me.CustomLabel2.AutoSize = True
         Me.CustomLabel2.ControlAssociationKey = -1
-        Me.CustomLabel2.Location = New System.Drawing.Point(92, 90)
+        Me.CustomLabel2.Location = New System.Drawing.Point(105, 51)
         Me.CustomLabel2.Name = "CustomLabel2"
         Me.CustomLabel2.Size = New System.Drawing.Size(68, 13)
         Me.CustomLabel2.TabIndex = 20
@@ -81,7 +81,7 @@ Partial Class ListadoIvaCompras
         '
         Me.CustomLabel3.AutoSize = True
         Me.CustomLabel3.ControlAssociationKey = -1
-        Me.CustomLabel3.Location = New System.Drawing.Point(92, 127)
+        Me.CustomLabel3.Location = New System.Drawing.Point(105, 88)
         Me.CustomLabel3.Name = "CustomLabel3"
         Me.CustomLabel3.Size = New System.Drawing.Size(65, 13)
         Me.CustomLabel3.TabIndex = 21
@@ -89,7 +89,7 @@ Partial Class ListadoIvaCompras
         '
         'txtDesdeFecha
         '
-        Me.txtDesdeFecha.Location = New System.Drawing.Point(214, 51)
+        Me.txtDesdeFecha.Location = New System.Drawing.Point(227, 12)
         Me.txtDesdeFecha.Mask = "##/##/####"
         Me.txtDesdeFecha.Name = "txtDesdeFecha"
         Me.txtDesdeFecha.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -98,7 +98,7 @@ Partial Class ListadoIvaCompras
         '
         'txthastafecha
         '
-        Me.txthastafecha.Location = New System.Drawing.Point(214, 87)
+        Me.txthastafecha.Location = New System.Drawing.Point(227, 48)
         Me.txthastafecha.Mask = "##/##/####"
         Me.txthastafecha.Name = "txthastafecha"
         Me.txthastafecha.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -112,7 +112,7 @@ Partial Class ListadoIvaCompras
         Me.TipoListado.EnterIndex = -1
         Me.TipoListado.FormattingEnabled = True
         Me.TipoListado.LabelAssociationKey = -1
-        Me.TipoListado.Location = New System.Drawing.Point(214, 119)
+        Me.TipoListado.Location = New System.Drawing.Point(227, 80)
         Me.TipoListado.Name = "TipoListado"
         Me.TipoListado.Size = New System.Drawing.Size(146, 21)
         Me.TipoListado.TabIndex = 2
@@ -129,7 +129,7 @@ Partial Class ListadoIvaCompras
         '
         'btnCancela
         '
-        Me.btnCancela.Location = New System.Drawing.Point(249, 237)
+        Me.btnCancela.Location = New System.Drawing.Point(251, 173)
         Me.btnCancela.Name = "btnCancela"
         Me.btnCancela.Size = New System.Drawing.Size(125, 34)
         Me.btnCancela.TabIndex = 37
@@ -138,7 +138,7 @@ Partial Class ListadoIvaCompras
         '
         'btnAcepta
         '
-        Me.btnAcepta.Location = New System.Drawing.Point(93, 237)
+        Me.btnAcepta.Location = New System.Drawing.Point(95, 173)
         Me.btnAcepta.Name = "btnAcepta"
         Me.btnAcepta.Size = New System.Drawing.Size(125, 34)
         Me.btnAcepta.TabIndex = 36
@@ -149,7 +149,7 @@ Partial Class ListadoIvaCompras
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(498, 394)
+        Me.ClientSize = New System.Drawing.Size(498, 229)
         Me.Controls.Add(Me.btnCancela)
         Me.Controls.Add(Me.btnAcepta)
         Me.Controls.Add(Me.TipoListado)

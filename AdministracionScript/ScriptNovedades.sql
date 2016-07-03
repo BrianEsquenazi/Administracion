@@ -53,6 +53,11 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_al
 DROP PROCEDURE [dbo].[PR_alta_cuenta_corriente]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_compra_por_codigo]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_compra_por_codigo]
+GO
+
+
 /*
 		GENERACION NOVEDADES
 */
@@ -66,9 +71,9 @@ CREATE PROCEDURE PR_get_cheque_en_cartera
 AS
 BEGIN
 
-	SELECT *
-	FROM
-	(
+	--SELECT *
+	--FROM
+	--(
 		SELECT 
 			 re.Estado2
 			, re.Importe2
@@ -82,25 +87,26 @@ BEGIN
 		WHERE re.TipoReg = 2
 			AND re.Estado2 <> 'X'
 			AND re.Tipo2 = '02'
+		ORDER BY re.FechaOrd2, re.Numero2
 			
-		UNION ALL
+	--	UNION ALL
 		
-		SELECT 
-			 rep.Estado2
-			, rep.Importe2
-			, rep.Numero2
-			, rep.Fecha2
-			, LTRIM(RTRIM(rep.banco2)) as banco2
-			, rep.Clave
-			, rep.FechaOrd2
-			, 'RecibosProvisorios' AS Tabla
-		FROM surfactanSA.dbo.RecibosProvi rep
-		WHERE rep.TipoReg = 2
-			AND rep.Estado2 = 'P'
-			AND rep.Tipo2 = '02'
-			AND ISNULL(rep.ReciboDefinitivo,0) = 0 
-	)td
-	ORDER BY td.FechaOrd2, td.Numero2
+	--	SELECT 
+	--		 rep.Estado2
+	--		, rep.Importe2
+	--		, rep.Numero2
+	--		, rep.Fecha2
+	--		, LTRIM(RTRIM(rep.banco2)) as banco2
+	--		, rep.Clave
+	--		, rep.FechaOrd2
+	--		, 'RecibosProvisorios' AS Tabla
+	--	FROM surfactanSA.dbo.RecibosProvi rep
+	--	WHERE rep.TipoReg = 2
+	--		AND rep.Estado2 = 'P'
+	--		AND rep.Tipo2 = '02'
+	--		AND ISNULL(rep.ReciboDefinitivo,0) = 0 
+	--)td
+	--ORDER BY td.FechaOrd2, td.Numero2
 
 END
 GO
@@ -537,4 +543,12 @@ BEGIN
 	COMMIT
 
 END
+GO
+
+CREATE PROCEDURE PR_get_compra_por_codigo
+	(@nro_interno int)
+AS
+	SELECT *
+	FROM IvaComp ic
+	WHERE ic.NroInterno = @nro_interno
 GO

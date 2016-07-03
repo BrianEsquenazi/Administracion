@@ -133,6 +133,7 @@
     <Compile Include="BancosABM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Capa DAO\DAOCliente.vb" />
     <Compile Include="Capa DAO\DAOCierreMes.vb" />
     <Compile Include="Capa DAO\DAOCompras.vb" />
     <Compile Include="Capa DAO\DAOCtaCteProveedor.vb" />
@@ -148,10 +149,10 @@
     <Compile Include="CargaIntereses.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CierreMes.Designer.vb">
+    <Compile Include="Procesos\CierreMes.Designer.vb">
       <DependentUpon>CierreMes.vb</DependentUpon>
     </Compile>
-    <Compile Include="CierreMes.vb">
+    <Compile Include="Procesos\CierreMes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Clases\Cleanner.vb" />
@@ -181,10 +182,10 @@
     <Compile Include="Clases\CustomTextBox.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ListadoCuentaCorrienteProveedores.Designer.vb">
+    <Compile Include="Listados\ListadoCuentaCorrienteProveedores.Designer.vb">
       <DependentUpon>ListadoCuentaCorrienteProveedores.vb</DependentUpon>
     </Compile>
-    <Compile Include="ListadoCuentaCorrienteProveedores.vb">
+    <Compile Include="Listados\ListadoCuentaCorrienteProveedores.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pagos.Designer.vb">
@@ -205,46 +206,46 @@
     <Compile Include="Depositos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CuentaCorrientePantalla.Designer.vb">
+    <Compile Include="Listados\CuentaCorrientePantalla.Designer.vb">
       <DependentUpon>CuentaCorrientePantalla.vb</DependentUpon>
     </Compile>
-    <Compile Include="CuentaCorrientePantalla.vb">
+    <Compile Include="Listados\CuentaCorrientePantalla.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DepuraCtaCte.Designer.vb">
+    <Compile Include="Procesos\DepuraCtaCte.Designer.vb">
       <DependentUpon>DepuraCtaCte.vb</DependentUpon>
     </Compile>
-    <Compile Include="DepuraCtaCte.vb">
+    <Compile Include="Procesos\DepuraCtaCte.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListadoAsientoResumen.Designer.vb">
+    <Compile Include="Listados\ListadoAsientoResumen.Designer.vb">
       <DependentUpon>ListadoAsientoResumen.vb</DependentUpon>
     </Compile>
-    <Compile Include="ListadoAsientoResumen.vb">
+    <Compile Include="Listados\ListadoAsientoResumen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListadoIvaCompras.Designer.vb">
+    <Compile Include="Listados\ListadoIvaCompras.Designer.vb">
       <DependentUpon>ListadoIvaCompras.vb</DependentUpon>
     </Compile>
-    <Compile Include="ListadoIvaCompras.vb">
+    <Compile Include="Listados\ListadoIvaCompras.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListadoProyeccionCobros.Designer.vb">
+    <Compile Include="Listados\ListadoProyeccionCobros.Designer.vb">
       <DependentUpon>ListadoProyeccionCobros.vb</DependentUpon>
     </Compile>
-    <Compile Include="ListadoProyeccionCobros.vb">
+    <Compile Include="Listados\ListadoProyeccionCobros.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListadoValoresEnCartera.Designer.vb">
+    <Compile Include="Listados\ListadoValoresEnCartera.Designer.vb">
       <DependentUpon>ListadoValoresEnCartera.vb</DependentUpon>
     </Compile>
-    <Compile Include="ListadoValoresEnCartera.vb">
+    <Compile Include="Listados\ListadoValoresEnCartera.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProcesoPercepciones.Designer.vb">
+    <Compile Include="Procesos\ProcesoPercepciones.Designer.vb">
       <DependentUpon>ProcesoPercepciones.vb</DependentUpon>
     </Compile>
-    <Compile Include="ProcesoPercepciones.vb">
+    <Compile Include="Procesos\ProcesoPercepciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProveedoresABM\ObservacionesProveedor.Designer.vb">
@@ -253,22 +254,22 @@
     <Compile Include="ProveedoresABM\ObservacionesProveedor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProcesoRetencionesPagos.Designer.vb">
+    <Compile Include="Procesos\ProcesoRetencionesPagos.Designer.vb">
       <DependentUpon>ProcesoRetencionesPagos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ProcesoRetencionesPagos.vb">
+    <Compile Include="Procesos\ProcesoRetencionesPagos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProcesoReteRecibos.Designer.vb">
+    <Compile Include="Procesos\ProcesoReteRecibos.Designer.vb">
       <DependentUpon>ProcesoReteRecibos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ProcesoReteRecibos.vb">
+    <Compile Include="Procesos\ProcesoReteRecibos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProcesoSifere.Designer.vb">
+    <Compile Include="Procesos\ProcesoSifere.Designer.vb">
       <DependentUpon>ProcesoSifere.vb</DependentUpon>
     </Compile>
-    <Compile Include="ProcesoSifere.vb">
+    <Compile Include="Procesos\ProcesoSifere.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProveedoresABM\ProveedoresABM.Designer.vb">
@@ -289,10 +290,10 @@
     <Compile Include="RubrosProveedorABM.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListadoSaldosCuentaCorrienteProveedores.Designer.vb">
+    <Compile Include="Listados\ListadoSaldosCuentaCorrienteProveedores.Designer.vb">
       <DependentUpon>ListadoSaldosCuentaCorrienteProveedores.vb</DependentUpon>
     </Compile>
-    <Compile Include="ListadoSaldosCuentaCorrienteProveedores.vb">
+    <Compile Include="Listados\ListadoSaldosCuentaCorrienteProveedores.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TipoCambioABM.Designer.vb">
@@ -337,7 +338,7 @@
     <EmbeddedResource Include="CargaIntereses.resx">
       <DependentUpon>CargaIntereses.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CierreMes.resx">
+    <EmbeddedResource Include="Procesos\CierreMes.resx">
       <DependentUpon>CierreMes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprasNovedades\Compras.resx">
@@ -349,10 +350,10 @@
     <EmbeddedResource Include="CuentaContableABM.resx">
       <DependentUpon>CuentaContableABM.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CuentaCorrientePantalla.resx">
+    <EmbeddedResource Include="Listados\CuentaCorrientePantalla.resx">
       <DependentUpon>CuentaCorrientePantalla.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListadoCuentaCorrienteProveedores.resx">
+    <EmbeddedResource Include="Listados\ListadoCuentaCorrienteProveedores.resx">
       <DependentUpon>ListadoCuentaCorrienteProveedores.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pagos.resx">
@@ -364,37 +365,37 @@
     <EmbeddedResource Include="Depositos.resx">
       <DependentUpon>Depositos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DepuraCtaCte.resx">
+    <EmbeddedResource Include="Procesos\DepuraCtaCte.resx">
       <DependentUpon>DepuraCtaCte.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListadoAsientoResumen.resx">
+    <EmbeddedResource Include="Listados\ListadoAsientoResumen.resx">
       <DependentUpon>ListadoAsientoResumen.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListadoIvaCompras.resx">
+    <EmbeddedResource Include="Listados\ListadoIvaCompras.resx">
       <DependentUpon>ListadoIvaCompras.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListadoProyeccionCobros.resx">
+    <EmbeddedResource Include="Listados\ListadoProyeccionCobros.resx">
       <DependentUpon>ListadoProyeccionCobros.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListadoSaldosCuentaCorrienteProveedores.resx">
+    <EmbeddedResource Include="Listados\ListadoSaldosCuentaCorrienteProveedores.resx">
       <DependentUpon>ListadoSaldosCuentaCorrienteProveedores.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListadoValoresEnCartera.resx">
+    <EmbeddedResource Include="Listados\ListadoValoresEnCartera.resx">
       <DependentUpon>ListadoValoresEnCartera.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProveedoresABM\ObservacionesProveedor.resx">
       <DependentUpon>ObservacionesProveedor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProcesoPercepciones.resx">
+    <EmbeddedResource Include="Procesos\ProcesoPercepciones.resx">
       <DependentUpon>ProcesoPercepciones.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProcesoRetencionesPagos.resx">
+    <EmbeddedResource Include="Procesos\ProcesoRetencionesPagos.resx">
       <DependentUpon>ProcesoRetencionesPagos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProcesoReteRecibos.resx">
+    <EmbeddedResource Include="Procesos\ProcesoReteRecibos.resx">
       <DependentUpon>ProcesoReteRecibos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProcesoSifere.resx">
+    <EmbeddedResource Include="Procesos\ProcesoSifere.resx">
       <DependentUpon>ProcesoSifere.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProveedoresABM\ProveedoresABM.resx">
