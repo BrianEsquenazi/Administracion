@@ -121,4 +121,8 @@
     Private Sub CuentaCorrienteDeProveedoresToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CuentaCorrienteDeProveedoresToolStripMenuItem.Click
         abrir(New ListadoCuentaCorrienteProveedores)
     End Sub
+
+    Private Sub ListadoDeValoresEnCarteraToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeValoresEnCarteraToolStripMenuItem.Click
+        abrir(New ListadoValoresEnCartera)
+    End Sub
 End Class

@@ -23,28 +23,28 @@ Partial Class ListadoValoresEnCartera
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.CustomLabel6 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel5 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.txtFecha4 = New System.Windows.Forms.MaskedTextBox()
         Me.txtFecha3 = New System.Windows.Forms.MaskedTextBox()
         Me.txtFecha2 = New System.Windows.Forms.MaskedTextBox()
         Me.txtFecha1 = New System.Windows.Forms.MaskedTextBox()
         Me.txtHastaFecha = New System.Windows.Forms.MaskedTextBox()
         Me.txtDesdeFecha = New System.Windows.Forms.MaskedTextBox()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel7 = New WindowsApplication1.CustomLabel()
-        Me.txtCliente = New WindowsApplication1.CustomTextBox()
-        Me.txtRazonSocial = New WindowsApplication1.CustomTextBox()
+        Me.opcImpesora = New System.Windows.Forms.RadioButton()
+        Me.opcPantalla = New System.Windows.Forms.RadioButton()
+        Me.lstAyuda = New WindowsApplication1.CustomListBox()
         Me.btnConsulta = New WindowsApplication1.CustomButton()
         Me.txtAyuda = New WindowsApplication1.CustomTextBox()
         Me.btnCancela = New WindowsApplication1.CustomButton()
         Me.btnAcepta = New WindowsApplication1.CustomButton()
-        Me.opcImpesora = New System.Windows.Forms.RadioButton()
-        Me.opcPantalla = New System.Windows.Forms.RadioButton()
-        Me.lstAyuda = New WindowsApplication1.CustomListBox()
+        Me.txtRazonSocial = New WindowsApplication1.CustomTextBox()
+        Me.txtCliente = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel7 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel6 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel5 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -61,49 +61,9 @@ Partial Class ListadoValoresEnCartera
         Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(445, 114)
-        Me.GroupBox1.TabIndex = 33
+        Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "PARAMETROS DE FECHA"
-        '
-        'CustomLabel6
-        '
-        Me.CustomLabel6.AutoSize = True
-        Me.CustomLabel6.ControlAssociationKey = -1
-        Me.CustomLabel6.Location = New System.Drawing.Point(208, 68)
-        Me.CustomLabel6.Name = "CustomLabel6"
-        Me.CustomLabel6.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel6.TabIndex = 28
-        Me.CustomLabel6.Text = "Fecha 4"
-        '
-        'CustomLabel5
-        '
-        Me.CustomLabel5.AutoSize = True
-        Me.CustomLabel5.ControlAssociationKey = -1
-        Me.CustomLabel5.Location = New System.Drawing.Point(208, 33)
-        Me.CustomLabel5.Name = "CustomLabel5"
-        Me.CustomLabel5.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel5.TabIndex = 27
-        Me.CustomLabel5.Text = "Fecha 3"
-        '
-        'CustomLabel4
-        '
-        Me.CustomLabel4.AutoSize = True
-        Me.CustomLabel4.ControlAssociationKey = -1
-        Me.CustomLabel4.Location = New System.Drawing.Point(6, 68)
-        Me.CustomLabel4.Name = "CustomLabel4"
-        Me.CustomLabel4.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel4.TabIndex = 26
-        Me.CustomLabel4.Text = "Fecha 2"
-        '
-        'CustomLabel3
-        '
-        Me.CustomLabel3.AutoSize = True
-        Me.CustomLabel3.ControlAssociationKey = -1
-        Me.CustomLabel3.Location = New System.Drawing.Point(6, 33)
-        Me.CustomLabel3.Name = "CustomLabel3"
-        Me.CustomLabel3.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel3.TabIndex = 25
-        Me.CustomLabel3.Text = "Fecha 1"
         '
         'txtFecha4
         '
@@ -130,7 +90,7 @@ Partial Class ListadoValoresEnCartera
         Me.txtFecha2.Name = "txtFecha2"
         Me.txtFecha2.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.txtFecha2.Size = New System.Drawing.Size(106, 20)
-        Me.txtFecha2.TabIndex = 1
+        Me.txtFecha2.TabIndex = 2
         '
         'txtFecha1
         '
@@ -157,62 +117,41 @@ Partial Class ListadoValoresEnCartera
         Me.txtDesdeFecha.Name = "txtDesdeFecha"
         Me.txtDesdeFecha.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.txtDesdeFecha.Size = New System.Drawing.Size(106, 20)
-        Me.txtDesdeFecha.TabIndex = 3
+        Me.txtDesdeFecha.TabIndex = 4
         '
-        'CustomLabel2
+        'opcImpesora
         '
-        Me.CustomLabel2.AutoSize = True
-        Me.CustomLabel2.ControlAssociationKey = -1
-        Me.CustomLabel2.Location = New System.Drawing.Point(220, 144)
-        Me.CustomLabel2.Name = "CustomLabel2"
-        Me.CustomLabel2.Size = New System.Drawing.Size(68, 13)
-        Me.CustomLabel2.TabIndex = 35
-        Me.CustomLabel2.Text = "Hasta Fecha"
+        Me.opcImpesora.AutoSize = True
+        Me.opcImpesora.Location = New System.Drawing.Point(268, 217)
+        Me.opcImpesora.Name = "opcImpesora"
+        Me.opcImpesora.Size = New System.Drawing.Size(71, 17)
+        Me.opcImpesora.TabIndex = 42
+        Me.opcImpesora.TabStop = True
+        Me.opcImpesora.Text = "Impresora"
+        Me.opcImpesora.UseVisualStyleBackColor = True
         '
-        'CustomLabel1
+        'opcPantalla
         '
-        Me.CustomLabel1.AutoSize = True
-        Me.CustomLabel1.ControlAssociationKey = -1
-        Me.CustomLabel1.Location = New System.Drawing.Point(18, 144)
-        Me.CustomLabel1.Name = "CustomLabel1"
-        Me.CustomLabel1.Size = New System.Drawing.Size(71, 13)
-        Me.CustomLabel1.TabIndex = 34
-        Me.CustomLabel1.Text = "Desde Fecha"
+        Me.opcPantalla.AutoSize = True
+        Me.opcPantalla.Location = New System.Drawing.Point(141, 217)
+        Me.opcPantalla.Name = "opcPantalla"
+        Me.opcPantalla.Size = New System.Drawing.Size(63, 17)
+        Me.opcPantalla.TabIndex = 41
+        Me.opcPantalla.TabStop = True
+        Me.opcPantalla.Text = "Pantalla"
+        Me.opcPantalla.UseVisualStyleBackColor = True
         '
-        'CustomLabel7
+        'lstAyuda
         '
-        Me.CustomLabel7.AutoSize = True
-        Me.CustomLabel7.ControlAssociationKey = -1
-        Me.CustomLabel7.Location = New System.Drawing.Point(18, 179)
-        Me.CustomLabel7.Name = "CustomLabel7"
-        Me.CustomLabel7.Size = New System.Drawing.Size(39, 13)
-        Me.CustomLabel7.TabIndex = 38
-        Me.CustomLabel7.Text = "Cliente"
-        '
-        'txtCliente
-        '
-        Me.txtCliente.Cleanable = False
-        Me.txtCliente.Empty = True
-        Me.txtCliente.EnterIndex = -1
-        Me.txtCliente.LabelAssociationKey = -1
-        Me.txtCliente.Location = New System.Drawing.Point(104, 176)
-        Me.txtCliente.Name = "txtCliente"
-        Me.txtCliente.Size = New System.Drawing.Size(100, 20)
-        Me.txtCliente.TabIndex = 6
-        Me.txtCliente.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtRazonSocial
-        '
-        Me.txtRazonSocial.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtRazonSocial.Cleanable = False
-        Me.txtRazonSocial.Empty = True
-        Me.txtRazonSocial.EnterIndex = -1
-        Me.txtRazonSocial.LabelAssociationKey = -1
-        Me.txtRazonSocial.Location = New System.Drawing.Point(223, 176)
-        Me.txtRazonSocial.Name = "txtRazonSocial"
-        Me.txtRazonSocial.Size = New System.Drawing.Size(210, 20)
-        Me.txtRazonSocial.TabIndex = 40
-        Me.txtRazonSocial.Validator = WindowsApplication1.ValidatorType.None
+        Me.lstAyuda.Cleanable = False
+        Me.lstAyuda.EnterIndex = -1
+        Me.lstAyuda.FormattingEnabled = True
+        Me.lstAyuda.LabelAssociationKey = -1
+        Me.lstAyuda.Location = New System.Drawing.Point(27, 332)
+        Me.lstAyuda.Name = "lstAyuda"
+        Me.lstAyuda.Size = New System.Drawing.Size(417, 147)
+        Me.lstAyuda.TabIndex = 47
+        Me.lstAyuda.Visible = False
         '
         'btnConsulta
         '
@@ -263,45 +202,106 @@ Partial Class ListadoValoresEnCartera
         Me.btnAcepta.Text = "Acepta"
         Me.btnAcepta.UseVisualStyleBackColor = True
         '
-        'opcImpesora
+        'txtRazonSocial
         '
-        Me.opcImpesora.AutoSize = True
-        Me.opcImpesora.Location = New System.Drawing.Point(268, 217)
-        Me.opcImpesora.Name = "opcImpesora"
-        Me.opcImpesora.Size = New System.Drawing.Size(71, 17)
-        Me.opcImpesora.TabIndex = 42
-        Me.opcImpesora.TabStop = True
-        Me.opcImpesora.Text = "Impresora"
-        Me.opcImpesora.UseVisualStyleBackColor = True
+        Me.txtRazonSocial.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtRazonSocial.Cleanable = False
+        Me.txtRazonSocial.Empty = True
+        Me.txtRazonSocial.EnterIndex = -1
+        Me.txtRazonSocial.LabelAssociationKey = -1
+        Me.txtRazonSocial.Location = New System.Drawing.Point(223, 176)
+        Me.txtRazonSocial.Name = "txtRazonSocial"
+        Me.txtRazonSocial.Size = New System.Drawing.Size(210, 20)
+        Me.txtRazonSocial.TabIndex = 40
+        Me.txtRazonSocial.Validator = WindowsApplication1.ValidatorType.None
         '
-        'opcPantalla
+        'txtCliente
         '
-        Me.opcPantalla.AutoSize = True
-        Me.opcPantalla.Location = New System.Drawing.Point(141, 217)
-        Me.opcPantalla.Name = "opcPantalla"
-        Me.opcPantalla.Size = New System.Drawing.Size(63, 17)
-        Me.opcPantalla.TabIndex = 41
-        Me.opcPantalla.TabStop = True
-        Me.opcPantalla.Text = "Pantalla"
-        Me.opcPantalla.UseVisualStyleBackColor = True
+        Me.txtCliente.Cleanable = False
+        Me.txtCliente.Empty = True
+        Me.txtCliente.EnterIndex = -1
+        Me.txtCliente.LabelAssociationKey = -1
+        Me.txtCliente.Location = New System.Drawing.Point(104, 176)
+        Me.txtCliente.Name = "txtCliente"
+        Me.txtCliente.Size = New System.Drawing.Size(100, 20)
+        Me.txtCliente.TabIndex = 6
+        Me.txtCliente.Validator = WindowsApplication1.ValidatorType.None
         '
-        'lstAyuda
+        'CustomLabel7
         '
-        Me.lstAyuda.Cleanable = False
-        Me.lstAyuda.EnterIndex = -1
-        Me.lstAyuda.FormattingEnabled = True
-        Me.lstAyuda.LabelAssociationKey = -1
-        Me.lstAyuda.Location = New System.Drawing.Point(27, 332)
-        Me.lstAyuda.Name = "lstAyuda"
-        Me.lstAyuda.Size = New System.Drawing.Size(417, 147)
-        Me.lstAyuda.TabIndex = 47
-        Me.lstAyuda.Visible = False
+        Me.CustomLabel7.AutoSize = True
+        Me.CustomLabel7.ControlAssociationKey = -1
+        Me.CustomLabel7.Location = New System.Drawing.Point(18, 179)
+        Me.CustomLabel7.Name = "CustomLabel7"
+        Me.CustomLabel7.Size = New System.Drawing.Size(39, 13)
+        Me.CustomLabel7.TabIndex = 38
+        Me.CustomLabel7.Text = "Cliente"
+        '
+        'CustomLabel2
+        '
+        Me.CustomLabel2.AutoSize = True
+        Me.CustomLabel2.ControlAssociationKey = -1
+        Me.CustomLabel2.Location = New System.Drawing.Point(220, 144)
+        Me.CustomLabel2.Name = "CustomLabel2"
+        Me.CustomLabel2.Size = New System.Drawing.Size(68, 13)
+        Me.CustomLabel2.TabIndex = 35
+        Me.CustomLabel2.Text = "Hasta Fecha"
+        '
+        'CustomLabel1
+        '
+        Me.CustomLabel1.AutoSize = True
+        Me.CustomLabel1.ControlAssociationKey = -1
+        Me.CustomLabel1.Location = New System.Drawing.Point(18, 144)
+        Me.CustomLabel1.Name = "CustomLabel1"
+        Me.CustomLabel1.Size = New System.Drawing.Size(71, 13)
+        Me.CustomLabel1.TabIndex = 34
+        Me.CustomLabel1.Text = "Desde Fecha"
+        '
+        'CustomLabel6
+        '
+        Me.CustomLabel6.AutoSize = True
+        Me.CustomLabel6.ControlAssociationKey = -1
+        Me.CustomLabel6.Location = New System.Drawing.Point(208, 68)
+        Me.CustomLabel6.Name = "CustomLabel6"
+        Me.CustomLabel6.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel6.TabIndex = 28
+        Me.CustomLabel6.Text = "Fecha 4"
+        '
+        'CustomLabel5
+        '
+        Me.CustomLabel5.AutoSize = True
+        Me.CustomLabel5.ControlAssociationKey = -1
+        Me.CustomLabel5.Location = New System.Drawing.Point(208, 33)
+        Me.CustomLabel5.Name = "CustomLabel5"
+        Me.CustomLabel5.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel5.TabIndex = 27
+        Me.CustomLabel5.Text = "Fecha 3"
+        '
+        'CustomLabel4
+        '
+        Me.CustomLabel4.AutoSize = True
+        Me.CustomLabel4.ControlAssociationKey = -1
+        Me.CustomLabel4.Location = New System.Drawing.Point(6, 68)
+        Me.CustomLabel4.Name = "CustomLabel4"
+        Me.CustomLabel4.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel4.TabIndex = 26
+        Me.CustomLabel4.Text = "Fecha 2"
+        '
+        'CustomLabel3
+        '
+        Me.CustomLabel3.AutoSize = True
+        Me.CustomLabel3.ControlAssociationKey = -1
+        Me.CustomLabel3.Location = New System.Drawing.Point(6, 33)
+        Me.CustomLabel3.Name = "CustomLabel3"
+        Me.CustomLabel3.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel3.TabIndex = 25
+        Me.CustomLabel3.Text = "Fecha 1"
         '
         'ListadoValoresEnCartera
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(492, 303)
+        Me.ClientSize = New System.Drawing.Size(492, 300)
         Me.Controls.Add(Me.lstAyuda)
         Me.Controls.Add(Me.btnConsulta)
         Me.Controls.Add(Me.txtAyuda)

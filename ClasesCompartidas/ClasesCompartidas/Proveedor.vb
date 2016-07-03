@@ -7,6 +7,7 @@
     Public cuenta As CuentaContable
     Public rubro As RubroProveedor
     Public estaDefinidoCompleto As Boolean
+
     Public Sub New(ByVal codigo As String, ByVal nombre As String)
         id = codigo
         razonSocial = nombre

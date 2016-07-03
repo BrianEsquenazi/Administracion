@@ -16,18 +16,18 @@ Public Class CuentaCorrientePantalla
 
     Private Sub txtproveedor_KeyPress(ByVal sender As Object, _
                     ByVal e As System.Windows.Forms.KeyPressEventArgs) _
-                    Handles Proveedor.KeyPress
+                    Handles txtProveedor.KeyPress
         If e.KeyChar = Convert.ToChar(Keys.Return) Then
             e.Handled = True
-            aa = Proveedor.Text
+            aa = txtProveedor.Text
             REM lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre(txtAyuda.Text)
             Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(aa)
-            ProveedorRazon.Text = CampoProveedor.razonSocial
+            txtRazon.Text = CampoProveedor.razonSocial
             Call Proceso()
-            ProveedorRazon.Focus()
+            txtRazon.Focus()
         ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
             e.Handled = True
-            ProveedorRazon.Focus()
+            txtRazon.Focus()
         End If
     End Sub
 
@@ -42,10 +42,7 @@ Public Class CuentaCorrientePantalla
 
     End Sub
 
-    Private Sub GRilla_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRilla.CellContentClick
-
-    End Sub
-
+   
     Private Sub Proceso()
 
         Dim orddesde As String
@@ -72,8 +69,47 @@ Public Class CuentaCorrientePantalla
 
     End Sub
 
+    
 
-    Private Sub Proveedor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Proveedor.TextChanged
+    Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
+
+        boxPantallaProveedores.Visible = True
+        lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre("")
+
+        txtAyuda.Text = ""
+        txtAyuda.Focus()
+
+    End Sub
+
+    Private Sub txtAyuda_KeyPress(ByVal sender As Object, _
+                   ByVal e As System.Windows.Forms.KeyPressEventArgs) _
+                   Handles txtAyuda.KeyPress
+        If e.KeyChar = Convert.ToChar(Keys.Return) Then
+            e.Handled = True
+            lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre(txtAyuda.Text)
+        ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
+            e.Handled = True
+            txtAyuda.Text = ""
+        End If
+    End Sub
+
+    Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
+        txtProveedor.Text = proveedor.id
+        txtRazon.Text = proveedor.razonSocial
+        boxPantallaProveedores.Visible = False
+        Call Proceso()
+    End Sub
+
+    Private Sub lstAyuda_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstAyuda.Click
+        mostrarProveedor(lstAyuda.SelectedValue)
+    End Sub
+  
+    Private Sub btnCancela_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancela.Click
+        Me.Close()
+        MenuPrincipal.Show()
+    End Sub
+
+    Private Sub Proveedor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     End Sub
 End Class
