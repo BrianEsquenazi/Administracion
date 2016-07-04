@@ -156,6 +156,7 @@ Partial Class Compras
         Me.gridAsientos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Cuenta, Me.Descripcion, Me.Debito, Me.Credito})
         Me.gridAsientos.Location = New System.Drawing.Point(23, 255)
         Me.gridAsientos.Name = "gridAsientos"
+        Me.gridAsientos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.gridAsientos.Size = New System.Drawing.Size(741, 286)
         Me.gridAsientos.TabIndex = 52
         '
@@ -191,7 +192,7 @@ Partial Class Compras
         Me.lblCredito.Name = "lblCredito"
         Me.lblCredito.Size = New System.Drawing.Size(117, 20)
         Me.lblCredito.TabIndex = 61
-        Me.lblCredito.Text = "0"
+        Me.lblCredito.Text = "0,00"
         Me.lblCredito.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lblDebito
@@ -202,7 +203,7 @@ Partial Class Compras
         Me.lblDebito.Name = "lblDebito"
         Me.lblDebito.Size = New System.Drawing.Size(117, 20)
         Me.lblDebito.TabIndex = 60
-        Me.lblDebito.Text = "0"
+        Me.lblDebito.Text = "0,00"
         Me.lblDebito.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'btnApertura
@@ -590,7 +591,7 @@ Partial Class Compras
         'txtNombreProveedor
         '
         Me.txtNombreProveedor.Cleanable = True
-        Me.txtNombreProveedor.Empty = True
+        Me.txtNombreProveedor.Empty = False
         Me.txtNombreProveedor.Enabled = False
         Me.txtNombreProveedor.EnterIndex = -1
         Me.txtNombreProveedor.LabelAssociationKey = 2

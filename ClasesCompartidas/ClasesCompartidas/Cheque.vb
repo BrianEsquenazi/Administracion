@@ -23,8 +23,23 @@
     End Function
 
     Public Overrides Function ToString() As String
-        Return fechaCheque & " - " & identificacion & " - " & banco & " - " & valorImporte
+        Return fechaCheque.PadRight(10) & " - " & identificacion.PadRight(8) & " - " & banco.PadRight(15) & " - " & asDoubleString(valorImporte).PadLeft(10)
     End Function
+
+    Private Function asDoubleString(ByVal value) As String
+        Dim originalString As String = value.ToString
+        If originalString.IndexOf(",") = -1 Then
+            Return originalString & "," & "".PadLeft(2, "0")
+        Else
+            Dim difference As Integer = originalString.Count - originalString.IndexOf(",") - 1
+            If difference < 2 Then
+                Return originalString & "".PadLeft(2 - difference, "0")
+            End If
+        End If
+        Return originalString
+        Return value.ToString
+    End Function
+
 
     Public Function tipo() As Integer Implements ItemDeposito.tipo
         Return 3

@@ -53,14 +53,25 @@ Public Class Compras
         optEfectivo.Checked = True
     End Sub
 
-    Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
+    Public Sub mostrarProveedor(ByVal proveedor As Proveedor)
         If Not proveedor.estaDefinidoCompleto Then
             proveedor = DAOProveedor.buscarProveedorPorCodigo(proveedor.id)
         End If
+        txtCodigoProveedor.Text = proveedor.id
         txtNombreProveedor.Text = proveedor.razonSocial
         txtCAI.Text = proveedor.cai
         txtVtoCAI.Text = proveedor.vtoCAI
         diasPlazo = CustomConvert.toIntOrZero(proveedor.diasPlazo)
+    End Sub
+
+    Public Sub mostrarCuentaContable(ByVal cuenta As CuentaContable)
+        If gridAsientos.SelectedCells.Count > 0 Then
+            Dim selectedRow As Integer = gridAsientos.SelectedCells(0).RowIndex
+
+            If selectedRow <> -1 Then
+                gridAsientos.Rows(selectedRow).Cells(0).Value = cuenta.id
+            End If
+        End If
     End Sub
 
     Private Sub txtCodigoProveedor_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigoProveedor.Leave
@@ -325,5 +336,10 @@ Public Class Compras
                 gridAsientos.Rows(e.RowIndex).Cells(1).Value = ""
             End If
         End If
+    End Sub
+
+    Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
+        Dim consulta As New ConsultaCompras(Me)
+        consulta.ShowDialog()
     End Sub
 End Class

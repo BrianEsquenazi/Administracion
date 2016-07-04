@@ -122,6 +122,10 @@
         abrir(New ListadoCuentaCorrienteProveedores)
     End Sub
 
+    Private Sub IngresoDePagosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IngresoDePagosToolStripMenuItem.Click
+        abrir(New Pagos)
+    End Sub
+
     Private Sub ListadoDeValoresEnCarteraToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeValoresEnCarteraToolStripMenuItem.Click
         abrir(New ListadoValoresEnCartera)
     End Sub

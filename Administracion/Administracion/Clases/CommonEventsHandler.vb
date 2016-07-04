@@ -154,15 +154,22 @@
         Dim customControl As CustomTextBox = DirectCast(sender, CustomTextBox)
         Dim firstSpaceIndex As Integer = customControl.Text.IndexOf(" ")
         Select Case firstSpaceIndex
+            Case -1
+                If IsNumeric(e.KeyChar) Then
+                    Dim selectionStart As Integer = customControl.SelectionStart
+                    If customControl.SelectionLength = customControl.Text.Length Then
+                        customControl.Text = "  /  /    "
+                        customControl.Select(selectionStart, 0)
+                        dateKeyPressed(sender, e)
+                    End If
+                End If
             Case 0, 1, 3, 4, 6 To 9 'Es una entrada de fecha
                 If IsNumeric(e.KeyChar) Then
                     customControl.Text = customControl.Text.Remove(firstSpaceIndex, 1).Insert(firstSpaceIndex, e.KeyChar)
                     customControl.Select(Math.Max(customControl.Text.IndexOf(" "), 0), 0)
-                    e.Handled = True
                 End If
-            Case Else
-                e.Handled = True
         End Select
+        e.Handled = True
     End Sub
 
     Private Sub enterPressed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
@@ -172,6 +179,10 @@
             End If
             If sender.Validator = ValidatorType.Float Or sender.Validator = ValidatorType.PositiveFloat Or sender.Validator = ValidatorType.StrictlyPositiveFloat Then
                 sender.Text = CustomConvert.toStringWithTwoDecimalPlaces(CustomConvert.toDoubleOrZero(sender.Text))
+            End If
+            If sender.Validator = ValidatorType.DateFormat Then
+                sender.Text = CustomConvert.asTextDate(sender.Text)
+                If Not sender.Empty And sender.text = "  /  /    " Then : Exit Sub : End If
             End If
             Dim nextControl As Control = findNextControl(sender)
             setFocus(nextControl)
