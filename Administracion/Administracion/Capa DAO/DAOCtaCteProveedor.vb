@@ -25,10 +25,10 @@ Public Class DAOCtaCteProveedor
     End Function
 
 
-    Public Shared Function buscardeuda() As List(Of CtaCteProveedor)
-        Dim ctacteprv As New List(Of CtaCteProveedor)
-        For Each row In SQLConnector.retrieveDataTable("Busca_Cuenta_Corriente_Proveedores_deuda").Rows
-            REM ctacteprv.Add(New CtaCteProveedor(row("Tipo").ToString, row("Numero").ToString, row("Fecha").ToString, row("Total"), row("Saldo"), row("Numero").ToString))
+    Public Shared Function buscardeuda(ByVal proveedor As String)
+        Dim ctacteprv As New List(Of CtaCteProveedoresDeuda)
+        For Each row In SQLConnector.retrieveDataTable("buscar_Cuenta_Corriente_Proveedores_deuda", proveedor).Rows
+            ctacteprv.Add(New CtaCteProveedoresDeuda(row("Tipo").ToString, row("letra").ToString, row("punto").ToString, row("numero").ToString, row("total"), row("saldo"), row("fecha").ToString, row("vencimiento").ToString))
         Next
         Return ctacteprv
     End Function

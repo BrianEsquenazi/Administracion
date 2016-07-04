@@ -19,9 +19,7 @@ Public Class CuentaCorrientePantalla
                     Handles txtProveedor.KeyPress
         If e.KeyChar = Convert.ToChar(Keys.Return) Then
             e.Handled = True
-            aa = txtProveedor.Text
-            REM lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre(txtAyuda.Text)
-            Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(aa)
+            Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(txtProveedor.Text)
             txtRazon.Text = CampoProveedor.razonSocial
             Call Proceso()
             txtRazon.Focus()
@@ -35,41 +33,22 @@ Public Class CuentaCorrientePantalla
 
         dataGridBuilder = New GridBuilder(GRilla)
 
-        dataGridBuilder.addTextColumn(0, "Codigo")
-        dataGridBuilder.addTextColumn(1, "Razón Social")
-        dataGridBuilder.addDateColumn(2, "Vto CAI")
-        dataGridBuilder.addTextColumn(3, "Razón Social")
+        dataGridBuilder.addTextColumn(0, "Tipo")
+        dataGridBuilder.addTextColumn(1, "Letra")
+        dataGridBuilder.addDateColumn(2, "Punto")
+        dataGridBuilder.addTextColumn(3, "Numero")
+        dataGridBuilder.addTextColumn(4, "Importe")
+        dataGridBuilder.addTextColumn(5, "Saldo")
+        dataGridBuilder.addTextColumn(6, "Fecha")
+        dataGridBuilder.addTextColumn(7, "Vencimiento")
 
     End Sub
 
-   
     Private Sub Proceso()
+        'DAOCtaCteProveedor.buscardeuda(txtProveedor.Text).ForEach(Sub(ctacteprv) GRilla.Rows.Add(ctacteprv.Tipo, ctacteprv.letra, ctacteprv.punto, ctacteprv.numero, ctacteprv.total, ctacteprv.saldo, ctacteprv.fecha, ctacteprv.vencimiento))
 
-        Dim orddesde As String
-        Dim ordhasta As String
-
-        orddesde = "20160301"
-        ordhasta = "20160631"
-
-        Dim tabla As DataTable
-        tabla = SQLConnector.retrieveDataTable("procesoSifere", ordDesde, ordHasta)
-
-        For Each row As DataRow In tabla.Rows
-
-            'Dim CamposImputac As New Imputac(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString)
-
-            'dataGridBuilder.addColumn(row.Item(0).ToString, row.Item(1), row.Item(2))
-
-
-        Next
-
-        MsgBox("Proceso Finalizado", MsgBoxStyle.Information)
-
-
-
+        GRilla.AllowUserToAddRows = False
     End Sub
-
-    
 
     Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
 
@@ -109,7 +88,4 @@ Public Class CuentaCorrientePantalla
         MenuPrincipal.Show()
     End Sub
 
-    Private Sub Proveedor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
 End Class
