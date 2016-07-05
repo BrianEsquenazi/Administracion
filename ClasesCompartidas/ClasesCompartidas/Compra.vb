@@ -36,8 +36,8 @@
         exento = importeExento
         total = importeTotal
         soloIVA = ivaSolo
-        remito = nroRemito
-        despacho = desp
+        remito = Trim(nroRemito)
+        despacho = Trim(desp)
     End Sub
 
     Public Sub agregarImputaciones(ByVal listaImputaciones As List(Of Imputac))

@@ -343,6 +343,17 @@ Public Class Compras
         consulta.ShowDialog()
     End Sub
 
+    Private Sub pulsarOption(ByVal val As Integer)
+        Select Case val
+            Case 3
+                optNacion.Checked = True
+            Case 2
+                optCtaCte.Checked = True
+            Case Else
+                optEfectivo.Checked = True
+        End Select
+    End Sub
+
     Private Sub mostrarCompra(ByVal compra As Compra)
         txtNroInterno.Text = compra.nroInterno
         mostrarProveedor(compra.proveedor)
@@ -366,8 +377,17 @@ Public Class Compras
         txtNoGravado.Text = compra.exento
         txtDespacho.Text = compra.despacho
         chkSoloIVA.Checked = compra.soloIVA
+        pulsarOption(compra.tipoPago)
         txtImporte_Leave(Nothing, Nothing)
         txtTipo_Leave(Nothing, Nothing)
+        mostrarImputaciones(compra.imputaciones)
+        calcularAsiento()
+    End Sub
+
+    Private Sub mostrarImputaciones(ByVal imputaciones As List(Of Imputac))
+        For Each imputacion As Imputac In imputaciones
+            gridAsientos.Rows.Add(imputacion.cuenta, DAOCuentaContable.buscarCuentaContablePorCodigo(imputacion.cuenta).descripcion, imputacion.debito, imputacion.credito)
+        Next
     End Sub
 
     Private Sub txtNroInterno_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroInterno.Leave
@@ -378,5 +398,8 @@ Public Class Compras
             'Creo que no hay que hacer nada
         End If
 
+    End Sub
+
+    Private Sub btnConsultaNroFactura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsultaNroFactura.Click
     End Sub
 End Class

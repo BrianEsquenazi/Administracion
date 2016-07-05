@@ -8,7 +8,9 @@ Public Class DAOCompras
                                 row("Punto").ToString, row("Numero").ToString, asDate(row("Fecha")), asDate(row("Periodo")), asDate(row("Vencimiento")), asDate(row("Vencimiento1")), asDouble(row("Paridad")),
                                 asDouble(row("Neto")), asDouble(row("Iva21")), asDouble(row("Iva5")), asDouble(row("Iva27")), asDouble(row("Ib")), asDouble(row("Exento")), asDouble(row("Iva105")),
                                 0, asBool(row("SoloIva")), row("Remito").ToString, row("Despacho").ToString)
-            Return compra
+
+        compra.agregarImputaciones(buscarImputacionesPorInterno(compra.nroInterno))
+        Return compra
     End Function
 
     Private Shared Function asDate(ByVal value)
@@ -36,6 +38,23 @@ Public Class DAOCompras
         End Try
         Return crearCompra(row)
     End Function
+
+    Public Shared Function buscarImputacionesPorInterno(ByVal interno As Integer)
+        Dim imputaciones As New List(Of Imputac)
+        'Try
+
+        Dim table As DataTable = SQLConnector.retrieveDataTable("get_imputaciones_por_nro_interno", interno)
+        For Each row As DataRow In table.Rows
+            imputaciones.Add(New Imputac(asDate(row("Fecha")), asDouble(row("Debito")), asDouble(row("Credito")), row("Proveedor").ToString,
+                                         row("Cuenta").ToString, interno.ToString, row("PuntoComp").ToString, row("NroComp").ToString,
+                                         "", "", row("LetraComp").ToString))
+        Next
+        'Catch ex As Exception
+        '   imputaciones.Clear()
+        'End Try
+        Return imputaciones
+    End Function
+
 
     Public Shared Sub agregarCompra(ByVal compra As Compra)
         SQLConnector.executeProcedure("alta_iva_compra", compra.nroInterno, compra.codigoProveedor, compra.tipoDocumento, compra.letra, compra.punto, compra.numero, compra.fechaEmision,

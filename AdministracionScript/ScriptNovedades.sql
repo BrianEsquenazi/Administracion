@@ -57,6 +57,9 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_compra_por_codigo]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_imputaciones_por_nro_interno]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_imputaciones_por_nro_interno]
+GO
 
 /*
 		GENERACION NOVEDADES
@@ -551,4 +554,12 @@ AS
 	SELECT *
 	FROM IvaComp ic
 	WHERE ic.NroInterno = @nro_interno
+GO
+
+CREATE PROCEDURE PR_get_imputaciones_por_nro_interno
+	(@nro_interno int)
+AS
+	SELECT *
+	FROM Imputac im
+	WHERE im.NroInterno = @nro_interno
 GO
