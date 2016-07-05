@@ -342,4 +342,41 @@ Public Class Compras
         Dim consulta As New ConsultaCompras(Me)
         consulta.ShowDialog()
     End Sub
+
+    Private Sub mostrarCompra(ByVal compra As Compra)
+        txtNroInterno.Text = compra.nroInterno
+        mostrarProveedor(compra.proveedor)
+        txtTipo.Text = compra.tipoDocumento
+        txtLetra.Text = compra.letra
+        txtPunto.Text = compra.punto
+        txtNumero.Text = compra.numero
+        txtFechaEmision.Text = compra.fechaEmision
+        txtFechaIVA.Text = compra.fechaIVA
+        txtFechaVto1.Text = compra.fechaVto1
+        txtFechaVto2.Text = compra.fechaVto2
+        txtRemito.Text = compra.remito
+        cmbFormaPago.SelectedIndex = compra.formaPago
+        txtParidad.Text = compra.paridad
+        txtNeto.Text = compra.neto
+        txtIVA10.Text = compra.iva105
+        txtIVA21.Text = compra.iva21
+        txtIVA27.Text = compra.iva27
+        txtIVARG.Text = compra.ivaRG
+        txtPercIB.Text = compra.percibidoIB
+        txtNoGravado.Text = compra.exento
+        txtDespacho.Text = compra.despacho
+        chkSoloIVA.Checked = compra.soloIVA
+        txtImporte_Leave(Nothing, Nothing)
+        txtTipo_Leave(Nothing, Nothing)
+    End Sub
+
+    Private Sub txtNroInterno_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroInterno.Leave
+        Dim compra As Compra = DAOCompras.buscarCompraPorCodigo(txtNroInterno.Text)
+        If Not IsNothing(compra) Then
+            mostrarCompra(compra)
+        Else
+            'Creo que no hay que hacer nada
+        End If
+
+    End Sub
 End Class
