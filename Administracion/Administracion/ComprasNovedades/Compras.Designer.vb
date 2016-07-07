@@ -411,7 +411,7 @@ Partial Class Compras
         Me.txtParidad.Name = "txtParidad"
         Me.txtParidad.Size = New System.Drawing.Size(71, 20)
         Me.txtParidad.TabIndex = 42
-        Me.txtParidad.Validator = WindowsApplication1.ValidatorType.StrictlyPositiveFloat
+        Me.txtParidad.Validator = WindowsApplication1.ValidatorType.PositiveFloat
         '
         'cmbFormaPago
         '

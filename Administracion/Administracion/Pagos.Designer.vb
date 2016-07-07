@@ -51,8 +51,8 @@ Partial Class Pagos
         Me.btnLimpiar = New WindowsApplication1.CustomButton()
         Me.btnEliminar = New WindowsApplication1.CustomButton()
         Me.btnAgregar = New WindowsApplication1.CustomButton()
-        Me.CustomTextBox5 = New WindowsApplication1.CustomTextBox()
-        Me.CustomListBox1 = New WindowsApplication1.CustomListBox()
+        Me.txtConsulta = New WindowsApplication1.CustomTextBox()
+        Me.lstConsulta = New WindowsApplication1.CustomListBox()
         Me.CustomTextBox4 = New WindowsApplication1.CustomTextBox()
         Me.CustomLabel11 = New WindowsApplication1.CustomLabel()
         Me.txtIVA = New WindowsApplication1.CustomTextBox()
@@ -80,6 +80,7 @@ Partial Class Pagos
         Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.lstSeleccion = New WindowsApplication1.CustomListBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridFormaPagos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -354,30 +355,30 @@ Partial Class Pagos
         Me.btnAgregar.Text = "Grabar"
         Me.btnAgregar.UseVisualStyleBackColor = True
         '
-        'CustomTextBox5
+        'txtConsulta
         '
-        Me.CustomTextBox5.Cleanable = False
-        Me.CustomTextBox5.Empty = True
-        Me.CustomTextBox5.EnterIndex = -1
-        Me.CustomTextBox5.LabelAssociationKey = -1
-        Me.CustomTextBox5.Location = New System.Drawing.Point(437, 12)
-        Me.CustomTextBox5.Name = "CustomTextBox5"
-        Me.CustomTextBox5.Size = New System.Drawing.Size(333, 20)
-        Me.CustomTextBox5.TabIndex = 55
-        Me.CustomTextBox5.Validator = WindowsApplication1.ValidatorType.None
-        Me.CustomTextBox5.Visible = False
+        Me.txtConsulta.Cleanable = False
+        Me.txtConsulta.Empty = True
+        Me.txtConsulta.EnterIndex = -1
+        Me.txtConsulta.LabelAssociationKey = -1
+        Me.txtConsulta.Location = New System.Drawing.Point(437, 12)
+        Me.txtConsulta.Name = "txtConsulta"
+        Me.txtConsulta.Size = New System.Drawing.Size(333, 20)
+        Me.txtConsulta.TabIndex = 55
+        Me.txtConsulta.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtConsulta.Visible = False
         '
-        'CustomListBox1
+        'lstConsulta
         '
-        Me.CustomListBox1.Cleanable = False
-        Me.CustomListBox1.EnterIndex = -1
-        Me.CustomListBox1.FormattingEnabled = True
-        Me.CustomListBox1.LabelAssociationKey = -1
-        Me.CustomListBox1.Location = New System.Drawing.Point(437, 38)
-        Me.CustomListBox1.Name = "CustomListBox1"
-        Me.CustomListBox1.Size = New System.Drawing.Size(333, 108)
-        Me.CustomListBox1.TabIndex = 54
-        Me.CustomListBox1.Visible = False
+        Me.lstConsulta.Cleanable = False
+        Me.lstConsulta.EnterIndex = -1
+        Me.lstConsulta.FormattingEnabled = True
+        Me.lstConsulta.LabelAssociationKey = -1
+        Me.lstConsulta.Location = New System.Drawing.Point(437, 38)
+        Me.lstConsulta.Name = "lstConsulta"
+        Me.lstConsulta.Size = New System.Drawing.Size(333, 108)
+        Me.lstConsulta.TabIndex = 54
+        Me.lstConsulta.Visible = False
         '
         'CustomTextBox4
         '
@@ -692,11 +693,24 @@ Partial Class Pagos
         Me.CustomLabel1.TabIndex = 0
         Me.CustomLabel1.Text = "Orden de Pago"
         '
+        'lstSeleccion
+        '
+        Me.lstSeleccion.Cleanable = False
+        Me.lstSeleccion.EnterIndex = -1
+        Me.lstSeleccion.FormattingEnabled = True
+        Me.lstSeleccion.LabelAssociationKey = -1
+        Me.lstSeleccion.Location = New System.Drawing.Point(437, 37)
+        Me.lstSeleccion.Name = "lstSeleccion"
+        Me.lstSeleccion.Size = New System.Drawing.Size(333, 108)
+        Me.lstSeleccion.TabIndex = 66
+        Me.lstSeleccion.Visible = False
+        '
         'Pagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(790, 568)
+        Me.Controls.Add(Me.lstSeleccion)
         Me.Controls.Add(Me.btnCarpetas)
         Me.Controls.Add(Me.btnImprimir)
         Me.Controls.Add(Me.btnCalcular)
@@ -707,8 +721,8 @@ Partial Class Pagos
         Me.Controls.Add(Me.btnAgregar)
         Me.Controls.Add(Me.gridFormaPagos)
         Me.Controls.Add(Me.gridPagos)
-        Me.Controls.Add(Me.CustomTextBox5)
-        Me.Controls.Add(Me.CustomListBox1)
+        Me.Controls.Add(Me.txtConsulta)
+        Me.Controls.Add(Me.lstConsulta)
         Me.Controls.Add(Me.CustomTextBox4)
         Me.Controls.Add(Me.CustomLabel11)
         Me.Controls.Add(Me.txtIVA)
@@ -783,8 +797,8 @@ Partial Class Pagos
     Friend WithEvents txtIngresosBrutos As WindowsApplication1.CustomTextBox
     Friend WithEvents CustomLabel11 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomTextBox4 As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomListBox1 As WindowsApplication1.CustomListBox
-    Friend WithEvents CustomTextBox5 As WindowsApplication1.CustomTextBox
+    Friend WithEvents lstConsulta As WindowsApplication1.CustomListBox
+    Friend WithEvents txtConsulta As WindowsApplication1.CustomTextBox
     Friend WithEvents gridPagos As System.Windows.Forms.DataGridView
     Friend WithEvents gridFormaPagos As System.Windows.Forms.DataGridView
     Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -807,4 +821,5 @@ Partial Class Pagos
     Friend WithEvents btnCalcular As WindowsApplication1.CustomButton
     Friend WithEvents btnImprimir As WindowsApplication1.CustomButton
     Friend WithEvents btnCarpetas As WindowsApplication1.CustomButton
+    Friend WithEvents lstSeleccion As WindowsApplication1.CustomListBox
 End Class

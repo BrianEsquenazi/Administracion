@@ -44,6 +44,17 @@
         imputaciones = listaImputaciones
     End Sub
 
+    Public Sub valoresAbsolutos()
+        neto = Math.Abs(neto)
+        iva21 = Math.Abs(iva21)
+        ivaRG = Math.Abs(ivaRG)
+        iva27 = Math.Abs(iva27)
+        percibidoIB = Math.Abs(percibidoIB)
+        exento = Math.Abs(exento)
+        iva105 = Math.Abs(iva105)
+        total = Math.Abs(total)
+    End Sub
+
     Public Function codigoProveedor() As String
         If IsNothing(proveedor) Then
             Return ""

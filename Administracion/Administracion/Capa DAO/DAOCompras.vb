@@ -10,6 +10,7 @@ Public Class DAOCompras
                                 0, asBool(row("SoloIva")), row("Remito").ToString, row("Despacho").ToString)
 
         compra.agregarImputaciones(buscarImputacionesPorInterno(compra.nroInterno))
+        compra.valoresAbsolutos()
         Return compra
     End Function
 
@@ -27,6 +28,10 @@ Public Class DAOCompras
 
     Private Shared Function asBool(ByVal value)
         Return CustomConvert.toBoolOrFalse(value)
+    End Function
+
+    Public Shared Function facturaPagada(ByVal nroInterno As Integer) As Boolean
+        Return SQLConnector.executeProcedureWithReturnValue("factura_pagada", nroInterno)
     End Function
 
     Public Shared Function buscarCompraPorCodigo(ByVal codigo As String)

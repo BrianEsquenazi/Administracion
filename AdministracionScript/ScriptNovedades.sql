@@ -61,6 +61,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_imputaciones_por_nro_interno]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_factura_pagada]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_factura_pagada]
+GO
+
 /*
 		GENERACION NOVEDADES
 */
@@ -563,3 +567,16 @@ AS
 	FROM Imputac im
 	WHERE im.NroInterno = @nro_interno
 GO
+
+CREATE PROCEDURE PR_factura_pagada
+	(@nro_interno int)
+AS
+	IF EXISTS (SELECT *
+	FROM CtaCtePrv cta
+	WHERE cta.NroInterno = @nro_interno
+	AND cta.Saldo <> cta.Total)
+	RETURN 1
+	ELSE
+	RETURN 0
+GO
+	

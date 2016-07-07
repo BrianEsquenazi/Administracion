@@ -5,6 +5,7 @@ Public Class Compras
     Dim diasPlazo As Integer = 0
     Dim letrasValidas As New List(Of String) From {"A", "B", "C", "X", "M", "I"}
     Dim proveedor As Proveedor
+    Dim apertura As New Apertura
 
     Private Sub Compras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim gridBuilder As New GridBuilder(gridAsientos)
@@ -51,6 +52,7 @@ Public Class Compras
         gridAsientos.Rows.Clear()
         chkSoloIVA.Checked = False
         optEfectivo.Checked = True
+        apertura = New Apertura
     End Sub
 
     Public Sub mostrarProveedor(ByVal proveedor As Proveedor)
@@ -160,6 +162,10 @@ Public Class Compras
         If validarCampos() Then
             actualizarProveedor()
             Dim compra As Compra = crearCompra()
+            If DAOCompras.facturaPagada(compra.nroInterno) Then
+                MsgBox("No se puede modificar una factura que ya fue pagada", MsgBoxStyle.Exclamation, "No se puede confirmar la operación")
+                Exit Sub
+            End If
             txtNroInterno.Text = compra.nroInterno
             DAOCompras.agregarCompra(compra)
             MsgBox("El número de interno asignado es: " & compra.nroInterno)
@@ -401,5 +407,21 @@ Public Class Compras
     End Sub
 
     Private Sub btnConsultaNroFactura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsultaNroFactura.Click
+    End Sub
+
+    Private Sub btnApertura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApertura.Click
+        apertura.ShowDialog()
+
+        If Not apertura.IsDisposed Then
+            txtNeto.Text = apertura.valorNeto
+            txtIVA21.Text = apertura.valorIVA21
+            txtIVA27.Text = apertura.valorIVA27
+            txtIVARG.Text = apertura.valorIVARG
+            txtIVA10.Text = apertura.valorIVA105
+            txtNoGravado.Text = apertura.valorExento
+            txtPercIB.Text = apertura.valorIB
+            txtImporte_Leave(sender, Nothing)
+            txtDespacho_Leave(sender, Nothing)
+        End If
     End Sub
 End Class
