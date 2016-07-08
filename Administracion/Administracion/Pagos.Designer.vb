@@ -81,6 +81,7 @@ Partial Class Pagos
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
         Me.lstSeleccion = New WindowsApplication1.CustomListBox()
+        Me.CustomLabel12 = New WindowsApplication1.CustomLabel()
         Me.GroupBox1.SuspendLayout()
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridFormaPagos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,6 +170,7 @@ Partial Class Pagos
         Me.gridPagos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.Letra, Me.Punto, Me.Numero, Me.Importe, Me.Descripcion})
         Me.gridPagos.Location = New System.Drawing.Point(0, 272)
         Me.gridPagos.Name = "gridPagos"
+        Me.gridPagos.RowHeadersWidth = 10
         Me.gridPagos.Size = New System.Drawing.Size(396, 273)
         Me.gridPagos.TabIndex = 56
         '
@@ -184,14 +186,14 @@ Partial Class Pagos
         Me.Letra.HeaderText = "Letra"
         Me.Letra.Name = "Letra"
         Me.Letra.ReadOnly = True
-        Me.Letra.Width = 35
+        Me.Letra.Width = 40
         '
         'Punto
         '
         Me.Punto.HeaderText = "Punto"
         Me.Punto.Name = "Punto"
         Me.Punto.ReadOnly = True
-        Me.Punto.Width = 40
+        Me.Punto.Width = 45
         '
         'Numero
         '
@@ -212,7 +214,7 @@ Partial Class Pagos
         Me.Descripcion.HeaderText = "Descripción"
         Me.Descripcion.Name = "Descripcion"
         Me.Descripcion.ReadOnly = True
-        Me.Descripcion.Width = 98
+        Me.Descripcion.Width = 115
         '
         'gridFormaPagos
         '
@@ -220,6 +222,7 @@ Partial Class Pagos
         Me.gridFormaPagos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo2, Me.Numero2, Me.Fecha, Me.Banco, Me.Nombre, Me.Importe2})
         Me.gridFormaPagos.Location = New System.Drawing.Point(396, 272)
         Me.gridFormaPagos.Name = "gridFormaPagos"
+        Me.gridFormaPagos.RowHeadersWidth = 10
         Me.gridFormaPagos.Size = New System.Drawing.Size(398, 273)
         Me.gridFormaPagos.TabIndex = 57
         '
@@ -227,7 +230,7 @@ Partial Class Pagos
         '
         Me.Tipo2.HeaderText = "Tipo"
         Me.Tipo2.Name = "Tipo2"
-        Me.Tipo2.Width = 25
+        Me.Tipo2.Width = 35
         '
         'Numero2
         '
@@ -239,13 +242,13 @@ Partial Class Pagos
         '
         Me.Fecha.HeaderText = "Fecha"
         Me.Fecha.Name = "Fecha"
-        Me.Fecha.Width = 65
+        Me.Fecha.Width = 75
         '
         'Banco
         '
         Me.Banco.HeaderText = "Banco"
         Me.Banco.Name = "Banco"
-        Me.Banco.Width = 35
+        Me.Banco.Width = 45
         '
         'Nombre
         '
@@ -407,7 +410,7 @@ Partial Class Pagos
         '
         Me.txtIVA.Cleanable = True
         Me.txtIVA.Empty = False
-        Me.txtIVA.EnterIndex = -1
+        Me.txtIVA.EnterIndex = 11
         Me.txtIVA.LabelAssociationKey = 11
         Me.txtIVA.Location = New System.Drawing.Point(685, 178)
         Me.txtIVA.Name = "txtIVA"
@@ -419,7 +422,7 @@ Partial Class Pagos
         '
         Me.txtIngresosBrutos.Cleanable = True
         Me.txtIngresosBrutos.Empty = False
-        Me.txtIngresosBrutos.EnterIndex = -1
+        Me.txtIngresosBrutos.EnterIndex = 9
         Me.txtIngresosBrutos.LabelAssociationKey = 9
         Me.txtIngresosBrutos.Location = New System.Drawing.Point(685, 151)
         Me.txtIngresosBrutos.Name = "txtIngresosBrutos"
@@ -441,7 +444,7 @@ Partial Class Pagos
         '
         Me.txtIBCiudad.Cleanable = True
         Me.txtIBCiudad.Empty = False
-        Me.txtIBCiudad.EnterIndex = -1
+        Me.txtIBCiudad.EnterIndex = 10
         Me.txtIBCiudad.LabelAssociationKey = 10
         Me.txtIBCiudad.Location = New System.Drawing.Point(516, 178)
         Me.txtIBCiudad.Name = "txtIBCiudad"
@@ -463,7 +466,7 @@ Partial Class Pagos
         '
         Me.txtGanancias.Cleanable = True
         Me.txtGanancias.Empty = False
-        Me.txtGanancias.EnterIndex = -1
+        Me.txtGanancias.EnterIndex = 8
         Me.txtGanancias.LabelAssociationKey = 8
         Me.txtGanancias.Location = New System.Drawing.Point(516, 151)
         Me.txtGanancias.Name = "txtGanancias"
@@ -493,13 +496,13 @@ Partial Class Pagos
         '
         'cmbTipo
         '
-        Me.cmbTipo.Cleanable = False
+        Me.cmbTipo.Cleanable = True
         Me.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTipo.Empty = False
         Me.cmbTipo.EnterIndex = -1
         Me.cmbTipo.FormattingEnabled = True
         Me.cmbTipo.Items.AddRange(New Object() {"Normal"})
-        Me.cmbTipo.LabelAssociationKey = -1
+        Me.cmbTipo.LabelAssociationKey = 13
         Me.cmbTipo.Location = New System.Drawing.Point(268, 177)
         Me.cmbTipo.Name = "cmbTipo"
         Me.cmbTipo.Size = New System.Drawing.Size(160, 21)
@@ -510,7 +513,7 @@ Partial Class Pagos
         '
         Me.txtParidad.Cleanable = True
         Me.txtParidad.Empty = True
-        Me.txtParidad.EnterIndex = -1
+        Me.txtParidad.EnterIndex = 7
         Me.txtParidad.LabelAssociationKey = 7
         Me.txtParidad.Location = New System.Drawing.Point(347, 151)
         Me.txtParidad.Name = "txtParidad"
@@ -522,7 +525,7 @@ Partial Class Pagos
         '
         Me.txtFechaParidad.Cleanable = True
         Me.txtFechaParidad.Empty = True
-        Me.txtFechaParidad.EnterIndex = -1
+        Me.txtFechaParidad.EnterIndex = 6
         Me.txtFechaParidad.LabelAssociationKey = 6
         Me.txtFechaParidad.Location = New System.Drawing.Point(347, 126)
         Me.txtFechaParidad.MaxLength = 10
@@ -568,7 +571,7 @@ Partial Class Pagos
         '
         Me.txtBanco.Cleanable = True
         Me.txtBanco.Empty = True
-        Me.txtBanco.EnterIndex = -1
+        Me.txtBanco.EnterIndex = 5
         Me.txtBanco.LabelAssociationKey = 5
         Me.txtBanco.Location = New System.Drawing.Point(105, 98)
         Me.txtBanco.MaxLength = 8
@@ -705,6 +708,16 @@ Partial Class Pagos
         Me.lstSeleccion.TabIndex = 66
         Me.lstSeleccion.Visible = False
         '
+        'CustomLabel12
+        '
+        Me.CustomLabel12.AutoSize = True
+        Me.CustomLabel12.ControlAssociationKey = 13
+        Me.CustomLabel12.Location = New System.Drawing.Point(274, 181)
+        Me.CustomLabel12.Name = "CustomLabel12"
+        Me.CustomLabel12.Size = New System.Drawing.Size(28, 13)
+        Me.CustomLabel12.TabIndex = 67
+        Me.CustomLabel12.Text = "Tipo"
+        '
         'Pagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -751,6 +764,7 @@ Partial Class Pagos
         Me.Controls.Add(Me.CustomLabel3)
         Me.Controls.Add(Me.CustomLabel2)
         Me.Controls.Add(Me.CustomLabel1)
+        Me.Controls.Add(Me.CustomLabel12)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.Name = "Pagos"
@@ -801,18 +815,6 @@ Partial Class Pagos
     Friend WithEvents txtConsulta As WindowsApplication1.CustomTextBox
     Friend WithEvents gridPagos As System.Windows.Forms.DataGridView
     Friend WithEvents gridFormaPagos As System.Windows.Forms.DataGridView
-    Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Letra As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Punto As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Numero As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Tipo2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Numero2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Banco As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Importe2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btnCerrar As WindowsApplication1.CustomButton
     Friend WithEvents btnLimpiar As WindowsApplication1.CustomButton
     Friend WithEvents btnEliminar As WindowsApplication1.CustomButton
@@ -822,4 +824,17 @@ Partial Class Pagos
     Friend WithEvents btnImprimir As WindowsApplication1.CustomButton
     Friend WithEvents btnCarpetas As WindowsApplication1.CustomButton
     Friend WithEvents lstSeleccion As WindowsApplication1.CustomListBox
+    Friend WithEvents Tipo2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Numero2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Banco As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Importe2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Letra As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Punto As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Numero As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CustomLabel12 As WindowsApplication1.CustomLabel
 End Class

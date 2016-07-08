@@ -24,7 +24,6 @@
 
     Public Overrides Function ToString() As String
         Return asDoubleString(valorImporte).PadLeft(10, "_") & " - " & fechaCheque & " - " & identificacion & " - " & banco
-        'Return fechaCheque.PadRight(10) & " - " & identificacion.PadRight(8) & " - " & banco.PadRight(15) & " - " & asDoubleString(valorImporte).PadLeft(10)
     End Function
 
     Private Function asDoubleString(ByVal value) As String

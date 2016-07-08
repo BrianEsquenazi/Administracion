@@ -24,6 +24,16 @@ Public Class DAOCtaCteProveedor
         Return cuentas
     End Function
 
+    Public Shared Function cuentasSinSaldar(ByVal proveedor As Proveedor) As List(Of DetalleCompraCuentaCorriente)
+        Dim cuentas As New List(Of DetalleCompraCuentaCorriente)
+        For Each row In SQLConnector.retrieveDataTable("get_cuentas_sin_saldar", proveedor.id).Rows
+            cuentas.Add(New DetalleCompraCuentaCorriente(row("Impre").ToString, row("Punto").ToString, row("Numero").ToString,
+                                                         row("Letra").ToString, row("fecha").ToString, row("Saldo"),
+                                                         row("Total"), row("NroInterno").ToString, proveedor))
+        Next
+        Return cuentas
+    End Function
+
 
     Public Shared Function buscardeuda(ByVal proveedor As String)
         Dim ctacteprv As New List(Of CtaCteProveedoresDeuda)

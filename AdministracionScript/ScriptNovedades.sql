@@ -65,6 +65,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_fa
 DROP PROCEDURE [dbo].[PR_factura_pagada]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_cuentas_sin_saldar]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_cuentas_sin_saldar]
+GO
+
 /*
 		GENERACION NOVEDADES
 */
@@ -568,4 +572,13 @@ AS
 	ELSE
 	RETURN 0
 GO
-	
+
+CREATE PROCEDURE PR_get_cuentas_sin_saldar
+	(@Proveedor varchar(11))
+AS
+	SELECT *
+	FROM CtaCtePrv cta
+	WHERE
+	cta.Proveedor = @Proveedor AND
+	cta.Saldo <> 0
+GO

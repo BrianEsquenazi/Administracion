@@ -73,6 +73,7 @@
     <Compile Include="CtaCteProveedor.vb" />
     <Compile Include="CuentaContable.vb" />
     <Compile Include="Deposito.vb" />
+    <Compile Include="DetalleCompraCuentaCorriente.vb" />
     <Compile Include="Efectivo.vb" />
     <Compile Include="Global\Globals.vb" />
     <Compile Include="Imputac.vb" />
