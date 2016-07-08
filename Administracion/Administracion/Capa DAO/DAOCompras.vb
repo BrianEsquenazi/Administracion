@@ -2,6 +2,15 @@
 
 Public Class DAOCompras
 
+    Public Shared Sub agregarDatosCuentaCorriente(ByVal compra As Compra)
+        'If compra.usaCuotas() Then
+
+        'End If
+        'SQLConnector.executeProcedure("alta_cuenta_corriente", compra.tipoPago, compra.letra, ceros(compra.tipoDocumento, 2), compra.punto,
+        '                              compra.numero, compra.fechaEmision, compra.fechaVto1, compra.fechaVto2, compra.total,
+        '                              compra.tipoDocumentoDescripcion, compra.nroInterno, compra.paridad, compra.formaPago)
+    End Sub
+
     Private Shared Function crearCompra(ByVal row As DataRow)
         Dim compra As Compra
         compra = New Compra(asInt(row("NroInterno")), DAOProveedor.buscarProveedorPorCodigo(row("Proveedor").ToString), asInt(row("Tipo")), "", asInt(row("Pago")), asInt(row("Contado")), row("Letra").ToString,

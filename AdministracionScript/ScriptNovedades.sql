@@ -463,37 +463,32 @@ END
 GO
 
 CREATE PROCEDURE PR_alta_cuenta_corriente
-	(@Contado varchar(2),
-	@Clave varchar(26),                     
+	(@Contado varchar(1),                   
 	@Proveedor varchar(11),   
 	@Letra varchar(1), 
 	@Tipo varchar(2),
 	@Punto varchar(4),
 	@Numero varchar(8),  
 	@fecha   varchar(10),   
-	@Estado varchar(1),
 	@Vencimiento varchar(10), 
 	@Vencimiento1 varchar(50),                                       
-	@Total   float    ,                                          
-	@Saldo   float    ,                                          
-	@Impre varchar(2),
-	@Empresa smallint, 
-	@SaldoList float,                                             
+	@Total   float    ,                                                                                   
+	@Impre varchar(2),                                          
 	@NroInterno int,  
-	@Lista  varchar(1),
-	@Acumulado float   ,
 	@Paridad   float   ,
-	@Pago  int,
-	@Observaciones varchar(50),
-	@Tarjeta char(1),
-	@Cai varchar(14),
-	@VtoCai varchar(10))
+	@Pago  int)
 AS
 BEGIN
 
 	DECLARE @OrdFecha varchar(8) = (SELECT dbo.FN_verificar_fecha_ordenable (@fecha))
 	DECLARE @OrdVencimiento varchar(8) = (SELECT dbo.FN_verificar_fecha_ordenable (@Vencimiento))
-
+	DECLARE @Saldo float
+	DECLARE @Clave varchar(26) = @Proveedor + @Letra + @Tipo + @Punto + @Numero
+	IF (@Contado = 3)
+		SET @Saldo = 0 -- SI ES PYME EL SALDO ES 0
+	ELSE
+		SET @Saldo = @Total -- SI ES CTA CTE EL SALDO ES EL TOTAL
+	
 	BEGIN TRAN
 	-- LO SIGUIENTE SOLO OCURRE DE SER CTA CTE / PYME NACION
 		IF (@Contado = 2 OR @Contado = 3)
@@ -508,9 +503,9 @@ BEGIN
 				VALUES
 					(
 						@Clave , @Proveedor , @Letra , @Tipo, @Punto, @Numero, @fecha,   
-						@Estado, @Vencimiento, @Vencimiento1, @Total, @Saldo, @OrdFecha,
-						@OrdVencimiento, @Impre, @Empresa, @SaldoList, @NroInterno,  
-						@Lista, @Acumulado , @Paridad , @Pago, @Observaciones, @Tarjeta
+						1, @Vencimiento, @Vencimiento1, @Total, @Saldo, @OrdFecha,
+						@OrdVencimiento, @Impre, 1, 0, @NroInterno,  
+						"", 0 , @Paridad , @Pago, "", @Contado
 					)
 			ELSE
 				UPDATE CtaCteprv
@@ -521,7 +516,7 @@ BEGIN
 					Punto = @Punto ,
 					Numero = @Numero ,
 					fecha   = @fecha  ,
-					Estado = @Estado ,
+					Estado = 1,
 					Vencimiento = @Vencimiento ,
 					Vencimiento1 =   @Vencimiento1 ,
 					Total   = @Total  ,
@@ -529,23 +524,17 @@ BEGIN
 					OrdFecha  = @OrdFecha  ,
 					OrdVencimiento = @OrdVencimiento ,
 					Impre = 	@Impre ,
-					Empresa = @Empresa , 
-					SaldoList = @SaldoList ,
+					Empresa = 1, 
+					SaldoList = 0,
 					NroInterno = @NroInterno ,
-					Lista  = 	@Lista ,
-					Acumulado = @Acumulado   ,
+					Lista  = 	"",
+					Acumulado = 0,
 					Paridad = @Paridad  ,
 					Pago = @Pago , 
-					Observaciones = @Observaciones , 
-					Tarjeta = @Tarjeta		
+					Observaciones = "" , 
+					Tarjeta = @Contado		
 				WHERE
 					Clave = @Clave
-		
-		-- ESTO VA PARA TODOS, SEA DEL TIPO EFECTIVO / CTA CTE / PYME NACION
-		UPDATE Proveedor 
-		SET Cai = @Cai,
-			VtoCai = @VtoCai
-		Where Proveedor = @Proveedor
 
 	COMMIT
 

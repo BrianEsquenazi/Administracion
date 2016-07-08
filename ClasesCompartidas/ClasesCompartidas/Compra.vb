@@ -6,6 +6,7 @@
     Public paridad, neto, iva21, ivaRG, iva27, percibidoIB, exento, iva105, total As Double
     Public soloIVA As Integer
     Public imputaciones As List(Of Imputac)
+    Public pagoPyme As Tuple(Of String, String, String)
 
     Public Sub New(ByVal interno As Integer, ByVal prov As Proveedor, ByVal tipoDoc As Integer, ByVal tipoDocDesc As String,
                    ByVal forma As Integer, ByVal tipo As Integer, ByVal letraDoc As String, ByVal punto2 As String, ByVal num As String,
@@ -44,6 +45,14 @@
         imputaciones = listaImputaciones
     End Sub
 
+    Public Sub agregarPagoPyme(ByVal formaPagoPyme As Tuple(Of String, String, String))
+        pagoPyme = formaPagoPyme
+    End Sub
+
+    Public Sub quitarPagoPyme()
+        pagoPyme = Nothing
+    End Sub
+
     Public Sub valoresAbsolutos()
         neto = Math.Abs(neto)
         iva21 = Math.Abs(iva21)
@@ -54,6 +63,10 @@
         iva105 = Math.Abs(iva105)
         total = Math.Abs(total)
     End Sub
+
+    Public Function usaCuotas()
+        Return Not IsNothing(pagoPyme)
+    End Function
 
     Public Function codigoProveedor() As String
         If IsNothing(proveedor) Then

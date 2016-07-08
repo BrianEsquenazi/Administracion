@@ -156,6 +156,12 @@
     <Compile Include="ComprasNovedades\AperturaCompras.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ComprasNovedades\CuotasPyMENacion.Designer.vb">
+      <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ComprasNovedades\CuotasPyMENacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Procesos\CierreMes.Designer.vb">
       <DependentUpon>CierreMes.vb</DependentUpon>
     </Compile>
@@ -347,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprasNovedades\AperturaCompras.resx">
       <DependentUpon>AperturaCompras.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprasNovedades\CuotasPyMENacion.resx">
+      <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Procesos\CierreMes.resx">
       <DependentUpon>CierreMes.vb</DependentUpon>

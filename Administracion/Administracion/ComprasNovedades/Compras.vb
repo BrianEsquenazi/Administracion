@@ -4,6 +4,7 @@ Public Class Compras
 
     Dim diasPlazo As Integer = 0
     Dim letrasValidas As New List(Of String) From {"A", "B", "C", "X", "M", "I"}
+    Dim pagoPyme As Tuple(Of String, String, String) = Tuple.Create("", "", "")
     Dim proveedor As Proveedor
     Dim apertura As New Apertura
 
@@ -137,6 +138,7 @@ Public Class Compras
         validador.alsoValidate(asientosCorrectos(), "El asiento se encuentra en un estado inválido, puede que falte asignar alguna cuenta")
         validador.alsoValidate(valoresDebeYHaberCorrectos(), "Una entrada del asiento tiene valores inválidos de Débito y/o Crédito")
         validador.alsoValidate(asDouble(lblDebito.Text) = asDouble(txtTotal.Text), "El total del asiento contable tiene que ser igual al importe total")
+        validador.alsoValidate(esValidoNacion, "No se cargaron las cuotas de PyME nación correctamente")
 
         Return validador.flush
     End Function
@@ -168,6 +170,12 @@ Public Class Compras
             End If
             txtNroInterno.Text = compra.nroInterno
             DAOCompras.agregarCompra(compra)
+            If usaCuentas() Then
+                If cuotasCargadas() Then
+                    compra.agregarPagoPyme(pagoPyme)
+                End If
+                DAOCompras.agregarDatosCuentaCorriente(compra)
+            End If
             MsgBox("El número de interno asignado es: " & compra.nroInterno)
         End If
     End Sub
@@ -422,6 +430,38 @@ Public Class Compras
             txtPercIB.Text = apertura.valorIB
             txtImporte_Leave(sender, Nothing)
             txtDespacho_Leave(sender, Nothing)
+        End If
+    End Sub
+
+    Private Function usaCuentas()
+        Return optNacion.Checked Or optCtaCte.Checked
+    End Function
+
+    Private Function esValidoNacion()
+        Return (optNacion.Checked And cuotasCargadas()) Or Not optNacion.Checked
+    End Function
+
+    Private Function cuotasCargadas()
+        Return pagoPyme.Item1 <> "" And pagoPyme.Item2 <> "" And pagoPyme.Item3 <> ""
+    End Function
+
+    Private Sub optNacion_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optNacion.CheckedChanged
+        If Not optNacion.Checked Then
+            pagoPyme = Tuple.Create("", "", "")
+        End If
+    End Sub
+
+    Private Sub optNacion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles optNacion.Click
+        If optNacion.Checked Then
+            Dim pymeForm As New CuotasPyMENacion
+
+            pymeForm.txtCantidadCuotas.Text = pagoPyme.Item1
+            pymeForm.txtMes.Text = pagoPyme.Item2
+            pymeForm.txtAnio.Text = pagoPyme.Item3
+
+            If pymeForm.ShowDialog(Me) = DialogResult.OK Then
+                pagoPyme = Tuple.Create(pymeForm.txtCantidadCuotas.Text, pymeForm.txtMes.Text, pymeForm.txtAnio.Text)
+            End If
         End If
     End Sub
 End Class

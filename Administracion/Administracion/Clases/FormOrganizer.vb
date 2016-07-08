@@ -229,7 +229,7 @@ Public Class FormOrganizer
         createControlsFile()
     End Sub
 
-    Public Sub organizeForNoCRUDForm()
+    Public Sub organizeForNotCRUDForm()
         isCRUDForm = False
         organize()
     End Sub
