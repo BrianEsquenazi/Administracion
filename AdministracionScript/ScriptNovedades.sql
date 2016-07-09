@@ -248,7 +248,7 @@ WHERE
 END
 GO
 
-CREATE PROCEDURE PR_get_carga_intereses
+CREATE PROCEDURE PR_get_carga_intereses (@tipo char(1))
 AS
 	SELECT ISNULL(ccp.FechaOriginal,'') FechaOriginal 
 		, ISNULL(ccp.DesProveOriginal,'') DesProveOriginal
@@ -263,8 +263,14 @@ AS
 		, ISNULL(ccp.NroInterno,'') NroInterno
 	FROM CtaCtePrv ccp
 	WHERE ccp.Proveedor = '10077777777'
-		and ISNULL(ccp.Saldo,0) <> 0
-		and ISNULL(ccp.Interes,0) = 0
+		AND ((@tipo = 'C' 
+			and ISNULL(ccp.Saldo,0) <> 0
+			and ISNULL(ccp.Interes,0) = 0)
+			OR
+			(@tipo = 'M' 
+			and ISNULL(ccp.Saldo,0) <> 0
+			and ISNULL(ccp.Interes,0) <> 0))
+
 	ORDER BY ccp.OrdFechaOriginal
 GO
 

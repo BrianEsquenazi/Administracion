@@ -129,4 +129,8 @@
     Private Sub CargaDeInteresesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CargaDeInteresesToolStripMenuItem.Click
         abrir(New CargaIntereses)
     End Sub
+
+    Private Sub ModificaciuonDeNterfesesYaCargadosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ModificaciuonDeNterfesesYaCargadosToolStripMenuItem.Click
+        abrir(New ModificaIntereses)
+    End Sub
 End Class

@@ -1,6 +1,6 @@
 ﻿Imports ClasesCompartidas
 
-Public Class CargaIntereses
+Public Class ModificaIntereses
 
     Dim dataGridBuilder As GridBuilder
 
@@ -9,7 +9,7 @@ Public Class CargaIntereses
     End Sub
 
     Private Sub CargarIntereses()
-        DAOCtaCteProveedor.buscarCuentas().ForEach(Sub(cuenta) gridCtaCte.Rows.Add(cuenta.fechaOriginal, cuenta.desProveedorOriginal, cuenta.factura, cuenta.cuota, cuenta.fecha, cuenta.saldo, cuenta.intereses, cuenta.ivaIntereses, cuenta.referencia, cuenta.clave, cuenta.nroInterno))
+        DAOCtaCteProveedor.buscarCuentasAModificarIntereses().ForEach(Sub(cuenta) gridCtaCte.Rows.Add(cuenta.fechaOriginal, cuenta.desProveedorOriginal, cuenta.factura, cuenta.cuota, cuenta.fecha, cuenta.saldo, cuenta.intereses, cuenta.ivaIntereses, cuenta.referencia, cuenta.clave, cuenta.nroInterno, cuenta.intereses, cuenta.ivaIntereses, cuenta.referencia))
 
         gridCtaCte.AllowUserToAddRows = False
     End Sub
@@ -20,7 +20,7 @@ Public Class CargaIntereses
 
     Private Sub btnGraba_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGraba.Click
         For Each fila As DataGridViewRow In gridCtaCte.Rows
-            DAOCtaCteProveedor.modificarCuentaSi(fila, "C")
+            DAOCtaCteProveedor.modificarCuentaSi(fila, "M")
         Next
 
         limpiar()

@@ -162,6 +162,12 @@
     <Compile Include="ComprasNovedades\CuotasPyMENacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ModificaIntereses.Designer.vb">
+      <DependentUpon>ModificaIntereses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ModificaIntereses.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Procesos\CierreMes.Designer.vb">
       <DependentUpon>CierreMes.vb</DependentUpon>
     </Compile>
@@ -356,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprasNovedades\CuotasPyMENacion.resx">
       <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificaIntereses.resx">
+      <DependentUpon>ModificaIntereses.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Procesos\CierreMes.resx">
       <DependentUpon>CierreMes.vb</DependentUpon>
