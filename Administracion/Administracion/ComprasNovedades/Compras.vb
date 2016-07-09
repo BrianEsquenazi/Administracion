@@ -56,10 +56,11 @@ Public Class Compras
         apertura = New Apertura
     End Sub
 
-    Public Sub mostrarProveedor(ByVal proveedor As Proveedor)
-        If Not proveedor.estaDefinidoCompleto Then
-            proveedor = DAOProveedor.buscarProveedorPorCodigo(proveedor.id)
+    Public Sub mostrarProveedor(ByVal proveedorAMostrar As Proveedor)
+        If Not proveedorAMostrar.estaDefinidoCompleto Then
+            proveedorAMostrar = DAOProveedor.buscarProveedorPorCodigo(proveedorAMostrar.id)
         End If
+        proveedor = proveedorAMostrar
         txtCodigoProveedor.Text = proveedor.id
         txtNombreProveedor.Text = proveedor.razonSocial
         txtCAI.Text = proveedor.cai
@@ -276,6 +277,10 @@ Public Class Compras
         Else
             If IsNothing(proveedor.cuenta) Then : proveedor.cuenta = DAOProveedor.cuentaDefault : End If
             cuenta = proveedor.cuenta
+        End If
+
+        If txtLetra.Text = "I" Then
+            cuenta = DAOCuentaContable.proveedoresInternacionales
         End If
 
         crearAsientoContableUsando(cuenta)

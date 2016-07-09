@@ -501,7 +501,7 @@ Partial Class Pagos
         Me.cmbTipo.Empty = False
         Me.cmbTipo.EnterIndex = -1
         Me.cmbTipo.FormattingEnabled = True
-        Me.cmbTipo.Items.AddRange(New Object() {"Normal"})
+        Me.cmbTipo.Items.AddRange(New Object() {"Normal", "Cheque Rechazado"})
         Me.cmbTipo.LabelAssociationKey = 13
         Me.cmbTipo.Location = New System.Drawing.Point(268, 177)
         Me.cmbTipo.Name = "cmbTipo"

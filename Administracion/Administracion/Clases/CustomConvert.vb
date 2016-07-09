@@ -63,7 +63,7 @@
         Return originalString
     End Function
 
-    Public Shared Function asTextDate(ByVal value)
+    Public Shared Function asTextDate(ByVal value) As String
         Try
             Dim myDate As Date = Convert.ToDateTime(value)
             Return myDate.ToShortDateString
@@ -71,5 +71,4 @@
             Return "  /  /    "
         End Try
     End Function
-
 End Class

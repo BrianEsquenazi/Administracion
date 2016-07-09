@@ -3,13 +3,45 @@
 Public Class DAOCompras
 
     Public Shared Sub agregarDatosCuentaCorriente(ByVal compra As Compra)
-        'If compra.usaCuotas() Then
-
-        'End If
-        'SQLConnector.executeProcedure("alta_cuenta_corriente", compra.tipoPago, compra.letra, ceros(compra.tipoDocumento, 2), compra.punto,
-        '                              compra.numero, compra.fechaEmision, compra.fechaVto1, compra.fechaVto2, compra.total,
-        '                              compra.tipoDocumentoDescripcion, compra.nroInterno, compra.paridad, compra.formaPago)
+        Dim datosCuotas As New List(Of Tuple(Of String, String, String, Double, Double)) '1: Numero 2: Fecha vto 3: Fecha vto 2 4: Total 5: Saldo
+        datosCuotas.Add(Tuple.Create(compra.numero, compra.fechaVto1, compra.fechaVto2, compra.total, compra.total))
+        If compra.usaCuotas() Then
+            datosCuotas(0) = Tuple.Create(datosCuotas(0).Item1, datosCuotas(0).Item2, datosCuotas(0).Item3, datosCuotas(0).Item4, 0.0)
+            crarCuotasPara(compra, datosCuotas)
+        End If
+        For Each datoCuotas In datosCuotas
+            SQLConnector.executeProcedure("alta_cuenta_corriente", compra.tipoPago, compra.codigoProveedor, compra.letra, ceros(compra.tipoDocumento, 2), compra.punto,
+                                      datoCuotas.Item1, compra.fechaEmision, datoCuotas.Item2, datoCuotas.Item3, datoCuotas.Item4, datoCuotas.Item5,
+                                      compra.tipoDocumentoDescripcion, compra.nroInterno, compra.paridad, compra.formaPago)
+        Next
     End Sub
+
+    Private Shared Sub crarCuotasPara(ByVal compra As Compra, ByRef datosCuotas As List(Of Tuple(Of String, String, String, Double, Double)))
+        Dim cantidadCuotas, mes, anio As Integer
+        cantidadCuotas = CustomConvert.toIntOrZero(compra.pagoPyme.Item1)
+        mes = CustomConvert.toIntOrZero(compra.pagoPyme.Item2)
+        anio = CustomConvert.toIntOrZero(compra.pagoPyme.Item3)
+
+        For x As Integer = 1 To cantidadCuotas
+            datosCuotas.Add(Tuple.Create(truncarUltimosDosCon(compra.numero, x), fechaSegun(mes + x, anio),
+                                         fechaSegun(mes + x, anio), compra.total / cantidadCuotas,
+                                         compra.total / cantidadCuotas))
+        Next
+    End Sub
+
+    Private Shared Function fechaSegun(ByVal mes As Integer, ByVal anio As Integer) As String
+        If mes > 12 Then
+            mes = mes - 12
+            anio = anio + 1
+            fechaSegun(mes, anio)
+        End If
+        Dim fecha As String = "01" & "/" & ceros(mes, 2) & "/" & anio
+        Return CustomConvert.asTextDate(fecha).ToString
+    End Function
+
+    Private Shared Function truncarUltimosDosCon(ByVal text As String, ByVal valor As String) As String
+        Return text.Remove(6, 2).Insert(6, ceros(valor, 2))
+    End Function
 
     Private Shared Function crearCompra(ByVal row As DataRow)
         Dim compra As Compra

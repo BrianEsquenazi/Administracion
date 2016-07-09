@@ -476,7 +476,8 @@ CREATE PROCEDURE PR_alta_cuenta_corriente
 	@fecha   varchar(10),   
 	@Vencimiento varchar(10), 
 	@Vencimiento1 varchar(50),                                       
-	@Total   float    ,                                                                                   
+	@Total   float    ,  
+	@Saldo float,                                                                                 
 	@Impre varchar(2),                                          
 	@NroInterno int,  
 	@Paridad   float   ,
@@ -486,12 +487,7 @@ BEGIN
 
 	DECLARE @OrdFecha varchar(8) = (SELECT dbo.FN_verificar_fecha_ordenable (@fecha))
 	DECLARE @OrdVencimiento varchar(8) = (SELECT dbo.FN_verificar_fecha_ordenable (@Vencimiento))
-	DECLARE @Saldo float
 	DECLARE @Clave varchar(26) = @Proveedor + @Letra + @Tipo + @Punto + @Numero
-	IF (@Contado = 3)
-		SET @Saldo = 0 -- SI ES PYME EL SALDO ES 0
-	ELSE
-		SET @Saldo = @Total -- SI ES CTA CTE EL SALDO ES EL TOTAL
 	
 	BEGIN TRAN
 	-- LO SIGUIENTE SOLO OCURRE DE SER CTA CTE / PYME NACION

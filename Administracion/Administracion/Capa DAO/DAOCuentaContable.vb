@@ -50,4 +50,8 @@ Public Class DAOCuentaContable
     Public Shared Function ingresosBrutos()
         Return buscarCuentaContablePorCodigo("164")
     End Function
+
+    Public Shared Function proveedoresInternacionales()
+        Return buscarCuentaContablePorCodigo("2010")
+    End Function
 End Class
