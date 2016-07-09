@@ -1,5 +1,23 @@
 ﻿Public Class CustomConvert
 
+    Public Shared Function toBoolOrFalse(ByVal value)
+        Select Case value.ToString().ToUpper
+            Case "TRUE", "1"
+                Return True
+            Case Else
+                Return False
+        End Select
+    End Function
+
+    Public Shared Function toBoolOrTrue(ByVal value)
+        Select Case value.ToString().ToUpper
+            Case "FALSE", "0"
+                Return False
+            Case Else
+                Return True
+        End Select
+    End Function
+
     Public Shared Function toDoubleOrZero(ByVal value)
         Return toDoubleOr(value, 0)
     End Function

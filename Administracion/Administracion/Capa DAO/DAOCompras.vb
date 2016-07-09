@@ -2,6 +2,74 @@
 
 Public Class DAOCompras
 
+    Public Shared Sub agregarDatosCuentaCorriente(ByVal compra As Compra)
+        'If compra.usaCuotas() Then
+
+        'End If
+        'SQLConnector.executeProcedure("alta_cuenta_corriente", compra.tipoPago, compra.letra, ceros(compra.tipoDocumento, 2), compra.punto,
+        '                              compra.numero, compra.fechaEmision, compra.fechaVto1, compra.fechaVto2, compra.total,
+        '                              compra.tipoDocumentoDescripcion, compra.nroInterno, compra.paridad, compra.formaPago)
+    End Sub
+
+    Private Shared Function crearCompra(ByVal row As DataRow)
+        Dim compra As Compra
+        compra = New Compra(asInt(row("NroInterno")), DAOProveedor.buscarProveedorPorCodigo(row("Proveedor").ToString), asInt(row("Tipo")), "", asInt(row("Pago")), asInt(row("Contado")), row("Letra").ToString,
+                                row("Punto").ToString, row("Numero").ToString, asDate(row("Fecha")), asDate(row("Periodo")), asDate(row("Vencimiento")), asDate(row("Vencimiento1")), asDouble(row("Paridad")),
+                                asDouble(row("Neto")), asDouble(row("Iva21")), asDouble(row("Iva5")), asDouble(row("Iva27")), asDouble(row("Ib")), asDouble(row("Exento")), asDouble(row("Iva105")),
+                                0, asBool(row("SoloIva")), row("Remito").ToString, row("Despacho").ToString)
+
+        compra.agregarImputaciones(buscarImputacionesPorInterno(compra.nroInterno))
+        compra.valoresAbsolutos()
+        Return compra
+    End Function
+
+    Private Shared Function asDate(ByVal value)
+        Return CustomConvert.asTextDate(value.ToString)
+    End Function
+
+    Private Shared Function asInt(ByVal value)
+        Return CustomConvert.toIntOrZero(value.ToString)
+    End Function
+
+    Private Shared Function asDouble(ByVal value)
+        Return CustomConvert.toDoubleOrZero(value.ToString)
+    End Function
+
+    Private Shared Function asBool(ByVal value)
+        Return CustomConvert.toBoolOrFalse(value)
+    End Function
+
+    Public Shared Function facturaPagada(ByVal nroInterno As Integer) As Boolean
+        Return SQLConnector.executeProcedureWithReturnValue("factura_pagada", nroInterno)
+    End Function
+
+    Public Shared Function buscarCompraPorCodigo(ByVal codigo As String)
+        Dim row As DataRow
+        Try
+            row = SQLConnector.retrieveDataTable("get_compra_por_codigo", CustomConvert.toIntOrZero(codigo)).Rows(0)
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return crearCompra(row)
+    End Function
+
+    Public Shared Function buscarImputacionesPorInterno(ByVal interno As Integer)
+        Dim imputaciones As New List(Of Imputac)
+        'Try
+
+        Dim table As DataTable = SQLConnector.retrieveDataTable("get_imputaciones_por_nro_interno", interno)
+        For Each row As DataRow In table.Rows
+            imputaciones.Add(New Imputac(asDate(row("Fecha")), asDouble(row("Debito")), asDouble(row("Credito")), row("Proveedor").ToString,
+                                         row("Cuenta").ToString, interno.ToString, row("PuntoComp").ToString, row("NroComp").ToString,
+                                         "", "", row("LetraComp").ToString))
+        Next
+        'Catch ex As Exception
+        '   imputaciones.Clear()
+        'End Try
+        Return imputaciones
+    End Function
+
+
     Public Shared Sub agregarCompra(ByVal compra As Compra)
         SQLConnector.executeProcedure("alta_iva_compra", compra.nroInterno, compra.codigoProveedor, compra.tipoDocumento, compra.letra, compra.punto, compra.numero, compra.fechaEmision,
                                       compra.fechaVto1, compra.fechaVto2, compra.fechaIVA, compra.neto, compra.iva21, compra.ivaRG, compra.iva27,

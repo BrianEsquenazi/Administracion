@@ -4,7 +4,9 @@ Public Class Compras
 
     Dim diasPlazo As Integer = 0
     Dim letrasValidas As New List(Of String) From {"A", "B", "C", "X", "M", "I"}
+    Dim pagoPyme As Tuple(Of String, String, String) = Tuple.Create("", "", "")
     Dim proveedor As Proveedor
+    Dim apertura As New Apertura
 
     Private Sub Compras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim gridBuilder As New GridBuilder(gridAsientos)
@@ -51,6 +53,7 @@ Public Class Compras
         gridAsientos.Rows.Clear()
         chkSoloIVA.Checked = False
         optEfectivo.Checked = True
+        apertura = New Apertura
     End Sub
 
     Public Sub mostrarProveedor(ByVal proveedor As Proveedor)
@@ -135,6 +138,7 @@ Public Class Compras
         validador.alsoValidate(asientosCorrectos(), "El asiento se encuentra en un estado inválido, puede que falte asignar alguna cuenta")
         validador.alsoValidate(valoresDebeYHaberCorrectos(), "Una entrada del asiento tiene valores inválidos de Débito y/o Crédito")
         validador.alsoValidate(asDouble(lblDebito.Text) = asDouble(txtTotal.Text), "El total del asiento contable tiene que ser igual al importe total")
+        validador.alsoValidate(esValidoNacion, "No se cargaron las cuotas de PyME nación correctamente")
 
         Return validador.flush
     End Function
@@ -160,8 +164,18 @@ Public Class Compras
         If validarCampos() Then
             actualizarProveedor()
             Dim compra As Compra = crearCompra()
+            If DAOCompras.facturaPagada(compra.nroInterno) Then
+                MsgBox("No se puede modificar una factura que ya fue pagada", MsgBoxStyle.Exclamation, "No se puede confirmar la operación")
+                Exit Sub
+            End If
             txtNroInterno.Text = compra.nroInterno
             DAOCompras.agregarCompra(compra)
+            If usaCuentas() Then
+                If cuotasCargadas() Then
+                    compra.agregarPagoPyme(pagoPyme)
+                End If
+                DAOCompras.agregarDatosCuentaCorriente(compra)
+            End If
             MsgBox("El número de interno asignado es: " & compra.nroInterno)
         End If
     End Sub
@@ -341,5 +355,113 @@ Public Class Compras
     Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
         Dim consulta As New ConsultaCompras(Me)
         consulta.ShowDialog()
+    End Sub
+
+    Private Sub pulsarOption(ByVal val As Integer)
+        Select Case val
+            Case 3
+                optNacion.Checked = True
+            Case 2
+                optCtaCte.Checked = True
+            Case Else
+                optEfectivo.Checked = True
+        End Select
+    End Sub
+
+    Private Sub mostrarCompra(ByVal compra As Compra)
+        txtNroInterno.Text = compra.nroInterno
+        mostrarProveedor(compra.proveedor)
+        txtTipo.Text = compra.tipoDocumento
+        txtLetra.Text = compra.letra
+        txtPunto.Text = compra.punto
+        txtNumero.Text = compra.numero
+        txtFechaEmision.Text = compra.fechaEmision
+        txtFechaIVA.Text = compra.fechaIVA
+        txtFechaVto1.Text = compra.fechaVto1
+        txtFechaVto2.Text = compra.fechaVto2
+        txtRemito.Text = compra.remito
+        cmbFormaPago.SelectedIndex = compra.formaPago
+        txtParidad.Text = compra.paridad
+        txtNeto.Text = compra.neto
+        txtIVA10.Text = compra.iva105
+        txtIVA21.Text = compra.iva21
+        txtIVA27.Text = compra.iva27
+        txtIVARG.Text = compra.ivaRG
+        txtPercIB.Text = compra.percibidoIB
+        txtNoGravado.Text = compra.exento
+        txtDespacho.Text = compra.despacho
+        chkSoloIVA.Checked = compra.soloIVA
+        pulsarOption(compra.tipoPago)
+        txtImporte_Leave(Nothing, Nothing)
+        txtTipo_Leave(Nothing, Nothing)
+        mostrarImputaciones(compra.imputaciones)
+        calcularAsiento()
+    End Sub
+
+    Private Sub mostrarImputaciones(ByVal imputaciones As List(Of Imputac))
+        For Each imputacion As Imputac In imputaciones
+            gridAsientos.Rows.Add(imputacion.cuenta, DAOCuentaContable.buscarCuentaContablePorCodigo(imputacion.cuenta).descripcion, imputacion.debito, imputacion.credito)
+        Next
+    End Sub
+
+    Private Sub txtNroInterno_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroInterno.Leave
+        Dim compra As Compra = DAOCompras.buscarCompraPorCodigo(txtNroInterno.Text)
+        If Not IsNothing(compra) Then
+            mostrarCompra(compra)
+        Else
+            'Creo que no hay que hacer nada
+        End If
+
+    End Sub
+
+    Private Sub btnConsultaNroFactura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsultaNroFactura.Click
+    End Sub
+
+    Private Sub btnApertura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApertura.Click
+        apertura.ShowDialog()
+
+        If Not apertura.IsDisposed Then
+            txtNeto.Text = apertura.valorNeto
+            txtIVA21.Text = apertura.valorIVA21
+            txtIVA27.Text = apertura.valorIVA27
+            txtIVARG.Text = apertura.valorIVARG
+            txtIVA10.Text = apertura.valorIVA105
+            txtNoGravado.Text = apertura.valorExento
+            txtPercIB.Text = apertura.valorIB
+            txtImporte_Leave(sender, Nothing)
+            txtDespacho_Leave(sender, Nothing)
+        End If
+    End Sub
+
+    Private Function usaCuentas()
+        Return optNacion.Checked Or optCtaCte.Checked
+    End Function
+
+    Private Function esValidoNacion()
+        Return (optNacion.Checked And cuotasCargadas()) Or Not optNacion.Checked
+    End Function
+
+    Private Function cuotasCargadas()
+        Return pagoPyme.Item1 <> "" And pagoPyme.Item2 <> "" And pagoPyme.Item3 <> ""
+    End Function
+
+    Private Sub optNacion_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optNacion.CheckedChanged
+        If Not optNacion.Checked Then
+            pagoPyme = Tuple.Create("", "", "")
+        End If
+    End Sub
+
+    Private Sub optNacion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles optNacion.Click
+        If optNacion.Checked Then
+            Dim pymeForm As New CuotasPyMENacion
+
+            pymeForm.txtCantidadCuotas.Text = pagoPyme.Item1
+            pymeForm.txtMes.Text = pagoPyme.Item2
+            pymeForm.txtAnio.Text = pagoPyme.Item3
+
+            If pymeForm.ShowDialog(Me) = DialogResult.OK Then
+                pagoPyme = Tuple.Create(pymeForm.txtCantidadCuotas.Text, pymeForm.txtMes.Text, pymeForm.txtAnio.Text)
+            End If
+        End If
     End Sub
 End Class

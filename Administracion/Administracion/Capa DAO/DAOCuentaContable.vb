@@ -24,7 +24,7 @@ Public Class DAOCuentaContable
         Return cuentas
     End Function
 
-    Public Shared Function buscarCuentaContablePorCodigo(ByVal codigo As String)
+    Public Shared Function buscarCuentaContablePorCodigo(ByVal codigo As String) As CuentaContable
         If Trim(codigo) = "" Then : Return Nothing : End If
         Dim tabla As DataTable
         tabla = SQLConnector.retrieveDataTable("buscar_cuenta_por_codigo", codigo)

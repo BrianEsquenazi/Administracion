@@ -46,12 +46,12 @@
         For Each textControl In form.Controls.OfType(Of CustomTextBox)()
             Dim labelAssociationKey As Integer = textControl.LabelAssociationKey
             Dim label As CustomLabel = form.Controls.OfType(Of CustomLabel).ToList.Find(Function(customLabel) customLabel.ControlAssociationKey = labelAssociationKey)
-            validate(textControl.Text, textControl.Validator, textControl.Empty, label.Text)
+            If Not IsNothing(label) Then : validate(textControl.Text, textControl.Validator, textControl.Empty, label.Text) : End If
         Next
         For Each comboControl In form.Controls.OfType(Of CustomComboBox)()
             Dim labelAssociationKey As Integer = comboControl.LabelAssociationKey
             Dim label As CustomLabel = form.Controls.OfType(Of CustomLabel).ToList.Find(Function(customLabel) customLabel.ControlAssociationKey = labelAssociationKey)
-            validate(comboControl.Text, comboControl.Validator, comboControl.Empty, label.Text)
+            If Not IsNothing(label) Then : validate(comboControl.Text, comboControl.Validator, comboControl.Empty, label.Text) : End If
         Next
     End Sub
 
