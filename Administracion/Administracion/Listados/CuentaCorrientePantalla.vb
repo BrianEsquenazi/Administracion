@@ -42,12 +42,55 @@ Public Class CuentaCorrientePantalla
         dataGridBuilder.addTextColumn(6, "Fecha")
         dataGridBuilder.addTextColumn(7, "Vencimiento")
 
+        GRilla.Columns(0).Width = 50
+        GRilla.Columns(1).Width = 50
+        GRilla.Columns(2).Width = 50
+        GRilla.Columns(3).Width = 100
+        GRilla.Columns(4).Width = 100
+        GRilla.Columns(5).Width = 100
+        GRilla.Columns(6).Width = 100
+        GRilla.Columns(7).Width = 100
+
+
     End Sub
 
     Private Sub Proceso()
-        'DAOCtaCteProveedor.buscardeuda(txtProveedor.Text).ForEach(Sub(ctacteprv) GRilla.Rows.Add(ctacteprv.Tipo, ctacteprv.letra, ctacteprv.punto, ctacteprv.numero, ctacteprv.total, ctacteprv.saldo, ctacteprv.fecha, ctacteprv.vencimiento))
+
+        Dim WRenglon As Integer
+
+        GRilla.Rows.Clear()
+        GRilla.Rows.Add()
+        WRenglon = 0
+
+        Dim tabla As DataTable
+        tabla = SQLConnector.retrieveDataTable("buscar_cuenta_corriente_proveedores_deuda", txtProveedor.Text)
+
+        For Each row As DataRow In tabla.Rows
+
+            Dim CamposCtaCtePrv As New CtaCteProveedoresDeuda(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString, row.Item(3).ToString, row.Item(4), row.Item(5), row.Item(6).ToString, row.Item(7).ToString)
+
+            WRenglon = WRenglon + 1
+
+            GRilla.Rows.Add()
+
+            GRilla.Item(0, WRenglon).Value = CamposCtaCtePrv.Tipo
+            GRilla.Item(1, WRenglon).Value = CamposCtaCtePrv.letra
+            GRilla.Item(2, WRenglon).Value = CamposCtaCtePrv.punto
+            GRilla.Item(3, WRenglon).Value = CamposCtaCtePrv.numero
+            GRilla.Item(4, WRenglon).Value = CamposCtaCtePrv.total
+            GRilla.Item(5, WRenglon).Value = CamposCtaCtePrv.saldo
+            GRilla.Item(6, WRenglon).Value = CamposCtaCtePrv.fecha
+            GRilla.Item(7, WRenglon).Value = CamposCtaCtePrv.vencimiento
+
+
+
+        Next
+
 
         GRilla.AllowUserToAddRows = False
+
+
+
     End Sub
 
     Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
@@ -88,4 +131,8 @@ Public Class CuentaCorrientePantalla
         MenuPrincipal.Show()
     End Sub
 
+    
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        GRilla.Rows.Clear()
+    End Sub
 End Class

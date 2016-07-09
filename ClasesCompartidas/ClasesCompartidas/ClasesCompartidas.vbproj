@@ -71,6 +71,7 @@
     <Compile Include="Cheque.vb" />
     <Compile Include="Compra.vb" />
     <Compile Include="CtaCteProveedor.vb" />
+    <Compile Include="CtaCteProveedoresDeuda.vb" />
     <Compile Include="CuentaContable.vb" />
     <Compile Include="Deposito.vb" />
     <Compile Include="Efectivo.vb" />
