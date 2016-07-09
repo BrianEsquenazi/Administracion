@@ -51,10 +51,6 @@
         abrir(New Depositos)
     End Sub
 
-    Private Sub CargarInteresesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CargarInteresesToolStripMenuItem.Click
-        abrir(New CargaIntereses)
-    End Sub
-
     Private Sub SifereToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SifereToolStripMenuItem.Click
         abrir(New ProcesoSifere)
     End Sub
@@ -128,5 +124,9 @@
 
     Private Sub ListadoDeValoresEnCarteraToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeValoresEnCarteraToolStripMenuItem.Click
         abrir(New ListadoValoresEnCartera)
+    End Sub
+
+    Private Sub CargaDeInteresesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CargaDeInteresesToolStripMenuItem.Click
+        abrir(New CargaIntereses)
     End Sub
 End Class

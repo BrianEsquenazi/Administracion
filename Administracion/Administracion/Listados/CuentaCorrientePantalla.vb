@@ -51,6 +51,8 @@ Public Class CuentaCorrientePantalla
         GRilla.Columns(6).Width = 100
         GRilla.Columns(7).Width = 100
 
+        opcPendiente.Checked = True
+        opcCompleto.Checked = False
 
     End Sub
 
@@ -62,8 +64,17 @@ Public Class CuentaCorrientePantalla
         GRilla.Rows.Add()
         WRenglon = 0
 
+        REM Reviso el cual esta checkeado asi le pongo los valores a Tipo
+        Dim WTipo As Char
+        WTipo = "T"
+
+        If (opcPendiente.Checked) Then
+            WTipo = "P"
+        End If
+
+        REM dada fix CAMBIAR Al uso de dao!!
         Dim tabla As DataTable
-        tabla = SQLConnector.retrieveDataTable("buscar_cuenta_corriente_proveedores_deuda", txtProveedor.Text)
+        tabla = SQLConnector.retrieveDataTable("buscar_cuenta_corriente_proveedores_deuda", txtProveedor.Text, WTipo)
 
         For Each row As DataRow In tabla.Rows
 
