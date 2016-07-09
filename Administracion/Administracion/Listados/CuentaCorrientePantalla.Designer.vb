@@ -24,19 +24,20 @@ Partial Class CuentaCorrientePantalla
     Private Sub InitializeComponent()
         Me.GRilla = New System.Windows.Forms.DataGridView()
         Me.Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.txtProveedor = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.txtRazon = New WindowsApplication1.CustomTextBox()
-        Me.txtSaldo = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.opcCompleto = New System.Windows.Forms.RadioButton()
         Me.opcPendiente = New System.Windows.Forms.RadioButton()
-        Me.btnConsulta = New WindowsApplication1.CustomButton()
         Me.boxPantallaProveedores = New System.Windows.Forms.GroupBox()
+        Me.btnCancela = New WindowsApplication1.CustomButton()
         Me.lstAyuda = New WindowsApplication1.CustomListBox()
         Me.txtAyuda = New WindowsApplication1.CustomTextBox()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
+        Me.btnConsulta = New WindowsApplication1.CustomButton()
+        Me.txtSaldo = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
+        Me.txtRazon = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.txtProveedor = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.GRilla, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.boxPantallaProveedores.SuspendLayout()
         Me.SuspendLayout()
@@ -55,72 +56,6 @@ Partial Class CuentaCorrientePantalla
         '
         Me.Column.HeaderText = "Hola"
         Me.Column.Name = "Column"
-        '
-        'CustomLabel3
-        '
-        Me.CustomLabel3.AutoSize = True
-        Me.CustomLabel3.ControlAssociationKey = -1
-        Me.CustomLabel3.Location = New System.Drawing.Point(20, 15)
-        Me.CustomLabel3.Name = "CustomLabel3"
-        Me.CustomLabel3.Size = New System.Drawing.Size(56, 13)
-        Me.CustomLabel3.TabIndex = 3
-        Me.CustomLabel3.Text = "Proveedor"
-        '
-        'txtProveedor
-        '
-        Me.txtProveedor.Cleanable = False
-        Me.txtProveedor.Empty = True
-        Me.txtProveedor.EnterIndex = -1
-        Me.txtProveedor.LabelAssociationKey = -1
-        Me.txtProveedor.Location = New System.Drawing.Point(93, 12)
-        Me.txtProveedor.Name = "txtProveedor"
-        Me.txtProveedor.Size = New System.Drawing.Size(108, 20)
-        Me.txtProveedor.TabIndex = 0
-        Me.txtProveedor.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'CustomLabel1
-        '
-        Me.CustomLabel1.AutoSize = True
-        Me.CustomLabel1.ControlAssociationKey = -1
-        Me.CustomLabel1.Location = New System.Drawing.Point(330, 39)
-        Me.CustomLabel1.Name = "CustomLabel1"
-        Me.CustomLabel1.Size = New System.Drawing.Size(0, 13)
-        Me.CustomLabel1.TabIndex = 5
-        '
-        'txtRazon
-        '
-        Me.txtRazon.BackColor = System.Drawing.Color.Silver
-        Me.txtRazon.Cleanable = False
-        Me.txtRazon.Empty = True
-        Me.txtRazon.EnterIndex = -1
-        Me.txtRazon.LabelAssociationKey = -1
-        Me.txtRazon.Location = New System.Drawing.Point(207, 12)
-        Me.txtRazon.Name = "txtRazon"
-        Me.txtRazon.Size = New System.Drawing.Size(320, 20)
-        Me.txtRazon.TabIndex = 6
-        Me.txtRazon.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'txtSaldo
-        '
-        Me.txtSaldo.Cleanable = False
-        Me.txtSaldo.Empty = True
-        Me.txtSaldo.EnterIndex = -1
-        Me.txtSaldo.LabelAssociationKey = -1
-        Me.txtSaldo.Location = New System.Drawing.Point(93, 36)
-        Me.txtSaldo.Name = "txtSaldo"
-        Me.txtSaldo.Size = New System.Drawing.Size(108, 20)
-        Me.txtSaldo.TabIndex = 7
-        Me.txtSaldo.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'CustomLabel2
-        '
-        Me.CustomLabel2.AutoSize = True
-        Me.CustomLabel2.ControlAssociationKey = -1
-        Me.CustomLabel2.Location = New System.Drawing.Point(23, 39)
-        Me.CustomLabel2.Name = "CustomLabel2"
-        Me.CustomLabel2.Size = New System.Drawing.Size(34, 13)
-        Me.CustomLabel2.TabIndex = 8
-        Me.CustomLabel2.Text = "Saldo"
         '
         'opcCompleto
         '
@@ -144,18 +79,6 @@ Partial Class CuentaCorrientePantalla
         Me.opcPendiente.Text = "Pendiente"
         Me.opcPendiente.UseVisualStyleBackColor = True
         '
-        'btnConsulta
-        '
-        Me.btnConsulta.Cleanable = False
-        Me.btnConsulta.EnterIndex = -1
-        Me.btnConsulta.LabelAssociationKey = -1
-        Me.btnConsulta.Location = New System.Drawing.Point(533, 12)
-        Me.btnConsulta.Name = "btnConsulta"
-        Me.btnConsulta.Size = New System.Drawing.Size(102, 40)
-        Me.btnConsulta.TabIndex = 26
-        Me.btnConsulta.Text = "Consulta"
-        Me.btnConsulta.UseVisualStyleBackColor = True
-        '
         'boxPantallaProveedores
         '
         Me.boxPantallaProveedores.Controls.Add(Me.lstAyuda)
@@ -166,6 +89,18 @@ Partial Class CuentaCorrientePantalla
         Me.boxPantallaProveedores.TabIndex = 27
         Me.boxPantallaProveedores.TabStop = False
         Me.boxPantallaProveedores.Visible = False
+        '
+        'btnCancela
+        '
+        Me.btnCancela.Cleanable = False
+        Me.btnCancela.EnterIndex = -1
+        Me.btnCancela.LabelAssociationKey = -1
+        Me.btnCancela.Location = New System.Drawing.Point(666, 12)
+        Me.btnCancela.Name = "btnCancela"
+        Me.btnCancela.Size = New System.Drawing.Size(99, 40)
+        Me.btnCancela.TabIndex = 28
+        Me.btnCancela.Text = "Cancela"
+        Me.btnCancela.UseVisualStyleBackColor = True
         '
         'lstAyuda
         '
@@ -190,23 +125,99 @@ Partial Class CuentaCorrientePantalla
         Me.txtAyuda.TabIndex = 28
         Me.txtAyuda.Validator = WindowsApplication1.ValidatorType.None
         '
-        'btnCancela
+        'btnConsulta
         '
-        Me.btnCancela.Cleanable = False
-        Me.btnCancela.EnterIndex = -1
-        Me.btnCancela.LabelAssociationKey = -1
-        Me.btnCancela.Location = New System.Drawing.Point(666, 12)
-        Me.btnCancela.Name = "btnCancela"
-        Me.btnCancela.Size = New System.Drawing.Size(99, 40)
-        Me.btnCancela.TabIndex = 28
-        Me.btnCancela.Text = "Cancela"
-        Me.btnCancela.UseVisualStyleBackColor = True
+        Me.btnConsulta.Cleanable = False
+        Me.btnConsulta.EnterIndex = -1
+        Me.btnConsulta.LabelAssociationKey = -1
+        Me.btnConsulta.Location = New System.Drawing.Point(533, 12)
+        Me.btnConsulta.Name = "btnConsulta"
+        Me.btnConsulta.Size = New System.Drawing.Size(102, 40)
+        Me.btnConsulta.TabIndex = 26
+        Me.btnConsulta.Text = "Consulta"
+        Me.btnConsulta.UseVisualStyleBackColor = True
+        '
+        'txtSaldo
+        '
+        Me.txtSaldo.Cleanable = False
+        Me.txtSaldo.Empty = True
+        Me.txtSaldo.EnterIndex = -1
+        Me.txtSaldo.LabelAssociationKey = -1
+        Me.txtSaldo.Location = New System.Drawing.Point(93, 36)
+        Me.txtSaldo.Name = "txtSaldo"
+        Me.txtSaldo.Size = New System.Drawing.Size(108, 20)
+        Me.txtSaldo.TabIndex = 7
+        Me.txtSaldo.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'CustomLabel2
+        '
+        Me.CustomLabel2.AutoSize = True
+        Me.CustomLabel2.ControlAssociationKey = -1
+        Me.CustomLabel2.Location = New System.Drawing.Point(23, 39)
+        Me.CustomLabel2.Name = "CustomLabel2"
+        Me.CustomLabel2.Size = New System.Drawing.Size(34, 13)
+        Me.CustomLabel2.TabIndex = 8
+        Me.CustomLabel2.Text = "Saldo"
+        '
+        'txtRazon
+        '
+        Me.txtRazon.BackColor = System.Drawing.Color.Silver
+        Me.txtRazon.Cleanable = False
+        Me.txtRazon.Empty = True
+        Me.txtRazon.EnterIndex = -1
+        Me.txtRazon.LabelAssociationKey = -1
+        Me.txtRazon.Location = New System.Drawing.Point(207, 12)
+        Me.txtRazon.Name = "txtRazon"
+        Me.txtRazon.Size = New System.Drawing.Size(320, 20)
+        Me.txtRazon.TabIndex = 6
+        Me.txtRazon.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'CustomLabel1
+        '
+        Me.CustomLabel1.AutoSize = True
+        Me.CustomLabel1.ControlAssociationKey = -1
+        Me.CustomLabel1.Location = New System.Drawing.Point(330, 39)
+        Me.CustomLabel1.Name = "CustomLabel1"
+        Me.CustomLabel1.Size = New System.Drawing.Size(0, 13)
+        Me.CustomLabel1.TabIndex = 5
+        '
+        'txtProveedor
+        '
+        Me.txtProveedor.Cleanable = False
+        Me.txtProveedor.Empty = True
+        Me.txtProveedor.EnterIndex = -1
+        Me.txtProveedor.LabelAssociationKey = -1
+        Me.txtProveedor.Location = New System.Drawing.Point(93, 12)
+        Me.txtProveedor.Name = "txtProveedor"
+        Me.txtProveedor.Size = New System.Drawing.Size(108, 20)
+        Me.txtProveedor.TabIndex = 0
+        Me.txtProveedor.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'CustomLabel3
+        '
+        Me.CustomLabel3.AutoSize = True
+        Me.CustomLabel3.ControlAssociationKey = -1
+        Me.CustomLabel3.Location = New System.Drawing.Point(20, 15)
+        Me.CustomLabel3.Name = "CustomLabel3"
+        Me.CustomLabel3.Size = New System.Drawing.Size(56, 13)
+        Me.CustomLabel3.TabIndex = 3
+        Me.CustomLabel3.Text = "Proveedor"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(7, 15)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(19, 37)
+        Me.Button1.TabIndex = 29
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'CuentaCorrientePantalla
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(777, 477)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnCancela)
         Me.Controls.Add(Me.boxPantallaProveedores)
         Me.Controls.Add(Me.btnConsulta)
@@ -243,4 +254,5 @@ Partial Class CuentaCorrientePantalla
     Friend WithEvents lstAyuda As WindowsApplication1.CustomListBox
     Friend WithEvents txtAyuda As WindowsApplication1.CustomTextBox
     Friend WithEvents btnCancela As WindowsApplication1.CustomButton
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class
