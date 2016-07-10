@@ -162,10 +162,40 @@
     <Compile Include="ComprasNovedades\CuotasPyMENacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Listados\ListadoChequesEmitidos.Designer.vb">
+      <DependentUpon>ListadoChequesEmitidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoChequesEmitidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoCuentaCorrienteProveedoresFecha.Designer.vb">
+      <DependentUpon>ListadoCuentaCorrienteProveedoresFecha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoCuentaCorrienteProveedoresFecha.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Listados\ListadoDepositos.Designer.vb">
       <DependentUpon>ListadoDepositos.vb</DependentUpon>
     </Compile>
     <Compile Include="Listados\ListadoDepositos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoDiferenciaCambioAcreditacion.Designer.vb">
+      <DependentUpon>ListadoDiferenciaCambioAcreditacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoDiferenciaCambioAcreditacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoDiferenciaCambioCobranza.Designer.vb">
+      <DependentUpon>ListadoDiferenciaCambioCobranza.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoDiferenciaCambioCobranza.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoDiferenciaCambioExterior.Designer.vb">
+      <DependentUpon>ListadoDiferenciaCambioExterior.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoDiferenciaCambioExterior.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Listados\ListadoImputacionesContable.Designer.vb">
@@ -174,16 +204,40 @@
     <Compile Include="Listados\ListadoImputacionesContable.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Listados\ListadoMovimientosBancos.Designer.vb">
+      <DependentUpon>ListadoMovimientosBancos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoMovimientosBancos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Listados\ListadoPagos.Designer.vb">
       <DependentUpon>ListadoPagos.vb</DependentUpon>
     </Compile>
     <Compile Include="Listados\ListadoPagos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Listados\ListadoPagosPosdatados.Designer.vb">
+      <DependentUpon>ListadoPagosPosdatados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoPagosPosdatados.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Listados\ListadoRecibos.Designer.vb">
       <DependentUpon>ListadoRecibos.vb</DependentUpon>
     </Compile>
     <Compile Include="Listados\ListadoRecibos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoRetencionIB.Designer.vb">
+      <DependentUpon>ListadoRetencionIB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoRetencionIB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoRetencionIBCiudad.Designer.vb">
+      <DependentUpon>ListadoRetencionIBCiudad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoRetencionIBCiudad.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Listados\ListadoValoresEnCarteraCuit.Designer.vb">
@@ -393,17 +447,44 @@
     <EmbeddedResource Include="ComprasNovedades\CuotasPyMENacion.resx">
       <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoChequesEmitidos.resx">
+      <DependentUpon>ListadoChequesEmitidos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoCuentaCorrienteProveedoresFecha.resx">
+      <DependentUpon>ListadoCuentaCorrienteProveedoresFecha.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoDepositos.resx">
       <DependentUpon>ListadoDepositos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoDiferenciaCambioAcreditacion.resx">
+      <DependentUpon>ListadoDiferenciaCambioAcreditacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoDiferenciaCambioCobranza.resx">
+      <DependentUpon>ListadoDiferenciaCambioCobranza.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoDiferenciaCambioExterior.resx">
+      <DependentUpon>ListadoDiferenciaCambioExterior.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoImputacionesContable.resx">
       <DependentUpon>ListadoImputacionesContable.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoMovimientosBancos.resx">
+      <DependentUpon>ListadoMovimientosBancos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoPagos.resx">
       <DependentUpon>ListadoPagos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoPagosPosdatados.resx">
+      <DependentUpon>ListadoPagosPosdatados.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoRecibos.resx">
       <DependentUpon>ListadoRecibos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoRetencionIB.resx">
+      <DependentUpon>ListadoRetencionIB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoRetencionIBCiudad.resx">
+      <DependentUpon>ListadoRetencionIBCiudad.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoValoresEnCarteraCuit.resx">
       <DependentUpon>ListadoValoresEnCarteraCuit.vb</DependentUpon>

@@ -216,7 +216,7 @@ Partial Class ListadoCuentaCorrienteProveedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(537, 289)
+        Me.ClientSize = New System.Drawing.Size(537, 358)
         Me.Controls.Add(Me.lstAyuda)
         Me.Controls.Add(Me.txtAyuda)
         Me.Controls.Add(Me.btnConsulta)

@@ -163,4 +163,40 @@
     Private Sub ListadoDeOrdenesDePagoToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeOrdenesDePagoToolStripMenuItem1.Click
         abrir(New ListadoPagos)
     End Sub
+
+    Private Sub ListadoDePagosPosdatadosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDePagosPosdatadosToolStripMenuItem.Click
+        abrir(New ListadoPagosPosdatados)
+    End Sub
+
+    Private Sub MovmietosDeBancosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MovmietosDeBancosToolStripMenuItem.Click
+        abrir(New ListadoMovimientosBancos)
+    End Sub
+
+    Private Sub ListadoDeChequesEmitidosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeChequesEmitidosToolStripMenuItem.Click
+        abrir(New ListadoChequesEmitidos)
+    End Sub
+
+    Private Sub ListadoDeCuentaCorrienteDeProveedoresAFechaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeCuentaCorrienteDeProveedoresAFechaToolStripMenuItem.Click
+        abrir(New ListadoCuentaCorrienteProveedoresFecha)
+    End Sub
+
+    Private Sub ListadoDeDiferenciaDeCambioCobranzaToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeDiferenciaDeCambioCobranzaToolStripMenuItem1.Click
+        abrir(New ListadoDiferenciaCambioCobranza)
+    End Sub
+
+    Private Sub ListadoDeDiferenciaDeCambioAcreditacionToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeDiferenciaDeCambioAcreditacionToolStripMenuItem1.Click
+        abrir(New ListadoDiferenciaCambioAcreditacion)
+    End Sub
+
+    Private Sub ListadoDeDiferencaiDeCambioDeFacturasDeExportacionToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeDiferencaiDeCambioDeFacturasDeExportacionToolStripMenuItem1.Click
+        abrir(New ListadoDiferenciaCambioExterior)
+    End Sub
+
+    Private Sub ListadoDeRetencionesDeIngresosBrutosPcToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeRetencionesDeIngresosBrutosPcToolStripMenuItem.Click
+        abrir(New ListadoRetencionIB)
+    End Sub
+
+    Private Sub ListadoDeRetencionesDeIngresosBrutosCiudadDeBuenosAiresToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeRetencionesDeIngresosBrutosCiudadDeBuenosAiresToolStripMenuItem1.Click
+        abrir(New ListadoRetencionIBCiudad)
+    End Sub
 End Class
