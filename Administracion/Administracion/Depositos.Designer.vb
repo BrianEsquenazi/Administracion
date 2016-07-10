@@ -357,6 +357,7 @@ Partial Class Depositos
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.Name = "Depositos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ingreso de Depósitos"
         CType(Me.gridCheques, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

@@ -23,8 +23,6 @@ Partial Class ModificaIntereses
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.gridCtaCte = New System.Windows.Forms.DataGridView()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnGraba = New WindowsApplication1.CustomButton()
         Me.fechaOriginal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.desProveOriginal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.facturaOriginal = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -39,6 +37,8 @@ Partial Class ModificaIntereses
         Me.InteresesControl = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IvaControl = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ReferenciaControl = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnCancela = New WindowsApplication1.CustomButton()
+        Me.btnGraba = New WindowsApplication1.CustomButton()
         CType(Me.gridCtaCte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -54,30 +54,6 @@ Partial Class ModificaIntereses
         Me.gridCtaCte.Size = New System.Drawing.Size(760, 468)
         Me.gridCtaCte.StandardTab = True
         Me.gridCtaCte.TabIndex = 4
-        '
-        'btnCancela
-        '
-        Me.btnCancela.Cleanable = False
-        Me.btnCancela.EnterIndex = -1
-        Me.btnCancela.LabelAssociationKey = -1
-        Me.btnCancela.Location = New System.Drawing.Point(385, 502)
-        Me.btnCancela.Name = "btnCancela"
-        Me.btnCancela.Size = New System.Drawing.Size(122, 42)
-        Me.btnCancela.TabIndex = 6
-        Me.btnCancela.Text = "Cancela"
-        Me.btnCancela.UseVisualStyleBackColor = True
-        '
-        'btnGraba
-        '
-        Me.btnGraba.Cleanable = False
-        Me.btnGraba.EnterIndex = -1
-        Me.btnGraba.LabelAssociationKey = -1
-        Me.btnGraba.Location = New System.Drawing.Point(248, 502)
-        Me.btnGraba.Name = "btnGraba"
-        Me.btnGraba.Size = New System.Drawing.Size(122, 42)
-        Me.btnGraba.TabIndex = 5
-        Me.btnGraba.Text = "Graba"
-        Me.btnGraba.UseVisualStyleBackColor = True
         '
         'fechaOriginal
         '
@@ -186,6 +162,30 @@ Partial Class ModificaIntereses
         Me.ReferenciaControl.Visible = False
         Me.ReferenciaControl.Width = 117
         '
+        'btnCancela
+        '
+        Me.btnCancela.Cleanable = False
+        Me.btnCancela.EnterIndex = -1
+        Me.btnCancela.LabelAssociationKey = -1
+        Me.btnCancela.Location = New System.Drawing.Point(385, 502)
+        Me.btnCancela.Name = "btnCancela"
+        Me.btnCancela.Size = New System.Drawing.Size(122, 42)
+        Me.btnCancela.TabIndex = 6
+        Me.btnCancela.Text = "Cancela"
+        Me.btnCancela.UseVisualStyleBackColor = True
+        '
+        'btnGraba
+        '
+        Me.btnGraba.Cleanable = False
+        Me.btnGraba.EnterIndex = -1
+        Me.btnGraba.LabelAssociationKey = -1
+        Me.btnGraba.Location = New System.Drawing.Point(248, 502)
+        Me.btnGraba.Name = "btnGraba"
+        Me.btnGraba.Size = New System.Drawing.Size(122, 42)
+        Me.btnGraba.TabIndex = 5
+        Me.btnGraba.Text = "Graba"
+        Me.btnGraba.UseVisualStyleBackColor = True
+        '
         'ModificaIntereses
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -195,6 +195,7 @@ Partial Class ModificaIntereses
         Me.Controls.Add(Me.btnGraba)
         Me.Controls.Add(Me.gridCtaCte)
         Me.Name = "ModificaIntereses"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Modificación de Carga de Intereses"
         CType(Me.gridCtaCte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

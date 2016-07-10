@@ -158,6 +158,7 @@ Partial Class CargaIntereses
         Me.Controls.Add(Me.btnGraba)
         Me.Controls.Add(Me.gridCtaCte)
         Me.Name = "CargaIntereses"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Actualizacion de Deuda de Pyme Nacion"
         CType(Me.gridCtaCte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

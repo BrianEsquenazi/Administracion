@@ -43,6 +43,7 @@ Partial Class Pagos
         Me.Banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Importe2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lstSeleccion = New WindowsApplication1.CustomListBox()
         Me.btnCarpetas = New WindowsApplication1.CustomButton()
         Me.btnImprimir = New WindowsApplication1.CustomButton()
         Me.btnCalcular = New WindowsApplication1.CustomButton()
@@ -80,8 +81,11 @@ Partial Class Pagos
         Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.lstSeleccion = New WindowsApplication1.CustomListBox()
         Me.CustomLabel12 = New WindowsApplication1.CustomLabel()
+        Me.lblPagos = New WindowsApplication1.CustomLabel()
+        Me.lblFormaPagos = New WindowsApplication1.CustomLabel()
+        Me.lblDiferencia = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel13 = New WindowsApplication1.CustomLabel()
         Me.GroupBox1.SuspendLayout()
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridFormaPagos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -261,6 +265,18 @@ Partial Class Pagos
         Me.Importe2.HeaderText = "Importe"
         Me.Importe2.Name = "Importe2"
         Me.Importe2.Width = 80
+        '
+        'lstSeleccion
+        '
+        Me.lstSeleccion.Cleanable = False
+        Me.lstSeleccion.EnterIndex = -1
+        Me.lstSeleccion.FormattingEnabled = True
+        Me.lstSeleccion.LabelAssociationKey = -1
+        Me.lstSeleccion.Location = New System.Drawing.Point(437, 11)
+        Me.lstSeleccion.Name = "lstSeleccion"
+        Me.lstSeleccion.Size = New System.Drawing.Size(333, 134)
+        Me.lstSeleccion.TabIndex = 66
+        Me.lstSeleccion.Visible = False
         '
         'btnCarpetas
         '
@@ -696,18 +712,6 @@ Partial Class Pagos
         Me.CustomLabel1.TabIndex = 0
         Me.CustomLabel1.Text = "Orden de Pago"
         '
-        'lstSeleccion
-        '
-        Me.lstSeleccion.Cleanable = False
-        Me.lstSeleccion.EnterIndex = -1
-        Me.lstSeleccion.FormattingEnabled = True
-        Me.lstSeleccion.LabelAssociationKey = -1
-        Me.lstSeleccion.Location = New System.Drawing.Point(437, 37)
-        Me.lstSeleccion.Name = "lstSeleccion"
-        Me.lstSeleccion.Size = New System.Drawing.Size(333, 108)
-        Me.lstSeleccion.TabIndex = 66
-        Me.lstSeleccion.Visible = False
-        '
         'CustomLabel12
         '
         Me.CustomLabel12.AutoSize = True
@@ -718,11 +722,59 @@ Partial Class Pagos
         Me.CustomLabel12.TabIndex = 67
         Me.CustomLabel12.Text = "Tipo"
         '
+        'lblPagos
+        '
+        Me.lblPagos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblPagos.ControlAssociationKey = -1
+        Me.lblPagos.Location = New System.Drawing.Point(208, 548)
+        Me.lblPagos.Name = "lblPagos"
+        Me.lblPagos.Size = New System.Drawing.Size(70, 22)
+        Me.lblPagos.TabIndex = 68
+        Me.lblPagos.Text = "0,00"
+        Me.lblPagos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblFormaPagos
+        '
+        Me.lblFormaPagos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblFormaPagos.ControlAssociationKey = -1
+        Me.lblFormaPagos.Location = New System.Drawing.Point(708, 548)
+        Me.lblFormaPagos.Name = "lblFormaPagos"
+        Me.lblFormaPagos.Size = New System.Drawing.Size(70, 22)
+        Me.lblFormaPagos.TabIndex = 69
+        Me.lblFormaPagos.Text = "0,00"
+        Me.lblFormaPagos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblDiferencia
+        '
+        Me.lblDiferencia.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblDiferencia.ControlAssociationKey = -1
+        Me.lblDiferencia.Location = New System.Drawing.Point(632, 548)
+        Me.lblDiferencia.Name = "lblDiferencia"
+        Me.lblDiferencia.Size = New System.Drawing.Size(70, 22)
+        Me.lblDiferencia.TabIndex = 70
+        Me.lblDiferencia.Text = "0,00"
+        Me.lblDiferencia.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'CustomLabel13
+        '
+        Me.CustomLabel13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.CustomLabel13.ControlAssociationKey = -1
+        Me.CustomLabel13.Location = New System.Drawing.Point(284, 548)
+        Me.CustomLabel13.Name = "CustomLabel13"
+        Me.CustomLabel13.Size = New System.Drawing.Size(342, 22)
+        Me.CustomLabel13.TabIndex = 71
+        Me.CustomLabel13.Text = "Tipo de Doc.:   1) Ef.   2) Bco.   3) Ch. Terceros   5) US$   6) Varios"
+        Me.CustomLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Pagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(790, 568)
+        Me.Controls.Add(Me.CustomLabel13)
+        Me.Controls.Add(Me.lblDiferencia)
+        Me.Controls.Add(Me.lblFormaPagos)
+        Me.Controls.Add(Me.lblPagos)
         Me.Controls.Add(Me.lstSeleccion)
         Me.Controls.Add(Me.btnCarpetas)
         Me.Controls.Add(Me.btnImprimir)
@@ -768,6 +820,7 @@ Partial Class Pagos
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.Name = "Pagos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ingreso de Pagos a Proveedores"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -837,4 +890,8 @@ Partial Class Pagos
     Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CustomLabel12 As WindowsApplication1.CustomLabel
+    Friend WithEvents lblPagos As WindowsApplication1.CustomLabel
+    Friend WithEvents lblFormaPagos As WindowsApplication1.CustomLabel
+    Friend WithEvents lblDiferencia As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel13 As WindowsApplication1.CustomLabel
 End Class

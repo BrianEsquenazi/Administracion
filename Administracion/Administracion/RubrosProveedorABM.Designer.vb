@@ -86,6 +86,7 @@ Partial Class RubrosProveedorABM
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.Name = "RubrosProveedorABM"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ingreso de Rubros Proveedor"
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -11,7 +11,7 @@ Public Class Pagos
         lstSeleccion.Items.Add(New QueryController("Proveedores", AddressOf DAOProveedor.buscarProveedorPorNombre, AddressOf mostrarProveedor))
         lstSeleccion.Items.Add(New QueryController("Cuentas Corrientes", AddressOf cuentasCorrientesDelProveedorActual, AddressOf mostrarCuentaCorriente, False))
         lstSeleccion.Items.Add(New QueryController("Cheques Terceros", AddressOf DAODeposito.buscarCheques, AddressOf mostrarCheque, False))
-        lstSeleccion.Items.Add(New QueryController("Cuentas Contables", AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, AddressOf mostrarCuentaContable))
+        'lstSeleccion.Items.Add(New QueryController("Cuentas Contables", AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, AddressOf mostrarCuentaContable))
         lstSeleccion.SelectedIndex = 0
 
         Dim gridPagosBuilder As New GridBuilder(gridPagos)
@@ -123,11 +123,20 @@ Public Class Pagos
         lstSeleccion.Visible = False
         lstConsulta.Visible = True
         txtConsulta.Visible = queryController.usesQueryText
+        If txtConsulta.Visible Then
+            lstConsulta.Height = 108
+            lstConsulta.Top = 38
+        Else
+            lstConsulta.Height = lstSeleccion.Height
+            lstConsulta.Top = lstSeleccion.Top
+        End If
         lstConsulta.DataSource = queryController.query.Invoke("")
         txtConsulta.Focus()
     End Sub
 
     Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
+        lstConsulta.Visible = False
+        txtConsulta.Visible = False
         lstSeleccion.Visible = True
     End Sub
 

@@ -129,6 +129,7 @@ Partial Class BancosABM
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.Name = "BancosABM"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ingreso de Bancos"
         Me.ResumeLayout(False)
         Me.PerformLayout()

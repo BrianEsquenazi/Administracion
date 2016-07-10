@@ -63,6 +63,7 @@ Partial Class ObservacionesProveedor
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "ObservacionesProveedor"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Observaciones del Proveedor"
         Me.ResumeLayout(False)
         Me.PerformLayout()
