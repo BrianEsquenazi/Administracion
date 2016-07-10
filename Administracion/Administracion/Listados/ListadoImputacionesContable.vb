@@ -1,10 +1,9 @@
 ﻿Imports ClasesCompartidas
 Imports System.IO
 
-Public Class ListadoAsientoResumen
+Public Class ListadoImputacionesContable
 
-    Private Sub ListadoAsientoResumen_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+    Private Sub ListadoImputacionesContable_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtDesdeFecha.Text = "  /  /    "
         txthastafecha.Text = "  /  /    "
 
@@ -17,14 +16,16 @@ Public Class ListadoAsientoResumen
         TipoListado.Items.Add("Resumido")
         TipoListado.SelectedIndex = 0
 
+        chkDepositos.Checked = False
+        chkPagos.Checked = False
+        chkRecibos.Checked = False
+
         opcPantalla.Checked = False
         opcImpesora.Checked = True
-
     End Sub
-
     Private Sub txtdesdefecha_KeyPress(ByVal sender As Object, _
-                   ByVal e As System.Windows.Forms.KeyPressEventArgs) _
-                   Handles txtDesdeFecha.KeyPress
+               ByVal e As System.Windows.Forms.KeyPressEventArgs) _
+               Handles txtDesdeFecha.KeyPress
         If e.KeyChar = Convert.ToChar(Keys.Return) Then
             e.Handled = True
             If ValidaFecha(txtDesdeFecha.Text) = "S" Then
@@ -90,7 +91,7 @@ Public Class ListadoAsientoResumen
 
     Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
 
-        Me.Size = New System.Drawing.Size(500, 520)
+        Me.Size = New System.Drawing.Size(622, 575)
 
         lstAyuda.DataSource = DAOCuentaContable.buscarCuentaContablePorDescripcion("")
 
@@ -125,6 +126,8 @@ Public Class ListadoAsientoResumen
         mostrarcuenta(lstAyuda.SelectedValue)
         REM txtDesdeProveedor.Text = lstAyuda.SelectedValue.id
     End Sub
+
+
 
 
 End Class

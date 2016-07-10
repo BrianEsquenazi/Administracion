@@ -1,26 +1,19 @@
 ﻿Imports ClasesCompartidas
 Imports System.IO
 
-Public Class ListadoIvaCompras
 
+Public Class ListadoPagos
 
-    Private Sub ListadoIvaCompras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub ListadoPagos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         txtDesdeFecha.Text = "  /  /    "
         txthastafecha.Text = "  /  /    "
 
-        TipoListado.Items.Clear()
-
-        TipoListado.Items.Clear()
-        TipoListado.Items.Add("C/Apertura")
-        TipoListado.Items.Add("S/Apertura")
-
-        TipoListado.SelectedIndex = 0
-
         opcPantalla.Checked = False
         opcImpesora.Checked = True
-
     End Sub
+
+
 
     Private Sub txtdesdefecha_KeyPress(ByVal sender As Object, _
                 ByVal e As System.Windows.Forms.KeyPressEventArgs) _
@@ -56,7 +49,6 @@ Public Class ListadoIvaCompras
         Me.Close()
         MenuPrincipal.Show()
     End Sub
-
 
 
 End Class

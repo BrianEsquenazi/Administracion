@@ -162,6 +162,36 @@
     <Compile Include="ComprasNovedades\CuotasPyMENacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Listados\ListadoDepositos.Designer.vb">
+      <DependentUpon>ListadoDepositos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoDepositos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoImputacionesContable.Designer.vb">
+      <DependentUpon>ListadoImputacionesContable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoImputacionesContable.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoPagos.Designer.vb">
+      <DependentUpon>ListadoPagos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoPagos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoRecibos.Designer.vb">
+      <DependentUpon>ListadoRecibos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoRecibos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoValoresEnCarteraCuit.Designer.vb">
+      <DependentUpon>ListadoValoresEnCarteraCuit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoValoresEnCarteraCuit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ModificaIntereses.Designer.vb">
       <DependentUpon>ModificaIntereses.vb</DependentUpon>
     </Compile>
@@ -362,6 +392,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprasNovedades\CuotasPyMENacion.resx">
       <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoDepositos.resx">
+      <DependentUpon>ListadoDepositos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoImputacionesContable.resx">
+      <DependentUpon>ListadoImputacionesContable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoPagos.resx">
+      <DependentUpon>ListadoPagos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoRecibos.resx">
+      <DependentUpon>ListadoRecibos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoValoresEnCarteraCuit.resx">
+      <DependentUpon>ListadoValoresEnCarteraCuit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModificaIntereses.resx">
       <DependentUpon>ModificaIntereses.vb</DependentUpon>

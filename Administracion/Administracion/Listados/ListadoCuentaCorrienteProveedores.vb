@@ -43,7 +43,7 @@ Public Class ListadoCuentaCorrienteProveedores
     End Sub
 
     Private Sub btnCancela_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancela.Click
-        Me.Hide()
+        Me.Close()
         MenuPrincipal.Show()
     End Sub
 

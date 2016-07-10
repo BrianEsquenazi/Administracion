@@ -246,7 +246,7 @@ Partial Class ListadoAsientoResumen
         Me.Controls.Add(Me.CustomLabel2)
         Me.Controls.Add(Me.CustomLabel1)
         Me.Name = "ListadoAsientoResumen"
-        Me.Text = "Listado de Imputaciones Contables"
+        Me.Text = "Asiento Resumen"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

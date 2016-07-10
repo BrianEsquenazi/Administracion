@@ -27,9 +27,9 @@ Partial Class CuentaCorrientePantalla
         Me.opcCompleto = New System.Windows.Forms.RadioButton()
         Me.opcPendiente = New System.Windows.Forms.RadioButton()
         Me.boxPantallaProveedores = New System.Windows.Forms.GroupBox()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
         Me.lstAyuda = New WindowsApplication1.CustomListBox()
         Me.txtAyuda = New WindowsApplication1.CustomTextBox()
+        Me.btnCancela = New WindowsApplication1.CustomButton()
         Me.btnConsulta = New WindowsApplication1.CustomButton()
         Me.txtSaldo = New WindowsApplication1.CustomTextBox()
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
@@ -37,7 +37,6 @@ Partial Class CuentaCorrientePantalla
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
         Me.txtProveedor = New WindowsApplication1.CustomTextBox()
         Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.GRilla, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.boxPantallaProveedores.SuspendLayout()
         Me.SuspendLayout()
@@ -90,18 +89,6 @@ Partial Class CuentaCorrientePantalla
         Me.boxPantallaProveedores.TabStop = False
         Me.boxPantallaProveedores.Visible = False
         '
-        'btnCancela
-        '
-        Me.btnCancela.Cleanable = False
-        Me.btnCancela.EnterIndex = -1
-        Me.btnCancela.LabelAssociationKey = -1
-        Me.btnCancela.Location = New System.Drawing.Point(666, 12)
-        Me.btnCancela.Name = "btnCancela"
-        Me.btnCancela.Size = New System.Drawing.Size(99, 40)
-        Me.btnCancela.TabIndex = 28
-        Me.btnCancela.Text = "Cancela"
-        Me.btnCancela.UseVisualStyleBackColor = True
-        '
         'lstAyuda
         '
         Me.lstAyuda.Cleanable = False
@@ -124,6 +111,18 @@ Partial Class CuentaCorrientePantalla
         Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
         Me.txtAyuda.TabIndex = 28
         Me.txtAyuda.Validator = WindowsApplication1.ValidatorType.None
+        '
+        'btnCancela
+        '
+        Me.btnCancela.Cleanable = False
+        Me.btnCancela.EnterIndex = -1
+        Me.btnCancela.LabelAssociationKey = -1
+        Me.btnCancela.Location = New System.Drawing.Point(666, 12)
+        Me.btnCancela.Name = "btnCancela"
+        Me.btnCancela.Size = New System.Drawing.Size(99, 40)
+        Me.btnCancela.TabIndex = 28
+        Me.btnCancela.Text = "Cancela"
+        Me.btnCancela.UseVisualStyleBackColor = True
         '
         'btnConsulta
         '
@@ -203,21 +202,11 @@ Partial Class CuentaCorrientePantalla
         Me.CustomLabel3.TabIndex = 3
         Me.CustomLabel3.Text = "Proveedor"
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(7, 15)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(19, 37)
-        Me.Button1.TabIndex = 29
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'CuentaCorrientePantalla
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(777, 477)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnCancela)
         Me.Controls.Add(Me.boxPantallaProveedores)
         Me.Controls.Add(Me.btnConsulta)
@@ -254,5 +243,4 @@ Partial Class CuentaCorrientePantalla
     Friend WithEvents lstAyuda As WindowsApplication1.CustomListBox
     Friend WithEvents txtAyuda As WindowsApplication1.CustomTextBox
     Friend WithEvents btnCancela As WindowsApplication1.CustomButton
-    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

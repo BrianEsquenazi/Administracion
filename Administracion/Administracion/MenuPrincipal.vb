@@ -92,11 +92,7 @@
         abrir(New ListadoSaldosCuentaCorrienteProveedores)
     End Sub
 
-    Private Sub ToolStripMenuItem9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem9.Click
-        abrir(New ListadoIvaCompras)
-    End Sub
-
-    Private Sub ToolStripMenuItem7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem7.Click
+    Private Sub ToolStripMenuItem7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         abrir(New ListadoAsientoResumen)
     End Sub
 
@@ -123,7 +119,7 @@
     End Sub
 
     Private Sub ListadoDeValoresEnCarteraToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeValoresEnCarteraToolStripMenuItem.Click
-        abrir(New ListadoValoresEnCartera)
+
     End Sub
 
     Private Sub CargaDeInteresesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CargaDeInteresesToolStripMenuItem.Click
@@ -132,5 +128,39 @@
 
     Private Sub ModificaciuonDeNterfesesYaCargadosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ModificaciuonDeNterfesesYaCargadosToolStripMenuItem.Click
         abrir(New ModificaIntereses)
+    End Sub
+
+    Private Sub ListadoDeValoresEnCarteraToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeValoresEnCarteraToolStripMenuItem1.Click
+        abrir(New ListadoValoresEnCartera)
+    End Sub
+
+    Private Sub ListadoDeValoresEnCarteraPorCuitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeValoresEnCarteraPorCuitToolStripMenuItem.Click
+        abrir(New ListadoValoresEnCarteraCuit)
+    End Sub
+
+    Private Sub SdfsdToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SdfsdToolStripMenuItem.Click
+        abrir(New ListadoAsientoResumen)
+    End Sub
+
+   
+    Private Sub SubdiarioDeIvaComprasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SubdiarioDeIvaComprasToolStripMenuItem.Click
+        abrir(New ListadoIvaCompras)
+    End Sub
+
+    Private Sub ListadoDeImputacionesDeCajaYBancoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeImputacionesDeCajaYBancoToolStripMenuItem.Click
+        abrir(New ListadoImputacionesContable)
+    End Sub
+
+    Private Sub LisyaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LisyaToolStripMenuItem.Click
+        abrir(New ListadoDepositos)
+    End Sub
+
+    
+    Private Sub ListadoDeRecibosToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeRecibosToolStripMenuItem1.Click
+        abrir(New ListadoRecibos)
+    End Sub
+
+    Private Sub ListadoDeOrdenesDePagoToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeOrdenesDePagoToolStripMenuItem1.Click
+        abrir(New ListadoPagos)
     End Sub
 End Class
