@@ -19,6 +19,24 @@
         proveedor = prov
     End Sub
 
+    Public Function igualA(ByVal cuenta As DetalleCompraCuentaCorriente)
+        Return tipo = cuenta.tipo And
+            punto = cuenta.punto And
+            numero = cuenta.numero And
+            letra = cuenta.letra And
+            fecha = cuenta.fecha And
+            saldo = cuenta.saldo And
+            numInterno = cuenta.numInterno And
+            codigoProveedor() = cuenta.codigoProveedor
+    End Function
+
+    Public Function codigoProveedor()
+        If IsNothing(proveedor) Then
+            Return ""
+        End If
+        Return proveedor.id
+    End Function
+
     Public Overrides Function ToString() As String
         Return impresion & " - " & letra & " - " & punto & " - " & numero & " - " & fecha & " - " & asDoubleString(saldo).PadLeft(10, "_")
     End Function
