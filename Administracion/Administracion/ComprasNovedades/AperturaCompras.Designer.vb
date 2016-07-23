@@ -158,6 +158,7 @@ Partial Class Apertura
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False
         Me.Name = "Apertura"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "AperturaCompras"
         CType(Me.gridApertura, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

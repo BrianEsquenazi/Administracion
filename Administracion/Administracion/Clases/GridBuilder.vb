@@ -2,6 +2,7 @@
     Private dataGrid As DataGridView
     Private validatorForColumn As New Dictionary(Of Integer, DataGridValidator)
     Private decimalColumns As New List(Of Integer)
+    Private columnsNotJumpables As New List(Of Integer)
 
     Public Sub New(ByVal grid As DataGridView)
         dataGrid = grid
@@ -10,39 +11,40 @@
         AddHandler dataGrid.CellValueChanged, AddressOf cellValueChanged
     End Sub
 
-    Public Sub addTextColumn(ByVal index As Integer, ByVal header As String)
-        addColumn(index, header, New DataGridValidator(ValidatorType.NotEmpty))
+    Public Sub addTextColumn(ByVal index As Integer, ByVal header As String, Optional ByVal jump As Boolean = True)
+        addColumn(index, header, New DataGridValidator(ValidatorType.NotEmpty), jump)
     End Sub
 
-    Public Sub addDateColumn(ByVal index As Integer, ByVal header As String)
-        addColumn(index, header, New DataGridValidator(ValidatorType.DateFormat))
+    Public Sub addDateColumn(ByVal index As Integer, ByVal header As String, Optional ByVal jump As Boolean = True)
+        addColumn(index, header, New DataGridValidator(ValidatorType.DateFormat), jump)
     End Sub
 
-    Public Sub addStrictlyPositiveFloatColumn(ByVal index As Integer, ByVal header As String)
+    Public Sub addStrictlyPositiveFloatColumn(ByVal index As Integer, ByVal header As String, Optional ByVal jump As Boolean = True)
         decimalColumns.Add(index)
-        addColumn(index, header, New DataGridValidator(ValidatorType.StrictlyPositiveFloat))
+        addColumn(index, header, New DataGridValidator(ValidatorType.StrictlyPositiveFloat), jump)
     End Sub
 
-    Public Sub addPositiveFloatColumn(ByVal index As Integer, ByVal header As String)
+    Public Sub addPositiveFloatColumn(ByVal index As Integer, ByVal header As String, Optional ByVal jump As Boolean = True)
         decimalColumns.Add(index)
-        addColumn(index, header, New DataGridValidator(ValidatorType.PositiveFloat))
+        addColumn(index, header, New DataGridValidator(ValidatorType.PositiveFloat), jump)
     End Sub
 
-    Public Sub addPositiveColumn(ByVal index As Integer, ByVal header As String)
-        addColumn(index, header, New DataGridValidator(ValidatorType.Positive))
+    Public Sub addPositiveColumn(ByVal index As Integer, ByVal header As String, Optional ByVal jump As Boolean = True)
+        addColumn(index, header, New DataGridValidator(ValidatorType.Positive), jump)
     End Sub
 
-    Public Sub addNumericColumn(ByVal index As Integer, ByVal header As String)
-        addColumn(index, header, New DataGridValidator(ValidatorType.Numeric))
+    Public Sub addNumericColumn(ByVal index As Integer, ByVal header As String, Optional ByVal jump As Boolean = True)
+        addColumn(index, header, New DataGridValidator(ValidatorType.Numeric), jump)
     End Sub
 
-    Public Sub addFloatColumn(ByVal index As Integer, ByVal header As String)
+    Public Sub addFloatColumn(ByVal index As Integer, ByVal header As String, Optional ByVal jump As Boolean = True)
         decimalColumns.Add(index)
-        addColumn(index, header, New DataGridValidator(ValidatorType.Float))
+        addColumn(index, header, New DataGridValidator(ValidatorType.Float), jump)
     End Sub
 
 
-    Public Sub addColumn(ByVal index As Integer, ByVal header As String, ByVal validator As DataGridValidator)
+    Public Sub addColumn(ByVal index As Integer, ByVal header As String, ByVal validator As DataGridValidator, ByVal jump As Boolean)
+        If Not jump Then : columnsNotJumpables.add(index) : End If
         If dataGrid.Columns.Count <= index Then
             dataGrid.Columns.Add(asName(header), header)
         Else
@@ -88,12 +90,14 @@
             Dim iCol = dataGrid.CurrentCell.ColumnIndex
             Dim iRow = dataGrid.CurrentCell.RowIndex
             If validate(iCol, iRow) Then
-                If iCol = dataGrid.Columns.Count - 1 Then
-                    If iRow < dataGrid.Rows.Count - 1 Then
-                        dataGrid.CurrentCell = dataGrid(0, iRow + 1)
+                If Not columnsNotJumpables.Contains(iCol) Then
+                    If iCol = dataGrid.Columns.Count - 1 Then
+                        If iRow < dataGrid.Rows.Count - 1 Then
+                            dataGrid.CurrentCell = dataGrid(0, iRow + 1)
+                        End If
+                    Else
+                        dataGrid.CurrentCell = nextNotReadOnlyFrom(iCol, iRow)
                     End If
-                Else
-                    dataGrid.CurrentCell = nextNotReadOnlyFrom(iCol, iRow)
                 End If
             End If
         End If

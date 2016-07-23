@@ -5,13 +5,13 @@ Public Class Pagos
     Dim queryController As QueryController
     Dim pagos As New List(Of DetalleCompraCuentaCorriente)
     Dim cheques As New List(Of Cheque)
+    Dim chequeRow As Integer = -1
 
     Private Sub Pagos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cmbTipo.SelectedIndex = 0
         lstSeleccion.Items.Add(New QueryController("Proveedores", AddressOf DAOProveedor.buscarProveedorPorNombre, AddressOf mostrarProveedor))
         lstSeleccion.Items.Add(New QueryController("Cuentas Corrientes", AddressOf cuentasCorrientesDelProveedorActual, AddressOf mostrarCuentaCorriente, False))
         lstSeleccion.Items.Add(New QueryController("Cheques Terceros", AddressOf DAODeposito.buscarCheques, AddressOf mostrarCheque, False))
-        lstSeleccion.Items.Add(New QueryController("Cuentas Contables", AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, AddressOf mostrarCuentaContable))
         lstSeleccion.SelectedIndex = 0
 
         Dim gridPagosBuilder As New GridBuilder(gridPagos)
@@ -23,7 +23,7 @@ Public Class Pagos
         gridPagosBuilder.addTextColumn(5, "Descripción")
 
         Dim gridFormasBuilder As New GridBuilder(gridFormaPagos)
-        gridFormasBuilder.addTextColumn(0, "Tipo")
+        gridFormasBuilder.addTextColumn(0, "Tipo", False)
         gridFormasBuilder.addNumericColumn(1, "Número")
         gridFormasBuilder.addDateColumn(2, "Fecha")
         gridFormasBuilder.addNumericColumn(3, "Banco")
@@ -32,6 +32,8 @@ Public Class Pagos
 
         Dim commonEventHandler As New CommonEventsHandler
         commonEventHandler.setIndexTab(Me)
+        txtFecha.Text = Date.Today.ToShortDateString
+        txtFechaParidad.Text = Date.Today.ToShortDateString
     End Sub
 
     Private Function validarDatos() As Boolean
@@ -67,8 +69,11 @@ Public Class Pagos
     End Function
 
     Private Sub mostrarCuentaCorriente(ByVal cuenta As DetalleCompraCuentaCorriente)
+        If pagos.Any(Function(pagoExistente) cuenta.igualA(pagoExistente)) Then
+            Exit Sub
+        End If
         pagos.Add(cuenta)
-        gridPagos.Rows.Add(cuenta.tipo, cuenta.letra, cuenta.punto, cuenta.numero, cuenta.saldo, "")
+        gridPagos.Rows.Add(cuenta.tipo, cuenta.letra, cuenta.punto, cuenta.numero, CustomConvert.toStringWithTwoDecimalPlaces(cuenta.saldo), "Pago Factura Nro " & CustomConvert.toIntOrZero(cuenta.numero))
     End Sub
 
     Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
@@ -86,8 +91,25 @@ Public Class Pagos
     End Sub
 
     Private Sub mostrarCheque(ByVal cheque As Cheque)
+        If cheques.Any(Function(chequeExistente) cheque.igualA(chequeExistente)) Then
+            chequeRow = -1
+            gridFormaPagos.Select()
+            Exit Sub
+        End If
         cheques.Add(cheque)
-        gridFormaPagos.Rows.Add("03", cheque.numero, cheque.fecha, "", cheque.banco, cheque.importe)
+        If chequeRow <> -1 Then
+            gridFormaPagos.Rows(chequeRow).Cells(0).Value = "03"
+            gridFormaPagos.Rows(chequeRow).Cells(1).Value = cheque.numero
+            gridFormaPagos.Rows(chequeRow).Cells(2).Value = cheque.fecha
+            gridFormaPagos.Rows(chequeRow).Cells(3).Value = ""
+            gridFormaPagos.Rows(chequeRow).Cells(4).Value = cheque.banco
+            gridFormaPagos.Rows(chequeRow).Cells(5).Value = CustomConvert.toStringWithTwoDecimalPlaces(cheque.importe)
+            gridFormaPagos.CurrentCell = gridFormaPagos.Rows(chequeRow + 1).Cells(0)
+            gridFormaPagos.Select()
+            chequeRow = -1
+        Else
+            gridFormaPagos.Rows.Add("03", cheque.numero, cheque.fecha, "", cheque.banco, CustomConvert.toStringWithTwoDecimalPlaces(cheque.importe))
+        End If
     End Sub
 
     Private Sub txtProveedor_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtProveedor.Leave
@@ -123,11 +145,20 @@ Public Class Pagos
         lstSeleccion.Visible = False
         lstConsulta.Visible = True
         txtConsulta.Visible = queryController.usesQueryText
+        If txtConsulta.Visible Then
+            lstConsulta.Height = 108
+            lstConsulta.Top = 38
+        Else
+            lstConsulta.Height = lstSeleccion.Height
+            lstConsulta.Top = lstSeleccion.Top
+        End If
         lstConsulta.DataSource = queryController.query.Invoke("")
         txtConsulta.Focus()
     End Sub
 
     Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
+        lstConsulta.Visible = False
+        txtConsulta.Visible = False
         lstSeleccion.Visible = True
     End Sub
 
@@ -157,5 +188,125 @@ Public Class Pagos
         If validarDatos() Then
             MsgBox("Agregaste") 'Agregar
         End If
+    End Sub
+
+    Private Sub optTransferencias_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optTransferencias.CheckedChanged
+        If optTransferencias.Checked Then
+            txtBanco.Enabled = True
+            txtBanco.Empty = False
+            txtNombreBanco.Empty = False
+            txtBanco.Text = ""
+            txtBanco.Focus()
+        End If
+    End Sub
+
+    Private Sub txtFecha_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFecha.Leave
+        txtFechaParidad.Text = txtFecha.Text
+    End Sub
+
+    Private Sub eventoSegunTipoEnFormaDePagoPara(ByVal val As Integer, ByVal rowIndex As Integer, ByVal columnIndex As Integer)
+        Dim nombre As String = ""
+        Dim column As Integer = columnIndex
+        Select Case val
+            Case 1
+                nombre = "Efectivo"
+                column = 5
+            Case 2
+                column = 1
+            Case 3
+                chequeRow = rowIndex
+                lstSeleccion.SelectedIndex = 2
+                lstSeleccion_DoubleClick(Nothing, Nothing)
+                Exit Sub
+            Case 5
+                nombre = "US$"
+                column = 5
+            Case 6
+                nombre = "Varios"
+                column = 5
+            Case Else
+                Exit Sub
+        End Select
+        gridFormaPagos.CurrentCell.Value = ceros(val.ToString, 2)
+        gridFormaPagos.Rows(rowIndex).Cells(4).Value = nombre
+        gridFormaPagos.CurrentCell = gridFormaPagos.Rows(rowIndex).Cells(column)
+    End Sub
+
+    Private Sub gridFormaPagos_CellLeave(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridFormaPagos.CellLeave
+        If e.ColumnIndex = 3 And e.RowIndex > -1 Then
+            Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(gridFormaPagos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value)
+            If Not IsNothing(banco) Then
+                gridFormaPagos.Rows(e.RowIndex).Cells(e.ColumnIndex + 1).Value = banco.nombre
+            End If
+        End If
+    End Sub
+
+    Private Sub gridFormaPagos_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridFormaPagos.CellValueChanged
+        sumarImportes()
+    End Sub
+
+    Private Sub gridFormaPagos_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles gridFormaPagos.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim iCol = gridFormaPagos.CurrentCell.ColumnIndex
+            Dim iRow = gridFormaPagos.CurrentCell.RowIndex
+            If iCol = 0 And iRow > -1 Then
+                Dim val = gridFormaPagos.Rows(iRow).Cells(iCol).Value
+                eventoSegunTipoEnFormaDePagoPara(CustomConvert.toIntOrZero(val), iRow, iCol)
+            End If
+        End If
+    End Sub
+
+    Private Sub gridPagos_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridPagos.CellValueChanged
+        sumarImportes()
+    End Sub
+
+    Private Sub sumarImportes()
+        Dim pagos As Double = 0
+        Dim formaPagos As Double = 0
+
+        For Each row As DataGridViewRow In gridPagos.Rows
+            If Not row.IsNewRow Then
+                pagos += CustomConvert.toDoubleOrZero(row.Cells(4).Value)
+            End If
+        Next
+
+        For Each row As DataGridViewRow In gridFormaPagos.Rows
+            If Not row.IsNewRow Then
+                formaPagos += CustomConvert.toDoubleOrZero(row.Cells(5).Value)
+            End If
+        Next
+        lblPagos.Text = CustomConvert.toStringWithTwoDecimalPlaces(pagos)
+        lblFormaPagos.Text = CustomConvert.toStringWithTwoDecimalPlaces(formaPagos)
+        lblDiferencia.Text = CustomConvert.toStringWithTwoDecimalPlaces(pagos - formaPagos)
+    End Sub
+
+    Private Sub gridPagos_RowsAdded(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsAddedEventArgs) Handles gridPagos.RowsAdded
+        sumarImportes()
+    End Sub
+
+    Private Sub gridFormaPagos_RowsAdded(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsAddedEventArgs) Handles gridFormaPagos.RowsAdded
+        sumarImportes()
+    End Sub
+
+    Private Sub gridPagos_UserDeletedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles gridPagos.UserDeletedRow
+        If e.Row.Cells(0).Value <> "" Then
+            Dim detalle As DetalleCompraCuentaCorriente = pagos.Find(Function(pago) pago.tipo = e.Row.Cells(0).Value And pago.letra = e.Row.Cells(1).Value And
+                                                                         pago.punto = e.Row.Cells(2).Value And pago.numero = e.Row.Cells(3).Value And
+                                                                         pago.saldo = CustomConvert.toDoubleOrZero(e.Row.Cells(4).Value))
+            If Not IsNothing(detalle) Then
+                pagos.Remove(detalle)
+            End If
+        End If
+        sumarImportes()
+    End Sub
+
+    Private Sub gridFormaPagos_UserDeletedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles gridFormaPagos.UserDeletedRow
+        If e.Row.Cells(0).Value = "03" Then
+            Dim chequeABorrar As Cheque = cheques.Find(Function(cheque) cheque.numero = e.Row.Cells(1).Value And cheque.fecha = e.Row.Cells(2).Value And cheque.banco = e.Row.Cells(4).Value And cheque.importe = e.Row.Cells(5).Value)
+            If Not IsNothing(chequeABorrar) Then
+                cheques.Remove(chequeABorrar)
+            End If
+        End If
+        sumarImportes()
     End Sub
 End Class

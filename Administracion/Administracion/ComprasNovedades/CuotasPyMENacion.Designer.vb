@@ -100,6 +100,7 @@ Partial Class CuotasPyMENacion
         Me.Controls.Add(Me.CustomLabel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "CuotasPyMENacion"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cuotas PyME Nación"
         Me.ResumeLayout(False)
         Me.PerformLayout()

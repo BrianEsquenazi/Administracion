@@ -974,6 +974,7 @@ Partial Class ProveedoresABM
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.Name = "ProveedoresABM"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ingreso de Proveedores"
         Me.ResumeLayout(False)
         Me.PerformLayout()

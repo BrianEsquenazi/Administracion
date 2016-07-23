@@ -77,6 +77,7 @@ Partial Class Login
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "Login"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inicio de Sesión"
         Me.ResumeLayout(False)
         Me.PerformLayout()

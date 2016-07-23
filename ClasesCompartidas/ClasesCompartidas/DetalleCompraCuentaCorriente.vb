@@ -1,13 +1,14 @@
 ﻿Public Class DetalleCompraCuentaCorriente
-    Public tipo, punto, numero, letra, fecha As String
+    Public tipo, punto, numero, letra, fecha, impresion As String
     Public saldo, total As Double
     Public numInterno As Integer
     Public proveedor As Proveedor
 
-    Public Sub New(ByVal impre As String, ByVal punt As String, ByVal nro As String, ByVal letraString As String,
+    Public Sub New(ByVal tipoDoc As String, ByVal tipoImpre As String, ByVal punt As String, ByVal nro As String, ByVal letraString As String,
                    ByVal fechaString As String, ByVal restante As Double, ByVal valorTotal As Double,
                    ByVal interno As String, ByVal prov As Proveedor)
-        tipo = impre
+        tipo = tipoDoc
+        impresion = tipoImpre
         punto = punt
         numero = nro
         letra = letraString
@@ -18,8 +19,26 @@
         proveedor = prov
     End Sub
 
+    Public Function igualA(ByVal cuenta As DetalleCompraCuentaCorriente)
+        Return tipo = cuenta.tipo And
+            punto = cuenta.punto And
+            numero = cuenta.numero And
+            letra = cuenta.letra And
+            fecha = cuenta.fecha And
+            saldo = cuenta.saldo And
+            numInterno = cuenta.numInterno And
+            codigoProveedor() = cuenta.codigoProveedor
+    End Function
+
+    Public Function codigoProveedor()
+        If IsNothing(proveedor) Then
+            Return ""
+        End If
+        Return proveedor.id
+    End Function
+
     Public Overrides Function ToString() As String
-        Return asDoubleString(saldo).PadLeft(10, "_") & " - " & tipo & " - " & letra & " - " & punto & " - " & numero & " - " & fecha
+        Return impresion & " - " & letra & " - " & punto & " - " & numero & " - " & fecha & " - " & asDoubleString(saldo).PadLeft(10, "_")
     End Function
 
     Private Function asDoubleString(ByVal value) As String

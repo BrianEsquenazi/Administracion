@@ -159,6 +159,7 @@ Partial Class CUFEProveedor
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "CUFEProveedor"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CUFE Proveedor"
         Me.ResumeLayout(False)
         Me.PerformLayout()

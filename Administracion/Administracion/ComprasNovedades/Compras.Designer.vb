@@ -925,6 +925,7 @@ Partial Class Compras
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.Name = "Compras"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ingreso de Comprobantes de Proveedores"
         Me.gbTipo.ResumeLayout(False)
         Me.gbTipo.PerformLayout()

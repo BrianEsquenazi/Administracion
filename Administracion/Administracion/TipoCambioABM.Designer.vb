@@ -86,6 +86,7 @@ Partial Class TipoCambioABM
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.Name = "TipoCambioABM"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ingreso de Cambios"
         Me.ResumeLayout(False)
         Me.PerformLayout()

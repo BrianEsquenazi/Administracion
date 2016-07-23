@@ -23,12 +23,11 @@ Partial Class Pagos
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton6 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton5 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.optTransferencias = New System.Windows.Forms.RadioButton()
+        Me.optAnticipos = New System.Windows.Forms.RadioButton()
+        Me.optChequeRechazado = New System.Windows.Forms.RadioButton()
+        Me.optVarios = New System.Windows.Forms.RadioButton()
+        Me.optCtaCte = New System.Windows.Forms.RadioButton()
         Me.gridPagos = New System.Windows.Forms.DataGridView()
         Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Letra = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,13 +42,17 @@ Partial Class Pagos
         Me.Banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Importe2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomLabel13 = New WindowsApplication1.CustomLabel()
+        Me.lblDiferencia = New WindowsApplication1.CustomLabel()
+        Me.lblFormaPagos = New WindowsApplication1.CustomLabel()
+        Me.lblPagos = New WindowsApplication1.CustomLabel()
+        Me.lstSeleccion = New WindowsApplication1.CustomListBox()
         Me.btnCarpetas = New WindowsApplication1.CustomButton()
         Me.btnImprimir = New WindowsApplication1.CustomButton()
         Me.btnCalcular = New WindowsApplication1.CustomButton()
         Me.btnConsulta = New WindowsApplication1.CustomButton()
         Me.btnCerrar = New WindowsApplication1.CustomButton()
         Me.btnLimpiar = New WindowsApplication1.CustomButton()
-        Me.btnEliminar = New WindowsApplication1.CustomButton()
         Me.btnAgregar = New WindowsApplication1.CustomButton()
         Me.txtConsulta = New WindowsApplication1.CustomTextBox()
         Me.lstConsulta = New WindowsApplication1.CustomListBox()
@@ -80,7 +83,6 @@ Partial Class Pagos
         Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.lstSeleccion = New WindowsApplication1.CustomListBox()
         Me.CustomLabel12 = New WindowsApplication1.CustomLabel()
         Me.GroupBox1.SuspendLayout()
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,12 +91,11 @@ Partial Class Pagos
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.RadioButton6)
-        Me.GroupBox1.Controls.Add(Me.RadioButton5)
-        Me.GroupBox1.Controls.Add(Me.RadioButton4)
-        Me.GroupBox1.Controls.Add(Me.RadioButton3)
-        Me.GroupBox1.Controls.Add(Me.RadioButton2)
-        Me.GroupBox1.Controls.Add(Me.RadioButton1)
+        Me.GroupBox1.Controls.Add(Me.optTransferencias)
+        Me.GroupBox1.Controls.Add(Me.optAnticipos)
+        Me.GroupBox1.Controls.Add(Me.optChequeRechazado)
+        Me.GroupBox1.Controls.Add(Me.optVarios)
+        Me.GroupBox1.Controls.Add(Me.optCtaCte)
         Me.GroupBox1.Location = New System.Drawing.Point(20, 129)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(239, 99)
@@ -102,67 +103,57 @@ Partial Class Pagos
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Tipo de Orden de Pago"
         '
-        'RadioButton6
+        'optTransferencias
         '
-        Me.RadioButton6.AutoSize = True
-        Me.RadioButton6.Location = New System.Drawing.Point(134, 69)
-        Me.RadioButton6.Name = "RadioButton6"
-        Me.RadioButton6.Size = New System.Drawing.Size(102, 17)
-        Me.RadioButton6.TabIndex = 5
-        Me.RadioButton6.Text = "Aplic. Pago Imp."
-        Me.RadioButton6.UseVisualStyleBackColor = True
+        Me.optTransferencias.AutoSize = True
+        Me.optTransferencias.Location = New System.Drawing.Point(134, 46)
+        Me.optTransferencias.Name = "optTransferencias"
+        Me.optTransferencias.Size = New System.Drawing.Size(95, 17)
+        Me.optTransferencias.TabIndex = 4
+        Me.optTransferencias.Text = "Transferencias"
+        Me.optTransferencias.UseVisualStyleBackColor = True
         '
-        'RadioButton5
+        'optAnticipos
         '
-        Me.RadioButton5.AutoSize = True
-        Me.RadioButton5.Location = New System.Drawing.Point(134, 46)
-        Me.RadioButton5.Name = "RadioButton5"
-        Me.RadioButton5.Size = New System.Drawing.Size(95, 17)
-        Me.RadioButton5.TabIndex = 4
-        Me.RadioButton5.Text = "Transferencias"
-        Me.RadioButton5.UseVisualStyleBackColor = True
+        Me.optAnticipos.AutoSize = True
+        Me.optAnticipos.Location = New System.Drawing.Point(134, 23)
+        Me.optAnticipos.Name = "optAnticipos"
+        Me.optAnticipos.Size = New System.Drawing.Size(68, 17)
+        Me.optAnticipos.TabIndex = 3
+        Me.optAnticipos.Text = "Anticipos"
+        Me.optAnticipos.UseVisualStyleBackColor = True
         '
-        'RadioButton4
+        'optChequeRechazado
         '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Location = New System.Drawing.Point(134, 23)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(68, 17)
-        Me.RadioButton4.TabIndex = 3
-        Me.RadioButton4.Text = "Anticipos"
-        Me.RadioButton4.UseVisualStyleBackColor = True
+        Me.optChequeRechazado.AutoSize = True
+        Me.optChequeRechazado.Location = New System.Drawing.Point(6, 69)
+        Me.optChequeRechazado.Name = "optChequeRechazado"
+        Me.optChequeRechazado.Size = New System.Drawing.Size(104, 17)
+        Me.optChequeRechazado.TabIndex = 2
+        Me.optChequeRechazado.Text = "Ch. Rechazados"
+        Me.optChequeRechazado.UseVisualStyleBackColor = True
         '
-        'RadioButton3
+        'optVarios
         '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(6, 69)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(104, 17)
-        Me.RadioButton3.TabIndex = 2
-        Me.RadioButton3.Text = "Ch. Rechazados"
-        Me.RadioButton3.UseVisualStyleBackColor = True
+        Me.optVarios.AutoSize = True
+        Me.optVarios.Location = New System.Drawing.Point(6, 46)
+        Me.optVarios.Name = "optVarios"
+        Me.optVarios.Size = New System.Drawing.Size(87, 17)
+        Me.optVarios.TabIndex = 1
+        Me.optVarios.Text = "Pagos Varios"
+        Me.optVarios.UseVisualStyleBackColor = True
         '
-        'RadioButton2
+        'optCtaCte
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(6, 46)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(87, 17)
-        Me.RadioButton2.TabIndex = 1
-        Me.RadioButton2.Text = "Pagos Varios"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Checked = True
-        Me.RadioButton1.Location = New System.Drawing.Point(6, 23)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(99, 17)
-        Me.RadioButton1.TabIndex = 0
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Pagos Cta. Cte."
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.optCtaCte.AutoSize = True
+        Me.optCtaCte.Checked = True
+        Me.optCtaCte.Location = New System.Drawing.Point(6, 23)
+        Me.optCtaCte.Name = "optCtaCte"
+        Me.optCtaCte.Size = New System.Drawing.Size(99, 17)
+        Me.optCtaCte.TabIndex = 0
+        Me.optCtaCte.TabStop = True
+        Me.optCtaCte.Text = "Pagos Cta. Cte."
+        Me.optCtaCte.UseVisualStyleBackColor = True
         '
         'gridPagos
         '
@@ -262,12 +253,68 @@ Partial Class Pagos
         Me.Importe2.Name = "Importe2"
         Me.Importe2.Width = 80
         '
+        'CustomLabel13
+        '
+        Me.CustomLabel13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.CustomLabel13.ControlAssociationKey = -1
+        Me.CustomLabel13.Location = New System.Drawing.Point(284, 548)
+        Me.CustomLabel13.Name = "CustomLabel13"
+        Me.CustomLabel13.Size = New System.Drawing.Size(342, 22)
+        Me.CustomLabel13.TabIndex = 71
+        Me.CustomLabel13.Text = "Tipo de Doc.:   1) Ef.   2) Bco.   3) Ch. Terceros   5) US$   6) Varios"
+        Me.CustomLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblDiferencia
+        '
+        Me.lblDiferencia.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblDiferencia.ControlAssociationKey = -1
+        Me.lblDiferencia.Location = New System.Drawing.Point(632, 548)
+        Me.lblDiferencia.Name = "lblDiferencia"
+        Me.lblDiferencia.Size = New System.Drawing.Size(70, 22)
+        Me.lblDiferencia.TabIndex = 70
+        Me.lblDiferencia.Text = "0,00"
+        Me.lblDiferencia.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblFormaPagos
+        '
+        Me.lblFormaPagos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblFormaPagos.ControlAssociationKey = -1
+        Me.lblFormaPagos.Location = New System.Drawing.Point(708, 548)
+        Me.lblFormaPagos.Name = "lblFormaPagos"
+        Me.lblFormaPagos.Size = New System.Drawing.Size(70, 22)
+        Me.lblFormaPagos.TabIndex = 69
+        Me.lblFormaPagos.Text = "0,00"
+        Me.lblFormaPagos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lblPagos
+        '
+        Me.lblPagos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblPagos.ControlAssociationKey = -1
+        Me.lblPagos.Location = New System.Drawing.Point(208, 548)
+        Me.lblPagos.Name = "lblPagos"
+        Me.lblPagos.Size = New System.Drawing.Size(70, 22)
+        Me.lblPagos.TabIndex = 68
+        Me.lblPagos.Text = "0,00"
+        Me.lblPagos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lstSeleccion
+        '
+        Me.lstSeleccion.Cleanable = False
+        Me.lstSeleccion.EnterIndex = -1
+        Me.lstSeleccion.FormattingEnabled = True
+        Me.lstSeleccion.LabelAssociationKey = -1
+        Me.lstSeleccion.Location = New System.Drawing.Point(437, 11)
+        Me.lstSeleccion.Name = "lstSeleccion"
+        Me.lstSeleccion.Size = New System.Drawing.Size(333, 134)
+        Me.lstSeleccion.TabIndex = 66
+        Me.lstSeleccion.Visible = False
+        '
         'btnCarpetas
         '
         Me.btnCarpetas.Cleanable = False
         Me.btnCarpetas.EnterIndex = -1
         Me.btnCarpetas.LabelAssociationKey = -1
-        Me.btnCarpetas.Location = New System.Drawing.Point(53, 234)
+        Me.btnCarpetas.Location = New System.Drawing.Point(159, 234)
         Me.btnCarpetas.Name = "btnCarpetas"
         Me.btnCarpetas.Size = New System.Drawing.Size(100, 25)
         Me.btnCarpetas.TabIndex = 65
@@ -279,7 +326,7 @@ Partial Class Pagos
         Me.btnImprimir.Cleanable = False
         Me.btnImprimir.EnterIndex = -1
         Me.btnImprimir.LabelAssociationKey = -1
-        Me.btnImprimir.Location = New System.Drawing.Point(159, 234)
+        Me.btnImprimir.Location = New System.Drawing.Point(265, 234)
         Me.btnImprimir.Name = "btnImprimir"
         Me.btnImprimir.Size = New System.Drawing.Size(100, 25)
         Me.btnImprimir.TabIndex = 64
@@ -303,7 +350,7 @@ Partial Class Pagos
         Me.btnConsulta.Cleanable = False
         Me.btnConsulta.EnterIndex = -1
         Me.btnConsulta.LabelAssociationKey = -1
-        Me.btnConsulta.Location = New System.Drawing.Point(371, 234)
+        Me.btnConsulta.Location = New System.Drawing.Point(477, 234)
         Me.btnConsulta.Name = "btnConsulta"
         Me.btnConsulta.Size = New System.Drawing.Size(100, 25)
         Me.btnConsulta.TabIndex = 62
@@ -327,24 +374,12 @@ Partial Class Pagos
         Me.btnLimpiar.Cleanable = False
         Me.btnLimpiar.EnterIndex = -1
         Me.btnLimpiar.LabelAssociationKey = -1
-        Me.btnLimpiar.Location = New System.Drawing.Point(265, 234)
+        Me.btnLimpiar.Location = New System.Drawing.Point(371, 234)
         Me.btnLimpiar.Name = "btnLimpiar"
         Me.btnLimpiar.Size = New System.Drawing.Size(100, 25)
         Me.btnLimpiar.TabIndex = 60
         Me.btnLimpiar.Text = "Limpiar"
         Me.btnLimpiar.UseVisualStyleBackColor = True
-        '
-        'btnEliminar
-        '
-        Me.btnEliminar.Cleanable = False
-        Me.btnEliminar.EnterIndex = -1
-        Me.btnEliminar.LabelAssociationKey = -1
-        Me.btnEliminar.Location = New System.Drawing.Point(477, 234)
-        Me.btnEliminar.Name = "btnEliminar"
-        Me.btnEliminar.Size = New System.Drawing.Size(100, 25)
-        Me.btnEliminar.TabIndex = 59
-        Me.btnEliminar.Text = "Eliminar"
-        Me.btnEliminar.UseVisualStyleBackColor = True
         '
         'btnAgregar
         '
@@ -508,6 +543,7 @@ Partial Class Pagos
         Me.cmbTipo.Size = New System.Drawing.Size(160, 21)
         Me.cmbTipo.TabIndex = 39
         Me.cmbTipo.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbTipo.Visible = False
         '
         'txtParidad
         '
@@ -561,7 +597,7 @@ Partial Class Pagos
         Me.txtNombreBanco.Enabled = False
         Me.txtNombreBanco.EnterIndex = -1
         Me.txtNombreBanco.LabelAssociationKey = 5
-        Me.txtNombreBanco.Location = New System.Drawing.Point(187, 97)
+        Me.txtNombreBanco.Location = New System.Drawing.Point(187, 98)
         Me.txtNombreBanco.Name = "txtNombreBanco"
         Me.txtNombreBanco.Size = New System.Drawing.Size(241, 20)
         Me.txtNombreBanco.TabIndex = 33
@@ -571,6 +607,7 @@ Partial Class Pagos
         '
         Me.txtBanco.Cleanable = True
         Me.txtBanco.Empty = True
+        Me.txtBanco.Enabled = False
         Me.txtBanco.EnterIndex = 5
         Me.txtBanco.LabelAssociationKey = 5
         Me.txtBanco.Location = New System.Drawing.Point(105, 98)
@@ -696,18 +733,6 @@ Partial Class Pagos
         Me.CustomLabel1.TabIndex = 0
         Me.CustomLabel1.Text = "Orden de Pago"
         '
-        'lstSeleccion
-        '
-        Me.lstSeleccion.Cleanable = False
-        Me.lstSeleccion.EnterIndex = -1
-        Me.lstSeleccion.FormattingEnabled = True
-        Me.lstSeleccion.LabelAssociationKey = -1
-        Me.lstSeleccion.Location = New System.Drawing.Point(437, 37)
-        Me.lstSeleccion.Name = "lstSeleccion"
-        Me.lstSeleccion.Size = New System.Drawing.Size(333, 108)
-        Me.lstSeleccion.TabIndex = 66
-        Me.lstSeleccion.Visible = False
-        '
         'CustomLabel12
         '
         Me.CustomLabel12.AutoSize = True
@@ -723,6 +748,10 @@ Partial Class Pagos
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(790, 568)
+        Me.Controls.Add(Me.CustomLabel13)
+        Me.Controls.Add(Me.lblDiferencia)
+        Me.Controls.Add(Me.lblFormaPagos)
+        Me.Controls.Add(Me.lblPagos)
         Me.Controls.Add(Me.lstSeleccion)
         Me.Controls.Add(Me.btnCarpetas)
         Me.Controls.Add(Me.btnImprimir)
@@ -730,7 +759,6 @@ Partial Class Pagos
         Me.Controls.Add(Me.btnConsulta)
         Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.btnLimpiar)
-        Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.btnAgregar)
         Me.Controls.Add(Me.gridFormaPagos)
         Me.Controls.Add(Me.gridPagos)
@@ -768,6 +796,7 @@ Partial Class Pagos
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.MaximizeBox = False
         Me.Name = "Pagos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ingreso de Pagos a Proveedores"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -790,12 +819,11 @@ Partial Class Pagos
     Friend WithEvents txtBanco As WindowsApplication1.CustomTextBox
     Friend WithEvents txtNombreBanco As WindowsApplication1.CustomTextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents RadioButton6 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton5 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton4 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents optTransferencias As System.Windows.Forms.RadioButton
+    Friend WithEvents optAnticipos As System.Windows.Forms.RadioButton
+    Friend WithEvents optChequeRechazado As System.Windows.Forms.RadioButton
+    Friend WithEvents optVarios As System.Windows.Forms.RadioButton
+    Friend WithEvents optCtaCte As System.Windows.Forms.RadioButton
     Friend WithEvents CustomLabel6 As WindowsApplication1.CustomLabel
     Friend WithEvents CustomLabel7 As WindowsApplication1.CustomLabel
     Friend WithEvents txtFechaParidad As WindowsApplication1.CustomTextBox
@@ -817,7 +845,6 @@ Partial Class Pagos
     Friend WithEvents gridFormaPagos As System.Windows.Forms.DataGridView
     Friend WithEvents btnCerrar As WindowsApplication1.CustomButton
     Friend WithEvents btnLimpiar As WindowsApplication1.CustomButton
-    Friend WithEvents btnEliminar As WindowsApplication1.CustomButton
     Friend WithEvents btnAgregar As WindowsApplication1.CustomButton
     Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
     Friend WithEvents btnCalcular As WindowsApplication1.CustomButton
@@ -837,4 +864,8 @@ Partial Class Pagos
     Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CustomLabel12 As WindowsApplication1.CustomLabel
+    Friend WithEvents lblPagos As WindowsApplication1.CustomLabel
+    Friend WithEvents lblFormaPagos As WindowsApplication1.CustomLabel
+    Friend WithEvents lblDiferencia As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel13 As WindowsApplication1.CustomLabel
 End Class

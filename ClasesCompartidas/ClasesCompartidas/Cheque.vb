@@ -13,7 +13,6 @@
         clave = clav
     End Sub
 
-
     Public Function igualA(ByVal otroCheque As Cheque)
         Return identificacion = otroCheque.identificacion And
         fechaCheque = otroCheque.fechaCheque And
@@ -23,7 +22,7 @@
     End Function
 
     Public Overrides Function ToString() As String
-        Return asDoubleString(valorImporte).PadLeft(10, "_") & " - " & fechaCheque & " - " & identificacion & " - " & banco
+        Return fechaCheque & " - " & identificacion & " - " & asDoubleString(valorImporte).PadLeft(10, "_") & " - " & banco
     End Function
 
     Private Function asDoubleString(ByVal value) As String
