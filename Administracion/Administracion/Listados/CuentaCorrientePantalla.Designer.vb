@@ -22,8 +22,23 @@ Partial Class CuentaCorrientePantalla
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GRilla = New System.Windows.Forms.DataGridView()
-        Me.Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Letra = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Punto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Saldo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Vencimiento = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.opcCompleto = New System.Windows.Forms.RadioButton()
         Me.opcPendiente = New System.Windows.Forms.RadioButton()
         Me.boxPantallaProveedores = New System.Windows.Forms.GroupBox()
@@ -44,17 +59,79 @@ Partial Class CuentaCorrientePantalla
         'GRilla
         '
         Me.GRilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRilla.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column})
+        Me.GRilla.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.Letra, Me.Punto, Me.Numero, Me.Importe, Me.Saldo, Me.Fecha, Me.Vencimiento})
         Me.GRilla.Location = New System.Drawing.Point(26, 72)
         Me.GRilla.Name = "GRilla"
         Me.GRilla.Size = New System.Drawing.Size(742, 383)
         Me.GRilla.StandardTab = True
         Me.GRilla.TabIndex = 1
         '
-        'Column
+        'Tipo
         '
-        Me.Column.HeaderText = "Hola"
-        Me.Column.Name = "Column"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Tipo.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        Me.Tipo.ReadOnly = True
+        Me.Tipo.Width = 50
+        '
+        'Letra
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft
+        Me.Letra.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Letra.HeaderText = "Letra"
+        Me.Letra.Name = "Letra"
+        Me.Letra.ReadOnly = True
+        Me.Letra.Width = 50
+        '
+        'Punto
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.Punto.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Punto.HeaderText = "Punto"
+        Me.Punto.Name = "Punto"
+        Me.Punto.ReadOnly = True
+        Me.Punto.Width = 50
+        '
+        'Numero
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.Numero.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Numero.HeaderText = "Numero"
+        Me.Numero.Name = "Numero"
+        Me.Numero.ReadOnly = True
+        '
+        'Importe
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.Importe.DefaultCellStyle = DataGridViewCellStyle5
+        Me.Importe.HeaderText = "Importe"
+        Me.Importe.Name = "Importe"
+        Me.Importe.ReadOnly = True
+        '
+        'Saldo
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.Saldo.DefaultCellStyle = DataGridViewCellStyle6
+        Me.Saldo.HeaderText = "Saldo"
+        Me.Saldo.Name = "Saldo"
+        Me.Saldo.ReadOnly = True
+        '
+        'Fecha
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.Fecha.DefaultCellStyle = DataGridViewCellStyle7
+        Me.Fecha.HeaderText = "Fecha"
+        Me.Fecha.Name = "Fecha"
+        Me.Fecha.ReadOnly = True
+        '
+        'Vencimiento
+        '
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.Vencimiento.DefaultCellStyle = DataGridViewCellStyle8
+        Me.Vencimiento.HeaderText = "Vencimiento"
+        Me.Vencimiento.Name = "Vencimiento"
+        Me.Vencimiento.ReadOnly = True
         '
         'opcCompleto
         '
@@ -117,7 +194,7 @@ Partial Class CuentaCorrientePantalla
         Me.btnCancela.Cleanable = False
         Me.btnCancela.EnterIndex = -1
         Me.btnCancela.LabelAssociationKey = -1
-        Me.btnCancela.Location = New System.Drawing.Point(666, 12)
+        Me.btnCancela.Location = New System.Drawing.Point(657, 12)
         Me.btnCancela.Name = "btnCancela"
         Me.btnCancela.Size = New System.Drawing.Size(99, 40)
         Me.btnCancela.TabIndex = 28
@@ -129,9 +206,9 @@ Partial Class CuentaCorrientePantalla
         Me.btnConsulta.Cleanable = False
         Me.btnConsulta.EnterIndex = -1
         Me.btnConsulta.LabelAssociationKey = -1
-        Me.btnConsulta.Location = New System.Drawing.Point(533, 12)
+        Me.btnConsulta.Location = New System.Drawing.Point(542, 12)
         Me.btnConsulta.Name = "btnConsulta"
-        Me.btnConsulta.Size = New System.Drawing.Size(102, 40)
+        Me.btnConsulta.Size = New System.Drawing.Size(95, 40)
         Me.btnConsulta.TabIndex = 26
         Me.btnConsulta.Text = "Consulta"
         Me.btnConsulta.UseVisualStyleBackColor = True
@@ -144,15 +221,17 @@ Partial Class CuentaCorrientePantalla
         Me.txtSaldo.LabelAssociationKey = -1
         Me.txtSaldo.Location = New System.Drawing.Point(93, 36)
         Me.txtSaldo.Name = "txtSaldo"
+        Me.txtSaldo.ReadOnly = True
         Me.txtSaldo.Size = New System.Drawing.Size(108, 20)
         Me.txtSaldo.TabIndex = 7
+        Me.txtSaldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.txtSaldo.Validator = WindowsApplication1.ValidatorType.None
         '
         'CustomLabel2
         '
         Me.CustomLabel2.AutoSize = True
         Me.CustomLabel2.ControlAssociationKey = -1
-        Me.CustomLabel2.Location = New System.Drawing.Point(23, 39)
+        Me.CustomLabel2.Location = New System.Drawing.Point(20, 39)
         Me.CustomLabel2.Name = "CustomLabel2"
         Me.CustomLabel2.Size = New System.Drawing.Size(34, 13)
         Me.CustomLabel2.TabIndex = 8
@@ -229,7 +308,6 @@ Partial Class CuentaCorrientePantalla
 
     End Sub
     Friend WithEvents GRilla As System.Windows.Forms.DataGridView
-    Friend WithEvents Column As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
     Friend WithEvents txtProveedor As WindowsApplication1.CustomTextBox
     Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
@@ -243,4 +321,12 @@ Partial Class CuentaCorrientePantalla
     Friend WithEvents lstAyuda As WindowsApplication1.CustomListBox
     Friend WithEvents txtAyuda As WindowsApplication1.CustomTextBox
     Friend WithEvents btnCancela As WindowsApplication1.CustomButton
+    Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Letra As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Punto As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Numero As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Saldo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Vencimiento As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

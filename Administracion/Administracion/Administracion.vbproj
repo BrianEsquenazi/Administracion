@@ -162,10 +162,22 @@
     <Compile Include="ComprasNovedades\CuotasPyMENacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Listados\ListadoAgenda.Designer.vb">
+      <DependentUpon>ListadoAgenda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoAgenda.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Listados\ListadoChequesEmitidos.Designer.vb">
       <DependentUpon>ListadoChequesEmitidos.vb</DependentUpon>
     </Compile>
     <Compile Include="Listados\ListadoChequesEmitidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoCuentaCorrienteProveedoresAnalisitico.Designer.vb">
+      <DependentUpon>ListadoCuentaCorrienteProveedoresAnalisitico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoCuentaCorrienteProveedoresAnalisitico.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Listados\ListadoCuentaCorrienteProveedoresFecha.Designer.vb">
@@ -178,6 +190,12 @@
       <DependentUpon>ListadoDepositos.vb</DependentUpon>
     </Compile>
     <Compile Include="Listados\ListadoDepositos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoDeudaPyme.Designer.vb">
+      <DependentUpon>ListadoDeudaPyme.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoDeudaPyme.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Listados\ListadoDiferenciaCambioAcreditacion.Designer.vb">
@@ -222,10 +240,22 @@
     <Compile Include="Listados\ListadoPagosPosdatados.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Listados\ListadoProyeccionCobrosAnalitico.Designer.vb">
+      <DependentUpon>ListadoProyeccionCobrosAnalitico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoProyeccionCobrosAnalitico.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Listados\ListadoRecibos.Designer.vb">
       <DependentUpon>ListadoRecibos.vb</DependentUpon>
     </Compile>
     <Compile Include="Listados\ListadoRecibos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoRecibosProvisorios.Designer.vb">
+      <DependentUpon>ListadoRecibosProvisorios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoRecibosProvisorios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Listados\ListadoRetencionIB.Designer.vb">
@@ -244,6 +274,12 @@
       <DependentUpon>ListadoValoresEnCarteraCuit.vb</DependentUpon>
     </Compile>
     <Compile Include="Listados\ListadoValoresEnCarteraCuit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\ListadoPagosImportaciones.Designer.vb">
+      <DependentUpon>ListadoPagosImportaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\ListadoPagosImportaciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ModificaIntereses.Designer.vb">
@@ -447,14 +483,23 @@
     <EmbeddedResource Include="ComprasNovedades\CuotasPyMENacion.resx">
       <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoAgenda.resx">
+      <DependentUpon>ListadoAgenda.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoChequesEmitidos.resx">
       <DependentUpon>ListadoChequesEmitidos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoCuentaCorrienteProveedoresAnalisitico.resx">
+      <DependentUpon>ListadoCuentaCorrienteProveedoresAnalisitico.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoCuentaCorrienteProveedoresFecha.resx">
       <DependentUpon>ListadoCuentaCorrienteProveedoresFecha.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoDepositos.resx">
       <DependentUpon>ListadoDepositos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoDeudaPyme.resx">
+      <DependentUpon>ListadoDeudaPyme.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoDiferenciaCambioAcreditacion.resx">
       <DependentUpon>ListadoDiferenciaCambioAcreditacion.vb</DependentUpon>
@@ -474,11 +519,20 @@
     <EmbeddedResource Include="Listados\ListadoPagos.resx">
       <DependentUpon>ListadoPagos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoPagosImportaciones.resx">
+      <DependentUpon>ListadoPagosImportaciones.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoPagosPosdatados.resx">
       <DependentUpon>ListadoPagosPosdatados.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoProyeccionCobrosAnalitico.resx">
+      <DependentUpon>ListadoProyeccionCobrosAnalitico.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoRecibos.resx">
       <DependentUpon>ListadoRecibos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\ListadoRecibosProvisorios.resx">
+      <DependentUpon>ListadoRecibosProvisorios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoRetencionIB.resx">
       <DependentUpon>ListadoRetencionIB.vb</DependentUpon>

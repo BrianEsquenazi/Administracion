@@ -4,15 +4,7 @@ Imports System.IO
 Public Class CuentaCorrientePantalla
 
     Dim dataGridBuilder As GridBuilder
-    Dim aa As String
-
-    'Private Sub txtproveedor_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
-    '    If e.KeyCode = Keys.Enter Then
-    '        Dim CampoProveedor As Banco = DAOProveedor.buscarProveedorPorCodigo("1")
-    '        ProveedorRazon.Text = CampoProveedor.nombre
-    '    End If
-    'End Sub
-
+    Dim Aa As Integer
 
     Private Sub txtproveedor_KeyPress(ByVal sender As Object, _
                     ByVal e As System.Windows.Forms.KeyPressEventArgs) _
@@ -33,24 +25,6 @@ Public Class CuentaCorrientePantalla
 
         dataGridBuilder = New GridBuilder(GRilla)
 
-        dataGridBuilder.addTextColumn(0, "Tipo")
-        dataGridBuilder.addTextColumn(1, "Letra")
-        dataGridBuilder.addDateColumn(2, "Punto")
-        dataGridBuilder.addTextColumn(3, "Numero")
-        dataGridBuilder.addTextColumn(4, "Importe")
-        dataGridBuilder.addTextColumn(5, "Saldo")
-        dataGridBuilder.addTextColumn(6, "Fecha")
-        dataGridBuilder.addTextColumn(7, "Vencimiento")
-
-        GRilla.Columns(0).Width = 50
-        GRilla.Columns(1).Width = 50
-        GRilla.Columns(2).Width = 50
-        GRilla.Columns(3).Width = 100
-        GRilla.Columns(4).Width = 100
-        GRilla.Columns(5).Width = 100
-        GRilla.Columns(6).Width = 100
-        GRilla.Columns(7).Width = 100
-
         opcPendiente.Checked = True
         opcCompleto.Checked = False
 
@@ -59,6 +33,7 @@ Public Class CuentaCorrientePantalla
     Private Sub Proceso()
 
         Dim WRenglon As Integer
+        Dim WSuma As Double
 
         GRilla.Rows.Clear()
         GRilla.Rows.Add()
@@ -71,6 +46,7 @@ Public Class CuentaCorrientePantalla
         If (opcPendiente.Checked) Then
             WTipo = "P"
         End If
+        WSuma = 0
 
         REM dada fix CAMBIAR Al uso de dao!!
         Dim tabla As DataTable
@@ -80,7 +56,6 @@ Public Class CuentaCorrientePantalla
 
             Dim CamposCtaCtePrv As New CtaCteProveedoresDeuda(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString, row.Item(3).ToString, row.Item(4), row.Item(5), row.Item(6).ToString, row.Item(7).ToString)
 
-            WRenglon = WRenglon + 1
 
             GRilla.Rows.Add()
 
@@ -88,18 +63,19 @@ Public Class CuentaCorrientePantalla
             GRilla.Item(1, WRenglon).Value = CamposCtaCtePrv.letra
             GRilla.Item(2, WRenglon).Value = CamposCtaCtePrv.punto
             GRilla.Item(3, WRenglon).Value = CamposCtaCtePrv.numero
-            GRilla.Item(4, WRenglon).Value = CamposCtaCtePrv.total
-            GRilla.Item(5, WRenglon).Value = CamposCtaCtePrv.saldo
+            GRilla.Item(4, WRenglon).Value = formatonumerico(CamposCtaCtePrv.total, "########0.#0", ".")
+            GRilla.Item(5, WRenglon).Value = formatonumerico(CamposCtaCtePrv.saldo, "########0.#0", ".")
             GRilla.Item(6, WRenglon).Value = CamposCtaCtePrv.fecha
             GRilla.Item(7, WRenglon).Value = CamposCtaCtePrv.vencimiento
 
-
+            WRenglon = WRenglon + 1
+            WSuma = WSuma + CamposCtaCtePrv.saldo
 
         Next
 
 
         GRilla.AllowUserToAddRows = False
-
+        txtSaldo.Text = formatonumerico(WSuma, "########0.#0", ".")
 
 
     End Sub
@@ -142,6 +118,21 @@ Public Class CuentaCorrientePantalla
         MenuPrincipal.Show()
     End Sub
 
-    
-   
+    Private Sub opcCompleto_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles opcCompleto.CheckedChanged
+        Call Proceso()
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+        Dim opc As DialogResult = MsgBox("¿Desea salir de esta aplicación?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Salir")
+        If opc = Windows.Forms.DialogResult.Yes Then
+            Aa = 1
+            'End
+        Else
+            'e.Cancel = True
+            Aa = 2
+        End If
+        Stop
+    End Sub
+
 End Class

@@ -30,4 +30,6 @@ Public Class CargaIntereses
     Private Sub btnCancela_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancela.Click
         Close()
     End Sub
+
+    
 End Class

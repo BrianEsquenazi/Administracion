@@ -199,4 +199,28 @@
     Private Sub ListadoDeRetencionesDeIngresosBrutosCiudadDeBuenosAiresToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeRetencionesDeIngresosBrutosCiudadDeBuenosAiresToolStripMenuItem1.Click
         abrir(New ListadoRetencionIBCiudad)
     End Sub
+
+    Private Sub ListadoDeCuentasCorrientesDeProveedoresAnaliticosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeCuentasCorrientesDeProveedoresAnaliticosToolStripMenuItem.Click
+        abrir(New ListadoCuentaCorrienteProveedoresAnalisitico)
+    End Sub
+
+    Private Sub ListadoDeProyeccionDeCuentaCorrientesDeProveedoresAnaliticosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeProyeccionDeCuentaCorrientesDeProveedoresAnaliticosToolStripMenuItem.Click
+        abrir(New ListadoProyeccionCobrosAnalitico)
+    End Sub
+
+    Private Sub ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem.Click
+        abrir(New ListadoAgenda)
+    End Sub
+
+    Private Sub ControlDeRecibosProvisoriosToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ControlDeRecibosProvisoriosToolStripMenuItem1.Click
+        abrir(New ListadoRecibosProvisorios)
+    End Sub
+
+    Private Sub ListadoDeDeudaDePymeNacionToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeDeudaDePymeNacionToolStripMenuItem1.Click
+        abrir(New ListadoDeudaPyme)
+    End Sub
+
+    Private Sub ListadoDeProyeccionDePagosDeImportacionesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeProyeccionDePagosDeImportacionesToolStripMenuItem.Click
+        abrir(New ListadoPagosImportaciones)
+    End Sub
 End Class
