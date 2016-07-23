@@ -162,6 +162,12 @@
     <Compile Include="ComprasNovedades\CuotasPyMENacion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ConsultaCheque.Designer.vb">
+      <DependentUpon>ConsultaCheque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaCheque.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Listados\ListadoAgenda.Designer.vb">
       <DependentUpon>ListadoAgenda.vb</DependentUpon>
     </Compile>
@@ -482,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprasNovedades\CuotasPyMENacion.resx">
       <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaCheque.resx">
+      <DependentUpon>ConsultaCheque.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoAgenda.resx">
       <DependentUpon>ListadoAgenda.vb</DependentUpon>

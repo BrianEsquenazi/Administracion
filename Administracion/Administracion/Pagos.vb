@@ -138,6 +138,7 @@ Public Class Pagos
 
     Private Sub txtOrdenPago_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtOrdenPago.Leave
         txtOrdenPago.Text = ceros(txtOrdenPago.Text, 6)
+
     End Sub
 
     Private Sub lstSeleccion_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstSeleccion.DoubleClick
@@ -308,5 +309,9 @@ Public Class Pagos
             End If
         End If
         sumarImportes()
+    End Sub
+
+    Private Sub txtOrdenPago_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtOrdenPago.TextChanged
+
     End Sub
 End Class
