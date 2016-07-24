@@ -77,7 +77,7 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_cheques_propios]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_pago_por_orden]]') AND type in (N'P', N'PC'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_pago_por_orden]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[PR_get_pago_por_orden]
 GO
 
@@ -677,19 +677,21 @@ CREATE PROCEDURE [dbo].[PR_get_cheques_propios] (@cheque varchar(8)) AS
 
 GO
 
-create procedure PR_get_pago_por_orden (@orden varchar(6)) as
+CREATE PROCEDURE PR_get_pago_por_orden (@orden VARCHAR(6)) AS
 	SELECT p.Orden
 		, p.TipoOrd
 		, p.Fecha
 		, p.Proveedor
 		, p.Observaciones
-		, p.banco2 as banco
-		, p.Fecha2 as fechaParidad
+		, p.banco2 AS banco
+		, p.Fecha2 AS fechaParidad
 		, p.Paridad
 		, p.RetGanancias
-		, p.RetOtra as RetencionIB
+		, p.RetOtra AS RetencionIB
 		, p.RetIbCiudad
 		, p.RetIva
+		, p.Importe
+		, p.TipoReg
 		, p.Tipo1
 		, p.Letra1
 		, p.Punto1
@@ -701,7 +703,7 @@ create procedure PR_get_pago_por_orden (@orden varchar(6)) as
 		, p.Numero2
 		, p.FechaCheque
 		, p.banco2
-		, p.BancoCheque As NombreCheque
+		, p.BancoCheque AS NombreCheque
 		, p.Importe2
 	FROM Pagos p
 	WHERE p.Orden = @orden

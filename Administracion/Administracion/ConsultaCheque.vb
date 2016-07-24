@@ -4,7 +4,7 @@ Public Class ConsultaCheque
 
     Private Sub btnProceso_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProceso.Click
         If cmbTipo.SelectedIndex = 0 Then
-            For Each row In SQLConnector.retrieveDataTable("get_carga_cheques_terceros", txtCheque.Text).Rows
+            For Each row In SQLConnector.retrieveDataTable("get_cheques_terceros", txtCheque.Text).Rows
                 gridCheque.Rows.Add(row("Numero2").ToString,
                                     ("Banco2").ToString,
                                     row("Importe2").ToString,
@@ -14,7 +14,7 @@ Public Class ConsultaCheque
                                     row("Cliente").ToString)
             Next
         Else
-            For Each row In SQLConnector.retrieveDataTable("get_carga_cheques_propios", txtCheque.Text).Rows
+            For Each row In SQLConnector.retrieveDataTable("get_cheques_propios", txtCheque.Text).Rows
                 gridCheque.Rows.Add(row("Numero2").ToString,
                                     ("Banco2").ToString,
                                     row("Importe2").ToString,
