@@ -157,6 +157,7 @@ Partial Class Pagos
         '
         'gridPagos
         '
+        Me.gridPagos.AllowUserToAddRows = False
         Me.gridPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridPagos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.Letra, Me.Punto, Me.Numero, Me.Importe, Me.Descripcion})
         Me.gridPagos.Location = New System.Drawing.Point(0, 272)

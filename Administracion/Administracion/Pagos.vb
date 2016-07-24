@@ -54,9 +54,14 @@ Public Class Pagos
     End Sub
 
     Private Sub txtObservaciones_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtObservaciones.Leave
-        gridPagos.CurrentCell = gridPagos.Rows(0).Cells(0)
-        gridPagos.Select()
-        gridPagos.Focus()
+        If gridPagos.Rows.Count = 0 Then
+            lstSeleccion.SelectedIndex = 1
+            lstSeleccion_DoubleClick(Nothing, Nothing)
+        Else
+            gridPagos.CurrentCell = gridPagos.Rows(0).Cells(4)
+            gridPagos.Select()
+            gridPagos.Focus()
+        End If
     End Sub
 
     Private Function cuentasCorrientesDelProveedorActual()
@@ -190,16 +195,6 @@ Public Class Pagos
         End If
     End Sub
 
-    Private Sub optTransferencias_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optTransferencias.CheckedChanged
-        If optTransferencias.Checked Then
-            txtBanco.Enabled = True
-            txtBanco.Empty = False
-            txtNombreBanco.Empty = False
-            txtBanco.Text = ""
-            txtBanco.Focus()
-        End If
-    End Sub
-
     Private Sub txtFecha_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFecha.Leave
         txtFechaParidad.Text = txtFecha.Text
     End Sub
@@ -243,6 +238,19 @@ Public Class Pagos
 
     Private Sub gridFormaPagos_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridFormaPagos.CellValueChanged
         sumarImportes()
+        llenarConCerosNumero()
+    End Sub
+
+    Private Sub llenarConCerosNumero()
+        For Each row As DataGridViewRow In gridFormaPagos.Rows
+            If row.Cells(1).Value <> "" Then
+                If row.Cells(1).Value.ToString.Length > 8 Then
+                    row.Cells(1).Value = ""
+                Else
+                    row.Cells(1).Value = ceros(row.Cells(1).Value, 8)
+                End If
+            End If
+        Next
     End Sub
 
     Private Sub gridFormaPagos_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles gridFormaPagos.KeyDown
@@ -308,5 +316,57 @@ Public Class Pagos
             End If
         End If
         sumarImportes()
+    End Sub
+
+    Private Sub optTransferencias_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optTransferencias.CheckedChanged
+        If optTransferencias.Checked Then
+            txtBanco.Enabled = True
+            txtBanco.Empty = False
+            txtNombreBanco.Empty = False
+            txtBanco.Text = ""
+            txtBanco.Focus()
+            gridPagos.Rows.Clear()
+            gridPagos.Rows.Add("", "", "", "", "", "")
+            gridPagos.Columns(4).ReadOnly = False
+            gridPagos.Columns(5).ReadOnly = False
+        End If
+    End Sub
+
+    Private Sub optAnticipos_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optAnticipos.CheckedChanged
+        If optAnticipos.Checked Then
+            gridPagos.Rows.Clear()
+            gridPagos.Rows.Add("", "", "", "", "0,00", txtRazonSocial.Text)
+            gridPagos.Columns(4).ReadOnly = True
+            gridPagos.Columns(5).ReadOnly = True
+        End If
+    End Sub
+
+    Private Sub optVarios_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optVarios.CheckedChanged
+        If optVarios.Checked Then
+            gridPagos.Rows.Clear()
+            gridPagos.Rows.Add("", "", "", "", "", txtRazonSocial.Text)
+            gridPagos.Columns(4).ReadOnly = False
+            gridPagos.Columns(5).ReadOnly = True
+        End If
+    End Sub
+
+    Private Sub optChequeRechazado_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optChequeRechazado.CheckedChanged
+        If optChequeRechazado.Checked Then
+            gridPagos.Rows.Clear()
+            gridPagos.Rows.Add("", "", "", "", "", "")
+            gridPagos.Columns(4).ReadOnly = False
+            gridPagos.Columns(5).ReadOnly = False
+        End If
+    End Sub
+
+    Private Sub optCtaCte_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optCtaCte.CheckedChanged
+        If optCtaCte.Checked Then
+            gridPagos.Rows.Clear()
+            Try
+                gridPagos.Columns(4).ReadOnly = True
+                gridPagos.Columns(5).ReadOnly = True
+            Catch ex As ArgumentOutOfRangeException
+            End Try
+        End If
     End Sub
 End Class
