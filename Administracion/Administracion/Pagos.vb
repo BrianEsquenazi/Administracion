@@ -41,8 +41,19 @@ Public Class Pagos
 
         validador.validate(Me)
         validador.alsoValidate(consistenciaEntreProveedorYGrillas(), "Algunos campos de las grillas no coinciden con el proveedor que se desea grabar")
+        validador.alsoValidate(bancosValidos(), "Algunos campos de la grilla de forma de pagos no tienen un banco válido asignado")
 
         Return validador.flush
+    End Function
+
+    Private Function bancosValidos()
+        For Each row As DataGridViewRow In gridFormaPagos.Rows
+            If Not row.IsNewRow And row.Cells(0).Value = "02" Then
+                Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(row.Cells(3).Value)
+                If IsNothing(banco) Then : Return False : End If
+            End If
+        Next
+        Return True
     End Function
 
     Private Function consistenciaEntreProveedorYGrillas()
@@ -81,12 +92,63 @@ Public Class Pagos
         gridPagos.Rows.Add(cuenta.tipo, cuenta.letra, cuenta.punto, cuenta.numero, CustomConvert.toStringWithTwoDecimalPlaces(cuenta.saldo), "Pago Factura Nro " & CustomConvert.toIntOrZero(cuenta.numero))
     End Sub
 
+    Private Sub mostrarOrdenDePago(ByVal orden As OrdenPago)
+        If IsNothing(orden) Then : Exit Sub : End If
+        'btnLimpiar.PerformClick()
+        txtOrdenPago.Text = orden.nroOrden
+        txtFecha.Text = orden.fecha
+        txtObservaciones.Text = orden.observaciones
+        txtFechaParidad.Text = orden.fechaParidad
+        mostrarProveedor(orden.proveedor)
+        mostrarBanco(orden.banco)
+        txtGanancias.Text = CustomConvert.toStringWithTwoDecimalPlaces(orden.retGanancias)
+        txtIBCiudad.Text = CustomConvert.toStringWithTwoDecimalPlaces(orden.retIBCiudad)
+        txtIngresosBrutos.Text = CustomConvert.toStringWithTwoDecimalPlaces(orden.retIB)
+        txtIVA.Text = CustomConvert.toStringWithTwoDecimalPlaces(orden.retIVA)
+        mostrarPagos(orden.pagos)
+        mostrarFormaPagos(orden.formaPagos)
+        mostrarTipo(orden.tipo)
+    End Sub
+
+    Private Sub mostrarTipo(ByVal tipo As Integer)
+        Select Case tipo
+            Case 1
+                optCtaCte.Checked = True
+            Case 3
+                optChequeRechazado.Checked = True
+            Case 4
+                optAnticipos.Checked = True
+            Case 5
+                optTransferencias.Checked = True
+            Case Else
+                optVarios.Checked = True
+        End Select
+    End Sub
+
+    Private Sub mostrarPagos(ByVal pagos As List(Of Pago))
+        gridPagos.Rows.Clear()
+        For Each pago As Pago In pagos
+            gridPagos.Rows.Add(pago.tipo, pago.letra, pago.punto, pago.numero, pago.importe, pago.descripcion)
+        Next
+        sumarImportes()
+    End Sub
+
+    Private Sub mostrarFormaPagos(ByVal formaPagos As List(Of FormaPago))
+        gridFormaPagos.Rows.Clear()
+        For Each formaPago As FormaPago In formaPagos
+            gridFormaPagos.Rows.Add(formaPago.tipo, formaPago.numero, formaPago.fecha, formaPago.banco, formaPago.nombre, formaPago.importe)
+        Next
+        sumarImportes()
+    End Sub
+
     Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
+        If IsNothing(proveedor) Then : Exit Sub : End If
         txtProveedor.Text = proveedor.id
         txtRazonSocial.Text = proveedor.razonSocial
     End Sub
 
     Private Sub mostrarBanco(ByVal banco As Banco)
+        If IsNothing(banco) Then : Exit Sub : End If
         txtBanco.Text = banco.id
         txtNombreBanco.Text = banco.nombre
     End Sub
@@ -143,6 +205,7 @@ Public Class Pagos
 
     Private Sub txtOrdenPago_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtOrdenPago.Leave
         txtOrdenPago.Text = ceros(txtOrdenPago.Text, 6)
+        mostrarOrdenDePago(DAOPagos.buscarOrdenPorNumero(txtOrdenPago.Text))
     End Sub
 
     Private Sub lstSeleccion_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstSeleccion.DoubleClick
@@ -271,6 +334,10 @@ Public Class Pagos
     Private Sub sumarImportes()
         Dim pagos As Double = 0
         Dim formaPagos As Double = 0
+        Dim total As Double = 0
+
+        total = CustomConvert.toDoubleOrZero(txtIVA.Text) + CustomConvert.toDoubleOrZero(txtGanancias.Text) + CustomConvert.toDoubleOrZero(txtIBCiudad.Text) +
+            CustomConvert.toDoubleOrZero(txtIngresosBrutos.Text)
 
         For Each row As DataGridViewRow In gridPagos.Rows
             If Not row.IsNewRow Then
@@ -283,9 +350,10 @@ Public Class Pagos
                 formaPagos += CustomConvert.toDoubleOrZero(row.Cells(5).Value)
             End If
         Next
+        txtTotal.Text = CustomConvert.toStringWithTwoDecimalPlaces(total)
         lblPagos.Text = CustomConvert.toStringWithTwoDecimalPlaces(pagos)
-        lblFormaPagos.Text = CustomConvert.toStringWithTwoDecimalPlaces(formaPagos)
-        lblDiferencia.Text = CustomConvert.toStringWithTwoDecimalPlaces(pagos - formaPagos)
+        lblFormaPagos.Text = CustomConvert.toStringWithTwoDecimalPlaces(formaPagos + total)
+        lblDiferencia.Text = CustomConvert.toStringWithTwoDecimalPlaces(pagos - formaPagos - total)
     End Sub
 
     Private Sub gridPagos_RowsAdded(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsAddedEventArgs) Handles gridPagos.RowsAdded

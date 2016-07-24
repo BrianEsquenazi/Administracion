@@ -1,18 +1,31 @@
 ﻿Imports ClasesCompartidas
 Imports System.IO
 
-Public Class ListadoRecibos
+Public Class ListadoAgenda
 
-    Private Sub ListadoRecibos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub ListadoAgenda_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         txtDesdeFecha.Text = "  /  /    "
         txthastafecha.Text = "  /  /    "
+
+        TipoListado.Items.Clear()
+        TipoListado.Items.Add("Completo")
+        TipoListado.Items.Add("Letras")
+        TipoListado.Items.Add("Despachos")
+
+        TipoListado.SelectedIndex = 0
+
+        TipoLetras.Items.Clear()
+        TipoLetras.Items.Add("Completo")
+        TipoLetras.Items.Add("Pago a la Vista")
+        TipoLetras.Items.Add("Cuenta Corriente")
+
+        TipoLetras.SelectedIndex = 0
 
         opcPantalla.Checked = False
         opcImpesora.Checked = True
 
     End Sub
-
 
     Private Sub txtdesdefecha_KeyPress(ByVal sender As Object, _
                 ByVal e As System.Windows.Forms.KeyPressEventArgs) _
@@ -49,27 +62,4 @@ Public Class ListadoRecibos
         MenuPrincipal.Show()
     End Sub
 
-    Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
-
-        Dim txtDesde As String
-        Dim txtHasta As String
-        Dim txtUno As String
-        Dim txtFormula As String
-        Dim x As Char = Chr(34)
-
-        txtDesde = ordenaFecha(txtDesdeFecha.Text)
-        txtHasta = ordenaFecha(txthastafecha.Text)
-
-        txtUno = "{Recibos.Fechaord} in " + x + txtDesde + x + " to " + x + txtHasta + x
-        txtFormula = txtUno
-
-        Dim viewer As New ReportViewer("Listado de Recibos", "c:\FcElectronica\wListRecinet.rpt", txtFormula)
-
-        If opcPantalla.Checked = True Then
-            viewer.Show()
-        Else
-            viewer.imprimirReporte()
-        End If
-
-    End Sub
 End Class

@@ -1,9 +1,9 @@
 ﻿Imports ClasesCompartidas
 Imports System.IO
 
-Public Class ListadoRecibos
+Public Class ListadoRecibosProvisorios
 
-    Private Sub ListadoRecibos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub ListadoRecibosProvisorios_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
         txtDesdeFecha.Text = "  /  /    "
         txthastafecha.Text = "  /  /    "
@@ -12,7 +12,6 @@ Public Class ListadoRecibos
         opcImpesora.Checked = True
 
     End Sub
-
 
     Private Sub txtdesdefecha_KeyPress(ByVal sender As Object, _
                 ByVal e As System.Windows.Forms.KeyPressEventArgs) _
@@ -49,27 +48,4 @@ Public Class ListadoRecibos
         MenuPrincipal.Show()
     End Sub
 
-    Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
-
-        Dim txtDesde As String
-        Dim txtHasta As String
-        Dim txtUno As String
-        Dim txtFormula As String
-        Dim x As Char = Chr(34)
-
-        txtDesde = ordenaFecha(txtDesdeFecha.Text)
-        txtHasta = ordenaFecha(txthastafecha.Text)
-
-        txtUno = "{Recibos.Fechaord} in " + x + txtDesde + x + " to " + x + txtHasta + x
-        txtFormula = txtUno
-
-        Dim viewer As New ReportViewer("Listado de Recibos", "c:\FcElectronica\wListRecinet.rpt", txtFormula)
-
-        If opcPantalla.Checked = True Then
-            viewer.Show()
-        Else
-            viewer.imprimirReporte()
-        End If
-
-    End Sub
 End Class

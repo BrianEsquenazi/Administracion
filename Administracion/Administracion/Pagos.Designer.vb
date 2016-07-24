@@ -56,7 +56,7 @@ Partial Class Pagos
         Me.btnAgregar = New WindowsApplication1.CustomButton()
         Me.txtConsulta = New WindowsApplication1.CustomTextBox()
         Me.lstConsulta = New WindowsApplication1.CustomListBox()
-        Me.CustomTextBox4 = New WindowsApplication1.CustomTextBox()
+        Me.txtTotal = New WindowsApplication1.CustomTextBox()
         Me.CustomLabel11 = New WindowsApplication1.CustomLabel()
         Me.txtIVA = New WindowsApplication1.CustomTextBox()
         Me.txtIngresosBrutos = New WindowsApplication1.CustomTextBox()
@@ -419,18 +419,18 @@ Partial Class Pagos
         Me.lstConsulta.TabIndex = 54
         Me.lstConsulta.Visible = False
         '
-        'CustomTextBox4
+        'txtTotal
         '
-        Me.CustomTextBox4.Cleanable = True
-        Me.CustomTextBox4.Empty = False
-        Me.CustomTextBox4.EnterIndex = -1
-        Me.CustomTextBox4.LabelAssociationKey = 12
-        Me.CustomTextBox4.Location = New System.Drawing.Point(603, 208)
-        Me.CustomTextBox4.Name = "CustomTextBox4"
-        Me.CustomTextBox4.ReadOnly = True
-        Me.CustomTextBox4.Size = New System.Drawing.Size(91, 20)
-        Me.CustomTextBox4.TabIndex = 53
-        Me.CustomTextBox4.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtTotal.Cleanable = True
+        Me.txtTotal.Empty = False
+        Me.txtTotal.EnterIndex = -1
+        Me.txtTotal.LabelAssociationKey = 12
+        Me.txtTotal.Location = New System.Drawing.Point(603, 208)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.ReadOnly = True
+        Me.txtTotal.Size = New System.Drawing.Size(91, 20)
+        Me.txtTotal.TabIndex = 53
+        Me.txtTotal.Validator = WindowsApplication1.ValidatorType.Float
         '
         'CustomLabel11
         '
@@ -743,6 +743,7 @@ Partial Class Pagos
         Me.CustomLabel12.Size = New System.Drawing.Size(28, 13)
         Me.CustomLabel12.TabIndex = 67
         Me.CustomLabel12.Text = "Tipo"
+        Me.CustomLabel12.Visible = False
         '
         'Pagos
         '
@@ -765,7 +766,7 @@ Partial Class Pagos
         Me.Controls.Add(Me.gridPagos)
         Me.Controls.Add(Me.txtConsulta)
         Me.Controls.Add(Me.lstConsulta)
-        Me.Controls.Add(Me.CustomTextBox4)
+        Me.Controls.Add(Me.txtTotal)
         Me.Controls.Add(Me.CustomLabel11)
         Me.Controls.Add(Me.txtIVA)
         Me.Controls.Add(Me.txtIngresosBrutos)
@@ -839,7 +840,7 @@ Partial Class Pagos
     Friend WithEvents txtIVA As WindowsApplication1.CustomTextBox
     Friend WithEvents txtIngresosBrutos As WindowsApplication1.CustomTextBox
     Friend WithEvents CustomLabel11 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomTextBox4 As WindowsApplication1.CustomTextBox
+    Friend WithEvents txtTotal As WindowsApplication1.CustomTextBox
     Friend WithEvents lstConsulta As WindowsApplication1.CustomListBox
     Friend WithEvents txtConsulta As WindowsApplication1.CustomTextBox
     Friend WithEvents gridPagos As System.Windows.Forms.DataGridView

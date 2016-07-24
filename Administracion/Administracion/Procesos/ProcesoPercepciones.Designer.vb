@@ -25,6 +25,8 @@ Partial Class ProcesoPercepciones
         Me.txtHasta = New System.Windows.Forms.MaskedTextBox()
         Me.txtDesde = New System.Windows.Forms.MaskedTextBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.CustomButton3 = New WindowsApplication1.CustomButton()
+        Me.CustomButton2 = New WindowsApplication1.CustomButton()
         Me.CustomButton1 = New WindowsApplication1.CustomButton()
         Me.btnCancela = New WindowsApplication1.CustomButton()
         Me.btnAcepta = New WindowsApplication1.CustomButton()
@@ -34,9 +36,6 @@ Partial Class ProcesoPercepciones
         Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
         Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.CustomButton2 = New WindowsApplication1.CustomButton()
-        Me.CustomButton3 = New WindowsApplication1.CustomButton()
-        Me.CrystalReportViewer1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.SuspendLayout()
         '
         'txtHasta
@@ -56,6 +55,30 @@ Partial Class ProcesoPercepciones
         Me.txtDesde.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.txtDesde.Size = New System.Drawing.Size(106, 20)
         Me.txtDesde.TabIndex = 18
+        '
+        'CustomButton3
+        '
+        Me.CustomButton3.Cleanable = False
+        Me.CustomButton3.EnterIndex = -1
+        Me.CustomButton3.LabelAssociationKey = -1
+        Me.CustomButton3.Location = New System.Drawing.Point(536, 186)
+        Me.CustomButton3.Name = "CustomButton3"
+        Me.CustomButton3.Size = New System.Drawing.Size(92, 49)
+        Me.CustomButton3.TabIndex = 27
+        Me.CustomButton3.Text = "Imprimir (a impresora)"
+        Me.CustomButton3.UseVisualStyleBackColor = True
+        '
+        'CustomButton2
+        '
+        Me.CustomButton2.Cleanable = False
+        Me.CustomButton2.EnterIndex = -1
+        Me.CustomButton2.LabelAssociationKey = -1
+        Me.CustomButton2.Location = New System.Drawing.Point(536, 114)
+        Me.CustomButton2.Name = "CustomButton2"
+        Me.CustomButton2.Size = New System.Drawing.Size(92, 49)
+        Me.CustomButton2.TabIndex = 26
+        Me.CustomButton2.Text = "Descargar como PDF"
+        Me.CustomButton2.UseVisualStyleBackColor = True
         '
         'CustomButton1
         '
@@ -158,40 +181,6 @@ Partial Class ProcesoPercepciones
         Me.CustomLabel1.TabIndex = 8
         Me.CustomLabel1.Text = "Desde Fecha"
         '
-        'CustomButton2
-        '
-        Me.CustomButton2.Cleanable = False
-        Me.CustomButton2.EnterIndex = -1
-        Me.CustomButton2.LabelAssociationKey = -1
-        Me.CustomButton2.Location = New System.Drawing.Point(536, 114)
-        Me.CustomButton2.Name = "CustomButton2"
-        Me.CustomButton2.Size = New System.Drawing.Size(92, 49)
-        Me.CustomButton2.TabIndex = 26
-        Me.CustomButton2.Text = "Descargar como PDF"
-        Me.CustomButton2.UseVisualStyleBackColor = True
-        '
-        'CustomButton3
-        '
-        Me.CustomButton3.Cleanable = False
-        Me.CustomButton3.EnterIndex = -1
-        Me.CustomButton3.LabelAssociationKey = -1
-        Me.CustomButton3.Location = New System.Drawing.Point(536, 186)
-        Me.CustomButton3.Name = "CustomButton3"
-        Me.CustomButton3.Size = New System.Drawing.Size(92, 49)
-        Me.CustomButton3.TabIndex = 27
-        Me.CustomButton3.Text = "Imprimir (a impresora)"
-        Me.CustomButton3.UseVisualStyleBackColor = True
-        '
-        'CrystalReportViewer1
-        '
-        Me.CrystalReportViewer1.ActiveViewIndex = -1
-        Me.CrystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.CrystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.CrystalReportViewer1.Location = New System.Drawing.Point(29, 12)
-        Me.CrystalReportViewer1.Name = "CrystalReportViewer1"
-        Me.CrystalReportViewer1.Size = New System.Drawing.Size(473, 335)
-        Me.CrystalReportViewer1.TabIndex = 25
-        '
         'ProcesoPercepciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -199,7 +188,6 @@ Partial Class ProcesoPercepciones
         Me.ClientSize = New System.Drawing.Size(685, 367)
         Me.Controls.Add(Me.CustomButton3)
         Me.Controls.Add(Me.CustomButton2)
-        Me.Controls.Add(Me.CrystalReportViewer1)
         Me.Controls.Add(Me.CustomButton1)
         Me.Controls.Add(Me.btnCancela)
         Me.Controls.Add(Me.btnAcepta)
@@ -231,5 +219,4 @@ Partial Class ProcesoPercepciones
     Friend WithEvents CustomButton1 As WindowsApplication1.CustomButton
     Friend WithEvents CustomButton2 As WindowsApplication1.CustomButton
     Friend WithEvents CustomButton3 As WindowsApplication1.CustomButton
-    Friend WithEvents CrystalReportViewer1 As CrystalDecisions.Windows.Forms.CrystalReportViewer
 End Class

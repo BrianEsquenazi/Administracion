@@ -76,7 +76,6 @@ Partial Class MenuPrincipal
         Me.ListadoDeCuentasCorrientesDeProveedoresAnaliticosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadoDeProyeccionDeCuentaCorrientesDeProveedoresAnaliticosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ControlDeRecibosProvisoriosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadoDeDeudaDePymeNacionToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProcesosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -238,7 +237,7 @@ Partial Class MenuPrincipal
         '
         'ListadosToolStripMenuItem
         '
-        Me.ListadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConsultaDeCuentaCorrientePorPantallaToolStripMenuItem, Me.CuentaCorrienteDeProveedoresToolStripMenuItem, Me.SaldoDeCuentaCorrienteDeProveedoresToolStripMenuItem, Me.CuantaCorrienteDeProveedoresSelectivoToolStripMenuItem, Me.ToolStripMenuItem8, Me.ListadosContablesToolStripMenuItem, Me.ListadoDeValoresEnCarteraToolStripMenuItem, Me.ListadoDeDepositosToolStripMenuItem, Me.ListadoDePagosPosdatadosToolStripMenuItem, Me.MovmietosDeBancosToolStripMenuItem, Me.ListadoDeChequesEmitidosToolStripMenuItem, Me.ListadoDeCuentaCorrienteDeProveedoresAFechaToolStripMenuItem, Me.ListadoDeDiferenciaDeCambioCobranzaToolStripMenuItem, Me.ListadoDeRetencionesDeIngresosBrutosToolStripMenuItem, Me.ListadoDeProyeccionDePagosDeImportacionesToolStripMenuItem, Me.ListadoDeCuentasCorrientesDeProveedoresAnaliticosToolStripMenuItem, Me.ListadoDeProyeccionDeCuentaCorrientesDeProveedoresAnaliticosToolStripMenuItem, Me.ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem, Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1, Me.ControlDeRecibosProvisoriosToolStripMenuItem1, Me.ListadoDeDeudaDePymeNacionToolStripMenuItem1})
+        Me.ListadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConsultaDeCuentaCorrientePorPantallaToolStripMenuItem, Me.CuentaCorrienteDeProveedoresToolStripMenuItem, Me.SaldoDeCuentaCorrienteDeProveedoresToolStripMenuItem, Me.CuantaCorrienteDeProveedoresSelectivoToolStripMenuItem, Me.ToolStripMenuItem8, Me.ListadosContablesToolStripMenuItem, Me.ListadoDeValoresEnCarteraToolStripMenuItem, Me.ListadoDeDepositosToolStripMenuItem, Me.ListadoDePagosPosdatadosToolStripMenuItem, Me.MovmietosDeBancosToolStripMenuItem, Me.ListadoDeChequesEmitidosToolStripMenuItem, Me.ListadoDeCuentaCorrienteDeProveedoresAFechaToolStripMenuItem, Me.ListadoDeDiferenciaDeCambioCobranzaToolStripMenuItem, Me.ListadoDeRetencionesDeIngresosBrutosToolStripMenuItem, Me.ListadoDeProyeccionDePagosDeImportacionesToolStripMenuItem, Me.ListadoDeCuentasCorrientesDeProveedoresAnaliticosToolStripMenuItem, Me.ListadoDeProyeccionDeCuentaCorrientesDeProveedoresAnaliticosToolStripMenuItem, Me.ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem, Me.ControlDeRecibosProvisoriosToolStripMenuItem1, Me.ListadoDeDeudaDePymeNacionToolStripMenuItem1})
         Me.ListadosToolStripMenuItem.Name = "ListadosToolStripMenuItem"
         Me.ListadosToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
         Me.ListadosToolStripMenuItem.Text = "Listados"
@@ -434,12 +433,6 @@ Partial Class MenuPrincipal
         Me.ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem.Size = New System.Drawing.Size(443, 22)
         Me.ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem.Text = "Listado de Agenda de Vencimientos de Lertas y Despachos"
         '
-        'ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1
-        '
-        Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1.Name = "ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1"
-        Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1.Size = New System.Drawing.Size(443, 22)
-        Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1.Text = "Listado de Analisis de Pago de Facturas a Proveedores"
-        '
         'ControlDeRecibosProvisoriosToolStripMenuItem1
         '
         Me.ControlDeRecibosProvisoriosToolStripMenuItem1.Name = "ControlDeRecibosProvisoriosToolStripMenuItem1"
@@ -631,7 +624,6 @@ Partial Class MenuPrincipal
     Friend WithEvents SdfsdToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ListadoDeImputacionesDeCajaYBancoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SubdiarioDeIvaComprasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ControlDeRecibosProvisoriosToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ListadoDeDeudaDePymeNacionToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LisyaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

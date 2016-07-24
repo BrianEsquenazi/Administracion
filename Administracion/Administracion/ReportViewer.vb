@@ -6,18 +6,20 @@ Public Class ReportViewer
 
     Dim nombre As String
     Dim ruta As String
+    Dim formula As String
     Dim reporte As New ReportDocument
 
-    Public Sub New(ByVal nombreReporte As String, ByVal rutaReporte As String)
+    Public Sub New(ByVal nombreReporte As String, ByVal rutaReporte As String, ByVal formulaReporte As String)
         InitializeComponent()
         nombre = nombreReporte
         ruta = rutaReporte
+        formula = formulaReporte
         reporte.Load(ruta)
     End Sub
 
     Private Sub ReportViewer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Text = nombre
-
+        CrystalReportViewer1.SelectionFormula = formula
         CrystalReportViewer1.ReportSource = reporte
         CrystalReportViewer1.Refresh()
     End Sub
@@ -47,5 +49,9 @@ Public Class ReportViewer
 
         'Exporta y crea el pdf.
         reporte.Export()
+    End Sub
+
+    Private Sub CrystalReportViewer1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CrystalReportViewer1.Load
+
     End Sub
 End Class
