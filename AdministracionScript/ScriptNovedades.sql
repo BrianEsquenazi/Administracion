@@ -69,6 +69,18 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_cuentas_sin_saldar]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_cheques_terceros]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_cheques_terceros]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_cheques_propios]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_cheques_propios]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_pago_por_orden]]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_pago_por_orden]
+GO
+
 /*
 		GENERACION NOVEDADES
 */
@@ -583,4 +595,114 @@ AS
 	WHERE
 	cta.Proveedor = @Proveedor AND
 	cta.Saldo <> 0
+GO
+
+CREATE PROCEDURE [dbo].[PR_get_cheques_terceros] (@cheque varchar(8)) AS
+
+	SELECT 
+		ISNULL(td.Numero2,'') as Numero2
+		, ISNULL(td.Banco2,'') as Banco2
+		, td.Importe2
+		, ISNULL(td.Fecha,'') as Fecha
+		, ISNULL(td.Fecha2,'') as Fecha2
+		, ISNULL(td.Recibo,'') as Recibo
+		, LTRIM(RTRIM(ISNULL(td.Cliente,''))) as Cliente
+	FROM
+	(
+		SELECT r.Numero2
+			, r.Banco2
+			, r.Importe2
+			, r.Fecha
+			, r.Fecha2
+			, r.Recibo
+			, 'Rec: ' + cli.Razon as Cliente
+			, r.FechaOrd2 as orden1
+			, r.Numero2 as orden2
+		FROM Recibos r
+		JOIN Cliente cli on cli.Cliente = r.Cliente
+		Where	Tiporeg= "2" 
+			and  (Tipo2 = "2" or Tipo2 = "02")
+			and ISNULL(Numero2,'') LIKE ('%' + @cheque + '')			
+		
+		UNION ALL
+		
+		SELECT d.Numero2
+			, d.Observaciones2
+			, d.Importe2
+			, d.Fecha
+			, d.Fecha2
+			, d.Deposito
+			, 'Dep: ' + LTRIM(RTRIM(ISNULL(b.Nombre,''))) 
+			, d.Deposito 
+			, 1 
+		FROM Depositos d
+		JOIN Banco b on b.Banco = d.Banco
+		Where (Tipo2 = "3" Or Tipo2= "03")
+			and ISNULL(Numero2,'') LIKE ('%' + @cheque + '')	
+			
+		UNION ALL
+		
+		SELECT p.Numero2
+			, p.Observaciones2
+			, p.Importe2
+			, p.Fecha
+			, p.Fecha2
+			, p.Orden
+			, 'O.P.: ' + LTRIM(RTRIM(ISNULL(pro.Nombre,p.Observaciones))) 
+			, p.Orden
+			, 1
+		FROM Pagos p
+		LEFT JOIN Proveedor pro on pro.Proveedor = p.Proveedor
+		Where  Tiporeg = "2" 
+			and (Tipo2 = "3" Or Tipo2= "03")
+			and ISNULL(Numero2,'') LIKE ('%' + @cheque + '')	
+	)td
+	ORDER BY td.orden1, td.orden2
+GO
+
+CREATE PROCEDURE [dbo].[PR_get_cheques_propios] (@cheque varchar(8)) AS
+
+	SELECT 	ISNULL(p.Numero2,'') as Numero2
+		, ISNULL(p.Observaciones2,'') as Banco2
+		, p.Importe2
+		, ISNULL(p.Fecha,'') as Fecha
+		, ISNULL(p.Fecha2,'') as Fecha2
+		, ISNULL(p.Orden,'') as Recibo
+		, 'O.P.: ' + LTRIM(RTRIM(ISNULL(pro.Nombre,p.Observaciones))) as Proveedor 
+	FROM Pagos p
+	LEFT JOIN Proveedor pro on pro.Proveedor = p.Proveedor
+	Where Tiporeg = "2" and Tipo2 = "02"
+		and ISNULL(Numero2,'') LIKE ('%' + @cheque + '')
+	ORDER BY p.Orden	
+
+GO
+
+create procedure PR_get_pago_por_orden (@orden varchar(6)) as
+	SELECT p.Orden
+		, p.TipoOrd
+		, p.Fecha
+		, p.Proveedor
+		, p.Observaciones
+		, p.banco2 as banco
+		, p.Fecha2 as fechaParidad
+		, p.Paridad
+		, p.RetGanancias
+		, p.RetOtra as RetencionIB
+		, p.RetIbCiudad
+		, p.RetIva
+		, p.Tipo1
+		, p.Letra1
+		, p.Punto1
+		, p.Numero1
+		, p.Importe1
+		, p.cuenta
+		, p.Observaciones2
+		, p.Tipo2
+		, p.Numero2
+		, p.FechaCheque
+		, p.banco2
+		, p.BancoCheque As NombreCheque
+		, p.Importe2
+	FROM Pagos p
+	WHERE p.Orden = @orden
 GO

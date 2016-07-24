@@ -41,8 +41,19 @@ Public Class Pagos
 
         validador.validate(Me)
         validador.alsoValidate(consistenciaEntreProveedorYGrillas(), "Algunos campos de las grillas no coinciden con el proveedor que se desea grabar")
+        validador.alsoValidate(bancosValidos(), "Algunos campos de la grilla de forma de pagos no tienen un banco válido asignado")
 
         Return validador.flush
+    End Function
+
+    Private Function bancosValidos()
+        For Each row As DataGridViewRow In gridFormaPagos.Rows
+            If Not row.IsNewRow And row.Cells(0).Value = "02" Then
+                Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(row.Cells(3).Value)
+                If IsNothing(banco) Then : Return False : End If
+            End If
+        Next
+        Return True
     End Function
 
     Private Function consistenciaEntreProveedorYGrillas()
@@ -54,9 +65,14 @@ Public Class Pagos
     End Sub
 
     Private Sub txtObservaciones_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtObservaciones.Leave
-        gridPagos.CurrentCell = gridPagos.Rows(0).Cells(0)
-        gridPagos.Select()
-        gridPagos.Focus()
+        If gridPagos.Rows.Count = 0 Then
+            lstSeleccion.SelectedIndex = 1
+            lstSeleccion_DoubleClick(Nothing, Nothing)
+        Else
+            gridPagos.CurrentCell = gridPagos.Rows(0).Cells(4)
+            gridPagos.Select()
+            gridPagos.Focus()
+        End If
     End Sub
 
     Private Function cuentasCorrientesDelProveedorActual()
@@ -76,12 +92,63 @@ Public Class Pagos
         gridPagos.Rows.Add(cuenta.tipo, cuenta.letra, cuenta.punto, cuenta.numero, CustomConvert.toStringWithTwoDecimalPlaces(cuenta.saldo), "Pago Factura Nro " & CustomConvert.toIntOrZero(cuenta.numero))
     End Sub
 
+    Private Sub mostrarOrdenDePago(ByVal orden As OrdenPago)
+        If IsNothing(orden) Then : Exit Sub : End If
+        'btnLimpiar.PerformClick()
+        txtOrdenPago.Text = orden.nroOrden
+        txtFecha.Text = orden.fecha
+        txtObservaciones.Text = orden.observaciones
+        txtFechaParidad.Text = orden.fechaParidad
+        mostrarProveedor(orden.proveedor)
+        mostrarBanco(orden.banco)
+        txtGanancias.Text = CustomConvert.toStringWithTwoDecimalPlaces(orden.retGanancias)
+        txtIBCiudad.Text = CustomConvert.toStringWithTwoDecimalPlaces(orden.retIBCiudad)
+        txtIngresosBrutos.Text = CustomConvert.toStringWithTwoDecimalPlaces(orden.retIB)
+        txtIVA.Text = CustomConvert.toStringWithTwoDecimalPlaces(orden.retIVA)
+        mostrarPagos(orden.pagos)
+        mostrarFormaPagos(orden.formaPagos)
+        mostrarTipo(orden.tipo)
+    End Sub
+
+    Private Sub mostrarTipo(ByVal tipo As Integer)
+        Select Case tipo
+            Case 1
+                optCtaCte.Checked = True
+            Case 3
+                optChequeRechazado.Checked = True
+            Case 4
+                optAnticipos.Checked = True
+            Case 5
+                optTransferencias.Checked = True
+            Case Else
+                optVarios.Checked = True
+        End Select
+    End Sub
+
+    Private Sub mostrarPagos(ByVal pagos As List(Of Pago))
+        gridPagos.Rows.Clear()
+        For Each pago As Pago In pagos
+            gridPagos.Rows.Add(pago.tipo, pago.letra, pago.punto, pago.numero, pago.importe, pago.descripcion)
+        Next
+        sumarImportes()
+    End Sub
+
+    Private Sub mostrarFormaPagos(ByVal formaPagos As List(Of FormaPago))
+        gridFormaPagos.Rows.Clear()
+        For Each formaPago As FormaPago In formaPagos
+            gridFormaPagos.Rows.Add(formaPago.tipo, formaPago.numero, formaPago.fecha, formaPago.banco, formaPago.nombre, formaPago.importe)
+        Next
+        sumarImportes()
+    End Sub
+
     Private Sub mostrarProveedor(ByVal proveedor As Proveedor)
+        If IsNothing(proveedor) Then : Exit Sub : End If
         txtProveedor.Text = proveedor.id
         txtRazonSocial.Text = proveedor.razonSocial
     End Sub
 
     Private Sub mostrarBanco(ByVal banco As Banco)
+        If IsNothing(banco) Then : Exit Sub : End If
         txtBanco.Text = banco.id
         txtNombreBanco.Text = banco.nombre
     End Sub
@@ -138,6 +205,7 @@ Public Class Pagos
 
     Private Sub txtOrdenPago_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtOrdenPago.Leave
         txtOrdenPago.Text = ceros(txtOrdenPago.Text, 6)
+        mostrarOrdenDePago(DAOPagos.buscarOrdenPorNumero(txtOrdenPago.Text))
     End Sub
 
     Private Sub lstSeleccion_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstSeleccion.DoubleClick
@@ -190,16 +258,6 @@ Public Class Pagos
         End If
     End Sub
 
-    Private Sub optTransferencias_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optTransferencias.CheckedChanged
-        If optTransferencias.Checked Then
-            txtBanco.Enabled = True
-            txtBanco.Empty = False
-            txtNombreBanco.Empty = False
-            txtBanco.Text = ""
-            txtBanco.Focus()
-        End If
-    End Sub
-
     Private Sub txtFecha_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFecha.Leave
         txtFechaParidad.Text = txtFecha.Text
     End Sub
@@ -243,6 +301,19 @@ Public Class Pagos
 
     Private Sub gridFormaPagos_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridFormaPagos.CellValueChanged
         sumarImportes()
+        llenarConCerosNumero()
+    End Sub
+
+    Private Sub llenarConCerosNumero()
+        For Each row As DataGridViewRow In gridFormaPagos.Rows
+            If row.Cells(1).Value <> "" Then
+                If row.Cells(1).Value.ToString.Length > 8 Then
+                    row.Cells(1).Value = ""
+                Else
+                    row.Cells(1).Value = ceros(row.Cells(1).Value, 8)
+                End If
+            End If
+        Next
     End Sub
 
     Private Sub gridFormaPagos_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles gridFormaPagos.KeyDown
@@ -263,6 +334,10 @@ Public Class Pagos
     Private Sub sumarImportes()
         Dim pagos As Double = 0
         Dim formaPagos As Double = 0
+        Dim total As Double = 0
+
+        total = CustomConvert.toDoubleOrZero(txtIVA.Text) + CustomConvert.toDoubleOrZero(txtGanancias.Text) + CustomConvert.toDoubleOrZero(txtIBCiudad.Text) +
+            CustomConvert.toDoubleOrZero(txtIngresosBrutos.Text)
 
         For Each row As DataGridViewRow In gridPagos.Rows
             If Not row.IsNewRow Then
@@ -275,9 +350,10 @@ Public Class Pagos
                 formaPagos += CustomConvert.toDoubleOrZero(row.Cells(5).Value)
             End If
         Next
+        txtTotal.Text = CustomConvert.toStringWithTwoDecimalPlaces(total)
         lblPagos.Text = CustomConvert.toStringWithTwoDecimalPlaces(pagos)
-        lblFormaPagos.Text = CustomConvert.toStringWithTwoDecimalPlaces(formaPagos)
-        lblDiferencia.Text = CustomConvert.toStringWithTwoDecimalPlaces(pagos - formaPagos)
+        lblFormaPagos.Text = CustomConvert.toStringWithTwoDecimalPlaces(formaPagos + total)
+        lblDiferencia.Text = CustomConvert.toStringWithTwoDecimalPlaces(pagos - formaPagos - total)
     End Sub
 
     Private Sub gridPagos_RowsAdded(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowsAddedEventArgs) Handles gridPagos.RowsAdded
@@ -308,5 +384,57 @@ Public Class Pagos
             End If
         End If
         sumarImportes()
+    End Sub
+
+    Private Sub optTransferencias_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optTransferencias.CheckedChanged
+        If optTransferencias.Checked Then
+            txtBanco.Enabled = True
+            txtBanco.Empty = False
+            txtNombreBanco.Empty = False
+            txtBanco.Text = ""
+            txtBanco.Focus()
+            gridPagos.Rows.Clear()
+            gridPagos.Rows.Add("", "", "", "", "", "")
+            gridPagos.Columns(4).ReadOnly = False
+            gridPagos.Columns(5).ReadOnly = False
+        End If
+    End Sub
+
+    Private Sub optAnticipos_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optAnticipos.CheckedChanged
+        If optAnticipos.Checked Then
+            gridPagos.Rows.Clear()
+            gridPagos.Rows.Add("", "", "", "", "0,00", txtRazonSocial.Text)
+            gridPagos.Columns(4).ReadOnly = True
+            gridPagos.Columns(5).ReadOnly = True
+        End If
+    End Sub
+
+    Private Sub optVarios_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optVarios.CheckedChanged
+        If optVarios.Checked Then
+            gridPagos.Rows.Clear()
+            gridPagos.Rows.Add("", "", "", "", "", txtRazonSocial.Text)
+            gridPagos.Columns(4).ReadOnly = False
+            gridPagos.Columns(5).ReadOnly = True
+        End If
+    End Sub
+
+    Private Sub optChequeRechazado_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optChequeRechazado.CheckedChanged
+        If optChequeRechazado.Checked Then
+            gridPagos.Rows.Clear()
+            gridPagos.Rows.Add("", "", "", "", "", "")
+            gridPagos.Columns(4).ReadOnly = False
+            gridPagos.Columns(5).ReadOnly = False
+        End If
+    End Sub
+
+    Private Sub optCtaCte_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optCtaCte.CheckedChanged
+        If optCtaCte.Checked Then
+            gridPagos.Rows.Clear()
+            Try
+                gridPagos.Columns(4).ReadOnly = True
+                gridPagos.Columns(5).ReadOnly = True
+            Catch ex As ArgumentOutOfRangeException
+            End Try
+        End If
     End Sub
 End Class

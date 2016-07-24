@@ -138,6 +138,7 @@
     <Compile Include="Capa DAO\DAOCompras.vb" />
     <Compile Include="Capa DAO\DAOCtaCteProveedor.vb" />
     <Compile Include="Capa DAO\DAODeposito.vb" />
+    <Compile Include="Capa DAO\DAOPagos.vb" />
     <Compile Include="Capa DAO\DAOProveedor.vb" />
     <Compile Include="Capa DAO\DAORubroProveedor.vb" />
     <Compile Include="Capa DAO\DAOBanco.vb" />
@@ -160,6 +161,12 @@
       <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
     </Compile>
     <Compile Include="ComprasNovedades\CuotasPyMENacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaCheque.Designer.vb">
+      <DependentUpon>ConsultaCheque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaCheque.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Listados\ListadoAgenda.Designer.vb">
@@ -482,6 +489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprasNovedades\CuotasPyMENacion.resx">
       <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaCheque.resx">
+      <DependentUpon>ConsultaCheque.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listados\ListadoAgenda.resx">
       <DependentUpon>ListadoAgenda.vb</DependentUpon>

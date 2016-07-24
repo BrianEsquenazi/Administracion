@@ -223,4 +223,8 @@
     Private Sub ListadoDeProyeccionDePagosDeImportacionesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeProyeccionDePagosDeImportacionesToolStripMenuItem.Click
         abrir(New ListadoPagosImportaciones)
     End Sub
+
+    Private Sub ConsultaDeChequesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConsultaDeChequesToolStripMenuItem.Click
+        abrir(New ConsultaCheque)
+    End Sub
 End Class
