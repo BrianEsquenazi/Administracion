@@ -120,4 +120,34 @@ Public Class ListadoPagosPosdatados
     End Sub
 
 
+    Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
+
+        Dim txtDesde As String
+        Dim txtHasta As String
+        Dim txtUno As String
+        Dim txtDos As String
+        Dim txtTres As String
+        Dim txtCuatro As String
+        Dim txtFormula As String
+        Dim x As Char = Chr(34)
+
+        txtDesde = ordenaFecha(txtDesdeFecha.Text)
+        txtHasta = ordenaFecha(txthastafecha.Text)
+
+        txtUno = "{Pagos.Fechaord2} in " + x + txtDesde + x + " to " + x + txtHasta + x
+        txtDos = " and {Pagos.Importe2} <> 0 "
+        txtTres = " and {Pagos.Banco2} in " + txtDesdeBanco.Text + " to " + txtHastaBanco.Text
+        txtCuatro = " and {Pagos.FechaOrd} <> {Pagos.FechaOrd2}"
+        txtFormula = txtUno + txtDos + txtTres + txtCuatro
+
+        Dim viewer As New ReportViewer("Listado de Pagos Posdatados", "c:\FcElectronica\wListaPosdatnet.rpt", txtFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
+        End If
+
+
+    End Sub
 End Class

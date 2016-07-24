@@ -48,4 +48,32 @@ Public Class ListadoRecibosProvisorios
         MenuPrincipal.Show()
     End Sub
 
+    Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
+
+        Dim txtDesde As String
+        Dim txtHasta As String
+        Dim txtUno As String
+        Dim txtDos As String
+        Dim txtFormula As String
+        Dim x As Char = Chr(34)
+
+        txtDesde = ordenaFecha(txtDesdeFecha.Text)
+        txtHasta = ordenaFecha(txthastafecha.Text)
+
+        txtUno = "{RecibosProvi.Fechaord} in " + x + txtDesde + x + " to " + x + txtHasta + x
+        txtDos = " and {RecibosProvi.ReciboDefinitivo} = 0"
+
+        txtFormula = txtUno + txtDos
+
+        Dim viewer As New ReportViewer("Listado de Recibos Provisorios", "c:\FcElectronica\wListReciProvinet.rpt", txtFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
+        End If
+
+
+
+    End Sub
 End Class

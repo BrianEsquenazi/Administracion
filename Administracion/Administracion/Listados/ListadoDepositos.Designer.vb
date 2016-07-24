@@ -196,7 +196,7 @@ Partial Class ListadoDepositos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(539, 346)
+        Me.ClientSize = New System.Drawing.Size(539, 267)
         Me.Controls.Add(Me.txtHastaBanco)
         Me.Controls.Add(Me.txtDesdeBanco)
         Me.Controls.Add(Me.txtAyuda)

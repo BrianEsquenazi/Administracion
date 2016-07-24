@@ -83,4 +83,32 @@ Public Class ListadoCuentaCorrienteProveedores
         mostrarProveedor(lstAyuda.SelectedValue)
     End Sub
 
+    Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
+
+
+      
+
+
+        'Dim tabla As DataTable
+        'tabla = SQLConnector.retrieveDataTable("procesoReteIb", ordDesde, ordHasta)
+
+        'For Each row As DataRow In tabla.Rows
+
+        '    Dim CamposReteIb As New ProcesoReteIb(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString)
+
+        '    WCuit = sacaguiones(CamposReteIb.cuit)
+        '    WFecha = CamposReteIb.fecha
+        '    WSucursal = "0001"
+        '    WOrden = ceros(CamposReteIb.orden, 8)
+        '    WImporte = ceros(formatonumerico(redondeo(CamposReteIb.retotra), "########0.#0", "."), 11)
+
+        'Next
+
+
+
+
+
+
+
+    End Sub
 End Class

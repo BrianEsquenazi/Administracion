@@ -34,6 +34,16 @@ Public Class BancosABM
 
     Private Sub listado()
 
+        Dim txtUno As String
+        Dim txtFormula As String
+        Dim x As Char = Chr(34)
+
+        txtUno = "{Banco.Banco} in 0 to 999"
+        txtFormula = txtUno
+
+        Dim viewer As New ReportViewer("Listado de Bancos", "c:\FcElectronica\wBancosnet.rpt", txtFormula)
+        viewer.Show()
+
     End Sub
 
     Private Sub mostrarBanco(ByVal banco As Banco)

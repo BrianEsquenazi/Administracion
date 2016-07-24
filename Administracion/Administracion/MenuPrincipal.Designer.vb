@@ -434,12 +434,12 @@ Partial Class MenuPrincipal
         Me.ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem.Text = "Listado de Agenda de Vencimientos de Lertas y Despachos"
         '
 
-        'ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1
-        '
-        Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1.Name = "ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1"
-        Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1.Size = New System.Drawing.Size(443, 22)
-        Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1.Text = "Listado de Analisis de Pago de Facturas a Proveedores"
-        '
+        ''ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1
+        ''
+        'Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1.Name = "ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1"
+        'Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1.Size = New System.Drawing.Size(443, 22)
+        'Me.ListadoDeAnalisisDePagoDeFacturasAProveedoresToolStripMenuItem1.Text = "Listado de Analisis de Pago de Facturas a Proveedores"
+        ''
 
         'ControlDeRecibosProvisoriosToolStripMenuItem1
         '
