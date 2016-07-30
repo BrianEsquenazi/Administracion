@@ -88,6 +88,11 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_pago_forma_de_pago]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[PR_alta_pago_forma_de_pago]
 GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_siguiente_orden_pago]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_siguiente_orden_pago]
+GO
+
 /*
 		GENERACION NOVEDADES
 */
@@ -787,3 +792,16 @@ AS
 	, @FechaCheque , @BancoCheque , @Importe2 , @cuenta, @Observaciones2, 1 ) 
 
 GO
+
+CREATE PROCEDURE PR_get_siguiente_orden_pago
+AS
+	DECLARE @orden_siguiente VARCHAR(6)
+	
+	SET @orden_siguiente = (SELECT TOP 1 p.Orden
+							FROM Pagos p
+							ORDER BY p.Orden desc)
+	
+	RETURN convert(int, @orden_siguiente)	
+GO
+
+
