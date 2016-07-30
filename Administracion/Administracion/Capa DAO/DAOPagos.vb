@@ -54,6 +54,20 @@ Public Class DAOPagos
     End Function
 
     Public Shared Sub agregarPago(ByVal orden As OrdenPago)
-        'SQLConnector.executeProcedure("",
+        For Each pago As Pago In orden.pagos
+            Dim renglon As Integer = 1
+            SQLConnector.executeProcedure("alta_pago_pago", orden.nroOrden, ceros(renglon, 2), orden.tipo, orden.fecha, orden.codigoProveedor,
+            orden.observaciones, orden.codigoBanco, orden.fechaParidad, orden.paridad, orden.retGanancias, orden.retIB, orden.retIBCiudad, orden.retIVA, orden.importe,
+            pago.tipo, pago.letra, pago.punto, pago.numero, pago.importe, 0, pago.descripcion)
+            renglon += 1
+        Next
+
+        For Each formaPago As FormaPago In orden.formaPagos
+            Dim renglon As Integer = 1
+            SQLConnector.executeProcedure("alta_pago_forma_de_pago", orden.nroOrden, ceros(renglon, 2), orden.tipo, orden.fecha, orden.codigoProveedor,
+            orden.observaciones, formaPago.banco, orden.fechaParidad, orden.paridad, orden.retGanancias, orden.retIB, orden.retIBCiudad, orden.retIVA, orden.importe,
+            formaPago.tipo, formaPago.numero, formaPago.fecha, formaPago.nombre, formaPago.importe, 0, formaPago.nombre)
+            renglon += 1
+        Next
     End Sub
 End Class

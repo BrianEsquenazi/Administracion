@@ -51,7 +51,7 @@
     End Function
 
     Public Shared Function asStringWithDecimalPlaces(ByVal value As Double, ByVal decimalPlaces As Integer)
-        If value < 0.05 Then
+        If Math.Abs(value) < 0.01 Then
             value = 0
         End If
         Dim originalString As String = value.ToString

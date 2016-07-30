@@ -723,35 +723,36 @@ GO
 
 CREATE PROCEDURE PR_alta_pago_pago 
 	(@Orden VARCHAR(6)
-	, @Renglon varchar(4)
-	, @TipoOrd varchar(2)
-	, @Fecha varchar(20)
-	, @Proveedor varchar(22)
- 	, @Observaciones varchar(100)
+	, @Renglon varchar(2)
+	, @TipoOrd varchar(1)
+	, @Fecha varchar(10)
+	, @Proveedor varchar(11)
+ 	, @Observaciones varchar(50)
 	, @banco2 smallint
-	, @Fecha2 varchar(20)
+	, @Fecha2 varchar(10)
 	, @Paridad float 
 	, @RetGanancias real
 	, @RetOtra real
 	, @RetIbCiudad real
 	, @RetIva real
 	, @Importe real
-	, @Tipo1 varchar(4)
-	, @Letra1 varchar(2)
-	, @Punto1 varchar(8)
-	, @Numero1 varchar(16)
+	, @Tipo1 varchar(2)
+	, @Letra1 varchar(1)
+	, @Punto1 varchar(4)
+	, @Numero1 varchar(8)
 	, @Importe1 real
-	, @cuenta varchar(20)
-	, @Observaciones2 varchar(60)
+	, @cuenta varchar(10)
+	, @Observaciones2 varchar(30)
 	) 
 AS
-
+	DECLARE @Clave as varchar(8)
+	SET @Clave = @Orden + @Renglon
 	INSERT INTO Pagos
-		(Orden, Renglon, TipoOrd, Fecha , Proveedor , Observaciones , banco2 , Fecha2 
+		(Clave, Orden, Renglon, TipoOrd, Fecha , Proveedor , Observaciones , banco2 , Fecha2 
 	, Paridad ,RetGanancias , retOtra , RetIbCiudad , RetIva, Importe, Tipo1 , Letra1 
 	, Punto1 , numero1 , Importe1 , cuenta, Observaciones2, TipoReg) 
 	VALUES
-			(@Orden, @Renglon, @TipoOrd, @Fecha , @Proveedor , @Observaciones , @banco2 , @Fecha2 
+			(@Clave, @Orden, @Renglon, @TipoOrd, @Fecha , @Proveedor , @Observaciones , @banco2 , @Fecha2 
 	, @Paridad , @RetGanancias , @RetOtra , @RetIbCiudad , @RetIva, @Importe, @Tipo1 , @Letra1 
 	, @Punto1 , @Numero1 , @Importe1 , @cuenta, @Observaciones2, 1 ) 
 	
@@ -759,35 +760,36 @@ GO
 
 CREATE PROCEDURE PR_alta_pago_forma_de_pago
 	(@Orden VARCHAR(6)
-	, @Renglon varchar(4)
-	, @TipoOrd varchar(2)
-	, @Fecha varchar(20)
-	, @Proveedor varchar(22)
- 	, @Observaciones varchar(100)
+	, @Renglon varchar(2)
+	, @TipoOrd varchar(1)
+	, @Fecha varchar(10)
+	, @Proveedor varchar(11)
+ 	, @Observaciones varchar(50)
 	, @banco2 smallint
-	, @Fecha2 varchar(20)
+	, @Fecha2 varchar(10)
 	, @Paridad float 
 	, @RetGanancias real
 	, @RetOtra real
 	, @RetIbCiudad real
 	, @RetIva real
 	, @Importe real
-	, @Tipo2 varchar(4)
-	, @Numero2 varchar(16)
+	, @Tipo2 varchar(2)
+	, @Numero2 varchar(8)
 	, @FechaCheque char(10)
 	, @BancoCheque char(30)
 	, @Importe2 float
-	, @cuenta varchar(20)
-	, @Observaciones2 varchar(60)
+	, @cuenta varchar(10)
+	, @Observaciones2 varchar(30)
 	) 
 AS
-
+	DECLARE @Clave as varchar(8)
+	SET @Clave = @Orden + @Renglon
 	INSERT INTO Pagos
-		(Orden, Renglon, TipoOrd, Fecha , Proveedor , Observaciones , banco2 , Fecha2 
+		(Clave, Orden, Renglon, TipoOrd, Fecha , Proveedor , Observaciones , banco2 , Fecha2 
 	, Paridad ,RetGanancias , retOtra , RetIbCiudad , RetIva, Importe, Tipo2 , Numero2 
 	, FechaCheque , BancoCheque , Importe2 , cuenta, Observaciones2, TipoReg) 
 	VALUES
-			(@Orden, @Renglon, @TipoOrd, @Fecha , @Proveedor , @Observaciones , @banco2 , @Fecha2 
+			(@Clave, @Orden, @Renglon, @TipoOrd, @Fecha , @Proveedor , @Observaciones , @banco2 , @Fecha2 
 	, @Paridad , @RetGanancias , @RetOtra , @RetIbCiudad , @RetIva, @Importe, @Tipo2 , @Numero2 
 	, @FechaCheque , @BancoCheque , @Importe2 , @cuenta, @Observaciones2, 1 ) 
 
@@ -801,7 +803,7 @@ AS
 							FROM Pagos p
 							ORDER BY p.Orden desc)
 	
-	RETURN convert(int, @orden_siguiente)	
+	RETURN (convert(int, @orden_siguiente) + 1)
 GO
 
 

@@ -22,15 +22,15 @@ Partial Class RecibosProvisorios
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.txtFecha = New WindowsApplication1.CustomTextBox()
-        Me.CustomTextBox1 = New WindowsApplication1.CustomTextBox()
-        Me.CustomTextBox2 = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomTextBox3 = New WindowsApplication1.CustomTextBox()
-        Me.CustomTextBox4 = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.txtFecha = New Administracion.CustomTextBox()
+        Me.CustomTextBox1 = New Administracion.CustomTextBox()
+        Me.CustomTextBox2 = New Administracion.CustomTextBox()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomTextBox3 = New Administracion.CustomTextBox()
+        Me.CustomTextBox4 = New Administracion.CustomTextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.optAnticipos = New System.Windows.Forms.RadioButton()
         Me.optCtaCte = New System.Windows.Forms.RadioButton()
@@ -79,7 +79,7 @@ Partial Class RecibosProvisorios
         Me.txtFecha.Name = "txtFecha"
         Me.txtFecha.Size = New System.Drawing.Size(75, 20)
         Me.txtFecha.TabIndex = 7
-        Me.txtFecha.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFecha.Validator = Administracion.ValidatorType.DateFormat
         '
         'CustomTextBox1
         '
@@ -92,7 +92,7 @@ Partial Class RecibosProvisorios
         Me.CustomTextBox1.Name = "CustomTextBox1"
         Me.CustomTextBox1.Size = New System.Drawing.Size(75, 20)
         Me.CustomTextBox1.TabIndex = 8
-        Me.CustomTextBox1.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.CustomTextBox1.Validator = Administracion.ValidatorType.DateFormat
         '
         'CustomTextBox2
         '
@@ -105,7 +105,7 @@ Partial Class RecibosProvisorios
         Me.CustomTextBox2.Name = "CustomTextBox2"
         Me.CustomTextBox2.Size = New System.Drawing.Size(75, 20)
         Me.CustomTextBox2.TabIndex = 9
-        Me.CustomTextBox2.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.CustomTextBox2.Validator = Administracion.ValidatorType.DateFormat
         '
         'CustomLabel4
         '
@@ -128,7 +128,7 @@ Partial Class RecibosProvisorios
         Me.CustomTextBox3.Name = "CustomTextBox3"
         Me.CustomTextBox3.Size = New System.Drawing.Size(199, 20)
         Me.CustomTextBox3.TabIndex = 11
-        Me.CustomTextBox3.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.CustomTextBox3.Validator = Administracion.ValidatorType.DateFormat
         '
         'CustomTextBox4
         '
@@ -142,7 +142,7 @@ Partial Class RecibosProvisorios
         Me.CustomTextBox4.Name = "CustomTextBox4"
         Me.CustomTextBox4.Size = New System.Drawing.Size(178, 20)
         Me.CustomTextBox4.TabIndex = 12
-        Me.CustomTextBox4.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.CustomTextBox4.Validator = Administracion.ValidatorType.DateFormat
         '
         'GroupBox1
         '
@@ -213,15 +213,15 @@ Partial Class RecibosProvisorios
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtFecha As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomTextBox1 As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomTextBox2 As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomTextBox3 As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomTextBox4 As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents txtFecha As Administracion.CustomTextBox
+    Friend WithEvents CustomTextBox1 As Administracion.CustomTextBox
+    Friend WithEvents CustomTextBox2 As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
+    Friend WithEvents CustomTextBox3 As Administracion.CustomTextBox
+    Friend WithEvents CustomTextBox4 As Administracion.CustomTextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
     Friend WithEvents optAnticipos As System.Windows.Forms.RadioButton
