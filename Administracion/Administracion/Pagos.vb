@@ -6,6 +6,8 @@ Public Class Pagos
     Dim pagos As New List(Of DetalleCompraCuentaCorriente)
     Dim cheques As New List(Of Cheque)
     Dim chequeRow As Integer = -1
+    Dim bancoOrden As Banco
+    Dim proveedorOrden As Proveedor
 
     Private Sub Pagos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cmbTipo.SelectedIndex = 0
@@ -42,8 +44,18 @@ Public Class Pagos
         validador.validate(Me)
         validador.alsoValidate(consistenciaEntreProveedorYGrillas(), "Algunos campos de las grillas no coinciden con el proveedor que se desea grabar")
         validador.alsoValidate(bancosValidos(), "Algunos campos de la grilla de forma de pagos no tienen un banco válido asignado")
+        validador.alsoValidate(noHayDiferencia(), "Hay una diferencia de " & lblDiferencia.Text)
+        validador.alsoValidate(hayMovimientos(), "No se registró ningún pago")
 
         Return validador.flush
+    End Function
+
+    Private Function hayMovimientos()
+        Return CustomConvert.toDoubleOrZero(lblPagos.Text) <> 0
+    End Function
+
+    Private Function noHayDiferencia()
+        Return CustomConvert.toDoubleOrZero(lblDiferencia.Text) = 0
     End Function
 
     Private Function bancosValidos()
@@ -254,9 +266,25 @@ Public Class Pagos
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
         If validarDatos() Then
-            MsgBox("Agregaste") 'Agregar
+            Dim siguienteNumero As Integer = DAOPagos.siguienteNumeroDeOrden()
+
+            Dim pago As OrdenPago = New OrdenPago(siguienteNumero, tipoOrden, CustomConvert.toDoubleOrZero(txtParidad.Text),
+                                                  CustomConvert.toDoubleOrZero(txtTotal.Text), CustomConvert.toDoubleOrZero(txtIVA.Text),
+                                                  CustomConvert.toDoubleOrZero(txtIngresosBrutos.Text), CustomConvert.toDoubleOrZero(txtIBCiudad.Text),
+                                                  CustomConvert.toDoubleOrZero(txtGanancias.Text), txtFecha.Text, txtFechaParidad.Text, txtObservaciones.Text,
+                                                  bancoOrden, proveedorOrden)
+            DAOPagos.agregarPago(pago)
         End If
     End Sub
+
+    Private Function tipoOrden()
+        If optCtaCte.Checked Then : Return 1 : End If
+        If optVarios.Checked Then : Return 2 : End If
+        If optChequeRechazado.Checked Then : Return 3 : End If
+        If optAnticipos.Checked Then : Return 4 : End If
+        If optTransferencias.Checked Then : Return 5 : End If
+        Return Nothing
+    End Function
 
     Private Sub txtFecha_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFecha.Leave
         txtFechaParidad.Text = txtFecha.Text

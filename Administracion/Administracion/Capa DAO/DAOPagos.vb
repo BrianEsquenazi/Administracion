@@ -2,6 +2,10 @@
 
 Public Class DAOPagos
 
+    Public Shared Function siguienteNumeroDeOrden()
+        Return SQLConnector.executeProcedureWithReturnValue("get_siguiente_orden_pago")
+    End Function
+
     Public Shared Function buscarOrdenPorNumero(ByVal numero As String)
         Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_pago_por_orden", numero)
         If tabla.Rows.Count < 1 Then : Return Nothing : End If
