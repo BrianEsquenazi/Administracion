@@ -37,8 +37,8 @@ Partial Class ModificaIntereses
         Me.InteresesControl = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IvaControl = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ReferenciaControl = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnGraba = New WindowsApplication1.CustomButton()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnGraba = New Administracion.CustomButton()
         CType(Me.gridCtaCte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -201,8 +201,8 @@ Partial Class ModificaIntereses
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents btnCancela As WindowsApplication1.CustomButton
-    Friend WithEvents btnGraba As WindowsApplication1.CustomButton
+    Friend WithEvents btnCancela As Administracion.CustomButton
+    Friend WithEvents btnGraba As Administracion.CustomButton
     Friend WithEvents gridCtaCte As System.Windows.Forms.DataGridView
     Friend WithEvents fechaOriginal As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents desProveOriginal As System.Windows.Forms.DataGridViewTextBoxColumn

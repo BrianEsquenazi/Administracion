@@ -22,10 +22,10 @@ Partial Class TipoCambioABM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.txtParidad = New WindowsApplication1.CustomTextBox()
-        Me.txtFecha = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.txtParidad = New Administracion.CustomTextBox()
+        Me.txtFecha = New Administracion.CustomTextBox()
         Me.SuspendLayout()
         '
         'CustomLabel2
@@ -59,7 +59,7 @@ Partial Class TipoCambioABM
         Me.txtParidad.Name = "txtParidad"
         Me.txtParidad.Size = New System.Drawing.Size(100, 20)
         Me.txtParidad.TabIndex = 14
-        Me.txtParidad.Validator = WindowsApplication1.ValidatorType.StrictlyPositiveFloat
+        Me.txtParidad.Validator = Administracion.ValidatorType.StrictlyPositiveFloat
         '
         'txtFecha
         '
@@ -72,7 +72,7 @@ Partial Class TipoCambioABM
         Me.txtFecha.Name = "txtFecha"
         Me.txtFecha.Size = New System.Drawing.Size(104, 20)
         Me.txtFecha.TabIndex = 13
-        Me.txtFecha.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFecha.Validator = Administracion.ValidatorType.DateFormat
         '
         'TipoCambioABM
         '
@@ -92,8 +92,8 @@ Partial Class TipoCambioABM
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtParidad As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtFecha As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents txtParidad As Administracion.CustomTextBox
+    Friend WithEvents txtFecha As Administracion.CustomTextBox
 End Class

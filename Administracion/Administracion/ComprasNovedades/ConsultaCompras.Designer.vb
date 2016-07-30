@@ -22,9 +22,9 @@ Partial Class ConsultaCompras
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtConsulta = New WindowsApplication1.CustomTextBox()
-        Me.lstConsulta = New WindowsApplication1.CustomListBox()
-        Me.lstSeleccion = New WindowsApplication1.CustomListBox()
+        Me.txtConsulta = New Administracion.CustomTextBox()
+        Me.lstConsulta = New Administracion.CustomListBox()
+        Me.lstSeleccion = New Administracion.CustomListBox()
         Me.SuspendLayout()
         '
         'txtConsulta
@@ -38,7 +38,7 @@ Partial Class ConsultaCompras
         Me.txtConsulta.Name = "txtConsulta"
         Me.txtConsulta.Size = New System.Drawing.Size(394, 20)
         Me.txtConsulta.TabIndex = 2
-        Me.txtConsulta.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtConsulta.Validator = Administracion.ValidatorType.None
         Me.txtConsulta.Visible = False
         '
         'lstConsulta
@@ -83,7 +83,7 @@ Partial Class ConsultaCompras
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents lstSeleccion As WindowsApplication1.CustomListBox
-    Friend WithEvents lstConsulta As WindowsApplication1.CustomListBox
-    Friend WithEvents txtConsulta As WindowsApplication1.CustomTextBox
+    Friend WithEvents lstSeleccion As Administracion.CustomListBox
+    Friend WithEvents lstConsulta As Administracion.CustomListBox
+    Friend WithEvents txtConsulta As Administracion.CustomTextBox
 End Class

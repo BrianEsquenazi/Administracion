@@ -22,8 +22,8 @@ Partial Class ObservacionesProveedor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CustomTextBox1 = New WindowsApplication1.CustomTextBox()
-        Me.btnAceptar = New WindowsApplication1.CustomButton()
+        Me.CustomTextBox1 = New Administracion.CustomTextBox()
+        Me.btnAceptar = New Administracion.CustomButton()
         Me.SuspendLayout()
         '
         'CustomTextBox1
@@ -37,7 +37,7 @@ Partial Class ObservacionesProveedor
         Me.CustomTextBox1.Name = "CustomTextBox1"
         Me.CustomTextBox1.Size = New System.Drawing.Size(401, 280)
         Me.CustomTextBox1.TabIndex = 0
-        Me.CustomTextBox1.Validator = WindowsApplication1.ValidatorType.None
+        Me.CustomTextBox1.Validator = Administracion.ValidatorType.None
         '
         'btnAceptar
         '
@@ -69,6 +69,6 @@ Partial Class ObservacionesProveedor
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomTextBox1 As WindowsApplication1.CustomTextBox
-    Friend WithEvents btnAceptar As WindowsApplication1.CustomButton
+    Friend WithEvents CustomTextBox1 As Administracion.CustomTextBox
+    Friend WithEvents btnAceptar As Administracion.CustomButton
 End Class

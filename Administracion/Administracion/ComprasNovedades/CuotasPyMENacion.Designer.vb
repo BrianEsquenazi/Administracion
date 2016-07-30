@@ -22,11 +22,11 @@ Partial Class CuotasPyMENacion
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.txtCantidadCuotas = New WindowsApplication1.CustomTextBox()
-        Me.txtMes = New WindowsApplication1.CustomTextBox()
-        Me.txtAnio = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.txtCantidadCuotas = New Administracion.CustomTextBox()
+        Me.txtMes = New Administracion.CustomTextBox()
+        Me.txtAnio = New Administracion.CustomTextBox()
         Me.SuspendLayout()
         '
         'CustomLabel1
@@ -60,7 +60,7 @@ Partial Class CuotasPyMENacion
         Me.txtCantidadCuotas.Name = "txtCantidadCuotas"
         Me.txtCantidadCuotas.Size = New System.Drawing.Size(52, 20)
         Me.txtCantidadCuotas.TabIndex = 2
-        Me.txtCantidadCuotas.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCantidadCuotas.Validator = Administracion.ValidatorType.None
         '
         'txtMes
         '
@@ -73,7 +73,7 @@ Partial Class CuotasPyMENacion
         Me.txtMes.Name = "txtMes"
         Me.txtMes.Size = New System.Drawing.Size(52, 20)
         Me.txtMes.TabIndex = 3
-        Me.txtMes.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtMes.Validator = Administracion.ValidatorType.None
         '
         'txtAnio
         '
@@ -86,7 +86,7 @@ Partial Class CuotasPyMENacion
         Me.txtAnio.Name = "txtAnio"
         Me.txtAnio.Size = New System.Drawing.Size(65, 20)
         Me.txtAnio.TabIndex = 4
-        Me.txtAnio.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtAnio.Validator = Administracion.ValidatorType.None
         '
         'CuotasPyMENacion
         '
@@ -106,9 +106,9 @@ Partial Class CuotasPyMENacion
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtCantidadCuotas As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtMes As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtAnio As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents txtCantidadCuotas As Administracion.CustomTextBox
+    Friend WithEvents txtMes As Administracion.CustomTextBox
+    Friend WithEvents txtAnio As Administracion.CustomTextBox
 End Class

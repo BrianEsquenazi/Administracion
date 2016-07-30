@@ -22,13 +22,13 @@ Partial Class CierreMes
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtMes = New WindowsApplication1.CustomTextBox()
-        Me.txtAno = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.Proceso = New WindowsApplication1.CustomComboBox()
-        Me.btnGraba = New WindowsApplication1.CustomButton()
-        Me.btnMenu = New WindowsApplication1.CustomButton()
+        Me.txtMes = New Administracion.CustomTextBox()
+        Me.txtAno = New Administracion.CustomTextBox()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.Proceso = New Administracion.CustomComboBox()
+        Me.btnGraba = New Administracion.CustomButton()
+        Me.btnMenu = New Administracion.CustomButton()
         Me.SuspendLayout()
         '
         'txtMes
@@ -41,7 +41,7 @@ Partial Class CierreMes
         Me.txtMes.Name = "txtMes"
         Me.txtMes.Size = New System.Drawing.Size(66, 20)
         Me.txtMes.TabIndex = 0
-        Me.txtMes.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtMes.Validator = Administracion.ValidatorType.None
         '
         'txtAno
         '
@@ -53,7 +53,7 @@ Partial Class CierreMes
         Me.txtAno.Name = "txtAno"
         Me.txtAno.Size = New System.Drawing.Size(71, 20)
         Me.txtAno.TabIndex = 1
-        Me.txtAno.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtAno.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel1
         '
@@ -86,7 +86,7 @@ Partial Class CierreMes
         Me.Proceso.Name = "Proceso"
         Me.Proceso.Size = New System.Drawing.Size(151, 21)
         Me.Proceso.TabIndex = 2
-        Me.Proceso.Validator = WindowsApplication1.ValidatorType.None
+        Me.Proceso.Validator = Administracion.ValidatorType.None
         '
         'btnGraba
         '
@@ -130,11 +130,11 @@ Partial Class CierreMes
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents txtMes As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtAno As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents Proceso As WindowsApplication1.CustomComboBox
-    Friend WithEvents btnGraba As WindowsApplication1.CustomButton
-    Friend WithEvents btnMenu As WindowsApplication1.CustomButton
+    Friend WithEvents txtMes As Administracion.CustomTextBox
+    Friend WithEvents txtAno As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents Proceso As Administracion.CustomComboBox
+    Friend WithEvents btnGraba As Administracion.CustomButton
+    Friend WithEvents btnMenu As Administracion.CustomButton
 End Class

@@ -32,64 +32,64 @@ Partial Class Compras
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Debito = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Credito = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.lblCredito = New WindowsApplication1.CustomLabel()
-        Me.lblDebito = New WindowsApplication1.CustomLabel()
-        Me.btnApertura = New WindowsApplication1.CustomButton()
-        Me.btnConsulta = New WindowsApplication1.CustomButton()
-        Me.btnCerrar = New WindowsApplication1.CustomButton()
-        Me.btnConsultaNroFactura = New WindowsApplication1.CustomButton()
-        Me.btnLimpiar = New WindowsApplication1.CustomButton()
-        Me.btnEliminar = New WindowsApplication1.CustomButton()
-        Me.btnAgregar = New WindowsApplication1.CustomButton()
-        Me.txtIVA10 = New WindowsApplication1.CustomTextBox()
-        Me.txtDespacho = New WindowsApplication1.CustomTextBox()
-        Me.txtIVA21 = New WindowsApplication1.CustomTextBox()
-        Me.txtIVA27 = New WindowsApplication1.CustomTextBox()
-        Me.txtNoGravado = New WindowsApplication1.CustomTextBox()
-        Me.txtTotal = New WindowsApplication1.CustomTextBox()
-        Me.txtNeto = New WindowsApplication1.CustomTextBox()
-        Me.txtIVARG = New WindowsApplication1.CustomTextBox()
-        Me.txtPercIB = New WindowsApplication1.CustomTextBox()
-        Me.txtParidad = New WindowsApplication1.CustomTextBox()
-        Me.cmbFormaPago = New WindowsApplication1.CustomComboBox()
-        Me.txtFechaVto2 = New WindowsApplication1.CustomTextBox()
-        Me.txtRemito = New WindowsApplication1.CustomTextBox()
-        Me.txtFechaIVA = New WindowsApplication1.CustomTextBox()
-        Me.txtFechaVto1 = New WindowsApplication1.CustomTextBox()
-        Me.txtFechaEmision = New WindowsApplication1.CustomTextBox()
-        Me.txtCAI = New WindowsApplication1.CustomTextBox()
-        Me.txtVtoCAI = New WindowsApplication1.CustomTextBox()
-        Me.txtNumero = New WindowsApplication1.CustomTextBox()
-        Me.txtPunto = New WindowsApplication1.CustomTextBox()
-        Me.txtLetra = New WindowsApplication1.CustomTextBox()
-        Me.cmbTipo = New WindowsApplication1.CustomComboBox()
-        Me.txtTipo = New WindowsApplication1.CustomTextBox()
-        Me.txtNombreProveedor = New WindowsApplication1.CustomTextBox()
-        Me.txtCodigoProveedor = New WindowsApplication1.CustomTextBox()
-        Me.txtNroInterno = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel23 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel22 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel21 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel20 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel19 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel18 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel17 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel16 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel15 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel14 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel13 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel12 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel11 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel10 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel9 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel8 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel7 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel6 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel5 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.lblCredito = New Administracion.CustomLabel()
+        Me.lblDebito = New Administracion.CustomLabel()
+        Me.btnApertura = New Administracion.CustomButton()
+        Me.btnConsulta = New Administracion.CustomButton()
+        Me.btnCerrar = New Administracion.CustomButton()
+        Me.btnConsultaNroFactura = New Administracion.CustomButton()
+        Me.btnLimpiar = New Administracion.CustomButton()
+        Me.btnEliminar = New Administracion.CustomButton()
+        Me.btnAgregar = New Administracion.CustomButton()
+        Me.txtIVA10 = New Administracion.CustomTextBox()
+        Me.txtDespacho = New Administracion.CustomTextBox()
+        Me.txtIVA21 = New Administracion.CustomTextBox()
+        Me.txtIVA27 = New Administracion.CustomTextBox()
+        Me.txtNoGravado = New Administracion.CustomTextBox()
+        Me.txtTotal = New Administracion.CustomTextBox()
+        Me.txtNeto = New Administracion.CustomTextBox()
+        Me.txtIVARG = New Administracion.CustomTextBox()
+        Me.txtPercIB = New Administracion.CustomTextBox()
+        Me.txtParidad = New Administracion.CustomTextBox()
+        Me.cmbFormaPago = New Administracion.CustomComboBox()
+        Me.txtFechaVto2 = New Administracion.CustomTextBox()
+        Me.txtRemito = New Administracion.CustomTextBox()
+        Me.txtFechaIVA = New Administracion.CustomTextBox()
+        Me.txtFechaVto1 = New Administracion.CustomTextBox()
+        Me.txtFechaEmision = New Administracion.CustomTextBox()
+        Me.txtCAI = New Administracion.CustomTextBox()
+        Me.txtVtoCAI = New Administracion.CustomTextBox()
+        Me.txtNumero = New Administracion.CustomTextBox()
+        Me.txtPunto = New Administracion.CustomTextBox()
+        Me.txtLetra = New Administracion.CustomTextBox()
+        Me.cmbTipo = New Administracion.CustomComboBox()
+        Me.txtTipo = New Administracion.CustomTextBox()
+        Me.txtNombreProveedor = New Administracion.CustomTextBox()
+        Me.txtCodigoProveedor = New Administracion.CustomTextBox()
+        Me.txtNroInterno = New Administracion.CustomTextBox()
+        Me.CustomLabel23 = New Administracion.CustomLabel()
+        Me.CustomLabel22 = New Administracion.CustomLabel()
+        Me.CustomLabel21 = New Administracion.CustomLabel()
+        Me.CustomLabel20 = New Administracion.CustomLabel()
+        Me.CustomLabel19 = New Administracion.CustomLabel()
+        Me.CustomLabel18 = New Administracion.CustomLabel()
+        Me.CustomLabel17 = New Administracion.CustomLabel()
+        Me.CustomLabel16 = New Administracion.CustomLabel()
+        Me.CustomLabel15 = New Administracion.CustomLabel()
+        Me.CustomLabel14 = New Administracion.CustomLabel()
+        Me.CustomLabel13 = New Administracion.CustomLabel()
+        Me.CustomLabel12 = New Administracion.CustomLabel()
+        Me.CustomLabel11 = New Administracion.CustomLabel()
+        Me.CustomLabel10 = New Administracion.CustomLabel()
+        Me.CustomLabel9 = New Administracion.CustomLabel()
+        Me.CustomLabel8 = New Administracion.CustomLabel()
+        Me.CustomLabel7 = New Administracion.CustomLabel()
+        Me.CustomLabel6 = New Administracion.CustomLabel()
+        Me.CustomLabel5 = New Administracion.CustomLabel()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.gbTipo.SuspendLayout()
         CType(Me.gridAsientos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -300,7 +300,7 @@ Partial Class Compras
         Me.txtIVA10.Name = "txtIVA10"
         Me.txtIVA10.Size = New System.Drawing.Size(75, 20)
         Me.txtIVA10.TabIndex = 51
-        Me.txtIVA10.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtIVA10.Validator = Administracion.ValidatorType.Float
         '
         'txtDespacho
         '
@@ -313,7 +313,7 @@ Partial Class Compras
         Me.txtDespacho.Name = "txtDespacho"
         Me.txtDespacho.Size = New System.Drawing.Size(190, 20)
         Me.txtDespacho.TabIndex = 50
-        Me.txtDespacho.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDespacho.Validator = Administracion.ValidatorType.None
         '
         'txtIVA21
         '
@@ -325,7 +325,7 @@ Partial Class Compras
         Me.txtIVA21.Name = "txtIVA21"
         Me.txtIVA21.Size = New System.Drawing.Size(75, 20)
         Me.txtIVA21.TabIndex = 49
-        Me.txtIVA21.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtIVA21.Validator = Administracion.ValidatorType.Float
         '
         'txtIVA27
         '
@@ -337,7 +337,7 @@ Partial Class Compras
         Me.txtIVA27.Name = "txtIVA27"
         Me.txtIVA27.Size = New System.Drawing.Size(75, 20)
         Me.txtIVA27.TabIndex = 48
-        Me.txtIVA27.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtIVA27.Validator = Administracion.ValidatorType.Float
         '
         'txtNoGravado
         '
@@ -349,7 +349,7 @@ Partial Class Compras
         Me.txtNoGravado.Name = "txtNoGravado"
         Me.txtNoGravado.Size = New System.Drawing.Size(75, 20)
         Me.txtNoGravado.TabIndex = 47
-        Me.txtNoGravado.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtNoGravado.Validator = Administracion.ValidatorType.Float
         '
         'txtTotal
         '
@@ -362,7 +362,7 @@ Partial Class Compras
         Me.txtTotal.ReadOnly = True
         Me.txtTotal.Size = New System.Drawing.Size(75, 20)
         Me.txtTotal.TabIndex = 46
-        Me.txtTotal.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtTotal.Validator = Administracion.ValidatorType.Float
         '
         'txtNeto
         '
@@ -374,7 +374,7 @@ Partial Class Compras
         Me.txtNeto.Name = "txtNeto"
         Me.txtNeto.Size = New System.Drawing.Size(75, 20)
         Me.txtNeto.TabIndex = 45
-        Me.txtNeto.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtNeto.Validator = Administracion.ValidatorType.Float
         '
         'txtIVARG
         '
@@ -386,7 +386,7 @@ Partial Class Compras
         Me.txtIVARG.Name = "txtIVARG"
         Me.txtIVARG.Size = New System.Drawing.Size(75, 20)
         Me.txtIVARG.TabIndex = 44
-        Me.txtIVARG.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtIVARG.Validator = Administracion.ValidatorType.Float
         '
         'txtPercIB
         '
@@ -398,7 +398,7 @@ Partial Class Compras
         Me.txtPercIB.Name = "txtPercIB"
         Me.txtPercIB.Size = New System.Drawing.Size(75, 20)
         Me.txtPercIB.TabIndex = 43
-        Me.txtPercIB.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtPercIB.Validator = Administracion.ValidatorType.Float
         '
         'txtParidad
         '
@@ -411,7 +411,7 @@ Partial Class Compras
         Me.txtParidad.Name = "txtParidad"
         Me.txtParidad.Size = New System.Drawing.Size(71, 20)
         Me.txtParidad.TabIndex = 42
-        Me.txtParidad.Validator = WindowsApplication1.ValidatorType.PositiveFloat
+        Me.txtParidad.Validator = Administracion.ValidatorType.PositiveFloat
         '
         'cmbFormaPago
         '
@@ -426,7 +426,7 @@ Partial Class Compras
         Me.cmbFormaPago.Name = "cmbFormaPago"
         Me.cmbFormaPago.Size = New System.Drawing.Size(157, 21)
         Me.cmbFormaPago.TabIndex = 41
-        Me.cmbFormaPago.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbFormaPago.Validator = Administracion.ValidatorType.None
         '
         'txtFechaVto2
         '
@@ -439,7 +439,7 @@ Partial Class Compras
         Me.txtFechaVto2.Name = "txtFechaVto2"
         Me.txtFechaVto2.Size = New System.Drawing.Size(75, 20)
         Me.txtFechaVto2.TabIndex = 40
-        Me.txtFechaVto2.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFechaVto2.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtRemito
         '
@@ -452,7 +452,7 @@ Partial Class Compras
         Me.txtRemito.Name = "txtRemito"
         Me.txtRemito.Size = New System.Drawing.Size(191, 20)
         Me.txtRemito.TabIndex = 39
-        Me.txtRemito.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtRemito.Validator = Administracion.ValidatorType.None
         '
         'txtFechaIVA
         '
@@ -465,7 +465,7 @@ Partial Class Compras
         Me.txtFechaIVA.Name = "txtFechaIVA"
         Me.txtFechaIVA.Size = New System.Drawing.Size(75, 20)
         Me.txtFechaIVA.TabIndex = 38
-        Me.txtFechaIVA.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFechaIVA.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtFechaVto1
         '
@@ -478,7 +478,7 @@ Partial Class Compras
         Me.txtFechaVto1.Name = "txtFechaVto1"
         Me.txtFechaVto1.Size = New System.Drawing.Size(75, 20)
         Me.txtFechaVto1.TabIndex = 37
-        Me.txtFechaVto1.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFechaVto1.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtFechaEmision
         '
@@ -491,7 +491,7 @@ Partial Class Compras
         Me.txtFechaEmision.Name = "txtFechaEmision"
         Me.txtFechaEmision.Size = New System.Drawing.Size(75, 20)
         Me.txtFechaEmision.TabIndex = 36
-        Me.txtFechaEmision.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFechaEmision.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtCAI
         '
@@ -504,7 +504,7 @@ Partial Class Compras
         Me.txtCAI.Name = "txtCAI"
         Me.txtCAI.Size = New System.Drawing.Size(118, 20)
         Me.txtCAI.TabIndex = 35
-        Me.txtCAI.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCAI.Validator = Administracion.ValidatorType.None
         '
         'txtVtoCAI
         '
@@ -517,7 +517,7 @@ Partial Class Compras
         Me.txtVtoCAI.Name = "txtVtoCAI"
         Me.txtVtoCAI.Size = New System.Drawing.Size(75, 20)
         Me.txtVtoCAI.TabIndex = 34
-        Me.txtVtoCAI.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtVtoCAI.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtNumero
         '
@@ -531,7 +531,7 @@ Partial Class Compras
         Me.txtNumero.Size = New System.Drawing.Size(91, 20)
         Me.txtNumero.TabIndex = 33
         Me.txtNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtNumero.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtNumero.Validator = Administracion.ValidatorType.Numeric
         '
         'txtPunto
         '
@@ -545,7 +545,7 @@ Partial Class Compras
         Me.txtPunto.Size = New System.Drawing.Size(64, 20)
         Me.txtPunto.TabIndex = 32
         Me.txtPunto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtPunto.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtPunto.Validator = Administracion.ValidatorType.Numeric
         '
         'txtLetra
         '
@@ -558,7 +558,7 @@ Partial Class Compras
         Me.txtLetra.Name = "txtLetra"
         Me.txtLetra.Size = New System.Drawing.Size(33, 20)
         Me.txtLetra.TabIndex = 31
-        Me.txtLetra.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtLetra.Validator = Administracion.ValidatorType.None
         '
         'cmbTipo
         '
@@ -573,7 +573,7 @@ Partial Class Compras
         Me.cmbTipo.Name = "cmbTipo"
         Me.cmbTipo.Size = New System.Drawing.Size(68, 21)
         Me.cmbTipo.TabIndex = 30
-        Me.cmbTipo.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbTipo.Validator = Administracion.ValidatorType.None
         '
         'txtTipo
         '
@@ -586,7 +586,7 @@ Partial Class Compras
         Me.txtTipo.Name = "txtTipo"
         Me.txtTipo.Size = New System.Drawing.Size(26, 20)
         Me.txtTipo.TabIndex = 29
-        Me.txtTipo.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtTipo.Validator = Administracion.ValidatorType.None
         '
         'txtNombreProveedor
         '
@@ -599,7 +599,7 @@ Partial Class Compras
         Me.txtNombreProveedor.Name = "txtNombreProveedor"
         Me.txtNombreProveedor.Size = New System.Drawing.Size(241, 20)
         Me.txtNombreProveedor.TabIndex = 28
-        Me.txtNombreProveedor.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNombreProveedor.Validator = Administracion.ValidatorType.None
         '
         'txtCodigoProveedor
         '
@@ -612,7 +612,7 @@ Partial Class Compras
         Me.txtCodigoProveedor.Name = "txtCodigoProveedor"
         Me.txtCodigoProveedor.Size = New System.Drawing.Size(76, 20)
         Me.txtCodigoProveedor.TabIndex = 27
-        Me.txtCodigoProveedor.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCodigoProveedor.Validator = Administracion.ValidatorType.None
         '
         'txtNroInterno
         '
@@ -624,7 +624,7 @@ Partial Class Compras
         Me.txtNroInterno.Name = "txtNroInterno"
         Me.txtNroInterno.Size = New System.Drawing.Size(74, 20)
         Me.txtNroInterno.TabIndex = 26
-        Me.txtNroInterno.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtNroInterno.Validator = Administracion.ValidatorType.Numeric
         '
         'CustomLabel23
         '
@@ -934,72 +934,72 @@ Partial Class Compras
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel5 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel6 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel7 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel8 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel9 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel10 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel11 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel12 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel13 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel14 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel15 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel16 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel17 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel18 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel19 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel20 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel21 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel22 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel23 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel5 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel6 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel7 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel8 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel9 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel10 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel11 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel12 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel13 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel14 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel15 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel16 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel17 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel18 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel19 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel20 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel21 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel22 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel23 As Administracion.CustomLabel
     Friend WithEvents chkSoloIVA As System.Windows.Forms.CheckBox
     Friend WithEvents gbTipo As System.Windows.Forms.GroupBox
     Friend WithEvents optNacion As System.Windows.Forms.RadioButton
     Friend WithEvents optCtaCte As System.Windows.Forms.RadioButton
     Friend WithEvents optEfectivo As System.Windows.Forms.RadioButton
-    Friend WithEvents txtNroInterno As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCodigoProveedor As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtNombreProveedor As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtTipo As WindowsApplication1.CustomTextBox
-    Friend WithEvents cmbTipo As WindowsApplication1.CustomComboBox
-    Friend WithEvents txtLetra As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtPunto As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtNumero As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtVtoCAI As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCAI As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtFechaEmision As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtFechaVto1 As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtFechaIVA As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtRemito As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtFechaVto2 As WindowsApplication1.CustomTextBox
-    Friend WithEvents cmbFormaPago As WindowsApplication1.CustomComboBox
-    Friend WithEvents txtParidad As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtPercIB As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtIVARG As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtNeto As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtTotal As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtIVA21 As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtIVA27 As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtNoGravado As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtDespacho As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtIVA10 As WindowsApplication1.CustomTextBox
+    Friend WithEvents txtNroInterno As Administracion.CustomTextBox
+    Friend WithEvents txtCodigoProveedor As Administracion.CustomTextBox
+    Friend WithEvents txtNombreProveedor As Administracion.CustomTextBox
+    Friend WithEvents txtTipo As Administracion.CustomTextBox
+    Friend WithEvents cmbTipo As Administracion.CustomComboBox
+    Friend WithEvents txtLetra As Administracion.CustomTextBox
+    Friend WithEvents txtPunto As Administracion.CustomTextBox
+    Friend WithEvents txtNumero As Administracion.CustomTextBox
+    Friend WithEvents txtVtoCAI As Administracion.CustomTextBox
+    Friend WithEvents txtCAI As Administracion.CustomTextBox
+    Friend WithEvents txtFechaEmision As Administracion.CustomTextBox
+    Friend WithEvents txtFechaVto1 As Administracion.CustomTextBox
+    Friend WithEvents txtFechaIVA As Administracion.CustomTextBox
+    Friend WithEvents txtRemito As Administracion.CustomTextBox
+    Friend WithEvents txtFechaVto2 As Administracion.CustomTextBox
+    Friend WithEvents cmbFormaPago As Administracion.CustomComboBox
+    Friend WithEvents txtParidad As Administracion.CustomTextBox
+    Friend WithEvents txtPercIB As Administracion.CustomTextBox
+    Friend WithEvents txtIVARG As Administracion.CustomTextBox
+    Friend WithEvents txtNeto As Administracion.CustomTextBox
+    Friend WithEvents txtTotal As Administracion.CustomTextBox
+    Friend WithEvents txtIVA21 As Administracion.CustomTextBox
+    Friend WithEvents txtIVA27 As Administracion.CustomTextBox
+    Friend WithEvents txtNoGravado As Administracion.CustomTextBox
+    Friend WithEvents txtDespacho As Administracion.CustomTextBox
+    Friend WithEvents txtIVA10 As Administracion.CustomTextBox
     Friend WithEvents gridAsientos As System.Windows.Forms.DataGridView
-    Friend WithEvents btnCerrar As WindowsApplication1.CustomButton
-    Friend WithEvents btnConsultaNroFactura As WindowsApplication1.CustomButton
-    Friend WithEvents btnLimpiar As WindowsApplication1.CustomButton
-    Friend WithEvents btnEliminar As WindowsApplication1.CustomButton
-    Friend WithEvents btnAgregar As WindowsApplication1.CustomButton
-    Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
-    Friend WithEvents btnApertura As WindowsApplication1.CustomButton
+    Friend WithEvents btnCerrar As Administracion.CustomButton
+    Friend WithEvents btnConsultaNroFactura As Administracion.CustomButton
+    Friend WithEvents btnLimpiar As Administracion.CustomButton
+    Friend WithEvents btnEliminar As Administracion.CustomButton
+    Friend WithEvents btnAgregar As Administracion.CustomButton
+    Friend WithEvents btnConsulta As Administracion.CustomButton
+    Friend WithEvents btnApertura As Administracion.CustomButton
     Friend WithEvents Cuenta As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Debito As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Credito As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents lblDebito As WindowsApplication1.CustomLabel
-    Friend WithEvents lblCredito As WindowsApplication1.CustomLabel
+    Friend WithEvents lblDebito As Administracion.CustomLabel
+    Friend WithEvents lblCredito As Administracion.CustomLabel
 End Class

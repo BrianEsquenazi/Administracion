@@ -22,10 +22,10 @@ Partial Class CuentaContableABM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.txtDescripcion = New WindowsApplication1.CustomTextBox()
-        Me.txtCodigo = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.txtDescripcion = New Administracion.CustomTextBox()
+        Me.txtCodigo = New Administracion.CustomTextBox()
         Me.SuspendLayout()
         '
         'CustomLabel2
@@ -59,7 +59,7 @@ Partial Class CuentaContableABM
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(265, 20)
         Me.txtDescripcion.TabIndex = 2
-        Me.txtDescripcion.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDescripcion.Validator = Administracion.ValidatorType.None
         '
         'txtCodigo
         '
@@ -72,7 +72,7 @@ Partial Class CuentaContableABM
         Me.txtCodigo.Name = "txtCodigo"
         Me.txtCodigo.Size = New System.Drawing.Size(80, 20)
         Me.txtCodigo.TabIndex = 1
-        Me.txtCodigo.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtCodigo.Validator = Administracion.ValidatorType.Numeric
         '
         'CuentaContableABM
         '
@@ -92,8 +92,8 @@ Partial Class CuentaContableABM
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents txtCodigo As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtDescripcion As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
+    Friend WithEvents txtCodigo As Administracion.CustomTextBox
+    Friend WithEvents txtDescripcion As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
 End Class

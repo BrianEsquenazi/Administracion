@@ -23,11 +23,6 @@ Partial Class ConsultaCheque
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.gridCheque = New System.Windows.Forms.DataGridView()
-        Me.cmbTipo = New System.Windows.Forms.ComboBox()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.txtCheque = New WindowsApplication1.CustomTextBox()
-        Me.btnProceso = New WindowsApplication1.CustomButton()
-        Me.btnCerrar = New WindowsApplication1.CustomButton()
         Me.Cheque = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -35,6 +30,11 @@ Partial Class ConsultaCheque
         Me.fechaCheque = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.comprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.observaciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cmbTipo = New System.Windows.Forms.ComboBox()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.txtCheque = New Administracion.CustomTextBox()
+        Me.btnProceso = New Administracion.CustomButton()
+        Me.btnCerrar = New Administracion.CustomButton()
         CType(Me.gridCheque, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -50,63 +50,6 @@ Partial Class ConsultaCheque
         Me.gridCheque.Size = New System.Drawing.Size(760, 497)
         Me.gridCheque.StandardTab = True
         Me.gridCheque.TabIndex = 2
-        '
-        'cmbTipo
-        '
-        Me.cmbTipo.FormattingEnabled = True
-        Me.cmbTipo.Items.AddRange(New Object() {"Cheque Terceros", "Cheques Propios"})
-        Me.cmbTipo.Location = New System.Drawing.Point(517, 12)
-        Me.cmbTipo.Name = "cmbTipo"
-        Me.cmbTipo.Size = New System.Drawing.Size(255, 21)
-        Me.cmbTipo.TabIndex = 5
-        '
-        'CustomLabel1
-        '
-        Me.CustomLabel1.AutoSize = True
-        Me.CustomLabel1.ControlAssociationKey = -1
-        Me.CustomLabel1.Location = New System.Drawing.Point(12, 19)
-        Me.CustomLabel1.Name = "CustomLabel1"
-        Me.CustomLabel1.Size = New System.Drawing.Size(44, 13)
-        Me.CustomLabel1.TabIndex = 7
-        Me.CustomLabel1.Text = "Cheque"
-        '
-        'txtCheque
-        '
-        Me.txtCheque.Cleanable = False
-        Me.txtCheque.Empty = True
-        Me.txtCheque.EnterIndex = -1
-        Me.txtCheque.LabelAssociationKey = -1
-        Me.txtCheque.Location = New System.Drawing.Point(79, 12)
-        Me.txtCheque.MaxLength = 8
-        Me.txtCheque.Name = "txtCheque"
-        Me.txtCheque.Size = New System.Drawing.Size(121, 20)
-        Me.txtCheque.TabIndex = 6
-        Me.txtCheque.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtCheque.Validator = WindowsApplication1.ValidatorType.None
-        '
-        'btnProceso
-        '
-        Me.btnProceso.Cleanable = False
-        Me.btnProceso.EnterIndex = -1
-        Me.btnProceso.LabelAssociationKey = -1
-        Me.btnProceso.Location = New System.Drawing.Point(366, 9)
-        Me.btnProceso.Name = "btnProceso"
-        Me.btnProceso.Size = New System.Drawing.Size(84, 23)
-        Me.btnProceso.TabIndex = 4
-        Me.btnProceso.Text = "Proceso"
-        Me.btnProceso.UseVisualStyleBackColor = True
-        '
-        'btnCerrar
-        '
-        Me.btnCerrar.Cleanable = False
-        Me.btnCerrar.EnterIndex = -1
-        Me.btnCerrar.LabelAssociationKey = -1
-        Me.btnCerrar.Location = New System.Drawing.Point(276, 9)
-        Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(84, 23)
-        Me.btnCerrar.TabIndex = 3
-        Me.btnCerrar.Text = "Cerrar"
-        Me.btnCerrar.UseVisualStyleBackColor = True
         '
         'Cheque
         '
@@ -157,6 +100,62 @@ Partial Class ConsultaCheque
         Me.observaciones.ReadOnly = True
         Me.observaciones.Width = 103
         '
+        'cmbTipo
+        '
+        Me.cmbTipo.FormattingEnabled = True
+        Me.cmbTipo.Items.AddRange(New Object() {"Cheque Terceros", "Cheques Propios"})
+        Me.cmbTipo.Location = New System.Drawing.Point(517, 12)
+        Me.cmbTipo.Name = "cmbTipo"
+        Me.cmbTipo.Size = New System.Drawing.Size(255, 21)
+        Me.cmbTipo.TabIndex = 5
+        '
+        'CustomLabel1
+        '
+        Me.CustomLabel1.AutoSize = True
+        Me.CustomLabel1.ControlAssociationKey = -1
+        Me.CustomLabel1.Location = New System.Drawing.Point(12, 19)
+        Me.CustomLabel1.Name = "CustomLabel1"
+        Me.CustomLabel1.Size = New System.Drawing.Size(44, 13)
+        Me.CustomLabel1.TabIndex = 7
+        Me.CustomLabel1.Text = "Cheque"
+        '
+        'txtCheque
+        '
+        Me.txtCheque.Cleanable = False
+        Me.txtCheque.Empty = True
+        Me.txtCheque.EnterIndex = -1
+        Me.txtCheque.LabelAssociationKey = -1
+        Me.txtCheque.Location = New System.Drawing.Point(79, 12)
+        Me.txtCheque.MaxLength = 8
+        Me.txtCheque.Name = "txtCheque"
+        Me.txtCheque.Size = New System.Drawing.Size(121, 20)
+        Me.txtCheque.TabIndex = 6
+        Me.txtCheque.Validator = Administracion.ValidatorType.None
+        '
+        'btnProceso
+        '
+        Me.btnProceso.Cleanable = False
+        Me.btnProceso.EnterIndex = -1
+        Me.btnProceso.LabelAssociationKey = -1
+        Me.btnProceso.Location = New System.Drawing.Point(366, 9)
+        Me.btnProceso.Name = "btnProceso"
+        Me.btnProceso.Size = New System.Drawing.Size(84, 23)
+        Me.btnProceso.TabIndex = 4
+        Me.btnProceso.Text = "Proceso"
+        Me.btnProceso.UseVisualStyleBackColor = True
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.Cleanable = False
+        Me.btnCerrar.EnterIndex = -1
+        Me.btnCerrar.LabelAssociationKey = -1
+        Me.btnCerrar.Location = New System.Drawing.Point(276, 9)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(84, 23)
+        Me.btnCerrar.TabIndex = 3
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = True
+        '
         'ConsultaCheque
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -176,11 +175,11 @@ Partial Class ConsultaCheque
 
     End Sub
     Friend WithEvents gridCheque As System.Windows.Forms.DataGridView
-    Friend WithEvents btnCerrar As WindowsApplication1.CustomButton
-    Friend WithEvents btnProceso As WindowsApplication1.CustomButton
+    Friend WithEvents btnCerrar As Administracion.CustomButton
+    Friend WithEvents btnProceso As Administracion.CustomButton
     Friend WithEvents cmbTipo As System.Windows.Forms.ComboBox
-    Friend WithEvents txtCheque As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
+    Friend WithEvents txtCheque As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
     Friend WithEvents Cheque As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Banco As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn

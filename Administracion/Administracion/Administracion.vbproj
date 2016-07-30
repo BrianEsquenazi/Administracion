@@ -8,8 +8,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D0AB16CA-EAF0-49C9-8319-EA4B24006A9F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>WindowsApplication1.My.MyApplication</StartupObject>
-    <RootNamespace>WindowsApplication1</RootNamespace>
+    <StartupObject>Administracion.My.MyApplication</StartupObject>
+    <RootNamespace>Administracion</RootNamespace>
     <AssemblyName>Administracion</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>

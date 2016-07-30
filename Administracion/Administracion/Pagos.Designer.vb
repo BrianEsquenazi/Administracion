@@ -42,48 +42,48 @@ Partial Class Pagos
         Me.Banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Importe2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CustomLabel13 = New WindowsApplication1.CustomLabel()
-        Me.lblDiferencia = New WindowsApplication1.CustomLabel()
-        Me.lblFormaPagos = New WindowsApplication1.CustomLabel()
-        Me.lblPagos = New WindowsApplication1.CustomLabel()
-        Me.lstSeleccion = New WindowsApplication1.CustomListBox()
-        Me.btnCarpetas = New WindowsApplication1.CustomButton()
-        Me.btnImprimir = New WindowsApplication1.CustomButton()
-        Me.btnCalcular = New WindowsApplication1.CustomButton()
-        Me.btnConsulta = New WindowsApplication1.CustomButton()
-        Me.btnCerrar = New WindowsApplication1.CustomButton()
-        Me.btnLimpiar = New WindowsApplication1.CustomButton()
-        Me.btnAgregar = New WindowsApplication1.CustomButton()
-        Me.txtConsulta = New WindowsApplication1.CustomTextBox()
-        Me.lstConsulta = New WindowsApplication1.CustomListBox()
-        Me.txtTotal = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel11 = New WindowsApplication1.CustomLabel()
-        Me.txtIVA = New WindowsApplication1.CustomTextBox()
-        Me.txtIngresosBrutos = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel10 = New WindowsApplication1.CustomLabel()
-        Me.txtIBCiudad = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel9 = New WindowsApplication1.CustomLabel()
-        Me.txtGanancias = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel8 = New WindowsApplication1.CustomLabel()
-        Me.lblGanancias = New WindowsApplication1.CustomLabel()
-        Me.cmbTipo = New WindowsApplication1.CustomComboBox()
-        Me.txtParidad = New WindowsApplication1.CustomTextBox()
-        Me.txtFechaParidad = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel7 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel6 = New WindowsApplication1.CustomLabel()
-        Me.txtNombreBanco = New WindowsApplication1.CustomTextBox()
-        Me.txtBanco = New WindowsApplication1.CustomTextBox()
-        Me.txtObservaciones = New WindowsApplication1.CustomTextBox()
-        Me.txtRazonSocial = New WindowsApplication1.CustomTextBox()
-        Me.txtProveedor = New WindowsApplication1.CustomTextBox()
-        Me.txtFecha = New WindowsApplication1.CustomTextBox()
-        Me.txtOrdenPago = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel5 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel12 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel13 = New Administracion.CustomLabel()
+        Me.lblDiferencia = New Administracion.CustomLabel()
+        Me.lblFormaPagos = New Administracion.CustomLabel()
+        Me.lblPagos = New Administracion.CustomLabel()
+        Me.lstSeleccion = New Administracion.CustomListBox()
+        Me.btnCarpetas = New Administracion.CustomButton()
+        Me.btnImprimir = New Administracion.CustomButton()
+        Me.btnCalcular = New Administracion.CustomButton()
+        Me.btnConsulta = New Administracion.CustomButton()
+        Me.btnCerrar = New Administracion.CustomButton()
+        Me.btnLimpiar = New Administracion.CustomButton()
+        Me.btnAgregar = New Administracion.CustomButton()
+        Me.txtConsulta = New Administracion.CustomTextBox()
+        Me.lstConsulta = New Administracion.CustomListBox()
+        Me.txtTotal = New Administracion.CustomTextBox()
+        Me.CustomLabel11 = New Administracion.CustomLabel()
+        Me.txtIVA = New Administracion.CustomTextBox()
+        Me.txtIngresosBrutos = New Administracion.CustomTextBox()
+        Me.CustomLabel10 = New Administracion.CustomLabel()
+        Me.txtIBCiudad = New Administracion.CustomTextBox()
+        Me.CustomLabel9 = New Administracion.CustomLabel()
+        Me.txtGanancias = New Administracion.CustomTextBox()
+        Me.CustomLabel8 = New Administracion.CustomLabel()
+        Me.lblGanancias = New Administracion.CustomLabel()
+        Me.cmbTipo = New Administracion.CustomComboBox()
+        Me.txtParidad = New Administracion.CustomTextBox()
+        Me.txtFechaParidad = New Administracion.CustomTextBox()
+        Me.CustomLabel7 = New Administracion.CustomLabel()
+        Me.CustomLabel6 = New Administracion.CustomLabel()
+        Me.txtNombreBanco = New Administracion.CustomTextBox()
+        Me.txtBanco = New Administracion.CustomTextBox()
+        Me.txtObservaciones = New Administracion.CustomTextBox()
+        Me.txtRazonSocial = New Administracion.CustomTextBox()
+        Me.txtProveedor = New Administracion.CustomTextBox()
+        Me.txtFecha = New Administracion.CustomTextBox()
+        Me.txtOrdenPago = New Administracion.CustomTextBox()
+        Me.CustomLabel5 = New Administracion.CustomLabel()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.CustomLabel12 = New Administracion.CustomLabel()
         Me.GroupBox1.SuspendLayout()
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridFormaPagos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -404,7 +404,7 @@ Partial Class Pagos
         Me.txtConsulta.Name = "txtConsulta"
         Me.txtConsulta.Size = New System.Drawing.Size(333, 20)
         Me.txtConsulta.TabIndex = 55
-        Me.txtConsulta.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtConsulta.Validator = Administracion.ValidatorType.None
         Me.txtConsulta.Visible = False
         '
         'lstConsulta
@@ -430,7 +430,7 @@ Partial Class Pagos
         Me.txtTotal.ReadOnly = True
         Me.txtTotal.Size = New System.Drawing.Size(91, 20)
         Me.txtTotal.TabIndex = 53
-        Me.txtTotal.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtTotal.Validator = Administracion.ValidatorType.Float
         '
         'CustomLabel11
         '
@@ -452,7 +452,7 @@ Partial Class Pagos
         Me.txtIVA.Name = "txtIVA"
         Me.txtIVA.Size = New System.Drawing.Size(75, 20)
         Me.txtIVA.TabIndex = 51
-        Me.txtIVA.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtIVA.Validator = Administracion.ValidatorType.Float
         '
         'txtIngresosBrutos
         '
@@ -464,7 +464,7 @@ Partial Class Pagos
         Me.txtIngresosBrutos.Name = "txtIngresosBrutos"
         Me.txtIngresosBrutos.Size = New System.Drawing.Size(75, 20)
         Me.txtIngresosBrutos.TabIndex = 50
-        Me.txtIngresosBrutos.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtIngresosBrutos.Validator = Administracion.ValidatorType.Float
         '
         'CustomLabel10
         '
@@ -486,7 +486,7 @@ Partial Class Pagos
         Me.txtIBCiudad.Name = "txtIBCiudad"
         Me.txtIBCiudad.Size = New System.Drawing.Size(75, 20)
         Me.txtIBCiudad.TabIndex = 48
-        Me.txtIBCiudad.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtIBCiudad.Validator = Administracion.ValidatorType.Float
         '
         'CustomLabel9
         '
@@ -508,7 +508,7 @@ Partial Class Pagos
         Me.txtGanancias.Name = "txtGanancias"
         Me.txtGanancias.Size = New System.Drawing.Size(75, 20)
         Me.txtGanancias.TabIndex = 46
-        Me.txtGanancias.Validator = WindowsApplication1.ValidatorType.Float
+        Me.txtGanancias.Validator = Administracion.ValidatorType.Float
         '
         'CustomLabel8
         '
@@ -543,7 +543,7 @@ Partial Class Pagos
         Me.cmbTipo.Name = "cmbTipo"
         Me.cmbTipo.Size = New System.Drawing.Size(160, 21)
         Me.cmbTipo.TabIndex = 39
-        Me.cmbTipo.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbTipo.Validator = Administracion.ValidatorType.None
         Me.cmbTipo.Visible = False
         '
         'txtParidad
@@ -556,7 +556,7 @@ Partial Class Pagos
         Me.txtParidad.Name = "txtParidad"
         Me.txtParidad.Size = New System.Drawing.Size(81, 20)
         Me.txtParidad.TabIndex = 38
-        Me.txtParidad.Validator = WindowsApplication1.ValidatorType.StrictlyPositiveFloat
+        Me.txtParidad.Validator = Administracion.ValidatorType.StrictlyPositiveFloat
         '
         'txtFechaParidad
         '
@@ -569,7 +569,7 @@ Partial Class Pagos
         Me.txtFechaParidad.Name = "txtFechaParidad"
         Me.txtFechaParidad.Size = New System.Drawing.Size(81, 20)
         Me.txtFechaParidad.TabIndex = 37
-        Me.txtFechaParidad.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFechaParidad.Validator = Administracion.ValidatorType.DateFormat
         '
         'CustomLabel7
         '
@@ -602,7 +602,7 @@ Partial Class Pagos
         Me.txtNombreBanco.Name = "txtNombreBanco"
         Me.txtNombreBanco.Size = New System.Drawing.Size(241, 20)
         Me.txtNombreBanco.TabIndex = 33
-        Me.txtNombreBanco.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNombreBanco.Validator = Administracion.ValidatorType.None
         '
         'txtBanco
         '
@@ -616,7 +616,7 @@ Partial Class Pagos
         Me.txtBanco.Name = "txtBanco"
         Me.txtBanco.Size = New System.Drawing.Size(76, 20)
         Me.txtBanco.TabIndex = 32
-        Me.txtBanco.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtBanco.Validator = Administracion.ValidatorType.Numeric
         '
         'txtObservaciones
         '
@@ -629,7 +629,7 @@ Partial Class Pagos
         Me.txtObservaciones.Name = "txtObservaciones"
         Me.txtObservaciones.Size = New System.Drawing.Size(323, 20)
         Me.txtObservaciones.TabIndex = 31
-        Me.txtObservaciones.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtObservaciones.Validator = Administracion.ValidatorType.None
         '
         'txtRazonSocial
         '
@@ -642,7 +642,7 @@ Partial Class Pagos
         Me.txtRazonSocial.Name = "txtRazonSocial"
         Me.txtRazonSocial.Size = New System.Drawing.Size(241, 20)
         Me.txtRazonSocial.TabIndex = 30
-        Me.txtRazonSocial.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtRazonSocial.Validator = Administracion.ValidatorType.None
         '
         'txtProveedor
         '
@@ -655,7 +655,7 @@ Partial Class Pagos
         Me.txtProveedor.Name = "txtProveedor"
         Me.txtProveedor.Size = New System.Drawing.Size(76, 20)
         Me.txtProveedor.TabIndex = 29
-        Me.txtProveedor.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtProveedor.Validator = Administracion.ValidatorType.None
         '
         'txtFecha
         '
@@ -668,7 +668,7 @@ Partial Class Pagos
         Me.txtFecha.Name = "txtFecha"
         Me.txtFecha.Size = New System.Drawing.Size(75, 20)
         Me.txtFecha.TabIndex = 6
-        Me.txtFecha.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFecha.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtOrdenPago
         '
@@ -682,7 +682,7 @@ Partial Class Pagos
         Me.txtOrdenPago.Size = New System.Drawing.Size(68, 20)
         Me.txtOrdenPago.TabIndex = 5
         Me.txtOrdenPago.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtOrdenPago.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtOrdenPago.Validator = Administracion.ValidatorType.Numeric
         '
         'CustomLabel5
         '
@@ -808,51 +808,51 @@ Partial Class Pagos
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel5 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtOrdenPago As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtFecha As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtRazonSocial As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtProveedor As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtObservaciones As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtBanco As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtNombreBanco As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel5 As Administracion.CustomLabel
+    Friend WithEvents txtOrdenPago As Administracion.CustomTextBox
+    Friend WithEvents txtFecha As Administracion.CustomTextBox
+    Friend WithEvents txtRazonSocial As Administracion.CustomTextBox
+    Friend WithEvents txtProveedor As Administracion.CustomTextBox
+    Friend WithEvents txtObservaciones As Administracion.CustomTextBox
+    Friend WithEvents txtBanco As Administracion.CustomTextBox
+    Friend WithEvents txtNombreBanco As Administracion.CustomTextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents optTransferencias As System.Windows.Forms.RadioButton
     Friend WithEvents optAnticipos As System.Windows.Forms.RadioButton
     Friend WithEvents optChequeRechazado As System.Windows.Forms.RadioButton
     Friend WithEvents optVarios As System.Windows.Forms.RadioButton
     Friend WithEvents optCtaCte As System.Windows.Forms.RadioButton
-    Friend WithEvents CustomLabel6 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel7 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtFechaParidad As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtParidad As WindowsApplication1.CustomTextBox
-    Friend WithEvents cmbTipo As WindowsApplication1.CustomComboBox
-    Friend WithEvents lblGanancias As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel8 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtGanancias As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel9 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtIBCiudad As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel10 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtIVA As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtIngresosBrutos As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel11 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtTotal As WindowsApplication1.CustomTextBox
-    Friend WithEvents lstConsulta As WindowsApplication1.CustomListBox
-    Friend WithEvents txtConsulta As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel6 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel7 As Administracion.CustomLabel
+    Friend WithEvents txtFechaParidad As Administracion.CustomTextBox
+    Friend WithEvents txtParidad As Administracion.CustomTextBox
+    Friend WithEvents cmbTipo As Administracion.CustomComboBox
+    Friend WithEvents lblGanancias As Administracion.CustomLabel
+    Friend WithEvents CustomLabel8 As Administracion.CustomLabel
+    Friend WithEvents txtGanancias As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel9 As Administracion.CustomLabel
+    Friend WithEvents txtIBCiudad As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel10 As Administracion.CustomLabel
+    Friend WithEvents txtIVA As Administracion.CustomTextBox
+    Friend WithEvents txtIngresosBrutos As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel11 As Administracion.CustomLabel
+    Friend WithEvents txtTotal As Administracion.CustomTextBox
+    Friend WithEvents lstConsulta As Administracion.CustomListBox
+    Friend WithEvents txtConsulta As Administracion.CustomTextBox
     Friend WithEvents gridPagos As System.Windows.Forms.DataGridView
     Friend WithEvents gridFormaPagos As System.Windows.Forms.DataGridView
-    Friend WithEvents btnCerrar As WindowsApplication1.CustomButton
-    Friend WithEvents btnLimpiar As WindowsApplication1.CustomButton
-    Friend WithEvents btnAgregar As WindowsApplication1.CustomButton
-    Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
-    Friend WithEvents btnCalcular As WindowsApplication1.CustomButton
-    Friend WithEvents btnImprimir As WindowsApplication1.CustomButton
-    Friend WithEvents btnCarpetas As WindowsApplication1.CustomButton
-    Friend WithEvents lstSeleccion As WindowsApplication1.CustomListBox
+    Friend WithEvents btnCerrar As Administracion.CustomButton
+    Friend WithEvents btnLimpiar As Administracion.CustomButton
+    Friend WithEvents btnAgregar As Administracion.CustomButton
+    Friend WithEvents btnConsulta As Administracion.CustomButton
+    Friend WithEvents btnCalcular As Administracion.CustomButton
+    Friend WithEvents btnImprimir As Administracion.CustomButton
+    Friend WithEvents btnCarpetas As Administracion.CustomButton
+    Friend WithEvents lstSeleccion As Administracion.CustomListBox
     Friend WithEvents Tipo2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Numero2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -865,9 +865,9 @@ Partial Class Pagos
     Friend WithEvents Numero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CustomLabel12 As WindowsApplication1.CustomLabel
-    Friend WithEvents lblPagos As WindowsApplication1.CustomLabel
-    Friend WithEvents lblFormaPagos As WindowsApplication1.CustomLabel
-    Friend WithEvents lblDiferencia As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel13 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel12 As Administracion.CustomLabel
+    Friend WithEvents lblPagos As Administracion.CustomLabel
+    Friend WithEvents lblFormaPagos As Administracion.CustomLabel
+    Friend WithEvents lblDiferencia As Administracion.CustomLabel
+    Friend WithEvents CustomLabel13 As Administracion.CustomLabel
 End Class

@@ -42,16 +42,16 @@ Partial Class CuentaCorrientePantalla
         Me.opcCompleto = New System.Windows.Forms.RadioButton()
         Me.opcPendiente = New System.Windows.Forms.RadioButton()
         Me.boxPantallaProveedores = New System.Windows.Forms.GroupBox()
-        Me.lstAyuda = New WindowsApplication1.CustomListBox()
-        Me.txtAyuda = New WindowsApplication1.CustomTextBox()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnConsulta = New WindowsApplication1.CustomButton()
-        Me.txtSaldo = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.txtRazon = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.txtProveedor = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
+        Me.lstAyuda = New Administracion.CustomListBox()
+        Me.txtAyuda = New Administracion.CustomTextBox()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnConsulta = New Administracion.CustomButton()
+        Me.txtSaldo = New Administracion.CustomTextBox()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.txtRazon = New Administracion.CustomTextBox()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.txtProveedor = New Administracion.CustomTextBox()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
         CType(Me.GRilla, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.boxPantallaProveedores.SuspendLayout()
         Me.SuspendLayout()
@@ -187,7 +187,7 @@ Partial Class CuentaCorrientePantalla
         Me.txtAyuda.Name = "txtAyuda"
         Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
         Me.txtAyuda.TabIndex = 28
-        Me.txtAyuda.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtAyuda.Validator = Administracion.ValidatorType.None
         '
         'btnCancela
         '
@@ -225,7 +225,7 @@ Partial Class CuentaCorrientePantalla
         Me.txtSaldo.Size = New System.Drawing.Size(108, 20)
         Me.txtSaldo.TabIndex = 7
         Me.txtSaldo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.txtSaldo.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtSaldo.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel2
         '
@@ -248,7 +248,7 @@ Partial Class CuentaCorrientePantalla
         Me.txtRazon.Name = "txtRazon"
         Me.txtRazon.Size = New System.Drawing.Size(320, 20)
         Me.txtRazon.TabIndex = 6
-        Me.txtRazon.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtRazon.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel1
         '
@@ -269,7 +269,7 @@ Partial Class CuentaCorrientePantalla
         Me.txtProveedor.Name = "txtProveedor"
         Me.txtProveedor.Size = New System.Drawing.Size(108, 20)
         Me.txtProveedor.TabIndex = 0
-        Me.txtProveedor.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtProveedor.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel3
         '
@@ -308,19 +308,19 @@ Partial Class CuentaCorrientePantalla
 
     End Sub
     Friend WithEvents GRilla As System.Windows.Forms.DataGridView
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtProveedor As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtRazon As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtSaldo As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents txtProveedor As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents txtRazon As Administracion.CustomTextBox
+    Friend WithEvents txtSaldo As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
     Friend WithEvents opcCompleto As System.Windows.Forms.RadioButton
     Friend WithEvents opcPendiente As System.Windows.Forms.RadioButton
-    Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
+    Friend WithEvents btnConsulta As Administracion.CustomButton
     Friend WithEvents boxPantallaProveedores As System.Windows.Forms.GroupBox
-    Friend WithEvents lstAyuda As WindowsApplication1.CustomListBox
-    Friend WithEvents txtAyuda As WindowsApplication1.CustomTextBox
-    Friend WithEvents btnCancela As WindowsApplication1.CustomButton
+    Friend WithEvents lstAyuda As Administracion.CustomListBox
+    Friend WithEvents txtAyuda As Administracion.CustomTextBox
+    Friend WithEvents btnCancela As Administracion.CustomButton
     Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Letra As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Punto As System.Windows.Forms.DataGridViewTextBoxColumn

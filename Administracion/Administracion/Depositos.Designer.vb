@@ -28,26 +28,26 @@ Partial Class Depositos
         Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.txtImporte = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel7 = New WindowsApplication1.CustomLabel()
-        Me.lstSeleccion = New WindowsApplication1.CustomListBox()
-        Me.btnCerrar = New WindowsApplication1.CustomButton()
-        Me.btnConsulta = New WindowsApplication1.CustomButton()
-        Me.btnLimpiar = New WindowsApplication1.CustomButton()
-        Me.btnImpresion = New WindowsApplication1.CustomButton()
-        Me.btnAgregar = New WindowsApplication1.CustomButton()
-        Me.lstConsulta = New WindowsApplication1.CustomListBox()
-        Me.txtFecha = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel6 = New WindowsApplication1.CustomLabel()
-        Me.txtDescripcionBanco = New WindowsApplication1.CustomTextBox()
-        Me.txtNroDeposito = New WindowsApplication1.CustomTextBox()
-        Me.txtCodigoBanco = New WindowsApplication1.CustomTextBox()
-        Me.txtFechaAcreditacion = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel5 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.lblTotal = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.txtImporte = New Administracion.CustomTextBox()
+        Me.CustomLabel7 = New Administracion.CustomLabel()
+        Me.lstSeleccion = New Administracion.CustomListBox()
+        Me.btnCerrar = New Administracion.CustomButton()
+        Me.btnConsulta = New Administracion.CustomButton()
+        Me.btnLimpiar = New Administracion.CustomButton()
+        Me.btnImpresion = New Administracion.CustomButton()
+        Me.btnAgregar = New Administracion.CustomButton()
+        Me.lstConsulta = New Administracion.CustomListBox()
+        Me.txtFecha = New Administracion.CustomTextBox()
+        Me.CustomLabel6 = New Administracion.CustomLabel()
+        Me.txtDescripcionBanco = New Administracion.CustomTextBox()
+        Me.txtNroDeposito = New Administracion.CustomTextBox()
+        Me.txtCodigoBanco = New Administracion.CustomTextBox()
+        Me.txtFechaAcreditacion = New Administracion.CustomTextBox()
+        Me.CustomLabel5 = New Administracion.CustomLabel()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.lblTotal = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         CType(Me.gridCheques, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -103,7 +103,7 @@ Partial Class Depositos
         Me.txtImporte.Name = "txtImporte"
         Me.txtImporte.Size = New System.Drawing.Size(80, 20)
         Me.txtImporte.TabIndex = 16
-        Me.txtImporte.Validator = WindowsApplication1.ValidatorType.PositiveFloat
+        Me.txtImporte.Validator = Administracion.ValidatorType.PositiveFloat
         '
         'CustomLabel7
         '
@@ -211,7 +211,7 @@ Partial Class Depositos
         Me.txtFecha.Name = "txtFecha"
         Me.txtFecha.Size = New System.Drawing.Size(75, 20)
         Me.txtFecha.TabIndex = 2
-        Me.txtFecha.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFecha.Validator = Administracion.ValidatorType.DateFormat
         '
         'CustomLabel6
         '
@@ -236,7 +236,7 @@ Partial Class Depositos
         Me.txtDescripcionBanco.Size = New System.Drawing.Size(254, 20)
         Me.txtDescripcionBanco.TabIndex = 6
         Me.txtDescripcionBanco.TabStop = False
-        Me.txtDescripcionBanco.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDescripcionBanco.Validator = Administracion.ValidatorType.None
         '
         'txtNroDeposito
         '
@@ -249,7 +249,7 @@ Partial Class Depositos
         Me.txtNroDeposito.Name = "txtNroDeposito"
         Me.txtNroDeposito.Size = New System.Drawing.Size(71, 20)
         Me.txtNroDeposito.TabIndex = 1
-        Me.txtNroDeposito.Validator = WindowsApplication1.ValidatorType.Positive
+        Me.txtNroDeposito.Validator = Administracion.ValidatorType.Positive
         '
         'txtCodigoBanco
         '
@@ -262,7 +262,7 @@ Partial Class Depositos
         Me.txtCodigoBanco.Name = "txtCodigoBanco"
         Me.txtCodigoBanco.Size = New System.Drawing.Size(71, 20)
         Me.txtCodigoBanco.TabIndex = 3
-        Me.txtCodigoBanco.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCodigoBanco.Validator = Administracion.ValidatorType.None
         '
         'txtFechaAcreditacion
         '
@@ -275,7 +275,7 @@ Partial Class Depositos
         Me.txtFechaAcreditacion.Name = "txtFechaAcreditacion"
         Me.txtFechaAcreditacion.Size = New System.Drawing.Size(75, 20)
         Me.txtFechaAcreditacion.TabIndex = 4
-        Me.txtFechaAcreditacion.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtFechaAcreditacion.Validator = Administracion.ValidatorType.DateFormat
         '
         'CustomLabel5
         '
@@ -365,26 +365,26 @@ Partial Class Depositos
 
     End Sub
     Friend WithEvents gridCheques As System.Windows.Forms.DataGridView
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents lblTotal As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel5 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtFechaAcreditacion As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCodigoBanco As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtNroDeposito As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtDescripcionBanco As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel6 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtFecha As WindowsApplication1.CustomTextBox
-    Friend WithEvents lstConsulta As WindowsApplication1.CustomListBox
-    Friend WithEvents btnAgregar As WindowsApplication1.CustomButton
-    Friend WithEvents btnImpresion As WindowsApplication1.CustomButton
-    Friend WithEvents btnLimpiar As WindowsApplication1.CustomButton
-    Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
-    Friend WithEvents btnCerrar As WindowsApplication1.CustomButton
-    Friend WithEvents lstSeleccion As WindowsApplication1.CustomListBox
-    Friend WithEvents CustomLabel7 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtImporte As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents lblTotal As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel5 As Administracion.CustomLabel
+    Friend WithEvents txtFechaAcreditacion As Administracion.CustomTextBox
+    Friend WithEvents txtCodigoBanco As Administracion.CustomTextBox
+    Friend WithEvents txtNroDeposito As Administracion.CustomTextBox
+    Friend WithEvents txtDescripcionBanco As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel6 As Administracion.CustomLabel
+    Friend WithEvents txtFecha As Administracion.CustomTextBox
+    Friend WithEvents lstConsulta As Administracion.CustomListBox
+    Friend WithEvents btnAgregar As Administracion.CustomButton
+    Friend WithEvents btnImpresion As Administracion.CustomButton
+    Friend WithEvents btnLimpiar As Administracion.CustomButton
+    Friend WithEvents btnConsulta As Administracion.CustomButton
+    Friend WithEvents btnCerrar As Administracion.CustomButton
+    Friend WithEvents lstSeleccion As Administracion.CustomListBox
+    Friend WithEvents CustomLabel7 As Administracion.CustomLabel
+    Friend WithEvents txtImporte As Administracion.CustomTextBox
     Friend WithEvents tipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents numero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents fecha As System.Windows.Forms.DataGridViewTextBoxColumn

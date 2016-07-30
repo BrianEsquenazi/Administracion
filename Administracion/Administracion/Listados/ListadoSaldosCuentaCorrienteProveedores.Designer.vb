@@ -24,15 +24,15 @@ Partial Class ListadoSaldosCuentaCorrienteProveedores
     Private Sub InitializeComponent()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
-        Me.btnConsulta = New WindowsApplication1.CustomButton()
-        Me.lstAyuda = New WindowsApplication1.CustomListBox()
-        Me.txtAyuda = New WindowsApplication1.CustomTextBox()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnAcepta = New WindowsApplication1.CustomButton()
-        Me.txtHastaProveedor = New WindowsApplication1.CustomTextBox()
-        Me.txtDesdeProveedor = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.btnConsulta = New Administracion.CustomButton()
+        Me.lstAyuda = New Administracion.CustomListBox()
+        Me.txtAyuda = New Administracion.CustomTextBox()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnAcepta = New Administracion.CustomButton()
+        Me.txtHastaProveedor = New Administracion.CustomTextBox()
+        Me.txtDesdeProveedor = New Administracion.CustomTextBox()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.SuspendLayout()
         '
         'opcPantalla
@@ -91,7 +91,7 @@ Partial Class ListadoSaldosCuentaCorrienteProveedores
         Me.txtAyuda.Name = "txtAyuda"
         Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
         Me.txtAyuda.TabIndex = 20
-        Me.txtAyuda.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtAyuda.Validator = Administracion.ValidatorType.None
         Me.txtAyuda.Visible = False
         '
         'btnCancela
@@ -128,7 +128,7 @@ Partial Class ListadoSaldosCuentaCorrienteProveedores
         Me.txtHastaProveedor.Name = "txtHastaProveedor"
         Me.txtHastaProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtHastaProveedor.TabIndex = 15
-        Me.txtHastaProveedor.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtHastaProveedor.Validator = Administracion.ValidatorType.None
         '
         'txtDesdeProveedor
         '
@@ -140,7 +140,7 @@ Partial Class ListadoSaldosCuentaCorrienteProveedores
         Me.txtDesdeProveedor.Name = "txtDesdeProveedor"
         Me.txtDesdeProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtDesdeProveedor.TabIndex = 14
-        Me.txtDesdeProveedor.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDesdeProveedor.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel2
         '
@@ -184,15 +184,15 @@ Partial Class ListadoSaldosCuentaCorrienteProveedores
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtDesdeProveedor As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtHastaProveedor As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents txtDesdeProveedor As Administracion.CustomTextBox
+    Friend WithEvents txtHastaProveedor As Administracion.CustomTextBox
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
-    Friend WithEvents btnAcepta As WindowsApplication1.CustomButton
-    Friend WithEvents btnCancela As WindowsApplication1.CustomButton
-    Friend WithEvents txtAyuda As WindowsApplication1.CustomTextBox
-    Friend WithEvents lstAyuda As WindowsApplication1.CustomListBox
-    Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
+    Friend WithEvents btnAcepta As Administracion.CustomButton
+    Friend WithEvents btnCancela As Administracion.CustomButton
+    Friend WithEvents txtAyuda As Administracion.CustomTextBox
+    Friend WithEvents lstAyuda As Administracion.CustomListBox
+    Friend WithEvents btnConsulta As Administracion.CustomButton
 End Class

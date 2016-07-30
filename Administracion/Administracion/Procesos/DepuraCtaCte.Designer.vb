@@ -22,8 +22,8 @@ Partial Class DepuraCtaCte
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnAcepta = New WindowsApplication1.CustomButton()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
+        Me.btnAcepta = New Administracion.CustomButton()
+        Me.btnCancela = New Administracion.CustomButton()
         Me.SuspendLayout()
         '
         'btnAcepta
@@ -62,6 +62,6 @@ Partial Class DepuraCtaCte
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents btnAcepta As WindowsApplication1.CustomButton
-    Friend WithEvents btnCancela As WindowsApplication1.CustomButton
+    Friend WithEvents btnAcepta As Administracion.CustomButton
+    Friend WithEvents btnCancela As Administracion.CustomButton
 End Class

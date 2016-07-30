@@ -24,19 +24,19 @@ Partial Class ListadoPagosPosdatados
     Private Sub InitializeComponent()
         Me.txtHastaBanco = New System.Windows.Forms.TextBox()
         Me.txtDesdeBanco = New System.Windows.Forms.TextBox()
-        Me.btnConsulta = New WindowsApplication1.CustomButton()
+        Me.btnConsulta = New Administracion.CustomButton()
         Me.btnCancela = New System.Windows.Forms.Button()
         Me.btnAcepta = New System.Windows.Forms.Button()
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.txthastafecha = New System.Windows.Forms.MaskedTextBox()
         Me.txtDesdeFecha = New System.Windows.Forms.MaskedTextBox()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.txtAyuda = New WindowsApplication1.CustomTextBox()
-        Me.lstAyuda = New WindowsApplication1.CustomListBox()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.txtAyuda = New Administracion.CustomTextBox()
+        Me.lstAyuda = New Administracion.CustomListBox()
         Me.SuspendLayout()
         '
         'txtHastaBanco
@@ -177,7 +177,7 @@ Partial Class ListadoPagosPosdatados
         Me.txtAyuda.Name = "txtAyuda"
         Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
         Me.txtAyuda.TabIndex = 62
-        Me.txtAyuda.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtAyuda.Validator = Administracion.ValidatorType.None
         Me.txtAyuda.Visible = False
         '
         'lstAyuda
@@ -220,17 +220,17 @@ Partial Class ListadoPagosPosdatados
     End Sub
     Friend WithEvents txtHastaBanco As System.Windows.Forms.TextBox
     Friend WithEvents txtDesdeBanco As System.Windows.Forms.TextBox
-    Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
+    Friend WithEvents btnConsulta As Administracion.CustomButton
     Friend WithEvents btnCancela As System.Windows.Forms.Button
     Friend WithEvents btnAcepta As System.Windows.Forms.Button
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
     Friend WithEvents txthastafecha As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtDesdeFecha As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtAyuda As WindowsApplication1.CustomTextBox
-    Friend WithEvents lstAyuda As WindowsApplication1.CustomListBox
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents txtAyuda As Administracion.CustomTextBox
+    Friend WithEvents lstAyuda As Administracion.CustomListBox
 End Class
