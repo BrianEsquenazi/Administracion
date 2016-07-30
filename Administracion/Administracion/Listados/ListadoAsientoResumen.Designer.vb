@@ -28,17 +28,17 @@ Partial Class ListadoAsientoResumen
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
         Me.btnAcepta = New System.Windows.Forms.Button()
         Me.btnCancela = New System.Windows.Forms.Button()
-        Me.btnConsulta = New WindowsApplication1.CustomButton()
-        Me.txtAyuda = New WindowsApplication1.CustomTextBox()
-        Me.lstAyuda = New WindowsApplication1.CustomListBox()
-        Me.TipoListado = New WindowsApplication1.CustomComboBox()
-        Me.txtHastaCuenta = New WindowsApplication1.CustomTextBox()
-        Me.txtDesdeCuenta = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel5 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.btnConsulta = New Administracion.CustomButton()
+        Me.txtAyuda = New Administracion.CustomTextBox()
+        Me.lstAyuda = New Administracion.CustomListBox()
+        Me.TipoListado = New Administracion.CustomComboBox()
+        Me.txtHastaCuenta = New Administracion.CustomTextBox()
+        Me.txtDesdeCuenta = New Administracion.CustomTextBox()
+        Me.CustomLabel5 = New Administracion.CustomLabel()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.SuspendLayout()
         '
         'txthastafecha
@@ -121,7 +121,7 @@ Partial Class ListadoAsientoResumen
         Me.txtAyuda.Name = "txtAyuda"
         Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
         Me.txtAyuda.TabIndex = 37
-        Me.txtAyuda.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtAyuda.Validator = Administracion.ValidatorType.None
         Me.txtAyuda.Visible = False
         '
         'lstAyuda
@@ -147,7 +147,7 @@ Partial Class ListadoAsientoResumen
         Me.TipoListado.Name = "TipoListado"
         Me.TipoListado.Size = New System.Drawing.Size(146, 21)
         Me.TipoListado.TabIndex = 4
-        Me.TipoListado.Validator = WindowsApplication1.ValidatorType.None
+        Me.TipoListado.Validator = Administracion.ValidatorType.None
         '
         'txtHastaCuenta
         '
@@ -159,7 +159,7 @@ Partial Class ListadoAsientoResumen
         Me.txtHastaCuenta.Name = "txtHastaCuenta"
         Me.txtHastaCuenta.Size = New System.Drawing.Size(131, 20)
         Me.txtHastaCuenta.TabIndex = 3
-        Me.txtHastaCuenta.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtHastaCuenta.Validator = Administracion.ValidatorType.None
         '
         'txtDesdeCuenta
         '
@@ -171,7 +171,7 @@ Partial Class ListadoAsientoResumen
         Me.txtDesdeCuenta.Name = "txtDesdeCuenta"
         Me.txtDesdeCuenta.Size = New System.Drawing.Size(131, 20)
         Me.txtDesdeCuenta.TabIndex = 2
-        Me.txtDesdeCuenta.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDesdeCuenta.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel5
         '
@@ -251,21 +251,21 @@ Partial Class ListadoAsientoResumen
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel5 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel5 As Administracion.CustomLabel
     Friend WithEvents txthastafecha As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtDesdeFecha As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents txtDesdeCuenta As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtHastaCuenta As WindowsApplication1.CustomTextBox
-    Friend WithEvents TipoListado As WindowsApplication1.CustomComboBox
+    Friend WithEvents txtDesdeCuenta As Administracion.CustomTextBox
+    Friend WithEvents txtHastaCuenta As Administracion.CustomTextBox
+    Friend WithEvents TipoListado As Administracion.CustomComboBox
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
     Friend WithEvents btnAcepta As System.Windows.Forms.Button
     Friend WithEvents btnCancela As System.Windows.Forms.Button
-    Friend WithEvents lstAyuda As WindowsApplication1.CustomListBox
-    Friend WithEvents txtAyuda As WindowsApplication1.CustomTextBox
-    Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
+    Friend WithEvents lstAyuda As Administracion.CustomListBox
+    Friend WithEvents txtAyuda As Administracion.CustomTextBox
+    Friend WithEvents btnConsulta As Administracion.CustomButton
 End Class

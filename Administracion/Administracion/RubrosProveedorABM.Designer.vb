@@ -22,10 +22,10 @@ Partial Class RubrosProveedorABM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.txtDescripcion = New WindowsApplication1.CustomTextBox()
-        Me.txtCodigo = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.txtDescripcion = New Administracion.CustomTextBox()
+        Me.txtCodigo = New Administracion.CustomTextBox()
         Me.SuspendLayout()
         '
         'CustomLabel2
@@ -59,7 +59,7 @@ Partial Class RubrosProveedorABM
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(326, 20)
         Me.txtDescripcion.TabIndex = 28
-        Me.txtDescripcion.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        Me.txtDescripcion.Validator = Administracion.ValidatorType.NotEmpty
         '
         'txtCodigo
         '
@@ -72,7 +72,7 @@ Partial Class RubrosProveedorABM
         Me.txtCodigo.Name = "txtCodigo"
         Me.txtCodigo.Size = New System.Drawing.Size(79, 20)
         Me.txtCodigo.TabIndex = 27
-        Me.txtCodigo.Validator = WindowsApplication1.ValidatorType.Positive
+        Me.txtCodigo.Validator = Administracion.ValidatorType.Positive
         '
         'RubrosProveedorABM
         '
@@ -92,8 +92,8 @@ Partial Class RubrosProveedorABM
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtDescripcion As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCodigo As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents txtDescripcion As Administracion.CustomTextBox
+    Friend WithEvents txtCodigo As Administracion.CustomTextBox
 End Class

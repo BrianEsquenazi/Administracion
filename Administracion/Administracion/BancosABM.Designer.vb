@@ -22,13 +22,13 @@ Partial Class BancosABM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.txtDescripcion = New WindowsApplication1.CustomTextBox()
-        Me.txtCuenta = New WindowsApplication1.CustomTextBox()
-        Me.txtNombre = New WindowsApplication1.CustomTextBox()
-        Me.txtCodigo = New WindowsApplication1.CustomTextBox()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.txtDescripcion = New Administracion.CustomTextBox()
+        Me.txtCuenta = New Administracion.CustomTextBox()
+        Me.txtNombre = New Administracion.CustomTextBox()
+        Me.txtCodigo = New Administracion.CustomTextBox()
         Me.SuspendLayout()
         '
         'CustomLabel3
@@ -73,7 +73,7 @@ Partial Class BancosABM
         Me.txtDescripcion.Name = "txtDescripcion"
         Me.txtDescripcion.Size = New System.Drawing.Size(71, 20)
         Me.txtDescripcion.TabIndex = 22
-        Me.txtDescripcion.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDescripcion.Validator = Administracion.ValidatorType.None
         '
         'txtCuenta
         '
@@ -86,7 +86,7 @@ Partial Class BancosABM
         Me.txtCuenta.Name = "txtCuenta"
         Me.txtCuenta.Size = New System.Drawing.Size(79, 20)
         Me.txtCuenta.TabIndex = 21
-        Me.txtCuenta.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        Me.txtCuenta.Validator = Administracion.ValidatorType.NotEmpty
         '
         'txtNombre
         '
@@ -99,7 +99,7 @@ Partial Class BancosABM
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(326, 20)
         Me.txtNombre.TabIndex = 19
-        Me.txtNombre.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        Me.txtNombre.Validator = Administracion.ValidatorType.NotEmpty
         '
         'txtCodigo
         '
@@ -112,7 +112,7 @@ Partial Class BancosABM
         Me.txtCodigo.Name = "txtCodigo"
         Me.txtCodigo.Size = New System.Drawing.Size(79, 20)
         Me.txtCodigo.TabIndex = 18
-        Me.txtCodigo.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtCodigo.Validator = Administracion.ValidatorType.Numeric
         '
         'BancosABM
         '
@@ -135,11 +135,11 @@ Partial Class BancosABM
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents txtNombre As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCodigo As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCuenta As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtDescripcion As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
+    Friend WithEvents txtNombre As Administracion.CustomTextBox
+    Friend WithEvents txtCodigo As Administracion.CustomTextBox
+    Friend WithEvents txtCuenta As Administracion.CustomTextBox
+    Friend WithEvents txtDescripcion As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
 End Class

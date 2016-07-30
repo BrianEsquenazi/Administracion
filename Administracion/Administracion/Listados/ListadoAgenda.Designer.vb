@@ -24,16 +24,16 @@ Partial Class ListadoAgenda
     Private Sub InitializeComponent()
         Me.btnCancela = New System.Windows.Forms.Button()
         Me.btnAcepta = New System.Windows.Forms.Button()
-        Me.TipoListado = New WindowsApplication1.CustomComboBox()
+        Me.TipoListado = New Administracion.CustomComboBox()
         Me.txthastafecha = New System.Windows.Forms.MaskedTextBox()
         Me.txtDesdeFecha = New System.Windows.Forms.MaskedTextBox()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
-        Me.TipoLetras = New WindowsApplication1.CustomComboBox()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
+        Me.TipoLetras = New Administracion.CustomComboBox()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
         Me.SuspendLayout()
         '
         'btnCancela
@@ -65,7 +65,7 @@ Partial Class ListadoAgenda
         Me.TipoListado.Name = "TipoListado"
         Me.TipoListado.Size = New System.Drawing.Size(146, 21)
         Me.TipoListado.TabIndex = 40
-        Me.TipoListado.Validator = WindowsApplication1.ValidatorType.None
+        Me.TipoListado.Validator = Administracion.ValidatorType.None
         '
         'txthastafecha
         '
@@ -148,7 +148,7 @@ Partial Class ListadoAgenda
         Me.TipoLetras.Name = "TipoLetras"
         Me.TipoLetras.Size = New System.Drawing.Size(146, 21)
         Me.TipoLetras.TabIndex = 48
-        Me.TipoLetras.Validator = WindowsApplication1.ValidatorType.None
+        Me.TipoLetras.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel4
         '
@@ -185,14 +185,14 @@ Partial Class ListadoAgenda
     End Sub
     Friend WithEvents btnCancela As System.Windows.Forms.Button
     Friend WithEvents btnAcepta As System.Windows.Forms.Button
-    Friend WithEvents TipoListado As WindowsApplication1.CustomComboBox
+    Friend WithEvents TipoListado As Administracion.CustomComboBox
     Friend WithEvents txthastafecha As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtDesdeFecha As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
-    Friend WithEvents TipoLetras As WindowsApplication1.CustomComboBox
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
+    Friend WithEvents TipoLetras As Administracion.CustomComboBox
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
 End Class

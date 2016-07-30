@@ -25,14 +25,14 @@ Partial Class ProcesoReteRecibos
         Me.txtDesde = New System.Windows.Forms.MaskedTextBox()
         Me.txtHasta = New System.Windows.Forms.MaskedTextBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnAcepta = New WindowsApplication1.CustomButton()
-        Me.TipoProceso = New WindowsApplication1.CustomComboBox()
-        Me.txtNombre = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnAcepta = New Administracion.CustomButton()
+        Me.TipoProceso = New Administracion.CustomComboBox()
+        Me.txtNombre = New Administracion.CustomTextBox()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.SuspendLayout()
         '
         'txtDesde
@@ -88,7 +88,7 @@ Partial Class ProcesoReteRecibos
         Me.TipoProceso.Name = "TipoProceso"
         Me.TipoProceso.Size = New System.Drawing.Size(144, 21)
         Me.TipoProceso.TabIndex = 3
-        Me.TipoProceso.Validator = WindowsApplication1.ValidatorType.None
+        Me.TipoProceso.Validator = Administracion.ValidatorType.None
         '
         'txtNombre
         '
@@ -100,7 +100,7 @@ Partial Class ProcesoReteRecibos
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(116, 20)
         Me.txtNombre.TabIndex = 2
-        Me.txtNombre.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNombre.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel4
         '
@@ -163,15 +163,15 @@ Partial Class ProcesoReteRecibos
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
     Friend WithEvents txtDesde As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtHasta As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents txtNombre As WindowsApplication1.CustomTextBox
-    Friend WithEvents TipoProceso As WindowsApplication1.CustomComboBox
-    Friend WithEvents btnAcepta As WindowsApplication1.CustomButton
-    Friend WithEvents btnCancela As WindowsApplication1.CustomButton
+    Friend WithEvents txtNombre As Administracion.CustomTextBox
+    Friend WithEvents TipoProceso As Administracion.CustomComboBox
+    Friend WithEvents btnAcepta As Administracion.CustomButton
+    Friend WithEvents btnCancela As Administracion.CustomButton
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
 End Class

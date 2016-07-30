@@ -22,73 +22,73 @@ Partial Class ProveedoresABM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.cmbCalificacion = New WindowsApplication1.CustomComboBox()
-        Me.cmbEstado = New WindowsApplication1.CustomComboBox()
-        Me.cmbCertificados = New WindowsApplication1.CustomComboBox()
-        Me.txtCalificacion = New WindowsApplication1.CustomTextBox()
-        Me.txtCertificados = New WindowsApplication1.CustomTextBox()
-        Me.txtCAIVto = New WindowsApplication1.CustomTextBox()
-        Me.txtCAI = New WindowsApplication1.CustomTextBox()
-        Me.btnCUFE = New WindowsApplication1.CustomButton()
-        Me.btnObservaciones = New WindowsApplication1.CustomButton()
-        Me.CustomLabel29 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel28 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel27 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel26 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel25 = New WindowsApplication1.CustomLabel()
-        Me.txtNroSEDRONAR2 = New WindowsApplication1.CustomTextBox()
-        Me.txtCategoria = New WindowsApplication1.CustomTextBox()
-        Me.txtNroSEDRONAR1 = New WindowsApplication1.CustomTextBox()
-        Me.txtPorcelCABA = New WindowsApplication1.CustomTextBox()
-        Me.txtPorcelProv = New WindowsApplication1.CustomTextBox()
-        Me.txtNroIB = New WindowsApplication1.CustomTextBox()
-        Me.txtCheque = New WindowsApplication1.CustomTextBox()
-        Me.txtCuentaDescripcion = New WindowsApplication1.CustomTextBox()
-        Me.txtCuenta = New WindowsApplication1.CustomTextBox()
-        Me.cmbInscripcionIB = New WindowsApplication1.CustomComboBox()
-        Me.cmbCategoria2 = New WindowsApplication1.CustomComboBox()
-        Me.cmbCategoria1 = New WindowsApplication1.CustomComboBox()
-        Me.cmbCondicionIB2 = New WindowsApplication1.CustomComboBox()
-        Me.cmbCondicionIB1 = New WindowsApplication1.CustomComboBox()
-        Me.cmbRubro = New WindowsApplication1.CustomComboBox()
-        Me.cmbIVA = New WindowsApplication1.CustomComboBox()
-        Me.CustomLabel24 = New WindowsApplication1.CustomLabel()
-        Me.txtDiasPlazo = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel23 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel22 = New WindowsApplication1.CustomLabel()
-        Me.cmbTipoProveedor = New WindowsApplication1.CustomComboBox()
-        Me.txtCUIT = New WindowsApplication1.CustomTextBox()
-        Me.txtObservaciones = New WindowsApplication1.CustomTextBox()
-        Me.cmbRegion = New WindowsApplication1.CustomComboBox()
-        Me.txtCodigoPostal = New WindowsApplication1.CustomTextBox()
-        Me.txtEmail = New WindowsApplication1.CustomTextBox()
-        Me.txtTelefono = New WindowsApplication1.CustomTextBox()
-        Me.cmbProvincia = New WindowsApplication1.CustomComboBox()
-        Me.txtLocalidad = New WindowsApplication1.CustomTextBox()
-        Me.txtDireccion = New WindowsApplication1.CustomTextBox()
-        Me.txtRazonSocial = New WindowsApplication1.CustomTextBox()
-        Me.txtCodigo = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel21 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel20 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel19 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel18 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel17 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel16 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel15 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel14 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel13 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel12 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel11 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel10 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel9 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel8 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel7 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel6 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel5 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.cmbCalificacion = New Administracion.CustomComboBox()
+        Me.cmbEstado = New Administracion.CustomComboBox()
+        Me.cmbCertificados = New Administracion.CustomComboBox()
+        Me.txtCalificacion = New Administracion.CustomTextBox()
+        Me.txtCertificados = New Administracion.CustomTextBox()
+        Me.txtCAIVto = New Administracion.CustomTextBox()
+        Me.txtCAI = New Administracion.CustomTextBox()
+        Me.btnCUFE = New Administracion.CustomButton()
+        Me.btnObservaciones = New Administracion.CustomButton()
+        Me.CustomLabel29 = New Administracion.CustomLabel()
+        Me.CustomLabel28 = New Administracion.CustomLabel()
+        Me.CustomLabel27 = New Administracion.CustomLabel()
+        Me.CustomLabel26 = New Administracion.CustomLabel()
+        Me.CustomLabel25 = New Administracion.CustomLabel()
+        Me.txtNroSEDRONAR2 = New Administracion.CustomTextBox()
+        Me.txtCategoria = New Administracion.CustomTextBox()
+        Me.txtNroSEDRONAR1 = New Administracion.CustomTextBox()
+        Me.txtPorcelCABA = New Administracion.CustomTextBox()
+        Me.txtPorcelProv = New Administracion.CustomTextBox()
+        Me.txtNroIB = New Administracion.CustomTextBox()
+        Me.txtCheque = New Administracion.CustomTextBox()
+        Me.txtCuentaDescripcion = New Administracion.CustomTextBox()
+        Me.txtCuenta = New Administracion.CustomTextBox()
+        Me.cmbInscripcionIB = New Administracion.CustomComboBox()
+        Me.cmbCategoria2 = New Administracion.CustomComboBox()
+        Me.cmbCategoria1 = New Administracion.CustomComboBox()
+        Me.cmbCondicionIB2 = New Administracion.CustomComboBox()
+        Me.cmbCondicionIB1 = New Administracion.CustomComboBox()
+        Me.cmbRubro = New Administracion.CustomComboBox()
+        Me.cmbIVA = New Administracion.CustomComboBox()
+        Me.CustomLabel24 = New Administracion.CustomLabel()
+        Me.txtDiasPlazo = New Administracion.CustomTextBox()
+        Me.CustomLabel23 = New Administracion.CustomLabel()
+        Me.CustomLabel22 = New Administracion.CustomLabel()
+        Me.cmbTipoProveedor = New Administracion.CustomComboBox()
+        Me.txtCUIT = New Administracion.CustomTextBox()
+        Me.txtObservaciones = New Administracion.CustomTextBox()
+        Me.cmbRegion = New Administracion.CustomComboBox()
+        Me.txtCodigoPostal = New Administracion.CustomTextBox()
+        Me.txtEmail = New Administracion.CustomTextBox()
+        Me.txtTelefono = New Administracion.CustomTextBox()
+        Me.cmbProvincia = New Administracion.CustomComboBox()
+        Me.txtLocalidad = New Administracion.CustomTextBox()
+        Me.txtDireccion = New Administracion.CustomTextBox()
+        Me.txtRazonSocial = New Administracion.CustomTextBox()
+        Me.txtCodigo = New Administracion.CustomTextBox()
+        Me.CustomLabel21 = New Administracion.CustomLabel()
+        Me.CustomLabel20 = New Administracion.CustomLabel()
+        Me.CustomLabel19 = New Administracion.CustomLabel()
+        Me.CustomLabel18 = New Administracion.CustomLabel()
+        Me.CustomLabel17 = New Administracion.CustomLabel()
+        Me.CustomLabel16 = New Administracion.CustomLabel()
+        Me.CustomLabel15 = New Administracion.CustomLabel()
+        Me.CustomLabel14 = New Administracion.CustomLabel()
+        Me.CustomLabel13 = New Administracion.CustomLabel()
+        Me.CustomLabel12 = New Administracion.CustomLabel()
+        Me.CustomLabel11 = New Administracion.CustomLabel()
+        Me.CustomLabel10 = New Administracion.CustomLabel()
+        Me.CustomLabel9 = New Administracion.CustomLabel()
+        Me.CustomLabel8 = New Administracion.CustomLabel()
+        Me.CustomLabel7 = New Administracion.CustomLabel()
+        Me.CustomLabel6 = New Administracion.CustomLabel()
+        Me.CustomLabel5 = New Administracion.CustomLabel()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.SuspendLayout()
         '
         'cmbCalificacion
@@ -104,7 +104,7 @@ Partial Class ProveedoresABM
         Me.cmbCalificacion.Name = "cmbCalificacion"
         Me.cmbCalificacion.Size = New System.Drawing.Size(135, 21)
         Me.cmbCalificacion.TabIndex = 66
-        Me.cmbCalificacion.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbCalificacion.Validator = Administracion.ValidatorType.None
         '
         'cmbEstado
         '
@@ -119,7 +119,7 @@ Partial Class ProveedoresABM
         Me.cmbEstado.Name = "cmbEstado"
         Me.cmbEstado.Size = New System.Drawing.Size(135, 21)
         Me.cmbEstado.TabIndex = 65
-        Me.cmbEstado.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbEstado.Validator = Administracion.ValidatorType.None
         '
         'cmbCertificados
         '
@@ -134,7 +134,7 @@ Partial Class ProveedoresABM
         Me.cmbCertificados.Name = "cmbCertificados"
         Me.cmbCertificados.Size = New System.Drawing.Size(135, 21)
         Me.cmbCertificados.TabIndex = 64
-        Me.cmbCertificados.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbCertificados.Validator = Administracion.ValidatorType.None
         '
         'txtCalificacion
         '
@@ -147,7 +147,7 @@ Partial Class ProveedoresABM
         Me.txtCalificacion.Name = "txtCalificacion"
         Me.txtCalificacion.Size = New System.Drawing.Size(122, 20)
         Me.txtCalificacion.TabIndex = 63
-        Me.txtCalificacion.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtCalificacion.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtCertificados
         '
@@ -160,7 +160,7 @@ Partial Class ProveedoresABM
         Me.txtCertificados.Name = "txtCertificados"
         Me.txtCertificados.Size = New System.Drawing.Size(122, 20)
         Me.txtCertificados.TabIndex = 62
-        Me.txtCertificados.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtCertificados.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtCAIVto
         '
@@ -173,7 +173,7 @@ Partial Class ProveedoresABM
         Me.txtCAIVto.Name = "txtCAIVto"
         Me.txtCAIVto.Size = New System.Drawing.Size(122, 20)
         Me.txtCAIVto.TabIndex = 61
-        Me.txtCAIVto.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtCAIVto.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtCAI
         '
@@ -185,7 +185,7 @@ Partial Class ProveedoresABM
         Me.txtCAI.Name = "txtCAI"
         Me.txtCAI.Size = New System.Drawing.Size(122, 20)
         Me.txtCAI.TabIndex = 60
-        Me.txtCAI.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCAI.Validator = Administracion.ValidatorType.None
         '
         'btnCUFE
         '
@@ -272,7 +272,7 @@ Partial Class ProveedoresABM
         Me.txtNroSEDRONAR2.Name = "txtNroSEDRONAR2"
         Me.txtNroSEDRONAR2.Size = New System.Drawing.Size(58, 20)
         Me.txtNroSEDRONAR2.TabIndex = 52
-        Me.txtNroSEDRONAR2.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtNroSEDRONAR2.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtCategoria
         '
@@ -285,7 +285,7 @@ Partial Class ProveedoresABM
         Me.txtCategoria.Name = "txtCategoria"
         Me.txtCategoria.Size = New System.Drawing.Size(85, 20)
         Me.txtCategoria.TabIndex = 51
-        Me.txtCategoria.Validator = WindowsApplication1.ValidatorType.DateFormat
+        Me.txtCategoria.Validator = Administracion.ValidatorType.DateFormat
         '
         'txtNroSEDRONAR1
         '
@@ -298,7 +298,7 @@ Partial Class ProveedoresABM
         Me.txtNroSEDRONAR1.Name = "txtNroSEDRONAR1"
         Me.txtNroSEDRONAR1.Size = New System.Drawing.Size(58, 20)
         Me.txtNroSEDRONAR1.TabIndex = 50
-        Me.txtNroSEDRONAR1.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNroSEDRONAR1.Validator = Administracion.ValidatorType.None
         '
         'txtPorcelCABA
         '
@@ -311,7 +311,7 @@ Partial Class ProveedoresABM
         Me.txtPorcelCABA.Name = "txtPorcelCABA"
         Me.txtPorcelCABA.Size = New System.Drawing.Size(58, 20)
         Me.txtPorcelCABA.TabIndex = 49
-        Me.txtPorcelCABA.Validator = WindowsApplication1.ValidatorType.PositiveFloat
+        Me.txtPorcelCABA.Validator = Administracion.ValidatorType.PositiveFloat
         '
         'txtPorcelProv
         '
@@ -324,7 +324,7 @@ Partial Class ProveedoresABM
         Me.txtPorcelProv.Name = "txtPorcelProv"
         Me.txtPorcelProv.Size = New System.Drawing.Size(58, 20)
         Me.txtPorcelProv.TabIndex = 48
-        Me.txtPorcelProv.Validator = WindowsApplication1.ValidatorType.PositiveFloat
+        Me.txtPorcelProv.Validator = Administracion.ValidatorType.PositiveFloat
         '
         'txtNroIB
         '
@@ -337,7 +337,7 @@ Partial Class ProveedoresABM
         Me.txtNroIB.Name = "txtNroIB"
         Me.txtNroIB.Size = New System.Drawing.Size(58, 20)
         Me.txtNroIB.TabIndex = 47
-        Me.txtNroIB.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNroIB.Validator = Administracion.ValidatorType.None
         '
         'txtCheque
         '
@@ -350,7 +350,7 @@ Partial Class ProveedoresABM
         Me.txtCheque.Name = "txtCheque"
         Me.txtCheque.Size = New System.Drawing.Size(311, 20)
         Me.txtCheque.TabIndex = 46
-        Me.txtCheque.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCheque.Validator = Administracion.ValidatorType.None
         '
         'txtCuentaDescripcion
         '
@@ -364,7 +364,7 @@ Partial Class ProveedoresABM
         Me.txtCuentaDescripcion.Name = "txtCuentaDescripcion"
         Me.txtCuentaDescripcion.Size = New System.Drawing.Size(241, 20)
         Me.txtCuentaDescripcion.TabIndex = 45
-        Me.txtCuentaDescripcion.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCuentaDescripcion.Validator = Administracion.ValidatorType.None
         '
         'txtCuenta
         '
@@ -377,7 +377,7 @@ Partial Class ProveedoresABM
         Me.txtCuenta.Name = "txtCuenta"
         Me.txtCuenta.Size = New System.Drawing.Size(79, 20)
         Me.txtCuenta.TabIndex = 44
-        Me.txtCuenta.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        Me.txtCuenta.Validator = Administracion.ValidatorType.NotEmpty
         '
         'cmbInscripcionIB
         '
@@ -392,7 +392,7 @@ Partial Class ProveedoresABM
         Me.cmbInscripcionIB.Name = "cmbInscripcionIB"
         Me.cmbInscripcionIB.Size = New System.Drawing.Size(180, 21)
         Me.cmbInscripcionIB.TabIndex = 43
-        Me.cmbInscripcionIB.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbInscripcionIB.Validator = Administracion.ValidatorType.None
         '
         'cmbCategoria2
         '
@@ -407,7 +407,7 @@ Partial Class ProveedoresABM
         Me.cmbCategoria2.Name = "cmbCategoria2"
         Me.cmbCategoria2.Size = New System.Drawing.Size(125, 21)
         Me.cmbCategoria2.TabIndex = 42
-        Me.cmbCategoria2.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbCategoria2.Validator = Administracion.ValidatorType.None
         '
         'cmbCategoria1
         '
@@ -422,7 +422,7 @@ Partial Class ProveedoresABM
         Me.cmbCategoria1.Name = "cmbCategoria1"
         Me.cmbCategoria1.Size = New System.Drawing.Size(130, 21)
         Me.cmbCategoria1.TabIndex = 41
-        Me.cmbCategoria1.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbCategoria1.Validator = Administracion.ValidatorType.None
         '
         'cmbCondicionIB2
         '
@@ -437,7 +437,7 @@ Partial Class ProveedoresABM
         Me.cmbCondicionIB2.Name = "cmbCondicionIB2"
         Me.cmbCondicionIB2.Size = New System.Drawing.Size(97, 21)
         Me.cmbCondicionIB2.TabIndex = 40
-        Me.cmbCondicionIB2.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbCondicionIB2.Validator = Administracion.ValidatorType.None
         '
         'cmbCondicionIB1
         '
@@ -452,7 +452,7 @@ Partial Class ProveedoresABM
         Me.cmbCondicionIB1.Name = "cmbCondicionIB1"
         Me.cmbCondicionIB1.Size = New System.Drawing.Size(107, 21)
         Me.cmbCondicionIB1.TabIndex = 39
-        Me.cmbCondicionIB1.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbCondicionIB1.Validator = Administracion.ValidatorType.None
         '
         'cmbRubro
         '
@@ -466,7 +466,7 @@ Partial Class ProveedoresABM
         Me.cmbRubro.Name = "cmbRubro"
         Me.cmbRubro.Size = New System.Drawing.Size(178, 21)
         Me.cmbRubro.TabIndex = 38
-        Me.cmbRubro.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbRubro.Validator = Administracion.ValidatorType.None
         '
         'cmbIVA
         '
@@ -481,7 +481,7 @@ Partial Class ProveedoresABM
         Me.cmbIVA.Name = "cmbIVA"
         Me.cmbIVA.Size = New System.Drawing.Size(220, 21)
         Me.cmbIVA.TabIndex = 37
-        Me.cmbIVA.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbIVA.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel24
         '
@@ -504,7 +504,7 @@ Partial Class ProveedoresABM
         Me.txtDiasPlazo.Name = "txtDiasPlazo"
         Me.txtDiasPlazo.Size = New System.Drawing.Size(118, 20)
         Me.txtDiasPlazo.TabIndex = 35
-        Me.txtDiasPlazo.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDiasPlazo.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel23
         '
@@ -539,7 +539,7 @@ Partial Class ProveedoresABM
         Me.cmbTipoProveedor.Name = "cmbTipoProveedor"
         Me.cmbTipoProveedor.Size = New System.Drawing.Size(220, 21)
         Me.cmbTipoProveedor.TabIndex = 32
-        Me.cmbTipoProveedor.Validator = WindowsApplication1.ValidatorType.None
+        Me.cmbTipoProveedor.Validator = Administracion.ValidatorType.None
         '
         'txtCUIT
         '
@@ -552,7 +552,7 @@ Partial Class ProveedoresABM
         Me.txtCUIT.Name = "txtCUIT"
         Me.txtCUIT.Size = New System.Drawing.Size(242, 20)
         Me.txtCUIT.TabIndex = 31
-        Me.txtCUIT.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCUIT.Validator = Administracion.ValidatorType.None
         '
         'txtObservaciones
         '
@@ -565,7 +565,7 @@ Partial Class ProveedoresABM
         Me.txtObservaciones.Name = "txtObservaciones"
         Me.txtObservaciones.Size = New System.Drawing.Size(286, 20)
         Me.txtObservaciones.TabIndex = 30
-        Me.txtObservaciones.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtObservaciones.Validator = Administracion.ValidatorType.None
         '
         'cmbRegion
         '
@@ -580,7 +580,7 @@ Partial Class ProveedoresABM
         Me.cmbRegion.Name = "cmbRegion"
         Me.cmbRegion.Size = New System.Drawing.Size(123, 21)
         Me.cmbRegion.TabIndex = 29
-        Me.cmbRegion.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        Me.cmbRegion.Validator = Administracion.ValidatorType.NotEmpty
         '
         'txtCodigoPostal
         '
@@ -593,7 +593,7 @@ Partial Class ProveedoresABM
         Me.txtCodigoPostal.Name = "txtCodigoPostal"
         Me.txtCodigoPostal.Size = New System.Drawing.Size(103, 20)
         Me.txtCodigoPostal.TabIndex = 28
-        Me.txtCodigoPostal.Validator = WindowsApplication1.ValidatorType.Numeric
+        Me.txtCodigoPostal.Validator = Administracion.ValidatorType.Numeric
         '
         'txtEmail
         '
@@ -606,7 +606,7 @@ Partial Class ProveedoresABM
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(247, 20)
         Me.txtEmail.TabIndex = 27
-        Me.txtEmail.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtEmail.Validator = Administracion.ValidatorType.None
         '
         'txtTelefono
         '
@@ -619,7 +619,7 @@ Partial Class ProveedoresABM
         Me.txtTelefono.Name = "txtTelefono"
         Me.txtTelefono.Size = New System.Drawing.Size(99, 20)
         Me.txtTelefono.TabIndex = 26
-        Me.txtTelefono.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtTelefono.Validator = Administracion.ValidatorType.None
         '
         'cmbProvincia
         '
@@ -635,7 +635,7 @@ Partial Class ProveedoresABM
         Me.cmbProvincia.Name = "cmbProvincia"
         Me.cmbProvincia.Size = New System.Drawing.Size(95, 21)
         Me.cmbProvincia.TabIndex = 25
-        Me.cmbProvincia.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        Me.cmbProvincia.Validator = Administracion.ValidatorType.NotEmpty
         '
         'txtLocalidad
         '
@@ -648,7 +648,7 @@ Partial Class ProveedoresABM
         Me.txtLocalidad.Name = "txtLocalidad"
         Me.txtLocalidad.Size = New System.Drawing.Size(90, 20)
         Me.txtLocalidad.TabIndex = 24
-        Me.txtLocalidad.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtLocalidad.Validator = Administracion.ValidatorType.None
         '
         'txtDireccion
         '
@@ -661,7 +661,7 @@ Partial Class ProveedoresABM
         Me.txtDireccion.Name = "txtDireccion"
         Me.txtDireccion.Size = New System.Drawing.Size(77, 20)
         Me.txtDireccion.TabIndex = 23
-        Me.txtDireccion.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDireccion.Validator = Administracion.ValidatorType.None
         '
         'txtRazonSocial
         '
@@ -674,7 +674,7 @@ Partial Class ProveedoresABM
         Me.txtRazonSocial.Name = "txtRazonSocial"
         Me.txtRazonSocial.Size = New System.Drawing.Size(75, 20)
         Me.txtRazonSocial.TabIndex = 22
-        Me.txtRazonSocial.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        Me.txtRazonSocial.Validator = Administracion.ValidatorType.NotEmpty
         '
         'txtCodigo
         '
@@ -687,7 +687,7 @@ Partial Class ProveedoresABM
         Me.txtCodigo.Name = "txtCodigo"
         Me.txtCodigo.Size = New System.Drawing.Size(103, 20)
         Me.txtCodigo.TabIndex = 21
-        Me.txtCodigo.Validator = WindowsApplication1.ValidatorType.NotEmpty
+        Me.txtCodigo.Validator = Administracion.ValidatorType.NotEmpty
         '
         'CustomLabel21
         '
@@ -980,71 +980,71 @@ Partial Class ProveedoresABM
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel5 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel6 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel7 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel8 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel9 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel10 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel11 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel12 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel13 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel14 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel15 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel16 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel17 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel18 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel19 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel20 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel21 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtCodigo As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtRazonSocial As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtDireccion As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtLocalidad As WindowsApplication1.CustomTextBox
-    Friend WithEvents cmbProvincia As WindowsApplication1.CustomComboBox
-    Friend WithEvents txtTelefono As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtEmail As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCodigoPostal As WindowsApplication1.CustomTextBox
-    Friend WithEvents cmbRegion As WindowsApplication1.CustomComboBox
-    Friend WithEvents txtObservaciones As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCUIT As WindowsApplication1.CustomTextBox
-    Friend WithEvents cmbTipoProveedor As WindowsApplication1.CustomComboBox
-    Friend WithEvents CustomLabel22 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel23 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtDiasPlazo As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel24 As WindowsApplication1.CustomLabel
-    Friend WithEvents cmbIVA As WindowsApplication1.CustomComboBox
-    Friend WithEvents cmbRubro As WindowsApplication1.CustomComboBox
-    Friend WithEvents cmbCondicionIB1 As WindowsApplication1.CustomComboBox
-    Friend WithEvents cmbCondicionIB2 As WindowsApplication1.CustomComboBox
-    Friend WithEvents cmbCategoria1 As WindowsApplication1.CustomComboBox
-    Friend WithEvents cmbCategoria2 As WindowsApplication1.CustomComboBox
-    Friend WithEvents cmbInscripcionIB As WindowsApplication1.CustomComboBox
-    Friend WithEvents txtCuentaDescripcion As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCuenta As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCheque As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtNroIB As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtPorcelProv As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtPorcelCABA As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtNroSEDRONAR1 As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCategoria As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtNroSEDRONAR2 As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel25 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel26 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel27 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel28 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel29 As WindowsApplication1.CustomLabel
-    Friend WithEvents btnObservaciones As WindowsApplication1.CustomButton
-    Friend WithEvents btnCUFE As WindowsApplication1.CustomButton
-    Friend WithEvents txtCAI As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCAIVto As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCertificados As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCalificacion As WindowsApplication1.CustomTextBox
-    Friend WithEvents cmbCertificados As WindowsApplication1.CustomComboBox
-    Friend WithEvents cmbEstado As WindowsApplication1.CustomComboBox
-    Friend WithEvents cmbCalificacion As WindowsApplication1.CustomComboBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel5 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel6 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel7 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel8 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel9 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel10 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel11 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel12 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel13 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel14 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel15 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel16 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel17 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel18 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel19 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel20 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel21 As Administracion.CustomLabel
+    Friend WithEvents txtCodigo As Administracion.CustomTextBox
+    Friend WithEvents txtRazonSocial As Administracion.CustomTextBox
+    Friend WithEvents txtDireccion As Administracion.CustomTextBox
+    Friend WithEvents txtLocalidad As Administracion.CustomTextBox
+    Friend WithEvents cmbProvincia As Administracion.CustomComboBox
+    Friend WithEvents txtTelefono As Administracion.CustomTextBox
+    Friend WithEvents txtEmail As Administracion.CustomTextBox
+    Friend WithEvents txtCodigoPostal As Administracion.CustomTextBox
+    Friend WithEvents cmbRegion As Administracion.CustomComboBox
+    Friend WithEvents txtObservaciones As Administracion.CustomTextBox
+    Friend WithEvents txtCUIT As Administracion.CustomTextBox
+    Friend WithEvents cmbTipoProveedor As Administracion.CustomComboBox
+    Friend WithEvents CustomLabel22 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel23 As Administracion.CustomLabel
+    Friend WithEvents txtDiasPlazo As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel24 As Administracion.CustomLabel
+    Friend WithEvents cmbIVA As Administracion.CustomComboBox
+    Friend WithEvents cmbRubro As Administracion.CustomComboBox
+    Friend WithEvents cmbCondicionIB1 As Administracion.CustomComboBox
+    Friend WithEvents cmbCondicionIB2 As Administracion.CustomComboBox
+    Friend WithEvents cmbCategoria1 As Administracion.CustomComboBox
+    Friend WithEvents cmbCategoria2 As Administracion.CustomComboBox
+    Friend WithEvents cmbInscripcionIB As Administracion.CustomComboBox
+    Friend WithEvents txtCuentaDescripcion As Administracion.CustomTextBox
+    Friend WithEvents txtCuenta As Administracion.CustomTextBox
+    Friend WithEvents txtCheque As Administracion.CustomTextBox
+    Friend WithEvents txtNroIB As Administracion.CustomTextBox
+    Friend WithEvents txtPorcelProv As Administracion.CustomTextBox
+    Friend WithEvents txtPorcelCABA As Administracion.CustomTextBox
+    Friend WithEvents txtNroSEDRONAR1 As Administracion.CustomTextBox
+    Friend WithEvents txtCategoria As Administracion.CustomTextBox
+    Friend WithEvents txtNroSEDRONAR2 As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel25 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel26 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel27 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel28 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel29 As Administracion.CustomLabel
+    Friend WithEvents btnObservaciones As Administracion.CustomButton
+    Friend WithEvents btnCUFE As Administracion.CustomButton
+    Friend WithEvents txtCAI As Administracion.CustomTextBox
+    Friend WithEvents txtCAIVto As Administracion.CustomTextBox
+    Friend WithEvents txtCertificados As Administracion.CustomTextBox
+    Friend WithEvents txtCalificacion As Administracion.CustomTextBox
+    Friend WithEvents cmbCertificados As Administracion.CustomComboBox
+    Friend WithEvents cmbEstado As Administracion.CustomComboBox
+    Friend WithEvents cmbCalificacion As Administracion.CustomComboBox
 End Class

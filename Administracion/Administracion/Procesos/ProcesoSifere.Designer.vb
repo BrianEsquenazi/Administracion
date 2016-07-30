@@ -26,13 +26,13 @@ Partial Class ProcesoSifere
         Me.txtHasta = New System.Windows.Forms.MaskedTextBox()
         Me.TipoProceso = New System.Windows.Forms.ComboBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.txtNombre = New WindowsApplication1.CustomTextBox()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnAcepta = New WindowsApplication1.CustomButton()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.txtNombre = New Administracion.CustomTextBox()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnAcepta = New Administracion.CustomButton()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.SuspendLayout()
         '
         'txtDesde
@@ -81,7 +81,7 @@ Partial Class ProcesoSifere
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(108, 20)
         Me.txtNombre.TabIndex = 3
-        Me.txtNombre.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNombre.Validator = Administracion.ValidatorType.None
         '
         'btnCancela
         '
@@ -158,15 +158,15 @@ Partial Class ProcesoSifere
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents btnAcepta As WindowsApplication1.CustomButton
-    Friend WithEvents btnCancela As WindowsApplication1.CustomButton
-    Friend WithEvents txtNombre As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents btnAcepta As Administracion.CustomButton
+    Friend WithEvents btnCancela As Administracion.CustomButton
+    Friend WithEvents txtNombre As Administracion.CustomTextBox
     Friend WithEvents txtDesde As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtHasta As System.Windows.Forms.MaskedTextBox
     Friend WithEvents TipoProceso As System.Windows.Forms.ComboBox
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
 End Class

@@ -24,12 +24,12 @@ Partial Class ListadoIvaCompras
     Private Sub InitializeComponent()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.txtDesdeFecha = New System.Windows.Forms.MaskedTextBox()
         Me.txthastafecha = New System.Windows.Forms.MaskedTextBox()
-        Me.TipoListado = New WindowsApplication1.CustomComboBox()
+        Me.TipoListado = New Administracion.CustomComboBox()
         Me.txtDesde = New System.Windows.Forms.MaskedTextBox()
         Me.btnCancela = New System.Windows.Forms.Button()
         Me.btnAcepta = New System.Windows.Forms.Button()
@@ -116,7 +116,7 @@ Partial Class ListadoIvaCompras
         Me.TipoListado.Name = "TipoListado"
         Me.TipoListado.Size = New System.Drawing.Size(146, 21)
         Me.TipoListado.TabIndex = 2
-        Me.TipoListado.Validator = WindowsApplication1.ValidatorType.None
+        Me.TipoListado.Validator = Administracion.ValidatorType.None
         '
         'txtDesde
         '
@@ -168,12 +168,12 @@ Partial Class ListadoIvaCompras
     End Sub
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
     Friend WithEvents txtDesdeFecha As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txthastafecha As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents TipoListado As WindowsApplication1.CustomComboBox
+    Friend WithEvents TipoListado As Administracion.CustomComboBox
     Friend WithEvents txtDesde As System.Windows.Forms.MaskedTextBox
     Friend WithEvents btnCancela As System.Windows.Forms.Button
     Friend WithEvents btnAcepta As System.Windows.Forms.Button

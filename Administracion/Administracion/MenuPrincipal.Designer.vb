@@ -92,7 +92,7 @@ Partial Class MenuPrincipal
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.FinDelSistemaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnCambio = New System.Windows.Forms.Button()
-        Me.lblCargando = New WindowsApplication1.CustomLabel()
+        Me.lblCargando = New Administracion.CustomLabel()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -585,7 +585,7 @@ Partial Class MenuPrincipal
     Friend WithEvents ListadosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ProcesosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents btnCambio As System.Windows.Forms.Button
-    Friend WithEvents lblCargando As WindowsApplication1.CustomLabel
+    Friend WithEvents lblCargando As Administracion.CustomLabel
     Friend WithEvents DepositosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SifereToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RetencionEsOpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

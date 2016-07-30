@@ -25,17 +25,17 @@ Partial Class ProcesoPercepciones
         Me.txtHasta = New System.Windows.Forms.MaskedTextBox()
         Me.txtDesde = New System.Windows.Forms.MaskedTextBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.CustomButton3 = New WindowsApplication1.CustomButton()
-        Me.CustomButton2 = New WindowsApplication1.CustomButton()
-        Me.CustomButton1 = New WindowsApplication1.CustomButton()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnAcepta = New WindowsApplication1.CustomButton()
-        Me.TipoProceso = New WindowsApplication1.CustomComboBox()
-        Me.txtNombre = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel4 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.CustomButton3 = New Administracion.CustomButton()
+        Me.CustomButton2 = New Administracion.CustomButton()
+        Me.CustomButton1 = New Administracion.CustomButton()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnAcepta = New Administracion.CustomButton()
+        Me.TipoProceso = New Administracion.CustomComboBox()
+        Me.txtNombre = New Administracion.CustomTextBox()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.SuspendLayout()
         '
         'txtHasta
@@ -127,7 +127,7 @@ Partial Class ProcesoPercepciones
         Me.TipoProceso.Name = "TipoProceso"
         Me.TipoProceso.Size = New System.Drawing.Size(134, 21)
         Me.TipoProceso.TabIndex = 21
-        Me.TipoProceso.Validator = WindowsApplication1.ValidatorType.None
+        Me.TipoProceso.Validator = Administracion.ValidatorType.None
         '
         'txtNombre
         '
@@ -139,7 +139,7 @@ Partial Class ProcesoPercepciones
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(120, 20)
         Me.txtNombre.TabIndex = 20
-        Me.txtNombre.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtNombre.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel4
         '
@@ -205,18 +205,18 @@ Partial Class ProcesoPercepciones
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel4 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel4 As Administracion.CustomLabel
     Friend WithEvents txtHasta As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtDesde As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents txtNombre As WindowsApplication1.CustomTextBox
-    Friend WithEvents TipoProceso As WindowsApplication1.CustomComboBox
-    Friend WithEvents btnAcepta As WindowsApplication1.CustomButton
-    Friend WithEvents btnCancela As WindowsApplication1.CustomButton
+    Friend WithEvents txtNombre As Administracion.CustomTextBox
+    Friend WithEvents TipoProceso As Administracion.CustomComboBox
+    Friend WithEvents btnAcepta As Administracion.CustomButton
+    Friend WithEvents btnCancela As Administracion.CustomButton
     Friend WithEvents FolderBrowserDialog1 As System.Windows.Forms.FolderBrowserDialog
-    Friend WithEvents CustomButton1 As WindowsApplication1.CustomButton
-    Friend WithEvents CustomButton2 As WindowsApplication1.CustomButton
-    Friend WithEvents CustomButton3 As WindowsApplication1.CustomButton
+    Friend WithEvents CustomButton1 As Administracion.CustomButton
+    Friend WithEvents CustomButton2 As Administracion.CustomButton
+    Friend WithEvents CustomButton3 As Administracion.CustomButton
 End Class

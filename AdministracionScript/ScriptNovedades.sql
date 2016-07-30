@@ -81,6 +81,13 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_pago_por_orden]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_pago_pago]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_pago_pago]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_pago_forma_de_pago]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_pago_forma_de_pago]
+GO
 /*
 		GENERACION NOVEDADES
 */
@@ -707,4 +714,76 @@ CREATE PROCEDURE PR_get_pago_por_orden (@orden VARCHAR(6)) AS
 		, p.Importe2
 	FROM Pagos p
 	WHERE p.Orden = @orden
+GO
+
+CREATE PROCEDURE PR_alta_pago_pago 
+	(@Orden VARCHAR(6)
+	, @Renglon varchar(4)
+	, @TipoOrd varchar(2)
+	, @Fecha varchar(20)
+	, @Proveedor varchar(22)
+ 	, @Observaciones varchar(100)
+	, @banco2 smallint
+	, @Fecha2 varchar(20)
+	, @Paridad float 
+	, @RetGanancias real
+	, @RetOtra real
+	, @RetIbCiudad real
+	, @RetIva real
+	, @Importe real
+	, @Tipo1 varchar(4)
+	, @Letra1 varchar(2)
+	, @Punto1 varchar(8)
+	, @Numero1 varchar(16)
+	, @Importe1 real
+	, @cuenta varchar(20)
+	, @Observaciones2 varchar(60)
+	) 
+AS
+
+	INSERT INTO Pagos
+		(Orden, Renglon, TipoOrd, Fecha , Proveedor , Observaciones , banco2 , Fecha2 
+	, Paridad ,RetGanancias , retOtra , RetIbCiudad , RetIva, Importe, Tipo1 , Letra1 
+	, Punto1 , numero1 , Importe1 , cuenta, Observaciones2, TipoReg) 
+	VALUES
+			(@Orden, @Renglon, @TipoOrd, @Fecha , @Proveedor , @Observaciones , @banco2 , @Fecha2 
+	, @Paridad , @RetGanancias , @RetOtra , @RetIbCiudad , @RetIva, @Importe, @Tipo1 , @Letra1 
+	, @Punto1 , @Numero1 , @Importe1 , @cuenta, @Observaciones2, 1 ) 
+	
+GO
+
+CREATE PROCEDURE PR_alta_pago_forma_de_pago
+	(@Orden VARCHAR(6)
+	, @Renglon varchar(4)
+	, @TipoOrd varchar(2)
+	, @Fecha varchar(20)
+	, @Proveedor varchar(22)
+ 	, @Observaciones varchar(100)
+	, @banco2 smallint
+	, @Fecha2 varchar(20)
+	, @Paridad float 
+	, @RetGanancias real
+	, @RetOtra real
+	, @RetIbCiudad real
+	, @RetIva real
+	, @Importe real
+	, @Tipo2 varchar(4)
+	, @Numero2 varchar(16)
+	, @FechaCheque char(10)
+	, @BancoCheque char(30)
+	, @Importe2 float
+	, @cuenta varchar(20)
+	, @Observaciones2 varchar(60)
+	) 
+AS
+
+	INSERT INTO Pagos
+		(Orden, Renglon, TipoOrd, Fecha , Proveedor , Observaciones , banco2 , Fecha2 
+	, Paridad ,RetGanancias , retOtra , RetIbCiudad , RetIva, Importe, Tipo2 , Numero2 
+	, FechaCheque , BancoCheque , Importe2 , cuenta, Observaciones2, TipoReg) 
+	VALUES
+			(@Orden, @Renglon, @TipoOrd, @Fecha , @Proveedor , @Observaciones , @banco2 , @Fecha2 
+	, @Paridad , @RetGanancias , @RetOtra , @RetIbCiudad , @RetIva, @Importe, @Tipo2 , @Numero2 
+	, @FechaCheque , @BancoCheque , @Importe2 , @cuenta, @Observaciones2, 1 ) 
+
 GO

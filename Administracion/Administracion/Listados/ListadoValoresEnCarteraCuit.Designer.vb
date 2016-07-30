@@ -26,11 +26,11 @@ Partial Class ListadoValoresEnCarteraCuit
         Me.btnAcepta = New System.Windows.Forms.Button()
         Me.txthastafecha = New System.Windows.Forms.MaskedTextBox()
         Me.txtDesdeFecha = New System.Windows.Forms.MaskedTextBox()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
@@ -154,10 +154,10 @@ Partial Class ListadoValoresEnCarteraCuit
     Friend WithEvents btnAcepta As System.Windows.Forms.Button
     Friend WithEvents txthastafecha As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtDesdeFecha As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 End Class

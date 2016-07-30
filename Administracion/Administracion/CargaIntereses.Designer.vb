@@ -34,8 +34,8 @@ Partial Class CargaIntereses
         Me.referencia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clave = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nroInterno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnGraba = New WindowsApplication1.CustomButton()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnGraba = New Administracion.CustomButton()
         CType(Me.gridCtaCte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -165,8 +165,8 @@ Partial Class CargaIntereses
 
     End Sub
     Friend WithEvents gridCtaCte As System.Windows.Forms.DataGridView
-    Friend WithEvents btnGraba As WindowsApplication1.CustomButton
-    Friend WithEvents btnCancela As WindowsApplication1.CustomButton
+    Friend WithEvents btnGraba As Administracion.CustomButton
+    Friend WithEvents btnCancela As Administracion.CustomButton
     Friend WithEvents fechaOriginal As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents desProveOriginal As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents facturaOriginal As System.Windows.Forms.DataGridViewTextBoxColumn

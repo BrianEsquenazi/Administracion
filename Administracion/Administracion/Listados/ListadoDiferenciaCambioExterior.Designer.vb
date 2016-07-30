@@ -26,8 +26,8 @@ Partial Class ListadoDiferenciaCambioExterior
         Me.btnCancela = New System.Windows.Forms.Button()
         Me.txthastafecha = New System.Windows.Forms.MaskedTextBox()
         Me.txtDesdeFecha = New System.Windows.Forms.MaskedTextBox()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
@@ -133,8 +133,8 @@ Partial Class ListadoDiferenciaCambioExterior
     Friend WithEvents btnCancela As System.Windows.Forms.Button
     Friend WithEvents txthastafecha As System.Windows.Forms.MaskedTextBox
     Friend WithEvents txtDesdeFecha As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
 End Class

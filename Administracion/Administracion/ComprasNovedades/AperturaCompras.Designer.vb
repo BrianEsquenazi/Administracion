@@ -37,7 +37,7 @@ Partial Class Apertura
         Me.PercIVA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PercIB = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Exento = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnAceptar = New WindowsApplication1.CustomButton()
+        Me.btnAceptar = New Administracion.CustomButton()
         CType(Me.gridApertura, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -179,5 +179,5 @@ Partial Class Apertura
     Friend WithEvents PercIVA As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PercIB As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Exento As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents btnAceptar As WindowsApplication1.CustomButton
+    Friend WithEvents btnAceptar As Administracion.CustomButton
 End Class

@@ -22,15 +22,15 @@ Partial Class CUFEProveedor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtCUFE3Fecha = New WindowsApplication1.CustomTextBox()
-        Me.txtCUFE1Fecha = New WindowsApplication1.CustomTextBox()
-        Me.txtCUFE2Fecha = New WindowsApplication1.CustomTextBox()
-        Me.txtCUFE3 = New WindowsApplication1.CustomTextBox()
-        Me.txtCUFE2 = New WindowsApplication1.CustomTextBox()
-        Me.txtCUFE1 = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.txtCUFE3Fecha = New Administracion.CustomTextBox()
+        Me.txtCUFE1Fecha = New Administracion.CustomTextBox()
+        Me.txtCUFE2Fecha = New Administracion.CustomTextBox()
+        Me.txtCUFE3 = New Administracion.CustomTextBox()
+        Me.txtCUFE2 = New Administracion.CustomTextBox()
+        Me.txtCUFE1 = New Administracion.CustomTextBox()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.SuspendLayout()
         '
         'txtCUFE3Fecha
@@ -44,7 +44,7 @@ Partial Class CUFEProveedor
         Me.txtCUFE3Fecha.Name = "txtCUFE3Fecha"
         Me.txtCUFE3Fecha.Size = New System.Drawing.Size(202, 20)
         Me.txtCUFE3Fecha.TabIndex = 8
-        Me.txtCUFE3Fecha.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCUFE3Fecha.Validator = Administracion.ValidatorType.None
         '
         'txtCUFE1Fecha
         '
@@ -57,7 +57,7 @@ Partial Class CUFEProveedor
         Me.txtCUFE1Fecha.Name = "txtCUFE1Fecha"
         Me.txtCUFE1Fecha.Size = New System.Drawing.Size(202, 20)
         Me.txtCUFE1Fecha.TabIndex = 7
-        Me.txtCUFE1Fecha.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCUFE1Fecha.Validator = Administracion.ValidatorType.None
         '
         'txtCUFE2Fecha
         '
@@ -70,7 +70,7 @@ Partial Class CUFEProveedor
         Me.txtCUFE2Fecha.Name = "txtCUFE2Fecha"
         Me.txtCUFE2Fecha.Size = New System.Drawing.Size(202, 20)
         Me.txtCUFE2Fecha.TabIndex = 6
-        Me.txtCUFE2Fecha.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCUFE2Fecha.Validator = Administracion.ValidatorType.None
         '
         'txtCUFE3
         '
@@ -83,7 +83,7 @@ Partial Class CUFEProveedor
         Me.txtCUFE3.Name = "txtCUFE3"
         Me.txtCUFE3.Size = New System.Drawing.Size(142, 20)
         Me.txtCUFE3.TabIndex = 5
-        Me.txtCUFE3.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCUFE3.Validator = Administracion.ValidatorType.None
         '
         'txtCUFE2
         '
@@ -96,7 +96,7 @@ Partial Class CUFEProveedor
         Me.txtCUFE2.Name = "txtCUFE2"
         Me.txtCUFE2.Size = New System.Drawing.Size(142, 20)
         Me.txtCUFE2.TabIndex = 4
-        Me.txtCUFE2.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCUFE2.Validator = Administracion.ValidatorType.None
         '
         'txtCUFE1
         '
@@ -109,7 +109,7 @@ Partial Class CUFEProveedor
         Me.txtCUFE1.Name = "txtCUFE1"
         Me.txtCUFE1.Size = New System.Drawing.Size(142, 20)
         Me.txtCUFE1.TabIndex = 3
-        Me.txtCUFE1.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtCUFE1.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel3
         '
@@ -165,13 +165,13 @@ Partial Class CUFEProveedor
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
-    Friend WithEvents txtCUFE1 As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCUFE2 As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCUFE3 As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCUFE2Fecha As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCUFE1Fecha As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtCUFE3Fecha As WindowsApplication1.CustomTextBox
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
+    Friend WithEvents txtCUFE1 As Administracion.CustomTextBox
+    Friend WithEvents txtCUFE2 As Administracion.CustomTextBox
+    Friend WithEvents txtCUFE3 As Administracion.CustomTextBox
+    Friend WithEvents txtCUFE2Fecha As Administracion.CustomTextBox
+    Friend WithEvents txtCUFE1Fecha As Administracion.CustomTextBox
+    Friend WithEvents txtCUFE3Fecha As Administracion.CustomTextBox
 End Class

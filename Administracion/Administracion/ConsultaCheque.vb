@@ -31,4 +31,8 @@ Public Class ConsultaCheque
         Me.Close()
         MenuPrincipal.Show()
     End Sub
+
+    Private Sub ConsultaCheque_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

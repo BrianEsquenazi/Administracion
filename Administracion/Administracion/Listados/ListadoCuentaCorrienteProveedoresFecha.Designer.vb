@@ -22,17 +22,17 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lstAyuda = New WindowsApplication1.CustomListBox()
-        Me.txtAyuda = New WindowsApplication1.CustomTextBox()
-        Me.btnConsulta = New WindowsApplication1.CustomButton()
-        Me.btnCancela = New WindowsApplication1.CustomButton()
-        Me.btnAcepta = New WindowsApplication1.CustomButton()
-        Me.txtHastaProveedor = New WindowsApplication1.CustomTextBox()
-        Me.txtDesdeProveedor = New WindowsApplication1.CustomTextBox()
-        Me.CustomLabel2 = New WindowsApplication1.CustomLabel()
-        Me.CustomLabel1 = New WindowsApplication1.CustomLabel()
+        Me.lstAyuda = New Administracion.CustomListBox()
+        Me.txtAyuda = New Administracion.CustomTextBox()
+        Me.btnConsulta = New Administracion.CustomButton()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnAcepta = New Administracion.CustomButton()
+        Me.txtHastaProveedor = New Administracion.CustomTextBox()
+        Me.txtDesdeProveedor = New Administracion.CustomTextBox()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.txtFechaEmision = New System.Windows.Forms.MaskedTextBox()
-        Me.CustomLabel3 = New WindowsApplication1.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.Grupo2 = New System.Windows.Forms.GroupBox()
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
@@ -61,7 +61,7 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
         Me.txtAyuda.Name = "txtAyuda"
         Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
         Me.txtAyuda.TabIndex = 36
-        Me.txtAyuda.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtAyuda.Validator = Administracion.ValidatorType.None
         Me.txtAyuda.Visible = False
         '
         'btnConsulta
@@ -110,7 +110,7 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
         Me.txtHastaProveedor.Name = "txtHastaProveedor"
         Me.txtHastaProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtHastaProveedor.TabIndex = 2
-        Me.txtHastaProveedor.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtHastaProveedor.Validator = Administracion.ValidatorType.None
         '
         'txtDesdeProveedor
         '
@@ -122,7 +122,7 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
         Me.txtDesdeProveedor.Name = "txtDesdeProveedor"
         Me.txtDesdeProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtDesdeProveedor.TabIndex = 1
-        Me.txtDesdeProveedor.Validator = WindowsApplication1.ValidatorType.None
+        Me.txtDesdeProveedor.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel2
         '
@@ -221,17 +221,17 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents lstAyuda As WindowsApplication1.CustomListBox
-    Friend WithEvents txtAyuda As WindowsApplication1.CustomTextBox
-    Friend WithEvents btnConsulta As WindowsApplication1.CustomButton
-    Friend WithEvents btnCancela As WindowsApplication1.CustomButton
-    Friend WithEvents btnAcepta As WindowsApplication1.CustomButton
-    Friend WithEvents txtHastaProveedor As WindowsApplication1.CustomTextBox
-    Friend WithEvents txtDesdeProveedor As WindowsApplication1.CustomTextBox
-    Friend WithEvents CustomLabel2 As WindowsApplication1.CustomLabel
-    Friend WithEvents CustomLabel1 As WindowsApplication1.CustomLabel
+    Friend WithEvents lstAyuda As Administracion.CustomListBox
+    Friend WithEvents txtAyuda As Administracion.CustomTextBox
+    Friend WithEvents btnConsulta As Administracion.CustomButton
+    Friend WithEvents btnCancela As Administracion.CustomButton
+    Friend WithEvents btnAcepta As Administracion.CustomButton
+    Friend WithEvents txtHastaProveedor As Administracion.CustomTextBox
+    Friend WithEvents txtDesdeProveedor As Administracion.CustomTextBox
+    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
+    Friend WithEvents CustomLabel1 As Administracion.CustomLabel
     Friend WithEvents txtFechaEmision As System.Windows.Forms.MaskedTextBox
-    Friend WithEvents CustomLabel3 As WindowsApplication1.CustomLabel
+    Friend WithEvents CustomLabel3 As Administracion.CustomLabel
     Friend WithEvents Grupo2 As System.Windows.Forms.GroupBox
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
