@@ -6,6 +6,8 @@ Public Class Pagos
     Dim pagos As New List(Of DetalleCompraCuentaCorriente)
     Dim cheques As New List(Of Cheque)
     Dim chequeRow As Integer = -1
+    Dim bancoOrden As Banco
+    Dim proveedorOrden As Proveedor
 
     Private Sub Pagos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cmbTipo.SelectedIndex = 0
@@ -42,8 +44,19 @@ Public Class Pagos
         validador.validate(Me)
         validador.alsoValidate(consistenciaEntreProveedorYGrillas(), "Algunos campos de las grillas no coinciden con el proveedor que se desea grabar")
         validador.alsoValidate(bancosValidos(), "Algunos campos de la grilla de forma de pagos no tienen un banco válido asignado")
+        validador.alsoValidate(noHayDiferencia(), "Hay una diferencia de " & lblDiferencia.Text)
+        validador.alsoValidate(hayMovimientos(), "No se registró ningún pago")
+        validador.alsoValidate(CustomConvert.toIntOrZero(txtOrdenPago.Text) = 0, "No se puede hacer el alta, el registro ya existe")
 
         Return validador.flush
+    End Function
+
+    Private Function hayMovimientos()
+        Return CustomConvert.toDoubleOrZero(lblPagos.Text) <> 0
+    End Function
+
+    Private Function noHayDiferencia()
+        Return CustomConvert.toDoubleOrZero(lblDiferencia.Text) = 0
     End Function
 
     Private Function bancosValidos()
@@ -254,9 +267,50 @@ Public Class Pagos
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
         If validarDatos() Then
-            MsgBox("Agregaste") 'Agregar
+            Dim siguienteNumero As Integer = DAOPagos.siguienteNumeroDeOrden()
+            bancoOrden = DAOBanco.buscarBancoPorCodigo(txtBanco.Text)
+            proveedorOrden = DAOProveedor.buscarProveedorPorCodigo(txtProveedor.Text)
+            Dim pago As OrdenPago = New OrdenPago(siguienteNumero, tipoOrden, CustomConvert.toDoubleOrZero(txtParidad.Text),
+                                                  CustomConvert.toDoubleOrZero(txtTotal.Text), CustomConvert.toDoubleOrZero(txtIVA.Text),
+                                                  CustomConvert.toDoubleOrZero(txtIngresosBrutos.Text), CustomConvert.toDoubleOrZero(txtIBCiudad.Text),
+                                                  CustomConvert.toDoubleOrZero(txtGanancias.Text), txtFecha.Text, txtFechaParidad.Text, txtObservaciones.Text,
+                                                  bancoOrden, proveedorOrden)
+            pago.pagos = crearPagos()
+            pago.formaPagos = crearFormaPagos()
+            DAOPagos.agregarPago(pago)
         End If
     End Sub
+
+    Private Function crearPagos()
+        Dim pagos As New List(Of Pago)
+        For Each row As DataGridViewRow In gridPagos.Rows
+            If Not row.IsNewRow Then
+                pagos.Add(New Pago(Convert.ToString(row.Cells(0).Value), Convert.ToString(row.Cells(1).Value), Convert.ToString(row.Cells(2).Value), Convert.ToString(row.Cells(3).Value),
+                                  Convert.ToString(row.Cells(5).Value), CustomConvert.toDoubleOrZero(row.Cells(4).Value)))
+            End If
+        Next
+        Return pagos
+    End Function
+
+    Private Function crearFormaPagos()
+        Dim formaPagos As New List(Of FormaPago)
+        For Each row As DataGridViewRow In gridFormaPagos.Rows
+            If Not row.IsNewRow Then
+                formaPagos.Add(New FormaPago(Convert.ToString(row.Cells(0).Value), CustomConvert.toIntOrZero(Convert.ToString(row.Cells(1).Value)), Convert.ToString(row.Cells(2).Value),
+                                             Convert.ToString(row.Cells(3).Value), Convert.ToString(row.Cells(4).Value), CustomConvert.toDoubleOrZero(row.Cells(5).Value)))
+            End If
+        Next
+        Return formaPagos
+    End Function
+
+    Private Function tipoOrden()
+        If optCtaCte.Checked Then : Return 1 : End If
+        If optVarios.Checked Then : Return 2 : End If
+        If optChequeRechazado.Checked Then : Return 3 : End If
+        If optAnticipos.Checked Then : Return 4 : End If
+        If optTransferencias.Checked Then : Return 5 : End If
+        Return Nothing
+    End Function
 
     Private Sub txtFecha_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtFecha.Leave
         txtFechaParidad.Text = txtFecha.Text
