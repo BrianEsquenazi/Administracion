@@ -4,8 +4,8 @@ Imports System.IO
 Public Class ListadoCuentaCorrienteProveedores
 
     Private Sub ListadoCuentaCorrienteProveedores_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        txtDesdeProveedor.Text = ""
-        txtHastaProveedor.Text = ""
+        txtDesdeProveedor.Text = "0"
+        txtHastaProveedor.Text = "99999999999"
         opcPantalla.Checked = False
         opcImpesora.Checked = True
         opcPendiente.Checked = True
@@ -85,8 +85,59 @@ Public Class ListadoCuentaCorrienteProveedores
 
     Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
 
+        Dim txtUno As String
 
-      
+        Dim txtFormula As String
+        Dim x As Char = Chr(34)
+        Dim dada As String
+
+        Dim WSuma As Double
+
+        SQLConnector.retrieveDataTable("limpiar_impCtaCtePrvNet")
+
+
+        REM Reviso el cual esta checkeado asi le pongo los valores a Tipo
+        Dim WTipo As Char
+        WTipo = "T"
+        If (opcPendiente.Checked) Then
+            WTipo = "P"
+        End If
+
+        WSuma = 0
+
+        REM dada fix CAMBIAR Al uso de dao!!
+        Dim tabla As DataTable
+        tabla = SQLConnector.retrieveDataTable("buscar_cuenta_corriente_proveedores_desdehasta", txtDesdeProveedor.Text, txtHastaProveedor.Text, WTipo)
+
+        For Each row As DataRow In tabla.Rows
+
+            Dim CamposCtaCtePrv As New CtaCteProveedoresDeuda(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString, row.Item(3).ToString, row.Item(4), row.Item(5), row.Item(6).ToString, row.Item(7).ToString)
+
+            dada = CamposCtaCtePrv.Tipo
+            dada = CamposCtaCtePrv.numero
+
+            WSuma = WSuma + CamposCtaCtePrv.saldo
+
+        Next
+
+        txtUno = "{ImpCtaCtePrvNet.Proveedor} in " + x + "0" + x + " to " + x + "99999999999" + x
+        txtFormula = txtUno
+
+        Dim viewer As New ReportViewer("Listado de Corriente de Proveedres", "c:\Crystal\wccprvnet.rpt", txtFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
+        End If
+
+
+
+
+
+        REM borrar   impctacteprv
+
+
 
 
         'Dim tabla As DataTable

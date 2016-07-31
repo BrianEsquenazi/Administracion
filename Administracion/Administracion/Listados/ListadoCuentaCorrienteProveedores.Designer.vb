@@ -22,68 +22,24 @@ Partial Class ListadoCuentaCorrienteProveedores
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.txtHastaProveedor = New Administracion.CustomTextBox()
-        Me.txtDesdeProveedor = New Administracion.CustomTextBox()
-        Me.CustomLabel2 = New Administracion.CustomLabel()
-        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.Grupo1 = New System.Windows.Forms.GroupBox()
         Me.opcCompleto = New System.Windows.Forms.RadioButton()
         Me.opcPendiente = New System.Windows.Forms.RadioButton()
         Me.Grupo2 = New System.Windows.Forms.GroupBox()
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
+        Me.lstAyuda = New Administracion.CustomListBox()
+        Me.txtAyuda = New Administracion.CustomTextBox()
         Me.btnConsulta = New Administracion.CustomButton()
         Me.btnCancela = New Administracion.CustomButton()
         Me.btnAcepta = New Administracion.CustomButton()
-        Me.lstAyuda = New Administracion.CustomListBox()
-        Me.txtAyuda = New Administracion.CustomTextBox()
+        Me.txtHastaProveedor = New Administracion.CustomTextBox()
+        Me.txtDesdeProveedor = New Administracion.CustomTextBox()
+        Me.CustomLabel2 = New Administracion.CustomLabel()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.Grupo1.SuspendLayout()
         Me.Grupo2.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'txtHastaProveedor
-        '
-        Me.txtHastaProveedor.Cleanable = False
-        Me.txtHastaProveedor.Empty = True
-        Me.txtHastaProveedor.EnterIndex = -1
-        Me.txtHastaProveedor.LabelAssociationKey = -1
-        Me.txtHastaProveedor.Location = New System.Drawing.Point(268, 69)
-        Me.txtHastaProveedor.Name = "txtHastaProveedor"
-        Me.txtHastaProveedor.Size = New System.Drawing.Size(100, 20)
-        Me.txtHastaProveedor.TabIndex = 1
-        Me.txtHastaProveedor.Validator = Administracion.ValidatorType.None
-        '
-        'txtDesdeProveedor
-        '
-        Me.txtDesdeProveedor.Cleanable = False
-        Me.txtDesdeProveedor.Empty = True
-        Me.txtDesdeProveedor.EnterIndex = -1
-        Me.txtDesdeProveedor.LabelAssociationKey = -1
-        Me.txtDesdeProveedor.Location = New System.Drawing.Point(268, 31)
-        Me.txtDesdeProveedor.Name = "txtDesdeProveedor"
-        Me.txtDesdeProveedor.Size = New System.Drawing.Size(100, 20)
-        Me.txtDesdeProveedor.TabIndex = 0
-        Me.txtDesdeProveedor.Validator = Administracion.ValidatorType.None
-        '
-        'CustomLabel2
-        '
-        Me.CustomLabel2.AutoSize = True
-        Me.CustomLabel2.ControlAssociationKey = -1
-        Me.CustomLabel2.Location = New System.Drawing.Point(131, 72)
-        Me.CustomLabel2.Name = "CustomLabel2"
-        Me.CustomLabel2.Size = New System.Drawing.Size(87, 13)
-        Me.CustomLabel2.TabIndex = 17
-        Me.CustomLabel2.Text = "Hasta Proveedor"
-        '
-        'CustomLabel1
-        '
-        Me.CustomLabel1.AutoSize = True
-        Me.CustomLabel1.ControlAssociationKey = -1
-        Me.CustomLabel1.Location = New System.Drawing.Point(131, 34)
-        Me.CustomLabel1.Name = "CustomLabel1"
-        Me.CustomLabel1.Size = New System.Drawing.Size(90, 13)
-        Me.CustomLabel1.TabIndex = 16
-        Me.CustomLabel1.Text = "Desde Proveedor"
         '
         'Grupo1
         '
@@ -151,6 +107,31 @@ Partial Class ListadoCuentaCorrienteProveedores
         Me.opcPantalla.Text = "Pantalla"
         Me.opcPantalla.UseVisualStyleBackColor = True
         '
+        'lstAyuda
+        '
+        Me.lstAyuda.Cleanable = False
+        Me.lstAyuda.EnterIndex = -1
+        Me.lstAyuda.FormattingEnabled = True
+        Me.lstAyuda.LabelAssociationKey = -1
+        Me.lstAyuda.Location = New System.Drawing.Point(59, 327)
+        Me.lstAyuda.Name = "lstAyuda"
+        Me.lstAyuda.Size = New System.Drawing.Size(417, 147)
+        Me.lstAyuda.TabIndex = 27
+        Me.lstAyuda.Visible = False
+        '
+        'txtAyuda
+        '
+        Me.txtAyuda.Cleanable = False
+        Me.txtAyuda.Empty = True
+        Me.txtAyuda.EnterIndex = -1
+        Me.txtAyuda.LabelAssociationKey = -1
+        Me.txtAyuda.Location = New System.Drawing.Point(59, 301)
+        Me.txtAyuda.Name = "txtAyuda"
+        Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
+        Me.txtAyuda.TabIndex = 26
+        Me.txtAyuda.Validator = Administracion.ValidatorType.None
+        Me.txtAyuda.Visible = False
+        '
         'btnConsulta
         '
         Me.btnConsulta.Cleanable = False
@@ -187,36 +168,55 @@ Partial Class ListadoCuentaCorrienteProveedores
         Me.btnAcepta.Text = "Acepta"
         Me.btnAcepta.UseVisualStyleBackColor = True
         '
-        'lstAyuda
+        'txtHastaProveedor
         '
-        Me.lstAyuda.Cleanable = False
-        Me.lstAyuda.EnterIndex = -1
-        Me.lstAyuda.FormattingEnabled = True
-        Me.lstAyuda.LabelAssociationKey = -1
-        Me.lstAyuda.Location = New System.Drawing.Point(59, 327)
-        Me.lstAyuda.Name = "lstAyuda"
-        Me.lstAyuda.Size = New System.Drawing.Size(417, 147)
-        Me.lstAyuda.TabIndex = 27
-        Me.lstAyuda.Visible = False
+        Me.txtHastaProveedor.Cleanable = False
+        Me.txtHastaProveedor.Empty = True
+        Me.txtHastaProveedor.EnterIndex = -1
+        Me.txtHastaProveedor.LabelAssociationKey = -1
+        Me.txtHastaProveedor.Location = New System.Drawing.Point(268, 69)
+        Me.txtHastaProveedor.Name = "txtHastaProveedor"
+        Me.txtHastaProveedor.Size = New System.Drawing.Size(100, 20)
+        Me.txtHastaProveedor.TabIndex = 1
+        Me.txtHastaProveedor.Validator = Administracion.ValidatorType.None
         '
-        'txtAyuda
+        'txtDesdeProveedor
         '
-        Me.txtAyuda.Cleanable = False
-        Me.txtAyuda.Empty = True
-        Me.txtAyuda.EnterIndex = -1
-        Me.txtAyuda.LabelAssociationKey = -1
-        Me.txtAyuda.Location = New System.Drawing.Point(59, 301)
-        Me.txtAyuda.Name = "txtAyuda"
-        Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
-        Me.txtAyuda.TabIndex = 26
-        Me.txtAyuda.Validator = Administracion.ValidatorType.None
-        Me.txtAyuda.Visible = False
+        Me.txtDesdeProveedor.Cleanable = False
+        Me.txtDesdeProveedor.Empty = True
+        Me.txtDesdeProveedor.EnterIndex = -1
+        Me.txtDesdeProveedor.LabelAssociationKey = -1
+        Me.txtDesdeProveedor.Location = New System.Drawing.Point(268, 31)
+        Me.txtDesdeProveedor.Name = "txtDesdeProveedor"
+        Me.txtDesdeProveedor.Size = New System.Drawing.Size(100, 20)
+        Me.txtDesdeProveedor.TabIndex = 0
+        Me.txtDesdeProveedor.Validator = Administracion.ValidatorType.None
+        '
+        'CustomLabel2
+        '
+        Me.CustomLabel2.AutoSize = True
+        Me.CustomLabel2.ControlAssociationKey = -1
+        Me.CustomLabel2.Location = New System.Drawing.Point(131, 72)
+        Me.CustomLabel2.Name = "CustomLabel2"
+        Me.CustomLabel2.Size = New System.Drawing.Size(87, 13)
+        Me.CustomLabel2.TabIndex = 17
+        Me.CustomLabel2.Text = "Hasta Proveedor"
+        '
+        'CustomLabel1
+        '
+        Me.CustomLabel1.AutoSize = True
+        Me.CustomLabel1.ControlAssociationKey = -1
+        Me.CustomLabel1.Location = New System.Drawing.Point(131, 34)
+        Me.CustomLabel1.Name = "CustomLabel1"
+        Me.CustomLabel1.Size = New System.Drawing.Size(90, 13)
+        Me.CustomLabel1.TabIndex = 16
+        Me.CustomLabel1.Text = "Desde Proveedor"
         '
         'ListadoCuentaCorrienteProveedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(537, 358)
+        Me.ClientSize = New System.Drawing.Size(537, 293)
         Me.Controls.Add(Me.lstAyuda)
         Me.Controls.Add(Me.txtAyuda)
         Me.Controls.Add(Me.btnConsulta)
