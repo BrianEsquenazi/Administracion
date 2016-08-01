@@ -15,6 +15,7 @@ Public Class Compras
         gridBuilder.addTextColumn(1, "Descripción")
         gridBuilder.addPositiveFloatColumn(2, "Débito")
         gridBuilder.addPositiveFloatColumn(3, "Crédito")
+        btnLimpiar.PerformClick()
 
         Dim commonEventsHandler As New CommonEventsHandler
         commonEventsHandler.setIndexTab(Me)
@@ -52,7 +53,8 @@ Public Class Compras
         Cleanner.clean(Me)
         gridAsientos.Rows.Clear()
         chkSoloIVA.Checked = False
-        optEfectivo.Checked = True
+        optCtaCte.Checked = True
+        cmbTipo.SelectedIndex = 0
         apertura = New Apertura
     End Sub
 
@@ -60,12 +62,14 @@ Public Class Compras
         If Not proveedorAMostrar.estaDefinidoCompleto Then
             proveedorAMostrar = DAOProveedor.buscarProveedorPorCodigo(proveedorAMostrar.id)
         End If
-        proveedor = proveedorAMostrar
-        txtCodigoProveedor.Text = proveedor.id
-        txtNombreProveedor.Text = proveedor.razonSocial
-        txtCAI.Text = proveedor.cai
-        txtVtoCAI.Text = proveedor.vtoCAI
-        diasPlazo = CustomConvert.toIntOrZero(proveedor.diasPlazo)
+        If Not optNacion.Checked Then
+            proveedor = proveedorAMostrar
+        End If
+        txtCodigoProveedor.Text = proveedorAMostrar.id
+        txtNombreProveedor.Text = proveedorAMostrar.razonSocial
+        txtCAI.Text = proveedorAMostrar.cai
+        txtVtoCAI.Text = proveedorAMostrar.vtoCAI
+        diasPlazo = CustomConvert.toIntOrZero(proveedorAMostrar.diasPlazo)
     End Sub
 
     Public Sub mostrarCuentaContable(ByVal cuenta As CuentaContable)
@@ -76,6 +80,11 @@ Public Class Compras
                 gridAsientos.Rows(selectedRow).Cells(0).Value = cuenta.id
             End If
         End If
+    End Sub
+
+    Private Sub txtCodigoProveedor_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCodigoProveedor.DoubleClick
+        Dim consulta As New ConsultaCompras(Me, True)
+        consulta.ShowDialog()
     End Sub
 
     Private Sub txtCodigoProveedor_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigoProveedor.Leave
@@ -178,6 +187,7 @@ Public Class Compras
                 DAOCompras.agregarDatosCuentaCorriente(compra)
             End If
             MsgBox("El número de interno asignado es: " & compra.nroInterno)
+            btnLimpiar.PerformClick()
         End If
     End Sub
 
@@ -386,14 +396,14 @@ Public Class Compras
         txtFechaVto2.Text = compra.fechaVto2
         txtRemito.Text = compra.remito
         cmbFormaPago.SelectedIndex = compra.formaPago
-        txtParidad.Text = compra.paridad
-        txtNeto.Text = compra.neto
-        txtIVA10.Text = compra.iva105
-        txtIVA21.Text = compra.iva21
-        txtIVA27.Text = compra.iva27
-        txtIVARG.Text = compra.ivaRG
-        txtPercIB.Text = compra.percibidoIB
-        txtNoGravado.Text = compra.exento
+        txtParidad.Text = CustomConvert.toStringWithTwoDecimalPlaces(compra.paridad)
+        txtNeto.Text = CustomConvert.toStringWithTwoDecimalPlaces(compra.neto)
+        txtIVA10.Text = CustomConvert.toStringWithTwoDecimalPlaces(compra.iva105)
+        txtIVA21.Text = CustomConvert.toStringWithTwoDecimalPlaces(compra.iva21)
+        txtIVA27.Text = CustomConvert.toStringWithTwoDecimalPlaces(compra.iva27)
+        txtIVARG.Text = CustomConvert.toStringWithTwoDecimalPlaces(compra.ivaRG)
+        txtPercIB.Text = CustomConvert.toStringWithTwoDecimalPlaces(compra.percibidoIB)
+        txtNoGravado.Text = CustomConvert.toStringWithTwoDecimalPlaces(compra.exento)
         txtDespacho.Text = compra.despacho
         chkSoloIVA.Checked = compra.soloIVA
         pulsarOption(compra.tipoPago)
@@ -404,6 +414,7 @@ Public Class Compras
     End Sub
 
     Private Sub mostrarImputaciones(ByVal imputaciones As List(Of Imputac))
+        gridAsientos.Rows.Clear()
         For Each imputacion As Imputac In imputaciones
             gridAsientos.Rows.Add(imputacion.cuenta, DAOCuentaContable.buscarCuentaContablePorCodigo(imputacion.cuenta).descripcion, imputacion.debito, imputacion.credito)
         Next
@@ -416,7 +427,6 @@ Public Class Compras
         Else
             'Creo que no hay que hacer nada
         End If
-
     End Sub
 
     Private Sub btnConsultaNroFactura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsultaNroFactura.Click
@@ -467,6 +477,16 @@ Public Class Compras
             If pymeForm.ShowDialog(Me) = DialogResult.OK Then
                 pagoPyme = Tuple.Create(pymeForm.txtCantidadCuotas.Text, pymeForm.txtMes.Text, pymeForm.txtAnio.Text)
             End If
+
+            proveedor = DAOProveedor.bancoNacion()
         End If
+    End Sub
+
+    Private Sub optEfectivo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optEfectivo.CheckedChanged
+        gridAsientos.Rows.Clear()
+    End Sub
+
+    Private Sub optCtaCte_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optCtaCte.CheckedChanged
+        gridAsientos.Rows.Clear()
     End Sub
 End Class

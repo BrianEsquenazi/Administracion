@@ -12,6 +12,7 @@ Public Class FormOrganizer
     Private width As Integer
     Private queryFunctions As New List(Of Tuple(Of QueryFunction, String, ShowMethod, String))
     Private queryFunction As QueryFunction
+    Private queryControl As Control
     Private queryText As CustomTextBox
     Private queryList As CustomListBox
     Private selectionList As CustomListBox
@@ -639,7 +640,7 @@ Public Class FormOrganizer
         queryList.Top = top + queryTextHeight() + separation
         queryList.Left = leftMargin
         queryList.Visible = False
-        AddHandler queryList.DoubleClick, AddressOf listDoubleClickEventWithHide
+        AddHandler queryList.Click, AddressOf listDoubleClickEventWithHide
 
         If queryFunctions.Count > 1 Then
             selectionList = New CustomListBox
@@ -650,7 +651,7 @@ Public Class FormOrganizer
             selectionList.Top = top + separation
             selectionList.Left = leftMargin
             selectionList.Visible = False
-            AddHandler selectionList.DoubleClick, AddressOf selectionDoubleClick
+            AddHandler selectionList.Click, AddressOf selectionDoubleClick
         End If
     End Sub
 
@@ -854,10 +855,12 @@ Public Class FormOrganizer
     End Sub
 
     Private Sub queryControlDoubleClick(ByVal sender As Object, ByVal e As EventArgs)
+        hideSelectionList()
         Dim control As Control = DirectCast(sender, Control)
         Dim queryTuple = queryFunctions.Find(Function(tuple) tuple.Item4 = control.Name)
         queryFunction = queryTuple.Item1
         showMethodFunction = queryTuple.Item3
+        queryControl = control
         showQueryList()
     End Sub
     Public Sub dontUseQueryText()
@@ -871,10 +874,16 @@ Public Class FormOrganizer
         showMethodFunction.Invoke(queryList.SelectedValue)
         queryFunction = Nothing
         hideQueryControls()
+        If IsNothing(queryControl) And queryFunctions.Count = 1 Then
+            queryControl = form.Controls(queryFunctions.First.Item4)
+        End If
+        queryControl.Focus()
+        queryControl = Nothing
     End Sub
     Private Sub selectionDoubleClick(ByVal sender As Object, ByVal e As EventArgs)
         queryFunction = selectionList.SelectedValue.Item1
         showMethodFunction = selectionList.SelectedValue.Item3
+        queryControl = form.Controls(selectionList.SelectedValue.Item4)
         hideSelectionList()
         showQueryList()
     End Sub
@@ -882,14 +891,14 @@ Public Class FormOrganizer
     Private Sub addClickWithClean(ByVal sender As Object, ByVal e As EventArgs)
         If validateForAdd() Then
             btnAddClick.Invoke(sender, e)
-            Cleanner.clean(form)
+            btnCleanClick.Invoke(sender, e)
         End If
     End Sub
     Private Sub deleteClickWithConfirmation(ByVal sender As Object, ByVal e As EventArgs)
         If validateForDelete() Then
             If MsgBox("¿Desea eliminar el registro?", MsgBoxStyle.YesNo, "Eliminar") = vbYes Then
                 btnDeleteClick.Invoke(sender, e)
-                Cleanner.clean(form)
+                btnCleanClick.Invoke(sender, e)
             End If
         End If
     End Sub

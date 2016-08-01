@@ -50,6 +50,7 @@
         Select Case validableControl.Validator
             Case ValidatorType.Numeric, ValidatorType.Positive, ValidatorType.PositiveWithMax
                 AddHandler control.KeyPress, AddressOf numericKeyPressed
+                setRightAlign(control)
             Case ValidatorType.PositiveFloat, ValidatorType.StrictlyPositiveFloat
                 AddHandler control.KeyPress, AddressOf numericKeyOrDecimalSeparatorPressed
                 setRightAlign(control)

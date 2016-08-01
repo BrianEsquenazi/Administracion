@@ -15,23 +15,33 @@ Public Class ProveedoresABM
         cmbRubro.DisplayMember = "ToString"
         cmbRubro.ValueMember = "valueMember"
         cmbRubro.DataSource = DAORubroProveedor.buscarRubroProveedorPorDescripcion("")
-        cmbRegion.SelectedIndex = 0
-        cmbCondicionIB1.SelectedIndex = 0
-        cmbCondicionIB2.SelectedIndex = 2
-        cmbCategoria2.SelectedIndex = 0
+        limpiar()
 
         organizadorABM.addControls({txtCodigo, txtRazonSocial}, txtDireccion, txtLocalidad, {cmbProvincia, txtCodigoPostal, cmbRegion}, {txtTelefono, txtDiasPlazo}, txtEmail, {txtObservaciones, txtCUIT}, {cmbTipoProveedor, cmbIVA}, txtCuenta, txtCheque, {cmbCondicionIB1, txtNroIB, txtPorcelProv, txtPorcelCABA}, {cmbRubro, txtNroSEDRONAR1}, {cmbCategoria1, cmbInscripcionIB})
         organizadorABM.addCompactedControls({txtCAI, txtCAIVto}, cmbCertificados, cmbEstado, cmbCalificacion, {btnObservaciones, btnCUFE})
         organizadorABM.addAnnexedControls(New List(Of CustomControl) From {txtCuentaDescripcion, cmbCondicionIB2, txtNroSEDRONAR2, cmbCategoria2, txtCategoria, txtCertificados, txtCalificacion})
         organizadorABM.setAddButtonClick(AddressOf agregar)
         organizadorABM.setDeleteButtonClick(AddressOf borrar)
-        organizadorABM.setDefaultCleanButtonClick()
+        organizadorABM.setCleanButtonClick(AddressOf limpiar)
         organizadorABM.setDefaultCloseButtonClick()
         organizadorABM.setListButtonClick(AddressOf listado)
         organizadorABM.addQueryFunction(AddressOf DAOProveedor.buscarProveedorPorNombre, "Proveedores", AddressOf mostrarProveedor, txtCodigo)
         organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta, txtCuenta)
         organizadorABM.controlsDefinedBy("get_proveedor", AddressOf DAOProveedor.crearProveedor, AddressOf mostrarProveedor)
         organizadorABM.compactOrganize()
+    End Sub
+
+    Private Sub limpiar()
+        Cleanner.clean(Me)
+        setDefaults()
+    End Sub
+
+    Private Sub setDefaults()
+        cmbRegion.SelectedIndex = 0
+        cmbCondicionIB1.SelectedIndex = 0
+        cmbCondicionIB2.SelectedIndex = 2
+        cmbCategoria2.SelectedIndex = 0
+        cmbProvincia.SelectedIndex = 0
     End Sub
 
     Private Sub agregar()
@@ -188,12 +198,13 @@ Public Class ProveedoresABM
     End Sub
 
     Private Sub txtCodigo_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCodigo.Leave
-        Dim codigo As String = txtCodigo.Text
+        Dim codigo As String = txtCodigo.Text.ToString
         Dim proveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(codigo)
         If Not IsNothing(proveedor) Then
             mostrarProveedor(proveedor)
         Else
-            Cleanner.clean(Me)
+            Cleanner.cleanWithoutChangeFocus(Me)
+            setDefaults()
             txtCodigo.Text = codigo
         End If
     End Sub

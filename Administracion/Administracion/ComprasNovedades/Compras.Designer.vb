@@ -129,22 +129,22 @@ Partial Class Compras
         'optCtaCte
         '
         Me.optCtaCte.AutoSize = True
+        Me.optCtaCte.Checked = True
         Me.optCtaCte.Location = New System.Drawing.Point(76, 16)
         Me.optCtaCte.Name = "optCtaCte"
         Me.optCtaCte.Size = New System.Drawing.Size(66, 17)
         Me.optCtaCte.TabIndex = 1
+        Me.optCtaCte.TabStop = True
         Me.optCtaCte.Text = "Cta. Cte."
         Me.optCtaCte.UseVisualStyleBackColor = True
         '
         'optEfectivo
         '
         Me.optEfectivo.AutoSize = True
-        Me.optEfectivo.Checked = True
         Me.optEfectivo.Location = New System.Drawing.Point(6, 16)
         Me.optEfectivo.Name = "optEfectivo"
         Me.optEfectivo.Size = New System.Drawing.Size(64, 17)
         Me.optEfectivo.TabIndex = 0
-        Me.optEfectivo.TabStop = True
         Me.optEfectivo.Text = "Efectivo"
         Me.optEfectivo.UseVisualStyleBackColor = True
         '
@@ -294,7 +294,7 @@ Partial Class Compras
         '
         Me.txtIVA10.Cleanable = True
         Me.txtIVA10.Empty = False
-        Me.txtIVA10.EnterIndex = 22
+        Me.txtIVA10.EnterIndex = 20
         Me.txtIVA10.LabelAssociationKey = 23
         Me.txtIVA10.Location = New System.Drawing.Point(481, 159)
         Me.txtIVA10.Name = "txtIVA10"
@@ -306,7 +306,7 @@ Partial Class Compras
         '
         Me.txtDespacho.Cleanable = True
         Me.txtDespacho.Empty = True
-        Me.txtDespacho.EnterIndex = 23
+        Me.txtDespacho.EnterIndex = 21
         Me.txtDespacho.LabelAssociationKey = 22
         Me.txtDespacho.Location = New System.Drawing.Point(481, 133)
         Me.txtDespacho.MaxLength = 20
@@ -331,7 +331,7 @@ Partial Class Compras
         '
         Me.txtIVA27.Cleanable = True
         Me.txtIVA27.Empty = False
-        Me.txtIVA27.EnterIndex = 19
+        Me.txtIVA27.EnterIndex = 18
         Me.txtIVA27.LabelAssociationKey = 20
         Me.txtIVA27.Location = New System.Drawing.Point(300, 159)
         Me.txtIVA27.Name = "txtIVA27"
@@ -343,7 +343,7 @@ Partial Class Compras
         '
         Me.txtNoGravado.Cleanable = True
         Me.txtNoGravado.Empty = False
-        Me.txtNoGravado.EnterIndex = 21
+        Me.txtNoGravado.EnterIndex = 19
         Me.txtNoGravado.LabelAssociationKey = 21
         Me.txtNoGravado.Location = New System.Drawing.Point(300, 185)
         Me.txtNoGravado.Name = "txtNoGravado"
@@ -368,7 +368,7 @@ Partial Class Compras
         '
         Me.txtNeto.Cleanable = True
         Me.txtNeto.Empty = False
-        Me.txtNeto.EnterIndex = 16
+        Me.txtNeto.EnterIndex = 14
         Me.txtNeto.LabelAssociationKey = 15
         Me.txtNeto.Location = New System.Drawing.Point(115, 133)
         Me.txtNeto.Name = "txtNeto"
@@ -380,7 +380,7 @@ Partial Class Compras
         '
         Me.txtIVARG.Cleanable = True
         Me.txtIVARG.Empty = False
-        Me.txtIVARG.EnterIndex = 18
+        Me.txtIVARG.EnterIndex = 15
         Me.txtIVARG.LabelAssociationKey = 16
         Me.txtIVARG.Location = New System.Drawing.Point(115, 159)
         Me.txtIVARG.Name = "txtIVARG"
@@ -392,7 +392,7 @@ Partial Class Compras
         '
         Me.txtPercIB.Cleanable = True
         Me.txtPercIB.Empty = False
-        Me.txtPercIB.EnterIndex = 20
+        Me.txtPercIB.EnterIndex = 16
         Me.txtPercIB.LabelAssociationKey = 17
         Me.txtPercIB.Location = New System.Drawing.Point(115, 185)
         Me.txtPercIB.Name = "txtPercIB"
@@ -405,7 +405,7 @@ Partial Class Compras
         Me.txtParidad.Cleanable = True
         Me.txtParidad.Empty = True
         Me.txtParidad.Enabled = False
-        Me.txtParidad.EnterIndex = 15
+        Me.txtParidad.EnterIndex = 13
         Me.txtParidad.LabelAssociationKey = 14
         Me.txtParidad.Location = New System.Drawing.Point(559, 101)
         Me.txtParidad.Name = "txtParidad"
@@ -418,7 +418,7 @@ Partial Class Compras
         Me.cmbFormaPago.Cleanable = True
         Me.cmbFormaPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbFormaPago.Empty = False
-        Me.cmbFormaPago.EnterIndex = 14
+        Me.cmbFormaPago.EnterIndex = 12
         Me.cmbFormaPago.FormattingEnabled = True
         Me.cmbFormaPago.Items.AddRange(New Object() {"", "Pesos", "Cláusula Dólar"})
         Me.cmbFormaPago.LabelAssociationKey = 13
@@ -432,7 +432,7 @@ Partial Class Compras
         '
         Me.txtFechaVto2.Cleanable = True
         Me.txtFechaVto2.Empty = False
-        Me.txtFechaVto2.EnterIndex = 13
+        Me.txtFechaVto2.EnterIndex = 10
         Me.txtFechaVto2.LabelAssociationKey = 12
         Me.txtFechaVto2.Location = New System.Drawing.Point(181, 100)
         Me.txtFechaVto2.MaxLength = 10
@@ -458,7 +458,7 @@ Partial Class Compras
         '
         Me.txtFechaIVA.Cleanable = True
         Me.txtFechaIVA.Empty = False
-        Me.txtFechaIVA.EnterIndex = 10
+        Me.txtFechaIVA.EnterIndex = 8
         Me.txtFechaIVA.LabelAssociationKey = 10
         Me.txtFechaIVA.Location = New System.Drawing.Point(243, 74)
         Me.txtFechaIVA.MaxLength = 10
@@ -471,7 +471,7 @@ Partial Class Compras
         '
         Me.txtFechaVto1.Cleanable = True
         Me.txtFechaVto1.Empty = False
-        Me.txtFechaVto1.EnterIndex = 12
+        Me.txtFechaVto1.EnterIndex = 9
         Me.txtFechaVto1.LabelAssociationKey = 12
         Me.txtFechaVto1.Location = New System.Drawing.Point(100, 100)
         Me.txtFechaVto1.MaxLength = 10
@@ -484,7 +484,7 @@ Partial Class Compras
         '
         Me.txtFechaEmision.Cleanable = True
         Me.txtFechaEmision.Empty = False
-        Me.txtFechaEmision.EnterIndex = 9
+        Me.txtFechaEmision.EnterIndex = 7
         Me.txtFechaEmision.LabelAssociationKey = 9
         Me.txtFechaEmision.Location = New System.Drawing.Point(100, 74)
         Me.txtFechaEmision.MaxLength = 10
@@ -497,7 +497,7 @@ Partial Class Compras
         '
         Me.txtCAI.Cleanable = True
         Me.txtCAI.Empty = True
-        Me.txtCAI.EnterIndex = 3
+        Me.txtCAI.EnterIndex = -1
         Me.txtCAI.LabelAssociationKey = 3
         Me.txtCAI.Location = New System.Drawing.Point(599, 17)
         Me.txtCAI.MaxLength = 14
@@ -510,7 +510,7 @@ Partial Class Compras
         '
         Me.txtVtoCAI.Cleanable = True
         Me.txtVtoCAI.Empty = True
-        Me.txtVtoCAI.EnterIndex = 8
+        Me.txtVtoCAI.EnterIndex = -1
         Me.txtVtoCAI.LabelAssociationKey = 8
         Me.txtVtoCAI.Location = New System.Drawing.Point(630, 44)
         Me.txtVtoCAI.MaxLength = 10
@@ -523,7 +523,7 @@ Partial Class Compras
         '
         Me.txtNumero.Cleanable = True
         Me.txtNumero.Empty = False
-        Me.txtNumero.EnterIndex = 7
+        Me.txtNumero.EnterIndex = 6
         Me.txtNumero.LabelAssociationKey = 7
         Me.txtNumero.Location = New System.Drawing.Point(397, 45)
         Me.txtNumero.MaxLength = 8
@@ -537,7 +537,7 @@ Partial Class Compras
         '
         Me.txtPunto.Cleanable = True
         Me.txtPunto.Empty = False
-        Me.txtPunto.EnterIndex = 6
+        Me.txtPunto.EnterIndex = 5
         Me.txtPunto.LabelAssociationKey = 6
         Me.txtPunto.Location = New System.Drawing.Point(277, 44)
         Me.txtPunto.MaxLength = 4
@@ -551,7 +551,7 @@ Partial Class Compras
         '
         Me.txtLetra.Cleanable = True
         Me.txtLetra.Empty = False
-        Me.txtLetra.EnterIndex = 5
+        Me.txtLetra.EnterIndex = 4
         Me.txtLetra.LabelAssociationKey = 5
         Me.txtLetra.Location = New System.Drawing.Point(197, 44)
         Me.txtLetra.MaxLength = 1
@@ -565,13 +565,13 @@ Partial Class Compras
         Me.cmbTipo.Cleanable = True
         Me.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTipo.Empty = False
-        Me.cmbTipo.EnterIndex = -1
+        Me.cmbTipo.EnterIndex = 3
         Me.cmbTipo.FormattingEnabled = True
         Me.cmbTipo.Items.AddRange(New Object() {"FC", "ND", "NC"})
         Me.cmbTipo.LabelAssociationKey = 4
-        Me.cmbTipo.Location = New System.Drawing.Point(86, 43)
+        Me.cmbTipo.Location = New System.Drawing.Point(57, 43)
         Me.cmbTipo.Name = "cmbTipo"
-        Me.cmbTipo.Size = New System.Drawing.Size(68, 21)
+        Me.cmbTipo.Size = New System.Drawing.Size(97, 21)
         Me.cmbTipo.TabIndex = 30
         Me.cmbTipo.Validator = Administracion.ValidatorType.None
         '
@@ -587,6 +587,7 @@ Partial Class Compras
         Me.txtTipo.Size = New System.Drawing.Size(26, 20)
         Me.txtTipo.TabIndex = 29
         Me.txtTipo.Validator = Administracion.ValidatorType.None
+        Me.txtTipo.Visible = False
         '
         'txtNombreProveedor
         '

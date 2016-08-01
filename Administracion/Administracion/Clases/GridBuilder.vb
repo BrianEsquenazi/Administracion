@@ -114,7 +114,7 @@
             If iRow < dataGrid.Rows.Count - 1 Then
                 SendKeys.Send("{up}")
             End If
-            'SendKeys.Send("{right}")
+            SendKeys.Send("{enter}")
         End If
     End Sub
 
