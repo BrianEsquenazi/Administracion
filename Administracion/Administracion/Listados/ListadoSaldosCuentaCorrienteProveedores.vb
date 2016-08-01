@@ -99,7 +99,7 @@ Public Class ListadoSaldosCuentaCorrienteProveedores
         txtDos = " and {CtaCtePrv.Saldo} <> 0"
         txtFormula = txtUno + txtDos
 
-        Dim viewer As New ReportViewer("saldos de ctacte", "c:\FcElectronica\wsaldoprvnet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("saldos de ctacte", "c:\crystal\wsaldoprvnet.rpt", txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()

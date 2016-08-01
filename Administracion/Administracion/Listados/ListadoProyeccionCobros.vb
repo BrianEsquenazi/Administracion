@@ -5,8 +5,8 @@ Public Class ListadoProyeccionCobros
 
     Private Sub ListadoProyeccionCobros_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtAyuda.Text = ""
-        txtDesdeProveedor.Text = ""
-        txtHastaProveedor.Text = ""
+        txtDesdeProveedor.Text = "0"
+        txtHastaProveedor.Text = "99999999999"
         txtFecha1.Text = "  /  /    "
         txtFecha2.Text = "  /  /    "
         txtFecha3.Text = "  /  /    "
@@ -148,4 +148,25 @@ Public Class ListadoProyeccionCobros
 
 
 
+    Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
+
+        Dim txtUno As String
+
+        Dim txtFormula As String
+        Dim x As Char = Chr(34)
+
+        txtUno = "{ImpCtaCtePrvNet.Proveedor} in " + x + "0" + x + " to " + x + "99999999999" + x
+        txtFormula = txtUno
+
+        Dim viewer As New ReportViewer("Proyeccion de Cobros de Corriente de Proveedres", "c:\Crystal\wProyccprvnet.rpt", txtFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
+        End If
+
+
+
+    End Sub
 End Class

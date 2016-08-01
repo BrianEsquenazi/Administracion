@@ -37,9 +37,9 @@ Partial Class ListadoImputacionesContable
         Me.txtAyuda = New Administracion.CustomTextBox()
         Me.lstAyuda = New Administracion.CustomListBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.chkPagos = New System.Windows.Forms.CheckBox()
-        Me.chkRecibos = New System.Windows.Forms.CheckBox()
         Me.chkDepositos = New System.Windows.Forms.CheckBox()
+        Me.chkRecibos = New System.Windows.Forms.CheckBox()
+        Me.chkPagos = New System.Windows.Forms.CheckBox()
         Me.txtDesdeCuenta = New System.Windows.Forms.TextBox()
         Me.txtHastaCuenta = New System.Windows.Forms.TextBox()
         Me.TipoListado = New System.Windows.Forms.ComboBox()
@@ -202,15 +202,15 @@ Partial Class ListadoImputacionesContable
         Me.GroupBox1.TabIndex = 44
         Me.GroupBox1.TabStop = False
         '
-        'chkPagos
+        'chkDepositos
         '
-        Me.chkPagos.AutoSize = True
-        Me.chkPagos.Location = New System.Drawing.Point(27, 17)
-        Me.chkPagos.Name = "chkPagos"
-        Me.chkPagos.Size = New System.Drawing.Size(56, 17)
-        Me.chkPagos.TabIndex = 0
-        Me.chkPagos.Text = "Pagos"
-        Me.chkPagos.UseVisualStyleBackColor = True
+        Me.chkDepositos.AutoSize = True
+        Me.chkDepositos.Location = New System.Drawing.Point(288, 16)
+        Me.chkDepositos.Name = "chkDepositos"
+        Me.chkDepositos.Size = New System.Drawing.Size(73, 17)
+        Me.chkDepositos.TabIndex = 2
+        Me.chkDepositos.Text = "Depositos"
+        Me.chkDepositos.UseVisualStyleBackColor = True
         '
         'chkRecibos
         '
@@ -222,15 +222,15 @@ Partial Class ListadoImputacionesContable
         Me.chkRecibos.Text = "Recibos"
         Me.chkRecibos.UseVisualStyleBackColor = True
         '
-        'chkDepositos
+        'chkPagos
         '
-        Me.chkDepositos.AutoSize = True
-        Me.chkDepositos.Location = New System.Drawing.Point(288, 16)
-        Me.chkDepositos.Name = "chkDepositos"
-        Me.chkDepositos.Size = New System.Drawing.Size(73, 17)
-        Me.chkDepositos.TabIndex = 2
-        Me.chkDepositos.Text = "Depositos"
-        Me.chkDepositos.UseVisualStyleBackColor = True
+        Me.chkPagos.AutoSize = True
+        Me.chkPagos.Location = New System.Drawing.Point(27, 17)
+        Me.chkPagos.Name = "chkPagos"
+        Me.chkPagos.Size = New System.Drawing.Size(56, 17)
+        Me.chkPagos.TabIndex = 0
+        Me.chkPagos.Text = "Pagos"
+        Me.chkPagos.UseVisualStyleBackColor = True
         '
         'txtDesdeCuenta
         '

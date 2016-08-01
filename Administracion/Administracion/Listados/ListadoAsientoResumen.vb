@@ -127,4 +127,41 @@ Public Class ListadoAsientoResumen
     End Sub
 
 
+    Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
+        Dim txtDesde As String
+        Dim txtHasta As String
+        Dim txtUno As String
+        Dim txtDos As String
+        Dim txtFormula As String
+        Dim x As Char = Chr(34)
+
+        txtDesde = ordenaFecha(txtDesdeFecha.Text)
+        txtHasta = ordenaFecha(txthastafecha.Text)
+
+        txtUno = "{Imputac.Cuenta} in " + x + txtDesdeCuenta.Text + x + " to " + x + txtHastaCuenta.Text + x
+        txtDos = " and {Imputac.Fechaord} in " + x + txtDesde + x + " to " + x + txtHasta + x
+
+        txtFormula = txtUno + txtDos
+
+        Select Case TipoListado.SelectedIndex
+            Case 0
+                Dim viewer As New ReportViewer("Listado de Imputaciones Contables", "c:\Crystal\WImputaNet.rpt", txtFormula)
+
+                If opcPantalla.Checked = True Then
+                    viewer.Show()
+                Else
+                    viewer.imprimirReporte()
+                End If
+
+            Case Else
+                Dim viewer As New ReportViewer("Listado de Imputaciones Contables", "c:\Crystal\WImputa2Net.rpt", txtFormula)
+
+                If opcPantalla.Checked = True Then
+                    viewer.Show()
+                Else
+                    viewer.imprimirReporte()
+                End If
+        End Select
+
+    End Sub
 End Class

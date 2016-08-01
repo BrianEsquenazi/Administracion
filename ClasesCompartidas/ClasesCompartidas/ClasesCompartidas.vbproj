@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banco.vb" />
+    <Compile Include="CtaCteProveedorDeudaDesdeHasta.vb" />
     <Compile Include="Cliente.vb" />
     <Compile Include="CapaDAO\SQLConnector.vb" />
     <Compile Include="Cheque.vb" />
