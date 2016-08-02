@@ -79,4 +79,8 @@ Public Class DAOProveedor
         Return DAOCuentaContable.buscarCuentaContablePorCodigo("2001")
     End Function
 
+    Public Shared Function bancoNacion()
+        Return DAOProveedor.buscarProveedorPorCodigo("10077777777")
+    End Function
+
 End Class

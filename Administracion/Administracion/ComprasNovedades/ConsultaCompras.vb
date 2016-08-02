@@ -3,13 +3,15 @@
     Dim duenio As Compras
     Dim query As QueryFunction
     Dim showMethod As ShowMethod
+    Dim onlyProveedores As Boolean
 
-    Public Sub New(ByVal form As Form)
+    Public Sub New(ByVal form As Form, Optional ByVal isForProveedores As Boolean = False)
         InitializeComponent()
         duenio = form
+        onlyProveedores = isForProveedores
     End Sub
 
-    Private Sub lstSeleccion_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstSeleccion.DoubleClick
+    Private Sub lstSeleccion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstSeleccion.Click
         If lstSeleccion.SelectedItem = "Proveedores" Then
             query = AddressOf DAOProveedor.buscarProveedorPorNombre
             showMethod = AddressOf duenio.mostrarProveedor
@@ -27,6 +29,10 @@
 
     Private Sub ConsultaCompras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Me.Size = New System.Drawing.Size(200, 100)
+        If onlyProveedores Then
+            lstSeleccion.SelectedItem = "Proveedores"
+            lstSeleccion_Click(Nothing, Nothing)
+        End If
     End Sub
 
     Private Sub txtConsulta_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtConsulta.KeyDown
@@ -35,7 +41,7 @@
         End If
     End Sub
 
-    Private Sub lstConsulta_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConsulta.DoubleClick
+    Private Sub lstConsulta_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConsulta.Click
         showMethod.Invoke(lstConsulta.SelectedValue)
         Close()
     End Sub

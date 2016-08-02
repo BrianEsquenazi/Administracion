@@ -355,7 +355,7 @@ Partial Class ProveedoresABM
         'txtCuentaDescripcion
         '
         Me.txtCuentaDescripcion.Cleanable = True
-        Me.txtCuentaDescripcion.Empty = False
+        Me.txtCuentaDescripcion.Empty = True
         Me.txtCuentaDescripcion.Enabled = False
         Me.txtCuentaDescripcion.EnterIndex = -1
         Me.txtCuentaDescripcion.LabelAssociationKey = 15
@@ -369,7 +369,7 @@ Partial Class ProveedoresABM
         'txtCuenta
         '
         Me.txtCuenta.Cleanable = True
-        Me.txtCuenta.Empty = False
+        Me.txtCuenta.Empty = True
         Me.txtCuenta.EnterIndex = 15
         Me.txtCuenta.LabelAssociationKey = 15
         Me.txtCuenta.Location = New System.Drawing.Point(116, 226)
@@ -377,7 +377,7 @@ Partial Class ProveedoresABM
         Me.txtCuenta.Name = "txtCuenta"
         Me.txtCuenta.Size = New System.Drawing.Size(79, 20)
         Me.txtCuenta.TabIndex = 44
-        Me.txtCuenta.Validator = Administracion.ValidatorType.NotEmpty
+        Me.txtCuenta.Validator = Administracion.ValidatorType.None
         '
         'cmbInscripcionIB
         '
@@ -398,7 +398,7 @@ Partial Class ProveedoresABM
         '
         Me.cmbCategoria2.Cleanable = True
         Me.cmbCategoria2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCategoria2.Empty = False
+        Me.cmbCategoria2.Empty = True
         Me.cmbCategoria2.EnterIndex = 26
         Me.cmbCategoria2.FormattingEnabled = True
         Me.cmbCategoria2.Items.AddRange(New Object() {"Sin Calificar", "Muy Bueno", "Bueno", "Regular", "Malo"})
@@ -428,7 +428,7 @@ Partial Class ProveedoresABM
         '
         Me.cmbCondicionIB2.Cleanable = True
         Me.cmbCondicionIB2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCondicionIB2.Empty = False
+        Me.cmbCondicionIB2.Empty = True
         Me.cmbCondicionIB2.EnterIndex = 18
         Me.cmbCondicionIB2.FormattingEnabled = True
         Me.cmbCondicionIB2.Items.AddRange(New Object() {"", "", "Exento", "Reteniente"})
@@ -443,7 +443,7 @@ Partial Class ProveedoresABM
         '
         Me.cmbCondicionIB1.Cleanable = True
         Me.cmbCondicionIB1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCondicionIB1.Empty = False
+        Me.cmbCondicionIB1.Empty = True
         Me.cmbCondicionIB1.EnterIndex = 17
         Me.cmbCondicionIB1.FormattingEnabled = True
         Me.cmbCondicionIB1.Items.AddRange(New Object() {"Bienes", "Servicio", "Exento", "Ciudad Normal", "Ciudad Riesgo"})
@@ -571,7 +571,7 @@ Partial Class ProveedoresABM
         '
         Me.cmbRegion.Cleanable = True
         Me.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbRegion.Empty = False
+        Me.cmbRegion.Empty = True
         Me.cmbRegion.EnterIndex = 7
         Me.cmbRegion.FormattingEnabled = True
         Me.cmbRegion.Items.AddRange(New Object() {"Fuera Mercosur", "Mercosur"})

@@ -79,7 +79,11 @@ Public Class Depositos
         gridCheques.AllowUserToAddRows = True
         gridCheques.Columns(0).ReadOnly = False
         gridCheques.Columns(4).ReadOnly = False
-        lblTotal.Text = sumaImportes()
+        sumarImportes()
+    End Sub
+
+    Private Sub sumarImportes()
+        lblTotal.Text = CustomConvert.toStringWithTwoDecimalPlaces(sumaImportes)
     End Sub
 
     Private Sub mostrarSeleccionDeConsulta()
@@ -120,17 +124,17 @@ Public Class Depositos
             End If
             If msgBoxResult Then
                 cheques.Add(cheque)
-                gridCheques.Rows.Add(3, cheque.numero, cheque.fecha, cheque.banco, cheque.importe)
+                gridCheques.Rows.Add(3, cheque.numero, cheque.fecha, cheque.banco, CustomConvert.toStringWithTwoDecimalPlaces(cheque.importe))
                 gridCheques.AllowUserToAddRows = False
                 gridCheques.Columns(0).ReadOnly = True
                 gridCheques.Columns(4).ReadOnly = True
                 lstConsulta.Items.Remove(lstConsulta.SelectedItem)
             End If
-            lblTotal.Text = sumaImportes()
+            sumarImportes()
         End If
     End Sub
 
-    Private Sub lstSeleccion_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstSeleccion.DoubleClick
+    Private Sub lstSeleccion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstSeleccion.Click
         If lstSeleccion.SelectedItem = "Bancos" Then
             showFunction = AddressOf mostrarBanco
             lstConsulta.DataSource = DAOBanco.buscarBancoPorNombre("")
@@ -144,20 +148,21 @@ Public Class Depositos
         lstConsulta.Visible = True
     End Sub
 
-    Private Sub lstConsulta_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConsulta.DoubleClick
+    Private Sub lstConsulta_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConsulta.Click
         showFunction.Invoke(lstConsulta.SelectedItem)
         If lstSeleccion.SelectedItem = "Bancos" Then
             lstConsulta.Visible = False
             Me.Width = formNormalWidth()
+            txtCodigoBanco.Focus()
         End If
     End Sub
 
     Private Sub gridCheques_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridCheques.CellValueChanged
-        lblTotal.Text = sumaImportes()
+        sumarImportes()
     End Sub
 
     Private Sub gridCheques_UserAddedRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowEventArgs) Handles gridCheques.UserAddedRow
-        lblTotal.Text = sumaImportes()
+        sumarImportes()
     End Sub
 
     Private Sub gridCheques_UserDeletingRow(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles gridCheques.UserDeletingRow
@@ -165,7 +170,7 @@ Public Class Depositos
         If Not IsNothing(chequeABorrar) Then
             cheques.Remove(chequeABorrar)
         End If
-        lblTotal.Text = sumaImportes()
+        sumarImportes()
     End Sub
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
@@ -199,6 +204,6 @@ Public Class Depositos
     Private Sub txtCodigoBanco_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigoBanco.DoubleClick
         lstSeleccion.SelectedIndex = 0
         btnConsulta_Click(sender, e)
-        lstSeleccion_DoubleClick(sender, e)
+        lstSeleccion_Click(sender, e)
     End Sub
 End Class

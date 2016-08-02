@@ -2,6 +2,19 @@
     Private Shared controls As New List(Of CustomControl)
 
     Public Shared Sub clean(ByVal form As Form)
+        cleanWithoutChangeFocus(form)
+        changeFocus()
+    End Sub
+
+    Private Shared Sub changeFocus()
+        Dim firstControl As Control
+        firstControl = controls.Find(Function(control) control.EnterIndex = 1)
+        If Not IsNothing(firstControl) Then
+            firstControl.Focus()
+        End If
+    End Sub
+
+    Public Shared Sub cleanWithoutChangeFocus(ByVal form As Form)
         For Each txtBox As CustomTextBox In form.Controls.OfType(Of CustomTextBox)()
             If txtBox.Cleanable Then
                 If txtBox.Validator = ValidatorType.DateFormat Then
@@ -32,11 +45,6 @@
             End If
             controls.Add(btn)
         Next
-
-        Dim firstControl As Control
-        firstControl = controls.Find(Function(control) control.EnterIndex = 1)
-        If Not IsNothing(firstControl) Then
-            firstControl.Focus()
-        End If
     End Sub
+
 End Class
