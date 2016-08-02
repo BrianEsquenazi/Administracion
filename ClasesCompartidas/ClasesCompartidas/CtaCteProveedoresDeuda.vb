@@ -10,7 +10,7 @@
             ByVal total2 As Double,
             ByVal saldo2 As Double,
             ByVal fecha2 As String,
-            ByVal vencimiento2 As String)
+            ByVal Vencimiento2 As String)
         Tipo = tipo2
         letra = letra2
         punto = punto2
@@ -18,7 +18,7 @@
         total = total2
         saldo = saldo2
         fecha = fecha2
-        vencimiento = vencimiento2
+        vencimiento = Vencimiento2
     End Sub
 
 

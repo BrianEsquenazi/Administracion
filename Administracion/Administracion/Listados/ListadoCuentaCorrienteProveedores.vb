@@ -111,12 +111,14 @@ Public Class ListadoCuentaCorrienteProveedores
 
         For Each row As DataRow In tabla.Rows
 
-            Dim CamposCtaCtePrv As New CtaCteProveedoresDeuda(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString, row.Item(3).ToString, row.Item(4), row.Item(5), row.Item(6).ToString, row.Item(7).ToString)
+            Dim CCPrv As New CtaCteProveedoresDeudaDesdeHasta(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString, row.Item(3).ToString, row.Item(4), row.Item(5), row.Item(6).ToString, row.Item(7).ToString)
 
-            dada = CamposCtaCtePrv.Tipo
-            dada = CamposCtaCtePrv.numero
+            SQLConnector.executeProcedure("alta_impCtaCtePrvNet", CCPrv.clave, CCPrv.proveedor, CCPrv.letra, CCPrv.Tipo, CCPrv.punto, CCPrv.numero)
 
-            WSuma = WSuma + CamposCtaCtePrv.saldo
+            dada = CCPrv.Tipo
+            dada = CCPrv.numero
+
+            WSuma = WSuma + CCPrv.saldo
 
         Next
 

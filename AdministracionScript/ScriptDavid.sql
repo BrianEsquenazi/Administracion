@@ -125,7 +125,7 @@ AS
 	FROM dbo.impCtaCtePrvNet 
 GO
 
-CREATE PROCEDURE PR_alta_impCtaCtePrvNet 
+CREATE PROCEDURE PR_alta_	
 	(@clave varchar(26),
 	@proveedor varchar(11),
 	@letra varchar(1),
