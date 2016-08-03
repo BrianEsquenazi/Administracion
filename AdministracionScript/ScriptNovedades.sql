@@ -812,21 +812,16 @@ AS
 GO
 
 CREATE procedure PR_get_siguiente_deposito
-	@Clave VarChar(8)
 AS
 BEGIN
 	
-	declare @clave_siguiente varchar(8)
-	
-	IF ((SELECT MAX(clave) FROM Depositos) = @Clave)
-		SET @clave_siguiente = (SELECT MIN(Clave) 
-								FROM Depositos)
-	ELSE
-		SELECT TOP 1 Clave = @clave_siguiente
-		FROM Depositos d
-		WHERE Clave > @clave
-		ORDER BY d.Clave
+	declare @deposito_siguiente varchar(6)
+	declare @clave_max varchar(8) = (SELECT MAX(clave) FROM Depositos)
 
-	return @clave_siguiente
+	SELECT @deposito_siguiente = d.Deposito
+	FROM Depositos d
+	WHERE d.Clave = @clave_max
+	
+	return (CONVERT(int, @deposito_siguiente) + 1)
 END
 GO
