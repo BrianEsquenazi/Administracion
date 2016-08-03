@@ -85,7 +85,6 @@ Partial Class ModificaIntereses
         '
         'fechaOriginal
         '
-        Me.fechaOriginal.Frozen = True
         Me.fechaOriginal.HeaderText = "Fecha"
         Me.fechaOriginal.Name = "fechaOriginal"
         Me.fechaOriginal.ReadOnly = True
@@ -93,17 +92,14 @@ Partial Class ModificaIntereses
         '
         'desProveOriginal
         '
-        Me.desProveOriginal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.desProveOriginal.Frozen = True
+        Me.desProveOriginal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.desProveOriginal.HeaderText = "Razon"
         Me.desProveOriginal.Name = "desProveOriginal"
         Me.desProveOriginal.ReadOnly = True
-        Me.desProveOriginal.Width = 63
         '
         'facturaOriginal
         '
         Me.facturaOriginal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.facturaOriginal.Frozen = True
         Me.facturaOriginal.HeaderText = "Factura"
         Me.facturaOriginal.Name = "facturaOriginal"
         Me.facturaOriginal.ReadOnly = True
@@ -112,7 +108,6 @@ Partial Class ModificaIntereses
         'cuota
         '
         Me.cuota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.cuota.Frozen = True
         Me.cuota.HeaderText = "Cuota"
         Me.cuota.Name = "cuota"
         Me.cuota.ReadOnly = True
@@ -121,7 +116,6 @@ Partial Class ModificaIntereses
         'fecha
         '
         Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.fecha.Frozen = True
         Me.fecha.HeaderText = "Vencimiento"
         Me.fecha.Name = "fecha"
         Me.fecha.ReadOnly = True
@@ -132,7 +126,6 @@ Partial Class ModificaIntereses
         Me.saldo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         Me.saldo.DefaultCellStyle = DataGridViewCellStyle1
-        Me.saldo.Frozen = True
         Me.saldo.HeaderText = "Saldo"
         Me.saldo.Name = "saldo"
         Me.saldo.ReadOnly = True
@@ -143,7 +136,6 @@ Partial Class ModificaIntereses
         Me.intereses.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         Me.intereses.DefaultCellStyle = DataGridViewCellStyle2
-        Me.intereses.Frozen = True
         Me.intereses.HeaderText = "Intereses"
         Me.intereses.Name = "intereses"
         Me.intereses.Width = 75
@@ -153,7 +145,6 @@ Partial Class ModificaIntereses
         Me.ivaIntereses.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         Me.ivaIntereses.DefaultCellStyle = DataGridViewCellStyle3
-        Me.ivaIntereses.Frozen = True
         Me.ivaIntereses.HeaderText = "Iva Int."
         Me.ivaIntereses.Name = "ivaIntereses"
         Me.ivaIntereses.Width = 65
@@ -161,7 +152,6 @@ Partial Class ModificaIntereses
         'referencia
         '
         Me.referencia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.referencia.Frozen = True
         Me.referencia.HeaderText = "Referencia"
         Me.referencia.Name = "referencia"
         Me.referencia.Width = 84
@@ -175,7 +165,6 @@ Partial Class ModificaIntereses
         '
         'nroInterno
         '
-        Me.nroInterno.Frozen = True
         Me.nroInterno.HeaderText = "N° Interno"
         Me.nroInterno.Name = "nroInterno"
         Me.nroInterno.Visible = False
