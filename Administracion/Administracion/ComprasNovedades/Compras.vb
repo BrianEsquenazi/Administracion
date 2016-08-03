@@ -363,6 +363,7 @@ Public Class Compras
                 gridAsientos.Rows(e.RowIndex).Cells(1).Value = cuenta.descripcion
             Else
                 gridAsientos.Rows(e.RowIndex).Cells(1).Value = ""
+                gridAsientos.Rows(e.RowIndex).Cells(0).Value = ""
             End If
         End If
     End Sub
@@ -430,6 +431,8 @@ Public Class Compras
     End Sub
 
     Private Sub btnConsultaNroFactura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsultaNroFactura.Click
+        Dim consulta As New ConsultaNumeroFactura
+        consulta.ShowDialog(Me)
     End Sub
 
     Private Sub btnApertura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApertura.Click

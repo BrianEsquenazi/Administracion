@@ -826,7 +826,7 @@ END
 GO
 
 CREATE procedure PR_get_interno_segun
-	(@codigo varchar(26)
+	(@codigo varchar(11)
 	, @tipo varchar(2)
 	, @letra varchar(1)
 	, @punto varchar(4)
@@ -834,10 +834,10 @@ CREATE procedure PR_get_interno_segun
 AS
 BEGIN
 	
-	declare @clave varchar(41) = @codigo + @tipo + @letra + @punto + @numero
+	declare @clave varchar(26) = @codigo + @letra + @tipo + @punto + @numero
 	declare @numero_int varchar(8)
 
-	SELECT @numero_int = ccp.Numero
+	SELECT @numero_int = ccp.NroInterno
 	FROM CtaCtePrv ccp
 	WHERE ccp.Clave = @clave
 		

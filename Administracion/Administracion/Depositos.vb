@@ -12,12 +12,11 @@ Public Class Depositos
         dataGridBuilder.addDateColumn(2, "Fecha")
         dataGridBuilder.addTextColumn(3, "Nombre")
         dataGridBuilder.addPositiveFloatColumn(4, "Importe")
-        lstSeleccion.SelectedIndex = 0
+        
         Me.Width = formNormalWidth()
         Dim commonEventsHandler As New CommonEventsHandler
         commonEventsHandler.setIndexTab(Me)
-        txtFecha.Text = Date.Today
-        txtFechaAcreditacion.Text = Date.Today
+        btnLimpiar.PerformClick()
     End Sub
 
     Private Function sumaImportes() As Double
@@ -73,7 +72,10 @@ Public Class Depositos
 
     Private Sub btnLimpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLimpiar.Click
         Cleanner.clean(Me)
-        txtNroDeposito.Text = DAODeposito.siguienteNumero()
+        lstSeleccion.SelectedIndex = 0
+        txtFecha.Text = Date.Today
+        txtFechaAcreditacion.Text = Date.Today
+        txtNroDeposito.Text = ceros(DAODeposito.siguienteNumero(), 6)
         gridCheques.Rows.Clear()
         cheques.Clear()
         Me.Width = formNormalWidth()

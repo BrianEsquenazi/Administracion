@@ -39,6 +39,11 @@ Public Class ConsultaNumeroFactura
     End Sub
 
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
-        DAOCompras.buscarNumeroIntero(txtCodigoProveedor.Text, txtTipo.Text, txtLetra.Text, txtPunto.Text, txtNumero.Text)
+        Dim numero As Integer = DAOCompras.buscarNumeroIntero(txtCodigoProveedor.Text, txtTipo.Text, txtLetra.Text, txtPunto.Text, txtNumero.Text)
+        If numero <> 0 Then
+            MsgBox("El número de factura es: " & numero)
+        Else
+            MsgBox("No se encontró un número de factura con esos datos")
+        End If
     End Sub
 End Class

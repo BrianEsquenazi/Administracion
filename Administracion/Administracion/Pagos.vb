@@ -34,8 +34,7 @@ Public Class Pagos
 
         Dim commonEventHandler As New CommonEventsHandler
         commonEventHandler.setIndexTab(Me)
-        txtFecha.Text = Date.Today.ToShortDateString
-        txtFechaParidad.Text = Date.Today.ToShortDateString
+        btnLimpiar.PerformClick()
     End Sub
 
     Private Function validarDatos() As Boolean
@@ -80,7 +79,7 @@ Public Class Pagos
     Private Sub txtObservaciones_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtObservaciones.Leave
         If gridPagos.Rows.Count = 0 Then
             lstSeleccion.SelectedIndex = 1
-            lstSeleccion_DoubleClick(Nothing, Nothing)
+            lstSeleccion_Click(Nothing, Nothing)
         Else
             gridPagos.CurrentCell = gridPagos.Rows(0).Cells(4)
             gridPagos.Select()
@@ -221,7 +220,7 @@ Public Class Pagos
         mostrarOrdenDePago(DAOPagos.buscarOrdenPorNumero(txtOrdenPago.Text))
     End Sub
 
-    Private Sub lstSeleccion_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstSeleccion.DoubleClick
+    Private Sub lstSeleccion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstSeleccion.Click
         queryController = lstSeleccion.SelectedItem
         lstSeleccion.Visible = False
         lstConsulta.Visible = True
@@ -250,15 +249,23 @@ Public Class Pagos
         End If
     End Sub
 
-    Private Sub lstConsulta_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstConsulta.DoubleClick
+    Private Sub lstConsulta_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConsulta.Click
         queryController.showMethod.Invoke(lstConsulta.SelectedValue)
-        lstConsulta.Visible = False
+        If queryController.text <> "Cuentas Corrientes" Then
+            lstConsulta.Visible = False
+        End If
         txtConsulta.Visible = False
         txtConsulta.Text = ""
     End Sub
 
     Private Sub btnLimpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLimpiar.Click
         Cleanner.clean(Me)
+        txtIBCiudad.Text = "0,00"
+        txtIngresosBrutos.Text = "0,00"
+        txtGanancias.Text = "0,00"
+        txtIVA.Text = "0,00"
+        txtFecha.Text = Date.Today.ToShortDateString
+        txtFechaParidad.Text = Date.Today.ToShortDateString
         gridPagos.Rows.Clear()
         pagos.Clear()
         gridFormaPagos.Rows.Clear()
@@ -331,7 +338,7 @@ Public Class Pagos
             Case 3
                 chequeRow = rowIndex
                 lstSeleccion.SelectedIndex = 2
-                lstSeleccion_DoubleClick(Nothing, Nothing)
+                lstSeleccion_Click(Nothing, Nothing)
                 Exit Sub
             Case 5
                 nombre = "US$"
