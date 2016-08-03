@@ -97,6 +97,9 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_siguiente_deposito]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_interno_segun]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_interno_segun]
+GO
 
 /*
 		GENERACION NOVEDADES
@@ -815,13 +818,29 @@ CREATE procedure PR_get_siguiente_deposito
 AS
 BEGIN
 	
-	declare @deposito_siguiente varchar(6)
-	declare @clave_max varchar(8) = (SELECT MAX(clave) FROM Depositos)
 
-	SELECT @deposito_siguiente = d.Deposito
-	FROM Depositos d
-	WHERE d.Clave = @clave_max
-	
+	declare @deposito_siguiente varchar(8) = (SELECT MAX(Deposito) FROM Depositos)
+
 	return (CONVERT(int, @deposito_siguiente) + 1)
+END
+GO
+
+CREATE procedure PR_get_interno_segun
+	(@codigo varchar(26)
+	, @tipo varchar(2)
+	, @letra varchar(1)
+	, @punto varchar(4)
+	, @numero varchar(8))
+AS
+BEGIN
+	
+	declare @clave varchar(41) = @codigo + @tipo + @letra + @punto + @numero
+	declare @numero_int varchar(8)
+
+	SELECT @numero_int = ccp.Numero
+	FROM CtaCtePrv ccp
+	WHERE ccp.Clave = @clave
+		
+	return (CONVERT(int, @numero_int))
 END
 GO
