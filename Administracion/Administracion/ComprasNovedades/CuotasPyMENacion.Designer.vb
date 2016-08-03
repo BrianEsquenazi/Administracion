@@ -56,7 +56,7 @@ Partial Class CuotasPyMENacion
         Me.txtCantidadCuotas.EnterIndex = 1
         Me.txtCantidadCuotas.LabelAssociationKey = 1
         Me.txtCantidadCuotas.Location = New System.Drawing.Point(113, 13)
-        Me.txtCantidadCuotas.MaxLength = 3
+        Me.txtCantidadCuotas.MaxLength = 2
         Me.txtCantidadCuotas.Name = "txtCantidadCuotas"
         Me.txtCantidadCuotas.Size = New System.Drawing.Size(52, 20)
         Me.txtCantidadCuotas.TabIndex = 2
@@ -69,7 +69,7 @@ Partial Class CuotasPyMENacion
         Me.txtMes.EnterIndex = 2
         Me.txtMes.LabelAssociationKey = 2
         Me.txtMes.Location = New System.Drawing.Point(113, 44)
-        Me.txtMes.MaxLength = 3
+        Me.txtMes.MaxLength = 2
         Me.txtMes.Name = "txtMes"
         Me.txtMes.Size = New System.Drawing.Size(52, 20)
         Me.txtMes.TabIndex = 3
@@ -82,7 +82,7 @@ Partial Class CuotasPyMENacion
         Me.txtAnio.EnterIndex = 3
         Me.txtAnio.LabelAssociationKey = 2
         Me.txtAnio.Location = New System.Drawing.Point(171, 44)
-        Me.txtAnio.MaxLength = 5
+        Me.txtAnio.MaxLength = 4
         Me.txtAnio.Name = "txtAnio"
         Me.txtAnio.Size = New System.Drawing.Size(65, 20)
         Me.txtAnio.TabIndex = 4

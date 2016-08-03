@@ -2,6 +2,10 @@
 
 Public Class DAOCompras
 
+    Public Shared Function buscarNumeroIntero(ByVal codigoProveedor As String, ByVal tipo As String, ByVal letra As String, ByVal punto As String, ByVal numero As String)
+        Return SQLConnector.executeProcedureWithReturnValue("get_interno_segun", codigoProveedor, tipo, letra, punto, numero)
+    End Function
+
     Public Shared Sub agregarDatosCuentaCorriente(ByVal compra As Compra)
         Dim datosCuotas As New List(Of Tuple(Of String, String, String, Double, Double)) '1: Numero 2: Fecha vto 3: Fecha vto 2 4: Total 5: Saldo
         datosCuotas.Add(Tuple.Create(compra.numero, compra.fechaVto1, compra.fechaVto2, compra.total, compra.total))

@@ -159,6 +159,12 @@
     <Compile Include="ComprasNovedades\AperturaCompras.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ComprasNovedades\ConsultaNumeroFactura.Designer.vb">
+      <DependentUpon>ConsultaNumeroFactura.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ComprasNovedades\ConsultaNumeroFactura.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ComprasNovedades\CuotasPyMENacion.Designer.vb">
       <DependentUpon>CuotasPyMENacion.vb</DependentUpon>
     </Compile>
@@ -494,6 +500,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprasNovedades\AperturaCompras.resx">
       <DependentUpon>AperturaCompras.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprasNovedades\ConsultaNumeroFactura.resx">
+      <DependentUpon>ConsultaNumeroFactura.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprasNovedades\CuotasPyMENacion.resx">
       <DependentUpon>CuotasPyMENacion.vb</DependentUpon>

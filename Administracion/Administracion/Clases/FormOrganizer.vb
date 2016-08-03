@@ -441,12 +441,20 @@ Public Class FormOrganizer
         Return list
     End Function
 
+    Private Function textSizeByCharPixelSize(ByVal maxLength As Integer)
+        Dim charSize As Double = charPixelSize
+        If maxLength < 5 Then
+            charSize = 9
+        End If
+        Return Math.Round(maxLength * charSize)
+    End Function
+
     Private Function variableWidthFor(ByVal control As CustomControl)
         Return variableWidthFor(control, 0)
     End Function
 
     Private Function variableWidthFor(ByVal textBox As CustomTextBox, ByVal columnNumber As Integer)
-        Return Math.Min(Math.Round(textBox.MaxLength * charPixelSize), variableWidthOfControl(textBox, columnNumber))
+        Return Math.Min(textSizeByCharPixelSize(textBox.MaxLength), variableWidthOfControl(textBox, columnNumber))
     End Function
 
     Private Function variableWidthFor(ByVal control As CustomControl, ByVal columnNumber As Integer)
