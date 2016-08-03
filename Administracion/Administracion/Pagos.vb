@@ -270,6 +270,7 @@ Public Class Pagos
             Dim siguienteNumero As Integer = DAOPagos.siguienteNumeroDeOrden()
             bancoOrden = DAOBanco.buscarBancoPorCodigo(txtBanco.Text)
             proveedorOrden = DAOProveedor.buscarProveedorPorCodigo(txtProveedor.Text)
+            txtOrdenPago.Text = siguienteNumero
             Dim pago As OrdenPago = New OrdenPago(siguienteNumero, tipoOrden, CustomConvert.toDoubleOrZero(txtParidad.Text),
                                                   CustomConvert.toDoubleOrZero(txtTotal.Text), CustomConvert.toDoubleOrZero(txtIVA.Text),
                                                   CustomConvert.toDoubleOrZero(txtIngresosBrutos.Text), CustomConvert.toDoubleOrZero(txtIBCiudad.Text),
@@ -278,6 +279,8 @@ Public Class Pagos
             pago.pagos = crearPagos()
             pago.formaPagos = crearFormaPagos()
             DAOPagos.agregarPago(pago)
+            MsgBox("El número de orden asignado es: " & siguienteNumero)
+            btnLimpiar.PerformClick()
         End If
     End Sub
 
@@ -296,8 +299,8 @@ Public Class Pagos
         Dim formaPagos As New List(Of FormaPago)
         For Each row As DataGridViewRow In gridFormaPagos.Rows
             If Not row.IsNewRow Then
-                formaPagos.Add(New FormaPago(Convert.ToString(row.Cells(0).Value), CustomConvert.toIntOrZero(Convert.ToString(row.Cells(1).Value)), Convert.ToString(row.Cells(2).Value),
-                                             Convert.ToString(row.Cells(3).Value), Convert.ToString(row.Cells(4).Value), CustomConvert.toDoubleOrZero(row.Cells(5).Value)))
+                formaPagos.Add(New FormaPago(Convert.ToString(row.Cells(0).Value), CustomConvert.toIntOrZero(Convert.ToString(row.Cells(3).Value)), Convert.ToString(row.Cells(1).Value),
+                                             Convert.ToString(row.Cells(2).Value), Convert.ToString(row.Cells(4).Value), CustomConvert.toDoubleOrZero(row.Cells(5).Value)))
             End If
         Next
         Return formaPagos
@@ -340,6 +343,7 @@ Public Class Pagos
                 Exit Sub
         End Select
         gridFormaPagos.CurrentCell.Value = ceros(val.ToString, 2)
+
         gridFormaPagos.Rows(rowIndex).Cells(4).Value = nombre
         gridFormaPagos.CurrentCell = gridFormaPagos.Rows(rowIndex).Cells(column)
     End Sub
@@ -449,7 +453,6 @@ Public Class Pagos
             txtBanco.Focus()
             gridPagos.Rows.Clear()
             gridPagos.Rows.Add("", "", "", "", "", "")
-            gridPagos.Columns(4).ReadOnly = False
             gridPagos.Columns(5).ReadOnly = False
         End If
     End Sub
@@ -458,7 +461,6 @@ Public Class Pagos
         If optAnticipos.Checked Then
             gridPagos.Rows.Clear()
             gridPagos.Rows.Add("", "", "", "", "0,00", txtRazonSocial.Text)
-            gridPagos.Columns(4).ReadOnly = True
             gridPagos.Columns(5).ReadOnly = True
         End If
     End Sub
@@ -467,7 +469,6 @@ Public Class Pagos
         If optVarios.Checked Then
             gridPagos.Rows.Clear()
             gridPagos.Rows.Add("", "", "", "", "", txtRazonSocial.Text)
-            gridPagos.Columns(4).ReadOnly = False
             gridPagos.Columns(5).ReadOnly = True
         End If
     End Sub
@@ -476,7 +477,6 @@ Public Class Pagos
         If optChequeRechazado.Checked Then
             gridPagos.Rows.Clear()
             gridPagos.Rows.Add("", "", "", "", "", "")
-            gridPagos.Columns(4).ReadOnly = False
             gridPagos.Columns(5).ReadOnly = False
         End If
     End Sub
@@ -485,7 +485,6 @@ Public Class Pagos
         If optCtaCte.Checked Then
             gridPagos.Rows.Clear()
             Try
-                gridPagos.Columns(4).ReadOnly = True
                 gridPagos.Columns(5).ReadOnly = True
             Catch ex As ArgumentOutOfRangeException
             End Try

@@ -73,6 +73,7 @@ Public Class Depositos
 
     Private Sub btnLimpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLimpiar.Click
         Cleanner.clean(Me)
+        txtNroDeposito.Text = DAODeposito.siguienteNumero()
         gridCheques.Rows.Clear()
         cheques.Clear()
         Me.Width = formNormalWidth()

@@ -32,7 +32,7 @@ Public Class DAOProveedor
                              row("observaciones").ToString, row("cuit").ToString, row("nombrecheque").ToString, row("porceib"), row("porceibcaba"), row("cai").ToString, row("observacionesii").ToString, row("cufe").ToString, row("cufeii").ToString, row("cufeiii").ToString,
                              intNull(row("provincia")), intNull(row("region")), row("dias").ToString, intNull(row("tipo")), intNull(row("iva")), intNull(row("codib")), intNull(row("codibcaba")), row("nroib").ToString, row("nroinsc").ToString, intNull(row("categoriai")),
                              intNull(row("categoriaii")), intNull(row("ibciudadii")), intNull(row("iso")), intNull(row("estado")), intNull(row("califica")), asStringDate(row("fechanroinsc")), asStringDate(row("fechacategoria")), asStringDate(row("vtocai")), asStringDate(row("vtoiso")), asStringDate(row("fechacalifica")),
-                             asStringDate(row("dircufe")), asStringDate(row("dircufeii")), asStringDate(row("dircufeiii")), DAOCuentaContable.buscarCuentaContablePorCodigo(row("cuenta").ToString), DAORubroProveedor.buscarRubroProveedorPorCodigo(intNull(row("tipoprov"))))
+                             row("dircufe").ToString, row("dircufeii").ToString, row("dircufeiii").ToString, DAOCuentaContable.buscarCuentaContablePorCodigo(row("cuenta").ToString), DAORubroProveedor.buscarRubroProveedorPorCodigo(intNull(row("tipoprov"))))
     End Function
 
     Private Shared Function intNull(ByVal value)

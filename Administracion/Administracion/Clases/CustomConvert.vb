@@ -61,6 +61,8 @@
             Dim difference As Integer = originalString.Count - originalString.IndexOf(",") - 1
             If difference < decimalPlaces Then
                 Return originalString & ceros("", decimalPlaces - difference)
+            Else
+                Return Math.Round(value, 2).ToString
             End If
         End If
         Return originalString

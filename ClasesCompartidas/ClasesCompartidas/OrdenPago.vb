@@ -25,7 +25,7 @@
         proveedor = prov
     End Sub
 
-    Public Function codigoBanco()
+    Public Function codigoBanco() As Short
         If IsNothing(banco) Then
             Return 0
         Else

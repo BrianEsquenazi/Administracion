@@ -29,12 +29,6 @@ Partial Class Pagos
         Me.optVarios = New System.Windows.Forms.RadioButton()
         Me.optCtaCte = New System.Windows.Forms.RadioButton()
         Me.gridPagos = New System.Windows.Forms.DataGridView()
-        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Letra = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Punto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gridFormaPagos = New System.Windows.Forms.DataGridView()
         Me.Tipo2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Numero2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -84,6 +78,12 @@ Partial Class Pagos
         Me.CustomLabel2 = New Administracion.CustomLabel()
         Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.CustomLabel12 = New Administracion.CustomLabel()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Letra = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Punto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridFormaPagos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,48 +165,6 @@ Partial Class Pagos
         Me.gridPagos.RowHeadersWidth = 10
         Me.gridPagos.Size = New System.Drawing.Size(396, 273)
         Me.gridPagos.TabIndex = 56
-        '
-        'Tipo
-        '
-        Me.Tipo.HeaderText = "Tipo"
-        Me.Tipo.Name = "Tipo"
-        Me.Tipo.ReadOnly = True
-        Me.Tipo.Width = 35
-        '
-        'Letra
-        '
-        Me.Letra.HeaderText = "Letra"
-        Me.Letra.Name = "Letra"
-        Me.Letra.ReadOnly = True
-        Me.Letra.Width = 40
-        '
-        'Punto
-        '
-        Me.Punto.HeaderText = "Punto"
-        Me.Punto.Name = "Punto"
-        Me.Punto.ReadOnly = True
-        Me.Punto.Width = 45
-        '
-        'Numero
-        '
-        Me.Numero.HeaderText = "Número"
-        Me.Numero.Name = "Numero"
-        Me.Numero.ReadOnly = True
-        Me.Numero.Width = 70
-        '
-        'Importe
-        '
-        Me.Importe.HeaderText = "Importe"
-        Me.Importe.Name = "Importe"
-        Me.Importe.ReadOnly = True
-        Me.Importe.Width = 75
-        '
-        'Descripcion
-        '
-        Me.Descripcion.HeaderText = "Descripción"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        Me.Descripcion.Width = 115
         '
         'gridFormaPagos
         '
@@ -450,8 +408,10 @@ Partial Class Pagos
         Me.txtIVA.LabelAssociationKey = 11
         Me.txtIVA.Location = New System.Drawing.Point(685, 178)
         Me.txtIVA.Name = "txtIVA"
+        Me.txtIVA.ReadOnly = True
         Me.txtIVA.Size = New System.Drawing.Size(75, 20)
         Me.txtIVA.TabIndex = 51
+        Me.txtIVA.Text = "0,00"
         Me.txtIVA.Validator = Administracion.ValidatorType.Float
         '
         'txtIngresosBrutos
@@ -462,8 +422,10 @@ Partial Class Pagos
         Me.txtIngresosBrutos.LabelAssociationKey = 9
         Me.txtIngresosBrutos.Location = New System.Drawing.Point(685, 151)
         Me.txtIngresosBrutos.Name = "txtIngresosBrutos"
+        Me.txtIngresosBrutos.ReadOnly = True
         Me.txtIngresosBrutos.Size = New System.Drawing.Size(75, 20)
         Me.txtIngresosBrutos.TabIndex = 50
+        Me.txtIngresosBrutos.Text = "0,00"
         Me.txtIngresosBrutos.Validator = Administracion.ValidatorType.Float
         '
         'CustomLabel10
@@ -484,8 +446,10 @@ Partial Class Pagos
         Me.txtIBCiudad.LabelAssociationKey = 10
         Me.txtIBCiudad.Location = New System.Drawing.Point(516, 178)
         Me.txtIBCiudad.Name = "txtIBCiudad"
+        Me.txtIBCiudad.ReadOnly = True
         Me.txtIBCiudad.Size = New System.Drawing.Size(75, 20)
         Me.txtIBCiudad.TabIndex = 48
+        Me.txtIBCiudad.Text = "0,00"
         Me.txtIBCiudad.Validator = Administracion.ValidatorType.Float
         '
         'CustomLabel9
@@ -506,8 +470,10 @@ Partial Class Pagos
         Me.txtGanancias.LabelAssociationKey = 8
         Me.txtGanancias.Location = New System.Drawing.Point(516, 151)
         Me.txtGanancias.Name = "txtGanancias"
+        Me.txtGanancias.ReadOnly = True
         Me.txtGanancias.Size = New System.Drawing.Size(75, 20)
         Me.txtGanancias.TabIndex = 46
+        Me.txtGanancias.Text = "0,00"
         Me.txtGanancias.Validator = Administracion.ValidatorType.Float
         '
         'CustomLabel8
@@ -745,6 +711,47 @@ Partial Class Pagos
         Me.CustomLabel12.Text = "Tipo"
         Me.CustomLabel12.Visible = False
         '
+        'Tipo
+        '
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        Me.Tipo.ReadOnly = True
+        Me.Tipo.Width = 35
+        '
+        'Letra
+        '
+        Me.Letra.HeaderText = "Letra"
+        Me.Letra.Name = "Letra"
+        Me.Letra.ReadOnly = True
+        Me.Letra.Width = 40
+        '
+        'Punto
+        '
+        Me.Punto.HeaderText = "Punto"
+        Me.Punto.Name = "Punto"
+        Me.Punto.ReadOnly = True
+        Me.Punto.Width = 45
+        '
+        'Numero
+        '
+        Me.Numero.HeaderText = "Número"
+        Me.Numero.Name = "Numero"
+        Me.Numero.ReadOnly = True
+        Me.Numero.Width = 70
+        '
+        'Importe
+        '
+        Me.Importe.HeaderText = "Importe"
+        Me.Importe.Name = "Importe"
+        Me.Importe.Width = 75
+        '
+        'Descripcion
+        '
+        Me.Descripcion.HeaderText = "Descripción"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 115
+        '
         'Pagos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -859,15 +866,15 @@ Partial Class Pagos
     Friend WithEvents Banco As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Importe2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents CustomLabel12 As Administracion.CustomLabel
+    Friend WithEvents lblPagos As Administracion.CustomLabel
+    Friend WithEvents lblFormaPagos As Administracion.CustomLabel
+    Friend WithEvents lblDiferencia As Administracion.CustomLabel
+    Friend WithEvents CustomLabel13 As Administracion.CustomLabel
     Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Letra As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Punto As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Numero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents CustomLabel12 As Administracion.CustomLabel
-    Friend WithEvents lblPagos As Administracion.CustomLabel
-    Friend WithEvents lblFormaPagos As Administracion.CustomLabel
-    Friend WithEvents lblDiferencia As Administracion.CustomLabel
-    Friend WithEvents CustomLabel13 As Administracion.CustomLabel
 End Class

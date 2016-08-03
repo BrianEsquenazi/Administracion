@@ -2,6 +2,10 @@
 
 Public Class DAODeposito
 
+    Public Shared Function siguienteNumero()
+        Return SQLConnector.executeProcedureWithReturnValue("get_siguiente_deposito")
+    End Function
+
     Public Shared Function existeDepositoNumero(ByVal nroDeposito As String) As Boolean
         Return SQLConnector.checkIfExists("get_deposito_por_clave", nroDeposito & "01") 'El 01 representa el renglón. Todos tienen renglón 01
     End Function
