@@ -22,7 +22,13 @@ Partial Class ConsultaCheque
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gridCheque = New System.Windows.Forms.DataGridView()
+        Me.cmbTipo = New System.Windows.Forms.ComboBox()
+        Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.txtCheque = New Administracion.CustomTextBox()
+        Me.btnProceso = New Administracion.CustomButton()
+        Me.btnCerrar = New Administracion.CustomButton()
         Me.Cheque = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -30,11 +36,6 @@ Partial Class ConsultaCheque
         Me.fechaCheque = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.comprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.observaciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cmbTipo = New System.Windows.Forms.ComboBox()
-        Me.CustomLabel1 = New Administracion.CustomLabel()
-        Me.txtCheque = New Administracion.CustomTextBox()
-        Me.btnProceso = New Administracion.CustomButton()
-        Me.btnCerrar = New Administracion.CustomButton()
         CType(Me.gridCheque, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -42,63 +43,17 @@ Partial Class ConsultaCheque
         '
         Me.gridCheque.AllowUserToAddRows = False
         Me.gridCheque.AllowUserToDeleteRows = False
-        Me.gridCheque.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
+        Me.gridCheque.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gridCheque.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridCheque.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Cheque, Me.Banco, Me.Importe, Me.FechaComprobante, Me.fechaCheque, Me.comprobante, Me.observaciones})
         Me.gridCheque.Location = New System.Drawing.Point(12, 53)
         Me.gridCheque.Name = "gridCheque"
+        Me.gridCheque.ReadOnly = True
+        Me.gridCheque.RowHeadersVisible = False
+        Me.gridCheque.RowHeadersWidth = 5
         Me.gridCheque.Size = New System.Drawing.Size(760, 497)
         Me.gridCheque.StandardTab = True
         Me.gridCheque.TabIndex = 2
-        '
-        'Cheque
-        '
-        Me.Cheque.HeaderText = "Cheque"
-        Me.Cheque.Name = "Cheque"
-        Me.Cheque.ReadOnly = True
-        Me.Cheque.Width = 69
-        '
-        'Banco
-        '
-        Me.Banco.HeaderText = "Banco"
-        Me.Banco.Name = "Banco"
-        Me.Banco.ReadOnly = True
-        Me.Banco.Width = 63
-        '
-        'Importe
-        '
-        Me.Importe.HeaderText = "Importe"
-        Me.Importe.Name = "Importe"
-        Me.Importe.ReadOnly = True
-        Me.Importe.Width = 67
-        '
-        'FechaComprobante
-        '
-        Me.FechaComprobante.HeaderText = "FechaComprobante"
-        Me.FechaComprobante.Name = "FechaComprobante"
-        Me.FechaComprobante.ReadOnly = True
-        Me.FechaComprobante.Width = 125
-        '
-        'fechaCheque
-        '
-        Me.fechaCheque.HeaderText = "Fecha Cheque"
-        Me.fechaCheque.Name = "fechaCheque"
-        Me.fechaCheque.ReadOnly = True
-        Me.fechaCheque.Width = 102
-        '
-        'comprobante
-        '
-        Me.comprobante.HeaderText = "Comprobante"
-        Me.comprobante.Name = "comprobante"
-        Me.comprobante.ReadOnly = True
-        Me.comprobante.Width = 95
-        '
-        'observaciones
-        '
-        Me.observaciones.HeaderText = "Observaciones"
-        Me.observaciones.Name = "observaciones"
-        Me.observaciones.ReadOnly = True
-        Me.observaciones.Width = 103
         '
         'cmbTipo
         '
@@ -107,7 +62,7 @@ Partial Class ConsultaCheque
         Me.cmbTipo.Location = New System.Drawing.Point(517, 12)
         Me.cmbTipo.Name = "cmbTipo"
         Me.cmbTipo.Size = New System.Drawing.Size(255, 21)
-        Me.cmbTipo.TabIndex = 5
+        Me.cmbTipo.TabIndex = 1
         '
         'CustomLabel1
         '
@@ -129,7 +84,8 @@ Partial Class ConsultaCheque
         Me.txtCheque.MaxLength = 8
         Me.txtCheque.Name = "txtCheque"
         Me.txtCheque.Size = New System.Drawing.Size(121, 20)
-        Me.txtCheque.TabIndex = 6
+        Me.txtCheque.TabIndex = 0
+        Me.txtCheque.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.txtCheque.Validator = Administracion.ValidatorType.None
         '
         'btnProceso
@@ -155,6 +111,65 @@ Partial Class ConsultaCheque
         Me.btnCerrar.TabIndex = 3
         Me.btnCerrar.Text = "Cerrar"
         Me.btnCerrar.UseVisualStyleBackColor = True
+        '
+        'Cheque
+        '
+        Me.Cheque.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.Cheque.HeaderText = "Cheque"
+        Me.Cheque.Name = "Cheque"
+        Me.Cheque.ReadOnly = True
+        Me.Cheque.Width = 69
+        '
+        'Banco
+        '
+        Me.Banco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Banco.FillWeight = 70.0!
+        Me.Banco.HeaderText = "Banco"
+        Me.Banco.MaxInputLength = 50
+        Me.Banco.Name = "Banco"
+        Me.Banco.ReadOnly = True
+        '
+        'Importe
+        '
+        Me.Importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Importe.DefaultCellStyle = DataGridViewCellStyle1
+        Me.Importe.HeaderText = "Importe"
+        Me.Importe.Name = "Importe"
+        Me.Importe.ReadOnly = True
+        Me.Importe.Width = 67
+        '
+        'FechaComprobante
+        '
+        Me.FechaComprobante.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.FechaComprobante.HeaderText = "Fecha Comp."
+        Me.FechaComprobante.Name = "FechaComprobante"
+        Me.FechaComprobante.ReadOnly = True
+        Me.FechaComprobante.Width = 95
+        '
+        'fechaCheque
+        '
+        Me.fechaCheque.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.fechaCheque.HeaderText = "Fecha Cheque"
+        Me.fechaCheque.Name = "fechaCheque"
+        Me.fechaCheque.ReadOnly = True
+        Me.fechaCheque.Width = 102
+        '
+        'comprobante
+        '
+        Me.comprobante.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.comprobante.HeaderText = "Comp."
+        Me.comprobante.Name = "comprobante"
+        Me.comprobante.ReadOnly = True
+        Me.comprobante.Width = 62
+        '
+        'observaciones
+        '
+        Me.observaciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.observaciones.FillWeight = 130.0!
+        Me.observaciones.HeaderText = "Observaciones"
+        Me.observaciones.Name = "observaciones"
+        Me.observaciones.ReadOnly = True
         '
         'ConsultaCheque
         '
