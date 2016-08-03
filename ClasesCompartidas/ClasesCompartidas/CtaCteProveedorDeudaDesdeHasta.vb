@@ -15,7 +15,8 @@
             ByVal VencimientoII2 As String,
             ByVal Impre2 As String,
             ByVal nroInterno2 As Integer,
-            ByVal clave2 As String)
+            ByVal clave2 As String,
+            ByVal proveedor2 As String)
         Tipo = tipo2
         letra = letra2
         punto = punto2
@@ -28,6 +29,7 @@
         Impre = Impre2
         nroInterno = nroInterno2
         Clave = clave2
+        Proveedor = proveedor2
     End Sub
 
 
