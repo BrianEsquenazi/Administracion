@@ -22,6 +22,9 @@ Partial Class CargaIntereses
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gridCtaCte = New System.Windows.Forms.DataGridView()
         Me.btnCancela = New Administracion.CustomButton()
         Me.btnGraba = New Administracion.CustomButton()
@@ -48,6 +51,7 @@ Partial Class CargaIntereses
         Me.gridCtaCte.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.fechaOriginal, Me.desProveOriginal, Me.facturaOriginal, Me.cuota, Me.fecha, Me.saldo, Me.intereses, Me.ivaIntereses, Me.referencia, Me.clave, Me.nroInterno})
         Me.gridCtaCte.Location = New System.Drawing.Point(12, 12)
         Me.gridCtaCte.Name = "gridCtaCte"
+        Me.gridCtaCte.RowHeadersVisible = False
         Me.gridCtaCte.Size = New System.Drawing.Size(760, 468)
         Me.gridCtaCte.StandardTab = True
         Me.gridCtaCte.TabIndex = 1
@@ -78,54 +82,77 @@ Partial Class CargaIntereses
         '
         'fechaOriginal
         '
+        Me.fechaOriginal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.fechaOriginal.HeaderText = "Fecha"
         Me.fechaOriginal.Name = "fechaOriginal"
         Me.fechaOriginal.ReadOnly = True
+        Me.fechaOriginal.Width = 62
         '
         'desProveOriginal
         '
+        Me.desProveOriginal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.desProveOriginal.HeaderText = "Razon"
         Me.desProveOriginal.Name = "desProveOriginal"
         Me.desProveOriginal.ReadOnly = True
         '
         'facturaOriginal
         '
+        Me.facturaOriginal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.facturaOriginal.HeaderText = "Factura"
         Me.facturaOriginal.Name = "facturaOriginal"
         Me.facturaOriginal.ReadOnly = True
+        Me.facturaOriginal.Width = 68
         '
         'cuota
         '
+        Me.cuota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.cuota.HeaderText = "Cuota"
         Me.cuota.Name = "cuota"
         Me.cuota.ReadOnly = True
+        Me.cuota.Width = 60
         '
         'fecha
         '
+        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.fecha.HeaderText = "Vencimiento"
         Me.fecha.Name = "fecha"
         Me.fecha.ReadOnly = True
+        Me.fecha.Width = 90
         '
         'saldo
         '
+        Me.saldo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.saldo.DefaultCellStyle = DataGridViewCellStyle1
         Me.saldo.HeaderText = "Saldo"
         Me.saldo.Name = "saldo"
         Me.saldo.ReadOnly = True
+        Me.saldo.Width = 59
         '
         'intereses
         '
+        Me.intereses.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.intereses.DefaultCellStyle = DataGridViewCellStyle2
         Me.intereses.HeaderText = "Intereses"
         Me.intereses.Name = "intereses"
+        Me.intereses.Width = 75
         '
         'ivaIntereses
         '
+        Me.ivaIntereses.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.ivaIntereses.DefaultCellStyle = DataGridViewCellStyle3
         Me.ivaIntereses.HeaderText = "Iva Int."
         Me.ivaIntereses.Name = "ivaIntereses"
+        Me.ivaIntereses.Width = 65
         '
         'referencia
         '
+        Me.referencia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.referencia.HeaderText = "Referencia"
         Me.referencia.Name = "referencia"
+        Me.referencia.Width = 84
         '
         'clave
         '

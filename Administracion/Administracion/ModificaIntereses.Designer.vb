@@ -22,7 +22,12 @@ Partial Class ModificaIntereses
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gridCtaCte = New System.Windows.Forms.DataGridView()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnGraba = New Administracion.CustomButton()
         Me.fechaOriginal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.desProveOriginal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.facturaOriginal = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -37,8 +42,6 @@ Partial Class ModificaIntereses
         Me.InteresesControl = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.IvaControl = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ReferenciaControl = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnCancela = New Administracion.CustomButton()
-        Me.btnGraba = New Administracion.CustomButton()
         CType(Me.gridCtaCte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -46,40 +49,69 @@ Partial Class ModificaIntereses
         '
         Me.gridCtaCte.AllowUserToAddRows = False
         Me.gridCtaCte.AllowUserToDeleteRows = False
-        Me.gridCtaCte.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
+        Me.gridCtaCte.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.gridCtaCte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridCtaCte.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.fechaOriginal, Me.desProveOriginal, Me.facturaOriginal, Me.cuota, Me.fecha, Me.saldo, Me.intereses, Me.ivaIntereses, Me.referencia, Me.clave, Me.nroInterno, Me.InteresesControl, Me.IvaControl, Me.ReferenciaControl})
         Me.gridCtaCte.Location = New System.Drawing.Point(12, 18)
         Me.gridCtaCte.Name = "gridCtaCte"
+        Me.gridCtaCte.RowHeadersVisible = False
         Me.gridCtaCte.Size = New System.Drawing.Size(760, 468)
         Me.gridCtaCte.StandardTab = True
         Me.gridCtaCte.TabIndex = 4
         '
+        'btnCancela
+        '
+        Me.btnCancela.Cleanable = False
+        Me.btnCancela.EnterIndex = -1
+        Me.btnCancela.LabelAssociationKey = -1
+        Me.btnCancela.Location = New System.Drawing.Point(385, 502)
+        Me.btnCancela.Name = "btnCancela"
+        Me.btnCancela.Size = New System.Drawing.Size(122, 42)
+        Me.btnCancela.TabIndex = 6
+        Me.btnCancela.Text = "Cancela"
+        Me.btnCancela.UseVisualStyleBackColor = True
+        '
+        'btnGraba
+        '
+        Me.btnGraba.Cleanable = False
+        Me.btnGraba.EnterIndex = -1
+        Me.btnGraba.LabelAssociationKey = -1
+        Me.btnGraba.Location = New System.Drawing.Point(248, 502)
+        Me.btnGraba.Name = "btnGraba"
+        Me.btnGraba.Size = New System.Drawing.Size(122, 42)
+        Me.btnGraba.TabIndex = 5
+        Me.btnGraba.Text = "Graba"
+        Me.btnGraba.UseVisualStyleBackColor = True
+        '
         'fechaOriginal
         '
         Me.fechaOriginal.Frozen = True
-        Me.fechaOriginal.HeaderText = "Fecha Original"
+        Me.fechaOriginal.HeaderText = "Fecha"
         Me.fechaOriginal.Name = "fechaOriginal"
         Me.fechaOriginal.ReadOnly = True
+        Me.fechaOriginal.Width = 62
         '
         'desProveOriginal
         '
+        Me.desProveOriginal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.desProveOriginal.Frozen = True
-        Me.desProveOriginal.HeaderText = "DesProveOriginal"
+        Me.desProveOriginal.HeaderText = "Razon"
         Me.desProveOriginal.Name = "desProveOriginal"
         Me.desProveOriginal.ReadOnly = True
-        Me.desProveOriginal.Width = 114
+        Me.desProveOriginal.Width = 63
         '
         'facturaOriginal
         '
+        Me.facturaOriginal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.facturaOriginal.Frozen = True
-        Me.facturaOriginal.HeaderText = "FacturaOriginal"
+        Me.facturaOriginal.HeaderText = "Factura"
         Me.facturaOriginal.Name = "facturaOriginal"
         Me.facturaOriginal.ReadOnly = True
-        Me.facturaOriginal.Width = 103
+        Me.facturaOriginal.Width = 68
         '
         'cuota
         '
+        Me.cuota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.cuota.Frozen = True
         Me.cuota.HeaderText = "Cuota"
         Me.cuota.Name = "cuota"
@@ -88,6 +120,7 @@ Partial Class ModificaIntereses
         '
         'fecha
         '
+        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.fecha.Frozen = True
         Me.fecha.HeaderText = "Vencimiento"
         Me.fecha.Name = "fecha"
@@ -96,6 +129,9 @@ Partial Class ModificaIntereses
         '
         'saldo
         '
+        Me.saldo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.saldo.DefaultCellStyle = DataGridViewCellStyle1
         Me.saldo.Frozen = True
         Me.saldo.HeaderText = "Saldo"
         Me.saldo.Name = "saldo"
@@ -104,6 +140,9 @@ Partial Class ModificaIntereses
         '
         'intereses
         '
+        Me.intereses.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.intereses.DefaultCellStyle = DataGridViewCellStyle2
         Me.intereses.Frozen = True
         Me.intereses.HeaderText = "Intereses"
         Me.intereses.Name = "intereses"
@@ -111,13 +150,17 @@ Partial Class ModificaIntereses
         '
         'ivaIntereses
         '
+        Me.ivaIntereses.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.ivaIntereses.DefaultCellStyle = DataGridViewCellStyle3
         Me.ivaIntereses.Frozen = True
-        Me.ivaIntereses.HeaderText = "Iva Intereses"
+        Me.ivaIntereses.HeaderText = "Iva Int."
         Me.ivaIntereses.Name = "ivaIntereses"
-        Me.ivaIntereses.Width = 93
+        Me.ivaIntereses.Width = 65
         '
         'referencia
         '
+        Me.referencia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.referencia.Frozen = True
         Me.referencia.HeaderText = "Referencia"
         Me.referencia.Name = "referencia"
@@ -161,30 +204,6 @@ Partial Class ModificaIntereses
         Me.ReferenciaControl.ReadOnly = True
         Me.ReferenciaControl.Visible = False
         Me.ReferenciaControl.Width = 117
-        '
-        'btnCancela
-        '
-        Me.btnCancela.Cleanable = False
-        Me.btnCancela.EnterIndex = -1
-        Me.btnCancela.LabelAssociationKey = -1
-        Me.btnCancela.Location = New System.Drawing.Point(385, 502)
-        Me.btnCancela.Name = "btnCancela"
-        Me.btnCancela.Size = New System.Drawing.Size(122, 42)
-        Me.btnCancela.TabIndex = 6
-        Me.btnCancela.Text = "Cancela"
-        Me.btnCancela.UseVisualStyleBackColor = True
-        '
-        'btnGraba
-        '
-        Me.btnGraba.Cleanable = False
-        Me.btnGraba.EnterIndex = -1
-        Me.btnGraba.LabelAssociationKey = -1
-        Me.btnGraba.Location = New System.Drawing.Point(248, 502)
-        Me.btnGraba.Name = "btnGraba"
-        Me.btnGraba.Size = New System.Drawing.Size(122, 42)
-        Me.btnGraba.TabIndex = 5
-        Me.btnGraba.Text = "Graba"
-        Me.btnGraba.UseVisualStyleBackColor = True
         '
         'ModificaIntereses
         '

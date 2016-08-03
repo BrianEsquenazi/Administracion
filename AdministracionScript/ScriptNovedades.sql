@@ -275,7 +275,7 @@ GO
 CREATE PROCEDURE PR_get_carga_intereses (@tipo char(1))
 AS
 	SELECT ISNULL(ccp.FechaOriginal,'') FechaOriginal 
-		, ISNULL(ccp.DesProveOriginal,'') DesProveOriginal
+		, RTRIM(ISNULL(ccp.DesProveOriginal,'')) DesProveOriginal
 		, ISNULL(ccp.FacturaOriginal,'') FacturaOriginal
 		, ISNULL(ccp.Cuota,'') Cuota
 		, ISNULL(ccp.fecha,'') fecha
