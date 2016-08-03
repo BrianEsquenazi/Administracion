@@ -35,6 +35,7 @@ AS
 		 , CtaCtePrv.Saldo as Saldo
 		 , LTRIM(RTRIM(CtaCtePrv.fecha)) as Fecha
 		 , LTRIM(RTRIM(CtaCtePrv.Vencimiento)) as Vencimiento
+		 
 	from surfactanSA.dbo.CtaCtePrv CtaCtePrv
 	WHERE CtaCtePrv.Proveedor = @proveedor 
 		AND ((CtaCtePrv.Saldo <> 0 and @tipo = 'P')
@@ -75,7 +76,7 @@ DROP PROCEDURE [dbo].[PR_alta_impCtaCtePrvNet]
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_cuenta_corriente_proveedores_desdehasta]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[PR_alta_impCtaCtePrvNet]
+DROP PROCEDURE [dbo].[PR_buscar_cuenta_corriente_proveedores_desdehasta]
 GO
 
 SET ANSI_NULLS ON
@@ -125,18 +126,28 @@ AS
 	FROM dbo.impCtaCtePrvNet 
 GO
 
-CREATE PROCEDURE PR_alta_	
-	(@clave varchar(26),
-	@proveedor varchar(11),
-	@letra varchar(1),
-	@tipo varchar(2),
-	@punto varchar(4),
-	@numero varchar(4))
+CREATE PROCEDURE PR_alta_impCtaCtePrvNet	
+	(@clave char(26),
+	@proveedor char(11),
+	@tipo char(2),
+	@letra char(1),
+	@punto char(4),
+	@numero char(8),
+	@total float,
+	@saldo float,
+	@fecha char(10),
+	@vencimiento char(10),
+	@vencimiento1 char(10),
+	@impre char(2),
+	@nrointerno int,
+	@titulo char(50),
+	@Acumulado float,
+	@orden int)
 AS
 	INSERT INTO dbo.impCtaCtePrvNet 
-		(Clave, Proveedor, Letra, Tipo, Punto, Numero)
+		(Clave, Proveedor, Letra, Tipo, Punto, Numero, Total, Saldo, fecha, Vencimiento, Vencimiento1, Impre, NroInterno, Titulo, Acumulado, Orden)
 		VALUES
-		(@clave, @proveedor, @letra, @tipo, @punto, @numero)
+		(@clave, @proveedor, @letra, @tipo, @punto, @numero, @total, @saldo,@fecha, @vencimiento, @vencimiento1, @impre, @nrointerno, @titulo, @Acumulado, @orden)
 GO
 
 CREATE PROCEDURE [dbo].[PR_buscar_cuenta_corriente_proveedores_desdehasta]
@@ -152,6 +163,12 @@ AS
 		 , CtaCtePrv.Saldo as Saldo
 		 , LTRIM(RTRIM(CtaCtePrv.fecha)) as Fecha
 		 , LTRIM(RTRIM(CtaCtePrv.Vencimiento)) as Vencimiento
+		 , LTRIM(RTRIM(CtaCtePrv.Vencimiento1)) as Vencimiento1
+		 , LTRIM(RTRIM(CtaCtePrv.Impre)) as Impre
+		 , CtaCtePrv.NroInterno as NroInterno
+		 , LTRIM(RTRIM(CtaCtePrv.Clave)) as Clave
+		 , LTRIM(RTRIM(CtaCtePrv.Proveedor)) as Proveedor
+
 	from surfactanSA.dbo.CtaCtePrv CtaCtePrv
 	WHERE CtaCtePrv.Proveedor between @proveedordesde  and @proveedorhasta 
 		AND ((CtaCtePrv.Saldo <> 0 and @tipo = 'P')
