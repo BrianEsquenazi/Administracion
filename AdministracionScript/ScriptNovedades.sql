@@ -275,7 +275,7 @@ GO
 CREATE PROCEDURE PR_get_carga_intereses (@tipo char(1))
 AS
 	SELECT ISNULL(ccp.FechaOriginal,'') FechaOriginal 
-		, ISNULL(ccp.DesProveOriginal,'') DesProveOriginal
+		, RTRIM(ISNULL(ccp.DesProveOriginal,'')) DesProveOriginal
 		, ISNULL(ccp.FacturaOriginal,'') FacturaOriginal
 		, ISNULL(ccp.Cuota,'') Cuota
 		, ISNULL(ccp.fecha,'') fecha
@@ -612,17 +612,17 @@ GO
 CREATE PROCEDURE [dbo].[PR_get_cheques_terceros] (@cheque varchar(8)) AS
 
 	SELECT 
-		ISNULL(td.Numero2,'') as Numero2
-		, ISNULL(td.Banco2,'') as Banco2
+		LTRIM(RTRIM(ISNULL(td.Numero2,''))) as Numero2
+		, LTRIM(RTRIM(ISNULL(td.Banco,''))) as Banco
 		, td.Importe2
-		, ISNULL(td.Fecha,'') as Fecha
-		, ISNULL(td.Fecha2,'') as Fecha2
-		, ISNULL(td.Recibo,'') as Recibo
+		, LTRIM(RTRIM(ISNULL(td.Fecha,''))) as Fecha
+		, LTRIM(RTRIM(ISNULL(td.Fecha2,''))) as Fecha2
+		, LTRIM(RTRIM(ISNULL(td.Recibo,''))) as Recibo
 		, LTRIM(RTRIM(ISNULL(td.Cliente,''))) as Cliente
 	FROM
 	(
 		SELECT r.Numero2
-			, r.Banco2
+			, r.Banco2 as Banco
 			, r.Importe2
 			, r.Fecha
 			, r.Fecha2
@@ -632,8 +632,8 @@ CREATE PROCEDURE [dbo].[PR_get_cheques_terceros] (@cheque varchar(8)) AS
 			, r.Numero2 as orden2
 		FROM Recibos r
 		JOIN Cliente cli on cli.Cliente = r.Cliente
-		Where	Tiporeg= "2" 
-			and  (Tipo2 = "2" or Tipo2 = "02")
+		Where	Tiporeg= '2' 
+			and  (Tipo2 = '2' or Tipo2 = '02')
 			and ISNULL(Numero2,'') LIKE ('%' + @cheque + '')			
 		
 		UNION ALL
@@ -649,7 +649,7 @@ CREATE PROCEDURE [dbo].[PR_get_cheques_terceros] (@cheque varchar(8)) AS
 			, 1 
 		FROM Depositos d
 		JOIN Banco b on b.Banco = d.Banco
-		Where (Tipo2 = "3" Or Tipo2= "03")
+		Where (Tipo2 = '3' Or Tipo2= '03')
 			and ISNULL(Numero2,'') LIKE ('%' + @cheque + '')	
 			
 		UNION ALL
@@ -665,8 +665,8 @@ CREATE PROCEDURE [dbo].[PR_get_cheques_terceros] (@cheque varchar(8)) AS
 			, 1
 		FROM Pagos p
 		LEFT JOIN Proveedor pro on pro.Proveedor = p.Proveedor
-		Where  Tiporeg = "2" 
-			and (Tipo2 = "3" Or Tipo2= "03")
+		Where  Tiporeg = '2' 
+			and (Tipo2 = '3' Or Tipo2= '03')
 			and ISNULL(Numero2,'') LIKE ('%' + @cheque + '')	
 	)td
 	ORDER BY td.orden1, td.orden2
@@ -674,16 +674,16 @@ GO
 
 CREATE PROCEDURE [dbo].[PR_get_cheques_propios] (@cheque varchar(8)) AS
 
-	SELECT 	ISNULL(p.Numero2,'') as Numero2
-		, ISNULL(p.Observaciones2,'') as Banco2
+	SELECT 	LTRIM(RTRIM(ISNULL(p.Numero2,''))) as Numero2
+		, LTRIM(RTRIM(ISNULL(p.Observaciones2,''))) as Banco2
 		, p.Importe2
-		, ISNULL(p.Fecha,'') as Fecha
-		, ISNULL(p.Fecha2,'') as Fecha2
-		, ISNULL(p.Orden,'') as Recibo
+		, LTRIM(RTRIM(ISNULL(p.Fecha,''))) as Fecha
+		, LTRIM(RTRIM(ISNULL(p.Fecha2,''))) as Fecha2
+		, LTRIM(RTRIM(ISNULL(p.Orden,''))) as Recibo
 		, 'O.P.: ' + LTRIM(RTRIM(ISNULL(pro.Nombre,p.Observaciones))) as Proveedor 
 	FROM Pagos p
 	LEFT JOIN Proveedor pro on pro.Proveedor = p.Proveedor
-	Where Tiporeg = "2" and Tipo2 = "02"
+	Where Tiporeg = '2' and Tipo2 = '02'
 		and ISNULL(Numero2,'') LIKE ('%' + @cheque + '')
 	ORDER BY p.Orden	
 

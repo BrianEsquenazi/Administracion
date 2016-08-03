@@ -38,17 +38,18 @@ Public Class DAOCtaCteProveedor
     End Function
 
     Public Shared Function buscarCuentas() As List(Of CtaCteProveedor)
-        Dim cuentas As New List(Of CtaCteProveedor)
-        For Each row In SQLConnector.retrieveDataTable("get_carga_intereses", "C").Rows
-            cuentas.Add(New CtaCteProveedor(row("FechaOriginal").ToString, row("DesProveOriginal").ToString, row("FacturaOriginal").ToString, row("Cuota").ToString, row("fecha").ToString, row("Saldo"), row("Intereses"), row("IvaIntereses"), row("Referencia").ToString, row("Clave").ToString, row("NroInterno").ToString))
-        Next
-        Return cuentas
+        Return buscar("C")
     End Function
 
     Public Shared Function buscarCuentasAModificarIntereses() As List(Of CtaCteProveedor)
+        Return buscar("M")
+    End Function
+
+    Private Shared Function buscar(ByVal tipo As String)
         Dim cuentas As New List(Of CtaCteProveedor)
-        For Each row In SQLConnector.retrieveDataTable("get_carga_intereses", "M").Rows
-            cuentas.Add(New CtaCteProveedor(row("FechaOriginal").ToString, row("DesProveOriginal").ToString, row("FacturaOriginal").ToString, row("Cuota").ToString, row("fecha").ToString, row("Saldo"), row("Intereses"), row("IvaIntereses"), row("Referencia").ToString, row("Clave").ToString, row("NroInterno").ToString))
+        For Each row In SQLConnector.retrieveDataTable("get_carga_intereses", "C").Rows
+            'cuentas.Add(New CtaCteProveedor(row("FechaOriginal").ToString, row("DesProveOriginal").ToString, row("FacturaOriginal").ToString, row("Cuota").ToString, row("fecha").ToString, formatonumerico(redondeo(Convert.ToDouble(row("Saldo"))), "########.##", "."), row("Intereses"), row("IvaIntereses"), row("Referencia").ToString, row("Clave").ToString, row("NroInterno").ToString))
+            cuentas.Add(New CtaCteProveedor(row("FechaOriginal").ToString, row("DesProveOriginal").ToString, row("FacturaOriginal").ToString, row("Cuota").ToString, row("fecha").ToString, redondeo(Convert.ToDouble(row("Saldo"))), row("Intereses"), row("IvaIntereses"), row("Referencia").ToString, row("Clave").ToString, row("NroInterno").ToString))
         Next
         Return cuentas
     End Function

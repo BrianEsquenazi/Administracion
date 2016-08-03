@@ -89,9 +89,11 @@ Public Class ListadoCuentaCorrienteProveedores
 
         Dim txtFormula As String
         Dim x As Char = Chr(34)
-        Dim dada As String
-
         Dim WSuma As Double
+        Dim WOrden As Integer
+        Dim txtCorte As String = ""
+        Dim txtLLave As Integer = 0
+        Dim txtEmpresa As String
 
         SQLConnector.retrieveDataTable("limpiar_impCtaCtePrvNet")
 
@@ -103,7 +105,7 @@ Public Class ListadoCuentaCorrienteProveedores
             WTipo = "P"
         End If
 
-        WSuma = 0
+        txtEmpresa = "Surfactan S.A."
 
         REM dada fix CAMBIAR Al uso de dao!!
         Dim tabla As DataTable
@@ -111,12 +113,24 @@ Public Class ListadoCuentaCorrienteProveedores
 
         For Each row As DataRow In tabla.Rows
 
-            Dim CamposCtaCtePrv As New CtaCteProveedoresDeuda(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString, row.Item(3).ToString, row.Item(4), row.Item(5), row.Item(6).ToString, row.Item(7).ToString)
+            Dim CCPrv As New CtaCteProveedoresDeudaDesdeHasta(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString, row.Item(3).ToString, row.Item(4), row.Item(5), row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString, row.Item(10), row.Item(11).ToString, row.Item(12).ToString)
 
-            dada = CamposCtaCtePrv.Tipo
-            dada = CamposCtaCtePrv.numero
+            If txtLLave = 0 Then
+                txtLLave = 1
+                txtCorte = CCPrv.Proveedor
+                WSuma = 0
+                WOrden = 0
+            End If
 
-            WSuma = WSuma + CamposCtaCtePrv.saldo
+            If txtCorte <> CCPrv.Proveedor Then
+                txtCorte = CCPrv.Proveedor
+                WSuma = 0
+                WOrden = 0
+            End If
+
+            WSuma = WSuma + CCPrv.saldo
+            WOrden = WOrden + 1
+            SQLConnector.executeProcedure("alta_impCtaCtePrvNet", CCPrv.Clave, CCPrv.Proveedor, CCPrv.Tipo, CCPrv.letra, CCPrv.punto, CCPrv.numero, CCPrv.total, CCPrv.saldo, CCPrv.fecha, CCPrv.vencimiento, CCPrv.VencimientoII, CCPrv.Impre, CCPrv.nroInterno, txtEmpresa, WSuma, WOrden)
 
         Next
 
