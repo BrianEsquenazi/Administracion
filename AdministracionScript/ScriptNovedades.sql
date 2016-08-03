@@ -93,6 +93,11 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_siguiente_orden_pago]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_siguiente_deposito]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_siguiente_deposito]
+GO
+
+
 /*
 		GENERACION NOVEDADES
 */
@@ -806,4 +811,17 @@ AS
 	RETURN (convert(int, @orden_siguiente) + 1)
 GO
 
+CREATE procedure PR_get_siguiente_deposito
+AS
+BEGIN
+	
+	declare @deposito_siguiente varchar(6)
+	declare @clave_max varchar(8) = (SELECT MAX(clave) FROM Depositos)
 
+	SELECT @deposito_siguiente = d.Deposito
+	FROM Depositos d
+	WHERE d.Clave = @clave_max
+	
+	return (CONVERT(int, @deposito_siguiente) + 1)
+END
+GO
