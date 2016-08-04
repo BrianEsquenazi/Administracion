@@ -104,7 +104,7 @@ CREATE TABLE [dbo].[impCtaCtePrvNet](
 	[Empresa] [smallint] NULL,
 	[SaldoList] [float] NULL,
 	[NroInterno] [int] NULL,
-	[Orden] [char](1) NULL,
+	[Orden] [int] NULL,
 	[Acumulado] [float] NULL,
 	[Titulo] [char](50) NULL,
 	[Titulo1] [char](10) NULL,
@@ -142,12 +142,21 @@ CREATE PROCEDURE PR_alta_impCtaCtePrvNet
 	@nrointerno int,
 	@titulo char(50),
 	@Acumulado float,
-	@orden int)
+	@Orden float,
+	@titulo1 char(10),
+	@titulo2 char(10),
+	@titulo3 char(10),
+	@titulo4 char(10),
+	@Impre1 float,
+	@impre2 float,
+	@impre3 float,
+	@impre4 float,
+	@Impre5 float)
 AS
 	INSERT INTO dbo.impCtaCtePrvNet 
-		(Clave, Proveedor, Letra, Tipo, Punto, Numero, Total, Saldo, fecha, Vencimiento, Vencimiento1, Impre, NroInterno, Titulo, Acumulado, Orden)
+		(Clave, Proveedor, Letra, Tipo, Punto, Numero, Total, Saldo, fecha, Vencimiento, Vencimiento1, Impre, NroInterno, Titulo, Acumulado, Orden, Titulo1, Titulo2, Titulo3,Titulo4,Impre1,Impre2,Impre3,Impre4,Impre5)
 		VALUES
-		(@clave, @proveedor, @letra, @tipo, @punto, @numero, @total, @saldo,@fecha, @vencimiento, @vencimiento1, @impre, @nrointerno, @titulo, @Acumulado, @orden)
+		(@clave, @proveedor, @letra, @tipo, @punto, @numero, @total, @saldo,@fecha, @vencimiento, @vencimiento1, @impre, @nrointerno, @titulo, @Acumulado, @orden, @titulo1, @titulo2, @titulo3, @titulo4, @Impre1, @impre2, @impre3, @impre4, @Impre5)
 GO
 
 CREATE PROCEDURE [dbo].[PR_buscar_cuenta_corriente_proveedores_desdehasta]

@@ -227,4 +227,8 @@
     Private Sub ConsultaDeChequesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConsultaDeChequesToolStripMenuItem.Click
         abrir(New ConsultaCheque)
     End Sub
+
+    Private Sub CuantaCorrienteDeProveedoresSelectivoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CuantaCorrienteDeProveedoresSelectivoToolStripMenuItem.Click
+
+    End Sub
 End Class

@@ -152,8 +152,69 @@ Public Class ListadoProyeccionCobros
 
         Dim txtUno As String
 
+        Dim txtEmpresa As String
         Dim txtFormula As String
         Dim x As Char = Chr(34)
+        Dim txtfechaOrd1, txtfechaOrd2, txtfechaOrd3, txtfechaOrd4 As String
+        Dim txtcompara As String
+        Dim txtimpo1, txtimpo2, txtimpo3, txtimpo4, txtimpo5 As Double
+
+
+
+        SQLConnector.retrieveDataTable("limpiar_impCtaCtePrvNet")
+
+        txtEmpresa = "Surfactan S.A."
+
+        txtfechaOrd1 = ordenaFecha(txtFecha1.Text)
+        txtfechaOrd2 = ordenaFecha(txtFecha2.Text)
+        txtfechaOrd3 = ordenaFecha(txtFecha3.Text)
+        txtfechaOrd4 = ordenaFecha(txtFecha4.Text)
+
+
+        Dim tabla As DataTable
+        tabla = SQLConnector.retrieveDataTable("buscar_cuenta_corriente_proveedores_desdehasta", txtDesdeProveedor.Text, txtHastaProveedor.Text, "P")
+
+        For Each row As DataRow In tabla.Rows
+
+            Dim CCPrv As New CtaCteProveedoresDeudaDesdeHasta(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString, row.Item(3).ToString, row.Item(4), row.Item(5), row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString, row.Item(9).ToString, row.Item(10), row.Item(11).ToString, row.Item(12).ToString)
+
+            txtcompara = ordenaFecha(CCPrv.vencimiento)
+            txtimpo1 = 0
+            txtimpo2 = 0
+            txtimpo3 = 0
+            txtimpo4 = 0
+            txtimpo5 = 0
+
+            If txtcompara <= txtfechaOrd1 Then
+                txtimpo1 = txtimpo1 + CCPrv.saldo
+            Else
+                If txtcompara <= txtfechaOrd2 Then
+                    txtimpo2 = txtimpo2 + CCPrv.saldo
+                Else
+                    If txtcompara <= txtfechaOrd3 Then
+                        txtimpo3 = txtimpo3 + CCPrv.saldo
+                    Else
+                        If txtcompara <= txtfechaOrd4 Then
+                            txtimpo4 = txtimpo4 + CCPrv.saldo
+                        Else
+                            txtimpo5 = txtimpo5 + CCPrv.saldo
+                        End If
+                    End If
+                End If
+            End If
+
+            SQLConnector.executeProcedure("alta_impCtaCtePrvNet", CCPrv.Clave, CCPrv.Proveedor, CCPrv.Tipo, CCPrv.letra, CCPrv.punto, CCPrv.numero, CCPrv.total, CCPrv.saldo, CCPrv.fecha, CCPrv.vencimiento, CCPrv.VencimientoII, CCPrv.Impre, CCPrv.nroInterno, txtEmpresa, 0, 0, txtFecha1.Text, txtFecha2.Text, txtFecha3.Text, txtFecha4.Text, txtimpo1, txtimpo2, txtimpo3, txtimpo4, txtimpo5)
+
+        Next
+
+
+
+
+
+
+
+
+
 
         txtUno = "{ImpCtaCtePrvNet.Proveedor} in " + x + "0" + x + " to " + x + "99999999999" + x
         txtFormula = txtUno
