@@ -23,6 +23,7 @@ Partial Class Apertura
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.gridApertura = New System.Windows.Forms.DataGridView()
+        Me.btnAceptar = New Administracion.CustomButton()
         Me.CUIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RazonSocial = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -37,7 +38,6 @@ Partial Class Apertura
         Me.PercIVA = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PercIB = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Exento = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnAceptar = New Administracion.CustomButton()
         CType(Me.gridApertura, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -49,110 +49,123 @@ Partial Class Apertura
         Me.gridApertura.Location = New System.Drawing.Point(0, 0)
         Me.gridApertura.Name = "gridApertura"
         Me.gridApertura.RowHeadersWidth = 20
-        Me.gridApertura.Size = New System.Drawing.Size(794, 362)
+        Me.gridApertura.Size = New System.Drawing.Size(1194, 362)
         Me.gridApertura.TabIndex = 0
-        '
-        'CUIT
-        '
-        Me.CUIT.HeaderText = "CUIT"
-        Me.CUIT.Name = "CUIT"
-        Me.CUIT.Width = 55
-        '
-        'RazonSocial
-        '
-        Me.RazonSocial.HeaderText = "Razón Social"
-        Me.RazonSocial.Name = "RazonSocial"
-        Me.RazonSocial.ReadOnly = True
-        '
-        'Tipo
-        '
-        Me.Tipo.HeaderText = "Tipo"
-        Me.Tipo.Name = "Tipo"
-        Me.Tipo.Width = 35
-        '
-        'Letra
-        '
-        Me.Letra.HeaderText = "Letra"
-        Me.Letra.Name = "Letra"
-        Me.Letra.Width = 35
-        '
-        'Punto
-        '
-        Me.Punto.HeaderText = "Punto"
-        Me.Punto.Name = "Punto"
-        Me.Punto.Width = 60
-        '
-        'Numero
-        '
-        Me.Numero.HeaderText = "Número"
-        Me.Numero.Name = "Numero"
-        Me.Numero.Width = 50
-        '
-        'Fecha
-        '
-        Me.Fecha.HeaderText = "Fecha"
-        Me.Fecha.Name = "Fecha"
-        Me.Fecha.Width = 50
-        '
-        'Neto
-        '
-        Me.Neto.HeaderText = "Neto"
-        Me.Neto.Name = "Neto"
-        Me.Neto.Width = 55
-        '
-        'Iva21
-        '
-        Me.Iva21.HeaderText = "IVA 21"
-        Me.Iva21.Name = "Iva21"
-        Me.Iva21.Width = 55
-        '
-        'IVA27
-        '
-        Me.IVA27.HeaderText = "IVA 27"
-        Me.IVA27.Name = "IVA27"
-        Me.IVA27.Width = 55
-        '
-        'IVA105
-        '
-        Me.IVA105.HeaderText = "IVA 10.5"
-        Me.IVA105.Name = "IVA105"
-        Me.IVA105.Width = 55
-        '
-        'PercIVA
-        '
-        Me.PercIVA.HeaderText = "Perc. IVA"
-        Me.PercIVA.Name = "PercIVA"
-        Me.PercIVA.Width = 55
-        '
-        'PercIB
-        '
-        Me.PercIB.HeaderText = "Perc. IB"
-        Me.PercIB.Name = "PercIB"
-        Me.PercIB.Width = 55
-        '
-        'Exento
-        '
-        Me.Exento.HeaderText = "Exento"
-        Me.Exento.Name = "Exento"
-        Me.Exento.Width = 55
         '
         'btnAceptar
         '
         Me.btnAceptar.Cleanable = False
         Me.btnAceptar.EnterIndex = -1
         Me.btnAceptar.LabelAssociationKey = -1
-        Me.btnAceptar.Location = New System.Drawing.Point(664, 368)
+        Me.btnAceptar.Location = New System.Drawing.Point(540, 368)
         Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(118, 32)
+        Me.btnAceptar.Size = New System.Drawing.Size(120, 30)
         Me.btnAceptar.TabIndex = 1
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
+        '
+        'CUIT
+        '
+        Me.CUIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.CUIT.HeaderText = "CUIT"
+        Me.CUIT.Name = "CUIT"
+        Me.CUIT.Width = 57
+        '
+        'RazonSocial
+        '
+        Me.RazonSocial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.RazonSocial.HeaderText = "Razón Social"
+        Me.RazonSocial.Name = "RazonSocial"
+        '
+        'Tipo
+        '
+        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        Me.Tipo.Width = 53
+        '
+        'Letra
+        '
+        Me.Letra.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Letra.HeaderText = "Letra"
+        Me.Letra.Name = "Letra"
+        Me.Letra.Width = 56
+        '
+        'Punto
+        '
+        Me.Punto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Punto.HeaderText = "Punto"
+        Me.Punto.Name = "Punto"
+        Me.Punto.Width = 60
+        '
+        'Numero
+        '
+        Me.Numero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Numero.HeaderText = "Número"
+        Me.Numero.Name = "Numero"
+        Me.Numero.Width = 69
+        '
+        'Fecha
+        '
+        Me.Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Fecha.HeaderText = "Fecha"
+        Me.Fecha.Name = "Fecha"
+        Me.Fecha.Width = 62
+        '
+        'Neto
+        '
+        Me.Neto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Neto.HeaderText = "Neto"
+        Me.Neto.Name = "Neto"
+        Me.Neto.Width = 55
+        '
+        'Iva21
+        '
+        Me.Iva21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Iva21.HeaderText = "IVA 21"
+        Me.Iva21.Name = "Iva21"
+        Me.Iva21.Width = 64
+        '
+        'IVA27
+        '
+        Me.IVA27.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IVA27.HeaderText = "IVA 27"
+        Me.IVA27.Name = "IVA27"
+        Me.IVA27.Width = 64
+        '
+        'IVA105
+        '
+        Me.IVA105.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.IVA105.HeaderText = "IVA 10.5"
+        Me.IVA105.Name = "IVA105"
+        Me.IVA105.Width = 73
+        '
+        'PercIVA
+        '
+        Me.PercIVA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.PercIVA.HeaderText = "Perc. IVA"
+        Me.PercIVA.Name = "PercIVA"
+        Me.PercIVA.Width = 77
+        '
+        'PercIB
+        '
+        Me.PercIB.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.PercIB.HeaderText = "Perc. IB"
+        Me.PercIB.Name = "PercIB"
+        Me.PercIB.Width = 70
+        '
+        'Exento
+        '
+        Me.Exento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Exento.HeaderText = "Exento"
+        Me.Exento.Name = "Exento"
+        Me.Exento.Width = 65
         '
         'Apertura
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(794, 412)
+        Me.ClientSize = New System.Drawing.Size(1194, 412)
         Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.gridApertura)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
@@ -165,6 +178,7 @@ Partial Class Apertura
 
     End Sub
     Friend WithEvents gridApertura As System.Windows.Forms.DataGridView
+    Friend WithEvents btnAceptar As Administracion.CustomButton
     Friend WithEvents CUIT As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents RazonSocial As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -179,5 +193,4 @@ Partial Class Apertura
     Friend WithEvents PercIVA As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PercIB As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Exento As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents btnAceptar As Administracion.CustomButton
 End Class

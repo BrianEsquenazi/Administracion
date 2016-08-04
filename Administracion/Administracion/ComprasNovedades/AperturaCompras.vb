@@ -60,4 +60,20 @@
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
         Me.Hide()
     End Sub
+
+    Private Sub gridApertura_CellValueChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridApertura.CellValueChanged
+        If e.RowIndex > -1 And e.ColumnIndex > -1 Then
+            Dim cantCeros As Integer = 0
+            Dim cell As DataGridViewCell = gridApertura.Rows(e.RowIndex).Cells(e.ColumnIndex)
+            Select Case e.ColumnIndex
+                Case 4
+                    cantCeros = 4
+                Case 5
+                    cantCeros = 8
+                Case Else
+                    Exit Sub
+            End Select
+            cell.Value = ceros(cell.Value, cantCeros)
+        End If
+    End Sub
 End Class

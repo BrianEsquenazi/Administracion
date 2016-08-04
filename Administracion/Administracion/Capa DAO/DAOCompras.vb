@@ -120,6 +120,20 @@ Public Class DAOCompras
                                                                            imputacion.fechaord, "", imputacion.cuenta, imputacion.debito, imputacion.credito, imputacion.nrointerno))
     End Sub
 
+    Public Shared Sub agregarTablaIvaComprasAdicional(ByVal compra As Compra, ByVal rows As DataGridViewRowCollection)
+        For Each row As DataGridViewRow In rows
+            If Not row.IsNewRow Then
+                Dim renglon As Int16 = row.Index + 1
+                Dim clave As String = ceros(compra.nroInterno, 8) & ceros(renglon, 2)
+                SQLConnector.executeProcedure("alta_iva_compras_adicional", clave, compra.nroInterno, renglon, row.Cells(0).Value,
+                                              row.Cells(1).Value, row.Cells(2).Value, row.Cells(3).Value, row.Cells(4).Value,
+                                              row.Cells(5).Value, row.Cells(6).Value, asDouble(row.Cells(7).Value), asDouble(row.Cells(8).Value),
+                                              asDouble(row.Cells(9).Value), asDouble(row.Cells(10).Value), asDouble(row.Cells(11).Value),
+                                              asDouble(row.Cells(12).Value), asDouble(row.Cells(13).Value))
+            End If
+        Next
+    End Sub
+
     Public Shared Function siguienteNumeroDeInterno() As Long
         Return SQLConnector.retrieveDataTable("get_siguiente_numero_interno").Rows(0)(0)
     End Function

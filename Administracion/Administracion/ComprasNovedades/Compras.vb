@@ -185,6 +185,9 @@ Public Class Compras
                     compra.agregarPagoPyme(pagoPyme)
                 End If
                 DAOCompras.agregarDatosCuentaCorriente(compra)
+                If Not IsNothing(apertura) Then
+                    DAOCompras.agregarTablaIvaComprasAdicional(compra, apertura.gridApertura.Rows)
+                End If
             End If
             MsgBox("El número de interno asignado es: " & compra.nroInterno)
             btnLimpiar.PerformClick()
@@ -251,6 +254,12 @@ Public Class Compras
         End If
         txtNeto.Enabled = Not chkSoloIVA.Checked
         txtImporte_Leave(sender, e)
+    End Sub
+
+    Private Sub txtLetra_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtLetra.Leave
+        If Not letrasValidas.Contains(txtLetra.Text) Then
+            txtLetra.Focus()
+        End If
     End Sub
 
     Private Sub txtLetra_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtLetra.TextChanged
