@@ -29,6 +29,12 @@ Partial Class Pagos
         Me.optVarios = New System.Windows.Forms.RadioButton()
         Me.optCtaCte = New System.Windows.Forms.RadioButton()
         Me.gridPagos = New System.Windows.Forms.DataGridView()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Letra = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Punto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gridFormaPagos = New System.Windows.Forms.DataGridView()
         Me.Tipo2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Numero2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -78,12 +84,6 @@ Partial Class Pagos
         Me.CustomLabel2 = New Administracion.CustomLabel()
         Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.CustomLabel12 = New Administracion.CustomLabel()
-        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Letra = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Punto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridFormaPagos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,6 +165,47 @@ Partial Class Pagos
         Me.gridPagos.RowHeadersWidth = 10
         Me.gridPagos.Size = New System.Drawing.Size(396, 273)
         Me.gridPagos.TabIndex = 56
+        '
+        'Tipo
+        '
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        Me.Tipo.ReadOnly = True
+        Me.Tipo.Width = 35
+        '
+        'Letra
+        '
+        Me.Letra.HeaderText = "Letra"
+        Me.Letra.Name = "Letra"
+        Me.Letra.ReadOnly = True
+        Me.Letra.Width = 40
+        '
+        'Punto
+        '
+        Me.Punto.HeaderText = "Punto"
+        Me.Punto.Name = "Punto"
+        Me.Punto.ReadOnly = True
+        Me.Punto.Width = 45
+        '
+        'Numero
+        '
+        Me.Numero.HeaderText = "Número"
+        Me.Numero.Name = "Numero"
+        Me.Numero.ReadOnly = True
+        Me.Numero.Width = 70
+        '
+        'Importe
+        '
+        Me.Importe.HeaderText = "Importe"
+        Me.Importe.Name = "Importe"
+        Me.Importe.Width = 75
+        '
+        'Descripcion
+        '
+        Me.Descripcion.HeaderText = "Descripción"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 115
         '
         'gridFormaPagos
         '
@@ -500,7 +541,7 @@ Partial Class Pagos
         '
         Me.cmbTipo.Cleanable = True
         Me.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbTipo.Empty = False
+        Me.cmbTipo.Empty = True
         Me.cmbTipo.EnterIndex = -1
         Me.cmbTipo.FormattingEnabled = True
         Me.cmbTipo.Items.AddRange(New Object() {"Normal", "Cheque Rechazado"})
@@ -710,47 +751,6 @@ Partial Class Pagos
         Me.CustomLabel12.TabIndex = 67
         Me.CustomLabel12.Text = "Tipo"
         Me.CustomLabel12.Visible = False
-        '
-        'Tipo
-        '
-        Me.Tipo.HeaderText = "Tipo"
-        Me.Tipo.Name = "Tipo"
-        Me.Tipo.ReadOnly = True
-        Me.Tipo.Width = 35
-        '
-        'Letra
-        '
-        Me.Letra.HeaderText = "Letra"
-        Me.Letra.Name = "Letra"
-        Me.Letra.ReadOnly = True
-        Me.Letra.Width = 40
-        '
-        'Punto
-        '
-        Me.Punto.HeaderText = "Punto"
-        Me.Punto.Name = "Punto"
-        Me.Punto.ReadOnly = True
-        Me.Punto.Width = 45
-        '
-        'Numero
-        '
-        Me.Numero.HeaderText = "Número"
-        Me.Numero.Name = "Numero"
-        Me.Numero.ReadOnly = True
-        Me.Numero.Width = 70
-        '
-        'Importe
-        '
-        Me.Importe.HeaderText = "Importe"
-        Me.Importe.Name = "Importe"
-        Me.Importe.Width = 75
-        '
-        'Descripcion
-        '
-        Me.Descripcion.HeaderText = "Descripción"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        Me.Descripcion.Width = 115
         '
         'Pagos
         '

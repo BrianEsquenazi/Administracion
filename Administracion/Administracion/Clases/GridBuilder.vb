@@ -107,16 +107,10 @@
     Private Sub dataGridCellEndEdit(ByVal sender As Object, ByVal e As Object)
         Dim iCol = dataGrid.CurrentCell.ColumnIndex
         Dim iRow = dataGrid.CurrentCell.RowIndex
-        If iCol = dataGrid.Columns.Count - 1 Then
-            If iRow < dataGrid.Rows.Count - 1 Then
-                SendKeys.Send("{up}")
-            End If
-        Else
-            If iRow < dataGrid.Rows.Count - 1 Then
-                SendKeys.Send("{up}")
-            End If
-            SendKeys.Send("{enter}")
+        If iRow < dataGrid.Rows.Count - 1 Then
+            SendKeys.Send("{up}")
         End If
+        SendKeys.Send("{enter}")
     End Sub
 
     Private Sub cellValueChanged(ByVal sender As Object, ByVal e As Object)
