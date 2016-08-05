@@ -101,6 +101,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_interno_segun]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_iva_compras_adicional]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_iva_compras_adicional]
+GO
+
 /*
 		GENERACION NOVEDADES
 */
@@ -842,5 +846,21 @@ BEGIN
 	WHERE ccp.Clave = @clave
 		
 	return (CONVERT(int, @numero_int))
+END
+GO
+
+CREATE PROCEDURE PR_get_iva_compras_adicional
+	@NroInterno int
+AS
+BEGIN
+
+
+	SELECT 
+			Clave , NroInterno , Renglon , Cuit , Razon , Tipo ,
+			Letra , Punto , Numero , Fecha , OrdFecha , Neto ,
+			Iva21 , Iva27 , Iva105 , PerceIva , PerceIb , Exento
+	FROM IvaCompAdicional
+	WHERE NroInterno = @NroInterno
+
 END
 GO
