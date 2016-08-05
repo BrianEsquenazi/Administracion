@@ -5,13 +5,11 @@ Public Class BancosABM
     Dim organizadorABM As New FormOrganizer(Me, 485, 600)
 
     Private Sub BancosABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        txtCodigo.Text = DAOBanco.siguienteCodigo()
-
         organizadorABM.addControls(txtCodigo, txtNombre, txtCuenta)
         organizadorABM.addAnnexedControls(New List(Of CustomControl) From {txtDescripcion})
         organizadorABM.setAddButtonClick(AddressOf agregar)
         organizadorABM.setDeleteButtonClick(AddressOf borrar)
-        organizadorABM.setDefaultCleanButtonClick()
+        organizadorABM.setCleanButtonClick(AddressOf limpiar)
         organizadorABM.setDefaultCloseButtonClick()
         organizadorABM.setListButtonClick(AddressOf listado)
         organizadorABM.addQueryFunction(AddressOf DAOBanco.buscarBancoPorNombre, "Bancos", AddressOf mostrarBanco, txtCodigo)
@@ -32,8 +30,12 @@ Public Class BancosABM
         DAOBanco.eliminarBanco(banco)
     End Sub
 
-    Private Sub listado()
+    Private Sub limpiar()
+        Cleanner.clean(Me)
+        txtCodigo.Text = DAOBanco.siguienteCodigo()
+    End Sub
 
+    Private Sub listado()
         Dim txtUno As String
         Dim txtFormula As String
         Dim x As Char = Chr(34)
@@ -53,8 +55,13 @@ Public Class BancosABM
     End Sub
 
     Private Sub mostrarCuenta(ByVal cuenta As CuentaContable)
-        txtCuenta.Text = cuenta.id
-        txtDescripcion.Text = cuenta.descripcion
+        If IsNothing(cuenta) Then
+            txtCuenta.Text = ""
+            txtDescripcion.Text = ""
+        Else
+            txtCuenta.Text = cuenta.id
+            txtDescripcion.Text = cuenta.descripcion
+        End If
     End Sub
 
     Private Sub txtCodigo_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigo.Leave

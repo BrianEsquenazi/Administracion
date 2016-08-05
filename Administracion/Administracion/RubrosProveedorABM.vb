@@ -5,17 +5,16 @@ Public Class RubrosProveedorABM
     Dim organizadorABM As New FormOrganizer(Me, 485, 600)
 
     Private Sub RubrosProveedorABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        txtCodigo.Text = DAORubroProveedor.siguienteCodigo()
-
         organizadorABM.addControls(txtCodigo, txtDescripcion)
         organizadorABM.setAddButtonClick(AddressOf agregar)
         organizadorABM.setDeleteButtonClick(AddressOf borrar)
-        organizadorABM.setDefaultCleanButtonClick()
+        organizadorABM.setCleanButtonClick(AddressOf limpiar)
         organizadorABM.setDefaultCloseButtonClick()
         organizadorABM.setListButtonClick(AddressOf listado)
         organizadorABM.addQueryFunction(AddressOf DAORubroProveedor.buscarRubroProveedorPorDescripcion, "Rubros", AddressOf mostrarRubroProveedor, txtCodigo)
         organizadorABM.controlsDefinedBy("get_rubro", AddressOf DAORubroProveedor.crearRubroProveedor, AddressOf mostrarRubroProveedor)
         organizadorABM.organize()
+        limpiar()
     End Sub
 
     Private Sub agregar()
@@ -26,6 +25,11 @@ Public Class RubrosProveedorABM
     Private Sub borrar()
         Dim rubro As New RubroProveedor(txtCodigo.Text, txtDescripcion.Text)
         DAORubroProveedor.eliminarRubroProveedor(rubro)
+    End Sub
+
+    Private Sub limpiar()
+        Cleanner.clean(Me)
+        txtCodigo.Text = DAORubroProveedor.siguienteCodigo()
     End Sub
 
     Private Sub listado()

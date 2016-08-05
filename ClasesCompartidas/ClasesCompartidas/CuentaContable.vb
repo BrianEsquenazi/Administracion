@@ -3,8 +3,8 @@
     Public descripcion As String
 
     Public Sub New(ByVal identificador As String, ByVal desc As String)
-        id = identificador
-        descripcion = desc
+        id = Trim(identificador)
+        descripcion = Trim(desc)
     End Sub
 
     Public Overrides Function ToString() As String

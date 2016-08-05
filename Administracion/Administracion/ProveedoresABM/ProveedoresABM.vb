@@ -3,7 +3,7 @@
 Public Class ProveedoresABM
 
     Dim organizadorABM As New FormOrganizer(Me, 800, 600)
-    Dim observaciones As String
+    Dim observaciones As String = ""
     Dim cufe1 As Tuple(Of String, String) = Tuple.Create("", "")
     Dim cufe2 As Tuple(Of String, String) = Tuple.Create("", "")
     Dim cufe3 As Tuple(Of String, String) = Tuple.Create("", "")
@@ -11,7 +11,10 @@ Public Class ProveedoresABM
     Private Sub ProveedoresABM_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim provincias = DAOProveedor.listarProvincias
         provincias.Add(New Provincia(25, ""))
+        cmbProvincia.DisplayMember = "ToString"
+        cmbProvincia.ValueMember = "valueMember"
         cmbProvincia.DataSource = provincias
+        
         cmbRubro.DisplayMember = "ToString"
         cmbRubro.ValueMember = "valueMember"
         cmbRubro.DataSource = DAORubroProveedor.buscarRubroProveedorPorDescripcion("")
@@ -37,6 +40,8 @@ Public Class ProveedoresABM
     End Sub
 
     Private Sub setDefaults()
+        cmbTipoProveedor.SelectedIndex = cmbTipoProveedor.Items.Count - 1
+        cmbIVA.SelectedIndex = cmbIVA.Items.Count - 1
         cmbRegion.SelectedIndex = 0
         cmbCondicionIB1.SelectedIndex = 0
         cmbCondicionIB2.SelectedIndex = 2
@@ -49,7 +54,7 @@ Public Class ProveedoresABM
 
         proveedor.direccion = txtDireccion.Text
         proveedor.localidad = txtLocalidad.Text
-        proveedor.provincia = DirectCast(cmbProvincia.SelectedValue, Provincia).id
+        proveedor.provincia = cmbProvincia.SelectedValue
         proveedor.codPostal = txtCodigoPostal.Text
         proveedor.region = cmbRegion.SelectedIndex
         proveedor.telefono = txtTelefono.Text
@@ -64,8 +69,8 @@ Public Class ProveedoresABM
         proveedor.condicionIB1 = cmbCondicionIB1.SelectedIndex
         proveedor.condicionIB2 = cmbCondicionIB2.SelectedIndex
         proveedor.numeroIB = txtNroIB.Text
-        proveedor.porceIBProvincia = txtPorcelProv.Text
-        proveedor.porceIBCABA = txtPorcelCABA.Text
+        proveedor.porceIBProvincia = CustomConvert.toDoubleOrZero(txtPorcelProv.Text)
+        proveedor.porceIBCABA = CustomConvert.toDoubleOrZero(txtPorcelCABA.Text)
         proveedor.rubro = cmbRubro.SelectedItem
         proveedor.numeroSEDRONAR = txtNroSEDRONAR1.Text
         proveedor.vtoSEDRONAR = txtNroSEDRONAR2.Text
@@ -103,7 +108,7 @@ Public Class ProveedoresABM
         txtRazonSocial.Text = proveedor.razonSocial
         txtDireccion.Text = proveedor.direccion
         txtLocalidad.Text = proveedor.localidad
-        cmbProvincia.SelectedIndex = proveedor.provincia
+        cmbProvincia.SelectedValue = proveedor.provincia
         txtCodigoPostal.Text = proveedor.codPostal
         cmbRegion.SelectedIndex = proveedor.region
         txtTelefono.Text = proveedor.telefono

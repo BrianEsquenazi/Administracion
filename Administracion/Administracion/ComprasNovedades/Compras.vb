@@ -149,15 +149,25 @@ Public Class Compras
         validador.alsoValidate(valoresDebeYHaberCorrectos(), "Una entrada del asiento tiene valores inválidos de Débito y/o Crédito")
         validador.alsoValidate(asDouble(lblDebito.Text) = asDouble(txtTotal.Text), "El total del asiento contable tiene que ser igual al importe total")
         validador.alsoValidate(esValidoNacion, "No se cargaron las cuotas de PyME nación correctamente")
+        validador.alsoValidate(laParidadEsValida, "La paridad con el dólar tiene que ser un valor positivo")
 
         Return validador.flush
+    End Function
+
+    Private Function laParidadEsValida()
+        If cmbTipo.SelectedIndex = 2 Then
+            Return CustomConvert.toDoubleOrZero(txtParidad.Text)
+        End If
+        Return True
     End Function
 
     Private Function valoresDebeYHaberCorrectos()
         Dim estado As Boolean = True
         For Each row As DataGridViewRow In gridAsientos.Rows
-            estado = estado And (asDouble(row.Cells(2).Value) = 0 Xor asDouble(row.Cells(3).Value) = 0) _
-                And asDouble(row.Cells(2).Value) >= 0 And asDouble(row.Cells(3).Value) >= 0
+            If Not row.IsNewRow Then
+                estado = estado And (asDouble(row.Cells(2).Value) = 0 Xor asDouble(row.Cells(3).Value) = 0) _
+                    And asDouble(row.Cells(2).Value) >= 0 And asDouble(row.Cells(3).Value) >= 0
+            End If
         Next
         Return estado
     End Function
@@ -165,7 +175,9 @@ Public Class Compras
     Private Function asientosCorrectos()
         Dim estado As Boolean = True
         For Each row As DataGridViewRow In gridAsientos.Rows
-            estado = estado And row.Cells(1).Value <> ""
+            If Not row.IsNewRow Then
+                estado = estado And row.Cells(1).Value <> ""
+            End If
         Next
         Return estado
     End Function
@@ -215,8 +227,10 @@ Public Class Compras
     Private Sub crearImputaciones(ByVal compra As Compra)
         Dim imputaciones As New List(Of Imputac)
         For Each row As DataGridViewRow In gridAsientos.Rows
-            imputaciones.Add(New Imputac(compra.fechaEmision, asDouble(row.Cells(2).Value), asDouble(row.Cells(3).Value), proveedor.id, row.Cells(0).Value, compra.nroInterno,
-                                         compra.punto, compra.numero, compra.despacho, compra.letra, compra.tipoDocumento, ceros((row.Index + 1).ToString, 2)))
+            If Not row.IsNewRow Then
+                imputaciones.Add(New Imputac(compra.fechaEmision, asDouble(row.Cells(2).Value), asDouble(row.Cells(3).Value), proveedor.id, row.Cells(0).Value, compra.nroInterno,
+                                             compra.punto, compra.numero, compra.despacho, compra.letra, compra.tipoDocumento, ceros((row.Index + 1).ToString, 2)))
+            End If
         Next
 
         compra.agregarImputaciones(imputaciones)
@@ -500,5 +514,9 @@ Public Class Compras
 
     Private Sub optCtaCte_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optCtaCte.CheckedChanged
         gridAsientos.Rows.Clear()
+    End Sub
+
+    Private Sub txtLetra_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
+
     End Sub
 End Class

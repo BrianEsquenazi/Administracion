@@ -1,14 +1,21 @@
 ﻿Public Class Cleanner
-    Private Shared controls As New List(Of CustomControl)
+
+    Private Shared Function controls(ByVal form As Form) As List(Of CustomControl)
+        Dim formControls As New List(Of CustomControl)
+        For Each control As CustomControl In form.Controls.OfType(Of CustomControl)()
+            formControls.Add(control)
+        Next
+        Return formControls
+    End Function
 
     Public Shared Sub clean(ByVal form As Form)
         cleanWithoutChangeFocus(form)
-        changeFocus()
+        changeFocus(form)
     End Sub
 
-    Private Shared Sub changeFocus()
+    Private Shared Sub changeFocus(ByVal form As Form)
         Dim firstControl As Control
-        firstControl = controls.Find(Function(control) control.EnterIndex = 1)
+        firstControl = controls(form).Find(Function(control) control.EnterIndex = 1)
         If Not IsNothing(firstControl) Then
             firstControl.Focus()
         End If
@@ -23,28 +30,23 @@
                     txtBox.Text = ""
                 End If
             End If
-            controls.Add(txtBox)
         Next
         For Each cmbBox As CustomComboBox In form.Controls.OfType(Of CustomComboBox)()
             If cmbBox.Cleanable Then
                 cmbBox.Text = ""
                 cmbBox.SelectedIndex = -1
             End If
-            controls.Add(cmbBox)
         Next
         For Each lstBox As CustomListBox In form.Controls.OfType(Of CustomListBox)()
             If lstBox.Cleanable Then
                 lstBox.DataSource = Nothing
                 lstBox.Items.Clear()
             End If
-            controls.Add(lstBox)
         Next
         For Each btn As CustomButton In form.Controls.OfType(Of CustomButton)()
             If btn.Cleanable Then
                 btn.Visible = False
             End If
-            controls.Add(btn)
         Next
     End Sub
-
 End Class

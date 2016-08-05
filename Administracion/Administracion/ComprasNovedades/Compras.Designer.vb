@@ -150,7 +150,6 @@ Partial Class Compras
         '
         'gridAsientos
         '
-        Me.gridAsientos.AllowUserToAddRows = False
         Me.gridAsientos.AllowUserToDeleteRows = False
         Me.gridAsientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridAsientos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Cuenta, Me.Descripcion, Me.Debito, Me.Credito})

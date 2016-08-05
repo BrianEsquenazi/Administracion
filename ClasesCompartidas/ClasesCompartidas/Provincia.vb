@@ -10,4 +10,10 @@
     Public Overrides Function ToString() As String
         Return nombre
     End Function
+
+    Public ReadOnly Property valueMember
+        Get
+            Return id
+        End Get
+    End Property
 End Class

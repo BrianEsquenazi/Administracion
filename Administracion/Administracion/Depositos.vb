@@ -107,9 +107,32 @@ Public Class Depositos
         mostrarSeleccionDeConsulta()
     End Sub
 
+    Private Sub mostrarDeposito(ByVal deposito As Deposito)
+        If IsNothing(deposito) Then
+
+        Else
+            txtFecha.Text = deposito.fecha
+            mostrarBanco(deposito.banco)
+            txtFechaAcreditacion.Text = deposito.fechaAcreditacion
+            txtImporte.Text = CustomConvert.toStringWithTwoDecimalPlaces(deposito.importeTotal)
+            For Each item As ItemDeposito In deposito.items
+                If item.tipo = 3 Then
+                    mostrarCheque(item)
+                Else
+                    gridCheques.Rows.Add(item.tipo, item.numero, item.fecha, item.nombre, item.importe)
+                End If
+            Next
+        End If
+    End Sub
+
     Private Sub mostrarBanco(ByVal banco As Banco)
-        txtCodigoBanco.Text = banco.id
-        txtDescripcionBanco.Text = banco.nombre
+        If Not IsNothing(banco) Then
+            txtCodigoBanco.Text = banco.id
+            txtDescripcionBanco.Text = banco.nombre
+        Else
+            txtCodigoBanco.Text = ""
+            txtDescripcionBanco.Text = ""
+        End If
     End Sub
 
     Private Sub mostrarCheque(ByVal cheque As Cheque)
@@ -202,6 +225,8 @@ Public Class Depositos
 
     Private Sub txtNroDeposito_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroDeposito.Leave
         txtNroDeposito.Text = ceros(txtNroDeposito.Text, 6)
+        Dim deposito As Deposito = DAODeposito.buscarDeposito(txtNroDeposito.Text)
+        mostrarDeposito(deposito)
     End Sub
 
     Private Sub txtCodigoBanco_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigoBanco.DoubleClick
