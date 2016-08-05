@@ -231,4 +231,8 @@
     Private Sub CuantaCorrienteDeProveedoresSelectivoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CuantaCorrienteDeProveedoresSelectivoToolStripMenuItem.Click
 
     End Sub
+
+    Private Sub AplicacionDeCorpobantesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AplicacionDeCorpobantesToolStripMenuItem.Click
+        abrir(New AplicacionComprobantes)
+    End Sub
 End Class

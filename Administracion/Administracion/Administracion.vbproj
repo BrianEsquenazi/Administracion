@@ -129,6 +129,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AplicacionComprobantes.Designer.vb">
+      <DependentUpon>AplicacionComprobantes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AplicacionComprobantes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="BancosABM.Designer.vb">
       <DependentUpon>BancosABM.vb</DependentUpon>
     </Compile>
@@ -492,6 +498,9 @@
     <Compile Include="Clases\Validator.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AplicacionComprobantes.resx">
+      <DependentUpon>AplicacionComprobantes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BancosABM.resx">
       <DependentUpon>BancosABM.vb</DependentUpon>
     </EmbeddedResource>

@@ -11,6 +11,7 @@ Public Class CuentaCorrientePantalla
                     Handles txtProveedor.KeyPress
         If e.KeyChar = Convert.ToChar(Keys.Return) Then
             e.Handled = True
+            ' DADA que no rompa cuando el codigo no existe y usar la funcion "ceros" para completar??
             Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(txtProveedor.Text)
             txtRazon.Text = CampoProveedor.razonSocial
             Call Proceso()
@@ -135,4 +136,7 @@ Public Class CuentaCorrientePantalla
         Stop
     End Sub
 
+    Private Sub lstAyuda_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstAyuda.SelectedIndexChanged
+
+    End Sub
 End Class
