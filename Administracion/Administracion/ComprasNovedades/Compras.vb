@@ -7,6 +7,7 @@ Public Class Compras
     Dim pagoPyme As Tuple(Of String, String, String) = Tuple.Create("", "", "")
     Dim proveedor As Proveedor
     Dim apertura As New Apertura
+    Dim esModificacion As Boolean = False
 
     Private Sub Compras_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim gridBuilder As New GridBuilder(gridAsientos)
@@ -56,6 +57,7 @@ Public Class Compras
         optCtaCte.Checked = True
         cmbTipo.SelectedIndex = 0
         apertura = New Apertura
+        esModificacion = False
     End Sub
 
     Public Sub mostrarProveedor(ByVal proveedorAMostrar As Proveedor)
@@ -318,7 +320,7 @@ Public Class Compras
 
         crearAsientoContableUsando(cuenta)
         If gridAsientos.Rows.Count > 0 Then
-            gridAsientos.CurrentCell = gridAsientos.Rows(gridAsientos.Rows.Count - 1).Cells(0)
+            gridAsientos.CurrentCell = gridAsientos.Rows(gridAsientos.Rows.Count - 2).Cells(0)
             gridAsientos.Select()
         End If
     End Sub
@@ -340,28 +342,30 @@ Public Class Compras
     End Function
 
     Private Sub crearAsientoContableUsando(ByVal cuenta As CuentaContable)
-        gridAsientos.Rows.Clear()
-        Dim total As Double = asDouble(txtTotal.Text)
-        Dim sumaIvas As Double = asDouble(txtIVA10.Text) + asDouble(txtIVA21.Text) + asDouble(txtIVA27.Text) + asDouble(txtNoGravado.Text)
-        Dim ivaRG3337 As Double = asDouble(txtIVARG.Text)
-        Dim ingresosBrutos As Double = asDouble(txtPercIB.Text)
-        Dim diferencia As Double = total - sumaIvas - ingresosBrutos - ivaRG3337
+        If Not esModificacion Then
+            gridAsientos.Rows.Clear()
+            Dim total As Double = asDouble(txtTotal.Text)
+            Dim sumaIvas As Double = asDouble(txtIVA10.Text) + asDouble(txtIVA21.Text) + asDouble(txtIVA27.Text) + asDouble(txtNoGravado.Text)
+            Dim ivaRG3337 As Double = asDouble(txtIVARG.Text)
+            Dim ingresosBrutos As Double = asDouble(txtPercIB.Text)
+            Dim diferencia As Double = total - sumaIvas - ingresosBrutos - ivaRG3337
 
-        If esNotaDeCredito() Then
-            If total <> 0 Then : gridAsientos.Rows.Add(cuenta.id, cuenta.descripcion, total, 0) : End If
-            If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVACredito.id, cuentaIVACredito.descripcion, 0, sumaIvas) : End If
-            If ivaRG3337 <> 0 Then : gridAsientos.Rows.Add(cuentaIVARG3337.id, cuentaIVARG3337.descripcion, 0, ivaRG3337) : End If
-            If ingresosBrutos <> 0 Then : gridAsientos.Rows.Add(cuentaIngresosBrutos.id, cuentaIngresosBrutos.descripcion, 0, ingresosBrutos) : End If
-            If diferencia <> 0 Then : gridAsientos.Rows.Add("", "", 0, diferencia) : End If
-        Else
-            If total <> 0 Then : gridAsientos.Rows.Add(cuenta.id, cuenta.descripcion, 0, total) : End If
-            If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVACredito.id, cuentaIVACredito.descripcion, sumaIvas, 0) : End If
-            If ivaRG3337 <> 0 Then : gridAsientos.Rows.Add(cuentaIVARG3337.id, cuentaIVARG3337.descripcion, ivaRG3337, 0) : End If
-            If ingresosBrutos <> 0 Then : gridAsientos.Rows.Add(cuentaIngresosBrutos.id, cuentaIngresosBrutos.descripcion, ingresosBrutos, 0) : End If
-            If diferencia <> 0 Then : gridAsientos.Rows.Add("", "", diferencia, 0) : End If
+            If esNotaDeCredito() Then
+                If total <> 0 Then : gridAsientos.Rows.Add(cuenta.id, cuenta.descripcion, total, 0) : End If
+                If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVACredito.id, cuentaIVACredito.descripcion, 0, sumaIvas) : End If
+                If ivaRG3337 <> 0 Then : gridAsientos.Rows.Add(cuentaIVARG3337.id, cuentaIVARG3337.descripcion, 0, ivaRG3337) : End If
+                If ingresosBrutos <> 0 Then : gridAsientos.Rows.Add(cuentaIngresosBrutos.id, cuentaIngresosBrutos.descripcion, 0, ingresosBrutos) : End If
+                If diferencia <> 0 Then : gridAsientos.Rows.Add("", "", 0, diferencia) : End If
+            Else
+                If total <> 0 Then : gridAsientos.Rows.Add(cuenta.id, cuenta.descripcion, 0, total) : End If
+                If sumaIvas <> 0 Then : gridAsientos.Rows.Add(cuentaIVACredito.id, cuentaIVACredito.descripcion, sumaIvas, 0) : End If
+                If ivaRG3337 <> 0 Then : gridAsientos.Rows.Add(cuentaIVARG3337.id, cuentaIVARG3337.descripcion, ivaRG3337, 0) : End If
+                If ingresosBrutos <> 0 Then : gridAsientos.Rows.Add(cuentaIngresosBrutos.id, cuentaIngresosBrutos.descripcion, ingresosBrutos, 0) : End If
+                If diferencia <> 0 Then : gridAsientos.Rows.Add("", "", diferencia, 0) : End If
+            End If
+
+            calcularAsiento()
         End If
-
-        calcularAsiento()
     End Sub
 
     Private Sub calcularAsiento()
@@ -435,6 +439,7 @@ Public Class Compras
         txtTipo_Leave(Nothing, Nothing)
         mostrarImputaciones(compra.imputaciones)
         calcularAsiento()
+        esModificacion = True
     End Sub
 
     Private Sub mostrarImputaciones(ByVal imputaciones As List(Of Imputac))
@@ -449,6 +454,7 @@ Public Class Compras
         If Not IsNothing(compra) Then
             mostrarCompra(compra)
         Else
+            esModificacion = False
             'Creo que no hay que hacer nada
         End If
     End Sub
@@ -503,20 +509,18 @@ Public Class Compras
             If pymeForm.ShowDialog(Me) = DialogResult.OK Then
                 pagoPyme = Tuple.Create(pymeForm.txtCantidadCuotas.Text, pymeForm.txtMes.Text, pymeForm.txtAnio.Text)
             End If
-
-            proveedor = DAOProveedor.bancoNacion()
         End If
     End Sub
 
     Private Sub optEfectivo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optEfectivo.CheckedChanged
-        gridAsientos.Rows.Clear()
+        'If Not esModificacion Then
+        'gridAsientos.Rows.Clear()
+        'End If
     End Sub
 
     Private Sub optCtaCte_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optCtaCte.CheckedChanged
-        gridAsientos.Rows.Clear()
-    End Sub
-
-    Private Sub txtLetra_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
-
+        'If Not esModificacion Then
+        '    gridAsientos.Rows.Clear()
+        'End If
     End Sub
 End Class

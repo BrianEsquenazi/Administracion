@@ -3,7 +3,12 @@
 Public Class ConsultaNumeroFactura
 
     Private Sub ConsultaNumeroFactura_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Dim handler As New CommonEventsHandler
+        handler.setIndexTabNotCRUDForm(Me)
+    End Sub
 
+    Private Sub txtLetra_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtLetra.TextChanged
+        txtLetra.Text = txtLetra.Text.ToUpper
     End Sub
 
     Private Sub txtTipo_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTipo.Leave

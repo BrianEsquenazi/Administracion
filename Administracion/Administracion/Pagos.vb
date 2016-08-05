@@ -332,7 +332,7 @@ Public Class Pagos
         Select Case val
             Case 1
                 nombre = "Efectivo"
-                column = 5
+                column = 4
             Case 2
                 column = 1
             Case 3
@@ -342,10 +342,10 @@ Public Class Pagos
                 Exit Sub
             Case 5
                 nombre = "US$"
-                column = 5
+                column = 4
             Case 6
                 nombre = "Varios"
-                column = 5
+                column = 4
             Case Else
                 Exit Sub
         End Select
@@ -357,9 +357,11 @@ Public Class Pagos
 
     Private Sub gridFormaPagos_CellLeave(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridFormaPagos.CellLeave
         If e.ColumnIndex = 3 And e.RowIndex > -1 Then
-            Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(gridFormaPagos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value)
-            If Not IsNothing(banco) Then
-                gridFormaPagos.Rows(e.RowIndex).Cells(e.ColumnIndex + 1).Value = banco.nombre
+            If gridFormaPagos.Rows(e.RowIndex).Cells(0).Value <> "02" Then
+                Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(gridFormaPagos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value)
+                If Not IsNothing(banco) Then
+                    gridFormaPagos.Rows(e.RowIndex).Cells(e.ColumnIndex + 1).Value = banco.nombre
+                End If
             End If
         End If
     End Sub

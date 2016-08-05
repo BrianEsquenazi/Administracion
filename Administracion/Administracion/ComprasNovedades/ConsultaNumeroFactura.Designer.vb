@@ -54,7 +54,7 @@ Partial Class ConsultaNumeroFactura
         '
         Me.txtCodigoProveedor.Cleanable = True
         Me.txtCodigoProveedor.Empty = False
-        Me.txtCodigoProveedor.EnterIndex = 2
+        Me.txtCodigoProveedor.EnterIndex = 1
         Me.txtCodigoProveedor.LabelAssociationKey = 2
         Me.txtCodigoProveedor.Location = New System.Drawing.Point(77, 12)
         Me.txtCodigoProveedor.MaxLength = 11
@@ -77,7 +77,7 @@ Partial Class ConsultaNumeroFactura
         '
         Me.txtNumero.Cleanable = True
         Me.txtNumero.Empty = False
-        Me.txtNumero.EnterIndex = 6
+        Me.txtNumero.EnterIndex = 5
         Me.txtNumero.LabelAssociationKey = 7
         Me.txtNumero.Location = New System.Drawing.Point(417, 40)
         Me.txtNumero.MaxLength = 8
@@ -91,7 +91,7 @@ Partial Class ConsultaNumeroFactura
         '
         Me.txtPunto.Cleanable = True
         Me.txtPunto.Empty = False
-        Me.txtPunto.EnterIndex = 5
+        Me.txtPunto.EnterIndex = 4
         Me.txtPunto.LabelAssociationKey = 6
         Me.txtPunto.Location = New System.Drawing.Point(297, 39)
         Me.txtPunto.MaxLength = 4
@@ -105,7 +105,7 @@ Partial Class ConsultaNumeroFactura
         '
         Me.txtLetra.Cleanable = True
         Me.txtLetra.Empty = False
-        Me.txtLetra.EnterIndex = 4
+        Me.txtLetra.EnterIndex = 3
         Me.txtLetra.LabelAssociationKey = 5
         Me.txtLetra.Location = New System.Drawing.Point(217, 39)
         Me.txtLetra.MaxLength = 1
@@ -119,7 +119,7 @@ Partial Class ConsultaNumeroFactura
         Me.cmbTipo.Cleanable = True
         Me.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTipo.Empty = False
-        Me.cmbTipo.EnterIndex = 3
+        Me.cmbTipo.EnterIndex = 2
         Me.cmbTipo.FormattingEnabled = True
         Me.cmbTipo.Items.AddRange(New Object() {"FC", "ND", "NC"})
         Me.cmbTipo.LabelAssociationKey = 4

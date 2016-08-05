@@ -109,7 +109,7 @@ Public Class Depositos
 
     Private Sub mostrarDeposito(ByVal deposito As Deposito)
         If IsNothing(deposito) Then
-
+            'Cleanner.cleanWithoutChangeFocus(Me)
         Else
             txtFecha.Text = deposito.fecha
             mostrarBanco(deposito.banco)
