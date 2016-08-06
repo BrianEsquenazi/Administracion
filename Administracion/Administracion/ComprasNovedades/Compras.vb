@@ -199,9 +199,9 @@ Public Class Compras
                     compra.agregarPagoPyme(pagoPyme)
                 End If
                 DAOCompras.agregarDatosCuentaCorriente(compra)
-                If Not IsNothing(apertura) Then
-                    DAOCompras.agregarTablaIvaComprasAdicional(compra, apertura.gridApertura.Rows)
-                End If
+            End If
+            If Not IsNothing(apertura) Then
+                DAOCompras.agregarTablaIvaComprasAdicional(compra, apertura.gridApertura.Rows)
             End If
             MsgBox("El número de interno asignado es: " & compra.nroInterno)
             btnLimpiar.PerformClick()
@@ -465,6 +465,9 @@ Public Class Compras
     End Sub
 
     Private Sub btnApertura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnApertura.Click
+        If esModificacion And apertura.noSeAbrio Then
+            apertura.cargarTablaSegun(DAOCompras.camposApertura(CustomConvert.toIntOrZero(txtNroInterno.Text)))
+        End If
         apertura.ShowDialog()
 
         If Not apertura.IsDisposed Then
@@ -494,7 +497,11 @@ Public Class Compras
 
     Private Sub optNacion_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optNacion.CheckedChanged
         If Not optNacion.Checked Then
-            pagoPyme = Tuple.Create("", "", "")
+            If esModificacion Then
+                pagoPyme = DAOCompras.datosNacion(CustomConvert.toIntOrZero(txtNroInterno.Text))
+            Else
+                pagoPyme = Tuple.Create("", "", "")
+            End If
         End If
     End Sub
 

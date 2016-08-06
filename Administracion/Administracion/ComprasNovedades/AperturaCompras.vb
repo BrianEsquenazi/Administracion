@@ -1,5 +1,7 @@
 ﻿Public Class Apertura
 
+    Private seAbrio As Boolean = False
+
     Public Function valorNeto()
         Return sumarColumna(7)
     End Function
@@ -28,6 +30,24 @@
         Return sumarColumna(13)
     End Function
 
+    Public Function noSeAbrio()
+        Return Not seAbrio
+    End Function
+
+    Public Sub cargarTablaSegun(ByVal tabla As DataTable)
+        For Each dataRow As DataRow In tabla.Rows
+            gridApertura.Rows.Add(dataRow("Cuit").ToString, dataRow("Razon").ToString, dataRow("Tipo").ToString, dataRow("Letra").ToString,
+                                  dataRow("Punto").ToString, dataRow("Numero").ToString, dataRow("Fecha").ToString, asDouble(dataRow("Neto")),
+                                  asDouble(dataRow("Iva21")), asDouble(dataRow("Iva27")), asDouble(dataRow("Iva105")), asDouble(dataRow("PerceIva")),
+                                  asDouble(dataRow("PerceIB")), asDouble(dataRow("Exento")))
+        Next
+    End Sub
+
+    Private Function asDouble(ByVal valor)
+        Return CustomConvert.toStringWithTwoDecimalPlaces(CustomConvert.toDoubleOrZero(valor))
+    End Function
+
+
     Private Function sumarColumna(ByVal index As Integer)
         Dim suma As Double
         For Each row As DataGridViewRow In gridApertura.Rows
@@ -55,6 +75,7 @@
         gridBuilder.addFloatColumn(11, "Perc. IVA")
         gridBuilder.addFloatColumn(12, "Perc. IB")
         gridBuilder.addFloatColumn(13, "Exento")
+        seAbrio = True
     End Sub
 
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click

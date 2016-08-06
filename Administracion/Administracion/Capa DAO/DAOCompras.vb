@@ -2,6 +2,18 @@
 
 Public Class DAOCompras
 
+    Public Shared Function datosNacion(ByVal nroInterno As Integer)
+        Try
+            Dim row As DataRow = SQLConnector.retrieveDataTable("get_datos_nacion", nroInterno).Rows(0)
+            Dim fecha As DateTime = Convert.ToDateTime(row("Fecha").ToString)
+            Dim mes As String = fecha.AddDays(-1).Month
+            Dim anio As String = fecha.AddDays(-1).Year
+            Return Tuple.Create(row("Cantidad").ToString, mes, anio)
+        Catch ex As Exception
+            Return Tuple.Create("", "", "")
+        End Try
+    End Function
+
     Public Shared Function buscarNumeroIntero(ByVal codigoProveedor As String, ByVal tipo As String, ByVal letra As String, ByVal punto As String, ByVal numero As String)
         Return SQLConnector.executeProcedureWithReturnValue("get_interno_segun", codigoProveedor, tipo, letra, punto, numero)
     End Function
@@ -13,10 +25,18 @@ Public Class DAOCompras
             datosCuotas(0) = Tuple.Create(datosCuotas(0).Item1, datosCuotas(0).Item2, datosCuotas(0).Item3, datosCuotas(0).Item4, 0.0)
             crarCuotasPara(compra, datosCuotas)
         End If
+        Dim aumentoInterno As Integer = 0
         For Each datoCuotas In datosCuotas
             SQLConnector.executeProcedure("alta_cuenta_corriente", compra.tipoPago, compra.codigoProveedor, compra.letra, ceros(compra.tipoDocumento, 2), compra.punto,
                                       datoCuotas.Item1, compra.fechaEmision, datoCuotas.Item2, datoCuotas.Item3, datoCuotas.Item4, datoCuotas.Item5,
                                       compra.tipoDocumentoDescripcion, compra.nroInterno, compra.paridad, compra.formaPago)
+            If compra.tipoPago = 3 And aumentoInterno > 0 Then
+                SQLConnector.executeProcedure("alta_iva_compra_nacion", compra.nroInterno + aumentoInterno, DAOProveedor.bancoNacion.id, compra.tipoDocumento, compra.letra,
+                                              compra.punto, compra.numero, compra.fechaEmision, datoCuotas.Item2, datoCuotas.Item3, compra.fechaIVA, 0, 0, 0, 0,
+                                              0, 0, compra.tipoPago, compra.tipoDocumentoDescripcion, compra.paridad,
+                                              compra.formaPago, compra.proveedor.cai, compra.proveedor.vtoCAI, 0, compra.despacho, compra.remito, compra.soloIVA, compra.nroInterno)
+            End If
+            aumentoInterno += 1
         Next
     End Sub
 
@@ -136,5 +156,9 @@ Public Class DAOCompras
 
     Public Shared Function siguienteNumeroDeInterno() As Long
         Return SQLConnector.retrieveDataTable("get_siguiente_numero_interno").Rows(0)(0)
+    End Function
+
+    Public Shared Function camposApertura(ByVal nroIntero As Integer)
+        Return SQLConnector.retrieveDataTable("get_iva_compras_adicional", nroIntero)
     End Function
 End Class
