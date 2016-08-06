@@ -30,6 +30,11 @@ Partial Class RecibosProvisorios
         Me.txtCliente = New Administracion.CustomTextBox()
         Me.txtNombre = New Administracion.CustomTextBox()
         Me.gridRecibos = New System.Windows.Forms.DataGridView()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtRetGanancias = New Administracion.CustomTextBox()
         Me.CustomLabel4 = New Administracion.CustomLabel()
         Me.CustomLabel5 = New Administracion.CustomLabel()
@@ -38,7 +43,7 @@ Partial Class RecibosProvisorios
         Me.CustomLabel6 = New Administracion.CustomLabel()
         Me.CustomLabel7 = New Administracion.CustomLabel()
         Me.txtRetIB = New Administracion.CustomTextBox()
-        Me.CustomTextBox7 = New Administracion.CustomTextBox()
+        Me.txtTotal = New Administracion.CustomTextBox()
         Me.CustomLabel8 = New Administracion.CustomLabel()
         Me.CustomLabel9 = New Administracion.CustomLabel()
         Me.txtParidad = New Administracion.CustomTextBox()
@@ -47,15 +52,11 @@ Partial Class RecibosProvisorios
         Me.btnCerrar = New Administracion.CustomButton()
         Me.btnIntereses = New Administracion.CustomButton()
         Me.btnLimpiar = New Administracion.CustomButton()
-        Me.lstAyuda = New Administracion.CustomListBox()
-        Me.txtAyuda = New Administracion.CustomTextBox()
         Me.CustomLabel13 = New Administracion.CustomLabel()
         Me.lblDiferencia = New Administracion.CustomLabel()
-        Me.Titipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lstSeleccion = New Administracion.CustomListBox()
+        Me.txtConsulta = New Administracion.CustomTextBox()
+        Me.lstConsulta = New Administracion.CustomListBox()
         CType(Me.gridRecibos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -113,7 +114,7 @@ Partial Class RecibosProvisorios
         Me.txtRecibo.Name = "txtRecibo"
         Me.txtRecibo.Size = New System.Drawing.Size(75, 20)
         Me.txtRecibo.TabIndex = 0
-        Me.txtRecibo.Validator = Administracion.ValidatorType.DateFormat
+        Me.txtRecibo.Validator = Administracion.ValidatorType.Numeric
         '
         'txtCliente
         '
@@ -126,7 +127,7 @@ Partial Class RecibosProvisorios
         Me.txtCliente.Name = "txtCliente"
         Me.txtCliente.Size = New System.Drawing.Size(75, 20)
         Me.txtCliente.TabIndex = 2
-        Me.txtCliente.Validator = Administracion.ValidatorType.DateFormat
+        Me.txtCliente.Validator = Administracion.ValidatorType.None
         '
         'txtNombre
         '
@@ -144,12 +145,47 @@ Partial Class RecibosProvisorios
         '
         'gridRecibos
         '
+        Me.gridRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gridRecibos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridRecibos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Titipo, Me.numero, Me.fecha, Me.banco, Me.importe})
+        Me.gridRecibos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.numero, Me.fecha, Me.banco, Me.importe})
         Me.gridRecibos.Location = New System.Drawing.Point(22, 174)
         Me.gridRecibos.Name = "gridRecibos"
         Me.gridRecibos.Size = New System.Drawing.Size(756, 363)
         Me.gridRecibos.TabIndex = 13
+        '
+        'Tipo
+        '
+        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Tipo.FillWeight = 80.0!
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        Me.Tipo.Width = 53
+        '
+        'numero
+        '
+        Me.numero.FillWeight = 120.0!
+        Me.numero.HeaderText = "Numero/Cta"
+        Me.numero.Name = "numero"
+        '
+        'fecha
+        '
+        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.fecha.FillWeight = 120.0!
+        Me.fecha.HeaderText = "Fecha"
+        Me.fecha.Name = "fecha"
+        Me.fecha.Width = 62
+        '
+        'banco
+        '
+        Me.banco.FillWeight = 150.0!
+        Me.banco.HeaderText = "Banco"
+        Me.banco.Name = "banco"
+        '
+        'importe
+        '
+        Me.importe.FillWeight = 80.0!
+        Me.importe.HeaderText = "Importe"
+        Me.importe.Name = "importe"
         '
         'txtRetGanancias
         '
@@ -239,17 +275,17 @@ Partial Class RecibosProvisorios
         Me.txtRetIB.TabIndex = 18
         Me.txtRetIB.Validator = Administracion.ValidatorType.PositiveFloat
         '
-        'CustomTextBox7
+        'txtTotal
         '
-        Me.CustomTextBox7.Cleanable = False
-        Me.CustomTextBox7.Empty = False
-        Me.CustomTextBox7.EnterIndex = -1
-        Me.CustomTextBox7.LabelAssociationKey = -1
-        Me.CustomTextBox7.Location = New System.Drawing.Point(703, 147)
-        Me.CustomTextBox7.Name = "CustomTextBox7"
-        Me.CustomTextBox7.Size = New System.Drawing.Size(75, 20)
-        Me.CustomTextBox7.TabIndex = 25
-        Me.CustomTextBox7.Validator = Administracion.ValidatorType.PositiveFloat
+        Me.txtTotal.Cleanable = False
+        Me.txtTotal.Empty = False
+        Me.txtTotal.EnterIndex = 8
+        Me.txtTotal.LabelAssociationKey = -1
+        Me.txtTotal.Location = New System.Drawing.Point(703, 147)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.Size = New System.Drawing.Size(75, 20)
+        Me.txtTotal.TabIndex = 25
+        Me.txtTotal.Validator = Administracion.ValidatorType.PositiveFloat
         '
         'CustomLabel8
         '
@@ -276,7 +312,7 @@ Partial Class RecibosProvisorios
         '
         Me.txtParidad.Cleanable = False
         Me.txtParidad.Empty = True
-        Me.txtParidad.EnterIndex = 8
+        Me.txtParidad.EnterIndex = 9
         Me.txtParidad.LabelAssociationKey = -1
         Me.txtParidad.Location = New System.Drawing.Point(103, 121)
         Me.txtParidad.Name = "txtParidad"
@@ -344,38 +380,15 @@ Partial Class RecibosProvisorios
         Me.btnLimpiar.Text = "Limpiar"
         Me.btnLimpiar.UseVisualStyleBackColor = True
         '
-        'lstAyuda
-        '
-        Me.lstAyuda.Cleanable = False
-        Me.lstAyuda.EnterIndex = -1
-        Me.lstAyuda.FormattingEnabled = True
-        Me.lstAyuda.LabelAssociationKey = -1
-        Me.lstAyuda.Location = New System.Drawing.Point(492, 46)
-        Me.lstAyuda.Name = "lstAyuda"
-        Me.lstAyuda.Size = New System.Drawing.Size(286, 95)
-        Me.lstAyuda.TabIndex = 31
-        '
-        'txtAyuda
-        '
-        Me.txtAyuda.Cleanable = False
-        Me.txtAyuda.Empty = True
-        Me.txtAyuda.EnterIndex = -1
-        Me.txtAyuda.LabelAssociationKey = -1
-        Me.txtAyuda.Location = New System.Drawing.Point(492, 20)
-        Me.txtAyuda.Name = "txtAyuda"
-        Me.txtAyuda.Size = New System.Drawing.Size(286, 20)
-        Me.txtAyuda.TabIndex = 32
-        Me.txtAyuda.Validator = Administracion.ValidatorType.None
-        '
         'CustomLabel13
         '
         Me.CustomLabel13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.CustomLabel13.ControlAssociationKey = -1
-        Me.CustomLabel13.Location = New System.Drawing.Point(398, 540)
+        Me.CustomLabel13.Location = New System.Drawing.Point(424, 540)
         Me.CustomLabel13.Name = "CustomLabel13"
-        Me.CustomLabel13.Size = New System.Drawing.Size(228, 22)
+        Me.CustomLabel13.Size = New System.Drawing.Size(202, 22)
         Me.CustomLabel13.TabIndex = 75
-        Me.CustomLabel13.Text = "Tipo de Doc.:   1) Ef.   2) Ch.   3) Doc.  4) "
+        Me.CustomLabel13.Text = "Tipo de Doc.:   1) Efectivo   2) Cheque"
         Me.CustomLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblDiferencia
@@ -384,51 +397,64 @@ Partial Class RecibosProvisorios
         Me.lblDiferencia.ControlAssociationKey = -1
         Me.lblDiferencia.Location = New System.Drawing.Point(632, 540)
         Me.lblDiferencia.Name = "lblDiferencia"
-        Me.lblDiferencia.Size = New System.Drawing.Size(70, 22)
+        Me.lblDiferencia.Size = New System.Drawing.Size(146, 22)
         Me.lblDiferencia.TabIndex = 74
         Me.lblDiferencia.Text = "0,00"
         Me.lblDiferencia.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Titipo
+        'lstSeleccion
         '
-        Me.Titipo.HeaderText = "Tipo"
-        Me.Titipo.Name = "Titipo"
+        Me.lstSeleccion.Cleanable = False
+        Me.lstSeleccion.EnterIndex = -1
+        Me.lstSeleccion.FormattingEnabled = True
+        Me.lstSeleccion.LabelAssociationKey = -1
+        Me.lstSeleccion.Location = New System.Drawing.Point(492, 5)
+        Me.lstSeleccion.Name = "lstSeleccion"
+        Me.lstSeleccion.Size = New System.Drawing.Size(286, 134)
+        Me.lstSeleccion.TabIndex = 78
+        Me.lstSeleccion.Visible = False
         '
-        'numero
+        'txtConsulta
         '
-        Me.numero.HeaderText = "Numero/Cta"
-        Me.numero.Name = "numero"
+        Me.txtConsulta.Cleanable = False
+        Me.txtConsulta.Empty = True
+        Me.txtConsulta.EnterIndex = -1
+        Me.txtConsulta.LabelAssociationKey = -1
+        Me.txtConsulta.Location = New System.Drawing.Point(492, 6)
+        Me.txtConsulta.Name = "txtConsulta"
+        Me.txtConsulta.Size = New System.Drawing.Size(286, 20)
+        Me.txtConsulta.TabIndex = 77
+        Me.txtConsulta.Validator = Administracion.ValidatorType.None
+        Me.txtConsulta.Visible = False
         '
-        'fecha
+        'lstConsulta
         '
-        Me.fecha.HeaderText = "Fecha"
-        Me.fecha.Name = "fecha"
-        '
-        'banco
-        '
-        Me.banco.HeaderText = "Banco"
-        Me.banco.Name = "banco"
-        '
-        'importe
-        '
-        Me.importe.HeaderText = "Importe"
-        Me.importe.Name = "importe"
+        Me.lstConsulta.Cleanable = False
+        Me.lstConsulta.EnterIndex = -1
+        Me.lstConsulta.FormattingEnabled = True
+        Me.lstConsulta.LabelAssociationKey = -1
+        Me.lstConsulta.Location = New System.Drawing.Point(492, 32)
+        Me.lstConsulta.Name = "lstConsulta"
+        Me.lstConsulta.Size = New System.Drawing.Size(286, 108)
+        Me.lstConsulta.TabIndex = 76
+        Me.lstConsulta.Visible = False
         '
         'RecibosProvisorios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(790, 571)
+        Me.ClientSize = New System.Drawing.Size(790, 568)
+        Me.Controls.Add(Me.lstSeleccion)
+        Me.Controls.Add(Me.txtConsulta)
+        Me.Controls.Add(Me.lstConsulta)
         Me.Controls.Add(Me.CustomLabel13)
         Me.Controls.Add(Me.lblDiferencia)
-        Me.Controls.Add(Me.txtAyuda)
-        Me.Controls.Add(Me.lstAyuda)
         Me.Controls.Add(Me.btnLimpiar)
         Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.btnIntereses)
         Me.Controls.Add(Me.btnConsulta)
         Me.Controls.Add(Me.btnAgregar)
-        Me.Controls.Add(Me.CustomTextBox7)
+        Me.Controls.Add(Me.txtTotal)
         Me.Controls.Add(Me.CustomLabel8)
         Me.Controls.Add(Me.CustomLabel9)
         Me.Controls.Add(Me.txtParidad)
@@ -473,7 +499,7 @@ Partial Class RecibosProvisorios
     Friend WithEvents CustomLabel6 As Administracion.CustomLabel
     Friend WithEvents CustomLabel7 As Administracion.CustomLabel
     Friend WithEvents txtRetIB As Administracion.CustomTextBox
-    Friend WithEvents CustomTextBox7 As Administracion.CustomTextBox
+    Friend WithEvents txtTotal As Administracion.CustomTextBox
     Friend WithEvents CustomLabel8 As Administracion.CustomLabel
     Friend WithEvents CustomLabel9 As Administracion.CustomLabel
     Friend WithEvents txtParidad As Administracion.CustomTextBox
@@ -482,11 +508,12 @@ Partial Class RecibosProvisorios
     Friend WithEvents btnCerrar As Administracion.CustomButton
     Friend WithEvents btnIntereses As Administracion.CustomButton
     Friend WithEvents btnLimpiar As Administracion.CustomButton
-    Friend WithEvents lstAyuda As Administracion.CustomListBox
-    Friend WithEvents txtAyuda As Administracion.CustomTextBox
     Friend WithEvents CustomLabel13 As Administracion.CustomLabel
     Friend WithEvents lblDiferencia As Administracion.CustomLabel
-    Friend WithEvents Titipo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lstSeleccion As Administracion.CustomListBox
+    Friend WithEvents txtConsulta As Administracion.CustomTextBox
+    Friend WithEvents lstConsulta As Administracion.CustomListBox
+    Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents numero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents fecha As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents banco As System.Windows.Forms.DataGridViewTextBoxColumn

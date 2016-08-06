@@ -235,4 +235,8 @@
     Private Sub AplicacionDeCorpobantesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AplicacionDeCorpobantesToolStripMenuItem.Click
         abrir(New AplicacionComprobantes)
     End Sub
+
+    Private Sub IngresoDeRecibosProvisoriosToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IngresoDeRecibosProvisoriosToolStripMenuItem1.Click
+        abrir(New RecibosProvisorios)
+    End Sub
 End Class
