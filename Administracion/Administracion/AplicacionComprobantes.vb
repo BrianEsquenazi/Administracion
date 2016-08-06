@@ -65,24 +65,26 @@ Public Class AplicacionComprobantes
     End Sub
 
     Private Sub dtgCuentas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles dtgCuentas.KeyDown
-        If (e.KeyCode = Keys.Enter And dtgCuentas.CurrentCell.ColumnIndex = 7) Then
+        If (e.KeyCode = Keys.Enter And dtgCuentas.Rows.Count > 0) Then
+            If dtgCuentas.CurrentCell.ColumnIndex = 7 Then
 
-            If IsNothing(dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value) Then
-                dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value = 0
+                If IsNothing(dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value) Then
+                    dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value = 0
+                End If
+
+                Dim tipo As String = dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(0).Value
+                Dim saldoNuevo As Double
+                Dim valorAplica As Double = Convert.ToDouble(dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value)
+
+                Select Case tipo
+                    Case "01", "02"
+                        saldoNuevo = Convert.ToDouble(txtSaldo.Text) + valorAplica
+                    Case "03", "05"
+                        saldoNuevo = Convert.ToDouble(txtSaldo.Text) - valorAplica
+                End Select
+
+                txtSaldo.Text = saldoNuevo.ToString
             End If
-
-            Dim tipo As String = dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(0).Value
-            Dim saldoNuevo As Double
-            Dim valorAplica As Double = Convert.ToDouble(dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value)
-
-            Select Case tipo
-                Case "01", "02"
-                    saldoNuevo = Convert.ToDouble(txtSaldo.Text) + valorAplica
-                Case "03", "05"
-                    saldoNuevo = Convert.ToDouble(txtSaldo.Text) - valorAplica
-            End Select
-
-            txtSaldo.Text = saldoNuevo.ToString
         End If
     End Sub
 
@@ -99,7 +101,6 @@ Public Class AplicacionComprobantes
     End Sub
 
     Private Sub Proceso()
-
         txtAyuda.Visible = False
         lstAyuda.Visible = False
 
@@ -107,7 +108,6 @@ Public Class AplicacionComprobantes
         Dim WSuma As Double
 
         dtgCuentas.Rows.Clear()
-        dtgCuentas.Rows.Add()
         WRenglon = 0
 
         REM Reviso el cual esta checkeado asi le pongo los valores a Tipo
@@ -119,8 +119,6 @@ Public Class AplicacionComprobantes
         For Each row As DataRow In tabla.Rows
 
             Dim CamposCtaCtePrv As New CtaCteProveedoresDeuda(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString, row.Item(3).ToString, row.Item(4), row.Item(5), row.Item(6).ToString, row.Item(7).ToString)
-
-
             dtgCuentas.Rows.Add()
 
             dtgCuentas.Item(0, WRenglon).Value = CamposCtaCtePrv.Tipo
@@ -138,8 +136,6 @@ Public Class AplicacionComprobantes
             dtgCuentas.Item(6, WRenglon).Value = formatonumerico(CamposCtaCtePrv.saldo, "########0.#0", ".")
             dtgCuentas.Item(6, WRenglon).Value = dtgCuentas.Item(6, WRenglon).Value * arregloMonto
 
-
-
             WRenglon = WRenglon + 1
             WSuma = WSuma + CamposCtaCtePrv.saldo
 
@@ -153,9 +149,6 @@ Public Class AplicacionComprobantes
         dtgCuentas.CurrentCell = dtgCuentas.Item(7, 0)
         dtgCuentas.Rows(0).Cells(7).Selected = True
         dtgCuentas.Focus()
-
-
-
     End Sub
 
     Private Sub btnGraba_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGraba.Click
@@ -165,7 +158,9 @@ Public Class AplicacionComprobantes
             MsgBox("Importe a aplicar no balancea")
         Else
             For Each row As DataGridViewRow In dtgCuentas.Rows
-                SQLConnector.retrieveDataTable("actualizar_cuenta_corriente_proveedor", row.Cells(0).ToString, row.Cells(1).ToString, row.Cells(2).ToString, row.Cells(3).ToString, row.Cells(4).ToString, CustomConvert.toDoubleOrZero(row.Cells(7)), proveedorActual)
+                If Not row.IsNewRow Then
+                    SQLConnector.retrieveDataTable("actualizar_cuenta_corriente_proveedor", row.Cells(0).Value.ToString, row.Cells(1).Value.ToString, row.Cells(2).Value.ToString, row.Cells(3).Value.ToString, row.Cells(4).Value.ToString, CustomConvert.toDoubleOrZero(row.Cells(7).Value), proveedorActual)
+                End If
             Next
             limpiar()
         End If
@@ -176,6 +171,6 @@ Public Class AplicacionComprobantes
         txtAyuda.Text = ""
         txtProveedor.Text = ""
         txtRazon.Text = ""
-        txtAyuda.Focus()
+        txtProveedor.Focus()
     End Sub
 End Class

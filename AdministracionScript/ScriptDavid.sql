@@ -22,7 +22,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-
 CREATE PROCEDURE [dbo].[PR_buscar_cuenta_corriente_proveedores_deuda]
 	(@proveedor varchar(11)
 	, @tipo char(1))
