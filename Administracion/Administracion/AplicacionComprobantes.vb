@@ -4,27 +4,7 @@ Public Class AplicacionComprobantes
 
     Private Sub txtProveedor_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtProveedor.KeyPress
         If e.KeyChar = Microsoft.VisualBasic.ChrW(13) Then
-            Dim proveedor = DAOProveedor.buscarProveedorPorCodigo(ceros(txtProveedor.Text, 11))
-            If Not IsNothing(proveedor) Then
-                mostrarProveedor(proveedor)
-                ' cargar tabla
-                '                ctacteprv()
-                '                Tipo
-                '                Letra
-                '                Punto
-                '                Numero
-                '                Fecha
-                '                Importe
-                '                Saldo
-                '                Aplica
-
-                '1 y 2 positivo
-                '3 y 5 negativo
-            Else
-                txtProveedor.Text = ""
-                txtRazon.Text = ""
-                txtProveedor.Focus()
-            End If
+            btnProceso.PerformClick()
         End If
     End Sub
 
@@ -35,16 +15,71 @@ Public Class AplicacionComprobantes
         Proceso()
     End Sub
 
-    Private Sub cmbConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbConsulta.Click
+    Private Sub btnConsulta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsulta.Click
         lstAyuda.Visible = True
         txtAyuda.Visible = True
-        txtAyuda.Text = ""
         lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre("")
         txtAyuda.Focus()
     End Sub
 
     Private Sub lstAyuda_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstAyuda.Click
         mostrarProveedor(lstAyuda.SelectedValue)
+    End Sub
+
+    Private Sub txtAyuda_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtAyuda.KeyPress
+        If e.KeyChar = Microsoft.VisualBasic.ChrW(13) Then
+            lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre(txtAyuda.Text)
+        End If
+    End Sub
+
+    Private Sub txtAyuda_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+    End Sub
+
+    Private Sub btnProceso_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProceso.Click
+        Dim proveedor = DAOProveedor.buscarProveedorPorCodigo(ceros(txtProveedor.Text, 11))
+        If Not IsNothing(proveedor) Then
+            mostrarProveedor(proveedor)
+            ' cargar tabla
+            '                ctacteprv()
+            '                Tipo
+            '                Letra
+            '                Punto
+            '                Numero
+            '                Fecha
+            '                Importe
+            '                Saldo
+            '                Aplica
+
+            '1 y 2 positivo
+            '3 y 5 negativo
+        Else
+            txtProveedor.Text = ""
+            txtRazon.Text = ""
+            txtProveedor.Focus()
+        End If
+    End Sub
+
+    Private Sub dtgCuentas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles dtgCuentas.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If IsNothing(dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value) Then
+                dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value = 0
+            End If
+
+            'txt()
+        End If
+    End Sub
+
+    Private Sub AplicacionComprobantes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Dim gridFormasBuilder As New GridBuilder(dtgCuentas)
+        gridFormasBuilder.addTextColumn(0, "Tipo", True)
+        gridFormasBuilder.addTextColumn(1, "Letra", True)
+        gridFormasBuilder.addTextColumn(2, "Punto", True)
+        gridFormasBuilder.addTextColumn(3, "Numero", True)
+        gridFormasBuilder.addDateColumn(4, "Fecha", True)
+        gridFormasBuilder.addFloatColumn(5, "Importe", True)
+        gridFormasBuilder.addFloatColumn(6, "Saldo", True)
+        gridFormasBuilder.addFloatColumn(7, "Aplica", True)
     End Sub
 
     Private Sub Proceso()
@@ -87,16 +122,15 @@ Public Class AplicacionComprobantes
         Next
 
         dtgCuentas.AllowUserToAddRows = False
+        txtAyuda.Text = ""
 
-    End Sub
+        txtSaldo.Text = "0.00"
 
-    Private Sub txtAyuda_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtAyuda.KeyPress
-        If e.KeyChar = Microsoft.VisualBasic.ChrW(13) Then
-            lstAyuda.DataSource = DAOProveedor.buscarProveedorPorNombre(txtAyuda.Text)
-        End If
-    End Sub
+        dtgCuentas.CurrentCell = dtgCuentas.Item(7, 0)
+        dtgCuentas.Rows(0).Cells(7).Selected = True
+        dtgCuentas.Focus()
 
-    Private Sub txtAyuda_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
 
     End Sub
 End Class

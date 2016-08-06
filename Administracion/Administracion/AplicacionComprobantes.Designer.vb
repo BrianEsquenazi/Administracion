@@ -46,22 +46,24 @@ Partial Class AplicacionComprobantes
         Me.txtRazon = New Administracion.CustomTextBox()
         Me.txtProveedor = New Administracion.CustomTextBox()
         Me.CustomLabel3 = New Administracion.CustomLabel()
-        Me.cmbCancela = New Administracion.CustomButton()
-        Me.cmdGraba = New Administracion.CustomButton()
-        Me.cmbProceso = New Administracion.CustomButton()
-        Me.cmbConsulta = New Administracion.CustomButton()
+        Me.btnCancela = New Administracion.CustomButton()
+        Me.btnGraba = New Administracion.CustomButton()
+        Me.btnProceso = New Administracion.CustomButton()
+        Me.btnConsulta = New Administracion.CustomButton()
         CType(Me.dtgCuentas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dtgCuentas
         '
+        Me.dtgCuentas.AllowUserToAddRows = False
+        Me.dtgCuentas.AllowUserToDeleteRows = False
         Me.dtgCuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgCuentas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.Letra, Me.Punto, Me.Numero, Me.Fecha, Me.Importe, Me.Saldo, Me.Aplica})
         Me.dtgCuentas.Location = New System.Drawing.Point(22, 155)
         Me.dtgCuentas.Name = "dtgCuentas"
         Me.dtgCuentas.Size = New System.Drawing.Size(750, 395)
         Me.dtgCuentas.StandardTab = True
-        Me.dtgCuentas.TabIndex = 30
+        Me.dtgCuentas.TabIndex = 1
         '
         'Tipo
         '
@@ -200,7 +202,7 @@ Partial Class AplicacionComprobantes
         Me.txtProveedor.Location = New System.Drawing.Point(92, 129)
         Me.txtProveedor.Name = "txtProveedor"
         Me.txtProveedor.Size = New System.Drawing.Size(108, 20)
-        Me.txtProveedor.TabIndex = 1
+        Me.txtProveedor.TabIndex = 0
         Me.txtProveedor.Validator = Administracion.ValidatorType.None
         '
         'CustomLabel3
@@ -213,53 +215,53 @@ Partial Class AplicacionComprobantes
         Me.CustomLabel3.TabIndex = 31
         Me.CustomLabel3.Text = "Proveedor"
         '
-        'cmbCancela
+        'btnCancela
         '
-        Me.cmbCancela.Cleanable = False
-        Me.cmbCancela.EnterIndex = -1
-        Me.cmbCancela.LabelAssociationKey = -1
-        Me.cmbCancela.Location = New System.Drawing.Point(626, 96)
-        Me.cmbCancela.Name = "cmbCancela"
-        Me.cmbCancela.Size = New System.Drawing.Size(142, 23)
-        Me.cmbCancela.TabIndex = 3
-        Me.cmbCancela.Text = "Cancelar"
-        Me.cmbCancela.UseVisualStyleBackColor = True
+        Me.btnCancela.Cleanable = False
+        Me.btnCancela.EnterIndex = -1
+        Me.btnCancela.LabelAssociationKey = -1
+        Me.btnCancela.Location = New System.Drawing.Point(626, 96)
+        Me.btnCancela.Name = "btnCancela"
+        Me.btnCancela.Size = New System.Drawing.Size(142, 23)
+        Me.btnCancela.TabIndex = 3
+        Me.btnCancela.Text = "Cancelar"
+        Me.btnCancela.UseVisualStyleBackColor = True
         '
-        'cmdGraba
+        'btnGraba
         '
-        Me.cmdGraba.Cleanable = False
-        Me.cmdGraba.EnterIndex = -1
-        Me.cmdGraba.LabelAssociationKey = -1
-        Me.cmdGraba.Location = New System.Drawing.Point(626, 67)
-        Me.cmdGraba.Name = "cmdGraba"
-        Me.cmdGraba.Size = New System.Drawing.Size(142, 23)
-        Me.cmdGraba.TabIndex = 2
-        Me.cmdGraba.Text = "Grabar"
-        Me.cmdGraba.UseVisualStyleBackColor = True
+        Me.btnGraba.Cleanable = False
+        Me.btnGraba.EnterIndex = -1
+        Me.btnGraba.LabelAssociationKey = -1
+        Me.btnGraba.Location = New System.Drawing.Point(626, 67)
+        Me.btnGraba.Name = "btnGraba"
+        Me.btnGraba.Size = New System.Drawing.Size(142, 23)
+        Me.btnGraba.TabIndex = 2
+        Me.btnGraba.Text = "Grabar"
+        Me.btnGraba.UseVisualStyleBackColor = True
         '
-        'cmbProceso
+        'btnProceso
         '
-        Me.cmbProceso.Cleanable = False
-        Me.cmbProceso.EnterIndex = -1
-        Me.cmbProceso.LabelAssociationKey = -1
-        Me.cmbProceso.Location = New System.Drawing.Point(626, 38)
-        Me.cmbProceso.Name = "cmbProceso"
-        Me.cmbProceso.Size = New System.Drawing.Size(142, 23)
-        Me.cmbProceso.TabIndex = 1
-        Me.cmbProceso.Text = "Proceso"
-        Me.cmbProceso.UseVisualStyleBackColor = True
+        Me.btnProceso.Cleanable = False
+        Me.btnProceso.EnterIndex = -1
+        Me.btnProceso.LabelAssociationKey = -1
+        Me.btnProceso.Location = New System.Drawing.Point(626, 38)
+        Me.btnProceso.Name = "btnProceso"
+        Me.btnProceso.Size = New System.Drawing.Size(142, 23)
+        Me.btnProceso.TabIndex = 1
+        Me.btnProceso.Text = "Proceso"
+        Me.btnProceso.UseVisualStyleBackColor = True
         '
-        'cmbConsulta
+        'btnConsulta
         '
-        Me.cmbConsulta.Cleanable = False
-        Me.cmbConsulta.EnterIndex = -1
-        Me.cmbConsulta.LabelAssociationKey = -1
-        Me.cmbConsulta.Location = New System.Drawing.Point(626, 9)
-        Me.cmbConsulta.Name = "cmbConsulta"
-        Me.cmbConsulta.Size = New System.Drawing.Size(142, 23)
-        Me.cmbConsulta.TabIndex = 0
-        Me.cmbConsulta.Text = "Consulta"
-        Me.cmbConsulta.UseVisualStyleBackColor = True
+        Me.btnConsulta.Cleanable = False
+        Me.btnConsulta.EnterIndex = -1
+        Me.btnConsulta.LabelAssociationKey = -1
+        Me.btnConsulta.Location = New System.Drawing.Point(626, 9)
+        Me.btnConsulta.Name = "btnConsulta"
+        Me.btnConsulta.Size = New System.Drawing.Size(142, 23)
+        Me.btnConsulta.TabIndex = 0
+        Me.btnConsulta.Text = "Consulta"
+        Me.btnConsulta.UseVisualStyleBackColor = True
         '
         'AplicacionComprobantes
         '
@@ -274,10 +276,10 @@ Partial Class AplicacionComprobantes
         Me.Controls.Add(Me.txtProveedor)
         Me.Controls.Add(Me.CustomLabel3)
         Me.Controls.Add(Me.dtgCuentas)
-        Me.Controls.Add(Me.cmbCancela)
-        Me.Controls.Add(Me.cmdGraba)
-        Me.Controls.Add(Me.cmbProceso)
-        Me.Controls.Add(Me.cmbConsulta)
+        Me.Controls.Add(Me.btnCancela)
+        Me.Controls.Add(Me.btnGraba)
+        Me.Controls.Add(Me.btnProceso)
+        Me.Controls.Add(Me.btnConsulta)
         Me.Name = "AplicacionComprobantes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Aplicación Comprobantes"
@@ -286,10 +288,10 @@ Partial Class AplicacionComprobantes
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents cmbConsulta As Administracion.CustomButton
-    Friend WithEvents cmbProceso As Administracion.CustomButton
-    Friend WithEvents cmdGraba As Administracion.CustomButton
-    Friend WithEvents cmbCancela As Administracion.CustomButton
+    Friend WithEvents btnConsulta As Administracion.CustomButton
+    Friend WithEvents btnProceso As Administracion.CustomButton
+    Friend WithEvents btnGraba As Administracion.CustomButton
+    Friend WithEvents btnCancela As Administracion.CustomButton
     Friend WithEvents txtSaldo As Administracion.CustomTextBox
     Friend WithEvents CustomLabel2 As Administracion.CustomLabel
     Friend WithEvents txtRazon As Administracion.CustomTextBox
