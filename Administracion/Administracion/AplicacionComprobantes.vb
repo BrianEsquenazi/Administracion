@@ -2,6 +2,8 @@
 
 Public Class AplicacionComprobantes
 
+    Dim proveedorActual As String 'Lo uso para insertar y actualizar
+
     Private Sub txtProveedor_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtProveedor.KeyPress
         If e.KeyChar = Microsoft.VisualBasic.ChrW(13) Then
             btnProceso.PerformClick()
@@ -12,6 +14,8 @@ Public Class AplicacionComprobantes
         If IsNothing(proveedor) Then : Exit Sub : End If
         txtProveedor.Text = proveedor.id
         txtRazon.Text = proveedor.razonSocial
+        ' Uso la variable global ya que sin querer pueden llegar a haber cambiado el texto y romperia todo
+        proveedorActual = txtProveedor.Text
         Proceso()
     End Sub
 
@@ -124,8 +128,16 @@ Public Class AplicacionComprobantes
             dtgCuentas.Item(2, WRenglon).Value = CamposCtaCtePrv.punto
             dtgCuentas.Item(3, WRenglon).Value = CamposCtaCtePrv.numero
             dtgCuentas.Item(4, WRenglon).Value = CamposCtaCtePrv.fecha
+
+            Dim arregloMonto As Double = 1
+            If (CamposCtaCtePrv.Tipo = "03" Or CamposCtaCtePrv.Tipo = "05") Then
+                arregloMonto = -1
+            End If
             dtgCuentas.Item(5, WRenglon).Value = formatonumerico(CamposCtaCtePrv.total, "########0.#0", ".")
+            dtgCuentas.Item(5, WRenglon).Value = dtgCuentas.Item(5, WRenglon).Value * arregloMonto
             dtgCuentas.Item(6, WRenglon).Value = formatonumerico(CamposCtaCtePrv.saldo, "########0.#0", ".")
+            dtgCuentas.Item(6, WRenglon).Value = dtgCuentas.Item(6, WRenglon).Value * arregloMonto
+
 
 
             WRenglon = WRenglon + 1
@@ -150,9 +162,20 @@ Public Class AplicacionComprobantes
         Dim saldo As Double = Convert.ToDouble(txtSaldo.Text)
 
         If saldo <> 0 Then
-            MsgBox("El saldo actual no esta equilibrado")
+            MsgBox("Importe a aplicar no balancea")
         Else
-
+            For Each row As DataGridViewRow In dtgCuentas.Rows
+                SQLConnector.retrieveDataTable("actualizar_cuenta_corriente_proveedor", row.Cells(0).ToString, row.Cells(1).ToString, row.Cells(2).ToString, row.Cells(3).ToString, row.Cells(4).ToString, CustomConvert.toDoubleOrZero(row.Cells(7)), proveedorActual)
+            Next
+            limpiar()
         End If
+    End Sub
+
+    Private Sub limpiar()
+        dtgCuentas.Rows.Clear()
+        txtAyuda.Text = ""
+        txtProveedor.Text = ""
+        txtRazon.Text = ""
+        txtAyuda.Focus()
     End Sub
 End Class

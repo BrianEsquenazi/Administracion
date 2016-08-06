@@ -109,6 +109,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_iva_compras_adicional]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_datos_nacion]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_datos_nacion]
+GO
+
 /*
 		GENERACION NOVEDADES
 */
@@ -954,4 +958,14 @@ BEGIN
 	WHERE NroInterno = @NroInterno
 
 END
+GO
+
+CREATE PROCEDURE PR_get_datos_nacion
+	@NroInterno int
+AS
+	SELECT TOP 1 ic.Vencimiento as fecha
+		, (SELECT COUNT(*) FROM IvaComp ic2 WHERE NroInternoAsociado = @NroInterno) as cantidad
+	FROM IvaComp ic
+	WHERE NroInternoAsociado = @NroInterno	
+	ORDER BY NroInterno
 GO

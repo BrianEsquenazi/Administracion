@@ -79,6 +79,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_bu
 DROP PROCEDURE [dbo].[PR_buscar_cuenta_corriente_proveedores_desdehasta]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_actualizar_cuenta_corriente_proveedor]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_actualizar_cuenta_corriente_proveedor]
+GO
+
 SET ANSI_NULLS ON
 GO
 
@@ -185,4 +189,34 @@ AS
 	order by CtaCtePrv.Proveedor, CtaCtePrv.OrdFecha, CtaCtePrv.Tipo,CtaCtePrv.Numero
 
 
+GO
+
+CREATE PROCEDURE PR_actualizar_cuenta_corriente_proveedor
+	@Tipo varchar(2)
+	, @Letra varchar(1)
+	, @Punto varchar(4)
+	, @Numero varchar(8)
+	, @Fecha varchar(10)
+	, @Aplica float
+	, @Proveedor varchar(11)
+AS
+BEGIN
+	DECLARE @arreglo int = (-1) 
+	IF (@Tipo = '03' or @Tipo = '05') 
+		SET @arreglo = 1
+	/*
+	Lo pongo de esta forma porque el saldo esta almacenado como positivo para los primeros casos
+	y negativo para los que toma el if por lo que para restar en un caso se debe restar y en el
+	otro sumar
+	*/ 
+
+	UPDATE CtaCtePrv
+	SET Saldo = Saldo + (@arreglo * @Aplica)
+	WHERE Tipo = @Tipo
+		and Letra = @Letra
+		and Punto = @Punto
+		and Numero = @Numero
+		and fecha = @Fecha
+		and Proveedor = @Proveedor
+END
 GO
