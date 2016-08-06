@@ -41,6 +41,10 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_al
 DROP PROCEDURE [dbo].[PR_alta_iva_compra]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_iva_compra_nacion]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_iva_compra_nacion]
+GO
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_imputacion]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[PR_alta_imputacion]
 GO
@@ -430,6 +434,94 @@ BEGIN
 				NroInterno = @NroInterno
 		
 		EXEC PR_baja_imputaciones  @NroInterno = @NroInterno
+ 	COMMIT
+END
+GO
+
+CREATE PROCEDURE [dbo].[PR_alta_iva_compra_nacion]
+	@NroInterno  int,
+	@Proveedor char(11),
+	@Tipo char(2),
+	@Letra char(1),
+	@Punto char(4),
+	@Numero char(8),  
+	@Fecha  char(10),    
+	@Vencimiento char(10),
+	@Vencimiento1 char(10),
+	@Periodo    char(10),
+	@Neto   float,                                               
+	@Iva21  float,                                               
+	@Iva5   float,                                               
+	@Iva27  float,                                               
+	@Ib     float,                                               
+	@Exento float,                                               
+	@Contado char(1),
+	@Impre char(2),
+	@Paridad float  ,
+	@Pago  int ,    
+	@cai varchar(14),
+	@VtoCai  varchar(10),
+	@Iva105 float, 
+	@Despacho varchar(20), 
+	@Remito varchar(30),
+	@SoloIva int,
+	@NroInternoAsociado int                               
+AS
+BEGIN
+
+	DECLARE @Ordfecha varchar(8) = (SELECT dbo.FN_verificar_fecha_ordenable (@Fecha))	
+	BEGIN TRAN
+	
+		IF (NOT EXISTS (SELECT 1 FROM IvaComp ic where ic.NroInterno = @NroInterno))
+			INSERT INTO IvaComp
+				(
+				NroInterno, Proveedor, Tipo , Letra , Punto , Numero ,  
+				Fecha, Vencimiento , Vencimiento1 , Periodo, Neto,                                          
+				Iva21, Iva5, Iva27, Ib, Exento, Contado , Impre ,
+				Ordfecha , Empresa , Netolist , ExentoList  , Paridad   ,
+				Pago, Cai, VtoCai, Iva105, Despacho, Remito, SoloIva, NroInternoAsociado 		                                          
+				)
+			VALUES
+				(	
+				@NroInterno, @Proveedor, @Tipo, @Letra, @Punto, @Numero,  
+				@Fecha, @Vencimiento, @Vencimiento1, @Periodo, @Neto,                                               
+				@Iva21, @Iva5, @Iva27, @Ib, @Exento, @Contado, @Impre,
+				@Ordfecha, 1, 0, 0, @Paridad    ,
+				@Pago, @cai, @VtoCai, @Iva105, @Despacho, @Remito, @SoloIva, @NroInternoAsociado 
+				)
+		ELSE
+			UPDATE IvaComp
+			SET
+				Proveedor = @Proveedor,
+				Tipo = @Tipo,
+				Letra = @Letra,
+				Punto = @Punto,
+				Numero = @Numero,    
+				Fecha = @Fecha,   
+				Vencimiento = @Vencimiento,
+				Vencimiento1 = @Vencimiento1,
+				Periodo = @Periodo,
+				Neto = @Neto,
+				Iva21 = @Iva21,
+				Iva5 = @Iva5,
+				Iva27 = @Iva27,                                               
+				Ib = @Ib,                                               
+				Exento = @Exento,                                               
+				Contado = @Contado,
+				Impre = @Impre,
+				Ordfecha = @Ordfecha,
+				Paridad = @Paridad  ,
+				Pago = @Pago,  
+				Cai = @Cai,
+				VtoCai = @VtoCai,
+				Iva105 = @Iva105,
+				Despacho = @Despacho,
+				Remito = @Remito,
+				SoloIva = @SoloIva,
+				NroInternoAsociado = @NroInternoAsociado	                                    
+			WHERE
+				NroInterno = @NroInterno
+
  	COMMIT
 END
 GO

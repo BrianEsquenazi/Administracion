@@ -61,12 +61,24 @@ Public Class AplicacionComprobantes
     End Sub
 
     Private Sub dtgCuentas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles dtgCuentas.KeyDown
-        If e.KeyCode = Keys.Enter Then
+        If (e.KeyCode = Keys.Enter And dtgCuentas.CurrentCell.ColumnIndex = 7) Then
+
             If IsNothing(dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value) Then
                 dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value = 0
             End If
 
-            'txt()
+            Dim tipo As String = dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(0).Value
+            Dim saldoNuevo As Double
+            Dim valorAplica As Double = Convert.ToDouble(dtgCuentas.Rows(dtgCuentas.CurrentCell.RowIndex).Cells(dtgCuentas.CurrentCell.ColumnIndex).Value)
+
+            Select Case tipo
+                Case "01", "02"
+                    saldoNuevo = Convert.ToDouble(txtSaldo.Text) + valorAplica
+                Case "03", "05"
+                    saldoNuevo = Convert.ToDouble(txtSaldo.Text) - valorAplica
+            End Select
+
+            txtSaldo.Text = saldoNuevo.ToString
         End If
     End Sub
 
@@ -132,5 +144,15 @@ Public Class AplicacionComprobantes
 
 
 
+    End Sub
+
+    Private Sub btnGraba_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGraba.Click
+        Dim saldo As Double = Convert.ToDouble(txtSaldo.Text)
+
+        If saldo <> 0 Then
+            MsgBox("El saldo actual no esta equilibrado")
+        Else
+
+        End If
     End Sub
 End Class
