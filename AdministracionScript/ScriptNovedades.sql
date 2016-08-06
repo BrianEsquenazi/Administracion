@@ -113,6 +113,9 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ge
 DROP PROCEDURE [dbo].[PR_get_datos_nacion]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_recibo_provisorio]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_recibo_provisorio]
+GO
 /*
 		GENERACION NOVEDADES
 */
@@ -968,4 +971,44 @@ AS
 	FROM IvaComp ic
 	WHERE NroInternoAsociado = @NroInterno	
 	ORDER BY NroInterno
+GO
+
+CREATE PROCEDURE PR_get_recibo_provisorio
+	@recibo varchar(6)
+AS
+	SELECT rp.Recibo
+		, RTRIM(rp.Cliente) Cliente
+		, c.Razon
+		, ISNULL(rp.Fecha,'//') as Fecha
+		, ISNULL(rp.RetGanancias, 0.0) RetGanancias
+		, ISNULL(rp.RetIva, 0.0) RetIva
+		, ISNULL(rp.RetOtra, 0.0) RetOtra
+		, ISNULL(rp.RetSuss, 0.0) RetSuss
+	FROM RecibosProvi rp
+	JOIN Cliente c on c.Cliente = rp.Cliente
+	WHERE rp.Recibo = @recibo
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_recibos_provisorios]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_baja_recibos_provisorios]
+GO
+
+CREATE PROCEDURE PR_baja_recibos_provisorios
+	@recibo varchar(6)
+AS
+	DELETE RecibosProvi
+	Where Recibo = @recibo
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_cliente_por_codigo]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_cliente_por_codigo]
+GO
+
+CREATE PROCEDURE PR_get_cliente_por_codigo
+	@cliente varchar(6)
+AS
+	SELECT cli.Cliente
+		, cli.Razon
+	FROM Cliente cli
+	WHERE cli.Razon LIKE '%' + @cliente + '%' 
 GO
