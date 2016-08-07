@@ -984,6 +984,13 @@ AS
 		, ISNULL(rp.RetIva, 0.0) RetIva
 		, ISNULL(rp.RetOtra, 0.0) RetOtra
 		, ISNULL(rp.RetSuss, 0.0) RetSuss
+		, ISNULL(rp.Paridad, 0.0) Paridad
+		, TipoReg
+		, Tipo2
+		, Numero2
+		, Fecha2
+		, banco2
+		, rp.Importe2
 	FROM RecibosProvi rp
 	JOIN Cliente c on c.Cliente = rp.Cliente
 	WHERE rp.Recibo = @recibo
@@ -1010,5 +1017,18 @@ AS
 	SELECT cli.Cliente
 		, cli.Razon
 	FROM Cliente cli
-	WHERE cli.Razon LIKE '%' + @cliente + '%' 
+	WHERE cli.Cliente = @cliente
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_cliente_por_razon]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_cliente_por_razon]
+GO
+
+CREATE PROCEDURE PR_get_cliente_por_razon
+	@razon varchar(50)
+AS
+	SELECT cli.Cliente
+		, cli.Razon
+	FROM Cliente cli
+	WHERE cli.Razon LIKE '%' + @razon + '%' 
 GO

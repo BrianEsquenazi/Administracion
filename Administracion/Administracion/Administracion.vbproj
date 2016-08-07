@@ -148,6 +148,7 @@
     <Compile Include="Capa DAO\DAODeposito.vb" />
     <Compile Include="Capa DAO\DAOPagos.vb" />
     <Compile Include="Capa DAO\DAOProveedor.vb" />
+    <Compile Include="Capa DAO\DAORecibo.vb" />
     <Compile Include="Capa DAO\DAORubroProveedor.vb" />
     <Compile Include="Capa DAO\DAOBanco.vb" />
     <Compile Include="Capa DAO\DAOCuentaContable.vb" />

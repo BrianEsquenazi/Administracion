@@ -16,7 +16,7 @@ Public Class DAOCliente
         Try
             Dim codigo As String = codigoString
             Dim tabla As DataTable
-            tabla = SQLConnector.retrieveDataTable("buscar_Cliente_por_codigo", codigo)
+            tabla = SQLConnector.retrieveDataTable("get_cliente_por_codigo", codigo)
             If tabla.Rows.Count > 0 Then
                 Return New Cliente(tabla(0)("cliente").ToString, tabla(0)("razon").ToString)
             Else

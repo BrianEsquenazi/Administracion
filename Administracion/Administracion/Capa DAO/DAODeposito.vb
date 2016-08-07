@@ -4,24 +4,24 @@ Public Class DAODeposito
 
     Public Shared Function buscarDeposito(ByVal nroDeposito As String)
         Dim rows = SQLConnector.retrieveDataTable("get_deposito_por_numero", nroDeposito).Rows
-        'Try
-        Dim deposito As New Deposito(nroDeposito, DAOBanco.buscarBancoPorCodigo(rows(0)("Banco").ToString), rows(0)("Fecha").ToString,
-                                 rows(0)("Acredita").ToString, CustomConvert.toDoubleOrZero(rows(0)("Importe")))
-        Dim items As New List(Of ItemDeposito)
-        For Each row In rows
-            Dim item As ItemDeposito
-            If CustomConvert.toIntOrZero(row("Tipo2")) = 3 Then
-                item = New Cheque(row("Numero2").ToString, row("Fecha2").ToString, CustomConvert.toDoubleOrZero(row("Importe2")), row("Observaciones2").ToString, "")
-            Else
-                item = New Efectivo(row("Tipo2").ToString, CustomConvert.toDoubleOrZero(row("Importe2")))
-            End If
-            items.Add(item)
-            deposito.agregarItems(items)
-        Next
-        Return deposito
-        'Catch ex As Exception
-        '    Return Nothing
-        'End Try
+        Try
+            Dim deposito As New Deposito(nroDeposito, DAOBanco.buscarBancoPorCodigo(rows(0)("Banco").ToString), rows(0)("Fecha").ToString,
+                                     rows(0)("Acredita").ToString, CustomConvert.toDoubleOrZero(rows(0)("Importe")))
+            Dim items As New List(Of ItemDeposito)
+            For Each row In rows
+                Dim item As ItemDeposito
+                If CustomConvert.toIntOrZero(row("Tipo2")) = 3 Then
+                    item = New Cheque(row("Numero2").ToString, row("Fecha2").ToString, CustomConvert.toDoubleOrZero(row("Importe2")), row("Observaciones2").ToString, "")
+                Else
+                    item = New Efectivo(row("Tipo2").ToString, CustomConvert.toDoubleOrZero(row("Importe2")))
+                End If
+                items.Add(item)
+                deposito.agregarItems(items)
+            Next
+            Return deposito
+        Catch ex As Exception
+            Return Nothing
+        End Try
     End Function
 
     Public Shared Function siguienteNumero()
