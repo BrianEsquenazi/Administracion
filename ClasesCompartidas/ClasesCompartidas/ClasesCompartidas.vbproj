@@ -107,6 +107,7 @@
     <Compile Include="ProcesoReteIvaRecibos.vb" />
     <Compile Include="Proveedor.vb" />
     <Compile Include="Provincia.vb" />
+    <Compile Include="Recibo.vb" />
     <Compile Include="ReciboProvisorio.vb" />
     <Compile Include="RubroProveedor.vb" />
     <Compile Include="TipoDeCambio.vb" />
