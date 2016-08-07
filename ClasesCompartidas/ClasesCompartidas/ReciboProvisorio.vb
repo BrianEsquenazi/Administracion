@@ -18,4 +18,11 @@
         total = valorTotal
     End Sub
 
+    Public Function codigoCliente()
+        If IsNothing(cliente) Then
+            Return ""
+        End If
+        Return cliente.id
+    End Function
+
 End Class

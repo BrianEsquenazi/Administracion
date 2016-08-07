@@ -5,7 +5,7 @@ Public Class DAOCliente
     Public Shared Function buscarClientePorNombre(ByVal nombre As String)
         Dim clientes As New List(Of Cliente)
         Dim tabla As DataTable
-        tabla = SQLConnector.retrieveDataTable("buscar_cliente_por_nombre", nombre)
+        tabla = SQLConnector.retrieveDataTable("get_cliente_por_razon", nombre)
         For Each cliente As DataRow In tabla.Rows
             clientes.Add(New Cliente(cliente("cliente"), cliente("razon")))
         Next

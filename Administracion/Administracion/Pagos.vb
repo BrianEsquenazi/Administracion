@@ -8,6 +8,7 @@ Public Class Pagos
     Dim chequeRow As Integer = -1
     Dim bancoOrden As Banco
     Dim proveedorOrden As Proveedor
+    Dim commonEventHandler As New CommonEventsHandler
 
     Private Sub Pagos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         cmbTipo.SelectedIndex = 0
@@ -32,7 +33,6 @@ Public Class Pagos
         gridFormasBuilder.addTextColumn(4, "Nombre")
         gridFormasBuilder.addFloatColumn(5, "Importe")
 
-        Dim commonEventHandler As New CommonEventsHandler
         commonEventHandler.setIndexTab(Me)
         btnLimpiar.PerformClick()
     End Sub
@@ -251,7 +251,7 @@ Public Class Pagos
 
     Private Sub lstConsulta_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConsulta.Click
         queryController.showMethod.Invoke(lstConsulta.SelectedValue)
-        If queryController.text <> "Cuentas Corrientes" Then
+        If queryController.text = "Proveedores" Then
             lstConsulta.Visible = False
         End If
         txtConsulta.Visible = False

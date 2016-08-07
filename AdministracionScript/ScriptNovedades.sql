@@ -1032,3 +1032,36 @@ AS
 	FROM Cliente cli
 	WHERE cli.Razon LIKE '%' + @razon + '%' 
 GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_recibo_provisorio]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_recibo_provisorio]
+GO
+
+CREATE PROCEDURE PR_alta_recibo_provisorio
+	@Recibo VARCHAR(6)
+	, @Renglon VARCHAR(2)
+	, @CLIENTE VARCHAR(6)
+	, @FECHA VARCHAR(10)
+	, @RETGANANCIAS FLOAT
+	, @RETIVA FLOAT
+	, @RETIB FLOAT
+	, @RETSUSS FLOAT
+	, @TIPO VARCHAR(2)
+	, @NUMERO VARCHAR(8)
+	, @FECHA2 VARCHAR(10)
+	, @BANCO VARCHAR(20)
+	, @IMPORTE2 FLOAT
+	, @IMPORTE FLOAT
+	, @PARIDAD FLOAT
+AS
+	DECLARE @CLAVE VARCHAR(8) = @Recibo + @Renglon
+	DECLARE @FECHAORD VARCHAR(8) = (SELECT dbo.FN_verificar_fecha_ordenable (@FECHA))
+	DECLARE @FECHAORD2 VARCHAR(8) = (SELECT dbo.FN_verificar_fecha_ordenable (@FECHA2))
+	INSERT INTO RecibosProvi(Clave, Recibo, Renglon, Cliente, Fecha,
+	Fechaord, TipoRec, RetGanancias, RetIva, RetOtra, RetSuss, Retencion,
+	TipoReg, Tipo2, Numero2, Fecha2, FechaOrd2, banco2, Importe2, Importe, Paridad,
+	Empresa, Impolist, Observaciones, Cuenta)
+	VALUES (@CLAVE, @Recibo, @Renglon, @CLIENTE, @FECHA, @FECHAORD, 1,
+	@RETGANANCIAS, @RETIVA, @RETIB, @RETSUSS, 0, 2, @TIPO, @NUMERO, @FECHA2,
+	@FECHAORD2, @BANCO, @IMPORTE2, @IMPORTE, @PARIDAD, 1, 0, "", "")
+GO

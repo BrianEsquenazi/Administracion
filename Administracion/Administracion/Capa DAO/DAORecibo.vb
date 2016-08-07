@@ -2,6 +2,17 @@
 
 Public Class DAORecibo
 
+    Public Shared Sub agregarReciboProvisorio(ByVal recibo As ReciboProvisorio)
+        Dim renglon As Integer = 1
+        For Each formaPago As FormaPago In recibo.formasPago
+            SQLConnector.executeProcedure("alta_recibo_provisorio", recibo.codigo, ceros(renglon, 2), recibo.codigoCliente, recibo.fecha,
+                                        recibo.retGanancias, recibo.retIVA, recibo.retIB, recibo.retSuss, ceros(formaPago.tipo, 2),
+                                        formaPago.numero, formaPago.fecha, formaPago.nombre, formaPago.importe, recibo.total,
+                                        recibo.paridad)
+            renglon += 1
+        Next
+    End Sub
+
     Public Shared Function buscarReciboProvisorio(ByVal codRecibo As String)
         Try
             Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo_provisorio", codRecibo)
