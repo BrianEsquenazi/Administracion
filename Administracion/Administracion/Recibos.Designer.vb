@@ -44,11 +44,6 @@ Partial Class Recibos
         Me.CustomLabel4 = New Administracion.CustomLabel()
         Me.txtRetGanancias = New Administracion.CustomTextBox()
         Me.gridRecibos = New System.Windows.Forms.DataGridView()
-        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtNombre = New Administracion.CustomTextBox()
         Me.txtCliente = New Administracion.CustomTextBox()
         Me.txtRecibo = New Administracion.CustomTextBox()
@@ -64,6 +59,16 @@ Partial Class Recibos
         Me.btnDias = New Administracion.CustomButton()
         Me.btnImpresion = New Administracion.CustomButton()
         Me.CustomLabel12 = New Administracion.CustomLabel()
+        Me.TipoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LetraCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PuntoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumeroCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImporteCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.gridRecibos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -312,45 +317,12 @@ Partial Class Recibos
         '
         Me.gridRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gridRecibos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridRecibos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.numero, Me.fecha, Me.banco, Me.importe})
+        Me.gridRecibos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TipoCC, Me.LetraCC, Me.PuntoCC, Me.NumeroCC, Me.ImporteCC, Me.Tipo, Me.numero, Me.fecha, Me.banco, Me.importe})
         Me.gridRecibos.Location = New System.Drawing.Point(16, 200)
         Me.gridRecibos.Name = "gridRecibos"
+        Me.gridRecibos.RowHeadersWidth = 20
         Me.gridRecibos.Size = New System.Drawing.Size(756, 335)
-        Me.gridRecibos.TabIndex = 87
-        '
-        'Tipo
-        '
-        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Tipo.FillWeight = 80.0!
-        Me.Tipo.HeaderText = "Tipo"
-        Me.Tipo.Name = "Tipo"
-        Me.Tipo.Width = 53
-        '
-        'numero
-        '
-        Me.numero.FillWeight = 120.0!
-        Me.numero.HeaderText = "Numero/Cta"
-        Me.numero.Name = "numero"
-        '
-        'fecha
-        '
-        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.fecha.FillWeight = 120.0!
-        Me.fecha.HeaderText = "Fecha"
-        Me.fecha.Name = "fecha"
-        Me.fecha.Width = 62
-        '
-        'banco
-        '
-        Me.banco.FillWeight = 150.0!
-        Me.banco.HeaderText = "Banco"
-        Me.banco.Name = "banco"
-        '
-        'importe
-        '
-        Me.importe.FillWeight = 80.0!
-        Me.importe.HeaderText = "Importe"
-        Me.importe.Name = "importe"
+        Me.gridRecibos.TabIndex = 20
         '
         'txtNombre
         '
@@ -531,6 +503,72 @@ Partial Class Recibos
         Me.CustomLabel12.Text = "Tipo Doc.: 1) Ef. 2) Ch. 3) Doc. 4) Varios "
         Me.CustomLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'TipoCC
+        '
+        Me.TipoCC.FillWeight = 61.20156!
+        Me.TipoCC.HeaderText = "Tipo"
+        Me.TipoCC.Name = "TipoCC"
+        Me.TipoCC.ReadOnly = True
+        '
+        'LetraCC
+        '
+        Me.LetraCC.FillWeight = 59.29222!
+        Me.LetraCC.HeaderText = "Letra"
+        Me.LetraCC.Name = "LetraCC"
+        Me.LetraCC.ReadOnly = True
+        '
+        'PuntoCC
+        '
+        Me.PuntoCC.FillWeight = 55.11111!
+        Me.PuntoCC.HeaderText = "Punto"
+        Me.PuntoCC.Name = "PuntoCC"
+        Me.PuntoCC.ReadOnly = True
+        '
+        'NumeroCC
+        '
+        Me.NumeroCC.FillWeight = 125.6672!
+        Me.NumeroCC.HeaderText = "Numero"
+        Me.NumeroCC.Name = "NumeroCC"
+        Me.NumeroCC.ReadOnly = True
+        '
+        'ImporteCC
+        '
+        Me.ImporteCC.FillWeight = 125.6672!
+        Me.ImporteCC.HeaderText = "Importe"
+        Me.ImporteCC.Name = "ImporteCC"
+        '
+        'Tipo
+        '
+        Me.Tipo.FillWeight = 63.22554!
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        '
+        'numero
+        '
+        Me.numero.FillWeight = 150.8006!
+        Me.numero.HeaderText = "Numero/Cta"
+        Me.numero.Name = "numero"
+        '
+        'fecha
+        '
+        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.fecha.FillWeight = 120.0!
+        Me.fecha.HeaderText = "Fecha"
+        Me.fecha.Name = "fecha"
+        Me.fecha.Width = 62
+        '
+        'banco
+        '
+        Me.banco.FillWeight = 188.5008!
+        Me.banco.HeaderText = "Banco"
+        Me.banco.Name = "banco"
+        '
+        'importe
+        '
+        Me.importe.FillWeight = 100.5338!
+        Me.importe.HeaderText = "Importe"
+        Me.importe.Name = "importe"
+        '
         'Recibos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -602,11 +640,6 @@ Partial Class Recibos
     Friend WithEvents CustomLabel4 As Administracion.CustomLabel
     Friend WithEvents txtRetGanancias As Administracion.CustomTextBox
     Friend WithEvents gridRecibos As System.Windows.Forms.DataGridView
-    Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents numero As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents fecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents banco As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents importe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents txtNombre As Administracion.CustomTextBox
     Friend WithEvents txtCliente As Administracion.CustomTextBox
     Friend WithEvents txtRecibo As Administracion.CustomTextBox
@@ -622,4 +655,14 @@ Partial Class Recibos
     Friend WithEvents btnDias As Administracion.CustomButton
     Friend WithEvents btnImpresion As Administracion.CustomButton
     Friend WithEvents CustomLabel12 As Administracion.CustomLabel
+    Friend WithEvents TipoCC As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents LetraCC As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PuntoCC As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents NumeroCC As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ImporteCC As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents numero As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents fecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents banco As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents importe As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
