@@ -439,6 +439,12 @@
     <Compile Include="ProveedoresABM\ProveedoresABM.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Recibos.Designer.vb">
+      <DependentUpon>Recibos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Recibos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RecibosProvisorios.Designer.vb">
       <DependentUpon>RecibosProvisorios.vb</DependentUpon>
     </Compile>
@@ -645,6 +651,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProveedoresABM\ProveedoresABM.resx">
       <DependentUpon>ProveedoresABM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recibos.resx">
+      <DependentUpon>Recibos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RecibosProvisorios.resx">
       <DependentUpon>RecibosProvisorios.vb</DependentUpon>
