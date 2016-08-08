@@ -28,6 +28,7 @@ Partial Class RecibosProvisorios
         Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CustomLabel10 = New Administracion.CustomLabel()
         Me.lstSeleccion = New Administracion.CustomListBox()
         Me.txtConsulta = New Administracion.CustomTextBox()
         Me.lstConsulta = New Administracion.CustomListBox()
@@ -56,7 +57,6 @@ Partial Class RecibosProvisorios
         Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.CustomLabel2 = New Administracion.CustomLabel()
         Me.CustomLabel1 = New Administracion.CustomLabel()
-        Me.CustomLabel10 = New Administracion.CustomLabel()
         CType(Me.gridRecibos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -103,6 +103,18 @@ Partial Class RecibosProvisorios
         Me.importe.FillWeight = 80.0!
         Me.importe.HeaderText = "Importe"
         Me.importe.Name = "importe"
+        '
+        'CustomLabel10
+        '
+        Me.CustomLabel10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.CustomLabel10.ControlAssociationKey = -1
+        Me.CustomLabel10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CustomLabel10.Location = New System.Drawing.Point(379, 540)
+        Me.CustomLabel10.Name = "CustomLabel10"
+        Me.CustomLabel10.Size = New System.Drawing.Size(247, 22)
+        Me.CustomLabel10.TabIndex = 118
+        Me.CustomLabel10.Text = "Tipo de Doc.:   1) Efectivo   2) Cheque"
+        Me.CustomLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lstSeleccion
         '
@@ -427,17 +439,6 @@ Partial Class RecibosProvisorios
         Me.CustomLabel1.Size = New System.Drawing.Size(64, 13)
         Me.CustomLabel1.TabIndex = 0
         Me.CustomLabel1.Text = "Nro. Recibo"
-        '
-        'CustomLabel10
-        '
-        Me.CustomLabel10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.CustomLabel10.ControlAssociationKey = -1
-        Me.CustomLabel10.Location = New System.Drawing.Point(424, 540)
-        Me.CustomLabel10.Name = "CustomLabel10"
-        Me.CustomLabel10.Size = New System.Drawing.Size(202, 22)
-        Me.CustomLabel10.TabIndex = 118
-        Me.CustomLabel10.Text = "Tipo de Doc.:   1) Efectivo   2) Cheque"
-        Me.CustomLabel10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'RecibosProvisorios
         '

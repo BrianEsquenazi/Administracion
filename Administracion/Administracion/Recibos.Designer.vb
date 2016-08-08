@@ -25,7 +25,7 @@ Partial Class Recibos
         Me.lstSeleccion = New Administracion.CustomListBox()
         Me.txtConsulta = New Administracion.CustomTextBox()
         Me.lstConsulta = New Administracion.CustomListBox()
-        Me.lblTotal = New Administracion.CustomLabel()
+        Me.lblTotalFormasPago = New Administracion.CustomLabel()
         Me.btnLimpiar = New Administracion.CustomButton()
         Me.btnCerrar = New Administracion.CustomButton()
         Me.btnIntereses = New Administracion.CustomButton()
@@ -43,7 +43,12 @@ Partial Class Recibos
         Me.CustomLabel5 = New Administracion.CustomLabel()
         Me.CustomLabel4 = New Administracion.CustomLabel()
         Me.txtRetGanancias = New Administracion.CustomTextBox()
-        Me.gridRecibos = New System.Windows.Forms.DataGridView()
+        Me.gridPagos = New System.Windows.Forms.DataGridView()
+        Me.TipoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LetraCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PuntoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumeroCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImporteCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtNombre = New Administracion.CustomTextBox()
         Me.txtCliente = New Administracion.CustomTextBox()
         Me.txtRecibo = New Administracion.CustomTextBox()
@@ -59,17 +64,20 @@ Partial Class Recibos
         Me.btnDias = New Administracion.CustomButton()
         Me.btnImpresion = New Administracion.CustomButton()
         Me.CustomLabel12 = New Administracion.CustomLabel()
-        Me.TipoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LetraCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PuntoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NumeroCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ImporteCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gridFormasPago = New System.Windows.Forms.DataGridView()
         Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        CType(Me.gridRecibos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
+        Me.lblTotalPagos = New Administracion.CustomLabel()
+        CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridFormasPago, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lstSeleccion
@@ -109,16 +117,16 @@ Partial Class Recibos
         Me.lstConsulta.TabIndex = 106
         Me.lstConsulta.Visible = False
         '
-        'lblTotal
+        'lblTotalFormasPago
         '
-        Me.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblTotal.ControlAssociationKey = -1
-        Me.lblTotal.Location = New System.Drawing.Point(626, 538)
-        Me.lblTotal.Name = "lblTotal"
-        Me.lblTotal.Size = New System.Drawing.Size(146, 22)
-        Me.lblTotal.TabIndex = 104
-        Me.lblTotal.Text = "0,00"
-        Me.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblTotalFormasPago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTotalFormasPago.ControlAssociationKey = -1
+        Me.lblTotalFormasPago.Location = New System.Drawing.Point(672, 539)
+        Me.lblTotalFormasPago.Name = "lblTotalFormasPago"
+        Me.lblTotalFormasPago.Size = New System.Drawing.Size(100, 22)
+        Me.lblTotalFormasPago.TabIndex = 104
+        Me.lblTotalFormasPago.Text = "0,00"
+        Me.lblTotalFormasPago.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'btnLimpiar
         '
@@ -207,7 +215,7 @@ Partial Class Recibos
         '
         Me.CustomLabel9.AutoSize = True
         Me.CustomLabel9.ControlAssociationKey = 8
-        Me.CustomLabel9.Location = New System.Drawing.Point(12, 152)
+        Me.CustomLabel9.Location = New System.Drawing.Point(369, 74)
         Me.CustomLabel9.Name = "CustomLabel9"
         Me.CustomLabel9.Size = New System.Drawing.Size(43, 13)
         Me.CustomLabel9.TabIndex = 96
@@ -219,7 +227,7 @@ Partial Class Recibos
         Me.txtParidad.Empty = True
         Me.txtParidad.EnterIndex = 10
         Me.txtParidad.LabelAssociationKey = 8
-        Me.txtParidad.Location = New System.Drawing.Point(97, 145)
+        Me.txtParidad.Location = New System.Drawing.Point(358, 93)
         Me.txtParidad.Name = "txtParidad"
         Me.txtParidad.Size = New System.Drawing.Size(75, 20)
         Me.txtParidad.TabIndex = 95
@@ -313,16 +321,50 @@ Partial Class Recibos
         Me.txtRetGanancias.TabIndex = 84
         Me.txtRetGanancias.Validator = Administracion.ValidatorType.PositiveFloat
         '
-        'gridRecibos
+        'gridPagos
         '
-        Me.gridRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.gridRecibos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridRecibos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TipoCC, Me.LetraCC, Me.PuntoCC, Me.NumeroCC, Me.ImporteCC, Me.Tipo, Me.numero, Me.fecha, Me.banco, Me.importe})
-        Me.gridRecibos.Location = New System.Drawing.Point(16, 200)
-        Me.gridRecibos.Name = "gridRecibos"
-        Me.gridRecibos.RowHeadersWidth = 20
-        Me.gridRecibos.Size = New System.Drawing.Size(756, 335)
-        Me.gridRecibos.TabIndex = 20
+        Me.gridPagos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.gridPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridPagos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TipoCC, Me.LetraCC, Me.PuntoCC, Me.NumeroCC, Me.ImporteCC})
+        Me.gridPagos.Location = New System.Drawing.Point(11, 200)
+        Me.gridPagos.Name = "gridPagos"
+        Me.gridPagos.RowHeadersWidth = 20
+        Me.gridPagos.Size = New System.Drawing.Size(362, 335)
+        Me.gridPagos.TabIndex = 20
+        '
+        'TipoCC
+        '
+        Me.TipoCC.FillWeight = 61.20156!
+        Me.TipoCC.HeaderText = "Tipo"
+        Me.TipoCC.Name = "TipoCC"
+        Me.TipoCC.ReadOnly = True
+        '
+        'LetraCC
+        '
+        Me.LetraCC.FillWeight = 59.29222!
+        Me.LetraCC.HeaderText = "Letra"
+        Me.LetraCC.Name = "LetraCC"
+        Me.LetraCC.ReadOnly = True
+        '
+        'PuntoCC
+        '
+        Me.PuntoCC.FillWeight = 55.11111!
+        Me.PuntoCC.HeaderText = "Punto"
+        Me.PuntoCC.Name = "PuntoCC"
+        Me.PuntoCC.ReadOnly = True
+        '
+        'NumeroCC
+        '
+        Me.NumeroCC.FillWeight = 125.6672!
+        Me.NumeroCC.HeaderText = "Numero"
+        Me.NumeroCC.Name = "NumeroCC"
+        Me.NumeroCC.ReadOnly = True
+        '
+        'ImporteCC
+        '
+        Me.ImporteCC.FillWeight = 125.6672!
+        Me.ImporteCC.HeaderText = "Importe"
+        Me.ImporteCC.Name = "ImporteCC"
         '
         'txtNombre
         '
@@ -345,7 +387,7 @@ Partial Class Recibos
         Me.txtCliente.EnterIndex = 4
         Me.txtCliente.LabelAssociationKey = 3
         Me.txtCliente.Location = New System.Drawing.Point(97, 41)
-        Me.txtCliente.MaxLength = 10
+        Me.txtCliente.MaxLength = 6
         Me.txtCliente.Name = "txtCliente"
         Me.txtCliente.Size = New System.Drawing.Size(75, 20)
         Me.txtCliente.TabIndex = 83
@@ -358,7 +400,7 @@ Partial Class Recibos
         Me.txtRecibo.EnterIndex = 2
         Me.txtRecibo.LabelAssociationKey = 1
         Me.txtRecibo.Location = New System.Drawing.Point(97, 15)
-        Me.txtRecibo.MaxLength = 10
+        Me.txtRecibo.MaxLength = 6
         Me.txtRecibo.Name = "txtRecibo"
         Me.txtRecibo.Size = New System.Drawing.Size(75, 20)
         Me.txtRecibo.TabIndex = 79
@@ -410,15 +452,15 @@ Partial Class Recibos
         'txtProvi
         '
         Me.txtProvi.Cleanable = True
-        Me.txtProvi.Empty = False
+        Me.txtProvi.Empty = True
         Me.txtProvi.EnterIndex = 1
         Me.txtProvi.LabelAssociationKey = 2
         Me.txtProvi.Location = New System.Drawing.Point(397, 15)
-        Me.txtProvi.MaxLength = 10
+        Me.txtProvi.MaxLength = 6
         Me.txtProvi.Name = "txtProvi"
         Me.txtProvi.Size = New System.Drawing.Size(75, 20)
         Me.txtProvi.TabIndex = 109
-        Me.txtProvi.Validator = Administracion.ValidatorType.DateFormat
+        Me.txtProvi.Validator = Administracion.ValidatorType.Numeric
         '
         'CustomLabel10
         '
@@ -437,7 +479,7 @@ Partial Class Recibos
         Me.txtNombreCuenta.Enabled = False
         Me.txtNombreCuenta.EnterIndex = -1
         Me.txtNombreCuenta.LabelAssociationKey = 3
-        Me.txtNombreCuenta.Location = New System.Drawing.Point(178, 117)
+        Me.txtNombreCuenta.Location = New System.Drawing.Point(178, 119)
         Me.txtNombreCuenta.MaxLength = 1000
         Me.txtNombreCuenta.Name = "txtNombreCuenta"
         Me.txtNombreCuenta.Size = New System.Drawing.Size(302, 20)
@@ -450,8 +492,8 @@ Partial Class Recibos
         Me.txtCuenta.Empty = False
         Me.txtCuenta.EnterIndex = 9
         Me.txtCuenta.LabelAssociationKey = 3
-        Me.txtCuenta.Location = New System.Drawing.Point(97, 117)
-        Me.txtCuenta.MaxLength = 10
+        Me.txtCuenta.Location = New System.Drawing.Point(97, 119)
+        Me.txtCuenta.MaxLength = 6
         Me.txtCuenta.Name = "txtCuenta"
         Me.txtCuenta.Size = New System.Drawing.Size(75, 20)
         Me.txtCuenta.TabIndex = 112
@@ -496,56 +538,35 @@ Partial Class Recibos
         Me.CustomLabel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.CustomLabel12.ControlAssociationKey = -1
         Me.CustomLabel12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CustomLabel12.Location = New System.Drawing.Point(392, 538)
+        Me.CustomLabel12.Location = New System.Drawing.Point(379, 539)
         Me.CustomLabel12.Name = "CustomLabel12"
-        Me.CustomLabel12.Size = New System.Drawing.Size(228, 22)
+        Me.CustomLabel12.Size = New System.Drawing.Size(287, 22)
         Me.CustomLabel12.TabIndex = 118
-        Me.CustomLabel12.Text = "Tipo Doc.: 1) Ef. 2) Ch. 3) Doc. 4) Varios "
+        Me.CustomLabel12.Text = "Tipo Doc.: 1) Ef. 2) Ch. 4) Varios "
         Me.CustomLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TipoCC
+        'gridFormasPago
         '
-        Me.TipoCC.FillWeight = 61.20156!
-        Me.TipoCC.HeaderText = "Tipo"
-        Me.TipoCC.Name = "TipoCC"
-        Me.TipoCC.ReadOnly = True
-        '
-        'LetraCC
-        '
-        Me.LetraCC.FillWeight = 59.29222!
-        Me.LetraCC.HeaderText = "Letra"
-        Me.LetraCC.Name = "LetraCC"
-        Me.LetraCC.ReadOnly = True
-        '
-        'PuntoCC
-        '
-        Me.PuntoCC.FillWeight = 55.11111!
-        Me.PuntoCC.HeaderText = "Punto"
-        Me.PuntoCC.Name = "PuntoCC"
-        Me.PuntoCC.ReadOnly = True
-        '
-        'NumeroCC
-        '
-        Me.NumeroCC.FillWeight = 125.6672!
-        Me.NumeroCC.HeaderText = "Numero"
-        Me.NumeroCC.Name = "NumeroCC"
-        Me.NumeroCC.ReadOnly = True
-        '
-        'ImporteCC
-        '
-        Me.ImporteCC.FillWeight = 125.6672!
-        Me.ImporteCC.HeaderText = "Importe"
-        Me.ImporteCC.Name = "ImporteCC"
+        Me.gridFormasPago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.gridFormasPago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridFormasPago.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.numero, Me.fecha, Me.banco, Me.importe})
+        Me.gridFormasPago.Location = New System.Drawing.Point(379, 200)
+        Me.gridFormasPago.Name = "gridFormasPago"
+        Me.gridFormasPago.RowHeadersWidth = 20
+        Me.gridFormasPago.Size = New System.Drawing.Size(393, 336)
+        Me.gridFormasPago.TabIndex = 119
         '
         'Tipo
         '
-        Me.Tipo.FillWeight = 63.22554!
+        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Tipo.FillWeight = 80.0!
         Me.Tipo.HeaderText = "Tipo"
         Me.Tipo.Name = "Tipo"
+        Me.Tipo.Width = 53
         '
         'numero
         '
-        Me.numero.FillWeight = 150.8006!
+        Me.numero.FillWeight = 120.0!
         Me.numero.HeaderText = "Numero/Cta"
         Me.numero.Name = "numero"
         '
@@ -559,21 +580,81 @@ Partial Class Recibos
         '
         'banco
         '
-        Me.banco.FillWeight = 188.5008!
+        Me.banco.FillWeight = 150.0!
         Me.banco.HeaderText = "Banco"
         Me.banco.Name = "banco"
         '
         'importe
         '
-        Me.importe.FillWeight = 100.5338!
+        Me.importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.importe.FillWeight = 80.0!
         Me.importe.HeaderText = "Importe"
         Me.importe.Name = "importe"
+        Me.importe.Width = 67
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.RadioButton3)
+        Me.GroupBox1.Controls.Add(Me.RadioButton2)
+        Me.GroupBox1.Controls.Add(Me.RadioButton1)
+        Me.GroupBox1.Location = New System.Drawing.Point(33, 144)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(245, 49)
+        Me.GroupBox1.TabIndex = 120
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Tipo"
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Checked = True
+        Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(97, 17)
+        Me.RadioButton1.TabIndex = 0
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "Cobro Cta. Cte."
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(109, 19)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(68, 17)
+        Me.RadioButton2.TabIndex = 1
+        Me.RadioButton2.Text = "Anticipos"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'RadioButton3
+        '
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.Location = New System.Drawing.Point(183, 19)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(54, 17)
+        Me.RadioButton3.TabIndex = 2
+        Me.RadioButton3.Text = "Varios"
+        Me.RadioButton3.UseVisualStyleBackColor = True
+        '
+        'lblTotalPagos
+        '
+        Me.lblTotalPagos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTotalPagos.ControlAssociationKey = -1
+        Me.lblTotalPagos.Location = New System.Drawing.Point(280, 538)
+        Me.lblTotalPagos.Name = "lblTotalPagos"
+        Me.lblTotalPagos.Size = New System.Drawing.Size(93, 22)
+        Me.lblTotalPagos.TabIndex = 121
+        Me.lblTotalPagos.Text = "0,00"
+        Me.lblTotalPagos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Recibos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 562)
+        Me.Controls.Add(Me.lblTotalPagos)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.gridFormasPago)
         Me.Controls.Add(Me.CustomLabel12)
         Me.Controls.Add(Me.btnImpresion)
         Me.Controls.Add(Me.btnDias)
@@ -585,7 +666,7 @@ Partial Class Recibos
         Me.Controls.Add(Me.lstSeleccion)
         Me.Controls.Add(Me.txtConsulta)
         Me.Controls.Add(Me.lstConsulta)
-        Me.Controls.Add(Me.lblTotal)
+        Me.Controls.Add(Me.lblTotalFormasPago)
         Me.Controls.Add(Me.btnLimpiar)
         Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.btnIntereses)
@@ -603,7 +684,7 @@ Partial Class Recibos
         Me.Controls.Add(Me.CustomLabel5)
         Me.Controls.Add(Me.CustomLabel4)
         Me.Controls.Add(Me.txtRetGanancias)
-        Me.Controls.Add(Me.gridRecibos)
+        Me.Controls.Add(Me.gridPagos)
         Me.Controls.Add(Me.txtNombre)
         Me.Controls.Add(Me.txtCliente)
         Me.Controls.Add(Me.txtRecibo)
@@ -613,7 +694,10 @@ Partial Class Recibos
         Me.Controls.Add(Me.CustomLabel1)
         Me.Name = "Recibos"
         Me.Text = "Ingreso de Recibos"
-        CType(Me.gridRecibos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridFormasPago, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -621,7 +705,7 @@ Partial Class Recibos
     Friend WithEvents lstSeleccion As Administracion.CustomListBox
     Friend WithEvents txtConsulta As Administracion.CustomTextBox
     Friend WithEvents lstConsulta As Administracion.CustomListBox
-    Friend WithEvents lblTotal As Administracion.CustomLabel
+    Friend WithEvents lblTotalFormasPago As Administracion.CustomLabel
     Friend WithEvents btnLimpiar As Administracion.CustomButton
     Friend WithEvents btnCerrar As Administracion.CustomButton
     Friend WithEvents btnIntereses As Administracion.CustomButton
@@ -639,7 +723,7 @@ Partial Class Recibos
     Friend WithEvents CustomLabel5 As Administracion.CustomLabel
     Friend WithEvents CustomLabel4 As Administracion.CustomLabel
     Friend WithEvents txtRetGanancias As Administracion.CustomTextBox
-    Friend WithEvents gridRecibos As System.Windows.Forms.DataGridView
+    Friend WithEvents gridPagos As System.Windows.Forms.DataGridView
     Friend WithEvents txtNombre As Administracion.CustomTextBox
     Friend WithEvents txtCliente As Administracion.CustomTextBox
     Friend WithEvents txtRecibo As Administracion.CustomTextBox
@@ -660,9 +744,15 @@ Partial Class Recibos
     Friend WithEvents PuntoCC As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NumeroCC As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ImporteCC As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents gridFormasPago As System.Windows.Forms.DataGridView
     Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents numero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents fecha As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents banco As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents importe As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents lblTotalPagos As Administracion.CustomLabel
 End Class

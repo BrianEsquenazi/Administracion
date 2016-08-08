@@ -239,4 +239,8 @@
     Private Sub IngresoDeRecibosProvisoriosToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IngresoDeRecibosProvisoriosToolStripMenuItem1.Click
         abrir(New RecibosProvisorios)
     End Sub
+
+    Private Sub IngresoDeRecibosToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IngresoDeRecibosToolStripMenuItem1.Click
+        abrir(New Recibos)
+    End Sub
 End Class
