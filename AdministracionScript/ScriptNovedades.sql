@@ -975,6 +975,7 @@ GO
 
 CREATE PROCEDURE PR_get_recibo_provisorio
 	@recibo varchar(6)
+	, @Numero2 varchar(12) = null
 AS
 	SELECT rp.Recibo
 		, RTRIM(rp.Cliente) Cliente
@@ -994,6 +995,7 @@ AS
 	FROM RecibosProvi rp
 	JOIN Cliente c on c.Cliente = rp.Cliente
 	WHERE rp.Recibo = @recibo
+		and rp.Numero2 = ISNULL(@Numero2,rp.Numero2)
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_recibos_provisorios]') AND type in (N'P', N'PC'))
@@ -1064,4 +1066,111 @@ AS
 	VALUES (@CLAVE, @Recibo, @Renglon, @CLIENTE, @FECHA, @FECHAORD, 1,
 	@RETGANANCIAS, @RETIVA, @RETIB, @RETSUSS, 0, 2, @TIPO, @NUMERO, @FECHA2,
 	@FECHAORD2, @BANCO, @IMPORTE2, @IMPORTE, @PARIDAD, 1, 0, "", "")
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_ultimo_recibo]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_ultimo_recibo]
+GO
+
+CREATE PROCEDURE PR_get_ultimo_recibo
+AS
+	DECLARE @ultimo int	
+	SET @ultimo = (SELECT TOP 1 R.Recibo
+					FROM Recibos R
+					ORDER BY r.Recibo desc)
+	
+	return (@ultimo + 1)
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_recibo]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_recibo]
+GO
+
+CREATE PROCEDURE PR_alta_recibo
+	@Clave   	varchar(8), 
+	@Recibo  	varchar(6),
+	@Renglon 	varchar(2),
+	@Cliente 	varchar(6),
+	@Fecha      	varchar(10),
+	@TipoRec 	varchar(1),
+	@RetGanancias   FLOAT,          
+	@RetIva         FLOAT,          
+	@RetOtra        FLOAT,          
+	@Retencion      FLOAT,          
+	@TipoReg        varchar(1),
+	@Tipo1 	varchar(2),
+	@Numero1  	varchar(8),
+	@Importe1       FLOAT,          
+	@Importe        float,                            
+	@Observaciones  varchar(50)
+AS
+BEGIN
+	--@Letra1 	varchar(1),
+	--@Punto1 	varchar(4),
+	--@Tipo2 	varchar(2),
+	--@Numero2  	varchar(8),
+	--@Fecha2     	varchar(10),
+	--@banco2         varchar(20),
+	--@Importe2       FLOAT,          
+	--@Estado2 	varchar(1),
+	--@Empresa 	smallint,
+	--@FechaOrd2 	varchar(8),
+	--@Impolist       float,                           
+	--@Impo1list      float,                                       
+	--@Destino        varchar(50),                                    
+	--@Cuenta     	varchar(10),
+	--@Marca  char(1),
+	--@FechaDepo Char(10) ,
+	--@FechaDepoOrd char(8)
+	DECLARE @Fechaord varchar(8) = (SELECT dbo.FN_verificar_fecha_ordenable (@Fecha))
+	INSERT INTO	Recibos
+		(Clave, Recibo, Renglon, Cliente, Fecha, Fechaord, 
+		TipoRec , RetGanancias, RetIva, RetOtra, Retencion,             
+		TipoReg , Tipo1 , Numero1 , Importe1, Importe   ,                                            
+		Observaciones, Empresa)
+VALUES
+		(@Clave, @Recibo, @Renglon, @Cliente, @Fecha, @Fechaord, 
+		@TipoRec , @RetGanancias, @RetIva, @RetOtra, @Retencion,             
+		@TipoReg , @Tipo1 , @Numero1 , @Importe1, @Importe   ,                                            
+		@Observaciones, 1)
+END
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_cuenta_corriente_por_clave]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_cuenta_corriente_por_clave]
+GO
+
+CREATE PROCEDURE PR_get_cuenta_corriente_por_clave
+	@Clave Char(12)
+ AS
+ -- SOLO TRAJE ESTOS PORQUE SON LOS QUE FUI VIENDO QUE SE USAN EN EL PROCESO DE LOS RECIBOS
+	SELECT cc.Clave 
+		, cc.Saldo
+		, cc.TotalUs
+		, cc.Total
+		, cc.Estado
+	FROM Ctacte cc
+	WHERE
+		Clave = @Clave
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_modificar_cuenta_corriente]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_modificar_cuenta_corriente]
+GO
+
+CREATE PROCEDURE PR_modificar_cuenta_corriente
+	@Clave varchar(12),
+	@Saldo float,
+	@SaldoUs float,
+	@WEstado varchar(8),
+	@Wdate varchar(10)
+ AS
+	UPDATE 	CtaCte
+	SET
+		Saldo = @Saldo,
+		SaldoUs = @SaldoUS,
+		Estado = @WEstado,
+		Wdate = @Wdate
+	WHERE
+		Clave = @Clave
 GO
