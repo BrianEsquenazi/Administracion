@@ -10,6 +10,29 @@ Public Class DAORecibo
         Return SQLConnector.checkIfExists("get_recibo", codigo)
     End Function
 
+    Public Shared Sub agregarRecibo(ByVal recibo As Recibo)
+        Dim renglon As Integer = 1
+        For Each formaPago As FormaPago In recibo.formasPago
+            SQLConnector.executeProcedure("alta_recibo_forma_pago", recibo.codigo, ceros(renglon, 2), recibo.codigoCliente, recibo.fecha,
+                                        recibo.retGanancias, recibo.retIVA, recibo.retIB, recibo.retSuss, ceros(formaPago.tipo, 2),
+                                        formaPago.numero, formaPago.fecha, formaPago.nombre, formaPago.importe, recibo.total,
+                                        recibo.paridad, recibo.observaciones, recibo.tipo, recibo.codigoCuenta)
+            renglon += 1
+        Next
+        renglon = 1
+        For Each pago As Pago In recibo.pagos
+            SQLConnector.executeProcedure("alta_recibo_pago", recibo.codigo, ceros(renglon, 2), recibo.codigoCliente, recibo.fecha,
+                                        recibo.retGanancias, recibo.retIVA, recibo.retIB, recibo.retSuss, ceros(pago.tipo, 2),
+                                        pago.letra, pago.punto, pago.numero, pago.importe, recibo.total,
+                                        recibo.paridad, recibo.observaciones, recibo.tipo, recibo.codigoCuenta)
+            renglon += 1
+        Next
+    End Sub
+
+    Public Shared Sub actualizarReciboProvisorio(ByVal codProvisorio As String, ByVal codRecibo As String)
+        SQLConnector.executeProcedure("actualizar_recibo_provisorio", codProvisorio, codRecibo)
+    End Sub
+
     Public Shared Sub agregarReciboProvisorio(ByVal recibo As ReciboProvisorio)
         Dim renglon As Integer = 1
         For Each formaPago As FormaPago In recibo.formasPago

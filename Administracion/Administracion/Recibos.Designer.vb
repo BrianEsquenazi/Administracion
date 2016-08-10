@@ -22,6 +22,33 @@ Partial Class Recibos
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.gridPagos = New System.Windows.Forms.DataGridView()
+        Me.TipoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LetraCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PuntoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumeroCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImporteCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gridFormasPago = New System.Windows.Forms.DataGridView()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.optVarios = New System.Windows.Forms.RadioButton()
+        Me.optAnticipos = New System.Windows.Forms.RadioButton()
+        Me.optCtaCte = New System.Windows.Forms.RadioButton()
+        Me.txtObservaciones = New Administracion.CustomTextBox()
+        Me.CustomLabel13 = New Administracion.CustomLabel()
+        Me.lblTotalPagos = New Administracion.CustomLabel()
+        Me.CustomLabel12 = New Administracion.CustomLabel()
+        Me.btnImpresion = New Administracion.CustomButton()
+        Me.btnDias = New Administracion.CustomButton()
+        Me.txtNombreCuenta = New Administracion.CustomTextBox()
+        Me.txtCuenta = New Administracion.CustomTextBox()
+        Me.CustomLabel11 = New Administracion.CustomLabel()
+        Me.txtProvi = New Administracion.CustomTextBox()
+        Me.CustomLabel10 = New Administracion.CustomLabel()
         Me.lstSeleccion = New Administracion.CustomListBox()
         Me.txtConsulta = New Administracion.CustomTextBox()
         Me.lstConsulta = New Administracion.CustomListBox()
@@ -43,12 +70,6 @@ Partial Class Recibos
         Me.CustomLabel5 = New Administracion.CustomLabel()
         Me.CustomLabel4 = New Administracion.CustomLabel()
         Me.txtRetGanancias = New Administracion.CustomTextBox()
-        Me.gridPagos = New System.Windows.Forms.DataGridView()
-        Me.TipoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LetraCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PuntoCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NumeroCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ImporteCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtNombre = New Administracion.CustomTextBox()
         Me.txtCliente = New Administracion.CustomTextBox()
         Me.txtRecibo = New Administracion.CustomTextBox()
@@ -56,280 +77,20 @@ Partial Class Recibos
         Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.CustomLabel2 = New Administracion.CustomLabel()
         Me.CustomLabel1 = New Administracion.CustomLabel()
-        Me.txtProvi = New Administracion.CustomTextBox()
-        Me.CustomLabel10 = New Administracion.CustomLabel()
-        Me.txtNombreCuenta = New Administracion.CustomTextBox()
-        Me.txtCuenta = New Administracion.CustomTextBox()
-        Me.CustomLabel11 = New Administracion.CustomLabel()
-        Me.btnDias = New Administracion.CustomButton()
-        Me.btnImpresion = New Administracion.CustomButton()
-        Me.CustomLabel12 = New Administracion.CustomLabel()
-        Me.gridFormasPago = New System.Windows.Forms.DataGridView()
-        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
-        Me.lblTotalPagos = New Administracion.CustomLabel()
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridFormasPago, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'lstSeleccion
-        '
-        Me.lstSeleccion.Cleanable = False
-        Me.lstSeleccion.EnterIndex = -1
-        Me.lstSeleccion.FormattingEnabled = True
-        Me.lstSeleccion.LabelAssociationKey = -1
-        Me.lstSeleccion.Location = New System.Drawing.Point(486, 3)
-        Me.lstSeleccion.Name = "lstSeleccion"
-        Me.lstSeleccion.Size = New System.Drawing.Size(286, 134)
-        Me.lstSeleccion.TabIndex = 108
-        Me.lstSeleccion.Visible = False
-        '
-        'txtConsulta
-        '
-        Me.txtConsulta.Cleanable = False
-        Me.txtConsulta.Empty = True
-        Me.txtConsulta.EnterIndex = -1
-        Me.txtConsulta.LabelAssociationKey = -1
-        Me.txtConsulta.Location = New System.Drawing.Point(486, 4)
-        Me.txtConsulta.Name = "txtConsulta"
-        Me.txtConsulta.Size = New System.Drawing.Size(286, 20)
-        Me.txtConsulta.TabIndex = 107
-        Me.txtConsulta.Validator = Administracion.ValidatorType.None
-        Me.txtConsulta.Visible = False
-        '
-        'lstConsulta
-        '
-        Me.lstConsulta.Cleanable = False
-        Me.lstConsulta.EnterIndex = -1
-        Me.lstConsulta.FormattingEnabled = True
-        Me.lstConsulta.LabelAssociationKey = -1
-        Me.lstConsulta.Location = New System.Drawing.Point(486, 30)
-        Me.lstConsulta.Name = "lstConsulta"
-        Me.lstConsulta.Size = New System.Drawing.Size(286, 108)
-        Me.lstConsulta.TabIndex = 106
-        Me.lstConsulta.Visible = False
-        '
-        'lblTotalFormasPago
-        '
-        Me.lblTotalFormasPago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblTotalFormasPago.ControlAssociationKey = -1
-        Me.lblTotalFormasPago.Location = New System.Drawing.Point(672, 539)
-        Me.lblTotalFormasPago.Name = "lblTotalFormasPago"
-        Me.lblTotalFormasPago.Size = New System.Drawing.Size(100, 22)
-        Me.lblTotalFormasPago.TabIndex = 104
-        Me.lblTotalFormasPago.Text = "0,00"
-        Me.lblTotalFormasPago.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'btnLimpiar
-        '
-        Me.btnLimpiar.Cleanable = False
-        Me.btnLimpiar.EnterIndex = -1
-        Me.btnLimpiar.LabelAssociationKey = -1
-        Me.btnLimpiar.Location = New System.Drawing.Point(684, 171)
-        Me.btnLimpiar.Name = "btnLimpiar"
-        Me.btnLimpiar.Size = New System.Drawing.Size(88, 23)
-        Me.btnLimpiar.TabIndex = 103
-        Me.btnLimpiar.Text = "Limpiar"
-        Me.btnLimpiar.UseVisualStyleBackColor = True
-        '
-        'btnCerrar
-        '
-        Me.btnCerrar.Cleanable = False
-        Me.btnCerrar.EnterIndex = -1
-        Me.btnCerrar.LabelAssociationKey = -1
-        Me.btnCerrar.Location = New System.Drawing.Point(590, 171)
-        Me.btnCerrar.Name = "btnCerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(88, 23)
-        Me.btnCerrar.TabIndex = 102
-        Me.btnCerrar.Text = "Cerrar"
-        Me.btnCerrar.UseVisualStyleBackColor = True
-        '
-        'btnIntereses
-        '
-        Me.btnIntereses.Cleanable = False
-        Me.btnIntereses.EnterIndex = -1
-        Me.btnIntereses.LabelAssociationKey = -1
-        Me.btnIntereses.Location = New System.Drawing.Point(496, 171)
-        Me.btnIntereses.Name = "btnIntereses"
-        Me.btnIntereses.Size = New System.Drawing.Size(88, 23)
-        Me.btnIntereses.TabIndex = 101
-        Me.btnIntereses.Text = "Intereses"
-        Me.btnIntereses.UseVisualStyleBackColor = True
-        '
-        'btnConsulta
-        '
-        Me.btnConsulta.Cleanable = False
-        Me.btnConsulta.EnterIndex = -1
-        Me.btnConsulta.LabelAssociationKey = -1
-        Me.btnConsulta.Location = New System.Drawing.Point(402, 171)
-        Me.btnConsulta.Name = "btnConsulta"
-        Me.btnConsulta.Size = New System.Drawing.Size(88, 23)
-        Me.btnConsulta.TabIndex = 100
-        Me.btnConsulta.Text = "Consulta"
-        Me.btnConsulta.UseVisualStyleBackColor = True
-        '
-        'btnAgregar
-        '
-        Me.btnAgregar.Cleanable = False
-        Me.btnAgregar.EnterIndex = -1
-        Me.btnAgregar.LabelAssociationKey = -1
-        Me.btnAgregar.Location = New System.Drawing.Point(308, 171)
-        Me.btnAgregar.Name = "btnAgregar"
-        Me.btnAgregar.Size = New System.Drawing.Size(88, 23)
-        Me.btnAgregar.TabIndex = 99
-        Me.btnAgregar.Text = "Agregar"
-        Me.btnAgregar.UseVisualStyleBackColor = True
-        '
-        'txtTotal
-        '
-        Me.txtTotal.Cleanable = True
-        Me.txtTotal.Empty = False
-        Me.txtTotal.EnterIndex = 8
-        Me.txtTotal.LabelAssociationKey = 9
-        Me.txtTotal.Location = New System.Drawing.Point(697, 145)
-        Me.txtTotal.Name = "txtTotal"
-        Me.txtTotal.Size = New System.Drawing.Size(75, 20)
-        Me.txtTotal.TabIndex = 98
-        Me.txtTotal.Validator = Administracion.ValidatorType.PositiveFloat
-        '
-        'CustomLabel8
-        '
-        Me.CustomLabel8.AutoSize = True
-        Me.CustomLabel8.ControlAssociationKey = 9
-        Me.CustomLabel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CustomLabel8.Location = New System.Drawing.Point(613, 148)
-        Me.CustomLabel8.Name = "CustomLabel8"
-        Me.CustomLabel8.Size = New System.Drawing.Size(80, 13)
-        Me.CustomLabel8.TabIndex = 97
-        Me.CustomLabel8.Text = "Total Recibo"
-        '
-        'CustomLabel9
-        '
-        Me.CustomLabel9.AutoSize = True
-        Me.CustomLabel9.ControlAssociationKey = 8
-        Me.CustomLabel9.Location = New System.Drawing.Point(369, 74)
-        Me.CustomLabel9.Name = "CustomLabel9"
-        Me.CustomLabel9.Size = New System.Drawing.Size(43, 13)
-        Me.CustomLabel9.TabIndex = 96
-        Me.CustomLabel9.Text = "Paridad"
-        '
-        'txtParidad
-        '
-        Me.txtParidad.Cleanable = True
-        Me.txtParidad.Empty = True
-        Me.txtParidad.EnterIndex = 10
-        Me.txtParidad.LabelAssociationKey = 8
-        Me.txtParidad.Location = New System.Drawing.Point(358, 93)
-        Me.txtParidad.Name = "txtParidad"
-        Me.txtParidad.Size = New System.Drawing.Size(75, 20)
-        Me.txtParidad.TabIndex = 95
-        Me.txtParidad.Validator = Administracion.ValidatorType.PositiveFloat
-        '
-        'txtRetSuss
-        '
-        Me.txtRetSuss.Cleanable = True
-        Me.txtRetSuss.Empty = False
-        Me.txtRetSuss.EnterIndex = 8
-        Me.txtRetSuss.LabelAssociationKey = 7
-        Me.txtRetSuss.Location = New System.Drawing.Point(230, 93)
-        Me.txtRetSuss.Name = "txtRetSuss"
-        Me.txtRetSuss.Size = New System.Drawing.Size(75, 20)
-        Me.txtRetSuss.TabIndex = 94
-        Me.txtRetSuss.Validator = Administracion.ValidatorType.PositiveFloat
-        '
-        'CustomLabel6
-        '
-        Me.CustomLabel6.AutoSize = True
-        Me.CustomLabel6.ControlAssociationKey = 7
-        Me.CustomLabel6.Location = New System.Drawing.Point(178, 100)
-        Me.CustomLabel6.Name = "CustomLabel6"
-        Me.CustomLabel6.Size = New System.Drawing.Size(56, 13)
-        Me.CustomLabel6.TabIndex = 93
-        Me.CustomLabel6.Text = "Ret. Suss."
-        '
-        'CustomLabel7
-        '
-        Me.CustomLabel7.AutoSize = True
-        Me.CustomLabel7.ControlAssociationKey = 5
-        Me.CustomLabel7.Location = New System.Drawing.Point(178, 74)
-        Me.CustomLabel7.Name = "CustomLabel7"
-        Me.CustomLabel7.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel7.TabIndex = 92
-        Me.CustomLabel7.Text = "Ret. I.B."
-        '
-        'txtRetIB
-        '
-        Me.txtRetIB.Cleanable = True
-        Me.txtRetIB.Empty = False
-        Me.txtRetIB.EnterIndex = 6
-        Me.txtRetIB.LabelAssociationKey = 5
-        Me.txtRetIB.Location = New System.Drawing.Point(230, 67)
-        Me.txtRetIB.Name = "txtRetIB"
-        Me.txtRetIB.Size = New System.Drawing.Size(75, 20)
-        Me.txtRetIB.TabIndex = 91
-        Me.txtRetIB.Validator = Administracion.ValidatorType.PositiveFloat
-        '
-        'txtRetIva
-        '
-        Me.txtRetIva.Cleanable = True
-        Me.txtRetIva.Empty = False
-        Me.txtRetIva.EnterIndex = 7
-        Me.txtRetIva.LabelAssociationKey = 6
-        Me.txtRetIva.Location = New System.Drawing.Point(97, 93)
-        Me.txtRetIva.Name = "txtRetIva"
-        Me.txtRetIva.Size = New System.Drawing.Size(75, 20)
-        Me.txtRetIva.TabIndex = 90
-        Me.txtRetIva.Validator = Administracion.ValidatorType.PositiveFloat
-        '
-        'CustomLabel5
-        '
-        Me.CustomLabel5.AutoSize = True
-        Me.CustomLabel5.ControlAssociationKey = 6
-        Me.CustomLabel5.Location = New System.Drawing.Point(12, 100)
-        Me.CustomLabel5.Name = "CustomLabel5"
-        Me.CustomLabel5.Size = New System.Drawing.Size(47, 13)
-        Me.CustomLabel5.TabIndex = 89
-        Me.CustomLabel5.Text = "Ret. IVA"
-        '
-        'CustomLabel4
-        '
-        Me.CustomLabel4.AutoSize = True
-        Me.CustomLabel4.ControlAssociationKey = 4
-        Me.CustomLabel4.Location = New System.Drawing.Point(13, 74)
-        Me.CustomLabel4.Name = "CustomLabel4"
-        Me.CustomLabel4.Size = New System.Drawing.Size(81, 13)
-        Me.CustomLabel4.TabIndex = 88
-        Me.CustomLabel4.Text = "Ret. Ganancias"
-        '
-        'txtRetGanancias
-        '
-        Me.txtRetGanancias.Cleanable = True
-        Me.txtRetGanancias.Empty = False
-        Me.txtRetGanancias.EnterIndex = 5
-        Me.txtRetGanancias.LabelAssociationKey = 4
-        Me.txtRetGanancias.Location = New System.Drawing.Point(97, 67)
-        Me.txtRetGanancias.Name = "txtRetGanancias"
-        Me.txtRetGanancias.Size = New System.Drawing.Size(75, 20)
-        Me.txtRetGanancias.TabIndex = 84
-        Me.txtRetGanancias.Validator = Administracion.ValidatorType.PositiveFloat
         '
         'gridPagos
         '
         Me.gridPagos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gridPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridPagos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TipoCC, Me.LetraCC, Me.PuntoCC, Me.NumeroCC, Me.ImporteCC})
-        Me.gridPagos.Location = New System.Drawing.Point(11, 200)
+        Me.gridPagos.Location = New System.Drawing.Point(11, 223)
         Me.gridPagos.Name = "gridPagos"
         Me.gridPagos.RowHeadersWidth = 20
-        Me.gridPagos.Size = New System.Drawing.Size(362, 335)
+        Me.gridPagos.Size = New System.Drawing.Size(362, 312)
         Me.gridPagos.TabIndex = 20
         '
         'TipoCC
@@ -366,13 +127,475 @@ Partial Class Recibos
         Me.ImporteCC.HeaderText = "Importe"
         Me.ImporteCC.Name = "ImporteCC"
         '
+        'gridFormasPago
+        '
+        Me.gridFormasPago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.gridFormasPago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridFormasPago.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.numero, Me.fecha, Me.banco, Me.importe})
+        Me.gridFormasPago.Location = New System.Drawing.Point(379, 223)
+        Me.gridFormasPago.Name = "gridFormasPago"
+        Me.gridFormasPago.RowHeadersWidth = 20
+        Me.gridFormasPago.Size = New System.Drawing.Size(393, 313)
+        Me.gridFormasPago.TabIndex = 119
+        '
+        'Tipo
+        '
+        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Tipo.FillWeight = 80.0!
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        Me.Tipo.Width = 53
+        '
+        'numero
+        '
+        Me.numero.FillWeight = 120.0!
+        Me.numero.HeaderText = "Numero/Cta"
+        Me.numero.Name = "numero"
+        '
+        'fecha
+        '
+        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.fecha.FillWeight = 120.0!
+        Me.fecha.HeaderText = "Fecha"
+        Me.fecha.Name = "fecha"
+        Me.fecha.Width = 62
+        '
+        'banco
+        '
+        Me.banco.FillWeight = 150.0!
+        Me.banco.HeaderText = "Banco"
+        Me.banco.Name = "banco"
+        '
+        'importe
+        '
+        Me.importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.importe.FillWeight = 80.0!
+        Me.importe.HeaderText = "Importe"
+        Me.importe.Name = "importe"
+        Me.importe.Width = 67
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.optVarios)
+        Me.GroupBox1.Controls.Add(Me.optAnticipos)
+        Me.GroupBox1.Controls.Add(Me.optCtaCte)
+        Me.GroupBox1.Location = New System.Drawing.Point(33, 167)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(245, 49)
+        Me.GroupBox1.TabIndex = 120
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Tipo"
+        '
+        'optVarios
+        '
+        Me.optVarios.AutoSize = True
+        Me.optVarios.Location = New System.Drawing.Point(183, 19)
+        Me.optVarios.Name = "optVarios"
+        Me.optVarios.Size = New System.Drawing.Size(54, 17)
+        Me.optVarios.TabIndex = 2
+        Me.optVarios.Text = "Varios"
+        Me.optVarios.UseVisualStyleBackColor = True
+        '
+        'optAnticipos
+        '
+        Me.optAnticipos.AutoSize = True
+        Me.optAnticipos.Location = New System.Drawing.Point(109, 19)
+        Me.optAnticipos.Name = "optAnticipos"
+        Me.optAnticipos.Size = New System.Drawing.Size(68, 17)
+        Me.optAnticipos.TabIndex = 1
+        Me.optAnticipos.Text = "Anticipos"
+        Me.optAnticipos.UseVisualStyleBackColor = True
+        '
+        'optCtaCte
+        '
+        Me.optCtaCte.AutoSize = True
+        Me.optCtaCte.Checked = True
+        Me.optCtaCte.Location = New System.Drawing.Point(6, 19)
+        Me.optCtaCte.Name = "optCtaCte"
+        Me.optCtaCte.Size = New System.Drawing.Size(97, 17)
+        Me.optCtaCte.TabIndex = 0
+        Me.optCtaCte.TabStop = True
+        Me.optCtaCte.Text = "Cobro Cta. Cte."
+        Me.optCtaCte.UseVisualStyleBackColor = True
+        '
+        'txtObservaciones
+        '
+        Me.txtObservaciones.Cleanable = False
+        Me.txtObservaciones.Empty = True
+        Me.txtObservaciones.EnterIndex = 11
+        Me.txtObservaciones.LabelAssociationKey = 12
+        Me.txtObservaciones.Location = New System.Drawing.Point(97, 145)
+        Me.txtObservaciones.Name = "txtObservaciones"
+        Me.txtObservaciones.Size = New System.Drawing.Size(383, 20)
+        Me.txtObservaciones.TabIndex = 123
+        Me.txtObservaciones.Validator = Administracion.ValidatorType.None
+        '
+        'CustomLabel13
+        '
+        Me.CustomLabel13.AutoSize = True
+        Me.CustomLabel13.ControlAssociationKey = 12
+        Me.CustomLabel13.Location = New System.Drawing.Point(12, 148)
+        Me.CustomLabel13.Name = "CustomLabel13"
+        Me.CustomLabel13.Size = New System.Drawing.Size(78, 13)
+        Me.CustomLabel13.TabIndex = 122
+        Me.CustomLabel13.Text = "Observaciones"
+        '
+        'lblTotalPagos
+        '
+        Me.lblTotalPagos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTotalPagos.ControlAssociationKey = -1
+        Me.lblTotalPagos.Location = New System.Drawing.Point(280, 539)
+        Me.lblTotalPagos.Name = "lblTotalPagos"
+        Me.lblTotalPagos.Size = New System.Drawing.Size(93, 22)
+        Me.lblTotalPagos.TabIndex = 121
+        Me.lblTotalPagos.Text = "0,00"
+        Me.lblTotalPagos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'CustomLabel12
+        '
+        Me.CustomLabel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.CustomLabel12.ControlAssociationKey = -1
+        Me.CustomLabel12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CustomLabel12.Location = New System.Drawing.Point(379, 539)
+        Me.CustomLabel12.Name = "CustomLabel12"
+        Me.CustomLabel12.Size = New System.Drawing.Size(287, 22)
+        Me.CustomLabel12.TabIndex = 118
+        Me.CustomLabel12.Text = "Tipo Doc.: 1) Ef. 2) Ch. 4) Varios "
+        Me.CustomLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btnImpresion
+        '
+        Me.btnImpresion.Cleanable = False
+        Me.btnImpresion.EnterIndex = -1
+        Me.btnImpresion.LabelAssociationKey = -1
+        Me.btnImpresion.Location = New System.Drawing.Point(308, 168)
+        Me.btnImpresion.Name = "btnImpresion"
+        Me.btnImpresion.Size = New System.Drawing.Size(88, 23)
+        Me.btnImpresion.TabIndex = 115
+        Me.btnImpresion.Text = "Impresion"
+        Me.btnImpresion.UseVisualStyleBackColor = True
+        '
+        'btnDias
+        '
+        Me.btnDias.Cleanable = False
+        Me.btnDias.EnterIndex = -1
+        Me.btnDias.LabelAssociationKey = -1
+        Me.btnDias.Location = New System.Drawing.Point(402, 167)
+        Me.btnDias.Name = "btnDias"
+        Me.btnDias.Size = New System.Drawing.Size(88, 23)
+        Me.btnDias.TabIndex = 114
+        Me.btnDias.Text = "Dias"
+        Me.btnDias.UseVisualStyleBackColor = True
+        '
+        'txtNombreCuenta
+        '
+        Me.txtNombreCuenta.Cleanable = True
+        Me.txtNombreCuenta.Empty = True
+        Me.txtNombreCuenta.Enabled = False
+        Me.txtNombreCuenta.EnterIndex = -1
+        Me.txtNombreCuenta.LabelAssociationKey = 9
+        Me.txtNombreCuenta.Location = New System.Drawing.Point(178, 119)
+        Me.txtNombreCuenta.MaxLength = 1000
+        Me.txtNombreCuenta.Name = "txtNombreCuenta"
+        Me.txtNombreCuenta.Size = New System.Drawing.Size(302, 20)
+        Me.txtNombreCuenta.TabIndex = 113
+        Me.txtNombreCuenta.Validator = Administracion.ValidatorType.None
+        '
+        'txtCuenta
+        '
+        Me.txtCuenta.Cleanable = True
+        Me.txtCuenta.Empty = True
+        Me.txtCuenta.Enabled = False
+        Me.txtCuenta.EnterIndex = 9
+        Me.txtCuenta.LabelAssociationKey = 9
+        Me.txtCuenta.Location = New System.Drawing.Point(97, 119)
+        Me.txtCuenta.MaxLength = 6
+        Me.txtCuenta.Name = "txtCuenta"
+        Me.txtCuenta.Size = New System.Drawing.Size(75, 20)
+        Me.txtCuenta.TabIndex = 112
+        Me.txtCuenta.Validator = Administracion.ValidatorType.None
+        '
+        'CustomLabel11
+        '
+        Me.CustomLabel11.AutoSize = True
+        Me.CustomLabel11.ControlAssociationKey = 9
+        Me.CustomLabel11.Location = New System.Drawing.Point(13, 122)
+        Me.CustomLabel11.Name = "CustomLabel11"
+        Me.CustomLabel11.Size = New System.Drawing.Size(86, 13)
+        Me.CustomLabel11.TabIndex = 111
+        Me.CustomLabel11.Text = "Cuenta Contable"
+        '
+        'txtProvi
+        '
+        Me.txtProvi.Cleanable = True
+        Me.txtProvi.Empty = True
+        Me.txtProvi.EnterIndex = 1
+        Me.txtProvi.LabelAssociationKey = 3
+        Me.txtProvi.Location = New System.Drawing.Point(397, 15)
+        Me.txtProvi.MaxLength = 6
+        Me.txtProvi.Name = "txtProvi"
+        Me.txtProvi.Size = New System.Drawing.Size(75, 20)
+        Me.txtProvi.TabIndex = 109
+        Me.txtProvi.Validator = Administracion.ValidatorType.Numeric
+        '
+        'CustomLabel10
+        '
+        Me.CustomLabel10.AutoSize = True
+        Me.CustomLabel10.ControlAssociationKey = 3
+        Me.CustomLabel10.Location = New System.Drawing.Point(312, 18)
+        Me.CustomLabel10.Name = "CustomLabel10"
+        Me.CustomLabel10.Size = New System.Drawing.Size(79, 13)
+        Me.CustomLabel10.TabIndex = 110
+        Me.CustomLabel10.Text = "Rec. Provisorio"
+        '
+        'lstSeleccion
+        '
+        Me.lstSeleccion.Cleanable = False
+        Me.lstSeleccion.EnterIndex = -1
+        Me.lstSeleccion.FormattingEnabled = True
+        Me.lstSeleccion.LabelAssociationKey = -1
+        Me.lstSeleccion.Location = New System.Drawing.Point(486, 3)
+        Me.lstSeleccion.Name = "lstSeleccion"
+        Me.lstSeleccion.Size = New System.Drawing.Size(286, 160)
+        Me.lstSeleccion.TabIndex = 108
+        Me.lstSeleccion.Visible = False
+        '
+        'txtConsulta
+        '
+        Me.txtConsulta.Cleanable = False
+        Me.txtConsulta.Empty = True
+        Me.txtConsulta.EnterIndex = -1
+        Me.txtConsulta.LabelAssociationKey = -1
+        Me.txtConsulta.Location = New System.Drawing.Point(486, 4)
+        Me.txtConsulta.Name = "txtConsulta"
+        Me.txtConsulta.Size = New System.Drawing.Size(286, 20)
+        Me.txtConsulta.TabIndex = 107
+        Me.txtConsulta.Validator = Administracion.ValidatorType.None
+        Me.txtConsulta.Visible = False
+        '
+        'lstConsulta
+        '
+        Me.lstConsulta.Cleanable = False
+        Me.lstConsulta.EnterIndex = -1
+        Me.lstConsulta.FormattingEnabled = True
+        Me.lstConsulta.LabelAssociationKey = -1
+        Me.lstConsulta.Location = New System.Drawing.Point(486, 30)
+        Me.lstConsulta.Name = "lstConsulta"
+        Me.lstConsulta.Size = New System.Drawing.Size(286, 134)
+        Me.lstConsulta.TabIndex = 106
+        Me.lstConsulta.Visible = False
+        '
+        'lblTotalFormasPago
+        '
+        Me.lblTotalFormasPago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblTotalFormasPago.ControlAssociationKey = -1
+        Me.lblTotalFormasPago.Location = New System.Drawing.Point(672, 539)
+        Me.lblTotalFormasPago.Name = "lblTotalFormasPago"
+        Me.lblTotalFormasPago.Size = New System.Drawing.Size(100, 22)
+        Me.lblTotalFormasPago.TabIndex = 104
+        Me.lblTotalFormasPago.Text = "0,00"
+        Me.lblTotalFormasPago.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'btnLimpiar
+        '
+        Me.btnLimpiar.Cleanable = False
+        Me.btnLimpiar.EnterIndex = -1
+        Me.btnLimpiar.LabelAssociationKey = -1
+        Me.btnLimpiar.Location = New System.Drawing.Point(684, 194)
+        Me.btnLimpiar.Name = "btnLimpiar"
+        Me.btnLimpiar.Size = New System.Drawing.Size(88, 23)
+        Me.btnLimpiar.TabIndex = 103
+        Me.btnLimpiar.Text = "Limpiar"
+        Me.btnLimpiar.UseVisualStyleBackColor = True
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.Cleanable = False
+        Me.btnCerrar.EnterIndex = -1
+        Me.btnCerrar.LabelAssociationKey = -1
+        Me.btnCerrar.Location = New System.Drawing.Point(590, 194)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(88, 23)
+        Me.btnCerrar.TabIndex = 102
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = True
+        '
+        'btnIntereses
+        '
+        Me.btnIntereses.Cleanable = False
+        Me.btnIntereses.EnterIndex = -1
+        Me.btnIntereses.LabelAssociationKey = -1
+        Me.btnIntereses.Location = New System.Drawing.Point(496, 194)
+        Me.btnIntereses.Name = "btnIntereses"
+        Me.btnIntereses.Size = New System.Drawing.Size(88, 23)
+        Me.btnIntereses.TabIndex = 101
+        Me.btnIntereses.Text = "Intereses"
+        Me.btnIntereses.UseVisualStyleBackColor = True
+        '
+        'btnConsulta
+        '
+        Me.btnConsulta.Cleanable = False
+        Me.btnConsulta.EnterIndex = -1
+        Me.btnConsulta.LabelAssociationKey = -1
+        Me.btnConsulta.Location = New System.Drawing.Point(402, 194)
+        Me.btnConsulta.Name = "btnConsulta"
+        Me.btnConsulta.Size = New System.Drawing.Size(88, 23)
+        Me.btnConsulta.TabIndex = 100
+        Me.btnConsulta.Text = "Consulta"
+        Me.btnConsulta.UseVisualStyleBackColor = True
+        '
+        'btnAgregar
+        '
+        Me.btnAgregar.Cleanable = False
+        Me.btnAgregar.EnterIndex = -1
+        Me.btnAgregar.LabelAssociationKey = -1
+        Me.btnAgregar.Location = New System.Drawing.Point(308, 194)
+        Me.btnAgregar.Name = "btnAgregar"
+        Me.btnAgregar.Size = New System.Drawing.Size(88, 23)
+        Me.btnAgregar.TabIndex = 99
+        Me.btnAgregar.Text = "Agregar"
+        Me.btnAgregar.UseVisualStyleBackColor = True
+        '
+        'txtTotal
+        '
+        Me.txtTotal.Cleanable = True
+        Me.txtTotal.Empty = False
+        Me.txtTotal.EnterIndex = 8
+        Me.txtTotal.LabelAssociationKey = 10
+        Me.txtTotal.Location = New System.Drawing.Point(697, 168)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.Size = New System.Drawing.Size(75, 20)
+        Me.txtTotal.TabIndex = 98
+        Me.txtTotal.Validator = Administracion.ValidatorType.PositiveFloat
+        '
+        'CustomLabel8
+        '
+        Me.CustomLabel8.AutoSize = True
+        Me.CustomLabel8.ControlAssociationKey = 10
+        Me.CustomLabel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CustomLabel8.Location = New System.Drawing.Point(613, 171)
+        Me.CustomLabel8.Name = "CustomLabel8"
+        Me.CustomLabel8.Size = New System.Drawing.Size(80, 13)
+        Me.CustomLabel8.TabIndex = 97
+        Me.CustomLabel8.Text = "Total Recibo"
+        '
+        'CustomLabel9
+        '
+        Me.CustomLabel9.AutoSize = True
+        Me.CustomLabel9.ControlAssociationKey = 11
+        Me.CustomLabel9.Location = New System.Drawing.Point(369, 74)
+        Me.CustomLabel9.Name = "CustomLabel9"
+        Me.CustomLabel9.Size = New System.Drawing.Size(43, 13)
+        Me.CustomLabel9.TabIndex = 96
+        Me.CustomLabel9.Text = "Paridad"
+        '
+        'txtParidad
+        '
+        Me.txtParidad.Cleanable = True
+        Me.txtParidad.Empty = True
+        Me.txtParidad.EnterIndex = 10
+        Me.txtParidad.LabelAssociationKey = 11
+        Me.txtParidad.Location = New System.Drawing.Point(358, 93)
+        Me.txtParidad.Name = "txtParidad"
+        Me.txtParidad.Size = New System.Drawing.Size(75, 20)
+        Me.txtParidad.TabIndex = 95
+        Me.txtParidad.Validator = Administracion.ValidatorType.PositiveFloat
+        '
+        'txtRetSuss
+        '
+        Me.txtRetSuss.Cleanable = True
+        Me.txtRetSuss.Empty = False
+        Me.txtRetSuss.EnterIndex = 8
+        Me.txtRetSuss.LabelAssociationKey = 8
+        Me.txtRetSuss.Location = New System.Drawing.Point(230, 93)
+        Me.txtRetSuss.Name = "txtRetSuss"
+        Me.txtRetSuss.Size = New System.Drawing.Size(75, 20)
+        Me.txtRetSuss.TabIndex = 94
+        Me.txtRetSuss.Validator = Administracion.ValidatorType.PositiveFloat
+        '
+        'CustomLabel6
+        '
+        Me.CustomLabel6.AutoSize = True
+        Me.CustomLabel6.ControlAssociationKey = 8
+        Me.CustomLabel6.Location = New System.Drawing.Point(175, 96)
+        Me.CustomLabel6.Name = "CustomLabel6"
+        Me.CustomLabel6.Size = New System.Drawing.Size(56, 13)
+        Me.CustomLabel6.TabIndex = 93
+        Me.CustomLabel6.Text = "Ret. Suss."
+        '
+        'CustomLabel7
+        '
+        Me.CustomLabel7.AutoSize = True
+        Me.CustomLabel7.ControlAssociationKey = 6
+        Me.CustomLabel7.Location = New System.Drawing.Point(178, 70)
+        Me.CustomLabel7.Name = "CustomLabel7"
+        Me.CustomLabel7.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel7.TabIndex = 92
+        Me.CustomLabel7.Text = "Ret. I.B."
+        '
+        'txtRetIB
+        '
+        Me.txtRetIB.Cleanable = True
+        Me.txtRetIB.Empty = False
+        Me.txtRetIB.EnterIndex = 6
+        Me.txtRetIB.LabelAssociationKey = 6
+        Me.txtRetIB.Location = New System.Drawing.Point(230, 67)
+        Me.txtRetIB.Name = "txtRetIB"
+        Me.txtRetIB.Size = New System.Drawing.Size(75, 20)
+        Me.txtRetIB.TabIndex = 91
+        Me.txtRetIB.Validator = Administracion.ValidatorType.PositiveFloat
+        '
+        'txtRetIva
+        '
+        Me.txtRetIva.Cleanable = True
+        Me.txtRetIva.Empty = False
+        Me.txtRetIva.EnterIndex = 7
+        Me.txtRetIva.LabelAssociationKey = 7
+        Me.txtRetIva.Location = New System.Drawing.Point(97, 93)
+        Me.txtRetIva.Name = "txtRetIva"
+        Me.txtRetIva.Size = New System.Drawing.Size(75, 20)
+        Me.txtRetIva.TabIndex = 90
+        Me.txtRetIva.Validator = Administracion.ValidatorType.PositiveFloat
+        '
+        'CustomLabel5
+        '
+        Me.CustomLabel5.AutoSize = True
+        Me.CustomLabel5.ControlAssociationKey = 7
+        Me.CustomLabel5.Location = New System.Drawing.Point(13, 96)
+        Me.CustomLabel5.Name = "CustomLabel5"
+        Me.CustomLabel5.Size = New System.Drawing.Size(47, 13)
+        Me.CustomLabel5.TabIndex = 89
+        Me.CustomLabel5.Text = "Ret. IVA"
+        '
+        'CustomLabel4
+        '
+        Me.CustomLabel4.AutoSize = True
+        Me.CustomLabel4.ControlAssociationKey = 5
+        Me.CustomLabel4.Location = New System.Drawing.Point(10, 70)
+        Me.CustomLabel4.Name = "CustomLabel4"
+        Me.CustomLabel4.Size = New System.Drawing.Size(81, 13)
+        Me.CustomLabel4.TabIndex = 88
+        Me.CustomLabel4.Text = "Ret. Ganancias"
+        '
+        'txtRetGanancias
+        '
+        Me.txtRetGanancias.Cleanable = True
+        Me.txtRetGanancias.Empty = False
+        Me.txtRetGanancias.EnterIndex = 5
+        Me.txtRetGanancias.LabelAssociationKey = 5
+        Me.txtRetGanancias.Location = New System.Drawing.Point(97, 67)
+        Me.txtRetGanancias.Name = "txtRetGanancias"
+        Me.txtRetGanancias.Size = New System.Drawing.Size(75, 20)
+        Me.txtRetGanancias.TabIndex = 84
+        Me.txtRetGanancias.Validator = Administracion.ValidatorType.PositiveFloat
+        '
         'txtNombre
         '
         Me.txtNombre.Cleanable = True
         Me.txtNombre.Empty = False
         Me.txtNombre.Enabled = False
         Me.txtNombre.EnterIndex = -1
-        Me.txtNombre.LabelAssociationKey = 3
+        Me.txtNombre.LabelAssociationKey = 4
         Me.txtNombre.Location = New System.Drawing.Point(178, 41)
         Me.txtNombre.MaxLength = 1000
         Me.txtNombre.Name = "txtNombre"
@@ -385,7 +608,7 @@ Partial Class Recibos
         Me.txtCliente.Cleanable = True
         Me.txtCliente.Empty = False
         Me.txtCliente.EnterIndex = 4
-        Me.txtCliente.LabelAssociationKey = 3
+        Me.txtCliente.LabelAssociationKey = 4
         Me.txtCliente.Location = New System.Drawing.Point(97, 41)
         Me.txtCliente.MaxLength = 6
         Me.txtCliente.Name = "txtCliente"
@@ -432,8 +655,8 @@ Partial Class Recibos
         'CustomLabel2
         '
         Me.CustomLabel2.AutoSize = True
-        Me.CustomLabel2.ControlAssociationKey = 3
-        Me.CustomLabel2.Location = New System.Drawing.Point(12, 48)
+        Me.CustomLabel2.ControlAssociationKey = 4
+        Me.CustomLabel2.Location = New System.Drawing.Point(13, 44)
         Me.CustomLabel2.Name = "CustomLabel2"
         Me.CustomLabel2.Size = New System.Drawing.Size(64, 13)
         Me.CustomLabel2.TabIndex = 82
@@ -449,209 +672,13 @@ Partial Class Recibos
         Me.CustomLabel1.TabIndex = 80
         Me.CustomLabel1.Text = "Nro. Recibo"
         '
-        'txtProvi
-        '
-        Me.txtProvi.Cleanable = True
-        Me.txtProvi.Empty = True
-        Me.txtProvi.EnterIndex = 1
-        Me.txtProvi.LabelAssociationKey = 2
-        Me.txtProvi.Location = New System.Drawing.Point(397, 15)
-        Me.txtProvi.MaxLength = 6
-        Me.txtProvi.Name = "txtProvi"
-        Me.txtProvi.Size = New System.Drawing.Size(75, 20)
-        Me.txtProvi.TabIndex = 109
-        Me.txtProvi.Validator = Administracion.ValidatorType.Numeric
-        '
-        'CustomLabel10
-        '
-        Me.CustomLabel10.AutoSize = True
-        Me.CustomLabel10.ControlAssociationKey = 2
-        Me.CustomLabel10.Location = New System.Drawing.Point(312, 18)
-        Me.CustomLabel10.Name = "CustomLabel10"
-        Me.CustomLabel10.Size = New System.Drawing.Size(79, 13)
-        Me.CustomLabel10.TabIndex = 110
-        Me.CustomLabel10.Text = "Rec. Provisorio"
-        '
-        'txtNombreCuenta
-        '
-        Me.txtNombreCuenta.Cleanable = True
-        Me.txtNombreCuenta.Empty = False
-        Me.txtNombreCuenta.Enabled = False
-        Me.txtNombreCuenta.EnterIndex = -1
-        Me.txtNombreCuenta.LabelAssociationKey = 3
-        Me.txtNombreCuenta.Location = New System.Drawing.Point(178, 119)
-        Me.txtNombreCuenta.MaxLength = 1000
-        Me.txtNombreCuenta.Name = "txtNombreCuenta"
-        Me.txtNombreCuenta.Size = New System.Drawing.Size(302, 20)
-        Me.txtNombreCuenta.TabIndex = 113
-        Me.txtNombreCuenta.Validator = Administracion.ValidatorType.None
-        '
-        'txtCuenta
-        '
-        Me.txtCuenta.Cleanable = True
-        Me.txtCuenta.Empty = False
-        Me.txtCuenta.EnterIndex = 9
-        Me.txtCuenta.LabelAssociationKey = 3
-        Me.txtCuenta.Location = New System.Drawing.Point(97, 119)
-        Me.txtCuenta.MaxLength = 6
-        Me.txtCuenta.Name = "txtCuenta"
-        Me.txtCuenta.Size = New System.Drawing.Size(75, 20)
-        Me.txtCuenta.TabIndex = 112
-        Me.txtCuenta.Validator = Administracion.ValidatorType.None
-        '
-        'CustomLabel11
-        '
-        Me.CustomLabel11.AutoSize = True
-        Me.CustomLabel11.ControlAssociationKey = 3
-        Me.CustomLabel11.Location = New System.Drawing.Point(12, 124)
-        Me.CustomLabel11.Name = "CustomLabel11"
-        Me.CustomLabel11.Size = New System.Drawing.Size(86, 13)
-        Me.CustomLabel11.TabIndex = 111
-        Me.CustomLabel11.Text = "Cuenta Contable"
-        '
-        'btnDias
-        '
-        Me.btnDias.Cleanable = False
-        Me.btnDias.EnterIndex = -1
-        Me.btnDias.LabelAssociationKey = -1
-        Me.btnDias.Location = New System.Drawing.Point(402, 144)
-        Me.btnDias.Name = "btnDias"
-        Me.btnDias.Size = New System.Drawing.Size(88, 23)
-        Me.btnDias.TabIndex = 114
-        Me.btnDias.Text = "Dias"
-        Me.btnDias.UseVisualStyleBackColor = True
-        '
-        'btnImpresion
-        '
-        Me.btnImpresion.Cleanable = False
-        Me.btnImpresion.EnterIndex = -1
-        Me.btnImpresion.LabelAssociationKey = -1
-        Me.btnImpresion.Location = New System.Drawing.Point(308, 145)
-        Me.btnImpresion.Name = "btnImpresion"
-        Me.btnImpresion.Size = New System.Drawing.Size(88, 23)
-        Me.btnImpresion.TabIndex = 115
-        Me.btnImpresion.Text = "Impresion"
-        Me.btnImpresion.UseVisualStyleBackColor = True
-        '
-        'CustomLabel12
-        '
-        Me.CustomLabel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.CustomLabel12.ControlAssociationKey = -1
-        Me.CustomLabel12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CustomLabel12.Location = New System.Drawing.Point(379, 539)
-        Me.CustomLabel12.Name = "CustomLabel12"
-        Me.CustomLabel12.Size = New System.Drawing.Size(287, 22)
-        Me.CustomLabel12.TabIndex = 118
-        Me.CustomLabel12.Text = "Tipo Doc.: 1) Ef. 2) Ch. 4) Varios "
-        Me.CustomLabel12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'gridFormasPago
-        '
-        Me.gridFormasPago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.gridFormasPago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridFormasPago.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Tipo, Me.numero, Me.fecha, Me.banco, Me.importe})
-        Me.gridFormasPago.Location = New System.Drawing.Point(379, 200)
-        Me.gridFormasPago.Name = "gridFormasPago"
-        Me.gridFormasPago.RowHeadersWidth = 20
-        Me.gridFormasPago.Size = New System.Drawing.Size(393, 336)
-        Me.gridFormasPago.TabIndex = 119
-        '
-        'Tipo
-        '
-        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Tipo.FillWeight = 80.0!
-        Me.Tipo.HeaderText = "Tipo"
-        Me.Tipo.Name = "Tipo"
-        Me.Tipo.Width = 53
-        '
-        'numero
-        '
-        Me.numero.FillWeight = 120.0!
-        Me.numero.HeaderText = "Numero/Cta"
-        Me.numero.Name = "numero"
-        '
-        'fecha
-        '
-        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.fecha.FillWeight = 120.0!
-        Me.fecha.HeaderText = "Fecha"
-        Me.fecha.Name = "fecha"
-        Me.fecha.Width = 62
-        '
-        'banco
-        '
-        Me.banco.FillWeight = 150.0!
-        Me.banco.HeaderText = "Banco"
-        Me.banco.Name = "banco"
-        '
-        'importe
-        '
-        Me.importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.importe.FillWeight = 80.0!
-        Me.importe.HeaderText = "Importe"
-        Me.importe.Name = "importe"
-        Me.importe.Width = 67
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.RadioButton3)
-        Me.GroupBox1.Controls.Add(Me.RadioButton2)
-        Me.GroupBox1.Controls.Add(Me.RadioButton1)
-        Me.GroupBox1.Location = New System.Drawing.Point(33, 144)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(245, 49)
-        Me.GroupBox1.TabIndex = 120
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Tipo"
-        '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Checked = True
-        Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(97, 17)
-        Me.RadioButton1.TabIndex = 0
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Cobro Cta. Cte."
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'RadioButton2
-        '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(109, 19)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(68, 17)
-        Me.RadioButton2.TabIndex = 1
-        Me.RadioButton2.Text = "Anticipos"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        '
-        'RadioButton3
-        '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(183, 19)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(54, 17)
-        Me.RadioButton3.TabIndex = 2
-        Me.RadioButton3.Text = "Varios"
-        Me.RadioButton3.UseVisualStyleBackColor = True
-        '
-        'lblTotalPagos
-        '
-        Me.lblTotalPagos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblTotalPagos.ControlAssociationKey = -1
-        Me.lblTotalPagos.Location = New System.Drawing.Point(280, 538)
-        Me.lblTotalPagos.Name = "lblTotalPagos"
-        Me.lblTotalPagos.Size = New System.Drawing.Size(93, 22)
-        Me.lblTotalPagos.TabIndex = 121
-        Me.lblTotalPagos.Text = "0,00"
-        Me.lblTotalPagos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'Recibos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(784, 562)
+        Me.ClientSize = New System.Drawing.Size(790, 568)
+        Me.Controls.Add(Me.txtObservaciones)
+        Me.Controls.Add(Me.CustomLabel13)
         Me.Controls.Add(Me.lblTotalPagos)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.gridFormasPago)
@@ -692,7 +719,9 @@ Partial Class Recibos
         Me.Controls.Add(Me.CustomLabel3)
         Me.Controls.Add(Me.CustomLabel2)
         Me.Controls.Add(Me.CustomLabel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Name = "Recibos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Ingreso de Recibos"
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridFormasPago, System.ComponentModel.ISupportInitialize).EndInit()
@@ -751,8 +780,10 @@ Partial Class Recibos
     Friend WithEvents banco As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents importe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents optVarios As System.Windows.Forms.RadioButton
+    Friend WithEvents optAnticipos As System.Windows.Forms.RadioButton
+    Friend WithEvents optCtaCte As System.Windows.Forms.RadioButton
     Friend WithEvents lblTotalPagos As Administracion.CustomLabel
+    Friend WithEvents CustomLabel13 As Administracion.CustomLabel
+    Friend WithEvents txtObservaciones As Administracion.CustomTextBox
 End Class

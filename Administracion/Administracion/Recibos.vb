@@ -73,6 +73,7 @@ Public Class Recibos
         txtFecha.Text = Date.Today.ToShortDateString
         gridFormasPago.Rows.Clear()
         gridPagos.Rows.Clear()
+        optCtaCte.Checked = True
     End Sub
 
     Private Sub eventoSegunTipoEnFormaDePagoPara(ByVal val As Integer, ByVal rowIndex As Integer, ByVal columnIndex As Integer)
@@ -162,9 +163,23 @@ Public Class Recibos
             txtRetSuss.Text = recibo.retSuss
             txtTotal.Text = recibo.total
             txtParidad.Text = recibo.paridad
+            txtObservaciones.Text = recibo.observaciones
+            mostrarTipoRecibo(recibo.tipo)
+            mostrarCuenta(recibo.cuenta)
             mostrarPagos(recibo.pagos)
             mostrarFormasPago(recibo.formasPago)
         End If
+    End Sub
+
+    Private Sub mostrarTipoRecibo(ByVal tipo As Integer)
+        Select Case tipo
+            Case 3
+                optVarios.Checked = True
+            Case 2
+                optAnticipos.Checked = True
+            Case Else
+                optCtaCte.Checked = True
+        End Select
     End Sub
 
     Private Sub mostrarReciboProvisorio(ByVal recibo As ReciboProvisorio)
@@ -219,6 +234,100 @@ Public Class Recibos
     End Sub
 
     Private Sub txtProvi_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtProvi.Leave
+        txtProvi.Text = ceros(txtProvi.Text, 6)
         mostrarReciboProvisorio(DAORecibo.buscarReciboProvisorio(txtProvi.Text))
+    End Sub
+
+    Private Function tipoRecibo()
+        If optCtaCte.Checked Then
+            Return 1
+        Else
+            If optAnticipos.Checked Then
+                Return 2
+            End If
+        End If
+        Return 3
+    End Function
+
+    Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
+        Dim validador As New Validator
+
+        validador.validate(Me)
+        validador.alsoValidate(chequearTotalesFormasPago, "La suma de los importes de la tabla de formas de pago no coincide con lo informado en el total")
+        validador.alsoValidate(chequearTotalesPagos, "La suma de los importes de la tabla de pagos no coincide con lo informado en el total")
+        validador.alsoValidate(DAORecibo.existeRecibo(txtRecibo.Text), "Ya existe un recibo definitivo con ese número")
+
+        If validador.flush Then
+            Dim recibo As New Recibo(txtRecibo.Text, txtFecha.Text, DAOCliente.buscarClientePorCodigo(txtCliente.Text),
+                                               CustomConvert.toDoubleOrZero(txtRetGanancias.Text), CustomConvert.toDoubleOrZero(txtRetIB.Text),
+                                               CustomConvert.toDoubleOrZero(txtRetIva.Text), CustomConvert.toDoubleOrZero(txtRetSuss.Text),
+                                               CustomConvert.toDoubleOrZero(txtParidad.Text), CustomConvert.toDoubleOrZero(txtTotal.Text),
+                                               DAOCuentaContable.buscarCuentaContablePorCodigo(txtCuenta.Text), txtObservaciones.Text, tipoRecibo())
+            recibo.formasPago = crearFormasPago()
+            recibo.pagos = crearPagos()
+            DAORecibo.agregarRecibo(recibo)
+        End If
+    End Sub
+
+    Private Function chequearTotalesFormasPago()
+        Return (CustomConvert.toDoubleOrZero(lblTotalFormasPago.Text) = CustomConvert.toDoubleOrZero(txtTotal.Text)) Or Not optCtaCte.Checked
+    End Function
+
+    Private Function chequearTotalesPagos()
+        Return (CustomConvert.toDoubleOrZero(lblTotalPagos.Text) = CustomConvert.toDoubleOrZero(txtTotal.Text)) Or Not optCtaCte.Checked
+    End Function
+
+    Private Function crearFormasPago() As List(Of FormaPago)
+        Dim formasPago As New List(Of FormaPago)
+        For Each row As DataGridViewRow In gridFormasPago.Rows
+            If Not row.IsNewRow Then
+                formasPago.Add(New FormaPago(row.Cells(0).Value, 0, asString(row.Cells(1).Value), asString(row.Cells(2).Value), asString(row.Cells(3).Value), CustomConvert.toDoubleOrZero(row.Cells(4).Value)))
+            End If
+        Next
+        Return formasPago
+    End Function
+
+    Private Function crearPagos() As List(Of Pago)
+        Dim pagos As New List(Of Pago)
+        For Each row As DataGridViewRow In gridPagos.Rows
+            If Not row.IsNewRow Then
+                pagos.Add(New Pago(row.Cells(0).Value, asString(row.Cells(1).Value), asString(row.Cells(2).Value), asString(row.Cells(3).Value), "", CustomConvert.toDoubleOrZero(row.Cells(4).Value)))
+            End If
+        Next
+        Return pagos
+    End Function
+
+    Private Function asString(ByVal value)
+        If IsNothing(value) Then
+            Return ""
+        Else
+            Return value.ToString
+        End If
+    End Function
+
+    Private Sub txtRetencion_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtRetGanancias.Leave, txtRetSuss.Leave, txtRetIva.Leave, txtRetIB.Leave
+        sumarValores()
+    End Sub
+
+    Private Sub optCtaCte_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optCtaCte.CheckedChanged
+        If Not optCtaCte.Checked Then
+            gridPagos.Rows.Clear()
+            gridPagos.AllowUserToAddRows = False
+            sumarValores()
+        Else
+            gridPagos.AllowUserToAddRows = True
+        End If
+    End Sub
+
+    Private Sub optVarios_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optVarios.CheckedChanged
+        If Not optVarios.Checked Then
+            txtCuenta.Enabled = False
+            txtCuenta.Empty = True
+            txtNombreCuenta.Empty = True
+        Else
+            txtCuenta.Enabled = True
+            txtCuenta.Empty = False
+            txtNombreCuenta.Empty = False
+        End If
     End Sub
 End Class
