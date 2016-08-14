@@ -118,6 +118,7 @@ Public Class Compras
             txtParidad.Text = ""
         Else
             txtParidad.Enabled = True
+            txtParidad.Text = "0.00"
         End If
     End Sub
 
@@ -144,7 +145,7 @@ Public Class Compras
         validador.alsoValidate(CustomConvert.toIntOr(txtPunto.Text, 0) <> 0, "El campo " & CustomLabel6.Text & " no puede ser cero")
         validador.alsoValidate(CustomConvert.toIntOr(txtNumero.Text, 0) <> 0, "El campo " & CustomLabel7.Text & " no puede ser cero")
         validador.alsoValidate(letrasValidas.Contains(txtLetra.Text) Or txtLetra.Text = "", "El valor ingresado (" & txtLetra.Text & ") no es una letra válida")
-        validador.alsoValidate(DAOCierreMes.mesAbierto(txtFechaEmision.Text), "El mes de la fecha de emisión: " & txtFechaEmision.Text & " se encuentra cerrado según el sistema")
+        validador.alsoValidate(DAOCierreMes.mesAbierto(txtFechaIVA.Text), "El mes de la fecha de emisión: " & txtFechaIVA.Text & " se encuentra cerrado según el sistema")
         validador.alsoValidate(gridAsientos.Rows.Count > 1, "No fue generado el asiento. No se puede confirmar")
         validador.alsoValidate(lblCredito.Text = lblDebito.Text, "El asiento se encuentra desbalanceado. Hay una diferencia de: " & Math.Abs(asDouble(lblCredito.Text) - asDouble(lblDebito.Text)))
         validador.alsoValidate(asientosCorrectos(), "El asiento se encuentra en un estado inválido, puede que falte asignar alguna cuenta")

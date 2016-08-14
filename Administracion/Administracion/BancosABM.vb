@@ -16,6 +16,7 @@ Public Class BancosABM
         organizadorABM.addQueryFunction(AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, "Cuentas Contables", AddressOf mostrarCuenta, txtCuenta)
         organizadorABM.controlsDefinedBy("get_banco", AddressOf DAOBanco.crearBanco, AddressOf mostrarBanco)
         organizadorABM.organize()
+        txtCodigo.Text = DAOBanco.siguienteCodigo()
     End Sub
 
     Private Sub agregar()
@@ -82,6 +83,9 @@ Public Class BancosABM
             txtDescripcion.Text = cuenta.descripcion
         Else
             txtDescripcion.Text = ""
+            MessageBox.Show("La cuenta ingresada no existe")
+            ' REVISAR SI ASI NO ROMPE NADA MAS
+            txtCuenta.Focus()
         End If
     End Sub
 End Class
