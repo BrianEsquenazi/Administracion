@@ -39,6 +39,22 @@ Public Class DAOBanco
         End Try
     End Function
 
+
+    Public Shared Function buscarBancoPorCodigoII(ByVal codigoString As String)
+        Try
+            Dim codigo As Short = codigoString
+            Dim tabla As DataTable
+            tabla = SQLConnector.retrieveDataTable("buscar_banco_por_codigo", codigo)
+            If tabla.Rows.Count > 0 Then
+                Return New Banco(tabla(0)("banco"), tabla(0)("nombre"), tabla(0)("cuenta"))
+            Else
+                Return Nothing
+            End If
+        Catch e As Exception
+            Return Nothing
+        End Try
+    End Function
+
     Public Shared Function siguienteCodigo() As Integer
         Return SQLConnector.retrieveDataTable("get_banco", "ultimo", 0).Rows(0)(0) + 1
     End Function

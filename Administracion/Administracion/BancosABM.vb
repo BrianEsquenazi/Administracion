@@ -84,4 +84,8 @@ Public Class BancosABM
             txtDescripcion.Text = ""
         End If
     End Sub
+
+    Private Sub txtCodigo_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigo.TextChanged
+
+    End Sub
 End Class

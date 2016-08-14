@@ -66,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banco.vb" />
+    <Compile Include="LeeBanco.vb" />
+    <Compile Include="LeeDepositos.vb" />
+    <Compile Include="LeePagos.vb" />
     <Compile Include="CtaCteProveedorDeudaDesdeHasta.vb" />
     <Compile Include="Cliente.vb" />
     <Compile Include="CapaDAO\SQLConnector.vb" />
@@ -81,6 +84,7 @@
     <Compile Include="Global\Globals.vb" />
     <Compile Include="Imputac.vb" />
     <Compile Include="ItemDeposito.vb" />
+    <Compile Include="LeeRecibos.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

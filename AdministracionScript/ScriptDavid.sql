@@ -82,6 +82,41 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_ac
 DROP PROCEDURE [dbo].[PR_actualizar_cuenta_corriente_proveedor]
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[impcyb]') AND type in (N'U'))
+DROP TABLE [dbo].[impcyb]
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_limpiar_impcyb]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_limpiar_impcyb]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_impCyb]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_impCyb]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_pagos_fecha]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_pagos_fecha]
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_recibos_fecha]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_recibos_fecha]
+GO
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_depositos_fecha]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_depositos_fecha]
+GO
+
+
+
+
+
+
+
+
 SET ANSI_NULLS ON
 GO
 
@@ -218,4 +253,171 @@ BEGIN
 		and fecha = @Fecha
 		and Proveedor = @Proveedor
 END
+GO
+
+
+CREATE TABLE [dbo].[impcyb](
+	[Clave] [char](24) NULL,
+	[TipoMovi] [char](1) NOT NULL,
+	[Proveedor] [char](11) NULL,
+	[TipoComp] [char](2) NOT NULL,
+	[LetraComp] [char](1) NULL,
+	[PuntoComp] [char](4) NOT NULL,
+	[NroComp] [char](8) NULL,
+	[Renglon] [char](2) NULL,
+	[Fecha] [char](10) NULL,
+	[Observaciones] [char](50) NULL,
+	[Cuenta] [char](10) NULL,
+	[Debito] [float] NULL,
+	[Credito] [float] NULL,
+	[FechaOrd] [char](8) NULL,
+	[Titulo] [char](50) NULL,
+	[Empresa] [smallint] NULL,
+	[DebitoList] [float] NULL,
+	[CreditoList] [float] NULL,
+	[NroINterno] [int] NULL,
+	[Nombre] [char](50) NULL,
+	[TituloList] [char](50) NULL,
+	[Varios] [char](50) NULL,
+	[ClaveOrd] [char](20) NULL
+	
+) ON [PRIMARY]
+GO
+
+
+CREATE PROCEDURE PR_limpiar_impcyb
+AS
+	DELETE 
+	FROM dbo.impcyb
+GO
+
+
+CREATE PROCEDURE PR_alta_impcyb
+	(@clave char(24),
+	@TipoMovi char(1),
+	@NroINterno int,
+	@Proveedor char(11),
+	@TipoComp char(2),
+	@LetraComp char(1),
+	@PuntoComp char(4),
+	@NroComp char(8),
+	@Renglon char(2),
+	@Fecha char(10),
+	@Observaciones char(50),
+	@Cuenta char(10),
+	@Credito float,
+	@Debito float,
+	@FechaOrd char(8),
+	@Titulo char(50),
+	@Empresa smallint,
+	@TituloList char(50),
+	@Varios char(50),
+	@ClaveOrd char(20))
+AS
+	INSERT INTO dbo.impcyb
+		(Clave, TipoMovi, NroInterno, Proveedor, TipoComp, LetraComp, PuntoComp, NroComp, Renglon, Fecha, Observaciones, Cuenta, Credito, 
+		Debito, FechaOrd, Titulo, Empresa, TituloList, Varios, ClaveOrd)
+		VALUES
+		(@clave, @TipoMovi, @NroInterno, @Proveedor, @TipoComp, @LetraComp, @PuntoComp, @NroComp, @Renglon, @Fecha, @Observaciones, @Cuenta, @Credito, 
+		@Debito, @FechaOrd, @Titulo, @Empresa, @TituloList, @Varios, @ClaveOrd)
+GO
+
+
+CREATE PROCEDURE [dbo].[PR_buscar_pagos_fecha]
+	(@DesdeFecha char(8)
+	, @HastaFecha char(8))
+AS
+	select Pagos.FechaOrd as FechaOrd
+		 , Pagos.Orden as Orden
+		 , Pagos.TipoOrd as TipoOrd
+		 , Pagos.Banco2 as Banco2
+		 , Pagos.Cuenta as Cuenta
+		 , Pagos.Proveedor as Proveedor
+		 , Pagos.Letra1 as Letra1
+		 , Pagos.Tipo1 as Tipo1
+		 , Pagos.Punto1 as Punto1
+		 , Pagos.Numero1 as Numero1
+		 , Pagos.Importe1 as Importe1
+		 , Pagos.Fecha as Fecha
+		 , Pagos.TipoReg as Tiporeg
+		 , Pagos.Observaciones as Observaciones
+		 , Pagos.RetOtra as RetOtra
+		 , Pagos.Retencion as Retencion
+		 , Pagos.RetIbCiudad as RetIbCiudad
+		 , Pagos.Importe2 as Importe2
+		 , Pagos.Tipo2 as Tipo2
+		 , Pagos.Numero2 as Numero2
+		 , Pagos.Renglon as Renglon
+		 , Prove.Provincia as Provincia
+		 
+	from surfactanSA.dbo.pagos pagos
+	JOIN Proveedor Prove on Prove.Proveedor = Pagos.Proveedor
+	WHERE pagos.FechaOrd between @DesdeFecha and @HastaFecha
+	order by pagos.Clave
+
+
+
+GO
+
+
+
+
+
+CREATE PROCEDURE [dbo].[PR_buscar_recibos_fecha]
+	(@DesdeFecha char(8)
+	, @HastaFecha char(8))
+AS
+	select Recibos.FechaOrd as FechaOrd
+		 , recibos.Recibo as Recibo
+		 , recibos.TipoReg as TipoReg
+		 , recibos.TipoRec as TipoRec
+		 , recibos.Cuenta as Cuenta
+		 , recibos.Cliente as Cliente
+		 , recibos.Tipo1 as Tipo1
+		 , recibos.letra1 as Letra1
+		 , recibos.Punto1 as Punto1
+		 , recibos.Numero1 as Numero1
+		 , recibos.Fecha as Fecha
+		 , recibos.Tipo2 as Tipo2
+		 , recibos.Numero2 as Numero2
+		 , recibos.Importe1 as Importe1
+		 , recibos.Paridad as Paridad
+		 , recibos.Importe2 as Importe2
+		 , recibos.RetIva as RetIva
+		 , recibos.RetOtra as RetOtra
+		 , recibos.RetSuss as RetSuss
+		 , recibos.RetGanancias as RetGanancias
+		 , recibos.Renglon as Renglon
+		 , Clie.Provincia as Provincia
+		 
+	from surfactanSA.dbo.recibos recibos
+	JOIN Cliente Clie on Clie.Cliente = recibos.Cliente
+	WHERE recibos.FechaOrd between @DesdeFecha and @HastaFecha
+	order by recibos.Clave
+
+GO
+
+
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[PR_buscar_depositos_fecha]
+	(@DesdeFecha char(8)
+	, @HastaFecha char(8))
+AS
+	select Depositos.FechaOrd as FechaOrd
+		 , Depositos.Deposito as Deposito
+		 , Depositos.Tipo2 as Tipo2
+		 , Depositos.Numero2 as Numero2
+		 , Depositos.Fecha as Fecha
+		 , Depositos.Importe2 as Importe1
+		 , Depositos.Banco as Banco
+		 
+	from surfactanSA.dbo.Depositos depositos
+	WHERE depositos.FechaOrd between @DesdeFecha and @HastaFecha
+	order by depositos.Clave
+
 GO

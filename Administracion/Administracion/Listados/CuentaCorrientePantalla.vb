@@ -139,4 +139,8 @@ Public Class CuentaCorrientePantalla
     Private Sub lstAyuda_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstAyuda.SelectedIndexChanged
 
     End Sub
+
+    Private Sub txtProveedor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtProveedor.TextChanged
+
+    End Sub
 End Class
