@@ -111,9 +111,26 @@ DROP PROCEDURE [dbo].[PR_buscar_depositos_fecha]
 GO
 
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ListaIvaComp]') AND type in (N'U'))
+DROP TABLE [dbo].[ListaIvaComp]
+GO
 
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_limpiar_ListaIvaComp]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_limpiar_ListaIvaComp]
+GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_ListaIvaComp]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_ListaIvaComp]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_Lee_IvaComp]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_Lee_IvaComp]
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_Lee_IvaCompAdicional]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_Lee_IvaCompAdicional]
+GO
 
 
 
@@ -419,5 +436,146 @@ AS
 	from surfactanSA.dbo.Depositos depositos
 	WHERE depositos.FechaOrd between @DesdeFecha and @HastaFecha
 	order by depositos.Clave
+
+GO
+
+
+
+
+
+
+
+
+
+CREATE TABLE [dbo].[ListaIvaComp](
+	[NroInterno] [int] NULL,
+	[Proveedor] [char](11) NULL,
+	[Tipo] [char](2) NOT NULL,
+	[Letra] [char](1) NULL,
+	[Punto] [char](4) NOT NULL,
+	[Numero] [char](8) NULL,
+	[Fecha] [char](10) NULL,
+	[Periodo] [char](10) NULL,
+	[Neto] [float] NULL,
+	[Iva21] [float] NULL,
+	[Iva5] [float] NULL,
+	[Iva27] [float] NULL,
+	[Iva105] [float] NULL,
+	[Ib] [float] NULL,
+	[Exento] [float] NULL,
+	[Impre] [char](3) NOT NULL,
+	[OrdFecha] [char](8) NOT NULL,
+	[Titulo] [char](50) NOT NULL,
+	[TituloII] [char](50) NOT NULL,
+	[Nombre] [char](50) NOT NULL,
+	[Cuit] [char](15) NOT NULL
+	
+) ON [PRIMARY]
+GO
+
+
+CREATE PROCEDURE PR_limpiar_ListaIvaComp
+AS
+	DELETE 
+	FROM dbo.ListaIvaComp
+GO
+
+
+CREATE PROCEDURE PR_alta_ListaIvaComp
+	(@NroINterno int,
+	@Proveedor char(11),
+	@Tipo char(2),
+	@Letra char(1),
+	@Punto char(4),
+	@Numero char(8),
+	@Fecha char(10),
+	@Periodo char(10),
+	@Neto float,
+	@Iva21 float,
+	@Iva5 float,
+	@Iva27 float,
+	@Iva105 float,
+	@Ib float,
+	@Exento float,
+	@Impre char(3),
+	@OrdFecha char(8),
+	@Titulo char(50),
+	@TituloII char(50),
+	@Nombre char(50),
+	@Cuit char(15))
+AS
+	INSERT INTO dbo.ListaIvaComp
+		(NroINterno, Proveedor, tipo, Letra, Punto, Numero, Fecha, Periodo, Neto, Iva21, Iva5, Iva27, Iva105, Ib, 
+		 Exento, Impre, OrdFecha, Titulo, TituloII, Nombre, cuit)
+		VALUES
+		(@NroINterno, @Proveedor, @tipo, @Letra, @Punto, @Numero, @Fecha, @Periodo, @Neto, @Iva21, @Iva5, @Iva27, @Iva105, @Ib, 
+		 @Exento, @Impre, @OrdFecha, @Titulo, @TituloII, @Nombre, @Cuit)
+GO
+
+
+
+
+
+CREATE PROCEDURE [dbo].[PR_Lee_IvaComp] (@desde_fecha varchar(8)
+								, @hasta_Fecha varchar(8))
+AS
+BEGIN
+
+--REVISAR PORQUE NO FUNCIONA AL COMPARAR PERIODOS ORDENABLES
+	SELECT ic.[NroInterno]
+      ,ic.[Proveedor]
+      ,ic.[Tipo]
+      ,ic.[Letra]
+      ,ic.[Punto]
+      ,ic.[Numero]
+      ,ic.[Fecha]
+      ,ic.[Periodo]
+      ,ic.[Neto]
+      ,ic.[Iva21]
+      ,ic.[Iva5]
+      ,ic.[Iva27]
+      ,ic.[Ib]
+      ,ic.[Exento]
+      ,ISNULL(ic.[Iva105],0)
+      ,p.Nombre
+      ,p.Cuit
+  FROM [surfactanSA].[dbo].[IvaComp] ic
+  JOIN Proveedor p on p.Proveedor = ic.Proveedor
+  --WHERE dbo.FN_procesogetfecha_ordenable (ic.Periodo) between @desde_fecha and  @hasta_fecha
+  -- 	ic.Periodo between @desde_fecha and @hasta_fecha
+  WHERE ic.OrdFecha between @desde_fecha and @hasta_fecha
+END
+
+GO
+
+
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[PR_Lee_IvaCompAdicional] (@nrointerno integer)
+AS
+BEGIN
+
+	SELECT ic.[NroInterno]
+      ,ic.[Tipo]
+      ,ic.[Letra]
+      ,ic.[Punto]
+      ,ic.[Numero]
+      ,ic.[Fecha]
+      ,ic.[Neto]
+      ,ic.[Iva21]
+      ,ic.[perceiva]
+      ,ic.[Iva27]
+      ,ic.[perceIb]
+      ,ic.[Exento]
+      ,ISNULL(ic.[Iva105],0)
+      ,ic.[Cuit]
+      ,ic.[Razon]
+  FROM [surfactanSA].[dbo].[IvaCompAdicional] ic
+  WHERE ic.NroInterno = @nrointerno
+END
 
 GO

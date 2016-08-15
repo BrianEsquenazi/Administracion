@@ -59,4 +59,103 @@ Public Class ListadoIvaCompras
 
 
 
+    Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
+
+        Dim txtUno As String
+
+        Dim txtEmpresa As String
+        Dim txtFormula As String
+        Dim x As Char = Chr(34)
+        Dim txtDesdefechaOrd, txtHastafechaOrd
+        Dim txtGraba As String
+
+        Dim txtTitulo, txtTituloII, txtImpre, txtOrdFecha As String
+
+
+        SQLConnector.retrieveDataTable("limpiar_ListaIvaComp")
+
+        txtEmpresa = "Surfactan S.A."
+
+        txtDesdefechaOrd = ordenaFecha(txtDesdeFecha.Text)
+        txtHastafechaOrd = ordenaFecha(txthastafecha.Text)
+
+        txtTitulo = "Surfactan S.A."
+        txtTituloII = "Desde el " + txtDesdeFecha.Text + " hasta el " + txthastafecha.Text
+
+
+        Dim tabla As DataTable
+        tabla = SQLConnector.retrieveDataTable("Lee_Ivacomp", txtDesdefechaOrd, txtHastafechaOrd)
+
+        For Each row As DataRow In tabla.Rows
+
+            Dim CampoIvaComp As New LeeIvaComp(row.Item(0), row.Item(1), row.Item(2),
+                                            row.Item(3), row.Item(4), row.Item(5),
+                                            row.Item(6), row.Item(7), row.Item(8),
+                                            row.Item(9), row.Item(10), row.Item(11), row.Item(12),
+                                            row.Item(13), row.Item(14), row.Item(15), row.Item(16))
+
+
+            txtGraba = "S"
+
+            Dim tablaII As DataTable
+            tablaII = SQLConnector.retrieveDataTable("Lee_IvacompAdicional", CampoIvaComp.NroInterno)
+
+            For Each rowII As DataRow In tablaII.Rows
+
+                Dim CampoIvaCompAdicional As New LeeIvaCompAdicional(rowII.Item(0), rowII.Item(1), rowII.Item(2),
+                                                rowII.Item(3), rowII.Item(4), rowII.Item(5),
+                                                rowII.Item(6), rowII.Item(7), rowII.Item(8),
+                                                rowII.Item(9), rowII.Item(10), rowII.Item(11), rowII.Item(12),
+                                                rowII.Item(13), rowII.Item(14))
+
+                txtGraba = "N"
+
+                txtOrdFecha = ordenaFecha(CampoIvaCompAdicional.fecha)
+
+                SQLConnector.executeProcedure("alta_ListaIvaComp", CampoIvaComp.NroInterno, CampoIvaComp.proveedor, CampoIvaCompAdicional.tipo,
+                                               CampoIvaCompAdicional.letra, ceros(CampoIvaCompAdicional.punto, 4), ceros(CampoIvaCompAdicional.numero, 8),
+                                               CampoIvaCompAdicional.fecha, CampoIvaComp.periodo,
+                                               CampoIvaCompAdicional.neto, CampoIvaCompAdicional.iva21, CampoIvaCompAdicional.perceiva,
+                                               CampoIvaCompAdicional.iva27, CampoIvaCompAdicional.iva105,
+                                               CampoIvaCompAdicional.perceib, CampoIvaCompAdicional.exento, CampoIvaCompAdicional.tipo,
+                                               txtOrdFecha, txtTitulo, txtTituloII, CampoIvaCompAdicional.razon, CampoIvaCompAdicional.cuit)
+
+            Next
+
+
+            If txtGraba = "S" Then
+
+                txtOrdFecha = ordenaFecha(CampoIvaComp.fecha)
+
+                Select Case Val(CampoIvaComp.tipo)
+                    Case 1
+                        txtImpre = "FC"
+                    Case 2
+                        txtImpre = "N/D"
+                    Case Else
+                        txtImpre = "N/C"
+                End Select
+
+                SQLConnector.executeProcedure("alta_ListaIvaComp", CampoIvaComp.NroInterno, CampoIvaComp.proveedor, CampoIvaComp.tipo,
+                                               CampoIvaComp.letra, CampoIvaComp.punto, CampoIvaComp.numero, CampoIvaComp.fecha, CampoIvaComp.periodo,
+                                               CampoIvaComp.neto, CampoIvaComp.iva21, CampoIvaComp.iva5, CampoIvaComp.iva27, CampoIvaComp.iva105,
+                                               CampoIvaComp.ib, CampoIvaComp.exento, txtImpre, txtOrdFecha, txtTitulo, txtTituloII, CampoIvaComp.nombre, CampoIvaComp.cuit)
+
+            End If
+
+        Next
+
+
+        txtUno = "{ListaIvaComp.OrdFecha} in " + x + txtDesdefechaOrd + x + " to " + x + txtHastafechaOrd + x
+        txtFormula = txtUno
+
+        Dim viewer As New ReportViewer("Listado de Iva Compras", "c:\Crystal\wIvaCompNet.rpt", txtFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
+        End If
+
+    End Sub
 End Class

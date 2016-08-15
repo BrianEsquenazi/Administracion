@@ -320,7 +320,7 @@ Public Class Compras
 
         crearAsientoContableUsando(cuenta)
         If gridAsientos.Rows.Count > 0 Then
-            gridAsientos.CurrentCell = gridAsientos.Rows(gridAsientos.Rows.Count - 2).Cells(0)
+            gridAsientos.CurrentCell = gridAsientos.Rows(gridAsientos.Rows.Count - 1).Cells(0) ' REM REVISAR LA RESTA, VON 2 DA INDICE NEGATIVO
             gridAsientos.Select()
         End If
     End Sub
