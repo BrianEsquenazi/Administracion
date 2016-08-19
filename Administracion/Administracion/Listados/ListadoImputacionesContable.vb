@@ -885,18 +885,19 @@ Public Class ListadoImputacionesContable
             Next
 
 
-            txtUno = "{Impcyb.Cuenta} in " + x + txtDesdeCuenta.Text + x + " to " + x + txtHastaCuenta.Text + x
-            txtFormula = txtUno
 
-            Dim viewer As New ReportViewer("Imputaciones Contables", "c:\Crystal\wImpCybnet.rpt", txtFormula)
-
-            If opcPantalla.Checked = True Then
-                viewer.Show()
-            Else
-                viewer.imprimirReporte()
-            End If
+        End If
 
 
+        txtUno = "{Impcyb.Cuenta} in " + x + txtDesdeCuenta.Text + x + " to " + x + txtHastaCuenta.Text + x
+        txtFormula = txtUno
+
+        Dim viewer As New ReportViewer("Imputaciones Contables", "c:\Crystal\wImpCybnet.rpt", txtFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
         End If
 
     End Sub

@@ -579,3 +579,25 @@ BEGIN
 END
 
 GO
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_saldo_inicial_pagos]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_saldo_inicial_pagos]
+GO
+
+CREATE PROCEDURE PR_get_saldo_inicial_pagos
+	@desde varchar(8)
+	, @hasta varchar(8)
+	, @desde_banco smallint
+	, @hasta_banco smallint
+AS
+-- El isnull interno es para que valgan 0 todos los nullos que pasen el filtro
+-- el isnull externo es para que, en caso de que nada pase el filtro, no retorne null sino 0
+	SELECT ISNULL( SUM( ISNULL(p.Importe2,0) ) ,0) 
+	FROM Pagos p
+	WHERE
+		p.Tipo2 = '02'
+		AND p.banco2 BETWEEN @desde_banco AND @hasta_banco
+		AND p.FechaOrd2 BETWEEN @desde AND @hasta 
+GO
