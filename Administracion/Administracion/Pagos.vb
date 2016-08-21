@@ -197,6 +197,7 @@ Public Class Pagos
             mostrarProveedor(proveedor)
         Else
             txtRazonSocial.Text = ""
+            MessageBox.Show("El proveedor ingresado es inexistente")
         End If
     End Sub
 
@@ -270,6 +271,10 @@ Public Class Pagos
         pagos.Clear()
         gridFormaPagos.Rows.Clear()
         cheques.Clear()
+        lstSeleccion.Visible = False
+        lstConsulta.Visible = False
+        txtConsulta.Visible = False
+
     End Sub
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
@@ -499,4 +504,5 @@ Public Class Pagos
             End Try
         End If
     End Sub
+
 End Class

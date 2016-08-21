@@ -445,7 +445,7 @@ Partial Class Pagos
         '
         Me.txtIVA.Cleanable = True
         Me.txtIVA.Empty = False
-        Me.txtIVA.EnterIndex = 11
+        Me.txtIVA.EnterIndex = -1
         Me.txtIVA.LabelAssociationKey = 11
         Me.txtIVA.Location = New System.Drawing.Point(685, 178)
         Me.txtIVA.Name = "txtIVA"
@@ -459,7 +459,7 @@ Partial Class Pagos
         '
         Me.txtIngresosBrutos.Cleanable = True
         Me.txtIngresosBrutos.Empty = False
-        Me.txtIngresosBrutos.EnterIndex = 9
+        Me.txtIngresosBrutos.EnterIndex = -1
         Me.txtIngresosBrutos.LabelAssociationKey = 9
         Me.txtIngresosBrutos.Location = New System.Drawing.Point(685, 151)
         Me.txtIngresosBrutos.Name = "txtIngresosBrutos"
@@ -483,7 +483,7 @@ Partial Class Pagos
         '
         Me.txtIBCiudad.Cleanable = True
         Me.txtIBCiudad.Empty = False
-        Me.txtIBCiudad.EnterIndex = 10
+        Me.txtIBCiudad.EnterIndex = -1
         Me.txtIBCiudad.LabelAssociationKey = 10
         Me.txtIBCiudad.Location = New System.Drawing.Point(516, 178)
         Me.txtIBCiudad.Name = "txtIBCiudad"
@@ -507,7 +507,7 @@ Partial Class Pagos
         '
         Me.txtGanancias.Cleanable = True
         Me.txtGanancias.Empty = False
-        Me.txtGanancias.EnterIndex = 8
+        Me.txtGanancias.EnterIndex = -1
         Me.txtGanancias.LabelAssociationKey = 8
         Me.txtGanancias.Location = New System.Drawing.Point(516, 151)
         Me.txtGanancias.Name = "txtGanancias"

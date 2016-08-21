@@ -98,6 +98,9 @@ Public Class Compras
             txtCAI.Text = ""
             txtVtoCAI.Text = "  /  /    "
             diasPlazo = 0
+            MessageBox.Show("El proveedor ingresado es inexistente")
+            ' No se puede ya que se genera un ciclo donde siempre tira el cartel del error
+            'txtCodigoProveedor.Focus()
         End If
     End Sub
 

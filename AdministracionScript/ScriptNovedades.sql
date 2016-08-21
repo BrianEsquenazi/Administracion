@@ -855,6 +855,8 @@ CREATE PROCEDURE PR_alta_pago_pago
 	, @Observaciones2 varchar(30)
 	) 
 AS
+BEGIN
+
 	DECLARE @Clave as varchar(8)
 	SET @Clave = @Orden + @Renglon
 	INSERT INTO Pagos
@@ -866,6 +868,23 @@ AS
 	, @Paridad , @RetGanancias , @RetOtra , @RetIbCiudad , @RetIva, @Importe, @Tipo1 , @Letra1 
 	, @Punto1 , @Numero1 , @Importe1 , @cuenta, @Observaciones2, 1 ) 
 	
+	-- RESTO A LA CUENTA CORRIENTE LO QUE ESTOY ABONANDO AHORA
+	--SELECT cc.Saldo
+	--FROM CtaCtePrv cc
+	--WHERE Tipo = @Tipo1
+	--	AND Letra = @Letra1
+	--	AND Punto = @Punto1
+	--	AND Numero = @Numero1
+	--	AND Proveedor = @Proveedor
+		
+	UPDATE CtaCtePrv
+	SET Saldo = Saldo - @Importe1
+	WHERE Tipo = @Tipo1
+		AND Letra = @Letra1
+		AND Punto = @Punto1
+		AND Numero = @Numero1
+		AND Proveedor = @Proveedor
+END
 GO
 
 CREATE PROCEDURE PR_alta_pago_forma_de_pago
@@ -901,7 +920,7 @@ AS
 	VALUES
 			(@Clave, @Orden, @Renglon, @TipoOrd, @Fecha , @Proveedor , @Observaciones , @banco2 , @Fecha2 
 	, @Paridad , @RetGanancias , @RetOtra , @RetIbCiudad , @RetIva, @Importe, @Tipo2 , @Numero2 
-	, @FechaCheque , @BancoCheque , @Importe2 , @cuenta, @Observaciones2, 1 ) 
+	, @FechaCheque , @BancoCheque , @Importe2 , @cuenta, @Observaciones2, 2 ) 
 
 GO
 
