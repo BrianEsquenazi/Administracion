@@ -521,7 +521,6 @@ CREATE PROCEDURE [dbo].[PR_Lee_IvaComp] (@desde_fecha varchar(8)
 AS
 BEGIN
 
---REVISAR PORQUE NO FUNCIONA AL COMPARAR PERIODOS ORDENABLES
 	SELECT ic.[NroInterno]
       ,ic.[Proveedor]
       ,ic.[Tipo]
@@ -541,14 +540,10 @@ BEGIN
       ,p.Cuit
   FROM [surfactanSA].[dbo].[IvaComp] ic
   JOIN Proveedor p on p.Proveedor = ic.Proveedor
-  --WHERE dbo.FN_procesogetfecha_ordenable (ic.Periodo) between @desde_fecha and  @hasta_fecha
-  -- 	ic.Periodo between @desde_fecha and @hasta_fecha
-  WHERE ic.OrdFecha between @desde_fecha and @hasta_fecha
+  WHERE dbo.FN_get_fecha_ordenable (ic.Periodo) between @desde_fecha and  @hasta_fecha
 END
 
 GO
-
-
 
 
 
@@ -582,6 +577,100 @@ GO
 
 
 
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_limpiar_MovBan]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_limpiar_MovBan]
+GO
+CREATE PROCEDURE PR_limpiar_MovBan
+AS
+	DELETE 
+	FROM dbo.Movban
+GO
+
+
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_pagos_movban]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_pagos_movban]
+GO
+
+
+CREATE PROCEDURE [dbo].[PR_buscar_pagos_movban]
+	(@DesdeFecha char(8)
+	, @HastaFecha char(8)
+	, @DesdeBanco int
+	, @HastaBanco int)
+AS
+	select Pagos.FechaOrd as FechaOrd
+		 , Pagos.Orden as Orden
+		 , Pagos.TipoOrd as TipoOrd
+		 , Pagos.Banco2 as Banco2
+		 , Pagos.Cuenta as Cuenta
+		 , Pagos.Proveedor as Proveedor
+		 , Pagos.Fecha as Fecha
+		 , Pagos.Fecha2 as Fecha2
+		 , Pagos.FechaOrd2 as FechaOrd2
+		 , Pagos.TipoReg as Tiporeg
+		 , Pagos.Observaciones as Observaciones
+		 , Pagos.Importe2 as Importe2
+		 , Pagos.Tipo2 as Tipo2
+		 , Pagos.Numero2 as Numero2
+		 , Pagos.Renglon as Renglon
+		 
+	from surfactanSA.dbo.pagos pagos
+	JOIN Proveedor Prove on Prove.Proveedor = Pagos.Proveedor
+	WHERE pagos.FechaOrd between @DesdeFecha and @HastaFecha
+		and pagos.banco2 between @DesdeBanco and @HastaBanco
+		and pagos.Tipo2 = '02'
+	order by pagos.Clave
+
+GO
+
+
+
+
+
+
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_depositos_movban]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_depositos_movban]
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_depositos_movban]
+	(@DesdeFecha char(8)
+	, @HastaFecha char(8)
+	, @DesdeBanco int
+	, @HastaBanco int)
+AS
+	select Depositos.FechaOrd as FechaOrd
+		 , Depositos.Deposito as Deposito
+		 , Depositos.Tipo2 as Tipo2
+		 , Depositos.Numero2 as Numero2
+		 , Depositos.Fecha as Fecha
+		 , Depositos.Importe2 as Importe1
+		 , Depositos.Banco as Banco
+		 
+	from surfactanSA.dbo.Depositos depositos
+	WHERE depositos.FechaOrd between @DesdeFecha and @HastaFecha
+		and depositos.banco between @DesdeBanco and @HastaBanco
+		and depositos.Renglon = 1
+	order by depositos.Clave
+
+
+GO
+
+
+
+
+
+
+
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_saldo_inicial_pagos]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[PR_get_saldo_inicial_pagos]
 GO
@@ -592,12 +681,54 @@ CREATE PROCEDURE PR_get_saldo_inicial_pagos
 	, @desde_banco smallint
 	, @hasta_banco smallint
 AS
+BEGIN
+	DECLARE @importe float
 -- El isnull interno es para que valgan 0 todos los nullos que pasen el filtro
 -- el isnull externo es para que, en caso de que nada pase el filtro, no retorne null sino 0
-	SELECT ISNULL( SUM( ISNULL(p.Importe2,0) ) ,0) 
+	SET @importe = (SELECT ISNULL( SUM( ISNULL(p.Importe2,0) ) ,0) 
 	FROM Pagos p
 	WHERE
 		p.Tipo2 = '02'
 		AND p.banco2 BETWEEN @desde_banco AND @hasta_banco
-		AND p.FechaOrd2 BETWEEN @desde AND @hasta 
+		AND p.FechaOrd2 BETWEEN @desde AND @hasta ) 
+		
+	RETURN @importe
+END
 GO
+
+
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_MovBan]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_MovBan]
+GO
+
+
+CREATE PROCEDURE PR_alta_MovBan
+	(@da int,
+	@Banco int,
+	@Fecha char(10),
+	@FechaOrd char(8),
+	@Acredita char(10),
+	@AcreditaOrd char(8),
+	@Observaciones char(50),
+	@Numero char(10),
+	@Debito float,
+	@Credito float,
+	@Comprobante char(8),
+	@Empresa int,
+	@Titulo char(50),
+	@Titulo1 char(50),
+	@Proveedor char(11))
+AS
+	INSERT INTO dbo.Movban
+		(da, Banco, Fecha, FechaOrd, Acredita, AcreditaOrd, Observaciones, Numero, Debito, Credito, Comprobante, Empresa, Titulo, Titulo1, 
+		 Proveedor)
+		VALUES
+		(@da, @Banco, @Fecha, @FechaOrd, @Acredita, @AcreditaOrd, @Observaciones, @Numero, @Debito, @Credito, @Comprobante, @Empresa, @Titulo, @Titulo1, 
+		 @Proveedor)
+GO
+
+

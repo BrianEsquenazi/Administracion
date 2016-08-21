@@ -86,6 +86,7 @@
     <Compile Include="Global\Globals.vb" />
     <Compile Include="Imputac.vb" />
     <Compile Include="ItemDeposito.vb" />
+    <Compile Include="LeePagosMovBan.vb" />
     <Compile Include="LeeRecibos.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
