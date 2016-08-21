@@ -245,6 +245,7 @@ Partial Class Pagos
         '
         Me.Nombre.HeaderText = "Nombre"
         Me.Nombre.Name = "Nombre"
+        Me.Nombre.ReadOnly = True
         Me.Nombre.Width = 80
         '
         'Importe2
@@ -860,12 +861,6 @@ Partial Class Pagos
     Friend WithEvents btnImprimir As Administracion.CustomButton
     Friend WithEvents btnCarpetas As Administracion.CustomButton
     Friend WithEvents lstSeleccion As Administracion.CustomListBox
-    Friend WithEvents Tipo2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Numero2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Banco As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Importe2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CustomLabel12 As Administracion.CustomLabel
     Friend WithEvents lblPagos As Administracion.CustomLabel
     Friend WithEvents lblFormaPagos As Administracion.CustomLabel
@@ -877,4 +872,10 @@ Partial Class Pagos
     Friend WithEvents Numero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Tipo2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Numero2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Banco As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Importe2 As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

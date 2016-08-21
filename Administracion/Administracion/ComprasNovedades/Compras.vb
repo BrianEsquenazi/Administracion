@@ -324,7 +324,7 @@ Public Class Compras
 
         crearAsientoContableUsando(cuenta)
         If gridAsientos.Rows.Count > 0 Then
-            gridAsientos.CurrentCell = gridAsientos.Rows(gridAsientos.Rows.Count - 1).Cells(0) ' REM REVISAR LA RESTA, VON 2 DA INDICE NEGATIVO
+            gridAsientos.CurrentCell = gridAsientos.Rows(gridAsientos.Rows.Count - 2).Cells(0) ' REM REVISAR LA RESTA, VON 2 DA INDICE NEGATIVO
             gridAsientos.Select()
         End If
     End Sub
@@ -456,6 +456,7 @@ Public Class Compras
     Private Sub txtNroInterno_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroInterno.Leave
         Dim compra As Compra = DAOCompras.buscarCompraPorCodigo(txtNroInterno.Text)
         If Not IsNothing(compra) Then
+            apertura = New Apertura
             mostrarCompra(compra)
         Else
             esModificacion = False
@@ -483,7 +484,11 @@ Public Class Compras
             txtNoGravado.Text = apertura.valorExento
             txtPercIB.Text = apertura.valorIB
             txtImporte_Leave(sender, Nothing)
-            txtDespacho_Leave(sender, Nothing)
+            ' HAGO ESTE IF YA QUE SI NO CARGO NADA EN APERTURA SE POSICIONA EN UNA CELDA INCORRECTA
+            ' EN LA GRILLA Y ROMPE (AMBOS TIPOS DE DOBLE POR LAS DUDAS)
+            If (txtTotal.Text <> "0,00" And txtTotal.Text <> "0.00") Then
+                txtDespacho_Leave(sender, Nothing)
+            End If
         End If
     End Sub
 

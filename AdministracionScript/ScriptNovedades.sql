@@ -825,7 +825,7 @@ CREATE PROCEDURE PR_get_pago_por_orden (@orden VARCHAR(6)) AS
 		, p.Numero2
 		, p.FechaCheque
 		, p.banco2
-		, p.BancoCheque AS NombreCheque
+		, RTRIM(p.BancoCheque) AS NombreCheque
 		, p.Importe2
 	FROM Pagos p
 	WHERE p.Orden = @orden
@@ -920,7 +920,7 @@ AS
 	VALUES
 			(@Clave, @Orden, @Renglon, @TipoOrd, @Fecha , @Proveedor , @Observaciones , @banco2 , @Fecha2 
 	, @Paridad , @RetGanancias , @RetOtra , @RetIbCiudad , @RetIva, @Importe, @Tipo2 , @Numero2 
-	, @FechaCheque , @BancoCheque , @Importe2 , @cuenta, @Observaciones2, 2 ) 
+	, @FechaCheque , RTRIM(@BancoCheque) , @Importe2 , @cuenta, RTRIM(@Observaciones2), 2 ) 
 
 GO
 

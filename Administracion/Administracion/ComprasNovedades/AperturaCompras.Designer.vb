@@ -66,10 +66,8 @@ Partial Class Apertura
         '
         'CUIT
         '
-        Me.CUIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.CUIT.HeaderText = "CUIT"
         Me.CUIT.Name = "CUIT"
-        Me.CUIT.Width = 57
         '
         'RazonSocial
         '
@@ -93,73 +91,63 @@ Partial Class Apertura
         '
         'Punto
         '
-        Me.Punto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.Punto.HeaderText = "Punto"
         Me.Punto.Name = "Punto"
         Me.Punto.Width = 60
         '
         'Numero
         '
-        Me.Numero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.Numero.HeaderText = "Número"
         Me.Numero.Name = "Numero"
-        Me.Numero.Width = 69
+        Me.Numero.Width = 70
         '
         'Fecha
         '
-        Me.Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.Fecha.HeaderText = "Fecha"
         Me.Fecha.Name = "Fecha"
-        Me.Fecha.Width = 62
+        Me.Fecha.Width = 70
         '
         'Neto
         '
-        Me.Neto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.Neto.HeaderText = "Neto"
         Me.Neto.Name = "Neto"
-        Me.Neto.Width = 55
+        Me.Neto.Width = 70
         '
         'Iva21
         '
-        Me.Iva21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.Iva21.HeaderText = "IVA 21"
         Me.Iva21.Name = "Iva21"
-        Me.Iva21.Width = 64
+        Me.Iva21.Width = 70
         '
         'IVA27
         '
-        Me.IVA27.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.IVA27.HeaderText = "IVA 27"
         Me.IVA27.Name = "IVA27"
-        Me.IVA27.Width = 64
+        Me.IVA27.Width = 70
         '
         'IVA105
         '
-        Me.IVA105.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.IVA105.HeaderText = "IVA 10.5"
         Me.IVA105.Name = "IVA105"
-        Me.IVA105.Width = 73
+        Me.IVA105.Width = 70
         '
         'PercIVA
         '
-        Me.PercIVA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.PercIVA.HeaderText = "Perc. IVA"
         Me.PercIVA.Name = "PercIVA"
-        Me.PercIVA.Width = 77
+        Me.PercIVA.Width = 70
         '
         'PercIB
         '
-        Me.PercIB.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.PercIB.HeaderText = "Perc. IB"
         Me.PercIB.Name = "PercIB"
         Me.PercIB.Width = 70
         '
         'Exento
         '
-        Me.Exento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.Exento.HeaderText = "Exento"
         Me.Exento.Name = "Exento"
-        Me.Exento.Width = 65
+        Me.Exento.Width = 70
         '
         'Apertura
         '

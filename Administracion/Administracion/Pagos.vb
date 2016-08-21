@@ -191,15 +191,28 @@ Public Class Pagos
         End If
     End Sub
 
-    Private Sub txtProveedor_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtProveedor.Leave
-        Dim proveedor = DAOProveedor.buscarProveedorPorCodigo(txtProveedor.Text)
-        If Not IsNothing(proveedor) Then
-            mostrarProveedor(proveedor)
-        Else
-            txtRazonSocial.Text = ""
-            MessageBox.Show("El proveedor ingresado es inexistente")
+    Private Sub txtProveedor_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtProveedor.KeyDown
+        If e.KeyValue = Keys.Enter Then
+            Dim proveedor = DAOProveedor.buscarProveedorPorCodigo(ceros(txtProveedor.Text, 11))
+            If Not IsNothing(proveedor) Then
+                mostrarProveedor(proveedor)
+            Else
+                txtRazonSocial.Text = ""
+                MessageBox.Show("El proveedor ingresado es inexistente")
+                txtProveedor.Focus()
+            End If
         End If
     End Sub
+
+    'Private Sub txtProveedor_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtProveedor.Leave
+    '    Dim proveedor = DAOProveedor.buscarProveedorPorCodigo(ceros(txtProveedor.Text, 11))
+    '    If Not IsNothing(proveedor) Then
+    '        mostrarProveedor(proveedor)
+    '    Else
+    '        txtRazonSocial.Text = ""
+    '        MessageBox.Show("El proveedor ingresado es inexistente")
+    '    End If
+    'End Sub
 
     Private Sub txtBanco_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtBanco.KeyDown
         If e.KeyValue = Keys.Enter Then
@@ -362,7 +375,7 @@ Public Class Pagos
 
     Private Sub gridFormaPagos_CellLeave(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gridFormaPagos.CellLeave
         If e.ColumnIndex = 3 And e.RowIndex > -1 Then
-            If gridFormaPagos.Rows(e.RowIndex).Cells(0).Value <> "02" Then
+            If gridFormaPagos.Rows(e.RowIndex).Cells(0).Value = "02" Then
                 Dim banco As Banco = DAOBanco.buscarBancoPorCodigo(gridFormaPagos.Rows(e.RowIndex).Cells(e.ColumnIndex).Value)
                 If Not IsNothing(banco) Then
                     gridFormaPagos.Rows(e.RowIndex).Cells(e.ColumnIndex + 1).Value = banco.nombre
