@@ -145,7 +145,7 @@ Public Class ListadoAsientoResumen
 
         Select Case TipoListado.SelectedIndex
             Case 0
-                Dim viewer As New ReportViewer("Listado de Imputaciones Contables", "c:\Crystal\WImputaNet.rpt", txtFormula)
+                Dim viewer As New ReportViewer("Listado de Imputaciones Contables", Globals.reportPathWithName("WImputaNet.rpt"), txtFormula)
 
                 If opcPantalla.Checked = True Then
                     viewer.Show()
@@ -154,7 +154,7 @@ Public Class ListadoAsientoResumen
                 End If
 
             Case Else
-                Dim viewer As New ReportViewer("Listado de Imputaciones Contables", "c:\Crystal\WImputa2Net.rpt", txtFormula)
+                Dim viewer As New ReportViewer("Listado de Imputaciones Contables", Globals.reportPathWithName("WImputa2Net.rpt"), txtFormula)
 
                 If opcPantalla.Checked = True Then
                     viewer.Show()

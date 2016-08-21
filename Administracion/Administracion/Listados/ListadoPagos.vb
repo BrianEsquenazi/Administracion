@@ -67,7 +67,7 @@ Public Class ListadoPagos
         txtDos = " and {Pagos.Importe1} <> 0 "
         txtFormula = txtUno + txtDos
 
-        Dim viewer As New ReportViewer("Listado de Ordenes de Pago", "c:\FcElectronica\wListaOrdenesnet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("Listado de Ordenes de Pago", Globals.reportPathWithName("wListaOrdenesnet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()

@@ -140,7 +140,7 @@ Public Class ListadoPagosPosdatados
         txtCuatro = " and {Pagos.FechaOrd} <> {Pagos.FechaOrd2}"
         txtFormula = txtUno + txtDos + txtTres + txtCuatro
 
-        Dim viewer As New ReportViewer("Listado de Pagos Posdatados", "c:\FcElectronica\wListaPosdatnet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("Listado de Pagos Posdatados", Globals.reportPathWithName("wListaPosdatnet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()

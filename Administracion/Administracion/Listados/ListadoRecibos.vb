@@ -63,7 +63,7 @@ Public Class ListadoRecibos
         txtUno = "{Recibos.Fechaord} in " + x + txtDesde + x + " to " + x + txtHasta + x
         txtFormula = txtUno
 
-        Dim viewer As New ReportViewer("Listado de Recibos", "c:\FcElectronica\wListRecinet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("Listado de Recibos", Globals.reportPathWithName("wListRecinet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()

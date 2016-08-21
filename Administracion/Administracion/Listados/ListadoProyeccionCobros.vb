@@ -219,7 +219,7 @@ Public Class ListadoProyeccionCobros
         txtUno = "{ImpCtaCtePrvNet.Proveedor} in " + x + "0" + x + " to " + x + "99999999999" + x
         txtFormula = txtUno
 
-        Dim viewer As New ReportViewer("Proyeccion de Cobros de Corriente de Proveedres", "c:\Crystal\wProyccprvnet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("Proyeccion de Cobros de Corriente de Proveedres", Globals.reportPathWithName("wProyccprvnet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()
