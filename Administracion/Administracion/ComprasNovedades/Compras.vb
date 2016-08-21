@@ -89,20 +89,37 @@ Public Class Compras
         consulta.ShowDialog()
     End Sub
 
-    Private Sub txtCodigoProveedor_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigoProveedor.Leave
-        proveedor = DAOProveedor.buscarProveedorPorCodigo(txtCodigoProveedor.Text)
-        If Not IsNothing(proveedor) Then
-            mostrarProveedor(proveedor)
-        Else
-            txtNombreProveedor.Text = ""
-            txtCAI.Text = ""
-            txtVtoCAI.Text = "  /  /    "
-            diasPlazo = 0
-            MessageBox.Show("El proveedor ingresado es inexistente")
-            ' No se puede ya que se genera un ciclo donde siempre tira el cartel del error
-            'txtCodigoProveedor.Focus()
+    Private Sub txtCodigoProveedor_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtCodigoProveedor.KeyDown
+        If e.KeyValue = Keys.Enter Then
+            proveedor = DAOProveedor.buscarProveedorPorCodigo(txtCodigoProveedor.Text)
+            If Not IsNothing(proveedor) Then
+                mostrarProveedor(proveedor)
+            Else
+                txtNombreProveedor.Text = ""
+                txtCAI.Text = ""
+                txtVtoCAI.Text = "  /  /    "
+                diasPlazo = 0
+                MessageBox.Show("El proveedor ingresado es inexistente")
+                ' No se puede ya que se genera un ciclo donde siempre tira el cartel del error
+                'txtCodigoProveedor.Focus()
+            End If
         End If
     End Sub
+
+    'Private Sub txtCodigoProveedor_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCodigoProveedor.Leave
+    '    proveedor = DAOProveedor.buscarProveedorPorCodigo(txtCodigoProveedor.Text)
+    '    If Not IsNothing(proveedor) Then
+    '        mostrarProveedor(proveedor)
+    '    Else
+    '        txtNombreProveedor.Text = ""
+    '        txtCAI.Text = ""
+    '        txtVtoCAI.Text = "  /  /    "
+    '        diasPlazo = 0
+    '        MessageBox.Show("El proveedor ingresado es inexistente")
+    '        ' No se puede ya que se genera un ciclo donde siempre tira el cartel del error
+    '        'txtCodigoProveedor.Focus()
+    '    End If
+    'End Sub
 
     Private Sub cmbFormaPago_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbFormaPago.KeyDown
         If e.KeyValue = Keys.Enter Then
@@ -125,10 +142,15 @@ Public Class Compras
         End If
     End Sub
 
-    Private Sub txtImporte_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtIVARG.Leave, txtPercIB.Leave, txtNoGravado.Leave, txtIVA27.Leave, txtIVA21.Leave, txtIVA10.Leave
-        Dim total As Double = asDouble(txtIVA21.Text) + asDouble(txtIVARG.Text) + asDouble(txtIVA27.Text) + asDouble(txtPercIB.Text) + asDouble(txtNoGravado.Text) + asDouble(txtIVA10.Text) + asDouble(txtNeto.Text)
+    Private Sub txtImporte_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) 'Handles txtIVARG.Leave, txtPercIB.Leave, txtNoGravado.Leave, txtIVA27.Leave, txtIVA21.Leave, txtIVA10.Leave
+        'Dim total As Double = asDouble(txtIVA21.Text) + asDouble(txtIVARG.Text) + asDouble(txtIVA27.Text) + asDouble(txtPercIB.Text) + asDouble(txtNoGravado.Text) + asDouble(txtIVA10.Text) + asDouble(txtNeto.Text)
+        Dim total As Double = calculoTotal()
         txtTotal.Text = CustomConvert.toStringWithTwoDecimalPlaces(Math.Round(total, 2))
     End Sub
+
+    Private Function calculoTotal() Handles txtIVARG.Leave, txtPercIB.Leave, txtNoGravado.Leave, txtIVA27.Leave, txtIVA21.Leave, txtIVA10.Leave
+        Return asDouble(txtIVA21.Text) + asDouble(txtIVARG.Text) + asDouble(txtIVA27.Text) + asDouble(txtPercIB.Text) + asDouble(txtNoGravado.Text) + asDouble(txtIVA10.Text) + asDouble(txtNeto.Text)
+    End Function
 
     Private Sub txtNeto_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNeto.Leave
         If txtIVA21.Enabled Then
@@ -453,16 +475,31 @@ Public Class Compras
         Next
     End Sub
 
-    Private Sub txtNroInterno_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroInterno.Leave
-        Dim compra As Compra = DAOCompras.buscarCompraPorCodigo(txtNroInterno.Text)
-        If Not IsNothing(compra) Then
-            apertura = New Apertura
-            mostrarCompra(compra)
-        Else
-            esModificacion = False
-            'Creo que no hay que hacer nada
+    Private Sub txtNroInterno_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtNroInterno.KeyDown
+        If e.KeyValue = Keys.Enter Then
+            Dim compra As Compra = DAOCompras.buscarCompraPorCodigo(txtNroInterno.Text)
+            If Not IsNothing(compra) Then
+                apertura = New Apertura
+                mostrarCompra(compra)
+            Else
+                esModificacion = False
+                btnLimpiar.PerformClick()
+                'Creo que no hay que hacer nada
+            End If
         End If
     End Sub
+
+    'Private Sub txtNroInterno_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNroInterno.Leave
+    '    Dim compra As Compra = DAOCompras.buscarCompraPorCodigo(txtNroInterno.Text)
+    '    If Not IsNothing(compra) Then
+    '        apertura = New Apertura
+    '        mostrarCompra(compra)
+    '    Else
+    '        esModificacion = False
+    '        btnLimpiar.PerformClick()
+    '        'Creo que no hay que hacer nada
+    '    End If
+    'End Sub
 
     Private Sub btnConsultaNroFactura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnConsultaNroFactura.Click
         Dim consulta As New ConsultaNumeroFactura
@@ -475,18 +512,23 @@ Public Class Compras
         End If
         apertura.ShowDialog()
 
-        If Not apertura.IsDisposed Then
-            txtNeto.Text = apertura.valorNeto
-            txtIVA21.Text = apertura.valorIVA21
-            txtIVA27.Text = apertura.valorIVA27
-            txtIVARG.Text = apertura.valorIVARG
-            txtIVA10.Text = apertura.valorIVA105
-            txtNoGravado.Text = apertura.valorExento
-            txtPercIB.Text = apertura.valorIB
-            txtImporte_Leave(sender, Nothing)
-            ' HAGO ESTE IF YA QUE SI NO CARGO NADA EN APERTURA SE POSICIONA EN UNA CELDA INCORRECTA
-            ' EN LA GRILLA Y ROMPE (AMBOS TIPOS DE DOBLE POR LAS DUDAS)
-            If (txtTotal.Text <> "0,00" And txtTotal.Text <> "0.00") Then
+        If Not apertura.IsDisposed Then 'calculoTotal() > 0
+            Dim total As Double = asDouble(apertura.valorNeto) +
+                asDouble(apertura.valorIVA21) +
+                asDouble(apertura.valorIVA27) +
+                asDouble(apertura.valorIVARG) +
+                asDouble(apertura.valorIVA105) +
+                asDouble(apertura.valorExento) +
+                asDouble(apertura.valorIB)
+            If total > 0 Then
+                txtNeto.Text = apertura.valorNeto
+                txtIVA21.Text = apertura.valorIVA21
+                txtIVA27.Text = apertura.valorIVA27
+                txtIVARG.Text = apertura.valorIVARG
+                txtIVA10.Text = apertura.valorIVA105
+                txtNoGravado.Text = apertura.valorExento
+                txtPercIB.Text = apertura.valorIB
+                txtImporte_Leave(sender, Nothing)
                 txtDespacho_Leave(sender, Nothing)
             End If
         End If
