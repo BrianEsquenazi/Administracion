@@ -107,7 +107,6 @@ Public Class ListadoCuentaCorrienteProveedores
 
         txtEmpresa = "Surfactan S.A."
 
-        REM dada fix CAMBIAR Al uso de dao!!
         Dim tabla As DataTable
         tabla = SQLConnector.retrieveDataTable("buscar_cuenta_corriente_proveedores_desdehasta", txtDesdeProveedor.Text, txtHastaProveedor.Text, WTipo)
 
@@ -137,37 +136,13 @@ Public Class ListadoCuentaCorrienteProveedores
         txtUno = "{ImpCtaCtePrvNet.Proveedor} in " + x + "0" + x + " to " + x + "99999999999" + x
         txtFormula = txtUno
 
-        Dim viewer As New ReportViewer("Listado de Corriente de Proveedres", "c:\Crystal\wccprvnet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("Listado de Corriente de Proveedres", Globals.reportPathWithName("wccprvnet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()
         Else
             viewer.imprimirReporte()
         End If
-
-
-
-
-
-        REM borrar   impctacteprv
-
-
-
-
-        'Dim tabla As DataTable
-        'tabla = SQLConnector.retrieveDataTable("procesoReteIb", ordDesde, ordHasta)
-
-        'For Each row As DataRow In tabla.Rows
-
-        '    Dim CamposReteIb As New ProcesoReteIb(row.Item(0).ToString, row.Item(1), row.Item(2).ToString, row.Item(3).ToString, row.Item(4).ToString, row.Item(5).ToString, row.Item(6).ToString)
-
-        '    WCuit = sacaguiones(CamposReteIb.cuit)
-        '    WFecha = CamposReteIb.fecha
-        '    WSucursal = "0001"
-        '    WOrden = ceros(CamposReteIb.orden, 8)
-        '    WImporte = ceros(formatonumerico(redondeo(CamposReteIb.retotra), "########0.#0", "."), 11)
-
-        'Next
 
 
 

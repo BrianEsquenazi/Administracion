@@ -23,6 +23,10 @@ Partial Class ListadoValoresEnCartera
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CustomLabel6 = New Administracion.CustomLabel()
+        Me.CustomLabel5 = New Administracion.CustomLabel()
+        Me.CustomLabel4 = New Administracion.CustomLabel()
+        Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.txtFecha4 = New System.Windows.Forms.MaskedTextBox()
         Me.txtFecha3 = New System.Windows.Forms.MaskedTextBox()
         Me.txtFecha2 = New System.Windows.Forms.MaskedTextBox()
@@ -41,10 +45,6 @@ Partial Class ListadoValoresEnCartera
         Me.CustomLabel7 = New Administracion.CustomLabel()
         Me.CustomLabel2 = New Administracion.CustomLabel()
         Me.CustomLabel1 = New Administracion.CustomLabel()
-        Me.CustomLabel6 = New Administracion.CustomLabel()
-        Me.CustomLabel5 = New Administracion.CustomLabel()
-        Me.CustomLabel4 = New Administracion.CustomLabel()
-        Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -64,6 +64,46 @@ Partial Class ListadoValoresEnCartera
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "PARAMETROS DE FECHA"
+        '
+        'CustomLabel6
+        '
+        Me.CustomLabel6.AutoSize = True
+        Me.CustomLabel6.ControlAssociationKey = -1
+        Me.CustomLabel6.Location = New System.Drawing.Point(208, 68)
+        Me.CustomLabel6.Name = "CustomLabel6"
+        Me.CustomLabel6.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel6.TabIndex = 28
+        Me.CustomLabel6.Text = "Fecha 4"
+        '
+        'CustomLabel5
+        '
+        Me.CustomLabel5.AutoSize = True
+        Me.CustomLabel5.ControlAssociationKey = -1
+        Me.CustomLabel5.Location = New System.Drawing.Point(208, 33)
+        Me.CustomLabel5.Name = "CustomLabel5"
+        Me.CustomLabel5.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel5.TabIndex = 27
+        Me.CustomLabel5.Text = "Fecha 3"
+        '
+        'CustomLabel4
+        '
+        Me.CustomLabel4.AutoSize = True
+        Me.CustomLabel4.ControlAssociationKey = -1
+        Me.CustomLabel4.Location = New System.Drawing.Point(6, 68)
+        Me.CustomLabel4.Name = "CustomLabel4"
+        Me.CustomLabel4.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel4.TabIndex = 26
+        Me.CustomLabel4.Text = "Fecha 2"
+        '
+        'CustomLabel3
+        '
+        Me.CustomLabel3.AutoSize = True
+        Me.CustomLabel3.ControlAssociationKey = -1
+        Me.CustomLabel3.Location = New System.Drawing.Point(6, 33)
+        Me.CustomLabel3.Name = "CustomLabel3"
+        Me.CustomLabel3.Size = New System.Drawing.Size(46, 13)
+        Me.CustomLabel3.TabIndex = 25
+        Me.CustomLabel3.Text = "Fecha 1"
         '
         'txtFecha4
         '
@@ -256,46 +296,6 @@ Partial Class ListadoValoresEnCartera
         Me.CustomLabel1.Size = New System.Drawing.Size(71, 13)
         Me.CustomLabel1.TabIndex = 34
         Me.CustomLabel1.Text = "Desde Fecha"
-        '
-        'CustomLabel6
-        '
-        Me.CustomLabel6.AutoSize = True
-        Me.CustomLabel6.ControlAssociationKey = -1
-        Me.CustomLabel6.Location = New System.Drawing.Point(208, 68)
-        Me.CustomLabel6.Name = "CustomLabel6"
-        Me.CustomLabel6.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel6.TabIndex = 28
-        Me.CustomLabel6.Text = "Fecha 4"
-        '
-        'CustomLabel5
-        '
-        Me.CustomLabel5.AutoSize = True
-        Me.CustomLabel5.ControlAssociationKey = -1
-        Me.CustomLabel5.Location = New System.Drawing.Point(208, 33)
-        Me.CustomLabel5.Name = "CustomLabel5"
-        Me.CustomLabel5.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel5.TabIndex = 27
-        Me.CustomLabel5.Text = "Fecha 3"
-        '
-        'CustomLabel4
-        '
-        Me.CustomLabel4.AutoSize = True
-        Me.CustomLabel4.ControlAssociationKey = -1
-        Me.CustomLabel4.Location = New System.Drawing.Point(6, 68)
-        Me.CustomLabel4.Name = "CustomLabel4"
-        Me.CustomLabel4.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel4.TabIndex = 26
-        Me.CustomLabel4.Text = "Fecha 2"
-        '
-        'CustomLabel3
-        '
-        Me.CustomLabel3.AutoSize = True
-        Me.CustomLabel3.ControlAssociationKey = -1
-        Me.CustomLabel3.Location = New System.Drawing.Point(6, 33)
-        Me.CustomLabel3.Name = "CustomLabel3"
-        Me.CustomLabel3.Size = New System.Drawing.Size(46, 13)
-        Me.CustomLabel3.TabIndex = 25
-        Me.CustomLabel3.Text = "Fecha 1"
         '
         'ListadoValoresEnCartera
         '

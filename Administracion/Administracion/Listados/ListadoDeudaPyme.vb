@@ -52,4 +52,7 @@ Public Class ListadoDeudaPyme
 
 
 
+    Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
+
+    End Sub
 End Class

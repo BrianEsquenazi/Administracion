@@ -148,7 +148,7 @@ Public Class ListadoChequesEmitidos
         txtFormula = txtUno + txtDos + txtTres + txtCuatro + txtCinco
 
 
-        Dim viewer As New ReportViewer("Listado de Cheques Emitidos", "c:\FcElectronica\wChequesEmitidosnet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("Listado de Cheques Emitidos", Globals.reportPathWithName("wChequesEmitidosnet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()

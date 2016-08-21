@@ -137,7 +137,7 @@ Public Class ListadoDepositos
         txtDos = " and {Depositos.Fechaord} in " + x + txtDesde + x + " to " + x + txtHasta + x
         txtFormula = txtUno + txtdos
 
-        Dim viewer As New ReportViewer("Listado de Depositos", "c:\FcElectronica\WDepositosnet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("Listado de Depositos", Globals.reportPathWithName("WDepositosnet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()

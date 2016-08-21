@@ -65,7 +65,7 @@ Public Class ListadoRecibosProvisorios
 
         txtFormula = txtUno + txtDos
 
-        Dim viewer As New ReportViewer("Listado de Recibos Provisorios", "c:\FcElectronica\wListReciProvinet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("Listado de Recibos Provisorios", Globals.reportPathWithName("wListReciProvinet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()

@@ -149,7 +149,7 @@ Public Class ListadoIvaCompras
         txtUno = "{ListaIvaComp.OrdFecha} in " + x + txtDesdefechaOrd + x + " to " + x + txtHastafechaOrd + x
         txtFormula = txtUno
 
-        Dim viewer As New ReportViewer("Listado de Iva Compras", "c:\Crystal\wIvaCompNet.rpt", txtFormula)
+        Dim viewer As New ReportViewer("Listado de Iva Compras", Globals.reportPathWithName("wIvaCompNet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()
