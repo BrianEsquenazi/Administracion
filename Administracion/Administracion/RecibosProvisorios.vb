@@ -63,6 +63,8 @@ Public Class RecibosProvisorios
     Private Sub setDefaults()
         txtFecha.Text = Date.Today.ToShortDateString
         gridRecibos.Rows.Clear()
+        txtConsulta.Visible = False
+        lstConsulta.Visible = False
     End Sub
 
     Private Sub eventoSegunTipoEnFormaDePagoPara(ByVal val As Integer, ByVal rowIndex As Integer, ByVal columnIndex As Integer)
@@ -100,9 +102,15 @@ Public Class RecibosProvisorios
         If e.KeyCode = Keys.Enter Then
             Dim iCol = gridRecibos.CurrentCell.ColumnIndex
             Dim iRow = gridRecibos.CurrentCell.RowIndex
+
+            Dim val = gridRecibos.Rows(iRow).Cells(iCol).Value
             If iCol = 0 And iRow > -1 Then
-                Dim val = gridRecibos.Rows(iRow).Cells(iCol).Value
                 eventoSegunTipoEnFormaDePagoPara(CustomConvert.toIntOrZero(val), iRow, iCol)
+            End If
+            'Modificar el valor de la columna de ser fecha DD/MM --> DD/MM/YYYY (año actual)
+            If iCol = 2 And Val.ToString.Length <= 5 Then
+                val = val + "/" + Date.Now.Year.ToString
+                gridRecibos.Rows(iRow).Cells(2).Value = Val()
             End If
         End If
     End Sub
@@ -172,8 +180,21 @@ Public Class RecibosProvisorios
         End If
     End Sub
 
+    Private Sub txtCliente_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtCliente.KeyDown
+        If e.KeyValue = Keys.Enter Then
+            Dim cliente = DAOCliente.buscarClientePorCodigo(txtCliente.Text)
+            If Not IsNothing(cliente) Then
+                mostrarCliente(cliente)
+            Else
+                txtNombre.Text = ""
+                MessageBox.Show("El cliente ingresado es inexistente")
+                txtCliente.Focus()
+            End If
+        End If
+    End Sub
+
     Private Sub txtCliente_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCliente.Leave
-        mostrarCliente(DAOCliente.buscarClientePorCodigo(txtCliente.Text))
+
     End Sub
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click

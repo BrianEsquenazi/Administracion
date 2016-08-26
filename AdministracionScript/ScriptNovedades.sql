@@ -1193,3 +1193,38 @@ CREATE PROCEDURE PR_modificar_cuenta_corriente
 	WHERE
 		Clave = @Clave
 GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_recibo]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_recibo]
+GO
+
+CREATE PROCEDURE PR_get_recibo (@recibo varchar(6))
+AS
+	SELECT
+		re.Recibo
+		, re.Fecha
+		, re.Cliente
+		, re.RetGanancias	
+		, re.RetOtra
+		, re.RetIva
+		, re.RetSuss
+		, re.Paridad
+		, re.Observaciones
+		, re.TipoReg
+		, re.Tipo1
+		, re.Cuenta
+		, re.Tipo2
+		, re.Numero2
+		, re.Fecha2
+		, re.banco2
+		, re.Importe2
+		, re.Tipo1
+		, re.Letra1
+		, re.Punto1
+		, re.Numero1
+		, re.Importe1
+	FROM Recibos re
+	WHERE Recibo = @recibo
+GO
+
+

@@ -8,6 +8,7 @@ Public Class Recibos
     Private Sub Recibos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         commonEventsHandler.setIndexTab(Me)
         lstSeleccion.Items.Add(New QueryController("Clientes", AddressOf DAOCliente.buscarClientePorNombre, AddressOf mostrarCliente))
+        '        lstSeleccion.Items.Add(New QueryController("Cuentas Corrientes", AddressOf DAOCtaCteProveedor.buscarCuentas, AddressOf mostrarCliente))
         lstSeleccion.Items.Add(New QueryController("Cuentas Contables", AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, AddressOf mostrarCuenta))
         lstSeleccion.SelectedIndex = 0
 
@@ -74,6 +75,9 @@ Public Class Recibos
         gridFormasPago.Rows.Clear()
         gridPagos.Rows.Clear()
         optCtaCte.Checked = True
+        txtConsulta.Visible = False
+        lstConsulta.Visible = False
+        lstSeleccion.Visible = False
     End Sub
 
     Private Sub eventoSegunTipoEnFormaDePagoPara(ByVal val As Integer, ByVal rowIndex As Integer, ByVal columnIndex As Integer)
@@ -111,9 +115,15 @@ Public Class Recibos
         If e.KeyCode = Keys.Enter Then
             Dim iCol = gridFormasPago.CurrentCell.ColumnIndex
             Dim iRow = gridFormasPago.CurrentCell.RowIndex
+
+            Dim val = gridFormasPago.Rows(iRow).Cells(iCol).Value
             If iCol = 0 And iRow > -1 Then
-                Dim val = gridFormasPago.Rows(iRow).Cells(iCol).Value
-                eventoSegunTipoEnFormaDePagoPara(CustomConvert.toIntOrZero(val), iRow, iCol)
+                eventoSegunTipoEnFormaDePagoPara(CustomConvert.toIntOrZero(Val), iRow, iCol)
+            End If
+            'Modificar el valor de la columna de ser fecha DD/MM --> DD/MM/YYYY (año actual)
+            If iCol = 2 And val.ToString.Length <= 5 Then
+                val = val + "/" + Date.Now.Year.ToString
+                gridFormasPago.Rows(iRow).Cells(2).Value = val
             End If
         End If
     End Sub
