@@ -125,31 +125,32 @@ Public Class ListadoMovimientosBancos
 
     Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
 
-        Dim txtUno As String
+        Dim varUno As String
 
-        Dim txtEmpresa As String
-        Dim txtFormula As String
+        Dim varEmpresa As String
+        Dim varFormula As String
         Dim x As Char = Chr(34)
-        Dim txtDesdefechaOrd, txtHastafechaOrd
+        Dim varDesdefechaOrd, varHastafechaOrd
 
-        Dim txtBancoCodigo As Integer
-        Dim txtBancoCuenta As String
+        Dim varBancoCodigo As Integer
+        Dim varBancoCuenta As String
 
-        Dim txtRenglon As Integer
-        Dim txtTitulo As String
-        Dim txtTituloList As String
-        Dim txtVarios As String
+        Dim varRenglon As Integer
+        Dim varTitulo As String
+        Dim varTituloList As String
+        Dim varVarios As String
 
-        Dim txtDebito, txtCredito As Double
-        Dim txtAcredita, txtAcreditaOrd As String
+        Dim varDebito, varCredito As Double
+        Dim varAcredita, varAcreditaOrd As String
+        Dim varBanco As Integer
 
 
         SQLConnector.retrieveDataTable("limpiar_movban")
 
-        txtEmpresa = "Surfactan S.A."
+        varEmpresa = "Surfactan S.A."
 
-        txtDesdefechaOrd = ordenaFecha(txtDesdeFecha.Text)
-        txtHastafechaOrd = ordenaFecha(txthastafecha.Text)
+        varDesdefechaOrd = ordenaFecha(txtDesdeFecha.Text)
+        varHastafechaOrd = ordenaFecha(txthastafecha.Text)
 
         Dim tablaII As DataTable
         tablaII = SQLConnector.retrieveDataTable("buscar_banco_por_nombre", "")
@@ -158,22 +159,19 @@ Public Class ListadoMovimientosBancos
 
             Dim CamposBanco As New LeeBanco(row.Item(0), row.Item(1), row.Item(2))
 
-            txtBancoCuenta = CamposBanco.Cuenta
-            txtBancoCodigo = CamposBanco.banco
+            varBancoCuenta = CamposBanco.Cuenta
+            varBancoCodigo = CamposBanco.banco
 
-            txtVectorBanco(txtBancoCodigo) = txtBancoCuenta
+            txtVectorBanco(varBancoCodigo) = varBancoCuenta
 
         Next
-
-
-        txtRenglon = 0
-
-
-
 
 
         Dim tabla As DataTable
-        tabla = SQLConnector.retrieveDataTable("buscar_pagos_Movban", txtDesdefechaOrd, txtHastafechaOrd, txtDesdeBanco.Text, txtHastaBanco.Text)
+        varRenglon = 0
+
+
+        tabla = SQLConnector.retrieveDataTable("buscar_pagos_Movban", varDesdefechaOrd, varHastafechaOrd, txtDesdeBanco.Text, txtHastaBanco.Text)
 
         For Each row As DataRow In tabla.Rows
 
@@ -181,24 +179,23 @@ Public Class ListadoMovimientosBancos
                                             row.Item(3), row.Item(4).ToString, row.Item(5).ToString,
                                             row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString,
                                             row.Item(9), row.Item(10), row.Item(11), row.Item(12),
-                                            row.Item(13), row.Item(14))
+                                            row.Item(13), row.Item(14), row.Item(15))
 
 
+            varRenglon = varRenglon + 1
 
-            txtRenglon = txtRenglon + 1
+            varTitulo = "Pagos"
+            varEmpresa = 1
+            varTituloList = "Surfactan S.A."
+            varVarios = "Desde el " + txtDesdeFecha.Text + " hasta el " + txthastafecha.Text
 
-            txtTitulo = "Pagos"
-            txtEmpresa = 1
-            txtTituloList = "Surfactan S.A."
-            txtVarios = "Desde el " + txtDesdeFecha.Text + " hasta el " + txthastafecha.Text
+            varAcredita = CampoPagos.fecha2
+            varAcreditaOrd = CampoPagos.fechaord2
+            varDebito = 0
+            varCredito = CampoPagos.importe2
 
-            txtAcredita = CampoPagos.fecha2
-            txtAcreditaOrd = CampoPagos.fechaord2
-            txtDebito = 0
-            txtCredito = CampoPagos.importe2
-
-            SQLConnector.executeProcedure("alta_movban", txtRenglon, CampoPagos.banco2, CampoPagos.fecha, CampoPagos.fechaord, txtAcredita, txtAcreditaOrd, CampoPagos.observaciones,
-                                          CampoPagos.numero2, txtDebito, txtCredito, CampoPagos.orden, txtEmpresa, txtTitulo, txtTituloList, CampoPagos.proveedor)
+            SQLConnector.executeProcedure("alta_movban", varRenglon, CampoPagos.banco2, CampoPagos.fecha, CampoPagos.fechaord, varAcredita, varAcreditaOrd, CampoPagos.observaciones,
+                                          CampoPagos.numero2, varDebito, varCredito, CampoPagos.orden, varEmpresa, varTitulo, varTituloList, CampoPagos.proveedor)
 
 
         Next
@@ -208,7 +205,10 @@ Public Class ListadoMovimientosBancos
 
 
 
-        tabla = SQLConnector.retrieveDataTable("buscar_depositos_Movban", txtDesdefechaOrd, txtHastafechaOrd, txtDesdeBanco.Text, txtHastaBanco.Text)
+
+
+
+        tabla = SQLConnector.retrieveDataTable("buscar_pagos_MovbanII", varDesdefechaOrd, varHastafechaOrd, txtDesdeBanco.Text, txtHastaBanco.Text)
 
         For Each row As DataRow In tabla.Rows
 
@@ -216,25 +216,117 @@ Public Class ListadoMovimientosBancos
                                             row.Item(3), row.Item(4).ToString, row.Item(5).ToString,
                                             row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString,
                                             row.Item(9), row.Item(10), row.Item(11), row.Item(12),
-                                            row.Item(13), row.Item(14))
+                                            row.Item(13), row.Item(14), row.Item(15))
+
+
+            REM If Val(CampoPagos.orden) = 114551 Then Stop
+
+            If CampoPagos.tiporeg = "1" Then
+
+                varRenglon = varRenglon + 1
+
+                varTitulo = "Pagos"
+                varEmpresa = 1
+                varTituloList = "Surfactan S.A."
+                varVarios = "Desde el " + txtDesdeFecha.Text + " hasta el " + txthastafecha.Text
+
+                varAcredita = CampoPagos.fecha
+                varAcreditaOrd = CampoPagos.fechaord
+                varDebito = CampoPagos.importe1
+                varCredito = 0
+
+                SQLConnector.executeProcedure("alta_movban", varRenglon, CampoPagos.banco2, CampoPagos.fecha, CampoPagos.fechaord, varAcredita, varAcreditaOrd, CampoPagos.observaciones,
+                                              CampoPagos.numero2, varDebito, varCredito, CampoPagos.orden, varEmpresa, varTitulo, varTituloList, CampoPagos.proveedor)
+
+            End If
+
+        Next
 
 
 
-            txtRenglon = txtRenglon + 1
 
-            txtTitulo = "Pagos"
-            txtEmpresa = 1
-            txtTituloList = "Surfactan S.A."
-            txtVarios = "Desde el " + txtDesdeFecha.Text + " hasta el " + txthastafecha.Text
 
-            txtAcredita = CampoPagos.fecha2
-            txtAcreditaOrd = CampoPagos.fechaord2
-            txtDebito = 0
-            txtCredito = CampoPagos.importe2
 
-            SQLConnector.executeProcedure("alta_movban", txtRenglon, CampoPagos.banco2, CampoPagos.fecha, CampoPagos.fechaord, txtAcredita, txtAcreditaOrd, CampoPagos.observaciones,
-                                          CampoPagos.numero2, txtDebito, txtCredito, CampoPagos.orden, txtEmpresa, txtTitulo, txtTituloList, CampoPagos.proveedor)
 
+
+        tabla = SQLConnector.retrieveDataTable("buscar_depositos_Movban", varDesdefechaOrd, varHastafechaOrd, txtDesdeBanco.Text, txtHastaBanco.Text)
+
+        For Each row As DataRow In tabla.Rows
+
+            Dim CampoDepositos As New LeeDepositosMovban(row.Item(0), row.Item(1), row.Item(2),
+                                   row.Item(3), row.Item(4), row.Item(5),
+                                   row.Item(6), row.Item(7), row.Item(8), row.Item(9))
+
+            varRenglon = varRenglon + 1
+
+            varTitulo = "Depositos"
+            varEmpresa = 1
+            varTituloList = "Surfactan S.A."
+            varVarios = "Desde el " + txtDesdeFecha.Text + " hasta el " + txthastafecha.Text
+
+            varAcredita = CampoDepositos.acredita
+            varAcreditaOrd = CampoDepositos.acreditaord
+            varDebito = CampoDepositos.importe
+            varCredito = 0
+
+            SQLConnector.executeProcedure("alta_movban", varRenglon, CampoDepositos.Banco, CampoDepositos.Fecha, CampoDepositos.fechaord, varAcredita, varAcreditaOrd, "Deposito",
+                                          CampoDepositos.deposito, varDebito, varCredito, CampoDepositos.deposito, varEmpresa, varTitulo, varTituloList, "")
+
+
+        Next
+
+
+
+
+
+
+
+
+
+
+        tabla = SQLConnector.retrieveDataTable("buscar_recibos_Movban", varDesdefechaOrd, varHastafechaOrd)
+
+        For Each row As DataRow In tabla.Rows
+
+            Dim CampoRecibos As New LeeRecibos(row.Item(0), row.Item(1), row.Item(2),
+                                           row.Item(3), row.Item(4), row.Item(5),
+                                           row.Item(6), row.Item(7), row.Item(8),
+                                           row.Item(9), row.Item(10), row.Item(11), row.Item(12),
+                                           row.Item(13), row.Item(14), row.Item(15), row.Item(16), row.Item(17),
+                                           row.Item(18), row.Item(19), row.Item(20), row.Item(21))
+
+            varRenglon = varRenglon + 1
+
+            varTitulo = "Recibos"
+            varEmpresa = 1
+            varTituloList = "Surfactan S.A."
+            varVarios = "Desde el " + txtDesdeFecha.Text + " hasta el " + txthastafecha.Text
+
+            varAcredita = CampoRecibos.fecha
+            varAcreditaOrd = CampoRecibos.fechaord
+            varDebito = CampoRecibos.importe2
+            varCredito = 0
+            varBanco = 0
+
+            Select Case LTrim(RTrim(CampoRecibos.cuenta))
+                Case "21"
+                    varBanco = 3
+                Case "22"
+                    varBanco = 8
+                Case "26"
+                    varBanco = 12
+                Case "27"
+                    varBanco = 16
+                Case Else
+                    varBanco = 99
+            End Select
+
+            If varBanco >= Val(txtDesdeBanco.Text) And varBanco <= Val(txtHastaBanco.Text) Then
+
+                SQLConnector.executeProcedure("alta_movban", varRenglon, varBanco, CampoRecibos.fecha, CampoRecibos.fechaord, varAcredita, varAcreditaOrd, "Deposito",
+                                              CampoRecibos.recibo, varDebito, varCredito, CampoRecibos.recibo, varEmpresa, varTitulo, varTituloList, "")
+
+            End If
 
         Next
 
@@ -247,10 +339,10 @@ Public Class ListadoMovimientosBancos
 
 
 
-        txtUno = "{Movban.Banco} in " + txtDesdeBanco.Text + " to " + txtHastaBanco.Text
-        txtFormula = txtUno
+        varUno = "{Movban.Banco} in " + txtDesdeBanco.Text + " to " + txtHastaBanco.Text
+        varFormula = varUno
 
-        Dim viewer As New ReportViewer("Listado de Movimientos Bancarios", Globals.reportPathWithName("wMovbannet.rpt"), txtFormula)
+        Dim viewer As New ReportViewer("Listado de Movimientos Bancarios", Globals.reportPathWithName("wMovbannet.rpt"), varFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()

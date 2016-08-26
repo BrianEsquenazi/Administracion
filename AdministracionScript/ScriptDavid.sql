@@ -111,17 +111,17 @@ DROP PROCEDURE [dbo].[PR_buscar_depositos_fecha]
 GO
 
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ListaIvaComp]') AND type in (N'U'))
-DROP TABLE [dbo].[ListaIvaComp]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ListaIvaCompras]') AND type in (N'U'))
+DROP TABLE [dbo].[ListaIvaCompras]
 GO
 
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_limpiar_ListaIvaComp]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[PR_limpiar_ListaIvaComp]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_limpiar_ListaIvaCompras]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_limpiar_ListaIvaCompras]
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_ListaIvaComp]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[PR_alta_ListaIvaComp]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_ListaIvaCompras]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_ListaIvaCompras]
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_Lee_IvaComp]') AND type in (N'P', N'PC'))
@@ -430,7 +430,7 @@ AS
 		 , Depositos.Tipo2 as Tipo2
 		 , Depositos.Numero2 as Numero2
 		 , Depositos.Fecha as Fecha
-		 , Depositos.Importe2 as Importe1
+		 , Depositos.Importe2 as Importe2
 		 , Depositos.Banco as Banco
 		 
 	from surfactanSA.dbo.Depositos depositos
@@ -447,7 +447,7 @@ GO
 
 
 
-CREATE TABLE [dbo].[ListaIvaComp](
+CREATE TABLE [dbo].[ListaIvaCompras](
 	[NroInterno] [int] NULL,
 	[Proveedor] [char](11) NULL,
 	[Tipo] [char](2) NOT NULL,
@@ -474,14 +474,14 @@ CREATE TABLE [dbo].[ListaIvaComp](
 GO
 
 
-CREATE PROCEDURE PR_limpiar_ListaIvaComp
+CREATE PROCEDURE PR_limpiar_ListaIvaCompras
 AS
 	DELETE 
-	FROM dbo.ListaIvaComp
+	FROM dbo.ListaIvaCompras
 GO
 
 
-CREATE PROCEDURE PR_alta_ListaIvaComp
+CREATE PROCEDURE PR_alta_ListaIvaCompras
 	(@NroINterno int,
 	@Proveedor char(11),
 	@Tipo char(2),
@@ -504,7 +504,7 @@ CREATE PROCEDURE PR_alta_ListaIvaComp
 	@Nombre char(50),
 	@Cuit char(15))
 AS
-	INSERT INTO dbo.ListaIvaComp
+	INSERT INTO dbo.ListaIvaCompras
 		(NroINterno, Proveedor, tipo, Letra, Punto, Numero, Fecha, Periodo, Neto, Iva21, Iva5, Iva27, Iva105, Ib, 
 		 Exento, Impre, OrdFecha, Titulo, TituloII, Nombre, cuit)
 		VALUES
@@ -618,6 +618,7 @@ AS
 		 , Pagos.Tipo2 as Tipo2
 		 , Pagos.Numero2 as Numero2
 		 , Pagos.Renglon as Renglon
+		 , Pagos.Importe1 as Importe1
 		 
 	from surfactanSA.dbo.pagos pagos
 	JOIN Proveedor Prove on Prove.Proveedor = Pagos.Proveedor
@@ -631,10 +632,60 @@ GO
 
 
 
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_pagos_movbanII]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_pagos_movbanII]
+GO
+
+
+CREATE PROCEDURE [dbo].[PR_buscar_pagos_movbanII]
+	(@DesdeFecha char(8)
+	, @HastaFecha char(8)
+	, @DesdeBanco int
+	, @HastaBanco int)
+AS
+	select Pagos.FechaOrd as FechaOrd
+		 , Pagos.Orden as Orden
+		 , Pagos.TipoOrd as TipoOrd
+		 , Pagos.Banco2 as Banco2
+		 , Pagos.Cuenta as Cuenta
+		 , Pagos.Proveedor as Proveedor
+		 , Pagos.Fecha as Fecha
+		 , Pagos.Fecha2 as Fecha2
+		 , Pagos.FechaOrd2 as FechaOrd2
+		 , Pagos.TipoReg as Tiporeg
+		 , Pagos.Observaciones as Observaciones
+		 , Pagos.Importe2 as Importe2
+		 , Pagos.Tipo2 as Tipo2
+		 , Pagos.Numero2 as Numero2
+		 , Pagos.Renglon as Renglon
+		 , Pagos.Importe1 as Importe1
+		 
+	from surfactanSA.dbo.pagos pagos
+	--JOIN Proveedor Prove on Prove.Proveedor = Pagos.Proveedor
+	WHERE pagos.FechaOrd between @DesdeFecha and @HastaFecha
+		and pagos.banco2 between @DesdeBanco and @HastaBanco
+		and pagos.banco2 <> 0
+		--and pagos.TipoReg = '1'
+	order by pagos.Clave
+
+GO
 
 
 
 
+
+
+
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
 
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_depositos_movban]') AND type in (N'P', N'PC'))
@@ -652,8 +703,11 @@ AS
 		 , Depositos.Tipo2 as Tipo2
 		 , Depositos.Numero2 as Numero2
 		 , Depositos.Fecha as Fecha
-		 , Depositos.Importe2 as Importe1
+		 , Depositos.Importe2 as Importe2
 		 , Depositos.Banco as Banco
+		 , Depositos.Importe as Importe
+		 , Depositos.Acredita as Acredita
+		 , Depositos.AcreditaOrd as AcreditaOrd
 		 
 	from surfactanSA.dbo.Depositos depositos
 	WHERE depositos.FechaOrd between @DesdeFecha and @HastaFecha
@@ -669,6 +723,59 @@ GO
 
 
 
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_recibos_movban]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_recibos_movban]
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_recibos_movban]
+	(@DesdeFecha char(8)
+	, @HastaFecha char(8))
+AS
+	select Recibos.FechaOrd as FechaOrd
+		 , recibos.Recibo as Recibo
+		 , recibos.TipoReg as TipoReg
+		 , recibos.TipoRec as TipoRec
+		 , recibos.Cuenta as Cuenta
+		 , recibos.Cliente as Cliente
+		 , recibos.Tipo1 as Tipo1
+		 , recibos.letra1 as Letra1
+		 , recibos.Punto1 as Punto1
+		 , recibos.Numero1 as Numero1
+		 , recibos.Fecha as Fecha
+		 , recibos.Tipo2 as Tipo2
+		 , recibos.Numero2 as Numero2
+		 , recibos.Importe1 as Importe1
+		 , recibos.Paridad as Paridad
+		 , recibos.Importe2 as Importe2
+		 , recibos.RetIva as RetIva
+		 , recibos.RetOtra as RetOtra
+		 , recibos.RetSuss as RetSuss
+		 , recibos.RetGanancias as RetGanancias
+		 , recibos.Renglon as Renglon
+		 , Clie.Provincia as Provincia
+		 
+	from surfactanSA.dbo.Recibos recibos
+	JOIN Cliente Clie on Clie.Cliente = recibos.Cliente
+	WHERE recibos.Fechaord between @DesdeFecha and @HastaFecha
+		and (recibos.Cuenta = '21' or recibos.Cuenta = '22' or recibos.Cuenta = '25' or 
+		     recibos.Cuenta = '26' or recibos.Cuenta = '27')
+	order by recibos.Clave
+
+
+GO
+
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
 
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_saldo_inicial_pagos]') AND type in (N'P', N'PC'))
@@ -700,6 +807,10 @@ GO
 
 
 
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_MovBan]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[PR_alta_MovBan]
@@ -729,6 +840,44 @@ AS
 		VALUES
 		(@da, @Banco, @Fecha, @FechaOrd, @Acredita, @AcreditaOrd, @Observaciones, @Numero, @Debito, @Credito, @Comprobante, @Empresa, @Titulo, @Titulo1, 
 		 @Proveedor)
+GO
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_lee_trabajo]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_lee_trabajo]
+GO
+
+
+USE [surfactanSA]
+GO
+
+/****** Object:  StoredProcedure [dbo].[PR_lee_trabajo]    Script Date: 08/25/2016 11:22:46 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[PR_lee_trabajo]
+	(@codigo integer)
+AS
+	select Trabajo.Codigo as Codigo
+		 , Trabajo.Proceso as Proceso
+		 , Trabajo.Destino as Destino 
+		 , Trabajo.Planta as Planta
+		 , Trabajo.Orden as Orden 
+		 , Trabajo.Nombre as Nombre
+	from surfactanSA.dbo.Trabajo Trabajo
+	WHERE Trabajo.Codigo = @Codigo
+
+
+
 GO
 
 

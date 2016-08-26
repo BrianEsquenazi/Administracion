@@ -72,7 +72,7 @@ Public Class ListadoIvaCompras
         Dim txtTitulo, txtTituloII, txtImpre, txtOrdFecha As String
 
 
-        SQLConnector.retrieveDataTable("limpiar_ListaIvaComp")
+        SQLConnector.retrieveDataTable("limpiar_ListaIvaCompras")
 
         txtEmpresa = "Surfactan S.A."
 
@@ -112,7 +112,7 @@ Public Class ListadoIvaCompras
 
                 txtOrdFecha = ordenaFecha(CampoIvaCompAdicional.fecha)
 
-                SQLConnector.executeProcedure("alta_ListaIvaComp", CampoIvaComp.NroInterno, CampoIvaComp.proveedor, CampoIvaCompAdicional.tipo,
+                SQLConnector.executeProcedure("alta_ListaIvaCompras", CampoIvaComp.NroInterno, CampoIvaComp.proveedor, CampoIvaCompAdicional.tipo,
                                                CampoIvaCompAdicional.letra, ceros(CampoIvaCompAdicional.punto, 4), ceros(CampoIvaCompAdicional.numero, 8),
                                                CampoIvaCompAdicional.fecha, CampoIvaComp.periodo,
                                                CampoIvaCompAdicional.neto, CampoIvaCompAdicional.iva21, CampoIvaCompAdicional.perceiva,
@@ -136,7 +136,7 @@ Public Class ListadoIvaCompras
                         txtImpre = "N/C"
                 End Select
 
-                SQLConnector.executeProcedure("alta_ListaIvaComp", CampoIvaComp.NroInterno, CampoIvaComp.proveedor, CampoIvaComp.tipo,
+                SQLConnector.executeProcedure("alta_ListaIvaCompras", CampoIvaComp.NroInterno, CampoIvaComp.proveedor, CampoIvaComp.tipo,
                                                CampoIvaComp.letra, CampoIvaComp.punto, CampoIvaComp.numero, CampoIvaComp.fecha, CampoIvaComp.periodo,
                                                CampoIvaComp.neto, CampoIvaComp.iva21, CampoIvaComp.iva5, CampoIvaComp.iva27, CampoIvaComp.iva105,
                                                CampoIvaComp.ib, CampoIvaComp.exento, txtImpre, txtOrdFecha, txtTitulo, txtTituloII, CampoIvaComp.nombre, CampoIvaComp.cuit)
@@ -146,7 +146,7 @@ Public Class ListadoIvaCompras
         Next
 
 
-        txtUno = "{ListaIvaComp.OrdFecha} in " + x + txtDesdefechaOrd + x + " to " + x + txtHastafechaOrd + x
+        txtUno = "{ListaIvaCompras.OrdFecha} in " + x + txtDesdefechaOrd + x + " to " + x + txtHastafechaOrd + x
         txtFormula = txtUno
 
         Dim viewer As New ReportViewer("Listado de Iva Compras", Globals.reportPathWithName("wIvaCompNet.rpt"), txtFormula)

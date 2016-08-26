@@ -68,6 +68,7 @@
     <Compile Include="Banco.vb" />
     <Compile Include="LeeBanco.vb" />
     <Compile Include="LeeDepositos.vb" />
+    <Compile Include="LeeDepositosMovban.vb" />
     <Compile Include="LeeIvaComp.vb" />
     <Compile Include="LeeIvaCompAdicional.vb" />
     <Compile Include="LeePagos.vb" />

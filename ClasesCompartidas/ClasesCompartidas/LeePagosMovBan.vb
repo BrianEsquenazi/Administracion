@@ -1,7 +1,7 @@
 ﻿Public Class LeePagosMovBan
 
     Public fechaord, orden, tipoOrd, cuenta, proveedor, fecha, tiporeg, fecha2, fechaord2 As String
-    Public importe2 As Double
+    Public importe2, importe1 As Double
     Public banco2 As Integer
     Public observaciones As String
     Public tipo2, numero2 As String
@@ -13,7 +13,7 @@
                    ByVal xcuenta As String, ByVal xproveedor As String, ByVal xfecha As String, ByVal xfecha2 As String, ByVal xfechaOrd2 As String,
                    ByVal xtiporeg As String, ByVal xobservaciones As String,
                    ByVal ximporte2 As Double, ByVal xtipo2 As String, ByVal xnumero2 As String,
-                   ByVal xrenglon As Integer)
+                   ByVal xrenglon As Integer, ByVal ximporte1 As Double)
 
         fechaord = xfechaord
         orden = xorden
@@ -27,6 +27,7 @@
         tiporeg = xtiporeg
         observaciones = xobservaciones
         importe2 = ximporte2
+        importe1 = ximporte1
         tipo2 = xtipo2
         numero2 = xnumero2
         renglon = xrenglon

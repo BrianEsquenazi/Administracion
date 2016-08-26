@@ -136,6 +136,8 @@ Public Class ListadoCuentaCorrienteProveedores
         txtUno = "{ImpCtaCtePrvNet.Proveedor} in " + x + "0" + x + " to " + x + "99999999999" + x
         txtFormula = txtUno
 
+        'MsgBox(Globals.reportPathWithName("wccprvnet.rpt"))
+
         Dim viewer As New ReportViewer("Listado de Corriente de Proveedres", Globals.reportPathWithName("wccprvnet.rpt"), txtFormula)
 
         If opcPantalla.Checked = True Then
