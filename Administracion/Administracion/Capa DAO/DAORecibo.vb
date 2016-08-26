@@ -56,7 +56,10 @@ Public Class DAORecibo
 
     Public Shared Function buscarRecibo(ByVal codRecibo As String)
         Try
-            Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo", codRecibo)
+            'Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo", codRecibo)
+            Dim tabla As DataTable
+            tabla = SQLConnector.retrieveDataTable("buscar_banco_por_codigo", "16")
+            Dim cantidad As Integer = tabla.Rows.Count
             Dim row As DataRow = tabla.Rows(0)
             Dim recibo As New Recibo(row("Recibo").ToString, CustomConvert.asTextDate(row("Fecha").ToString), DAOCliente.buscarClientePorCodigo(row("Cliente").ToString),
                                         asDouble(row("RetGanancias")), asDouble(row("RetOtra")), asDouble(row("RetIva")), asDouble(row("RetSuss")), asDouble(row("Paridad")),

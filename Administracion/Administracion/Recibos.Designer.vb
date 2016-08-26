@@ -29,11 +29,6 @@ Partial Class Recibos
         Me.NumeroCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ImporteCC = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.gridFormasPago = New System.Windows.Forms.DataGridView()
-        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.optVarios = New System.Windows.Forms.RadioButton()
         Me.optAnticipos = New System.Windows.Forms.RadioButton()
@@ -77,6 +72,11 @@ Partial Class Recibos
         Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.CustomLabel2 = New Administracion.CustomLabel()
         Me.CustomLabel1 = New Administracion.CustomLabel()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.gridPagos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridFormasPago, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -137,42 +137,6 @@ Partial Class Recibos
         Me.gridFormasPago.RowHeadersWidth = 20
         Me.gridFormasPago.Size = New System.Drawing.Size(393, 313)
         Me.gridFormasPago.TabIndex = 119
-        '
-        'Tipo
-        '
-        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Tipo.FillWeight = 80.0!
-        Me.Tipo.HeaderText = "Tipo"
-        Me.Tipo.Name = "Tipo"
-        Me.Tipo.Width = 53
-        '
-        'numero
-        '
-        Me.numero.FillWeight = 120.0!
-        Me.numero.HeaderText = "Numero/Cta"
-        Me.numero.Name = "numero"
-        '
-        'fecha
-        '
-        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.fecha.FillWeight = 120.0!
-        Me.fecha.HeaderText = "Fecha"
-        Me.fecha.Name = "fecha"
-        Me.fecha.Width = 62
-        '
-        'banco
-        '
-        Me.banco.FillWeight = 150.0!
-        Me.banco.HeaderText = "Banco"
-        Me.banco.Name = "banco"
-        '
-        'importe
-        '
-        Me.importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.importe.FillWeight = 80.0!
-        Me.importe.HeaderText = "Importe"
-        Me.importe.Name = "importe"
-        Me.importe.Width = 67
         '
         'GroupBox1
         '
@@ -672,6 +636,44 @@ Partial Class Recibos
         Me.CustomLabel1.TabIndex = 80
         Me.CustomLabel1.Text = "Nro. Recibo"
         '
+        'Tipo
+        '
+        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Tipo.FillWeight = 80.0!
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        Me.Tipo.Width = 53
+        '
+        'numero
+        '
+        Me.numero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.numero.FillWeight = 180.0!
+        Me.numero.HeaderText = "Numero/Cta"
+        Me.numero.Name = "numero"
+        Me.numero.Width = 70
+        '
+        'fecha
+        '
+        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.fecha.FillWeight = 120.0!
+        Me.fecha.HeaderText = "Fecha"
+        Me.fecha.Name = "fecha"
+        Me.fecha.Width = 90
+        '
+        'banco
+        '
+        Me.banco.FillWeight = 90.0!
+        Me.banco.HeaderText = "Banco"
+        Me.banco.Name = "banco"
+        '
+        'importe
+        '
+        Me.importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.importe.FillWeight = 80.0!
+        Me.importe.HeaderText = "Importe"
+        Me.importe.Name = "importe"
+        Me.importe.Width = 67
+        '
         'Recibos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -774,11 +776,6 @@ Partial Class Recibos
     Friend WithEvents NumeroCC As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ImporteCC As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents gridFormasPago As System.Windows.Forms.DataGridView
-    Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents numero As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents fecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents banco As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents importe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents optVarios As System.Windows.Forms.RadioButton
     Friend WithEvents optAnticipos As System.Windows.Forms.RadioButton
@@ -786,4 +783,9 @@ Partial Class Recibos
     Friend WithEvents lblTotalPagos As Administracion.CustomLabel
     Friend WithEvents CustomLabel13 As Administracion.CustomLabel
     Friend WithEvents txtObservaciones As Administracion.CustomTextBox
+    Friend WithEvents Tipo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents numero As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents fecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents banco As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents importe As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
