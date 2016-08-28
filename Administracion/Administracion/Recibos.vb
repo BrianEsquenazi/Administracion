@@ -9,7 +9,7 @@ Public Class Recibos
         commonEventsHandler.setIndexTab(Me)
         lstSeleccion.Items.Add(New QueryController("Clientes", AddressOf DAOCliente.buscarClientePorNombre, AddressOf mostrarCliente))
         '        lstSeleccion.Items.Add(New QueryController("Cuentas Corrientes", AddressOf DAOCtaCteProveedor.buscarCuentas, AddressOf mostrarCliente))
-        lstSeleccion.Items.Add(New QueryController("Cuentas Contables", AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, AddressOf mostrarCuenta))
+        lstSeleccion.Items.Add(New QueryController("Cuentas Contables", AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion, AddressOf mostrarCuentaContable))
         lstSeleccion.SelectedIndex = 0
 
         Dim gridBuilder As New GridBuilder(gridFormasPago)
@@ -230,14 +230,24 @@ Public Class Recibos
         End If
     End Sub
 
-    Private Sub mostrarCuenta(ByVal cuenta As CuentaContable)
-        If IsNothing(cuenta) Then
+    Private Sub mostrarCuenta(ByVal cuenta As String)
+        Dim cuentaCompleta As CuentaContable = DAOCuentaContable.buscarCuentaContablePorCodigo(cuenta)
+
+        If cuenta = "" Or IsNothing(cuentaCompleta) Then
             txtNombreCuenta.Text = ""
         Else
-            txtCuenta.Text = cuenta.id
-            txtNombreCuenta.Text = cuenta.descripcion
+            txtCuenta.Text = cuentaCompleta.id
+            txtNombreCuenta.Text = cuentaCompleta.descripcion
         End If
     End Sub
+
+    Private Sub mostrarCuentaContable(ByVal cuentaCompleta As CuentaContable)
+
+        txtCuenta.Text = cuentaCompleta.id
+        txtNombreCuenta.Text = cuentaCompleta.descripcion
+
+    End Sub
+
 
     Private Sub txtCliente_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtCliente.Leave
         mostrarCliente(DAOCliente.buscarClientePorCodigo(txtCliente.Text))
@@ -272,7 +282,7 @@ Public Class Recibos
                                                CustomConvert.toDoubleOrZero(txtRetGanancias.Text), CustomConvert.toDoubleOrZero(txtRetIB.Text),
                                                CustomConvert.toDoubleOrZero(txtRetIva.Text), CustomConvert.toDoubleOrZero(txtRetSuss.Text),
                                                CustomConvert.toDoubleOrZero(txtParidad.Text), CustomConvert.toDoubleOrZero(txtTotal.Text),
-                                               DAOCuentaContable.buscarCuentaContablePorCodigo(txtCuenta.Text), txtObservaciones.Text, tipoRecibo())
+                                               txtCuenta.Text, txtObservaciones.Text, tipoRecibo())
             recibo.formasPago = crearFormasPago()
             recibo.pagos = crearPagos()
             DAORecibo.agregarRecibo(recibo)

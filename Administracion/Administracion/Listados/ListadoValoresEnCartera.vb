@@ -160,5 +160,119 @@ Public Class ListadoValoresEnCartera
 
     Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
 
+        Dim varUno As String
+
+        Dim varEmpresa As String
+        Dim varFormula As String
+        Dim x As Char = Chr(34)
+        Dim varDesdefechaOrd, varHastafechaOrd As String
+        Dim varDesdeCliente, varHastaCliente As String
+        Dim varFecha1, varFecha2, VarFecha3, VarFecha4 As String
+
+        Dim varImpo1, varImpo2, varImpo3, varImpo4, varImpo5 As Double
+        Dim vartitulo1, vartitulo2, vartitulo3, vartitulo4, vartitulo5 As String
+        Dim varVencimiento As String
+
+        SQLConnector.retrieveDataTable("limpiar_valcar")
+
+        varEmpresa = "Surfactan S.A."
+
+        varDesdefechaOrd = ordenaFecha(txtDesdeFecha.Text)
+        varHastafechaOrd = ordenaFecha(txtHastaFecha.Text)
+
+        varFecha1 = ordenaFecha(txtFecha1.Text)
+        varFecha2 = ordenaFecha(txtFecha2.Text)
+        VarFecha3 = ordenaFecha(txtFecha3.Text)
+        VarFecha4 = ordenaFecha(txtFecha4.Text)
+
+        If LTrim(RTrim(txtCliente.Text)) <> "" Then
+            varDesdeCliente = txtCliente.Text
+            varHastaCliente = txtCliente.Text
+        Else
+            varDesdeCliente = ""
+            varHastaCliente = "Z99999"
+        End If
+
+        vartitulo1 = txtFecha1.Text
+        vartitulo2 = txtFecha2.Text
+        vartitulo3 = txtFecha3.Text
+        vartitulo4 = txtFecha4.Text
+        vartitulo5 = "Posterior"
+
+        Dim tabla As DataTable
+
+        tabla = SQLConnector.retrieveDataTable("buscar_cheques_valcar", varDesdefechaOrd, varHastafechaOrd, varDesdeCliente, varHastaCliente)
+
+        For Each row As DataRow In tabla.Rows
+
+            Dim CampoRecibos As New LeeRecibosValcar(row.Item(0), row.Item(1), row.Item(2),
+                                           row.Item(3), row.Item(4), row.Item(5),
+                                           row.Item(6), row.Item(7), row.Item(8),
+                                           row.Item(9), row.Item(10), row.Item(11), row.Item(12),
+                                           row.Item(13), row.Item(14), row.Item(15), row.Item(16), row.Item(17),
+                                           row.Item(18), row.Item(19), row.Item(20), row.Item(21), row.Item(22), row.Item(23))
+
+            varEmpresa = 1
+
+            varImpo1 = 0
+            varImpo2 = 0
+            varImpo3 = 0
+            varImpo4 = 0
+            varImpo5 = 0
+
+            varVencimiento = CampoRecibos.FechaOrd2
+
+            If varVencimiento <= varFecha1 Then
+                varImpo1 = CampoRecibos.importe2
+            Else
+                If varVencimiento > varFecha1 And varVencimiento <= varFecha2 Then
+                    varImpo2 = CampoRecibos.importe2
+                Else
+                    If varVencimiento > varFecha2 And varVencimiento <= VarFecha3 Then
+                        varImpo3 = CampoRecibos.importe2
+                    Else
+                        If varVencimiento > VarFecha3 And varVencimiento <= VarFecha4 Then
+                            varImpo4 = CampoRecibos.importe2
+                        Else
+                            varImpo5 = CampoRecibos.importe2
+                        End If
+                    End If
+                End If
+            End If
+
+            ''If Impre(5) = 0 Then
+            '?????
+
+            SQLConnector.executeProcedure("alta_valcar", CampoRecibos.recibo, CampoRecibos.cliente, CampoRecibos.numero2, CampoRecibos.Banco2, varImpo1, varImpo2, varImpo3,
+                                          varImpo4, varImpo5, vartitulo1, vartitulo2, vartitulo3, vartitulo4, vartitulo5)
+
+        Next
+
+
+
+
+
+        'Dim txtdada As Double
+        'txtdada = SQLConnector.executeProcedureWithReturnValue("get_saldo_inicial_pagos", txtDesdefechaOrd, txtHastafechaOrd, txtDesdeBanco.Text, txtHastaBanco.Text)
+
+
+
+        varUno = "{Valcar.recibo} in 0 to 999999"
+        varFormula = varUno
+
+        Dim viewer As New ReportViewer("Listado de Valores en Cartera", Globals.reportPathWithName("wvalcarnet.rpt"), varFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
+        End If
+
+
+
+
+
+
+
     End Sub
 End Class

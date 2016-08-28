@@ -1210,6 +1210,7 @@ AS
 		, re.RetSuss
 		, re.Paridad
 		, re.Observaciones
+		, re.TipoRec
 		, re.TipoReg
 		, re.Tipo1
 		, re.Cuenta

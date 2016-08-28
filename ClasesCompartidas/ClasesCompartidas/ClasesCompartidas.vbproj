@@ -89,6 +89,7 @@
     <Compile Include="ItemDeposito.vb" />
     <Compile Include="LeePagosMovBan.vb" />
     <Compile Include="LeeRecibos.vb" />
+    <Compile Include="LeeRecibosValcar.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

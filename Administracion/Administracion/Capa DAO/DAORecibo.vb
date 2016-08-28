@@ -16,7 +16,7 @@ Public Class DAORecibo
             SQLConnector.executeProcedure("alta_recibo_forma_pago", recibo.codigo, ceros(renglon, 2), recibo.codigoCliente, recibo.fecha,
                                         recibo.retGanancias, recibo.retIVA, recibo.retIB, recibo.retSuss, ceros(formaPago.tipo, 2),
                                         formaPago.numero, formaPago.fecha, formaPago.nombre, formaPago.importe, recibo.total,
-                                        recibo.paridad, recibo.observaciones, recibo.tipo, recibo.codigoCuenta)
+                                        recibo.paridad, recibo.observaciones, recibo.tipo, recibo.cuenta)
             renglon += 1
         Next
         renglon = 1
@@ -24,7 +24,7 @@ Public Class DAORecibo
             SQLConnector.executeProcedure("alta_recibo_pago", recibo.codigo, ceros(renglon, 2), recibo.codigoCliente, recibo.fecha,
                                         recibo.retGanancias, recibo.retIVA, recibo.retIB, recibo.retSuss, ceros(pago.tipo, 2),
                                         pago.letra, pago.punto, pago.numero, pago.importe, recibo.total,
-                                        recibo.paridad, recibo.observaciones, recibo.tipo, recibo.codigoCuenta)
+                                        recibo.paridad, recibo.observaciones, recibo.tipo, recibo.cuenta)
             renglon += 1
         Next
     End Sub
@@ -56,14 +56,16 @@ Public Class DAORecibo
 
     Public Shared Function buscarRecibo(ByVal codRecibo As String)
         Try
-            'Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo", codRecibo)
-            Dim tabla As DataTable
-            tabla = SQLConnector.retrieveDataTable("buscar_banco_por_codigo", "16")
+            Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo", codRecibo)
             Dim cantidad As Integer = tabla.Rows.Count
             Dim row As DataRow = tabla.Rows(0)
+            Dim cuenta As String = ""
+            If Not (IsNothing(row("Cuenta").ToString)) Then
+                cuenta = row("Cuenta").ToString
+            End If
             Dim recibo As New Recibo(row("Recibo").ToString, CustomConvert.asTextDate(row("Fecha").ToString), DAOCliente.buscarClientePorCodigo(row("Cliente").ToString),
                                         asDouble(row("RetGanancias")), asDouble(row("RetOtra")), asDouble(row("RetIva")), asDouble(row("RetSuss")), asDouble(row("Paridad")),
-                                        0, DAOCuentaContable.buscarCuentaContablePorCodigo(row("Cuenta").ToString), row("Observaciones").ToString, CustomConvert.toIntOrZero(row("TipoRec")))
+                                        0, cuenta, row("Observaciones").ToString, CustomConvert.toIntOrZero(row("TipoRec")))
             Dim formasPago As New List(Of FormaPago)
             Dim pagos As New List(Of Pago)
             For Each rowA As DataRow In tabla.Rows

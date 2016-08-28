@@ -130,7 +130,7 @@ Public Class ListadoMovimientosBancos
         Dim varEmpresa As String
         Dim varFormula As String
         Dim x As Char = Chr(34)
-        Dim varDesdefechaOrd, varHastafechaOrd
+        Dim varDesdefechaOrd, varHastafechaOrd As String
 
         Dim varBancoCodigo As Integer
         Dim varBancoCuenta As String

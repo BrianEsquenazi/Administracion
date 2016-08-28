@@ -447,6 +447,11 @@ GO
 
 
 
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+
 CREATE TABLE [dbo].[ListaIvaCompras](
 	[NroInterno] [int] NULL,
 	[Proveedor] [char](11) NULL,
@@ -474,12 +479,22 @@ CREATE TABLE [dbo].[ListaIvaCompras](
 GO
 
 
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
 CREATE PROCEDURE PR_limpiar_ListaIvaCompras
 AS
 	DELETE 
 	FROM dbo.ListaIvaCompras
 GO
 
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
 
 CREATE PROCEDURE PR_alta_ListaIvaCompras
 	(@NroINterno int,
@@ -516,6 +531,11 @@ GO
 
 
 
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+
 CREATE PROCEDURE [dbo].[PR_Lee_IvaComp] (@desde_fecha varchar(8)
 								, @hasta_Fecha varchar(8))
 AS
@@ -550,6 +570,11 @@ GO
 
 
 
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+
 CREATE PROCEDURE [dbo].[PR_Lee_IvaCompAdicional] (@nrointerno integer)
 AS
 BEGIN
@@ -578,6 +603,11 @@ GO
 
 
 
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_limpiar_MovBan]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[PR_limpiar_MovBan]
 GO
@@ -590,6 +620,11 @@ GO
 
 
 
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
 
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_pagos_movban]') AND type in (N'P', N'PC'))
@@ -878,6 +913,147 @@ AS
 
 
 
+GO
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Valcar]') AND type in (N'U'))
+DROP TABLE [dbo].[Valcar]
+GO
+
+
+CREATE TABLE [dbo].[Valcar](
+	[Recibo] [int] NULL,
+	[Cliente] [char](6) NULL,
+	[Cheque] [char](10) NOT NULL,
+	[Banco] char(20) NULL,
+	[Impo1] [float] NULL,
+	[Impo2] [float] NULL,
+	[Impo3] [float] NULL,
+	[Impo4] [float] NULL,
+	[Impo5] [float] NULL,
+	[Titulo1] [char](10) NOT NULL,
+	[Titulo2] [char](10) NOT NULL,
+	[Titulo3] [char](10) NOT NULL,
+	[Titulo4] [char](10) NOT NULL,
+	[Titulo5] [char](10) NOT NULL,
+	
+) ON [PRIMARY]
+GO
+
+
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_Valcar]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_alta_Valcar]
+GO
+
+
+CREATE PROCEDURE PR_alta_Valcar
+	(@Recibo int,
+	@Cliente char(6),
+	@Cheque char(10),
+	@Banco char(20),
+	@Impo1 float,
+	@Impo2 float,
+	@Impo3 float,
+	@Impo4 float,
+	@Impo5 float,
+	@Titulo1 char(10),
+	@Titulo2 char(10),
+	@Titulo3 char(10),
+	@Titulo4 char(10),
+	@Titulo5 char(10))
+AS
+	INSERT INTO dbo.Valcar
+		(Recibo, Cliente, Cheque, Banco, Impo1, Impo2,Impo3, Impo4, Impo5, 
+		Titulo1, Titulo2, Titulo3, Titulo4, Titulo5)
+		VALUES
+		(@Recibo, @Cliente, @Cheque, @Banco, @Impo1, @Impo2,@Impo3, @Impo4, @Impo5, 
+		@Titulo1, @Titulo2, @Titulo3, @Titulo4, @Titulo5)
+GO
+
+
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_cheques_valcar]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_cheques_valcar]
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_cheques_valcar]
+	(@DesdeFecha char(8)
+	, @HastaFecha char(8)
+	, @DesdeCliente char(6)
+	, @HastaCliente char(6))
+AS
+	select Recibos.FechaOrd as FechaOrd
+		 , recibos.Recibo as Recibo
+		 , recibos.TipoReg as TipoReg
+		 , recibos.TipoRec as TipoRec
+		 , recibos.Cuenta as Cuenta
+		 , recibos.Cliente as Cliente
+		 , recibos.Tipo1 as Tipo1
+		 , recibos.letra1 as Letra1
+		 , recibos.Punto1 as Punto1
+		 , recibos.Numero1 as Numero1
+		 , recibos.Fecha as Fecha
+		 , recibos.Tipo2 as Tipo2
+		 , recibos.Numero2 as Numero2
+		 , recibos.Importe1 as Importe1
+		 , recibos.Paridad as Paridad
+		 , recibos.Importe2 as Importe2
+		 , recibos.RetIva as RetIva
+		 , recibos.RetOtra as RetOtra
+		 , recibos.RetSuss as RetSuss
+		 , recibos.RetGanancias as RetGanancias
+		 , recibos.Renglon as Renglon
+		 , recibos.banco2 AS Banco2
+		 , recibos.Fecha2 AS Fecha2
+		 , recibos.FechaOrd2 AS FechaOrd2
+		 
+	from surfactanSA.dbo.Recibos recibos
+	WHERE recibos.Fechaord2 between @DesdeFecha and @HastaFecha
+		and recibos.Cliente between @DesdeCliente and @HastaCliente
+		and TipoReg = '2'
+		and Tipo2 = '02'
+		and Estado2 <> 'X'
+	order by recibos.Clave
+
+
+GO
+
+
+
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_limpiar_Valcar]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_limpiar_Valcar]
+GO
+CREATE PROCEDURE PR_limpiar_Valcar
+AS
+	DELETE 
+	FROM dbo.Valcar
 GO
 
 
