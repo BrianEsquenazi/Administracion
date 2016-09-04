@@ -3,6 +3,7 @@
     Public fechaord, recibo, tiporeg, tiporec, cuenta, cliente, tipo1, letra1, punto1, numero1, fecha, tipo2, numero2, Banco2, Fecha2, FechaOrd2 As String
     Public importe1, paridad, importe2, retiva, retotra, retsuss, retganancias As Double
     Public renglon As Integer
+    Public destino As String
 
 
     Public Sub New(ByVal xfechaord As String, ByVal xrecibo As String, ByVal xtiporeg As String, ByVal xtiporec As String,
@@ -10,7 +11,8 @@
                    ByVal xpunto1 As String, ByVal xnumero1 As String, ByVal xfecha As String, ByVal xtipo2 As String,
                    ByVal xnumero2 As String, ByVal ximporte1 As Double, ByVal xparidad As Double, ByVal ximporte2 As Double,
                    ByVal xretiva As Double, ByVal xretotra As Double, ByVal xretsuss As Double, ByVal xretganancias As Double,
-                   ByVal xrenglon As Integer, ByVal xBanco2 As String, ByVal xfecha2 As String, ByVal xfechaord2 As String)
+                   ByVal xrenglon As Integer, ByVal xBanco2 As String, ByVal xfecha2 As String, ByVal xfechaord2 As String,
+                   ByVal xdestino As String)
         fechaord = xfechaord
         recibo = xrecibo
         tiporeg = xtiporeg
@@ -35,6 +37,7 @@
         Banco2 = xBanco2
         Fecha2 = xfecha2
         FechaOrd2 = xfechaord2
+        destino = xdestino
     End Sub
 
 End Class

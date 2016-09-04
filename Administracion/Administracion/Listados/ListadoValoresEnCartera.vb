@@ -210,7 +210,7 @@ Public Class ListadoValoresEnCartera
                                            row.Item(6), row.Item(7), row.Item(8),
                                            row.Item(9), row.Item(10), row.Item(11), row.Item(12),
                                            row.Item(13), row.Item(14), row.Item(15), row.Item(16), row.Item(17),
-                                           row.Item(18), row.Item(19), row.Item(20), row.Item(21), row.Item(22), row.Item(23))
+                                           row.Item(18), row.Item(19), row.Item(20), row.Item(21), row.Item(22), row.Item(23), row.Item(24))
 
             varEmpresa = 1
 

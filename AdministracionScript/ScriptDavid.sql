@@ -1025,6 +1025,7 @@ AS
 		 , recibos.banco2 AS Banco2
 		 , recibos.Fecha2 AS Fecha2
 		 , recibos.FechaOrd2 AS FechaOrd2
+		 , recibos.Destino AS Destino
 		 
 	from surfactanSA.dbo.Recibos recibos
 	WHERE recibos.Fechaord2 between @DesdeFecha and @HastaFecha
@@ -1036,6 +1037,8 @@ AS
 
 
 GO
+
+
 
 
 
@@ -1055,5 +1058,60 @@ AS
 	DELETE 
 	FROM dbo.Valcar
 GO
+
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_cheques_valcar]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_cheques_valcar]
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_cheques_valcar_cuit]
+	(@DesdeFecha char(8)
+	, @HastaFecha char(8)
+	, @Cuit char(15))
+AS
+	select Recibos.FechaOrd as FechaOrd
+		 , recibos.Recibo as Recibo
+		 , recibos.TipoReg as TipoReg
+		 , recibos.TipoRec as TipoRec
+		 , recibos.Cuenta as Cuenta
+		 , recibos.Cliente as Cliente
+		 , recibos.Tipo1 as Tipo1
+		 , recibos.letra1 as Letra1
+		 , recibos.Punto1 as Punto1
+		 , recibos.Numero1 as Numero1
+		 , recibos.Fecha as Fecha
+		 , recibos.Tipo2 as Tipo2
+		 , recibos.Numero2 as Numero2
+		 , recibos.Importe1 as Importe1
+		 , recibos.Paridad as Paridad
+		 , recibos.Importe2 as Importe2
+		 , recibos.RetIva as RetIva
+		 , recibos.RetOtra as RetOtra
+		 , recibos.RetSuss as RetSuss
+		 , recibos.RetGanancias as RetGanancias
+		 , recibos.Renglon as Renglon
+		 , recibos.banco2 AS Banco2
+		 , recibos.Fecha2 AS Fecha2
+		 , recibos.FechaOrd2 AS FechaOrd2
+		 , recibos.Destino AS Destino
+		 
+	from surfactanSA.dbo.Recibos recibos
+	WHERE recibos.Fechaord2 between @DesdeFecha and @HastaFecha
+		and recibos.Cuit = @Cuit
+		and TipoReg = '2'
+		and Tipo2 = '02'
+	order by recibos.Clave
+
+
+GO
+
+
+
 
 
