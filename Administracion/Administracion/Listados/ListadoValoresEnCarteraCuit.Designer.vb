@@ -31,7 +31,7 @@ Partial Class ListadoValoresEnCarteraCuit
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
         Me.CustomLabel3 = New Administracion.CustomLabel()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtCuit = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'btnCancela
@@ -122,19 +122,19 @@ Partial Class ListadoValoresEnCarteraCuit
         Me.CustomLabel3.TabIndex = 46
         Me.CustomLabel3.Text = "Cuit"
         '
-        'TextBox1
+        'txtCuit
         '
-        Me.TextBox1.Location = New System.Drawing.Point(243, 101)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(146, 20)
-        Me.TextBox1.TabIndex = 47
+        Me.txtCuit.Location = New System.Drawing.Point(243, 101)
+        Me.txtCuit.Name = "txtCuit"
+        Me.txtCuit.Size = New System.Drawing.Size(146, 20)
+        Me.txtCuit.TabIndex = 47
         '
         'ListadoValoresEnCarteraCuit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(488, 256)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtCuit)
         Me.Controls.Add(Me.CustomLabel3)
         Me.Controls.Add(Me.btnCancela)
         Me.Controls.Add(Me.btnAcepta)
@@ -159,5 +159,5 @@ Partial Class ListadoValoresEnCarteraCuit
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
     Friend WithEvents CustomLabel3 As Administracion.CustomLabel
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtCuit As System.Windows.Forms.TextBox
 End Class

@@ -208,7 +208,7 @@
         abrir(New ListadoProyeccionCobrosAnalitico)
     End Sub
 
-    Private Sub ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem.Click
+    Private Sub ListadoDeAgendaDeVencimientosDeLertasYDespachosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         abrir(New ListadoAgenda)
     End Sub
 
@@ -220,7 +220,7 @@
         abrir(New ListadoDeudaPyme)
     End Sub
 
-    Private Sub ListadoDeProyeccionDePagosDeImportacionesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeProyeccionDePagosDeImportacionesToolStripMenuItem.Click
+    Private Sub ListadoDeProyeccionDePagosDeImportacionesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         abrir(New ListadoPagosImportaciones)
     End Sub
 
