@@ -1011,10 +1011,41 @@ AS
 		, Fecha2
 		, banco2
 		, rp.Importe2
+		, rp.Importe
 	FROM RecibosProvi rp
 	JOIN Cliente c on c.Cliente = rp.Cliente
 	WHERE rp.Recibo = @recibo
 		and rp.Numero2 = ISNULL(@Numero2,rp.Numero2)
+GO
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_recibo_provisorio_sin_numero]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_recibo_provisorio_sin_numero]
+GO
+
+CREATE PROCEDURE PR_get_recibo_provisorio_sin_numero
+	@recibo varchar(6)
+AS
+	SELECT rp.Recibo
+		, RTRIM(rp.Cliente) Cliente
+		, c.Razon
+		, ISNULL(rp.Fecha,'//') as Fecha
+		, ISNULL(rp.RetGanancias, 0.0) RetGanancias
+		, ISNULL(rp.RetIva, 0.0) RetIva
+		, ISNULL(rp.RetOtra, 0.0) RetOtra
+		, ISNULL(rp.RetSuss, 0.0) RetSuss
+		, ISNULL(rp.Paridad, 0.0) Paridad
+		, TipoReg
+		, Tipo2
+		, Numero2
+		, Fecha2
+		, banco2
+		, rp.Importe2
+		, rp.Importe
+	FROM RecibosProvi rp
+	JOIN Cliente c on c.Cliente = rp.Cliente
+	WHERE rp.Recibo = @recibo
+
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_recibos_provisorios]') AND type in (N'P', N'PC'))
