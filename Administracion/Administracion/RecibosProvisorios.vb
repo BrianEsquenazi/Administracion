@@ -202,10 +202,12 @@ Public Class RecibosProvisorios
 
         validador.validate(Me)
         validador.alsoValidate(CustomConvert.toDoubleOrZero(lblTotal.Text) = CustomConvert.toDoubleOrZero(txtTotal.Text), "La suma de los importes de la tabla no coincide con lo informado en el total")
-        validador.alsoValidate(DAORecibo.existeReciboProvisorio(txtRecibo.Text), "Ya existe un recibo provisorio con ese número")
+        validador.alsoValidate(DAORecibo.permiteActualizacionProvisorio(txtRecibo.Text), "Ya existe un recibo provisorio con ese número y no se puede modificar")
         validador.alsoValidate(DAORecibo.existeRecibo(txtRecibo.Text), "Ya existe un recibo definitivo con ese número")
 
+
         If validador.flush Then
+            DAORecibo.eliminarReciboProvisorio(txtRecibo.Text)
             Dim recibo As New ReciboProvisorio(txtRecibo.Text, txtFecha.Text, DAOCliente.buscarClientePorCodigo(txtCliente.Text),
                                                CustomConvert.toDoubleOrZero(txtRetGanancias.Text), CustomConvert.toDoubleOrZero(txtRetIB.Text),
                                                CustomConvert.toDoubleOrZero(txtRetIva.Text), CustomConvert.toDoubleOrZero(txtRetSuss.Text),

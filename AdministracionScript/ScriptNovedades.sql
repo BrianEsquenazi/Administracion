@@ -1105,6 +1105,7 @@ CREATE PROCEDURE PR_alta_recibo_provisorio
 	, @IMPORTE2 FLOAT
 	, @IMPORTE FLOAT
 	, @PARIDAD FLOAT
+	, @ESTADO2 CHAR
 AS
 	DECLARE @CLAVE VARCHAR(8) = @Recibo + @Renglon
 	DECLARE @FECHAORD VARCHAR(8) = (SELECT dbo.FN_verificar_fecha_ordenable (@FECHA))
@@ -1112,10 +1113,10 @@ AS
 	INSERT INTO RecibosProvi(Clave, Recibo, Renglon, Cliente, Fecha,
 	Fechaord, TipoRec, RetGanancias, RetIva, RetOtra, RetSuss, Retencion,
 	TipoReg, Tipo2, Numero2, Fecha2, FechaOrd2, banco2, Importe2, Importe, Paridad,
-	Empresa, Impolist, Observaciones, Cuenta)
+	Empresa, Impolist, Observaciones, Cuenta, Estado2)
 	VALUES (@CLAVE, @Recibo, @Renglon, @CLIENTE, @FECHA, @FECHAORD, 1,
 	@RETGANANCIAS, @RETIVA, @RETIB, @RETSUSS, 0, 2, @TIPO, @NUMERO, @FECHA2,
-	@FECHAORD2, @BANCO, @IMPORTE2, @IMPORTE, @PARIDAD, 1, 0, "", "")
+	@FECHAORD2, @BANCO, @IMPORTE2, @IMPORTE, @PARIDAD, 1, 0, "", "", @ESTADO2)
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_ultimo_recibo]') AND type in (N'P', N'PC'))

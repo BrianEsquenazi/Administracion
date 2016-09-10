@@ -9,6 +9,15 @@ Public Class DAORecibo
         'Return SQLConnector.checkIfExists("get_recibo_provisorio_sin_numero", codigo)
     End Function
 
+    Public Shared Function permiteActualizacionProvisorio(ByVal codigo As String)
+        Dim existencia As Integer = SQLConnector.executeProcedureWithReturnValue("permite_actualizacion", codigo)
+        Return existencia = 1
+    End Function
+
+    Public Shared Sub eliminarReciboProvisorio(ByVal codigo As String)
+        SQLConnector.executeProcedure("baja_recibo_provisorio", codigo)
+    End Sub
+
     Public Shared Function existeRecibo(ByVal codigo As String)
         Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo", codigo)
         Return tabla.Rows.Count = 0
@@ -41,11 +50,15 @@ Public Class DAORecibo
 
     Public Shared Sub agregarReciboProvisorio(ByVal recibo As ReciboProvisorio)
         Dim renglon As Integer = 1
+        Dim estado2 As Char = ""
         For Each formaPago As FormaPago In recibo.formasPago
+            If (Convert.ToInt32(formaPago.tipo) = 2) Then
+                estado2 = "P"
+            End If
             SQLConnector.executeProcedure("alta_recibo_provisorio", recibo.codigo, ceros(renglon, 2), recibo.codigoCliente, recibo.fecha,
                                         recibo.retGanancias, recibo.retIVA, recibo.retIB, recibo.retSuss, ceros(formaPago.tipo, 2),
                                         formaPago.numero, formaPago.fecha, formaPago.nombre, formaPago.importe, recibo.total,
-                                        recibo.paridad)
+                                        recibo.paridad, estado2)
             renglon += 1
         Next
     End Sub
@@ -95,7 +108,7 @@ Public Class DAORecibo
             Dim row As DataRow = tabla.Rows(0)
             Dim recibo As ReciboProvisorio = New ReciboProvisorio(row("Recibo").ToString, CustomConvert.asTextDate(row("Fecha").ToString), DAOCliente.buscarClientePorCodigo(row("Cliente").ToString),
                                         asDouble(row("RetGanancias")), asDouble(row("RetOtra")), asDouble(row("RetIva")), asDouble(row("RetSuss")), asDouble(row("Paridad")),
-                                        0)
+                                        asDouble(row("Importe")))
             Dim formasPago As New List(Of FormaPago)
             For Each rowA As DataRow In tabla.Rows
                 If rowA("TipoReg").ToString = "2" Then
