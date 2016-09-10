@@ -43,6 +43,67 @@ AS
 
 GO
 
+-- AGREGA LAS COLUMNAS NUEVAS A CtaCtePrv en caso de que no existan
+IF NOT EXISTS(
+    SELECT *
+    FROM sys.columns 
+    WHERE Name      = N'TituloI'
+      AND Object_ID = Object_ID(N'CtaCtePrv'))
+BEGIN
+	ALTER TABLE [CtaCtePrv]
+    ADD [TituloI] char(50) NULL 
+END
+
+IF NOT EXISTS(
+    SELECT *
+    FROM sys.columns 
+    WHERE Name      = N'TituloII'
+      AND Object_ID = Object_ID(N'CtaCtePrv'))
+BEGIN
+	ALTER TABLE [CtaCtePrv]
+    ADD [TituloII] char(50) NULL 
+END
+
+IF NOT EXISTS(
+    SELECT *
+    FROM sys.columns 
+    WHERE Name      = N'Auxi1'
+      AND Object_ID = Object_ID(N'CtaCtePrv'))
+BEGIN
+	ALTER TABLE [CtaCtePrv]
+    ADD [Auxi1] char(10) NULL 
+END
+
+IF NOT EXISTS(
+    SELECT *
+    FROM sys.columns 
+    WHERE Name      = N'Auxi1'
+      AND Object_ID = Object_ID(N'CtaCtePrv'))
+BEGIN
+	ALTER TABLE [CtaCtePrv]
+    ADD [Auxi1] char(10) NULL 
+END
+
+IF NOT EXISTS(
+    SELECT *
+    FROM sys.columns 
+    WHERE Name      = N'Auxi3'
+      AND Object_ID = Object_ID(N'CtaCtePrv'))
+BEGIN
+	ALTER TABLE [CtaCtePrv]
+    ADD [Auxi3] char(8) NULL 
+END
+
+IF NOT EXISTS(
+    SELECT *
+    FROM sys.columns 
+    WHERE Name      = N'Auxi4'
+      AND Object_ID = Object_ID(N'CtaCtePrv'))
+BEGIN
+	ALTER TABLE [CtaCtePrv]
+    ADD [Auxi4] char(8) NULL 
+END
+
 
 /*
 ----------------------------------------------------------------------------
@@ -53,9 +114,45 @@ GO
 
 /*
 ----------------------------------------------------------------------------
-										ABM
+									TABLAS MODIFICADAS
 ----------------------------------------------------------------------------
 */
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Movban]') AND type in (N'U'))
+DROP TABLE [dbo].[Movban]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Movban](
+	[da] [int] NULL,
+	[Banco] [int] NULL,
+	[Fecha] [char](10) NOT NULL,
+	[FechaOrd] [char](8) NULL,
+	[Acredita] [char](10) NOT NULL,
+	[AcreditaOrd] [char](8) NULL,
+	[Observaciones] [char](50) NULL,
+	[Numero] [char](10) NULL,
+	[Debito] [float] NULL,
+	[Credito] [float] NULL,
+	[Comprobante] [char](8) NULL,
+	[Empresa] [int] NULL,
+	[Titulo] [char](50) NULL,
+	[Titulo1] [char](50) NULL,
+	[Proveedor] [char](11) NOT NULL
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
 
 /*
 ----------------------------------------------------------------------------
@@ -1066,8 +1163,8 @@ GO
 --   ---------------------------------------------------------------------------------------------------------
 --
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_cheques_valcar]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[PR_buscar_cheques_valcar]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_cheques_valcar_cuit]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_cheques_valcar_cuit]
 GO
 
 CREATE PROCEDURE [dbo].[PR_buscar_cheques_valcar_cuit]
@@ -1115,3 +1212,27 @@ GO
 
 
 
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_modificar_pagos_titulo]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_modificar_pagos_titulo]
+GO
+
+CREATE PROCEDURE [dbo].[PR_modificar_pagos_titulo]
+	(@titulo varchar(50)
+	, @tituloi varchar(50)
+	, @DesdeFecha char(8)
+	, @HastaFecha char(8))
+AS
+BEGIN
+	BEGIN TRAN
+		UPDATE	Pagos
+		SET titulo = @titulo
+		  , tituloi = @tituloi
+		WHERE Pagos.FechaOrd between @DesdeFecha and @HastaFecha
+	COMMIT
+END
+GO

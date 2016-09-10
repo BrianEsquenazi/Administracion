@@ -21,6 +21,16 @@
 
     End Function
 
+    Public Function leeizquierda(ByVal leeizquierdaII As String, ByVal largoizquierda As Integer)
+
+        Dim txtleeizquierda As String
+
+        Dim subString As String = Right(leeizquierdaII, largoizquierda)
+        txtleeizquierda = subString
+
+        Return txtleeizquierda
+
+    End Function
 
     Public Function redondeo(ByVal redondeoii As Double)
 

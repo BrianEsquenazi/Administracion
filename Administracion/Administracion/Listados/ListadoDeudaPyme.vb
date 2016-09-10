@@ -54,5 +54,27 @@ Public Class ListadoDeudaPyme
 
     Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
 
+        Dim varDesde, varHasta As String
+        Dim varUno, varDos, varTres As String
+        Dim varFormula As String
+        Dim x As Char = Chr(34)
+
+        varDesde = ordenaFecha(txtDesdeFecha.Text)
+        varHasta = ordenaFecha(txthastafecha.Text)
+
+        varUno = "{ctacteprv.ordFecha} in " + x + varDesde + x + " to " + x + varHasta + x
+        varDos = " and {ctacteprv.saldo} <> 0"
+        varTres = " and {ctacteprv.proveedor} = " + x + "10077777777" + x
+
+        varFormula = varUno + varDos + varTres
+
+        Dim viewer As New ReportViewer("Listado de Deuda Pyme Nacion", Globals.reportPathWithName("ListaPymenet.rpt"), varFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
+        End If
+
     End Sub
 End Class

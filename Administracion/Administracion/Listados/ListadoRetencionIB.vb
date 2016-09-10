@@ -49,5 +49,32 @@ Public Class ListadoRetencionIB
 
     Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
 
+        Dim varDesde, varHasta As String
+        Dim varUno, varDos, varTres As String
+        Dim varFormula, varEmpresa, varTitulo As String
+        Dim x As Char = Chr(34)
+
+        varDesde = ordenaFecha(txtDesdeFecha.Text)
+        varHasta = ordenaFecha(txthastafecha.Text)
+
+        varEmpresa = "Surfactan S.A."
+        varTitulo = "Desde el " + txtDesdeFecha.Text + " al " + txthastafecha.Text
+
+        SQLConnector.retrieveDataTable("modificar_pagos_titulo", varEmpresa, varTitulo, varDesde, varHasta)
+
+        varUno = "{Pagos.Fechaord} in " + x + varDesde + x + " to " + x + varHasta + x
+        varDos = " and {Pagos.RetOtra} <> 0"
+        varTres = " and {Pagos.Renglon} = " + x + "01" + x
+
+        varFormula = varUno + varDos + varTres
+
+        Dim viewer As New ReportViewer("Listado de Retenciones de Ingresos Brutos", Globals.reportPathWithName("wListIbnet.rpt"), varFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
+        End If
+
     End Sub
 End Class

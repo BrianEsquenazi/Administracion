@@ -100,5 +100,77 @@ Public Class ListadoProyeccionCobrosAnalitico
 
     Private Sub btnAcepta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAcepta.Click
 
+
+
+        Dim varFormula, varUno, varDos, varTres As String
+        Dim x As Char = Chr(34)
+        Dim varFecha As String
+        Dim varCicla As Integer
+        Dim varDias As Integer
+        Dim varDia, varMes, varAno As String
+        Dim varDesdeFecha, varHastaFecha As String
+        Dim varTitulo As String
+
+
+        varFecha = txtFechaEmision.Text
+        varCicla = 0
+
+        Do
+
+            varCicla = varCicla + 1
+            If varCicla = 1000 Then Exit Sub
+
+            varDias = DateDiff("d", varFecha, txtFechaEmision.Text)
+            If varDias >= Val(txtDias.Text) Then Exit Do
+
+
+            varDia = Mid$(varFecha, 1, 2)
+            varMes = Mid$(varFecha, 4, 2)
+            varAno = Mid$(varFecha, 7, 4)
+
+            varDia = Str$(Val(varDia) - 1)
+            If Val(varDia) = 0 Then
+                varMes = Str$(Val(varMes) - 1)
+                If Val(varMes) = 0 Then
+                    varAno = Str$(Val(varAno) - 1)
+                    varMes = "12"
+                End If
+                If Val(varMes) = 2 Then
+                    varDia = "28"
+                Else
+                    varDia = "30"
+                End If
+            End If
+
+            varFecha = ceros(varDia, 2) + "/" + ceros(varMes, 2) + "/" + ceros(varAno, 4)
+
+        Loop
+
+        varDesdeFecha = "00000000"
+
+        varAno = leeizquierda(varFecha, 4)
+        varMes = Mid$(varFecha, 4, 2)
+        varDia = leederecha(varFecha, 2)
+        varHastaFecha = varAno + varMes + varDia
+
+        varTitulo = "Fecha de Emision : " + txtFechaEmision.Text + "    (Plazo :" + txtDias.Text + ")"
+
+        varUno = "{CtaCtePrv.Proveedor} in " + x + txtDesdeProveedor.Text + x + " to " + x + txtHastaProveedor.Text + x
+        varDos = " and {CtaCtePrv.ordfecha} in " + x + varDesdeFecha + x + " to " + x + varHastaFecha + x
+        varTres = " and not ({CtaCtePrv.Saldo} in -1.00 to 1.00)"
+
+        varFormula = varUno + varDos + varTres
+
+        Dim viewer As New ReportViewer("Listado de Corriente de Proveedres", Globals.reportPathWithName("wccprvanaliticonet.rpt"), varFormula)
+
+        If opcPantalla.Checked = True Then
+            viewer.Show()
+        Else
+            viewer.imprimirReporte()
+        End If
+
+
+
+
     End Sub
 End Class
