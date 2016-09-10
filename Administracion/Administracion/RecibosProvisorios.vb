@@ -110,7 +110,7 @@ Public Class RecibosProvisorios
             'Modificar el valor de la columna de ser fecha DD/MM --> DD/MM/YYYY (año actual)
             If iCol = 2 And Val.ToString.Length <= 5 Then
                 val = val + "/" + Date.Now.Year.ToString
-                gridRecibos.Rows(iRow).Cells(2).Value = Val()
+                gridRecibos.Rows(iRow).Cells(2).Value = val
             End If
         End If
     End Sub
@@ -212,6 +212,7 @@ Public Class RecibosProvisorios
                                                CustomConvert.toDoubleOrZero(txtParidad.Text), CustomConvert.toDoubleOrZero(txtTotal.Text))
             recibo.formasPago = crearFormasPago()
             DAORecibo.agregarReciboProvisorio(recibo)
+            btnLimpiar.PerformClick()
         End If
     End Sub
 
@@ -235,5 +236,14 @@ Public Class RecibosProvisorios
 
     Private Sub txtRetencion_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtRetGanancias.Leave, txtRetSuss.Leave, txtRetIva.Leave, txtRetIB.Leave
         sumarValores()
+    End Sub
+
+    Private Sub txtTotal_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtTotal.KeyDown
+        ' NO ESTA FUNCIONANDO EL DIRECCIONAR A LA GRILLA
+        'If e.KeyValue = Keys.Enter Then
+        '    gridRecibos.CurrentCell = gridRecibos.Item(0, 0)
+        '    gridRecibos.Rows(0).Cells(0).Selected = True
+        '    gridRecibos.Focus()
+        'End If
     End Sub
 End Class

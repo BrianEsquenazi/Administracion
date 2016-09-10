@@ -23,6 +23,11 @@ Partial Class RecibosProvisorios
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.gridRecibos = New System.Windows.Forms.DataGridView()
+        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CustomLabel10 = New Administracion.CustomLabel()
         Me.lstSeleccion = New Administracion.CustomListBox()
         Me.txtConsulta = New Administracion.CustomTextBox()
@@ -52,11 +57,6 @@ Partial Class RecibosProvisorios
         Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.CustomLabel2 = New Administracion.CustomLabel()
         Me.CustomLabel1 = New Administracion.CustomLabel()
-        Me.Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.banco = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.gridRecibos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -69,6 +69,42 @@ Partial Class RecibosProvisorios
         Me.gridRecibos.Name = "gridRecibos"
         Me.gridRecibos.Size = New System.Drawing.Size(756, 363)
         Me.gridRecibos.TabIndex = 13
+        '
+        'Tipo
+        '
+        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
+        Me.Tipo.FillWeight = 80.0!
+        Me.Tipo.HeaderText = "Tipo"
+        Me.Tipo.Name = "Tipo"
+        Me.Tipo.Width = 53
+        '
+        'numero
+        '
+        Me.numero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.numero.FillWeight = 120.0!
+        Me.numero.HeaderText = "Numero/Cta"
+        Me.numero.Name = "numero"
+        Me.numero.Width = 170
+        '
+        'fecha
+        '
+        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.fecha.FillWeight = 120.0!
+        Me.fecha.HeaderText = "Fecha"
+        Me.fecha.Name = "fecha"
+        Me.fecha.Width = 110
+        '
+        'banco
+        '
+        Me.banco.FillWeight = 150.0!
+        Me.banco.HeaderText = "Banco"
+        Me.banco.Name = "banco"
+        '
+        'importe
+        '
+        Me.importe.FillWeight = 80.0!
+        Me.importe.HeaderText = "Importe"
+        Me.importe.Name = "importe"
         '
         'CustomLabel10
         '
@@ -227,7 +263,7 @@ Partial Class RecibosProvisorios
         '
         Me.txtParidad.Cleanable = True
         Me.txtParidad.Empty = True
-        Me.txtParidad.EnterIndex = 9
+        Me.txtParidad.EnterIndex = -1
         Me.txtParidad.LabelAssociationKey = 8
         Me.txtParidad.Location = New System.Drawing.Point(103, 121)
         Me.txtParidad.Name = "txtParidad"
@@ -405,42 +441,6 @@ Partial Class RecibosProvisorios
         Me.CustomLabel1.Size = New System.Drawing.Size(64, 13)
         Me.CustomLabel1.TabIndex = 0
         Me.CustomLabel1.Text = "Nro. Recibo"
-        '
-        'Tipo
-        '
-        Me.Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Tipo.FillWeight = 80.0!
-        Me.Tipo.HeaderText = "Tipo"
-        Me.Tipo.Name = "Tipo"
-        Me.Tipo.Width = 53
-        '
-        'numero
-        '
-        Me.numero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.numero.FillWeight = 120.0!
-        Me.numero.HeaderText = "Numero/Cta"
-        Me.numero.Name = "numero"
-        Me.numero.Width = 170
-        '
-        'fecha
-        '
-        Me.fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.fecha.FillWeight = 120.0!
-        Me.fecha.HeaderText = "Fecha"
-        Me.fecha.Name = "fecha"
-        Me.fecha.Width = 110
-        '
-        'banco
-        '
-        Me.banco.FillWeight = 150.0!
-        Me.banco.HeaderText = "Banco"
-        Me.banco.Name = "banco"
-        '
-        'importe
-        '
-        Me.importe.FillWeight = 80.0!
-        Me.importe.HeaderText = "Importe"
-        Me.importe.Name = "importe"
         '
         'RecibosProvisorios
         '

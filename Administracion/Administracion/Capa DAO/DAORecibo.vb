@@ -3,11 +3,17 @@
 Public Class DAORecibo
 
     Public Shared Function existeReciboProvisorio(ByVal codigo As String)
-        Return SQLConnector.checkIfExists("get_recibo_provisorio", codigo)
+        Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo_provisorio_sin_numero", codigo)
+        Return tabla.Rows.Count = 0
+
+        'Return SQLConnector.checkIfExists("get_recibo_provisorio_sin_numero", codigo)
     End Function
 
     Public Shared Function existeRecibo(ByVal codigo As String)
-        Return SQLConnector.checkIfExists("get_recibo", codigo)
+        Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo", codigo)
+        Return tabla.Rows.Count = 0
+
+        'Return SQLConnector.checkIfExists("get_recibo", codigo)
     End Function
 
     Public Shared Sub agregarRecibo(ByVal recibo As Recibo)
@@ -85,7 +91,7 @@ Public Class DAORecibo
 
     Public Shared Function buscarReciboProvisorio(ByVal codRecibo As String)
         Try
-            Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo_provisorio", codRecibo)
+            Dim tabla As DataTable = SQLConnector.retrieveDataTable("get_recibo_provisorio_sin_numero", codRecibo)
             Dim row As DataRow = tabla.Rows(0)
             Dim recibo As ReciboProvisorio = New ReciboProvisorio(row("Recibo").ToString, CustomConvert.asTextDate(row("Fecha").ToString), DAOCliente.buscarClientePorCodigo(row("Cliente").ToString),
                                         asDouble(row("RetGanancias")), asDouble(row("RetOtra")), asDouble(row("RetIva")), asDouble(row("RetSuss")), asDouble(row("Paridad")),
