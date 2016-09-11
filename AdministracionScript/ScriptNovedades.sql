@@ -1048,15 +1048,36 @@ AS
 
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_recibos_provisorios]') AND type in (N'P', N'PC'))
-DROP PROCEDURE [dbo].[PR_baja_recibos_provisorios]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_recibo_provisorio]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_baja_recibo_provisorio]
 GO
 
-CREATE PROCEDURE PR_baja_recibos_provisorios
+CREATE PROCEDURE PR_baja_recibo_provisorio
 	@recibo varchar(6)
 AS
 	DELETE RecibosProvi
 	Where Recibo = @recibo
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_permite_actualizacion]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_permite_actualizacion]
+GO
+
+CREATE PROCEDURE PR_permite_actualizacion
+	@recibo varchar(6)
+AS
+BEGIN
+-- EN CASO DE QUE SE PUEDA MODIFICAR EL RECIBO PROVISORIO, RETORNA UN 1
+-- EL 0 DEVUELVE SI ENCUENTRA UN CHEQUE QUE NO TENGA EL ESTADO PENDIENTE
+	DECLARE @existe as int
+
+	SET @existe = ISNULL((SELECT 0
+					FROM RecibosProvi rp
+					WHERE rp.Recibo = @recibo
+						AND Tipo2 = '02' 
+						AND Estado2 = 'X'),1)
+	RETURN @existe
+END	
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_cliente_por_codigo]') AND type in (N'P', N'PC'))
@@ -1083,6 +1104,18 @@ AS
 		, cli.Razon
 	FROM Cliente cli
 	WHERE cli.Razon LIKE '%' + @razon + '%' 
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_baja_recibo_provisorio]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_baja_recibo_provisorio]
+GO
+
+CREATE PROCEDURE PR_baja_recibo_provisorio
+	@recibo varchar(6)
+AS
+	DELETE 
+	FROM RecibosProvi
+	WHERE Recibo = @recibo
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_alta_recibo_provisorio]') AND type in (N'P', N'PC'))
@@ -1122,6 +1155,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_ultimo_recibo]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[PR_get_ultimo_recibo]
 GO
+
 
 CREATE PROCEDURE PR_get_ultimo_recibo
 AS
