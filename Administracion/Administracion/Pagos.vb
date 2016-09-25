@@ -287,7 +287,12 @@ Public Class Pagos
         lstSeleccion.Visible = False
         lstConsulta.Visible = False
         txtConsulta.Visible = False
+        traerParidad(txtFechaParidad.Text)
 
+    End Sub
+
+    Private Sub traerParidad(ByVal fecha As String)
+        txtParidad.Text = SQLConnector.executeProcedureWithReturnValue("get_paridad", fecha).ToString()
     End Sub
 
     Private Sub btnAgregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
@@ -516,6 +521,10 @@ Public Class Pagos
             Catch ex As ArgumentOutOfRangeException
             End Try
         End If
+    End Sub
+
+    Private Sub txtFechaParidad_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtFechaParidad.Leave
+        traerParidad(txtFechaParidad.Text())
     End Sub
 
 End Class
