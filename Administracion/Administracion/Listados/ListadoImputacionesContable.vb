@@ -153,6 +153,9 @@ Public Class ListadoImputacionesContable
         Dim txtNroInterno As Integer
         Dim txtAuxiliar As Double
 
+        Dim varProvincia, varClaveRecibo As String
+        Dim varParidadRecibo As Double
+
         Dim txtBancoCodigo As Integer
         Dim txtBancoCuenta As String
 
@@ -192,13 +195,22 @@ Public Class ListadoImputacionesContable
 
             For Each row As DataRow In tabla.Rows
 
-                Dim CampoPagos As New LeePagos(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString,
+
+
+                Dim CampoPagos As New LeePagosII(row.Item(0).ToString, row.Item(1).ToString, row.Item(2).ToString,
                                                row.Item(3), row.Item(4).ToString, row.Item(5).ToString,
                                                row.Item(6).ToString, row.Item(7).ToString, row.Item(8).ToString,
                                                row.Item(9), row.Item(10), row.Item(11), row.Item(12),
                                                row.Item(13), row.Item(14), row.Item(15), row.Item(16), row.Item(17),
-                                               row.Item(18), row.Item(19), row.Item(20), row.Item(21))
+                                               row.Item(18), row.Item(19), row.Item(20))
 
+
+
+                'Select Case CampoPagos.orden
+                '    Case 117336, 117534, 117539, 117381, 117551
+                '        Stop
+                '    Case Else
+                'End Select
 
                 If txtCorte <> CampoPagos.orden Then
                     txtCorte = CampoPagos.orden
@@ -220,10 +232,14 @@ Public Class ListadoImputacionesContable
                             End Select
 
                         Else
-
                             txtCuenta = "2001"
-                            If Val(CampoPagos.provincia) = 24 Then
-                                txtCuenta = "2010"
+                            Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(CampoPagos.proveedor)
+                            If IsNothing(CampoProveedor) Then
+                                REM MsgBox("Proveedor incorrecto")
+                            Else
+                                If Val(CampoProveedor.provincia) = 24 Then
+                                    txtCuenta = "2010"
+                                End If
                             End If
 
                         End If
@@ -512,6 +528,8 @@ Public Class ListadoImputacionesContable
 
 
 
+        Dim tablaCtaCte As DataTable
+
         txtCorte = ""
         txtRenglonII = 0
 
@@ -527,7 +545,11 @@ Public Class ListadoImputacionesContable
                                                row.Item(6), row.Item(7), row.Item(8),
                                                row.Item(9), row.Item(10), row.Item(11), row.Item(12),
                                                row.Item(13), row.Item(14), row.Item(15), row.Item(16), row.Item(17),
-                                               row.Item(18), row.Item(19), row.Item(20), row.Item(21))
+                                               row.Item(18), row.Item(19), row.Item(20))
+
+
+                REM If Val(CampoRecibos.recibo) = 88760 Then Stop
+                REM If Val(CampoRecibos.recibo) = 88564 Then Stop
 
 
                 If txtCorte <> CampoRecibos.recibo Then
@@ -538,6 +560,8 @@ Public Class ListadoImputacionesContable
 
                 Select Case Val(CampoRecibos.tiporeg)
                     Case 1
+                        varProvincia = CampoRecibos.provincia
+
                         If CampoRecibos.tiporec = "3" Then
                             txtCuenta = CampoRecibos.cuenta
                         Else
@@ -553,53 +577,54 @@ Public Class ListadoImputacionesContable
                             End If
                         End If
 
-                        'If Val(WProv) = 24 Then
-
-                        '    Auxi1 = ZRecibo
-                        '    Call ceros(Auxi1, 8)
-
-                        '    ClaveCtacte = "06" + Auxi1 + "01"
-                        '    spCtaCte = "ConsultaCtacte " + "'" + ClaveCtacte + "'"
-                        '    rstCtaCte = db.OpenRecordset(spCtaCte, dbOpenSnapshot, dbSQLPassThrough)
-                        '    If rstCtaCte.RecordCount > 0 Then
-                        '        ZParidad = rstCtaCte!Paridad
-                        '        rstCtaCte.Close()
-                        '    Else
-                        '        ClaveCtacte = "07" + Auxi1 + "01"
-                        '        spCtaCte = "ConsultaCtacte " + "'" + ClaveCtacte + "'"
-                        '        rstCtaCte = db.OpenRecordset(spCtaCte, dbOpenSnapshot, dbSQLPassThrough)
-                        '        If rstCtaCte.RecordCount > 0 Then
-                        '            ZParidad = (rstCtaCte!Paridad)
-                        '            rstCtaCte.Close()
-                        '        End If
-                        '    End If
-
-                        '    If Val(ZTipo1) <> 7 Then
-                        '        WImporte = ZImporte1 / ZParidad
-                        '    Else
-                        '        WImporte = ZImporte1
-                        '    End If
-
-                        '    If Val(ZTipo1) <> 7 Then
-                        '        With rstCtaCte
-                        '            ClaveCtacte = ZTipo1 + ZNumero1 + "01"
-                        '            spCtaCte = "ConsultaCtacte " + "'" + ClaveCtacte + "'"
-                        '            rstCtaCte = db.OpenRecordset(spCtaCte, dbOpenSnapshot, dbSQLPassThrough)
-                        '            If rstCtaCte.RecordCount > 0 Then
-                        '                If rstCtaCte!TotalUS <> 0 Then
-                        '                    Pari = rstCtaCte!Paridad
-                        '                    WImporte = WImporte * Pari
-                        '                End If
-                        '                rstCtaCte.Close()
-                        '            End If
-                        '        End With
-                        '    End If
-
-                        'Else
-                        '    WImporte = ZImporte1
-                        'End If
-
                         txtAuxiliar = CampoRecibos.importe1
+                        varParidadRecibo = 0
+
+                        If Val(varProvincia) = 24 Then
+
+                            varClaveRecibo = "06" + ceros(CampoRecibos.recibo, 8) + "01"
+                            REM Dim tablaCtaCte As DataTable
+                            tablaCtaCte = SQLConnector.retrieveDataTable("lee_cuenta_corriente_clave", varClaveRecibo)
+                            For Each rowctacte As DataRow In tablaCtaCte.Rows
+                                Dim CampoCtacte As New LeeCtaCte(rowctacte.Item(0), rowctacte.Item(1), rowctacte.Item(2), rowctacte.Item(3), rowctacte.Item(4), rowctacte.Item(5), rowctacte.Item(6), rowctacte.Item(7), rowctacte.Item(8), rowctacte.Item(9), rowctacte.Item(10), rowctacte.Item(11), rowctacte.Item(12), rowctacte.Item(13), rowctacte.Item(14))
+                                varParidadRecibo = CampoCtacte.paridad
+                            Next
+
+                            If varParidadRecibo = 0 Then
+                                varClaveRecibo = "07" + ceros(CampoRecibos.recibo, 8) + "01"
+                                REM Dim tablaCtaCte As DataTable
+                                tablaCtaCte = SQLConnector.retrieveDataTable("lee_cuenta_corriente_clave", varClaveRecibo)
+                                For Each rowctacte As DataRow In tablaCtaCte.Rows
+                                    Dim CampoCtacte As New LeeCtaCte(rowctacte.Item(0), rowctacte.Item(1), rowctacte.Item(2), rowctacte.Item(3), rowctacte.Item(4), rowctacte.Item(5), rowctacte.Item(6), rowctacte.Item(7), rowctacte.Item(8), rowctacte.Item(9), rowctacte.Item(10), rowctacte.Item(11), rowctacte.Item(12), rowctacte.Item(13), rowctacte.Item(14))
+                                    varParidadRecibo = CampoCtacte.paridad
+                                Next
+                            End If
+
+                            If Val(CampoRecibos.tipo1) <> 7 And varParidadRecibo <> 0 Then
+                                txtAuxiliar = txtAuxiliar / varParidadRecibo
+                            Else
+                                txtAuxiliar = CampoRecibos.importe1
+                            End If
+
+                            If Val(CampoRecibos.tipo1) <> 7 Then
+                                varClaveRecibo = CampoRecibos.tipo1 + CampoRecibos.numero1 + "01"
+                                REM Dim tablaCtaCte As DataTable
+                                tablaCtaCte = SQLConnector.retrieveDataTable("lee_cuenta_corriente_clave", varClaveRecibo)
+                                For Each rowctacte As DataRow In tablaCtaCte.Rows
+                                    Dim CampoCtacte As New LeeCtaCte(rowctacte.Item(0), rowctacte.Item(1), rowctacte.Item(2), rowctacte.Item(3), rowctacte.Item(4), rowctacte.Item(5), rowctacte.Item(6), rowctacte.Item(7), rowctacte.Item(8), rowctacte.Item(9), rowctacte.Item(10), rowctacte.Item(11), rowctacte.Item(12), rowctacte.Item(13), rowctacte.Item(14))
+                                    If CampoCtacte.totalus <> 0 Then
+                                        txtAuxiliar = txtAuxiliar * CampoCtacte.paridad
+                                    End If
+                                Next
+                            End If
+
+                        End If
+
+
+
+
+
+
 
                         txtRenglonII = txtRenglonII + 1
 
@@ -668,7 +693,7 @@ Public Class ListadoImputacionesContable
 
                 End Select
 
-                If Val(CampoRecibos.Renglon) = 1 And Val(CampoRecibos.RetGanancias) <> 0 Then
+                If Val(CampoRecibos.renglon) = 1 And Val(CampoRecibos.retganancias) <> 0 Then
 
                     txtRenglonII = txtRenglonII + 1
                     txtCuenta = "142"
@@ -683,7 +708,7 @@ Public Class ListadoImputacionesContable
                     txtRenglon = txtRenglonII
                     txtFecha = CampoRecibos.fecha
                     txtObservaciones = ""
-                    txtDebito = CampoRecibos.RetGanancias
+                    txtDebito = CampoRecibos.retganancias
                     txtCredito = 0
                     txtFechaOrd = CampoRecibos.fechaord
                     txtTitulo = "Recibos"
@@ -700,7 +725,7 @@ Public Class ListadoImputacionesContable
                 End If
 
 
-                If Val(CampoRecibos.Renglon) = 1 And Val(CampoRecibos.retiva) <> 0 Then
+                If Val(CampoRecibos.renglon) = 1 And Val(CampoRecibos.retiva) <> 0 Then
 
                     txtRenglonII = txtRenglonII + 1
                     txtCuenta = "153"
@@ -733,7 +758,7 @@ Public Class ListadoImputacionesContable
 
 
 
-                If Val(CampoRecibos.Renglon) = 1 And Val(CampoRecibos.retotra) <> 0 Then
+                If Val(CampoRecibos.renglon) = 1 And Val(CampoRecibos.retotra) <> 0 Then
 
                     txtRenglonII = txtRenglonII + 1
                     txtCuenta = "161"
@@ -765,7 +790,7 @@ Public Class ListadoImputacionesContable
                 End If
 
 
-                If Val(CampoRecibos.Renglon) = 1 And Val(CampoRecibos.retsuss) <> 0 Then
+                If Val(CampoRecibos.renglon) = 1 And Val(CampoRecibos.retsuss) <> 0 Then
 
                     txtRenglonII = txtRenglonII + 1
                     txtCuenta = "145"
@@ -892,13 +917,27 @@ Public Class ListadoImputacionesContable
         txtUno = "{Impcyb.Cuenta} in " + x + txtDesdeCuenta.Text + x + " to " + x + txtHastaCuenta.Text + x
         txtFormula = txtUno
 
-        Dim viewer As New ReportViewer("Imputaciones Contables", Globals.reportPathWithName("wImpCybnet.rpt"), txtFormula)
 
-        If opcPantalla.Checked = True Then
-            viewer.Show()
-        Else
-            viewer.imprimirReporte()
-        End If
+        Select Case TipoListado.SelectedIndex
+            Case 0
+                Dim viewer As New ReportViewer("Imputaciones Contables", Globals.reportPathWithName("wImpCybnet.rpt"), txtFormula)
+
+                If opcPantalla.Checked = True Then
+                    viewer.Show()
+                Else
+                    viewer.imprimirReporte()
+                End If
+
+            Case Else
+                Dim viewer As New ReportViewer("Imputaciones Contables", Globals.reportPathWithName("wImpCybResunet.rpt"), txtFormula)
+
+                If opcPantalla.Checked = True Then
+                    viewer.Show()
+                Else
+                    viewer.imprimirReporte()
+                End If
+
+        End Select
 
     End Sub
 End Class

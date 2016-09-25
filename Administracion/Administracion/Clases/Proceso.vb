@@ -217,4 +217,117 @@
     End Function
 
 
+
+    Public Function CaculoRetencionGanancia(ByVal varTipoprv As Integer, ByVal varAcumulaNeto As Double, ByVal varAcuNeto As Double, ByVal varAcuRetenido As Double, ByVal varAcuAnticipo As Double,
+                                        ByVal varAcuBruto As Double, ByVal varAcuIva As Double)
+
+        Dim varRetencion, varBase As Double
+        Dim varMinimo As Double
+        Dim varAcumuladPago As Double
+        Dim varAuxi, varTasa, varTope, varTope1, varSum As Double
+        Dim varParametro(100) As Double
+        Dim varTasa1(100) As Double
+
+        varParametro(0) = 0
+        varParametro(1) = 2000
+        varParametro(2) = 4000
+        varParametro(3) = 8000
+        varParametro(4) = 14000
+        varParametro(5) = 24000
+        varParametro(6) = 1000000
+
+        varTasa1(1) = 0.1
+        varTasa1(2) = 0.14
+        varTasa1(3) = 0.18
+        varTasa1(4) = 0.22
+        varTasa1(5) = 0.26
+        varTasa1(6) = 0.26
+
+        varRetencion = 0
+
+        If varTipoprv = 1 Or varTipoprv = 2 Or varTipoprv = 3 Or varTipoprv = 6 Or varTipoprv = 7 Then
+
+            varBase = varAcumulaNeto
+
+            Select Case varTipoprv
+                Case 1
+                    varMinimo = 12000
+                Case 2
+                    varMinimo = 1200
+                Case 3
+                    varMinimo = 1200
+                Case 6
+                    varMinimo = 5000
+                Case 7
+                    varMinimo = 6500
+                Case Else
+            End Select
+
+            varAcumuladPago = varAcumulaNeto + varBase
+            varAuxi = varAcumuladPago - varMinimo
+
+            If varAuxi <= 0 Then
+                varAuxi = 0
+                varRetencion = 0
+            End If
+
+            varTasa = 0.02
+            If varTipoprv = 1 Then
+                varTasa = 0.02
+            End If
+            If varTipoprv = 3 Then
+                varTasa = 0.06
+            End If
+            If varTipoprv = 7 Then
+                varTasa = 0.0025
+            End If
+
+            Select Case varTipoprv
+                Case 2
+                    varRetencion = 0
+                    varTope = 0
+                    varTope1 = 0
+
+                    For da = 0 To 5
+                        If varAuxi >= varParametro(da) And varAuxi < varParametro(da + 1) Then
+                            varTope1 = varAuxi
+                            varTope = varParametro(da)
+                            varSum = varTope1 - varTope
+                            varSum = varSum * varTasa1(da + 1)
+                            varRetencion = varRetencion + varSum
+                        End If
+                        If varAuxi >= varParametro(da + 1) Then
+                            varTope1 = varParametro(da + 1)
+                            varTope = varParametro(da)
+                            varSum = varTope1 - varTope
+                            varSum = varSum * varTasa1(da + 1)
+                            varRetencion = varRetencion + varSum
+                        End If
+                    Next da
+
+                Case Else
+                    varRetencion = varAuxi * varTasa
+
+            End Select
+
+            varRetencion = varRetencion - varAcuRetenido
+
+            If varRetencion < 20 Then
+                varRetencion = 0
+            Else
+                If varRetencion > varAcumulaNeto Then
+                    varRetencion = 0
+                End If
+            End If
+
+            redondeo(varRetencion)
+
+        End If
+
+        Return varRetencion
+
+    End Function
+
+
+
 End Module

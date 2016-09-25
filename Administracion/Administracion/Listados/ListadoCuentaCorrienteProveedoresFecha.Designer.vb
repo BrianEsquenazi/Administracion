@@ -27,15 +27,14 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
         Me.btnConsulta = New Administracion.CustomButton()
         Me.btnCancela = New Administracion.CustomButton()
         Me.btnAcepta = New Administracion.CustomButton()
-        Me.txtHastaProveedor = New Administracion.CustomTextBox()
         Me.txtDesdeProveedor = New Administracion.CustomTextBox()
-        Me.CustomLabel2 = New Administracion.CustomLabel()
         Me.CustomLabel1 = New Administracion.CustomLabel()
         Me.txtFechaEmision = New System.Windows.Forms.MaskedTextBox()
         Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.Grupo2 = New System.Windows.Forms.GroupBox()
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
+        Me.txtRazon = New Administracion.CustomTextBox()
         Me.Grupo2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -100,53 +99,32 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
         Me.btnAcepta.Text = "Acepta"
         Me.btnAcepta.UseVisualStyleBackColor = True
         '
-        'txtHastaProveedor
-        '
-        Me.txtHastaProveedor.Cleanable = False
-        Me.txtHastaProveedor.Empty = True
-        Me.txtHastaProveedor.EnterIndex = -1
-        Me.txtHastaProveedor.LabelAssociationKey = -1
-        Me.txtHastaProveedor.Location = New System.Drawing.Point(232, 92)
-        Me.txtHastaProveedor.Name = "txtHastaProveedor"
-        Me.txtHastaProveedor.Size = New System.Drawing.Size(100, 20)
-        Me.txtHastaProveedor.TabIndex = 2
-        Me.txtHastaProveedor.Validator = Administracion.ValidatorType.None
-        '
         'txtDesdeProveedor
         '
         Me.txtDesdeProveedor.Cleanable = False
         Me.txtDesdeProveedor.Empty = True
         Me.txtDesdeProveedor.EnterIndex = -1
         Me.txtDesdeProveedor.LabelAssociationKey = -1
-        Me.txtDesdeProveedor.Location = New System.Drawing.Point(232, 54)
+        Me.txtDesdeProveedor.Location = New System.Drawing.Point(170, 48)
+        Me.txtDesdeProveedor.MaxLength = 11
         Me.txtDesdeProveedor.Name = "txtDesdeProveedor"
         Me.txtDesdeProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtDesdeProveedor.TabIndex = 1
         Me.txtDesdeProveedor.Validator = Administracion.ValidatorType.None
         '
-        'CustomLabel2
-        '
-        Me.CustomLabel2.AutoSize = True
-        Me.CustomLabel2.ControlAssociationKey = -1
-        Me.CustomLabel2.Location = New System.Drawing.Point(101, 95)
-        Me.CustomLabel2.Name = "CustomLabel2"
-        Me.CustomLabel2.Size = New System.Drawing.Size(87, 13)
-        Me.CustomLabel2.TabIndex = 31
-        Me.CustomLabel2.Text = "Hasta Proveedor"
-        '
         'CustomLabel1
         '
         Me.CustomLabel1.AutoSize = True
         Me.CustomLabel1.ControlAssociationKey = -1
-        Me.CustomLabel1.Location = New System.Drawing.Point(101, 57)
+        Me.CustomLabel1.Location = New System.Drawing.Point(39, 51)
         Me.CustomLabel1.Name = "CustomLabel1"
-        Me.CustomLabel1.Size = New System.Drawing.Size(90, 13)
+        Me.CustomLabel1.Size = New System.Drawing.Size(56, 13)
         Me.CustomLabel1.TabIndex = 30
-        Me.CustomLabel1.Text = "Desde Proveedor"
+        Me.CustomLabel1.Text = "Proveedor"
         '
         'txtFechaEmision
         '
-        Me.txtFechaEmision.Location = New System.Drawing.Point(232, 12)
+        Me.txtFechaEmision.Location = New System.Drawing.Point(170, 6)
         Me.txtFechaEmision.Mask = "##/##/####"
         Me.txtFechaEmision.Name = "txtFechaEmision"
         Me.txtFechaEmision.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -157,7 +135,7 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
         '
         Me.CustomLabel3.AutoSize = True
         Me.CustomLabel3.ControlAssociationKey = -1
-        Me.CustomLabel3.Location = New System.Drawing.Point(101, 15)
+        Me.CustomLabel3.Location = New System.Drawing.Point(39, 9)
         Me.CustomLabel3.Name = "CustomLabel3"
         Me.CustomLabel3.Size = New System.Drawing.Size(76, 13)
         Me.CustomLabel3.TabIndex = 46
@@ -196,11 +174,25 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
         Me.opcPantalla.Text = "Pantalla"
         Me.opcPantalla.UseVisualStyleBackColor = True
         '
+        'txtRazon
+        '
+        Me.txtRazon.BackColor = System.Drawing.Color.Silver
+        Me.txtRazon.Cleanable = False
+        Me.txtRazon.Empty = True
+        Me.txtRazon.EnterIndex = -1
+        Me.txtRazon.LabelAssociationKey = -1
+        Me.txtRazon.Location = New System.Drawing.Point(295, 48)
+        Me.txtRazon.Name = "txtRazon"
+        Me.txtRazon.Size = New System.Drawing.Size(320, 20)
+        Me.txtRazon.TabIndex = 48
+        Me.txtRazon.Validator = Administracion.ValidatorType.None
+        '
         'ListadoCuentaCorrienteProveedoresFecha
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(477, 345)
+        Me.ClientSize = New System.Drawing.Size(627, 345)
+        Me.Controls.Add(Me.txtRazon)
         Me.Controls.Add(Me.Grupo2)
         Me.Controls.Add(Me.txtFechaEmision)
         Me.Controls.Add(Me.CustomLabel3)
@@ -209,9 +201,7 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
         Me.Controls.Add(Me.btnConsulta)
         Me.Controls.Add(Me.btnCancela)
         Me.Controls.Add(Me.btnAcepta)
-        Me.Controls.Add(Me.txtHastaProveedor)
         Me.Controls.Add(Me.txtDesdeProveedor)
-        Me.Controls.Add(Me.CustomLabel2)
         Me.Controls.Add(Me.CustomLabel1)
         Me.Name = "ListadoCuentaCorrienteProveedoresFecha"
         Me.Text = "Listado de Cuenta Corriente de Proveedores a Fecha"
@@ -226,13 +216,12 @@ Partial Class ListadoCuentaCorrienteProveedoresFecha
     Friend WithEvents btnConsulta As Administracion.CustomButton
     Friend WithEvents btnCancela As Administracion.CustomButton
     Friend WithEvents btnAcepta As Administracion.CustomButton
-    Friend WithEvents txtHastaProveedor As Administracion.CustomTextBox
     Friend WithEvents txtDesdeProveedor As Administracion.CustomTextBox
-    Friend WithEvents CustomLabel2 As Administracion.CustomLabel
     Friend WithEvents CustomLabel1 As Administracion.CustomLabel
     Friend WithEvents txtFechaEmision As System.Windows.Forms.MaskedTextBox
     Friend WithEvents CustomLabel3 As Administracion.CustomLabel
     Friend WithEvents Grupo2 As System.Windows.Forms.GroupBox
     Friend WithEvents opcImpesora As System.Windows.Forms.RadioButton
     Friend WithEvents opcPantalla As System.Windows.Forms.RadioButton
+    Friend WithEvents txtRazon As Administracion.CustomTextBox
 End Class

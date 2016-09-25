@@ -3,6 +3,7 @@
     Public Tipo, letra, punto, numero, fecha, vencimiento As String
     Public total, saldo As Double
 
+
     Public Sub New(ByVal tipo2 As String,
             ByVal letra2 As String,
             ByVal punto2 As String,

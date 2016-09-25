@@ -203,8 +203,7 @@ Public Class ListadoProyeccionCobros
                 End If
             End If
 
-            SQLConnector.executeProcedure("alta_impCtaCtePrvNet", CCPrv.Clave, CCPrv.Proveedor, CCPrv.Tipo, CCPrv.letra, CCPrv.punto, CCPrv.numero, CCPrv.total, CCPrv.saldo, CCPrv.fecha, CCPrv.vencimiento, CCPrv.VencimientoII, CCPrv.Impre, CCPrv.nroInterno, txtEmpresa, 0, 0, txtFecha1.Text, txtFecha2.Text, txtFecha3.Text, txtFecha4.Text, txtimpo1, txtimpo2, txtimpo3, txtimpo4, txtimpo5)
-
+            SQLConnector.executeProcedure("alta_impCtaCtePrvNet", CCPrv.Clave, CCPrv.Proveedor, CCPrv.Tipo, CCPrv.letra, CCPrv.punto, CCPrv.numero, CCPrv.total, CCPrv.saldo, CCPrv.fecha, CCPrv.vencimiento, CCPrv.VencimientoII, CCPrv.Impre, CCPrv.nroInterno, txtEmpresa, 0, 0, txtFecha1.Text, txtFecha2.Text, txtFecha3.Text, txtFecha4.Text, txtimpo1, txtimpo2, txtimpo3, txtimpo4, txtimpo5, "", 0, 0, 0, 0, 0, 0, 0, 0)
         Next
 
 

@@ -180,15 +180,15 @@
         abrir(New ListadoCuentaCorrienteProveedoresFecha)
     End Sub
 
-    Private Sub ListadoDeDiferenciaDeCambioCobranzaToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeDiferenciaDeCambioCobranzaToolStripMenuItem1.Click
+    Private Sub ListadoDeDiferenciaDeCambioCobranzaToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         abrir(New ListadoDiferenciaCambioCobranza)
     End Sub
 
-    Private Sub ListadoDeDiferenciaDeCambioAcreditacionToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeDiferenciaDeCambioAcreditacionToolStripMenuItem1.Click
+    Private Sub ListadoDeDiferenciaDeCambioAcreditacionToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         abrir(New ListadoDiferenciaCambioAcreditacion)
     End Sub
 
-    Private Sub ListadoDeDiferencaiDeCambioDeFacturasDeExportacionToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListadoDeDiferencaiDeCambioDeFacturasDeExportacionToolStripMenuItem1.Click
+    Private Sub ListadoDeDiferencaiDeCambioDeFacturasDeExportacionToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         abrir(New ListadoDiferenciaCambioExterior)
     End Sub
 
@@ -229,7 +229,7 @@
     End Sub
 
     Private Sub CuantaCorrienteDeProveedoresSelectivoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CuantaCorrienteDeProveedoresSelectivoToolStripMenuItem.Click
-
+        abrir(New ListadoCuentaCorrienteProveedoresSelectivo)
     End Sub
 
     Private Sub AplicacionDeCorpobantesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AplicacionDeCorpobantesToolStripMenuItem.Click

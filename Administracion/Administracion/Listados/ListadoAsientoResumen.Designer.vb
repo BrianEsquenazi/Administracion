@@ -156,6 +156,7 @@ Partial Class ListadoAsientoResumen
         Me.txtHastaCuenta.EnterIndex = -1
         Me.txtHastaCuenta.LabelAssociationKey = -1
         Me.txtHastaCuenta.Location = New System.Drawing.Point(217, 133)
+        Me.txtHastaCuenta.MaxLength = 10
         Me.txtHastaCuenta.Name = "txtHastaCuenta"
         Me.txtHastaCuenta.Size = New System.Drawing.Size(131, 20)
         Me.txtHastaCuenta.TabIndex = 3
@@ -168,6 +169,7 @@ Partial Class ListadoAsientoResumen
         Me.txtDesdeCuenta.EnterIndex = -1
         Me.txtDesdeCuenta.LabelAssociationKey = -1
         Me.txtDesdeCuenta.Location = New System.Drawing.Point(217, 93)
+        Me.txtDesdeCuenta.MaxLength = 10
         Me.txtDesdeCuenta.Name = "txtDesdeCuenta"
         Me.txtDesdeCuenta.Size = New System.Drawing.Size(131, 20)
         Me.txtDesdeCuenta.TabIndex = 2

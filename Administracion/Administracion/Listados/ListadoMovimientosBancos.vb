@@ -144,6 +144,7 @@ Public Class ListadoMovimientosBancos
         Dim varAcredita, varAcreditaOrd As String
         Dim varBanco As Integer
 
+        Dim vardada As String
 
         SQLConnector.retrieveDataTable("limpiar_movban")
 
@@ -182,6 +183,9 @@ Public Class ListadoMovimientosBancos
                                             row.Item(13), row.Item(14), row.Item(15))
 
 
+            vardada = CampoPagos.renglon
+            REM If CampoPagos.orden = 116720 Then Stop
+
             varRenglon = varRenglon + 1
 
             varTitulo = "Pagos"
@@ -218,8 +222,11 @@ Public Class ListadoMovimientosBancos
                                             row.Item(9), row.Item(10), row.Item(11), row.Item(12),
                                             row.Item(13), row.Item(14), row.Item(15))
 
-
             REM If Val(CampoPagos.orden) = 114551 Then Stop
+            vardada = CampoPagos.renglon
+            REM If CampoPagos.orden = 116720 Then Stop
+
+
 
             If CampoPagos.tiporeg = "1" Then
 
@@ -293,9 +300,11 @@ Public Class ListadoMovimientosBancos
                                            row.Item(6), row.Item(7), row.Item(8),
                                            row.Item(9), row.Item(10), row.Item(11), row.Item(12),
                                            row.Item(13), row.Item(14), row.Item(15), row.Item(16), row.Item(17),
-                                           row.Item(18), row.Item(19), row.Item(20), row.Item(21))
+                                           row.Item(18), row.Item(19), row.Item(20))
 
             varRenglon = varRenglon + 1
+
+            If CampoRecibos.recibo = 88523 Then Stop
 
             varTitulo = "Recibos"
             varEmpresa = 1
@@ -323,7 +332,7 @@ Public Class ListadoMovimientosBancos
 
             If varBanco >= Val(txtDesdeBanco.Text) And varBanco <= Val(txtHastaBanco.Text) Then
 
-                SQLConnector.executeProcedure("alta_movban", varRenglon, varBanco, CampoRecibos.fecha, CampoRecibos.fechaord, varAcredita, varAcreditaOrd, "Deposito",
+                SQLConnector.executeProcedure("alta_movban", varRenglon, varBanco, CampoRecibos.fecha, CampoRecibos.fechaord, varAcredita, varAcreditaOrd, "Recibos",
                                               CampoRecibos.recibo, varDebito, varCredito, CampoRecibos.recibo, varEmpresa, varTitulo, varTituloList, "")
 
             End If

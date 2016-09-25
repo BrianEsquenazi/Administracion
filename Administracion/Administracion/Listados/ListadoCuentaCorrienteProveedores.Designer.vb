@@ -175,6 +175,7 @@ Partial Class ListadoCuentaCorrienteProveedores
         Me.txtHastaProveedor.EnterIndex = -1
         Me.txtHastaProveedor.LabelAssociationKey = -1
         Me.txtHastaProveedor.Location = New System.Drawing.Point(268, 69)
+        Me.txtHastaProveedor.MaxLength = 11
         Me.txtHastaProveedor.Name = "txtHastaProveedor"
         Me.txtHastaProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtHastaProveedor.TabIndex = 1
@@ -187,6 +188,7 @@ Partial Class ListadoCuentaCorrienteProveedores
         Me.txtDesdeProveedor.EnterIndex = -1
         Me.txtDesdeProveedor.LabelAssociationKey = -1
         Me.txtDesdeProveedor.Location = New System.Drawing.Point(268, 31)
+        Me.txtDesdeProveedor.MaxLength = 11
         Me.txtDesdeProveedor.Name = "txtDesdeProveedor"
         Me.txtDesdeProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtDesdeProveedor.TabIndex = 0
@@ -216,7 +218,7 @@ Partial Class ListadoCuentaCorrienteProveedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(537, 293)
+        Me.ClientSize = New System.Drawing.Size(537, 374)
         Me.Controls.Add(Me.lstAyuda)
         Me.Controls.Add(Me.txtAyuda)
         Me.Controls.Add(Me.btnConsulta)

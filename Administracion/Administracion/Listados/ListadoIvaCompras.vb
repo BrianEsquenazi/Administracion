@@ -68,6 +68,7 @@ Public Class ListadoIvaCompras
         Dim x As Char = Chr(34)
         Dim txtDesdefechaOrd, txtHastafechaOrd
         Dim txtGraba As String
+        Dim varNeto As Double
 
         Dim txtTitulo, txtTituloII, txtImpre, txtOrdFecha As String
 
@@ -83,6 +84,7 @@ Public Class ListadoIvaCompras
         txtTituloII = "Desde el " + txtDesdeFecha.Text + " hasta el " + txthastafecha.Text
 
 
+
         Dim tabla As DataTable
         tabla = SQLConnector.retrieveDataTable("Lee_Ivacomp", txtDesdefechaOrd, txtHastafechaOrd)
 
@@ -92,7 +94,7 @@ Public Class ListadoIvaCompras
                                             row.Item(3), row.Item(4), row.Item(5),
                                             row.Item(6), row.Item(7), row.Item(8),
                                             row.Item(9), row.Item(10), row.Item(11), row.Item(12),
-                                            row.Item(13), row.Item(14), row.Item(15), row.Item(16))
+                                            row.Item(13), row.Item(14), row.Item(15), row.Item(16), row.Item(17))
 
 
             txtGraba = "S"
@@ -110,7 +112,7 @@ Public Class ListadoIvaCompras
 
                 txtGraba = "N"
 
-                txtOrdFecha = ordenaFecha(CampoIvaCompAdicional.fecha)
+                txtOrdFecha = ordenaFecha(CampoIvaComp.periodo)
 
                 SQLConnector.executeProcedure("alta_ListaIvaCompras", CampoIvaComp.NroInterno, CampoIvaComp.proveedor, CampoIvaCompAdicional.tipo,
                                                CampoIvaCompAdicional.letra, ceros(CampoIvaCompAdicional.punto, 4), ceros(CampoIvaCompAdicional.numero, 8),
@@ -125,7 +127,11 @@ Public Class ListadoIvaCompras
 
             If txtGraba = "S" Then
 
-                txtOrdFecha = ordenaFecha(CampoIvaComp.fecha)
+                txtOrdFecha = ordenaFecha(CampoIvaComp.periodo)
+                varNeto = CampoIvaComp.neto
+                If CampoIvaComp.soloiva = 1 Then
+                    varNeto = 0
+                End If
 
                 Select Case Val(CampoIvaComp.tipo)
                     Case 1
@@ -136,9 +142,11 @@ Public Class ListadoIvaCompras
                         txtImpre = "N/C"
                 End Select
 
+
+
                 SQLConnector.executeProcedure("alta_ListaIvaCompras", CampoIvaComp.NroInterno, CampoIvaComp.proveedor, CampoIvaComp.tipo,
                                                CampoIvaComp.letra, CampoIvaComp.punto, CampoIvaComp.numero, CampoIvaComp.fecha, CampoIvaComp.periodo,
-                                               CampoIvaComp.neto, CampoIvaComp.iva21, CampoIvaComp.iva5, CampoIvaComp.iva27, CampoIvaComp.iva105,
+                                               varNeto, CampoIvaComp.iva21, CampoIvaComp.iva5, CampoIvaComp.iva27, CampoIvaComp.iva105,
                                                CampoIvaComp.ib, CampoIvaComp.exento, txtImpre, txtOrdFecha, txtTitulo, txtTituloII, CampoIvaComp.nombre, CampoIvaComp.cuit)
 
             End If

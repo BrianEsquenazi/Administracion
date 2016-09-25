@@ -26,6 +26,8 @@ Partial Class ListadoProyeccionCobrosAnalitico
         Me.opcImpesora = New System.Windows.Forms.RadioButton()
         Me.opcPantalla = New System.Windows.Forms.RadioButton()
         Me.txtFechaEmision = New System.Windows.Forms.MaskedTextBox()
+        Me.lstAyuda = New Administracion.CustomListBox()
+        Me.txtAyuda = New Administracion.CustomTextBox()
         Me.CustomLabel3 = New Administracion.CustomLabel()
         Me.btnConsulta = New Administracion.CustomButton()
         Me.btnCancela = New Administracion.CustomButton()
@@ -34,8 +36,6 @@ Partial Class ListadoProyeccionCobrosAnalitico
         Me.txtDesdeProveedor = New Administracion.CustomTextBox()
         Me.CustomLabel2 = New Administracion.CustomLabel()
         Me.CustomLabel1 = New Administracion.CustomLabel()
-        Me.lstAyuda = New Administracion.CustomListBox()
-        Me.txtAyuda = New Administracion.CustomTextBox()
         Me.Grupo2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -80,6 +80,31 @@ Partial Class ListadoProyeccionCobrosAnalitico
         Me.txtFechaEmision.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.txtFechaEmision.Size = New System.Drawing.Size(106, 20)
         Me.txtFechaEmision.TabIndex = 48
+        '
+        'lstAyuda
+        '
+        Me.lstAyuda.Cleanable = False
+        Me.lstAyuda.EnterIndex = -1
+        Me.lstAyuda.FormattingEnabled = True
+        Me.lstAyuda.LabelAssociationKey = -1
+        Me.lstAyuda.Location = New System.Drawing.Point(27, 289)
+        Me.lstAyuda.Name = "lstAyuda"
+        Me.lstAyuda.Size = New System.Drawing.Size(417, 147)
+        Me.lstAyuda.TabIndex = 59
+        Me.lstAyuda.Visible = False
+        '
+        'txtAyuda
+        '
+        Me.txtAyuda.Cleanable = False
+        Me.txtAyuda.Empty = True
+        Me.txtAyuda.EnterIndex = -1
+        Me.txtAyuda.LabelAssociationKey = -1
+        Me.txtAyuda.Location = New System.Drawing.Point(27, 263)
+        Me.txtAyuda.Name = "txtAyuda"
+        Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
+        Me.txtAyuda.TabIndex = 58
+        Me.txtAyuda.Validator = Administracion.ValidatorType.None
+        Me.txtAyuda.Visible = False
         '
         'CustomLabel3
         '
@@ -134,6 +159,7 @@ Partial Class ListadoProyeccionCobrosAnalitico
         Me.txtHastaProveedor.EnterIndex = -1
         Me.txtHastaProveedor.LabelAssociationKey = -1
         Me.txtHastaProveedor.Location = New System.Drawing.Point(226, 92)
+        Me.txtHastaProveedor.MaxLength = 11
         Me.txtHastaProveedor.Name = "txtHastaProveedor"
         Me.txtHastaProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtHastaProveedor.TabIndex = 50
@@ -146,6 +172,7 @@ Partial Class ListadoProyeccionCobrosAnalitico
         Me.txtDesdeProveedor.EnterIndex = -1
         Me.txtDesdeProveedor.LabelAssociationKey = -1
         Me.txtDesdeProveedor.Location = New System.Drawing.Point(226, 54)
+        Me.txtDesdeProveedor.MaxLength = 11
         Me.txtDesdeProveedor.Name = "txtDesdeProveedor"
         Me.txtDesdeProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtDesdeProveedor.TabIndex = 49
@@ -170,31 +197,6 @@ Partial Class ListadoProyeccionCobrosAnalitico
         Me.CustomLabel1.Size = New System.Drawing.Size(90, 13)
         Me.CustomLabel1.TabIndex = 51
         Me.CustomLabel1.Text = "Desde Proveedor"
-        '
-        'lstAyuda
-        '
-        Me.lstAyuda.Cleanable = False
-        Me.lstAyuda.EnterIndex = -1
-        Me.lstAyuda.FormattingEnabled = True
-        Me.lstAyuda.LabelAssociationKey = -1
-        Me.lstAyuda.Location = New System.Drawing.Point(27, 289)
-        Me.lstAyuda.Name = "lstAyuda"
-        Me.lstAyuda.Size = New System.Drawing.Size(417, 147)
-        Me.lstAyuda.TabIndex = 59
-        Me.lstAyuda.Visible = False
-        '
-        'txtAyuda
-        '
-        Me.txtAyuda.Cleanable = False
-        Me.txtAyuda.Empty = True
-        Me.txtAyuda.EnterIndex = -1
-        Me.txtAyuda.LabelAssociationKey = -1
-        Me.txtAyuda.Location = New System.Drawing.Point(27, 263)
-        Me.txtAyuda.Name = "txtAyuda"
-        Me.txtAyuda.Size = New System.Drawing.Size(417, 20)
-        Me.txtAyuda.TabIndex = 58
-        Me.txtAyuda.Validator = Administracion.ValidatorType.None
-        Me.txtAyuda.Visible = False
         '
         'ListadoProyeccionCobrosAnalitico
         '

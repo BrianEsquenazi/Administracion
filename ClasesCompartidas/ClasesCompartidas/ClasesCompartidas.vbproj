@@ -66,7 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banco.vb" />
+    <Compile Include="ClienteTotal.vb" />
+    <Compile Include="CtaCteProveedoresDeudaDesdeHastaII.vb" />
+    <Compile Include="LeeAcumulado.vb" />
+    <Compile Include="LeeAplicaProve.vb" />
     <Compile Include="LeeBanco.vb" />
+    <Compile Include="LeeCtaCte.vb" />
     <Compile Include="LeeDepositos.vb" />
     <Compile Include="LeeDepositosMovban.vb" />
     <Compile Include="LeeIvaComp.vb" />
@@ -87,6 +92,7 @@
     <Compile Include="Global\Globals.vb" />
     <Compile Include="Imputac.vb" />
     <Compile Include="ItemDeposito.vb" />
+    <Compile Include="LeePagosII.vb" />
     <Compile Include="LeePagosMovBan.vb" />
     <Compile Include="LeeRecibos.vb" />
     <Compile Include="LeeRecibosValcar.vb" />

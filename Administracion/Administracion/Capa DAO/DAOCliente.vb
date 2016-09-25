@@ -27,4 +27,20 @@ Public Class DAOCliente
         End Try
     End Function
 
+
+    Public Shared Function buscarClientePorCodigoII(ByVal codigoString As String)
+        Try
+            Dim codigo As String = codigoString
+            Dim tabla As DataTable
+            tabla = SQLConnector.retrieveDataTable("get_cliente_por_codigo_total", codigo)
+            If tabla.Rows.Count > 0 Then
+                Return New ClienteTotal(tabla(0)("cliente").ToString, tabla(0)("razon").ToString, tabla(0)("provincia").ToString)
+            Else
+                Return Nothing
+            End If
+        Catch e As Exception
+            Return Nothing
+        End Try
+    End Function
+
 End Class

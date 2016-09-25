@@ -138,10 +138,21 @@ Public Class ListadoAsientoResumen
         txtDesde = ordenaFecha(txtDesdeFecha.Text)
         txtHasta = ordenaFecha(txthastafecha.Text)
 
-        txtUno = "{Imputac.Cuenta} in " + x + txtDesdeCuenta.Text + x + " to " + x + txtHastaCuenta.Text + x
-        txtDos = " and {Imputac.Fechaord} in " + x + txtDesde + x + " to " + x + txtHasta + x
+
+
+
+
+
+
+
+        txtUno = "{Imputac.PeriodoOrd} = " + x + "S" + x
+        txtDos = " and {Imputac.Cuenta} in " + x + txtDesdeCuenta.Text + x + " to " + x + txtHastaCuenta.Text + x
 
         txtFormula = txtUno + txtDos
+
+        SQLConnector.executeProcedure("actualiza_periodo_imputacII", "", "")
+
+        SQLConnector.executeProcedure("actualiza_periodo_imputac", txtDesde, txtHasta)
 
         Select Case TipoListado.SelectedIndex
             Case 0

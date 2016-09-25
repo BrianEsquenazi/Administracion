@@ -235,6 +235,7 @@ Partial Class ListadoImputacionesContable
         'txtDesdeCuenta
         '
         Me.txtDesdeCuenta.Location = New System.Drawing.Point(302, 105)
+        Me.txtDesdeCuenta.MaxLength = 10
         Me.txtDesdeCuenta.Name = "txtDesdeCuenta"
         Me.txtDesdeCuenta.Size = New System.Drawing.Size(141, 20)
         Me.txtDesdeCuenta.TabIndex = 45
@@ -242,6 +243,7 @@ Partial Class ListadoImputacionesContable
         'txtHastaCuenta
         '
         Me.txtHastaCuenta.Location = New System.Drawing.Point(302, 136)
+        Me.txtHastaCuenta.MaxLength = 10
         Me.txtHastaCuenta.Name = "txtHastaCuenta"
         Me.txtHastaCuenta.Size = New System.Drawing.Size(141, 20)
         Me.txtHastaCuenta.TabIndex = 46

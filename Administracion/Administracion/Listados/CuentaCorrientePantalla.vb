@@ -13,12 +13,20 @@ Public Class CuentaCorrientePantalla
             e.Handled = True
             ' DADA que no rompa cuando el codigo no existe y usar la funcion "ceros" para completar??
             Dim CampoProveedor As Proveedor = DAOProveedor.buscarProveedorPorCodigo(txtProveedor.Text)
-            txtRazon.Text = CampoProveedor.razonSocial
-            Call Proceso()
-            txtRazon.Focus()
+            If IsNothing(CampoProveedor) Then
+                MsgBox("Proveedor incorrecto")
+                txtProveedor.Focus()
+            Else
+                txtRazon.Text = CampoProveedor.razonSocial
+                Call Proceso()
+                txtRazon.Focus()
+            End If
         ElseIf e.KeyChar = Convert.ToChar(Keys.Escape) Then
             e.Handled = True
             txtRazon.Focus()
+        End If
+        If Not IsNumeric(e.KeyChar) Then
+            e.Handled = True
         End If
     End Sub
 
@@ -125,19 +133,15 @@ Public Class CuentaCorrientePantalla
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-        Dim opc As DialogResult = MsgBox("¿Desea salir de esta aplicación?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Salir")
-        If opc = Windows.Forms.DialogResult.Yes Then
-            Aa = 1
-            'End
-        Else
-            'e.Cancel = True
-            Aa = 2
-        End If
-        Stop
-    End Sub
-
-    Private Sub lstAyuda_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstAyuda.SelectedIndexChanged
-
+        'Dim opc As DialogResult = MsgBox("¿Desea salir de esta aplicación?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Salir")
+        'If opc = Windows.Forms.DialogResult.Yes Then
+        '    Aa = 1
+        '    'End
+        'Else
+        '    'e.Cancel = True
+        '    Aa = 2
+        'End If
+        'Stop
     End Sub
 
     Private Sub txtProveedor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtProveedor.TextChanged

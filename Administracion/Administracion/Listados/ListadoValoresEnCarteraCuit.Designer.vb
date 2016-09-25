@@ -125,6 +125,7 @@ Partial Class ListadoValoresEnCarteraCuit
         'txtCuit
         '
         Me.txtCuit.Location = New System.Drawing.Point(243, 101)
+        Me.txtCuit.MaxLength = 15
         Me.txtCuit.Name = "txtCuit"
         Me.txtCuit.Size = New System.Drawing.Size(146, 20)
         Me.txtCuit.TabIndex = 47

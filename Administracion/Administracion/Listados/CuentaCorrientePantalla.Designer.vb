@@ -266,6 +266,7 @@ Partial Class CuentaCorrientePantalla
         Me.txtProveedor.EnterIndex = -1
         Me.txtProveedor.LabelAssociationKey = -1
         Me.txtProveedor.Location = New System.Drawing.Point(93, 12)
+        Me.txtProveedor.MaxLength = 11
         Me.txtProveedor.Name = "txtProveedor"
         Me.txtProveedor.Size = New System.Drawing.Size(108, 20)
         Me.txtProveedor.TabIndex = 0

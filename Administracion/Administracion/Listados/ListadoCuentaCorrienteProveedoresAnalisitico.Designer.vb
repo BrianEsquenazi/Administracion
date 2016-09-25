@@ -114,6 +114,7 @@ Partial Class ListadoCuentaCorrienteProveedoresAnalisitico
         Me.txtHastaProveedor.EnterIndex = -1
         Me.txtHastaProveedor.LabelAssociationKey = -1
         Me.txtHastaProveedor.Location = New System.Drawing.Point(232, 92)
+        Me.txtHastaProveedor.MaxLength = 11
         Me.txtHastaProveedor.Name = "txtHastaProveedor"
         Me.txtHastaProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtHastaProveedor.TabIndex = 49
@@ -126,6 +127,7 @@ Partial Class ListadoCuentaCorrienteProveedoresAnalisitico
         Me.txtDesdeProveedor.EnterIndex = -1
         Me.txtDesdeProveedor.LabelAssociationKey = -1
         Me.txtDesdeProveedor.Location = New System.Drawing.Point(232, 50)
+        Me.txtDesdeProveedor.MaxLength = 11
         Me.txtDesdeProveedor.Name = "txtDesdeProveedor"
         Me.txtDesdeProveedor.Size = New System.Drawing.Size(100, 20)
         Me.txtDesdeProveedor.TabIndex = 48

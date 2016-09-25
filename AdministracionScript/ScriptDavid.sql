@@ -77,11 +77,11 @@ END
 IF NOT EXISTS(
     SELECT *
     FROM sys.columns 
-    WHERE Name      = N'Auxi1'
+    WHERE Name      = N'Auxi2'
       AND Object_ID = Object_ID(N'CtaCtePrv'))
 BEGIN
 	ALTER TABLE [CtaCtePrv]
-    ADD [Auxi1] char(10) NULL 
+    ADD [Auxi2] char(10) NULL 
 END
 
 IF NOT EXISTS(
@@ -267,7 +267,16 @@ CREATE TABLE [dbo].[impCtaCtePrvNet](
 	[Impre2] [float] NULL,
 	[Impre3] [float] NULL,
 	[Impre4] [float] NULL,
-	[Impre5] [float] NULL
+	[Impre5] [float] NULL,
+	[TituloII] [char](50) NULL,
+	[RetIb] [float] NULL,
+	[RetGanan] [float] NULL,
+	[AcuNeto] [float] NULL,
+	[Paridad] [float] NULL,
+	[TotalUs] [float] NULL,
+	[SaldoUs] [float] NULL,
+	[AcumulaUs] [float] NULL,
+	[Pago] [int] NULL
 	
 ) ON [PRIMARY]
 GO
@@ -303,12 +312,21 @@ CREATE PROCEDURE PR_alta_impCtaCtePrvNet
 	@impre2 float,
 	@impre3 float,
 	@impre4 float,
-	@Impre5 float)
+	@impre5 float,
+	@tituloII char(50),
+	@RetIb float,
+	@RetGanan float,
+	@AcuNeto float,
+	@Paridad float,
+	@TotalUs float,
+	@SaldoUs float,
+	@AcumulaUs float,
+	@Pago int)
 AS
 	INSERT INTO dbo.impCtaCtePrvNet 
-		(Clave, Proveedor, Letra, Tipo, Punto, Numero, Total, Saldo, fecha, Vencimiento, Vencimiento1, Impre, NroInterno, Titulo, Acumulado, Orden, Titulo1, Titulo2, Titulo3,Titulo4,Impre1,Impre2,Impre3,Impre4,Impre5)
+		(Clave, Proveedor, Letra, Tipo, Punto, Numero, Total, Saldo, fecha, Vencimiento, Vencimiento1, Impre, NroInterno, Titulo, Acumulado, Orden, Titulo1, Titulo2, Titulo3,Titulo4,Impre1,Impre2,Impre3,Impre4,Impre5, TituloII, RetIb, RetGanan, AcuNeto, Paridad, TotalUs, SaldoUs, AcumulaUs, Pago)
 		VALUES
-		(@clave, @proveedor, @letra, @tipo, @punto, @numero, @total, @saldo,@fecha, @vencimiento, @vencimiento1, @impre, @nrointerno, @titulo, @Acumulado, @orden, @titulo1, @titulo2, @titulo3, @titulo4, @Impre1, @impre2, @impre3, @impre4, @Impre5)
+		(@clave, @proveedor, @letra, @tipo, @punto, @numero, @total, @saldo,@fecha, @vencimiento, @vencimiento1, @impre, @nrointerno, @titulo, @Acumulado, @orden, @titulo1, @titulo2, @titulo3, @titulo4, @Impre1, @impre2, @impre3, @impre4, @Impre5, @tituloII, @RetIb, @RetGanan, @AcuNeto, @Paridad, @TotalUs, @SaldoUs, @AcuNeto, @Pago)
 GO
 
 CREATE PROCEDURE [dbo].[PR_buscar_cuenta_corriente_proveedores_desdehasta]
@@ -462,10 +480,8 @@ AS
 		 , Pagos.Tipo2 as Tipo2
 		 , Pagos.Numero2 as Numero2
 		 , Pagos.Renglon as Renglon
-		 , Prove.Provincia as Provincia
 		 
 	from surfactanSA.dbo.pagos pagos
-	JOIN Proveedor Prove on Prove.Proveedor = Pagos.Proveedor
 	WHERE pagos.FechaOrd between @DesdeFecha and @HastaFecha
 	order by pagos.Clave
 
@@ -480,32 +496,32 @@ GO
 CREATE PROCEDURE [dbo].[PR_buscar_recibos_fecha]
 	(@DesdeFecha char(8)
 	, @HastaFecha char(8))
-AS
-	select Recibos.FechaOrd as FechaOrd
-		 , recibos.Recibo as Recibo
-		 , recibos.TipoReg as TipoReg
-		 , recibos.TipoRec as TipoRec
-		 , recibos.Cuenta as Cuenta
-		 , recibos.Cliente as Cliente
-		 , recibos.Tipo1 as Tipo1
-		 , recibos.letra1 as Letra1
-		 , recibos.Punto1 as Punto1
-		 , recibos.Numero1 as Numero1
-		 , recibos.Fecha as Fecha
-		 , recibos.Tipo2 as Tipo2
-		 , recibos.Numero2 as Numero2
-		 , recibos.Importe1 as Importe1
-		 , recibos.Paridad as Paridad
-		 , recibos.Importe2 as Importe2
-		 , recibos.RetIva as RetIva
-		 , recibos.RetOtra as RetOtra
-		 , recibos.RetSuss as RetSuss
-		 , recibos.RetGanancias as RetGanancias
-		 , recibos.Renglon as Renglon
-		 , Clie.Provincia as Provincia
+	AS
+	select isnull(Recibos.FechaOrd,'') as FechaOrd
+		 , isnull(recibos.Recibo,'') as Recibo
+		 , isnull(recibos.TipoReg,'') as TipoReg
+		 , isnull(recibos.TipoRec,'') as TipoRec
+		 , isnull(recibos.Cuenta,'') as Cuenta
+		 , isnull(recibos.Cliente,'') as Cliente
+		 , isnull(recibos.Tipo1,'') as Tipo1
+		 , isnull(recibos.letra1,'') as Letra1
+		 , isnull(recibos.Punto1,'') as Punto1
+		 , isnull(recibos.Numero1,'') as Numero1
+		 , isnull(recibos.Fecha,'') as Fecha
+		 , isnull(recibos.Tipo2,'') as Tipo2
+		 , isnull(recibos.Numero2,'') as Numero2
+		 , isnull(recibos.Importe1,0) as Importe1
+		 --, isnull(recibos.Paridad,0) as Paridad
+		 , isnull(recibos.Importe2,0) as Importe2
+		 , isnull(recibos.RetIva,0) as RetIva
+		 , isnull(recibos.RetOtra,0) as RetOtra
+		 , isnull(recibos.RetSuss,0) as RetSuss
+		 , isnull(recibos.RetGanancias,0) as RetGanancias
+		 , isnull(recibos.Renglon,0) as Renglon
+		 , isnull(Clie.Provincia,'') as Provincia
 		 
 	from surfactanSA.dbo.recibos recibos
-	JOIN Cliente Clie on Clie.Cliente = recibos.Cliente
+	LEFT JOIN Cliente Clie on Clie.Cliente = recibos.Cliente
 	WHERE recibos.FechaOrd between @DesdeFecha and @HastaFecha
 	order by recibos.Clave
 
@@ -655,8 +671,9 @@ BEGIN
       ,ISNULL(ic.[Iva105],0)
       ,p.Nombre
       ,p.Cuit
+      ,ISNULL(ic.[soloiva],0)
   FROM [surfactanSA].[dbo].[IvaComp] ic
-  JOIN Proveedor p on p.Proveedor = ic.Proveedor
+  LEFT JOIN Proveedor p on p.Proveedor = ic.Proveedor
   WHERE dbo.FN_get_fecha_ordenable (ic.Periodo) between @desde_fecha and  @hasta_fecha
 END
 
@@ -753,7 +770,7 @@ AS
 		 , Pagos.Importe1 as Importe1
 		 
 	from surfactanSA.dbo.pagos pagos
-	JOIN Proveedor Prove on Prove.Proveedor = Pagos.Proveedor
+	LEFT JOIN Proveedor Prove on Prove.Proveedor = Pagos.Proveedor
 	WHERE pagos.FechaOrd between @DesdeFecha and @HastaFecha
 		and pagos.banco2 between @DesdeBanco and @HastaBanco
 		and pagos.Tipo2 = '02'
@@ -883,7 +900,7 @@ AS
 		 , recibos.Tipo2 as Tipo2
 		 , recibos.Numero2 as Numero2
 		 , recibos.Importe1 as Importe1
-		 , recibos.Paridad as Paridad
+		 --, recibos.Paridad as Paridad
 		 , recibos.Importe2 as Importe2
 		 , recibos.RetIva as RetIva
 		 , recibos.RetOtra as RetOtra
@@ -893,7 +910,7 @@ AS
 		 , Clie.Provincia as Provincia
 		 
 	from surfactanSA.dbo.Recibos recibos
-	JOIN Cliente Clie on Clie.Cliente = recibos.Cliente
+	LEFT JOIN Cliente Clie on Clie.Cliente = recibos.Cliente
 	WHERE recibos.Fechaord between @DesdeFecha and @HastaFecha
 		and (recibos.Cuenta = '21' or recibos.Cuenta = '22' or recibos.Cuenta = '25' or 
 		     recibos.Cuenta = '26' or recibos.Cuenta = '27')
@@ -1235,4 +1252,323 @@ BEGIN
 		WHERE Pagos.FechaOrd between @DesdeFecha and @HastaFecha
 	COMMIT
 END
+GO
+
+
+
+
+
+
+
+
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_modificar_ctacteprv_titulo]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_modificar_ctacteprv_titulo]
+GO
+
+CREATE PROCEDURE [dbo].[PR_modificar_ctacteprv_titulo]
+	(@tituloI varchar(50)
+	, @tituloII varchar(50)
+	, @auxi1 varchar(10)
+	, @auxi2 varchar(10)
+	, @auxi3 varchar(8)
+	, @auxi4 varchar(8)
+	, @DesdeFecha char(8)
+	, @HastaFecha char(8)
+	, @DesdeProveedor char(11)
+	, @HastaProveedor char(11))
+AS
+BEGIN
+	BEGIN TRAN
+		UPDATE	CtaCtePrv
+		SET tituloI = @tituloI
+		  , tituloII = @tituloII
+		  , auxi1 = @auxi1
+		  , auxi2 = @auxi2
+		  , auxi3 = @auxi3
+		  , auxi4 = @auxi4
+		WHERE CtaCtePrv.OrdFecha between @DesdeFecha and @HastaFecha
+		   and CtaCtePrv.Proveedor between @DesdeProveedor and @HastaProveedor
+		   and (CtaCtePrv.Saldo > 1 or CtaCtePrv.Saldo < 1)
+	COMMIT
+END
+GO
+
+
+
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_pagos_fecha_Proveedor]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_pagos_fecha_Proveedor]
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_pagos_fecha_Proveedor]
+	(@DesdeProveedor char(11)
+	, @HastaProveedor char(11)
+	, @Fecha char(8))
+AS
+	select Pagos.FechaOrd as FechaOrd
+		 , Pagos.Orden as Orden
+		 , Pagos.TipoOrd as TipoOrd
+		 , Pagos.Banco2 as Banco2
+		 , Pagos.Cuenta as Cuenta
+		 , Pagos.Proveedor as Proveedor
+		 , Pagos.Letra1 as Letra1
+		 , Pagos.Tipo1 as Tipo1
+		 , Pagos.Punto1 as Punto1
+		 , Pagos.Numero1 as Numero1
+		 , Pagos.Importe1 as Importe1
+		 , Pagos.Fecha as Fecha
+		 , Pagos.TipoReg as Tiporeg
+		 , Pagos.Observaciones as Observaciones
+		 , Pagos.RetOtra as RetOtra
+		 , Pagos.Retencion as Retencion
+		 , Pagos.RetIbCiudad as RetIbCiudad
+		 , Pagos.Importe2 as Importe2
+		 , Pagos.Tipo2 as Tipo2
+		 , Pagos.Numero2 as Numero2
+		 , Pagos.Renglon as Renglon
+		 , Pagos.Carpeta as carpeta
+		 
+		 
+	from surfactanSA.dbo.pagos pagos
+	WHERE pagos.Proveedor between @DesdeProveedor and @HastaProveedor
+	    and  pagos.FechaOrd > @Fecha
+	    and  pagos.Importe1 <> 0
+	order by pagos.Clave
+
+
+
+GO
+
+
+
+--
+--   ---------------------------------------------------------------------------------------------------------
+--
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_modificar_saldo_impctacteprv]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_modificar_saldo_impctacteprv]
+GO
+
+CREATE PROCEDURE [dbo].[PR_modificar_saldo_impctacteprv]
+	(@clave char(26)
+	, @Importe float)
+AS
+BEGIN
+	BEGIN TRAN
+		UPDATE	impCtaCtePrvNet
+		SET impCtaCtePrvNet.Saldo = impCtaCtePrvNet.Saldo - @importe
+		WHERE impCtaCtePrvNet.clave = @clave
+	COMMIT
+END
+GO
+
+
+
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_AplicaProve]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_AplicaProve]
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_AplicaProve]
+	(@DesdeProveedor char(11)
+	, @HastaProveedor char(11)
+	, @Fecha char(8))
+AS
+	select AplicaProve.Clave  as Clave
+		 , AplicaProve.Codigo as Codigo
+		 , AplicaProve.Renglon as Renglon
+		 , AplicaProve.Fecha as Fecha
+		 , AplicaProve.Ordfecha as OrdFecha
+		 , AplicaProve.Proveedor as Proveedor
+		 , AplicaProve.Tipo as Tipo
+		 , AplicaProve.Letra as Letra
+		 , AplicaProve.Punto as Punto
+		 , AplicaProve.Numero as Numero
+		 , AplicaProve.Importe as Importe
+		 
+	from surfactanSA.dbo.AplicaProve AplicaProve
+	WHERE AplicaProve.Proveedor between @DesdeProveedor and @HastaProveedor
+	    and  AplicaProve.Ordfecha > @Fecha
+	order by AplicaProve.Clave
+
+
+
+GO
+
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_cuenta_corriente_proveedores_Selectivo]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_cuenta_corriente_proveedores_Selectivo]
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_cuenta_corriente_proveedores_Selectivo]
+	(@proveedor char(11))
+	
+AS
+	select LTRIM(RTRIM(CtaCtePrv.Tipo)) as Tipo 
+		 , LTRIM(RTRIM(CtaCtePrv.Letra)) as Letra
+		 , LTRIM(RTRIM(CtaCtePrv.Punto)) as Punto
+		 , LTRIM(RTRIM(CtaCtePrv.Numero)) as Numero
+		 , CtaCtePrv.Total as Total
+		 , CtaCtePrv.Saldo as Saldo
+		 , LTRIM(RTRIM(CtaCtePrv.fecha)) as Fecha
+		 , LTRIM(RTRIM(CtaCtePrv.Vencimiento)) as Vencimiento
+		 , LTRIM(RTRIM(CtaCtePrv.Vencimiento1)) as Vencimiento1
+		 , LTRIM(RTRIM(CtaCtePrv.Impre)) as Impre
+		 , CtaCtePrv.NroInterno as NroInterno
+		 , LTRIM(RTRIM(CtaCtePrv.Clave)) as Clave
+		 , LTRIM(RTRIM(CtaCtePrv.Proveedor)) as Proveedor
+		 , CtaCtePrv.Pago as Pago
+		 , CtaCtePrv.Paridad as Paridad
+
+	from surfactanSA.dbo.CtaCtePrv CtaCtePrv
+	WHERE CtaCtePrv.Proveedor = @proveedor
+		AND CtaCtePrv.Saldo <> 0
+	order by CtaCtePrv.Proveedor, CtaCtePrv.OrdFecha, CtaCtePrv.Tipo,CtaCtePrv.Numero
+GO
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_actualiza_periodo_imputac]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_actualiza_periodo_imputac]
+GO
+
+
+create procedure PR_actualiza_periodo_imputac
+	(@desde varchar(10)
+	, @hasta varchar(10))
+as 
+
+	UPDATE ic
+	SET ic.Periodo = iva.Periodo,
+		ic.PeriodoOrd = 'S'
+	FROM Imputac ic 
+	LEFT JOIN IvaComp iva on iva.NroInterno = ic.NroInterno
+	-- where iva.Periodo between @desde and @hasta
+	where dbo.FN_get_fecha_ordenable (iva.Periodo) between @desde and @hasta
+
+GO
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_actualiza_periodo_imputacII]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_actualiza_periodo_imputacII]
+GO
+
+
+create procedure PR_actualiza_periodo_imputacII
+	(@desde varchar(10)
+	, @hasta varchar(10))
+as 
+
+	UPDATE ic
+	SET ic.Periodo = @desde,
+		ic.PeriodoOrd = @desde
+	FROM Imputac ic 
+	LEFT JOIN IvaComp iva on iva.NroInterno = ic.NroInterno
+
+
+GO
+
+
+
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_buscar_acumulado_proveedor]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_buscar_acumulado_proveedor]
+GO
+
+CREATE PROCEDURE [dbo].[PR_buscar_acumulado_proveedor]
+	(@proveedor char(11),
+	 @Fecha char(4))
+	
+AS
+	select Acumula.Neto
+		, Acumula.Retenido
+		, Acumula.Anticipo
+		, Acumula.Bruto
+		, Acumula.Iva
+	
+	from surfactanSA.dbo.Retencion Acumula
+	WHERE Acumula.Proveedor = @proveedor
+		AND acumula.Fecha <> @fecha
+	
+GO
+
+
+
+
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_lee_cuenta_corriente_clave]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_lee_cuenta_corriente_clave]
+GO
+
+
+
+CREATE PROCEDURE [dbo].[PR_lee_cuenta_corriente_clave]
+	@Clave Char(12)
+ AS
+ -- SOLO TRAJE ESTOS PORQUE SON LOS QUE FUI VIENDO QUE SE USAN EN EL PROCESO DE LOS RECIBOS
+	SELECT cc.Clave 
+		, cc.Tipo
+		,cc.Numero
+		,cc.Cliente
+		,cc.fecha
+		,cc.Vencimiento
+		,cc.Total
+		,cc.Saldo
+		,cc.TotalUs
+		,cc.SaldoUs
+		,cc.Impre
+		,cc.Neto
+		,cc.Iva1
+		,cc.Iva2
+		,cc.Paridad
+	 
+		
+	FROM Ctacte cc
+	WHERE
+		Clave = @Clave
+
+GO
+
+
+
+
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_cliente_por_codigo_total]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_cliente_por_codigo_total]
+GO
+
+
+CREATE PROCEDURE [dbo].[PR_get_cliente_por_codigo_total]
+	@cliente varchar(6)
+AS
+	SELECT cli.Cliente
+		, cli.Razon
+		,cli.Provincia
+	FROM Cliente cli
+	WHERE cli.Cliente = @cliente
+
 GO

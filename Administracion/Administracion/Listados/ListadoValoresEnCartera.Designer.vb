@@ -262,6 +262,7 @@ Partial Class ListadoValoresEnCartera
         Me.txtCliente.EnterIndex = -1
         Me.txtCliente.LabelAssociationKey = -1
         Me.txtCliente.Location = New System.Drawing.Point(104, 176)
+        Me.txtCliente.MaxLength = 6
         Me.txtCliente.Name = "txtCliente"
         Me.txtCliente.Size = New System.Drawing.Size(100, 20)
         Me.txtCliente.TabIndex = 6

@@ -175,7 +175,9 @@ Public Class ListadoCuentaCorrienteProveedoresAnalisitico
 
         varFormula = varUno + varDos + varTres
 
-        Dim viewer As New ReportViewer("Listado de Corriente de Proveedres", Globals.reportPathWithName("wccprvanaliticonet.rpt"), varFormula)
+        SQLConnector.executeProcedure("modificar_ctacteprv_titulo", "Surfactan S.A.", varTitulo, "", "", "", "", varDesdeFecha, varHastaFecha, txtDesdeProveedor.Text, txtHastaProveedor.Text)
+
+        Dim viewer As New ReportViewer("Listado de Corriente de Proveedores Analitico", Globals.reportPathWithName("wccprvanaliticonet.rpt"), varFormula)
 
         If opcPantalla.Checked = True Then
             viewer.Show()
