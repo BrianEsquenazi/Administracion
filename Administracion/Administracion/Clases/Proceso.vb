@@ -328,6 +328,55 @@
 
     End Function
 
+    Public Function CaculoRetencionIngresosBrutos(ByVal varTipoIb As Integer, ByVal varPorceIb As Double, ByVal varAcumulaNeto As Double)
+
+        Dim varRete As Double
+        Dim varAcumulaIb As Double
+        Dim varRetIb As Double
+
+        varRetIb = 0
+
+        If varTipoIb = 0 Or varTipoIb = 1 Then
+            varRete = varAcumulaNeto * (varPorceIb / 100)
+            varAcumulaIb = varAcumulaIb + redondeo(varRete)
+            varRetIb = redondeo(varAcumulaIb)
+        End If
+
+        Return varRetIb
+
+    End Function
+
+
+    Public Function CaculoRetencionIngresosBrutosCaba(ByVal varTipoIbCaba As Integer, ByVal varPorceIbCaba As Double, ByVal varAcumulaNeto As Double)
+
+        Dim varRete As Double
+        Dim varRetIbCaba As Double
+        Dim varAcumulaIb As Double
+
+        varRetIbCaba = 0
+
+        If varTipoIbCaba = 3 Or varTipoIbCaba = 4 Or varPorceIbCaba <> 0 Then
+            If varTipoIbCaba <> 2 Then
+                If varAcumulaNeto >= 300 Then
+                    If varPorceIbCaba <> 0 Then
+                        varRete = varAcumulaNeto * (varPorceIbCaba / 100)
+                    Else
+                        If varTipoIbCaba = 3 Then
+                            varRete = varAcumulaNeto * (3 / 100)
+                        Else
+                            varRete = varAcumulaNeto * (4.5 / 100)
+                        End If
+                    End If
+                End If
+                varAcumulaIb = varAcumulaIb + redondeo(varRete)
+                varRetIbcaba = varAcumulaIb
+            End If
+        End If
+
+        Return varRetIbCaba
+
+    End Function
+
 
 
 End Module

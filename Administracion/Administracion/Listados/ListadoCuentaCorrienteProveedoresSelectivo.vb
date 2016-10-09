@@ -144,6 +144,7 @@ Public Class ListadoCuentaCorrienteProveedoresSelectivo
         Dim varPago, varEmpresa As Integer
         Dim varAcumulaNeto, varAcumulaNetoII, varAcumulaIva As Double
         Dim varFecha As String
+        Dim varRetIbI, varRetIbII As Double
 
         SQLConnector.retrieveDataTable("limpiar_impCtaCtePrvNet")
 
@@ -227,6 +228,7 @@ Public Class ListadoCuentaCorrienteProveedoresSelectivo
                         'WTipoprv = Val(RstProveedor!Tipo) + 1
                         'WPorceIb = IIf(IsNull(RstProveedor!PorceIb), "0", RstProveedor!PorceIb)
                         'WPorceIbCaba = IIf(IsNull(RstProveedor!PorceIbCaba), "0", RstProveedor!PorceIbCaba)
+
                     End If
 
                     Dim compra As Compra = DAOCompras.buscarCompraPorCodigo(CCPrv.nroInterno)
@@ -242,15 +244,20 @@ Public Class ListadoCuentaCorrienteProveedoresSelectivo
                         varIb = compra.percibidoIB
                         varExento = compra.exento
                         varTotalTrabajo = varNeto + varIva + varIva5 + varIva27 + varIva105 + varIb + varExento
-                        varLetra = compra.letra
-                        varPago = compra.tipoPago
                     End If
 
+                    varRetIbI = 0
+                    varRetIbII = 0
                     varRetIb = 0
                     varRetIva = 0
                     varRetGan = 0
                     varAcumulaIb = 0
 
+
+
+                    '
+                    'calcula el neto para el calculo de las retenciones
+                    '
                     If varTotalTrabajo <> 0 Then
                         varAcumulaNetoII = varNeto * varPorce
                     Else
@@ -266,47 +273,41 @@ Public Class ListadoCuentaCorrienteProveedoresSelectivo
                     End If
                     varAcumulaNeto = varAcumulaNeto + varAcumulaNetoII
 
-                    If varTipoIb = 0 Or varTipoIb = 1 Then
-                        varRete = varAcumulaNeto * (varPorceIb / 100)
-                        varAcumulaIb = varAcumulaIb + redondeo(varRete)
-                        varRetIb = redondeo(varAcumulaIb)
+                    '
+                    'calculo de rtencion de Ingresos brutos Pcia
+                    '
+                    varRetIbI = CaculoRetencionIngresosBrutos(varTipoIb, varPorceIb, varAcumulaNeto)
+
+                    '
+                    'calculo de rtencion de Ingresos brutos CABA
+                    '
+                    If varEmpresa = 1 Then
+                        varRetIbII = CaculoRetencionIngresosBrutos(varTipoIbCaba, varPorceIbCaba, varAcumulaNeto)
                     End If
 
-                    If varTipoIbCaba = 3 Or varTipoIbCaba = 4 Or varPorceIbCaba <> 0 Then
-                        If varTipoIbCaba <> 2 Then
-                            If varEmpresa = 1 Then
-                                If varAcumulaNeto >= 300 Then
-                                    If varPorceIbCaba <> 0 Then
-                                        varRete = varAcumulaNeto * (varPorceIbCaba / 100)
-                                    Else
-                                        If varTipoIbCaba = 3 Then
-                                            varRete = varAcumulaNeto * (3 / 100)
-                                        Else
-                                            varRete = varAcumulaNeto * (4.5 / 100)
-                                        End If
-                                    End If
-                                End If
-                                varAcumulaIb = varAcumulaIb + redondeo(varRete)
-                                varRetIb = varAcumulaIb
-                            End If
-                        End If
-                    End If
+
                     Stop
 
-
-
+                    '
+                    'calculo de rtencion de Ganancias
+                    '
                     varOrdFecha = leederecha(ordenaFecha(varFecha), 6)
                     Dim CampoAcumulado As LeeAcumulado = DaoAcumulado.buscarAcumulado(varProveedor, varOrdFecha)
 
-
                     varRetGan = CaculoRetencionGanancia(varTipoPrv, varAcumulaNeto, CampoAcumulado.neto, CampoAcumulado.retenido, CampoAcumulado.anticipo, CampoAcumulado.bruto, CampoAcumulado.iva)
 
+
+                    '
+                    'calculo de rtencion de IVA
+                    '
                     If varLetra = "M" Then
                         If varNeto >= 1000 Then
                             varAcumulaIva = varAcumulaIva + varIva
                         End If
-                        varRetIb = varRetIb + varAcumulaIva
+                        varRetIva = varAcumulaIva
                     End If
+
+                    varRetIb = varRetIbI + varRetIbII + varRetIva
 
                     '!acuneto = !Acumulado - WRetIb - WRetgan
                     '!Nombre = WNombre
@@ -314,10 +315,8 @@ Public Class ListadoCuentaCorrienteProveedoresSelectivo
                     '!ReteIb = WRetIb
                     '!ReteGan = WRetgan
 
-
-
-
                     SQLConnector.executeProcedure("alta_impCtaCtePrvNet", CCPrv.Clave, CCPrv.Proveedor, CCPrv.Tipo, CCPrv.letra, CCPrv.punto, CCPrv.numero, varTotal, varSaldo, CCPrv.fecha, CCPrv.vencimiento, txtFechaEmision.Text, CCPrv.Impre, CCPrv.nroInterno, txtEmpresa, varAcumulado, WOrden, txtFechaEmision.Text, "", "", "", varParidadTotal, varSaldoOriginal, varDife, 0, 0, "", 0, 0, 0, varParidad, varTotalUs, varSaldoUs, 0, 0)
+
 
                 Next
 
