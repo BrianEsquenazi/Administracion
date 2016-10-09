@@ -14,7 +14,7 @@
     Private Sub lstSeleccion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstSeleccion.Click
         If lstSeleccion.SelectedItem = "Proveedores" Then
             query = AddressOf DAOProveedor.buscarProveedorPorNombre
-            showMethod = AddressOf duenio.mostrarProveedor
+            showMethod = AddressOf duenio.mostrarProveedorConsulta
         Else
             query = AddressOf DAOCuentaContable.buscarCuentaContablePorDescripcion
             showMethod = AddressOf duenio.mostrarCuentaContable
@@ -42,7 +42,7 @@
     End Sub
 
     Private Sub lstConsulta_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConsulta.Click
-        showMethod.Invoke(lstConsulta.SelectedValue)
         Close()
+        showMethod.Invoke(lstConsulta.SelectedValue)
     End Sub
 End Class

@@ -1,12 +1,12 @@
 ﻿Public Class DetalleCompraCuentaCorriente
     Public tipo, punto, numero, letra, fecha, impresion As String
-    Public saldo, total As Double
-    Public numInterno As Integer
+    Public saldo, total, paridad As Double
+    Public numInterno, pago As Integer
     Public proveedor As Proveedor
 
     Public Sub New(ByVal tipoDoc As String, ByVal tipoImpre As String, ByVal punt As String, ByVal nro As String, ByVal letraString As String,
                    ByVal fechaString As String, ByVal restante As Double, ByVal valorTotal As Double,
-                   ByVal interno As String, ByVal prov As Proveedor)
+                   ByVal interno As String, ByVal prov As Proveedor, ByVal pago2 As Integer, ByVal paridad2 As Double)
         tipo = tipoDoc
         impresion = tipoImpre
         punto = punt
@@ -17,6 +17,8 @@
         total = valorTotal
         numInterno = interno
         proveedor = prov
+        pago = pago2
+        paridad = paridad2
     End Sub
 
     Public Function igualA(ByVal cuenta As DetalleCompraCuentaCorriente)
@@ -55,4 +57,11 @@
         Return value.ToString
     End Function
 
+    Public Function esClausulaDolar()
+        Return pago = 2
+    End Function
+
+    Public Function montoDolar()
+        Return saldo / paridad
+    End Function
 End Class

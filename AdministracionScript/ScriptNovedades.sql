@@ -1294,4 +1294,19 @@ AS
 	WHERE Recibo = @recibo
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PR_get_paridad]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[PR_get_paridad]
+GO
 
+CREATE PROCEDURE PR_get_paridad (@fecha date)
+AS
+BEGIN	
+	declare @paridad varchar(10)
+	 
+	select @paridad = c.Cambio
+	from Cambios c
+	where c.Fecha = @fecha
+	
+	return ISNULL(@paridad,'0')
+END
+GO
