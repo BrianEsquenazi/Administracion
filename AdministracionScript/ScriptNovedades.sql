@@ -1304,7 +1304,7 @@ BEGIN
 	declare @paridad varchar(10)
 	 
 	select @paridad = c.Cambio
-	from Cambios c
+	from CambioAdm c
 	where c.Fecha = @fecha
 	
 	return ISNULL(@paridad,'0')

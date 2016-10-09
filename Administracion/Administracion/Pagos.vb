@@ -117,6 +117,8 @@ Public Class Pagos
 
         resto = (cuenta.montoDolar() * CustomConvert.toStringWithTwoDecimalPlaces(txtParidad.Text)) - CustomConvert.toStringWithTwoDecimalPlaces(cuenta.saldo)
 
+
+
         Select Case resto
             Case Is < 0
                 gridPagos.Rows.Add("03", cuenta.letra, cuenta.punto, "99999999", CustomConvert.toStringWithTwoDecimalPlaces(resto), "N/C por Diferencia de Cambio")
@@ -384,32 +386,63 @@ Public Class Pagos
                                          0,
                                          "",
                                          "")
-                DAOCompras.agregarNota(compra)
+                crearImputaciones(compra)
+                DAOCompras.agregarCompra(compra)
                 DAOCompras.agregarDatosCuentaCorriente(compra)
+
             End If
             ultimoNumero = Convert.ToString(row.Cells(3).Value)
         Next
     End Sub
 
-    'Private Sub crearImputaciones(ByVal compra As Compra)
-    '    Dim imputaciones As New List(Of Imputac)
-    '    For Each row As DataGridViewRow In gridAsientos.Rows
-    '        If Not row.IsNewRow Then
-    '            imputaciones.Add(New Imputac(compra.fechaEmision, asDouble(row.Cells(2).Value), asDouble(row.Cells(3).Value), proveedor.id, row.Cells(0).Value, compra.nroInterno,
-    '                                         compra.punto, compra.numero, compra.despacho, compra.letra, compra.tipoDocumento, ceros((row.Index + 1).ToString, 2)))
-    '        End If
-    '    Next
+    Private Sub crearImputaciones(ByVal compra As Compra)
+        Dim imputaciones As New List(Of Imputac)
+        Dim debitoProv, debitoIva, debitoCuenta, creditoProv, creditoIva, creditoCuenta As Double
+        Dim cuenta As Integer = 0
+        debitoProv = 0
+        debitoIva = debitoCuenta = creditoProv = creditoIva = creditoCuenta = debitoProv
+        If compra.tipoDocumentoDescripcion = "ND" Then
+            debitoCuenta = compra.neto
+            debitoIva = compra.iva21
+            creditoProv = compra.total
+            cuenta = 6107
+        Else
+            creditoCuenta = compra.neto
+            creditoIva = compra.iva21
+            debitoProv = compra.total
+            cuenta = 7308
+        End If
+        'For Each row As DataGridViewRow In gridAsientos.Rows
+        'If Not row.IsNewRow Then
 
-    '    compra.agregarImputaciones(imputaciones)
-    'End Sub
+        imputaciones.Add(New Imputac(compra.fechaEmision, debitoProv, creditoProv, compra.proveedor.id.ToString, 2001, compra.nroInterno,
+                                     compra.punto, compra.numero, compra.despacho, compra.letra, compra.tipoDocumento, "01"))
+        imputaciones.Add(New Imputac(compra.fechaEmision, debitoIva, creditoIva, compra.proveedor.id.ToString, 151, compra.nroInterno,
+                                     compra.punto, compra.numero, compra.despacho, compra.letra, compra.tipoDocumento, "02"))
+        imputaciones.Add(New Imputac(compra.fechaEmision, debitoCuenta, creditoCuenta, compra.proveedor.id.ToString, cuenta, compra.nroInterno,
+                             compra.punto, compra.numero, compra.despacho, compra.letra, compra.tipoDocumento, "03"))
+        'End If
+        'Next
+
+        compra.agregarImputaciones(imputaciones)
+    End Sub
 
     Private Function crearPagos()
         Dim pagos As New List(Of Pago)
+        Dim ultimoNumero As String = ""
+
         For Each row As DataGridViewRow In gridPagos.Rows
             If Not row.IsNewRow Then
-                pagos.Add(New Pago(Convert.ToString(row.Cells(0).Value), Convert.ToString(row.Cells(1).Value), Convert.ToString(row.Cells(2).Value), Convert.ToString(row.Cells(3).Value),
-                                  Convert.ToString(row.Cells(5).Value), CustomConvert.toDoubleOrZero(row.Cells(4).Value)))
+                If (Convert.ToString(row.Cells(3).Value) = "99999999") Then
+                    pagos.Add(New Pago(Convert.ToString(row.Cells(0).Value), Convert.ToString(row.Cells(1).Value), Convert.ToString(row.Cells(2).Value), ultimoNumero,
+                    Convert.ToString(row.Cells(5).Value), CustomConvert.toDoubleOrZero(row.Cells(4).Value)))
+                Else
+                    pagos.Add(New Pago(Convert.ToString(row.Cells(0).Value), Convert.ToString(row.Cells(1).Value), Convert.ToString(row.Cells(2).Value), Convert.ToString(row.Cells(3).Value),
+                    Convert.ToString(row.Cells(5).Value), CustomConvert.toDoubleOrZero(row.Cells(4).Value)))
+                End If
+
             End If
+            ultimoNumero = Convert.ToString(row.Cells(3).Value)
         Next
         Return pagos
     End Function
