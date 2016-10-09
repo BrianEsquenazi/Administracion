@@ -19,8 +19,12 @@ Public Class DAOCompras
     End Function
 
     Public Shared Sub agregarDatosCuentaCorriente(ByVal compra As Compra)
+        Dim saldo As Double = compra.total
+        If Not (compra.tipoDocumentoDescripcion = "FC") Then ' Porque notas de credito o debito llevan un saldo de 0
+            saldo = 0
+        End If
         Dim datosCuotas As New List(Of Tuple(Of String, String, String, Double, Double)) '1: Numero 2: Fecha vto 3: Fecha vto 2 4: Total 5: Saldo
-        datosCuotas.Add(Tuple.Create(compra.numero, compra.fechaVto1, compra.fechaVto2, compra.total, compra.total))
+        datosCuotas.Add(Tuple.Create(compra.numero, compra.fechaVto1, compra.fechaVto2, compra.total, saldo))
         If compra.usaCuotas() Then
             datosCuotas(0) = Tuple.Create(datosCuotas(0).Item1, datosCuotas(0).Item2, datosCuotas(0).Item3, datosCuotas(0).Item4, 0.0)
             crarCuotasPara(compra, datosCuotas)
@@ -125,6 +129,13 @@ Public Class DAOCompras
         Return imputaciones
     End Function
 
+
+    Public Shared Sub agregarNota(ByVal compra As Compra)
+        SQLConnector.executeProcedure("alta_iva_compra", compra.nroInterno, compra.codigoProveedor, compra.tipoDocumento, compra.letra, compra.punto, compra.numero, compra.fechaEmision,
+                                      compra.fechaVto1, compra.fechaVto2, compra.fechaIVA, compra.neto, compra.iva21, compra.ivaRG, compra.iva27,
+                                      compra.percibidoIB, compra.exento, compra.tipoPago, compra.tipoDocumentoDescripcion, compra.paridad,
+                                      compra.formaPago, compra.proveedor.cai, compra.proveedor.vtoCAI, compra.iva105, compra.despacho, compra.remito, compra.soloIVA)
+    End Sub
 
     Public Shared Sub agregarCompra(ByVal compra As Compra)
         SQLConnector.executeProcedure("alta_iva_compra", compra.nroInterno, compra.codigoProveedor, compra.tipoDocumento, compra.letra, compra.punto, compra.numero, compra.fechaEmision,

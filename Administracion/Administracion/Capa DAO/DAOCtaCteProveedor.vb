@@ -59,7 +59,7 @@ Public Class DAOCtaCteProveedor
         For Each row In SQLConnector.retrieveDataTable("get_cuentas_sin_saldar", proveedor.id).Rows
             cuentas.Add(New DetalleCompraCuentaCorriente(row("Tipo").ToString, row("Impre").ToString, row("Punto").ToString, row("Numero").ToString,
                                                          row("Letra").ToString, row("fecha").ToString, row("Saldo"),
-                                                         row("Total"), row("NroInterno").ToString, proveedor))
+                                                         row("Total"), row("NroInterno").ToString, proveedor, row("Pago"), row("Paridad")))
         Next
         Return cuentas
     End Function

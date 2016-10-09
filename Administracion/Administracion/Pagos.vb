@@ -97,11 +97,35 @@ Public Class Pagos
     End Function
 
     Private Sub mostrarCuentaCorriente(ByVal cuenta As DetalleCompraCuentaCorriente)
-        If pagos.Any(Function(pagoExistente) cuenta.igualA(pagoExistente)) Then
-            Exit Sub
+        If (LTrim(txtParidad.Text) = "") Then
+            MessageBox.Show("No hay paridad informada")
+        Else
+            If pagos.Any(Function(pagoExistente) cuenta.igualA(pagoExistente)) Then
+                Exit Sub
+            End If
+            pagos.Add(cuenta)
+            gridPagos.Rows.Add(cuenta.tipo, cuenta.letra, cuenta.punto, cuenta.numero, CustomConvert.toStringWithTwoDecimalPlaces(cuenta.saldo), "Pago Factura Nro " & CustomConvert.toIntOrZero(cuenta.numero))
+
+            If cuenta.esClausulaDolar Then
+                generarNota(cuenta)
+            End If
         End If
-        pagos.Add(cuenta)
-        gridPagos.Rows.Add(cuenta.tipo, cuenta.letra, cuenta.punto, cuenta.numero, CustomConvert.toStringWithTwoDecimalPlaces(cuenta.saldo), "Pago Factura Nro " & CustomConvert.toIntOrZero(cuenta.numero))
+    End Sub
+
+    Private Sub generarNota(ByVal cuenta As DetalleCompraCuentaCorriente)
+        Dim resto As Double
+
+        resto = (cuenta.montoDolar() * CustomConvert.toStringWithTwoDecimalPlaces(txtParidad.Text)) - CustomConvert.toStringWithTwoDecimalPlaces(cuenta.saldo)
+
+        Select Case resto
+            Case Is < 0
+                gridPagos.Rows.Add("03", cuenta.letra, cuenta.punto, "99999999", CustomConvert.toStringWithTwoDecimalPlaces(resto), "N/C por Diferencia de Cambio")
+            Case Is > 0
+                gridPagos.Rows.Add("02", cuenta.letra, cuenta.punto, "99999999", CustomConvert.toStringWithTwoDecimalPlaces(resto), "N/D por Diferencia de Cambio")
+            Case Else
+                'ENTRA ACA SI ES IGUAL A CERO Y NO SE DEBE HACER NADA'
+        End Select
+
     End Sub
 
     Private Sub mostrarOrdenDePago(ByVal orden As OrdenPago)
@@ -120,6 +144,7 @@ Public Class Pagos
         mostrarPagos(orden.pagos)
         mostrarFormaPagos(orden.formaPagos)
         mostrarTipo(orden.tipo)
+        txtParidad.Text = orden.paridad
     End Sub
 
     Private Sub mostrarTipo(ByVal tipo As Integer)
@@ -306,6 +331,7 @@ Public Class Pagos
                                                   CustomConvert.toDoubleOrZero(txtIngresosBrutos.Text), CustomConvert.toDoubleOrZero(txtIBCiudad.Text),
                                                   CustomConvert.toDoubleOrZero(txtGanancias.Text), txtFecha.Text, txtFechaParidad.Text, txtObservaciones.Text,
                                                   bancoOrden, proveedorOrden)
+            crearNotasCreditoDebito()
             pago.pagos = crearPagos()
             pago.formaPagos = crearFormaPagos()
             DAOPagos.agregarPago(pago)
@@ -313,6 +339,69 @@ Public Class Pagos
             btnLimpiar.PerformClick()
         End If
     End Sub
+
+    Private Sub crearNotasCreditoDebito()
+        Dim pagos As New List(Of Pago)
+        Dim ultimoNumero As String = 0
+        Dim tipoDoc As String = ""
+        Dim neto As Double
+
+        For Each row As DataGridViewRow In gridPagos.Rows
+            If (Not row.IsNewRow And (Convert.ToString(row.Cells(3).Value) = "99999999")) Then
+
+                If Convert.ToString(row.Cells(0).Value) = "02" Then
+                    tipoDoc = "ND"
+                Else
+                    tipoDoc = "NC"
+                End If
+
+                neto = CustomConvert.toStringWithTwoDecimalPlaces(row.Cells(4).Value) / 1.21
+
+                Dim interno As Integer = DAOCompras.siguienteNumeroDeInterno()
+                Dim compra As New Compra(
+                                         interno,
+                                         DAOProveedor.buscarProveedorPorCodigo(txtProveedor.Text),
+                                         Convert.ToString(row.Cells(0).Value),
+                                         tipoDoc,
+                                         "1",
+                                         "2",
+                                         Convert.ToString(row.Cells(1).Value),
+                                         Convert.ToString(row.Cells(2).Value),
+                                         ultimoNumero,
+                                         txtFecha.Text,
+                                         txtFecha.Text,
+                                         txtFecha.Text,
+                                         txtFecha.Text,
+                                         CustomConvert.toStringWithTwoDecimalPlaces(txtParidad.Text),
+                                         neto,
+                                         CustomConvert.toStringWithTwoDecimalPlaces(row.Cells(4).Value) - neto,
+                                         0,
+                                         0,
+                                         0,
+                                         0,
+                                         0,
+                                         CustomConvert.toStringWithTwoDecimalPlaces(row.Cells(4).Value),
+                                         0,
+                                         "",
+                                         "")
+                DAOCompras.agregarNota(compra)
+                DAOCompras.agregarDatosCuentaCorriente(compra)
+            End If
+            ultimoNumero = Convert.ToString(row.Cells(3).Value)
+        Next
+    End Sub
+
+    'Private Sub crearImputaciones(ByVal compra As Compra)
+    '    Dim imputaciones As New List(Of Imputac)
+    '    For Each row As DataGridViewRow In gridAsientos.Rows
+    '        If Not row.IsNewRow Then
+    '            imputaciones.Add(New Imputac(compra.fechaEmision, asDouble(row.Cells(2).Value), asDouble(row.Cells(3).Value), proveedor.id, row.Cells(0).Value, compra.nroInterno,
+    '                                         compra.punto, compra.numero, compra.despacho, compra.letra, compra.tipoDocumento, ceros((row.Index + 1).ToString, 2)))
+    '        End If
+    '    Next
+
+    '    compra.agregarImputaciones(imputaciones)
+    'End Sub
 
     Private Function crearPagos()
         Dim pagos As New List(Of Pago)
@@ -527,4 +616,11 @@ Public Class Pagos
         traerParidad(txtFechaParidad.Text())
     End Sub
 
+    Private Sub txtFechaParidad_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+    End Sub
+
+    Private Sub lstSeleccion_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+    End Sub
 End Class

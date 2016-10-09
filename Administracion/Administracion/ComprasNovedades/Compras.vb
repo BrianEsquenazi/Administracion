@@ -74,6 +74,11 @@ Public Class Compras
         diasPlazo = CustomConvert.toIntOrZero(proveedorAMostrar.diasPlazo)
     End Sub
 
+    Public Sub mostrarProveedorConsulta(ByVal proveedorAMostrar As Proveedor)
+        mostrarProveedor(proveedorAMostrar)
+        txtCodigoProveedor.Focus()
+    End Sub
+
     Public Sub mostrarCuentaContable(ByVal cuenta As CuentaContable)
         If gridAsientos.SelectedCells.Count > 0 Then
             Dim selectedRow As Integer = gridAsientos.SelectedCells(0).RowIndex
